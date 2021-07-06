@@ -1,24 +1,27 @@
 {
   "images" : [
     {
+      "filename" : "a_200x200.png",
       "idiom" : "iphone",
       "scale" : "1x"
     },
     {
+      "filename" : "a_400x400.png",
       "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "filename" : "a_original-1.png",
+      "filename" : "a_600x600.png",
       "idiom" : "iphone",
       "scale" : "3x"
     },
     {
+      "filename" : "a_400x400-1.png",
       "idiom" : "ipad",
       "scale" : "1x"
     },
     {
-      "filename" : "a_original.png",
+      "filename" : "a_600x600-1.png",
       "idiom" : "ipad",
       "scale" : "2x"
     }

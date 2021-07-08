@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930310C82695DC75006910EF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Model.swift */; };
+		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
+		931164E52697836600099F8D /* AcceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931164E42697836600099F8D /* AcceptView.swift */; };
 		935398B22694E2780062931E /* ReczipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B12694E2780062931E /* ReczipesApp.swift */; };
-		935398B42694E2780062931E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B32694E2780062931E /* ContentView.swift */; };
 		935398B62694E27B0062931E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B52694E27B0062931E /* Assets.xcassets */; };
 		935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B82694E27B0062931E /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		930310C72695DC75006910EF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		930310C9269666B1006910EF /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		931164E42697836600099F8D /* AcceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptView.swift; sourceTree = "<group>"; };
 		935398AE2694E2780062931E /* Reczipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reczipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935398B12694E2780062931E /* ReczipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReczipesApp.swift; sourceTree = "<group>"; };
-		935398B32694E2780062931E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935398B82694E27B0062931E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		935398BF2694E2A90062931E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		935398BF2694E2A90062931E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		930310C52695DC33006910EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				931164E42697836600099F8D /* AcceptView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		930310C62695DC46006910EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				930310C72695DC75006910EF /* Model.swift */,
+				930310C9269666B1006910EF /* ContactsViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		935398A52694E2780062931E = {
 			isa = PBXGroup;
 			children = (
@@ -52,10 +73,11 @@
 		935398B02694E2780062931E /* Reczipes */ = {
 			isa = PBXGroup;
 			children = (
-				935398BF2694E2A90062931E /* Info.plist */,
+				930310C62695DC46006910EF /* Models */,
 				935398B12694E2780062931E /* ReczipesApp.swift */,
-				935398B32694E2780062931E /* ContentView.swift */,
+				930310C52695DC33006910EF /* Views */,
 				935398B52694E27B0062931E /* Assets.xcassets */,
+				935398BF2694E2A90062931E /* Info.plist */,
 				935398B72694E27B0062931E /* Preview Content */,
 			);
 			path = Reczipes;
@@ -139,7 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				935398B42694E2780062931E /* ContentView.swift in Sources */,
+				931164E52697836600099F8D /* AcceptView.swift in Sources */,
+				930310C82695DC75006910EF /* Model.swift in Sources */,
+				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				935398B22694E2780062931E /* ReczipesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

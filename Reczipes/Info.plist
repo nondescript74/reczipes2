@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSContactsUsageDescription</key>
+	<string>To share recipes we ask to access your Contacts and their information 🙏🏼</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>To save your created recipe information we save files to your Documents folder</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>launchscreen_image</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<false/>
+	</dict>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+</dict>
+</plist>

@@ -16,7 +16,7 @@ struct AcceptView: View {
     private enum msgs: String {
         case register_m = "Add Me"
         case send_m = "Send Me"
-        case title_m = "Please Register"
+        case title_m = "Please Select Your Name"
         case permErr_m = "Permissions Error"
         case ok_m = "OK"
         case nodesc_m = "No Description of error"
@@ -24,20 +24,22 @@ struct AcceptView: View {
     
     var body: some View {
         NavigationView {
-            ForEach(contactsVM.contacts) { contact in
-                VStack(alignment: .leading) {
-                    HStack(alignment: .top) {
-                        Label(contact.firstName, systemImage: "person.crop.circle")
-                        Text(contact.lastName).bold()
+            List {
+                ForEach(contactsVM.contacts) { contact in
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Label(contact.firstName, systemImage: "person.crop.circle")
+                            Text(contact.lastName).bold()
+                        }
+                        Divider()
+                        Label(contact.email, systemImage: "envelope")
                     }
-                    Divider()
-                    Label(contact.email, systemImage: "apps.iphone")
+                    .padding()
+                    .background(Color.secondary.opacity(0.30))
+                    .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
                 }
-                .padding()
-                .background(Color.secondary.opacity(0.30))
-                .clipShape(RoundedRectangle(cornerRadius: 15.0, style: .continuous))
+                .navigationTitle(msgs.title_m.rawValue)
             }
-            .navigationTitle(msgs.title_m.rawValue)
         }
         .alert(item: $contactsVM.permissionsError) { _ in
             Alert(title: Text(msgs.permErr_m.rawValue),

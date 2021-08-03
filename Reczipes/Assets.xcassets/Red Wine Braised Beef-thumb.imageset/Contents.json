@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "red-wine-braised-short-ribs-vicky-wasik.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "red-wine-braised-short-ribs-vicky-wasik-2x.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "red-wine-braised-short-ribs-vicky-wasik-3x.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

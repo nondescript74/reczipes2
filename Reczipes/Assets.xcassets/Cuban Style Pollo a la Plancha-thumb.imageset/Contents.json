@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Cuban-Style Pollo a la Plancha (Marinated and Griddled Chicken) 40.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Cuban-Style Pollo a la Plancha 80.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Cuban-Style Pollo a la Plancha (Marinated and Griddled Chicken) 120.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

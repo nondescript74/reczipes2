@@ -12,7 +12,8 @@ struct ReczipesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AcceptView()
+            AllRecipesView()
+            //AcceptView()
         }
     }
 }

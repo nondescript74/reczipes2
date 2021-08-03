@@ -13,7 +13,7 @@ struct Contact: Identifiable {
     var id: String {contact.identifier}
     var firstName: String {contact.givenName}
     var lastName: String {contact.familyName}
-    var email: String {(contact.emailAddresses.map(\.value).first ?? "headydiscy@gmail.com") as String}
+    var email: String {(contact.emailAddresses.map(\.value).first ?? "no_one@gmail.com") as String}
     let contact: CNContact
     
     static func fetchAll(_ completion: @escaping(Result<[Contact], Error>) -> Void) {

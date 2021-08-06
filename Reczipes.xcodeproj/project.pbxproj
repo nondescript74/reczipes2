@@ -35,6 +35,9 @@
 		935398B22694E2780062931E /* ReczipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B12694E2780062931E /* ReczipesApp.swift */; };
 		935398B62694E27B0062931E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B52694E27B0062931E /* Assets.xcassets */; };
 		935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B82694E27B0062931E /* Preview Assets.xcassets */; };
+		9396EAB526BDEF83000FD136 /* AddRecipeView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396EAB426BDEF83000FD136 /* AddRecipeView4.swift */; };
+		9396EAB726BDF06C000FD136 /* NewFormRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */; };
+		9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */ = {isa = PBXBuildFile; fileRef = 9396EAB826BDF0FE000FD136 /* SectionNames.json */; };
 		93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2B326B9E73E0010F71F /* ImageProvider.swift */; };
 		93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2B426B9E73F0010F71F /* JokeProvider.swift */; };
 		93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */; };
@@ -88,6 +91,9 @@
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935398B82694E27B0062931E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		935398BF2694E2A90062931E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9396EAB426BDEF83000FD136 /* AddRecipeView4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeView4.swift; sourceTree = "<group>"; };
+		9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFormRecipes.swift; sourceTree = "<group>"; };
+		9396EAB826BDF0FE000FD136 /* SectionNames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SectionNames.json; sourceTree = "<group>"; };
 		93ACB2B326B9E73E0010F71F /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		93ACB2B426B9E73F0010F71F /* JokeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeProvider.swift; sourceTree = "<group>"; };
 		93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeProvider.swift; sourceTree = "<group>"; };
@@ -124,10 +130,11 @@
 		930310C52695DC33006910EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
-				931164E42697836600099F8D /* AcceptView.swift */,
 				9341A0542698FB5200DCA754 /* ApplicationView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
+				9396EAB426BDEF83000FD136 /* AddRecipeView4.swift */,
+				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
+				931164E42697836600099F8D /* AcceptView.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				93237A2D26A4E7E300032387 /* AddImageToRecipeView2.swift */,
@@ -148,6 +155,7 @@
 				9341A0562698FBAD00DCA754 /* OrderingList.swift */,
 				931B5169269E4B660065F551 /* ModelStructs2.swift */,
 				93237A1426A4E37A00032387 /* AddedRecipes.swift */,
+				9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */,
 				93237A2026A4E65400032387 /* Profile.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
 				93237A2B26A4E7A200032387 /* Vitamins.swift */,
@@ -184,6 +192,7 @@
 		9341A05C2698FDE400DCA754 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				9396EAB826BDF0FE000FD136 /* SectionNames.json */,
 				93237A1226A4E1A500032387 /* recipesShipped.json */,
 			);
 			path = JSON;
@@ -208,6 +217,7 @@
 		935398B02694E2780062931E /* Reczipes */ = {
 			isa = PBXGroup;
 			children = (
+				935398B12694E2780062931E /* ReczipesApp.swift */,
 				93ACB2EA26B9E90C0010F71F /* Operations */,
 				93ACB2BD26B9E76B0010F71F /* Providers */,
 				93237A1D26A4E57F00032387 /* FileIO */,
@@ -215,7 +225,6 @@
 				931B516D269E4C7E0065F551 /* Helpers */,
 				9341A05C2698FDE400DCA754 /* JSON */,
 				930310C62695DC46006910EF /* Models */,
-				935398B12694E2780062931E /* ReczipesApp.swift */,
 				930310C52695DC33006910EF /* Views */,
 				935398B52694E27B0062931E /* Assets.xcassets */,
 				935398BF2694E2A90062931E /* Info.plist */,
@@ -325,6 +334,7 @@
 			files = (
 				93237A1326A4E1A500032387 /* recipesShipped.json in Resources */,
 				935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */,
+				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
 				935398B62694E27B0062931E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +351,7 @@
 				93237A2126A4E65400032387 /* Profile.swift in Sources */,
 				93237A3226A4E84D00032387 /* NotesView.swift in Sources */,
 				93ACB2E026B9E8CD0010F71F /* SRecipeOutputOperation.swift in Sources */,
+				9396EAB726BDF06C000FD136 /* NewFormRecipes.swift in Sources */,
 				931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */,
 				93237A1C26A4E52400032387 /* RecipeDetailView.swift in Sources */,
 				93237A1F26A4E59500032387 /* FileIO.swift in Sources */,
@@ -379,6 +390,7 @@
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
 				93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */,
 				93ACB30126B9E9AA0010F71F /* SRecipeXOperation.swift in Sources */,
+				9396EAB526BDEF83000FD136 /* AddRecipeView4.swift in Sources */,
 				93ACB2FD26B9E9AA0010F71F /* AsyncOperation.swift in Sources */,
 				93237A3826A4E92000032387 /* RoundButton2View.swift in Sources */,
 			);
@@ -509,7 +521,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -520,11 +532,10 @@
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,7 +555,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -555,11 +566,10 @@
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

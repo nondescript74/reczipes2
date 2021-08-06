@@ -39,17 +39,17 @@ struct AllRecipesView: View {
     
 }
 
-//#if DEBUG
-//struct AllRecipesView_Previews: PreviewProvider {
-//    static let order = OrderingList()
-//    static let addedRecipes = AddedRecipes()
-//    static var previews: some View {
-//        Group {
-//            AllRecipesView()
-//                .environmentObject(order)
-//                .environmentObject(addedRecipes)
-//                .colorScheme(.light)
-//        }
-//    }
-//}
-//#endif
+#if DEBUG
+struct AllRecipesView_Previews: PreviewProvider {
+    static let order = OrderingList()
+    static let addedRecipes = AddedRecipes()
+    static var previews: some View {
+        Group {
+            AllRecipesView()
+                .environmentObject(order)
+                .environmentObject(addedRecipes)
+                .colorScheme(.dark)
+        }
+    }
+}
+#endif

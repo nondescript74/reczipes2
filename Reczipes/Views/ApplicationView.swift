@@ -16,7 +16,7 @@ struct ApplicationView: View {
     fileprivate enum tabs: String {
         case multibook = "Books"
         case web = "Search"
-        case ae = "Add/Edit"
+        case addEdit = "Add/Edit"
         case tjc = "Trivia"
         case auth = "Sign In"
         case indian = "Indian"
@@ -37,6 +37,14 @@ struct ApplicationView: View {
                     Image(uiImage: imageDocDocEmpty!)
                     Text(tabs.multibook.rawValue)
                 }
+            
+            AddRecipeView4()
+                .tabItem {
+                    Image(uiImage: imageDocDocFill!)
+                    Text(tabs.addEdit.rawValue)
+                }
+            
+            
             
         }
         .environmentObject(order)

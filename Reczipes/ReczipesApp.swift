@@ -12,8 +12,9 @@ struct ReczipesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AllRecipesView()
-            //AcceptView()
+            ApplicationView()
+                .environmentObject(OrderingList())
+                .environmentObject(AddedRecipes())
         }
     }
 }

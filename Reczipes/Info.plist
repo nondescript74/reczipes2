@@ -13,7 +13,5 @@
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<false/>
 	</dict>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 </dict>
 </plist>

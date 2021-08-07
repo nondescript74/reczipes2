@@ -144,9 +144,9 @@ struct SecItemWBookName: Codable, Equatable, Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    static let example = SecItemWBookName(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: nil, photocredit: "TheSpruceEats", restrictions: ["V", "G"], bookName: recipeBooks2[0])
-    static let example2 = SecItemWBookName(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: nil, photocredit: "Kenji Lopez-Alt", restrictions: ["G"], bookName: recipeBooks2[0])
-    static let example3 = SecItemWBookName(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: nil, photocredit: "Kenji Lopez-Alt", restrictions: ["G"], bookName: recipeBooks2[0])
+//    static let example = SecItemWBookName(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: nil, photocredit: "TheSpruceEats", restrictions: ["V", "G"], bookName: recipeBooks2[0])
+//    static let example2 = SecItemWBookName(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: nil, photocredit: "Kenji Lopez-Alt", restrictions: ["G"], bookName: recipeBooks2[0])
+//    static let example3 = SecItemWBookName(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: nil, photocredit: "Kenji Lopez-Alt", restrictions: ["G"], bookName: recipeBooks2[0])
 }
 
 struct SectionItem: Codable, Equatable, Identifiable, Hashable {

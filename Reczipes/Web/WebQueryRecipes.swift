@@ -128,7 +128,7 @@ public class WebQueryRecipes: ObservableObject {
         }
         let mySearchTerms = parseSearchString(searchstring: searchString)
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query = myQuery.query.rawValue + mySearchTerms + myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.carol.rawValue
+        urlComponents.query = myQuery.query.rawValue + mySearchTerms + myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindSRecipeGroup.rawValue)
     }
     
@@ -158,7 +158,7 @@ public class WebQueryRecipes: ObservableObject {
     
     func findByRandom(searchString: String, numberSent: Int) {
         urlComponents = URLComponents(string: urlThings.randomrecipes.rawValue)!
-        urlComponents.query = myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.carol.rawValue
+        urlComponents.query = myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindRandom.rawValue)
     }
     
@@ -168,31 +168,31 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
-        urlComponents.query = myQuery.extract.rawValue + urlString + Profile.apiKeyE.carol.rawValue
+        urlComponents.query = myQuery.extract.rawValue + urlString + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
 //
 //    func findSimilarRecipes(id: Int32) {
 //        urlComponents = URLComponents(string: urlThings.similar.rawValue + id.description + urlThings.similarPartDeux.rawValue)!
-//        urlComponents.query = myQuery.nutritionFalse.rawValue  + Profile.apiKeyE.carol.rawValue
+//        urlComponents.query = myQuery.nutritionFalse.rawValue  + Profile.apiKeyE.z.rawValue
 //        myTask(aswitch: myGets.FindSimilar.rawValue)
 //    }
 //
 //    func getRecipeInformation(id: Int64) {
 //        urlComponents = URLComponents(string: urlThings.information.rawValue + id.description + urlThings.informationPartDeux.rawValue)!
-//        urlComponents.query = myQuery.nutritionFalse.rawValue  + Profile.apiKeyE.carol.rawValue
+//        urlComponents.query = myQuery.nutritionFalse.rawValue  + Profile.apiKeyE.z.rawValue
 //        myTask(aswitch: myGets.FindInformation.rawValue)
 //    }
     
     func getTrivia() {
         urlComponents = URLComponents(string: urlThings.trivia.rawValue)!
-        urlComponents.query =  Profile.apiKeyE.carol.rawValue
+        urlComponents.query =  Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.GetTrivia.rawValue)
     }
     
     func getJoke() {
         urlComponents = URLComponents(string: urlThings.joke.rawValue)!
-        urlComponents.query =  Profile.apiKeyE.carol.rawValue
+        urlComponents.query =  Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
@@ -248,31 +248,31 @@ public class WebQueryRecipes: ObservableObject {
                 }
             }
             
-//        case myGets.FindSRecipeGroup.rawValue:
-//            _ = SRecipeGroupProvider(recipesUrl: url) { srecipes in
-//                if srecipes != nil {
-//                    DispatchQueue.main.async { [self] in
-//                        self.sRecipeGroup = srecipes!
-//                        
-//                        #if DEBUG
-//                        print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? self.defaultRequiredCount)
-//                        #endif
-//                    }
-//                }
-//            }
-//        
-//        case myGets.FindRandom.rawValue:
-//            _ = SRecipeGroupProvider(recipesUrl: url) { srecipes in
-//                if srecipes != nil {
-//                    DispatchQueue.main.async {
-//                        self.sRecipeGroup = srecipes!
-//                        
-//                        #if DEBUG
-//                        print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? self.defaultRequiredCount)
-//                        #endif
-//                    }
-//                }
-//            }
+        case myGets.FindSRecipeGroup.rawValue:
+            _ = SRecipeGroupProvider(recipesUrl: url) { srecipes in
+                if srecipes != nil {
+                    DispatchQueue.main.async { [self] in
+                        self.sRecipeGroup = srecipes!
+                        
+                        #if DEBUG
+                        print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? self.defaultRequiredCount)
+                        #endif
+                    }
+                }
+            }
+        
+        case myGets.FindRandom.rawValue:
+            _ = SRecipeGroupProvider(recipesUrl: url) { srecipes in
+                if srecipes != nil {
+                    DispatchQueue.main.async {
+                        self.sRecipeGroup = srecipes!
+                        
+                        #if DEBUG
+                        print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? self.defaultRequiredCount)
+                        #endif
+                    }
+                }
+            }
             
         case myGets.FindExtracted.rawValue:
             _ = SRecipeProvider(recipesUrl: url) { srecipe in

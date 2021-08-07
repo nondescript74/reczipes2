@@ -29,6 +29,10 @@
 		93237A3826A4E92000032387 /* RoundButton2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3726A4E92000032387 /* RoundButton2View.swift */; };
 		93237A3A26A4E97500032387 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3926A4E97500032387 /* ImagePicker.swift */; };
 		93237A3C26A4E98100032387 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3B26A4E98100032387 /* ImagePickerView.swift */; };
+		9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */; };
+		9329219026BF231700CDDD52 /* SRecipeGroupOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218E26BF231700CDDD52 /* SRecipeGroupOutputOperation.swift */; };
+		9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */; };
+		9329219326BF234B00CDDD52 /* SRecipeGroupXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */; };
 		9341A0552698FB5200DCA754 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0542698FB5200DCA754 /* ApplicationView.swift */; };
 		9341A0572698FBAD00DCA754 /* OrderingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0562698FBAD00DCA754 /* OrderingList.swift */; };
 		9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A05A2698FCE500DCA754 /* AllRecipesView.swift */; };
@@ -38,6 +42,11 @@
 		9396EAB526BDEF83000FD136 /* AddRecipeView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396EAB426BDEF83000FD136 /* AddRecipeView4.swift */; };
 		9396EAB726BDF06C000FD136 /* NewFormRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */; };
 		9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */ = {isa = PBXBuildFile; fileRef = 9396EAB826BDF0FE000FD136 /* SectionNames.json */; };
+		93AB40C526BECCF8005529AF /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40C426BECCF8005529AF /* MultiView.swift */; };
+		93AB40C726BECD93005529AF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40C626BECD93005529AF /* UserData.swift */; };
+		93AB40C926BECDF2005529AF /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40C826BECDF2005529AF /* SearchBar.swift */; };
+		93AB40CB26BECE3A005529AF /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */; };
+		93AB40CD26BF2100005529AF /* GoogleSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40CC26BF2100005529AF /* GoogleSearchView.swift */; };
 		93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2B326B9E73E0010F71F /* ImageProvider.swift */; };
 		93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2B426B9E73F0010F71F /* JokeProvider.swift */; };
 		93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */; };
@@ -83,6 +92,10 @@
 		93237A3726A4E92000032387 /* RoundButton2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton2View.swift; sourceTree = "<group>"; };
 		93237A3926A4E97500032387 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		93237A3B26A4E98100032387 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupProvider.swift; sourceTree = "<group>"; };
+		9329218E26BF231700CDDD52 /* SRecipeGroupOutputOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupOutputOperation.swift; sourceTree = "<group>"; };
+		9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupCreateOperation.swift; sourceTree = "<group>"; };
+		9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupXOperation.swift; sourceTree = "<group>"; };
 		9341A0542698FB5200DCA754 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		9341A0562698FBAD00DCA754 /* OrderingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingList.swift; sourceTree = "<group>"; };
 		9341A05A2698FCE500DCA754 /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
@@ -94,6 +107,11 @@
 		9396EAB426BDEF83000FD136 /* AddRecipeView4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeView4.swift; sourceTree = "<group>"; };
 		9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFormRecipes.swift; sourceTree = "<group>"; };
 		9396EAB826BDF0FE000FD136 /* SectionNames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SectionNames.json; sourceTree = "<group>"; };
+		93AB40C426BECCF8005529AF /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
+		93AB40C626BECD93005529AF /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		93AB40C826BECDF2005529AF /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
+		93AB40CC26BF2100005529AF /* GoogleSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSearchView.swift; sourceTree = "<group>"; };
 		93ACB2B326B9E73E0010F71F /* ImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		93ACB2B426B9E73F0010F71F /* JokeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeProvider.swift; sourceTree = "<group>"; };
 		93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeProvider.swift; sourceTree = "<group>"; };
@@ -133,6 +151,7 @@
 				9341A0542698FB5200DCA754 /* ApplicationView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				9396EAB426BDEF83000FD136 /* AddRecipeView4.swift */,
+				93AB40C426BECCF8005529AF /* MultiView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
 				931164E42697836600099F8D /* AcceptView.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
@@ -142,7 +161,10 @@
 				93237A3126A4E84D00032387 /* NotesView.swift */,
 				93237A3326A4E87900032387 /* ImagesView.swift */,
 				93237A3526A4E8C000032387 /* SafariView.swift */,
+				93AB40C826BECDF2005529AF /* SearchBar.swift */,
+				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
 				93237A3726A4E92000032387 /* RoundButton2View.swift */,
+				93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +179,7 @@
 				93237A1426A4E37A00032387 /* AddedRecipes.swift */,
 				9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */,
 				93237A2026A4E65400032387 /* Profile.swift */,
+				93AB40C626BECD93005529AF /* UserData.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
 				93237A2B26A4E7A200032387 /* Vitamins.swift */,
 			);
@@ -246,8 +269,9 @@
 			children = (
 				93ACB2B326B9E73E0010F71F /* ImageProvider.swift */,
 				93ACB2B426B9E73F0010F71F /* JokeProvider.swift */,
-				93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */,
 				93ACB2B726B9E73F0010F71F /* TriviaProvider.swift */,
+				93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */,
+				9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -260,6 +284,7 @@
 				93ACB2F426B9E9AA0010F71F /* ImageXOperatIon.swift */,
 				93ACB2F526B9E9AA0010F71F /* JokeXOperation.swift */,
 				93ACB2F226B9E9AA0010F71F /* SRecipeXOperation.swift */,
+				9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */,
 				93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */,
 				93ACB2DD26B9E8CD0010F71F /* DataLoadOperation.swift */,
 				93ACB2D426B9E8CC0010F71F /* ImageCreateOperation.swift */,
@@ -268,6 +293,8 @@
 				93ACB2DE26B9E8CD0010F71F /* JokeOutputOperation.swift */,
 				93ACB2DA26B9E8CC0010F71F /* SRecipeCreateOperation.swift */,
 				93ACB2D526B9E8CC0010F71F /* SRecipeOutputOperation.swift */,
+				9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */,
+				9329218E26BF231700CDDD52 /* SRecipeGroupOutputOperation.swift */,
 				93ACB2D926B9E8CC0010F71F /* TriviaCreateOperation.swift */,
 				93ACB2D626B9E8CC0010F71F /* TriviaOutputOperation.swift */,
 			);
@@ -346,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9329219026BF231700CDDD52 /* SRecipeGroupOutputOperation.swift in Sources */,
 				9341A0572698FBAD00DCA754 /* OrderingList.swift in Sources */,
 				93ACB2BC26B9E73F0010F71F /* TriviaProvider.swift in Sources */,
 				93237A2126A4E65400032387 /* Profile.swift in Sources */,
@@ -353,6 +381,9 @@
 				93ACB2E026B9E8CD0010F71F /* SRecipeOutputOperation.swift in Sources */,
 				9396EAB726BDF06C000FD136 /* NewFormRecipes.swift in Sources */,
 				931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */,
+				9329219326BF234B00CDDD52 /* SRecipeGroupXOperation.swift in Sources */,
+				93AB40CD26BF2100005529AF /* GoogleSearchView.swift in Sources */,
+				93AB40C926BECDF2005529AF /* SearchBar.swift in Sources */,
 				93237A1C26A4E52400032387 /* RecipeDetailView.swift in Sources */,
 				93237A1F26A4E59500032387 /* FileIO.swift in Sources */,
 				93ACB2DF26B9E8CD0010F71F /* ImageCreateOperation.swift in Sources */,
@@ -374,14 +405,19 @@
 				930310C82695DC75006910EF /* Model.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
+				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
+				9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */,
+				93AB40C726BECD93005529AF /* UserData.swift in Sources */,
 				93237A2C26A4E7A200032387 /* Vitamins.swift in Sources */,
 				935398B22694E2780062931E /* ReczipesApp.swift in Sources */,
+				93AB40C526BECCF8005529AF /* MultiView.swift in Sources */,
 				93237A3426A4E87900032387 /* ImagesView.swift in Sources */,
 				93ACB2E126B9E8CD0010F71F /* TriviaOutputOperation.swift in Sources */,
 				9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */,
 				9341A0552698FB5200DCA754 /* ApplicationView.swift in Sources */,
+				93AB40CB26BECE3A005529AF /* RoundedButtonView.swift in Sources */,
 				93ACB30726B9E9AA0010F71F /* ImageFilterOperation.swift in Sources */,
 				93ACB30326B9E9AA0010F71F /* ImageXOperatIon.swift in Sources */,
 				93237A3A26A4E97500032387 /* ImagePicker.swift in Sources */,

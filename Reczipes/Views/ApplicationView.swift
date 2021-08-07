@@ -10,7 +10,9 @@ import SwiftUI
 struct ApplicationView: View {
     
     // MARK: - Environment Variables
+    @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
+    @EnvironmentObject var addedRecipes: AddedRecipes
     
     // MARK: - Properties
     fileprivate enum tabs: String {
@@ -31,7 +33,6 @@ struct ApplicationView: View {
     
     var body: some View {
         TabView {
-            
             AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
@@ -44,10 +45,33 @@ struct ApplicationView: View {
                     Text(tabs.addEdit.rawValue)
                 }
             
+            AddNotesToRecipeView2()
+                .tabItem {
+                    Image(uiImage: scribblevariable!)
+                    Text(tabs.noteAdd.rawValue)
+                }
             
+            AddImageToRecipeView2()
+                .tabItem {
+                    Image(uiImage: videobadgeplus!)
+                    Text(tabs.imageAdd.rawValue)
+                }
             
+            MultiView(show: MultiView.Selectors.notyet)
+                .tabItem {
+                    Image(uiImage: folderfillbadgeplus!)
+                    Text(tabs.tjc.rawValue)
+                }
+            
+            GoogleSearchView()
+                .tabItem {
+                    Image(uiImage: magnifyingglass!)
+                    Text(tabs.search.rawValue)
+                }
         }
         .environmentObject(order)
+        .environmentObject(addedRecipes)
+        .environmentObject(userData)
     }
 }
 

@@ -34,7 +34,7 @@ struct AddRecipeView4: View {
         case cantWriteEncode = "Can't write encoded BookSection "
         case cantEncode = "Can't encode SectionItem"
         case json = "json"
-        case carol = "Carol"
+        case z = "Z"
         case imageInfo = "_imageinfo"
         case creating = "Creating"
         case notComplete = "Not Complete"
@@ -207,27 +207,27 @@ struct AddRecipeView4: View {
                         .padding(.bottom, 10)
                         .font(Font.system(size: 13, weight: .medium, design: .serif))
                     
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading) {
-                            Text(msgs.pickbook.rawValue)
-                                .foregroundColor(.black)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-                            
-                            Picker(msgs.books.rawValue, selection: $bookselected) {
-                                ForEach(0..<getBookNames().count) { index in
-                                    Text("\(getBookNames()[index])")
-                                        .foregroundColor(.blue)
-                                        .font(Font.system(size: 13, weight: .medium, design: .serif))
-                                }
-                                
-                            }.frame(width: geometry.size.width / 2)
-                            .clipped()
-                            
-                            Text("\(getBookNames()[bookselected])" + " " + msgs.selected.rawValue)
-                                .foregroundColor(.black)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        }
-                        .padding(5)
+                    //HStack(alignment: .top) {
+//                        VStack(alignment: .leading) {
+//                            Text(msgs.pickbook.rawValue)
+//                                .foregroundColor(.black)
+//                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+//                            
+//                            Picker(msgs.books.rawValue, selection: $bookselected) {
+//                                ForEach(0..<getBookNames().count) { index in
+//                                    Text("\(getBookNames()[index])")
+//                                        .foregroundColor(.blue)
+//                                        .font(Font.system(size: 13, weight: .medium, design: .serif))
+//                                }
+//                                
+//                            }.frame(width: geometry.size.width / 2)
+//                            .clipped()
+//                            
+//                            Text("\(getBookNames()[bookselected])" + " " + msgs.selected.rawValue)
+//                                .foregroundColor(.black)
+//                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+//                        }
+//                        .padding(5)
                         
                         VStack(alignment: .leading) {
                             Text(msgs.pickSection.rawValue)
@@ -249,7 +249,7 @@ struct AddRecipeView4: View {
                         }
                         .padding(5)
                         
-                    }.padding(5)
+                    //}.padding(5)
                     
                 }
                 .alert(isPresented: $recipeRequested)   {

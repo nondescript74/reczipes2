@@ -19,7 +19,7 @@ struct Profile {
     var vitamins: Vitamins
     var loadNewRecipes: Bool
 
-    static let `default` = Self(username: "carol.premji@yahoo.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition.default, vitamins: Vitamins.default, loadnewrecipes: false)
+    static let `default` = Self(username: "nondescript74@gmail.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition.default, vitamins: Vitamins.default, loadnewrecipes: false)
     
     init(username: String, prefersNotifications: Bool = true, prefersNutrition: Bool = false, prefersVitamins: Bool = false, seasonalPhoto: Season = .summer, numberz: NumberZ = NumberZ.four, nutrition: Nutrition, vitamins: Vitamins, loadnewrecipes: Bool = false) {
         self.username = username
@@ -27,7 +27,7 @@ struct Profile {
         self.prefersNutritionInclusion = prefersNutrition
         self.prefersVitaminInclusion = prefersVitamins
         self.seasonalPhoto = seasonalPhoto
-        self.spoonacularApiKey = apiKeyE.carol.rawValue
+        self.spoonacularApiKey = apiKeyE.z.rawValue
         self.numberOfRecipes = numberz
         self.nutrition = nutrition
         self.vitamins = vitamins
@@ -49,10 +49,10 @@ struct Profile {
     }
     
     enum Season: String, CaseIterable {
-        case spring = "carolhome"
-        case summer = "carolbeach"
-        case autumn = "caroldesert"
-        case winter = "caroldiving"
+        case spring = "zhome"
+        case summer = "zbeach"
+        case autumn = "zdesert"
+        case winter = "zdiving"
     }
     
     enum NumberZ: Int, CaseIterable {
@@ -66,6 +66,6 @@ struct Profile {
     
     enum apiKeyE: String {
         case z = "&apiKey=27d2d9f90a8d4bf48e69ad6b819d7c1c"
-        case carol = "&apiKey=e4f5bc5bd30946fd8de219c5b0e7e665"
+        //case carol = "&apiKey=e4f5bc5bd30946fd8de219c5b0e7e665"
     }
 }

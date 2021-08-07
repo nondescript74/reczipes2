@@ -15,6 +15,7 @@ struct ReczipesApp: App {
             ApplicationView()
                 .environmentObject(OrderingList())
                 .environmentObject(AddedRecipes())
+                .environmentObject(UserData())
         }
     }
 }

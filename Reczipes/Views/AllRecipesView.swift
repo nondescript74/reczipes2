@@ -33,8 +33,8 @@ struct AllRecipesView: View {
                 }
             }.listStyle(GroupedListStyle())
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+        //.navigationBarTitle(msgs.arv.rawValue)
+        //.navigationBarHidden(false)
     }
     
 }

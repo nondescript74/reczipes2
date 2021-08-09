@@ -10,7 +10,7 @@ import SwiftUI
 struct AllRecipesView: View {
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case arv = "AllRecipesView: "
+        case arv = "All Recipes View"
         case recipesFile = "recipesShipped.json"
     }
     // MARK: - Methods
@@ -21,17 +21,21 @@ struct AllRecipesView: View {
     }
     var body: some View {
         NavigationView {
-            List {
-                ForEach(myBook, id: \.self) { section in
-                    Section(header: Text(section.name).padding()) {
-                        ForEach(section.items) { item in
-                            RecipeRowView(sectionItem: item)
-                                .padding()
+            VStack {
+                Text(msgs.arv.rawValue).bold()
+                    
+                List {
+                    ForEach(myBook, id: \.self) { section in
+                        Section(header: Text(section.name).padding()) {
+                            ForEach(section.items) { item in
+                                RecipeRowView(sectionItem: item)
+                                    .padding()
+                            }
+                            
                         }
-                        
                     }
-                }
-            }.listStyle(GroupedListStyle())
+                }.listStyle(GroupedListStyle())
+            }
         }
         //.navigationBarTitle(msgs.arv.rawValue)
         //.navigationBarHidden(false)

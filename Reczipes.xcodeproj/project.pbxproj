@@ -67,20 +67,7 @@
 		93ACB30726B9E9AA0010F71F /* ImageFilterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2F826B9E9AA0010F71F /* ImageFilterOperation.swift */; };
 		93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */; };
 		93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */; };
-		93B0F3BA26C1E744003B14D5 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0F3B926C1E744003B14D5 /* ShareViewController.swift */; };
-		93B0F3BD26C1E744003B14D5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93B0F3BB26C1E744003B14D5 /* MainInterface.storyboard */; };
-		93B0F3C126C1E744003B14D5 /* ShareReczipes.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 93B0F3B726C1E744003B14D5 /* ShareReczipes.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		93B0F3BF26C1E744003B14D5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 935398A62694E2780062931E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 93B0F3B626C1E744003B14D5;
-			remoteInfo = ShareReczipes;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		93B0F3C226C1E744003B14D5 /* Embed App Extensions */ = {
@@ -89,7 +76,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				93B0F3C126C1E744003B14D5 /* ShareReczipes.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,21 +145,10 @@
 		93ACB2F826B9E9AA0010F71F /* ImageFilterOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFilterOperation.swift; sourceTree = "<group>"; };
 		93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaXOperation.swift; sourceTree = "<group>"; };
 		93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAccessor.swift; sourceTree = "<group>"; };
-		93B0F3B726C1E744003B14D5 /* ShareReczipes.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareReczipes.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		93B0F3B926C1E744003B14D5 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		93B0F3BC26C1E744003B14D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		93B0F3BE26C1E744003B14D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		935398AB2694E2780062931E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		93B0F3B426C1E744003B14D5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				935398B02694E2780062931E /* Reczipes */,
-				93B0F3B826C1E744003B14D5 /* ShareReczipes */,
 				935398AF2694E2780062931E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -272,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				935398AE2694E2780062931E /* Reczipes.app */,
-				93B0F3B726C1E744003B14D5 /* ShareReczipes.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,16 +314,6 @@
 			path = Operations;
 			sourceTree = "<group>";
 		};
-		93B0F3B826C1E744003B14D5 /* ShareReczipes */ = {
-			isa = PBXGroup;
-			children = (
-				93B0F3B926C1E744003B14D5 /* ShareViewController.swift */,
-				93B0F3BB26C1E744003B14D5 /* MainInterface.storyboard */,
-				93B0F3BE26C1E744003B14D5 /* Info.plist */,
-			);
-			path = ShareReczipes;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,29 +329,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				93B0F3C026C1E744003B14D5 /* PBXTargetDependency */,
 			);
 			name = Reczipes;
 			productName = Reczipes;
 			productReference = 935398AE2694E2780062931E /* Reczipes.app */;
 			productType = "com.apple.product-type.application";
-		};
-		93B0F3B626C1E744003B14D5 /* ShareReczipes */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 93B0F3C526C1E744003B14D5 /* Build configuration list for PBXNativeTarget "ShareReczipes" */;
-			buildPhases = (
-				93B0F3B326C1E744003B14D5 /* Sources */,
-				93B0F3B426C1E744003B14D5 /* Frameworks */,
-				93B0F3B526C1E744003B14D5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ShareReczipes;
-			productName = ShareReczipes;
-			productReference = 93B0F3B726C1E744003B14D5 /* ShareReczipes.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -401,9 +346,6 @@
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					935398AD2694E2780062931E = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					93B0F3B626C1E744003B14D5 = {
 						CreatedOnToolsVersion = 13.0;
 					};
 				};
@@ -422,7 +364,6 @@
 			projectRoot = "";
 			targets = (
 				935398AD2694E2780062931E /* Reczipes */,
-				93B0F3B626C1E744003B14D5 /* ShareReczipes */,
 			);
 		};
 /* End PBXProject section */
@@ -436,14 +377,6 @@
 				935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */,
 				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
 				935398B62694E27B0062931E /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		93B0F3B526C1E744003B14D5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93B0F3BD26C1E744003B14D5 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,34 +446,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93B0F3B326C1E744003B14D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				93B0F3BA26C1E744003B14D5 /* ShareViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		93B0F3C026C1E744003B14D5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 93B0F3B626C1E744003B14D5 /* ShareReczipes */;
-			targetProxy = 93B0F3BF26C1E744003B14D5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		93B0F3BB26C1E744003B14D5 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				93B0F3BC26C1E744003B14D5 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		935398BA2694E27B0062931E /* Debug */ = {
@@ -666,7 +572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -701,7 +607,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -729,58 +635,6 @@
 			};
 			name = Release;
 		};
-		93B0F3C326C1E744003B14D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = YKHW2TJ32G;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShareReczipes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShareReczipes;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes.ShareReczipes;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		93B0F3C426C1E744003B14D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = YKHW2TJ32G;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShareReczipes/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShareReczipes;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes.ShareReczipes;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -798,15 +652,6 @@
 			buildConfigurations = (
 				935398BD2694E27B0062931E /* Debug */,
 				935398BE2694E27B0062931E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		93B0F3C526C1E744003B14D5 /* Build configuration list for PBXNativeTarget "ShareReczipes" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				93B0F3C326C1E744003B14D5 /* Debug */,
-				93B0F3C426C1E744003B14D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

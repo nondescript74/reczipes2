@@ -67,8 +67,8 @@ struct AddRecipeView4: View {
     func verifyUrl(urlString: String?) -> Bool {
         guard let urlString = urlString,
               let url = URL(string: urlString) else {
-            return false
-        }
+                  return false
+              }
         //        invalidUrl = false
         extractedSRecipe.findExtracted(urlString: urlString)
         recipeRequested = true
@@ -95,9 +95,9 @@ struct AddRecipeView4: View {
                 }
             }
             
-            #if DEBUG
+#if DEBUG
             print(msgs.notComplete.rawValue)
-            #endif
+#endif
             return
         }
     }
@@ -128,33 +128,33 @@ struct AddRecipeView4: View {
                                                                                     recipeFolderName + delimiterDirs + recipesName + delimiterDirs + secname + delimiterDirs,
                                                                                 fileNameToSave:
                                                                                     secname + delimiterFileNames +
-                                                                                    date,
+                                                                                date,
                                                                                 fileType: msgs.json.rawValue,
                                                                                 data: Data(encodedBookSection))
             if result {
                 
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddRecipeView4.rawValue + msgs.wroteFile.rawValue)
-                #endif
+#endif
                 
                 addedRecipes.addBookSection(bookSection: bookSection)
                 
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddRecipeView4.rawValue + msgs.addedbooksection.rawValue)
-                #endif
+#endif
                 recipeSaved = true
                 
             } else {
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddRecipeView4.rawValue + msgs.cantWriteEncode.rawValue)
-                #endif
+#endif
                 recipeSaved = false
             }
             
         } catch {
-            #if DEBUG
+#if DEBUG
             print(msgs.AddRecipeView4.rawValue + msgs.cantEncode.rawValue)
-            #endif
+#endif
         }
         
         recipeRequested.toggle()
@@ -203,54 +203,26 @@ struct AddRecipeView4: View {
                         .padding(.bottom, 5)
                     
                     TextField(msgs.enterValidUrl.rawValue, text: $urlString)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(.blue)
                         .padding(.bottom, 10)
                         .font(Font.system(size: 13, weight: .medium, design: .serif))
                     
-                    //HStack(alignment: .top) {
-//                        VStack(alignment: .leading) {
-//                            Text(msgs.pickbook.rawValue)
-//                                .foregroundColor(.black)
-//                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-//                            
-//                            Picker(msgs.books.rawValue, selection: $bookselected) {
-//                                ForEach(0..<getBookNames().count) { index in
-//                                    Text("\(getBookNames()[index])")
-//                                        .foregroundColor(.blue)
-//                                        .font(Font.system(size: 13, weight: .medium, design: .serif))
-//                                }
-//                                
-//                            }.frame(width: geometry.size.width / 2)
-//                            .clipped()
-//                            
-//                            Text("\(getBookNames()[bookselected])" + " " + msgs.selected.rawValue)
-//                                .foregroundColor(.black)
-//                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-//                        }
-//                        .padding(5)
-                        
-                        VStack(alignment: .leading) {
-                            Text(msgs.pickSection.rawValue)
-                                .foregroundColor(.black)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-                            
-                            Picker(msgs.books.rawValue, selection: $xection) {
-                                ForEach(0..<getBookSectionNames().count) { index in
-                                    Text("\(getBookSectionNames()[index])")
-                                        .foregroundColor(.blue)
-                                        .font(Font.system(size: 13, weight: .medium, design: .serif))
-                                }
-                            }.frame(width: geometry.size.width / 2)
-                            .clipped()
-                            
-                            Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
-                                .foregroundColor(.black)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        }
-                        .padding(5)
-                        
-                    //}.padding(5)
+                    Text(msgs.pickSection.rawValue)
+                        .foregroundColor(.black)
+                        .font(Font.system(size: 15, weight: .medium, design: .serif))
                     
+                    Picker(msgs.books.rawValue, selection: $xection) {
+                        ForEach(0..<getBookSectionNames().count) { index in
+                            Text("\(getBookSectionNames()[index])")
+                                .foregroundColor(.blue)
+                                .font(Font.system(size: 13, weight: .medium, design: .serif))
+                        }
+                    }
+                    
+                    Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
+                        .foregroundColor(.black)
+                        .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        .padding(5)
                 }
                 .alert(isPresented: $recipeRequested)   {
                     if extractedSRecipe.extractedSRecipe?.title != nil {
@@ -265,13 +237,13 @@ struct AddRecipeView4: View {
                 }
                 
             })
-            .padding()
-            .navigationBarItems(
-                trailing: Button(action: createRecipeInRecipeBook) {
-                    Text(msgs.plussign.rawValue + "Recipe").fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
-                }
-            )
-            .navigationBarTitle(msgs.addRecipe.rawValue)
+                .padding()
+                .navigationBarItems(
+                    trailing: Button(action: createRecipeInRecipeBook) {
+                        Text(msgs.plussign.rawValue + "Recipe").fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
+                    }
+                )
+                .navigationBarTitle(msgs.addRecipe.rawValue)
         }
     }
 }

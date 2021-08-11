@@ -39,7 +39,7 @@ struct ApplicationView: View {
                     Text(tabs.multibook.rawValue)
                 }
             
-            AddRecipeView4()
+            AddRecipeView5()
                 .tabItem {
                     Image(uiImage: imageDocDocFill!)
                     Text(tabs.addEdit.rawValue)

@@ -1,24 +1,24 @@
 //
-//  AddRecipeView4.swift
-//  RecipeBookCreator
+//  AddRecipeView5.swift
+//  AddRecipeView5
 //
-//  Created by Zahirudeen Premji on 1/10/21.
+//  Created by Zahirudeen Premji on 8/11/21.
 //
 
 import SwiftUI
-import UserNotifications
 
-struct AddRecipeView4: View {
+struct AddRecipeView5: View {
+    
     // MARK: - EnvironmentObject
     @EnvironmentObject var addedRecipes: AddedRecipes
     @EnvironmentObject var newFormRecipes: NewFormRecipes
     // MARK: - ObservedObject
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
     // MARK: - Properties
-    fileprivate let nc = NotificationCenter.default
+    //fileprivate let nc = NotificationCenter.default
     fileprivate var fileIO = FileIO()
     fileprivate enum msgs: String {
-        case AddRecipeView4 = "AddRecipeView4: "
+        case AddRecipeView5 = "AddRecipeView5: "
         case addRecipe = "Add Recipe"
         case addedbooksection = "Added to Added Recipes "
         case success = " success: "
@@ -85,15 +85,15 @@ struct AddRecipeView4: View {
     func createRecipeInRecipeBook() {
         
         if !verifyUrl(urlString: self.urlString)     {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                if success {
-                    nc.post(name: Notification.Name(msgs.urlNotOk.rawValue), object: nil)
-                    
-                } else if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-            }
+//            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+//                if success {
+//                    //nc.post(name: Notification.Name(msgs.urlNotOk.rawValue), object: nil)
+//
+//                } else if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//                }
+//            }
             
 #if DEBUG
             print(msgs.notComplete.rawValue)
@@ -134,32 +134,32 @@ struct AddRecipeView4: View {
             if result {
                 
 #if DEBUG
-                print(msgs.AddRecipeView4.rawValue + msgs.wroteFile.rawValue)
+                print(msgs.AddRecipeView5.rawValue + msgs.wroteFile.rawValue)
 #endif
                 
                 addedRecipes.addBookSection(bookSection: bookSection)
                 
 #if DEBUG
-                print(msgs.AddRecipeView4.rawValue + msgs.addedbooksection.rawValue)
+                print(msgs.AddRecipeView5.rawValue + msgs.addedbooksection.rawValue)
 #endif
                 recipeSaved = true
                 
             } else {
 #if DEBUG
-                print(msgs.AddRecipeView4.rawValue + msgs.cantWriteEncode.rawValue)
+                print(msgs.AddRecipeView5.rawValue + msgs.cantWriteEncode.rawValue)
 #endif
                 recipeSaved = false
             }
             
         } catch {
 #if DEBUG
-            print(msgs.AddRecipeView4.rawValue + msgs.cantEncode.rawValue)
+            print(msgs.AddRecipeView5.rawValue + msgs.cantEncode.rawValue)
 #endif
         }
         
         recipeRequested.toggle()
         recipeSaved.toggle()
-        nc.post(name: Notification.Name(msgs.addedRecipe.rawValue), object: nil)
+        //nc.post(name: Notification.Name(msgs.addedRecipe.rawValue), object: nil)
         
         return sectionItem
     }
@@ -198,30 +198,20 @@ struct AddRecipeView4: View {
             GeometryReader(content: { geometry in
                 VStack(alignment: .leading, spacing: 10) {
                     Text(msgs.enterValidUrl.rawValue)
-                        .foregroundColor(.black)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
                         .padding(.bottom, 5)
                     
                     TextField(msgs.enterValidUrl.rawValue, text: $urlString)
-                        .foregroundColor(.blue)
                         .padding(.bottom, 10)
-                        .font(Font.system(size: 13, weight: .medium, design: .serif))
                     
                     Text(msgs.pickSection.rawValue)
-                        .foregroundColor(.black)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
                     
-                    Picker(msgs.books.rawValue, selection: $xection) {
-                        ForEach(0..<getBookSectionNames().count) { index in
+                    Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
+                        ForEach(0..<zx) { index in
                             Text("\(getBookSectionNames()[index])")
-                                .foregroundColor(.blue)
-                                .font(Font.system(size: 13, weight: .medium, design: .serif))
                         }
                     }
                     
                     Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
-                        .foregroundColor(.black)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
                         .padding(5)
                 }
                 .alert(isPresented: $recipeRequested)   {
@@ -240,17 +230,22 @@ struct AddRecipeView4: View {
                 .padding()
                 .navigationBarItems(
                     trailing: Button(action: createRecipeInRecipeBook) {
-                        Text(msgs.plussign.rawValue + "Recipe").fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
+                        Text(msgs.plussign.rawValue + "Recipe").fontWeight(.bold)
                     }
                 )
                 .navigationBarTitle(msgs.addRecipe.rawValue)
         }
     }
 }
+
 #if DEBUG
-struct AddRecipeView4_Previews: PreviewProvider {
+struct AddRecipeView5_Previews: PreviewProvider {
     static var previews: some View {
-        AddRecipeView4()
+        AddRecipeView5()
     }
 }
 #endif
+
+
+
+

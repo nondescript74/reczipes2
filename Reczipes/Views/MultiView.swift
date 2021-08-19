@@ -9,15 +9,7 @@
 import SwiftUI
 
 struct MultiView: View {
-//    // MARK: - EnvironmentObjects
-//    @EnvironmentObject var userData: UserData
-//    @EnvironmentObject var order: OrderingList
-//    @EnvironmentObject var addedRecipes: AddedRecipes
-//
-//    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
     // MARK: - ObservedObject
-    //@ObservedObject var sRecipeGroup = WebQueryRecipes()  // an array of srecipes
     @ObservedObject var trivia = WebQueryRecipes()
     @ObservedObject var joke = WebQueryRecipes()
     
@@ -29,14 +21,11 @@ struct MultiView: View {
     // MARK: - Properties
     enum Selectors {
         case notyet
-        case names
-        case random
         case trivia
         case joke
-        case chat
     }
     
-    fileprivate enum msgs: String {
+    private enum msgs: String {
         case findrecipes = "Find Recipes"
         case readFilesInASDsuccess = "Success"
         case userProfile = "User Profile"
@@ -46,9 +35,20 @@ struct MultiView: View {
         case noTrivia = "No Trivia?"
     }
     
+    private enum labelz: String {
+        case trivia = "Trivia"
+        case joke = "Joke"
+    }
+    
+    private enum imagez: String {
+        case zhome = "zhome"
+        case triviathumb = "Trivia-thumb"
+        case jokethumb = "Joke-thumb"
+    }
+    
     var profileButton: some View {
         Button(action: { self.showingProfile.toggle() }) {
-            Image(uiImage: UIImage(named: "zhome")!.scaledDown(into: CGSize(width: 40, height: 40), centered: true))
+            Image(uiImage: UIImage(named: imagez.zhome.rawValue)!.scaledDown(into: CGSize(width: 40, height: 40), centered: true))
                 .imageScale(.large)
                 .accessibility(label: Text(msgs.userProfile.rawValue))
                 .padding()
@@ -66,71 +66,26 @@ struct MultiView: View {
         joke.getJoke()
     }
     
-//    func getSRecipeGroup() {
-//        show = Selectors.names
-//        let numberNeeded = userData.profile.numberOfRecipes.rawValue
-//        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded)
-//        endEditing()
-//    }
-//
-//    func findRandom() {
-//        show = Selectors.random
-//        let numberNeeded = userData.profile.numberOfRecipes.rawValue
-//        sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded)
-//        endEditing()
-//    }
-//
-//    func endEditing() {
-//        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//    }
-//
-//    func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
-//        let returningSecItem = SectionItem(id: UUID(),
-//                                           name: srecipe.title ?? SectionItem.example.name,
-//                                           url: srecipe.sourceUrl ?? SectionItem.example.url,
-//                                           imageUrl: srecipe.image,
-//                                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
-//                                           restrictions: constructRestrictions(srecipe: srecipe))
-//        return returningSecItem
-//    }
     // MARK: - View Process
     var body: some View {
         GeometryReader { proxy in
             NavigationView {
                 VStack {
-                    // SearchBar(text: $searchTerm)
                     Text(msgs.makeSelection.rawValue)
                         .font(.callout)
                         .foregroundColor(.black)
                         .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     
                     HStack {
-//                        Button(action: {self.getSRecipeGroup()}) {
-//                            RoundedButtonView(someText: "Find", someImage: Image("Find Recipes-thumb"))
-//                        }.disabled(searchTerm == "")
-//                        .padding()
-//                        Button(action: {self.findRandom()}) {
-//                            RoundedButtonView(someText: "Random", someImage: Image("Random Recipes-thumb"))
-//                        }.padding()
                         Button(action: {self.getTrivia()}) {
-                            RoundedButtonView(someText: "Trivia", someImage: Image("Trivia-thumb"))
+                            RoundedButtonView(someText: labelz.trivia.rawValue, someImage: Image(imagez.triviathumb.rawValue))
                         }.padding()
                         Button(action: {self.getJoke()}) {
-                            RoundedButtonView(someText: "Joke", someImage: Image("Joke-thumb"))
+                            RoundedButtonView(someText: labelz.joke.rawValue, someImage: Image(imagez.jokethumb.rawValue))
                         }.padding()
                     }
                     
                     List   {
-//                        if show == Selectors.names {
-//                            ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-//                                RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe))
-//                            }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-//                        }
-//                        if show == Selectors.random {
-//                            ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-//                                RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe))
-//                            }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-//                        }
                         if show == Selectors.trivia {
                             Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
                                 .lineLimit(20)

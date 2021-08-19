@@ -24,6 +24,7 @@ struct AddRecipeView5: View {
         case addedbooksection = "Added to Added Recipes "
         case success = " success: "
         case notitle = "No Title"
+        case nophotocredit = "No Photocredit"
         case notificationsOk = "All Set"
         case urlNotOk = "Need a Valid URL"
         case urlOk = "Valid Url"
@@ -213,13 +214,13 @@ struct AddRecipeView5: View {
     
     fileprivate func getTitle() -> String {
         var title = ""
-        title = extractedSRecipe.extractedSRecipe?.title ?? "No_Title"
+        title = extractedSRecipe.extractedSRecipe?.title ?? msgs.notitle.rawValue
         return title
     }
     
     fileprivate func getPhotoCredit() -> String {
         var credit = ""
-        credit = extractedSRecipe.extractedSRecipe?.creditsText ?? "No_photocredit"
+        credit = extractedSRecipe.extractedSRecipe?.creditsText ?? msgs.nophotocredit.rawValue
         return credit
     }
     

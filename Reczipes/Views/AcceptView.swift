@@ -22,17 +22,22 @@ struct AcceptView: View {
         case nodesc_m = "No Description of error"
     }
     
+    private enum imagez: String {
+        case pcc = "person.crop.circle"
+        case envelope = "envelope"
+    }
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(contactsVM.contacts) { contact in
                     VStack(alignment: .leading) {
                         HStack {
-                            Label(contact.firstName, systemImage: "person.crop.circle")
+                            Label(contact.firstName, systemImage: imagez.pcc.rawValue)
                             Text(contact.lastName).bold()
                         }
                         Divider()
-                        Label(contact.email, systemImage: "envelope")
+                        Label(contact.email, systemImage: imagez.envelope.rawValue)
                     }
                     .padding()
                     .background(Color.secondary.opacity(0.30))

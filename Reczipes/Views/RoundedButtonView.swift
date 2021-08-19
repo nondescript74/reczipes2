@@ -27,8 +27,8 @@ struct RoundedButtonView: View {
                 .rotationEffect(Angle(degrees: 0))
                 .font(Font.system(size: 10, weight: .bold, design: .rounded))
         }
-        .clipShape(Circle())
-        .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+        //.clipShape(Circle())
+        .overlay(RoundedRectangle(cornerSize: CGSize(width: 3, height: 3)).stroke(Color.gray, lineWidth: 2))
     }
 }
 

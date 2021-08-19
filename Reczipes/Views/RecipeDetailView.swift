@@ -39,10 +39,18 @@ struct RecipeDetailView: View {
     fileprivate enum labelz: String {
         case order = "Order"
         case ingredients = "Ingred"
+        case remove = "Remove"
+        case trash = "trash"
+        case show = "Show"
+        case notes = "Notes"
+        case images = "Images"
+        case nbartitle = "Recipe Details"
     }
     
     fileprivate enum imagez: String {
         case snp = "square.and.pencil"
+        case pencil = "pencil"
+        case gc = "greetingcard"
     }
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
@@ -88,14 +96,14 @@ struct RecipeDetailView: View {
                             self.order.add(item: self.item)
                         }) {
                             // How the button looks like
-                            RoundButton2View(someTextTop: "Order", someTextBottom: "Ingred", someImage: "square.and.pencil", reversed: false)
+                            RoundButton2View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.snp.rawValue, reversed: false)
                         }
                         Button(action: {
                             // What to perform
                             self.order.remove(item: self.item)
                         }) {
                             // How the button looks like
-                            RoundButton2View(someTextTop: "Remove", someTextBottom: "Ingred", someImage: "trash", reversed: false)
+                            RoundButton2View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
                         }
                     }  //.frame(width: proxy.size.width / 3 , height: 100, alignment: .center)
                     
@@ -128,14 +136,14 @@ struct RecipeDetailView: View {
                             self.showingNotes.toggle()
                         }) {
                             // How the button looks like
-                            RoundButton2View(someTextTop: "Show", someTextBottom: "Notes", someImage: "pencil", reversed: true)
+                            RoundButton2View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.pencil.rawValue, reversed: true)
                         }
                         Button(action: {
                             // What to perform
                             self.showingImages.toggle()
                         }) {
                             // How the button looks like
-                            RoundButton2View(someTextTop: "Show", someTextBottom: "Images", someImage: "greetingcard", reversed: true)
+                            RoundButton2View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.gc.rawValue, reversed: true)
                         }
                     }  //.frame(width: proxy.size.width / 3, height: 100, alignment: .center)
                     
@@ -162,7 +170,7 @@ struct RecipeDetailView: View {
                 AddNotesToRecipeView2()
             }
             
-            .navigationBarTitle(Text("Recipe Details"), displayMode: .inline)
+            .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)
 
         }
     }

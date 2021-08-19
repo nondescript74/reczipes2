@@ -45,16 +45,10 @@ struct ApplicationView: View {
                     Text(tabs.addEdit.rawValue)
                 }
             
-            AddNotesToRecipeView2()
+            AddImageAndNoteView()
                 .tabItem {
                     Image(uiImage: scribblevariable!)
-                    Text(tabs.noteAdd.rawValue)
-                }
-            
-            AddImageToRecipeView2()
-                .tabItem {
-                    Image(uiImage: videobadgeplus!)
-                    Text(tabs.imageAdd.rawValue)
+                    Text(tabs.multiAdd.rawValue)
                 }
             
             MultiView(show: MultiView.Selectors.notyet)
@@ -62,12 +56,7 @@ struct ApplicationView: View {
                     Image(uiImage: folderfillbadgeplus!)
                     Text(tabs.tjc.rawValue)
                 }
-            
-            GoogleSearchView()
-                .tabItem {
-                    Image(uiImage: magnifyingglass!)
-                    Text(tabs.search.rawValue)
-                }
+
         }
         .environmentObject(order)
         .environmentObject(addedRecipes)

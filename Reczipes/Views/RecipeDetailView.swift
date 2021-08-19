@@ -30,6 +30,20 @@ struct RecipeDetailView: View {
         case recipeImagesNot = "RecipeImagesFolder has no Images"
         case recipeNotesNot = "RecipeNotesFolder has no Notes"
     }
+    
+    fileprivate enum namez: String {
+        case notes = "Notes"
+        case json = ".json"
+    }
+    
+    fileprivate enum labelz: String {
+        case order = "Order"
+        case ingredients = "Ingred"
+    }
+    
+    fileprivate enum imagez: String {
+        case snp = "square.and.pencil"
+    }
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var addedRecipes: AddedRecipes
@@ -42,7 +56,7 @@ struct RecipeDetailView: View {
     fileprivate func hasNotes() -> Bool {
         let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)
         let zmyNotes = myNotesUrls.filter {$0.description.contains( item.id.description)}
-        let nmyNotes = Bundle.main.decode([Note].self, from: "Notes.json")  // array of Note
+        let nmyNotes = Bundle.main.decode([Note].self, from: namez.notes.rawValue + namez.json.rawValue)  // array of Note
         let savedNotes = nmyNotes.filter { $0.recipeuuid.description == item.id.description }
         
         return !zmyNotes.isEmpty || !savedNotes.isEmpty

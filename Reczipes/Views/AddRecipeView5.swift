@@ -11,11 +11,12 @@ struct AddRecipeView5: View {
     
     // MARK: - EnvironmentObject
     @EnvironmentObject var addedRecipes: AddedRecipes
-    @EnvironmentObject var newFormRecipes: NewFormRecipes
+    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var order: OrderingList
     // MARK: - ObservedObject
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
+    @ObservedObject var sRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
-    //fileprivate let nc = NotificationCenter.default
     fileprivate var fileIO = FileIO()
     fileprivate enum msgs: String {
         case AddRecipeView5 = "AddRecipeView5: "
@@ -25,6 +26,7 @@ struct AddRecipeView5: View {
         case notitle = "No Title"
         case notificationsOk = "All Set"
         case urlNotOk = "Need a Valid URL"
+        case urlOk = "Valid Url"
         case addedRecipe = "Added Recipe"
         case invalidUrl = "Invalid URl"
         case enterValidUrl = "Enter valid Recipe URL"
@@ -50,11 +52,10 @@ struct AddRecipeView5: View {
         case saving = "Saving Recipe"
         case saved = "Saved Recipe"
         case plussign = "✚"
-        
+        case find = "?"
+        case makeFindSelection = "Enter text, click ?"
         
     }
-    let content = UNMutableNotificationContent()
-    
     // MARK: - State
     @State private var hasRecipeBook:Bool = false
     @State private var restrictions:String = ""
@@ -63,42 +64,77 @@ struct AddRecipeView5: View {
     @State private var bookselected:Int = 0
     @State private var recipeSaved:Bool = false
     @State private var recipeRequested:Bool = false
+    @State fileprivate var searchTerm : String = ""
+    @State var show: Selectors = .notyet
+    // MARK: - Properties
+    enum Selectors {
+        case notyet
+        case names
+        case random
+        case search
+    }
     // MARK: - Methods
     func verifyUrl(urlString: String?) -> Bool {
         guard let urlString = urlString,
               let url = URL(string: urlString) else {
                   return false
               }
-        //        invalidUrl = false
         extractedSRecipe.findExtracted(urlString: urlString)
         recipeRequested = true
         return UIApplication.shared.canOpenURL(url)
     }
     
+    func getSRecipeGroup() {
+        show = Selectors.names
+        let numberNeeded = userData.profile.numberOfRecipes.rawValue
+        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded)
+        endEditing()
+    }
     
-    fileprivate func buildNotificationContent(title: String, subTitle: String, sound: UNNotificationSound) {
-        content.title = title
-        content.subtitle = subTitle
-        content.sound = UNNotificationSound.default
+    func findRandom() {
+        show = Selectors.random
+        let numberNeeded = userData.profile.numberOfRecipes.rawValue
+        sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded)
+        endEditing()
+    }
+    
+    func endEditing() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    
+    func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
+        let returningSecItem = SectionItem(id: UUID(),
+                                           name: srecipe.title ?? SectionItem.example.name,
+                                           url: srecipe.sourceUrl ?? SectionItem.example.url,
+                                           imageUrl: srecipe.image,
+                                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
+                                           restrictions: constructRestrictions(srecipe: srecipe))
+        return returningSecItem
     }
     
     func createRecipeInRecipeBook() {
-        
         if !verifyUrl(urlString: self.urlString)     {
-//            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-//                if success {
-//                    //nc.post(name: Notification.Name(msgs.urlNotOk.rawValue), object: nil)
-//
-//                } else if let error = error {
-//                    print(error.localizedDescription)
-//                    return
-//                }
-//            }
-            
 #if DEBUG
             print(msgs.notComplete.rawValue)
 #endif
             return
+        }
+    }
+    
+    private func createRecipeInRecipeBookWithSRecipe(srecipe: SRecipe) {
+        self.urlString = srecipe.sourceUrl!
+        if !verifyUrl(urlString: self.urlString) {
+#if DEBUG
+            print(msgs.urlNotOk.rawValue)
+#endif
+            return
+        } else {
+#if DEBUG
+            print(msgs.urlOk.rawValue)
+#endif
+            _ = convertSRecipeToSectionItem(srecipe: srecipe)
+            _ = createRecipeInRecipeBook2()
         }
     }
     
@@ -197,6 +233,12 @@ struct AddRecipeView5: View {
         NavigationView {
             GeometryReader(content: { geometry in
                 VStack(alignment: .leading, spacing: 10) {
+                    
+                    SearchBar(text: $searchTerm)
+                        .padding()
+                    Text(msgs.makeFindSelection.rawValue)
+                        .padding(.bottom, 5)
+                    
                     Text(msgs.enterValidUrl.rawValue)
                         .padding(.bottom, 5)
                     
@@ -213,6 +255,19 @@ struct AddRecipeView5: View {
                     
                     Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
                         .padding(5)
+                    
+                    List   {
+                        if show == Selectors.names {
+                            ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
+                                PlusSignAndRecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe))
+                            }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                        }
+                        if show == Selectors.random {
+                            ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
+                                PlusSignAndRecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe))
+                            }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                        }
+                    }
                 }
                 .alert(isPresented: $recipeRequested)   {
                     if extractedSRecipe.extractedSRecipe?.title != nil {
@@ -229,8 +284,8 @@ struct AddRecipeView5: View {
             })
                 .padding()
                 .navigationBarItems(
-                    trailing: Button(action: createRecipeInRecipeBook) {
-                        Text(msgs.plussign.rawValue + "Recipe").fontWeight(.bold)
+                    leading: Button(action: getSRecipeGroup) {
+                        Text(msgs.find.rawValue).fontWeight(.bold)
                     }
                 )
                 .navigationBarTitle(msgs.addRecipe.rawValue)
@@ -241,7 +296,8 @@ struct AddRecipeView5: View {
 #if DEBUG
 struct AddRecipeView5_Previews: PreviewProvider {
     static var previews: some View {
-        AddRecipeView5()
+        AddRecipeView5(show: .notyet)
+            .previewDevice("iPhone Xr")
     }
 }
 #endif

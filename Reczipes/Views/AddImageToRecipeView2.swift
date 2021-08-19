@@ -183,7 +183,7 @@ struct AddImageToRecipeView2: View {
         NavigationView {
            // GeometryReader { proxy in
                 ScrollView {
-                    VStack {
+                    //VStack {
                         Text(msgs.navigationTitle.rawValue)
                             .font(Font.system(size: 30, weight: .bold, design: .rounded))
                             .padding()
@@ -221,7 +221,7 @@ struct AddImageToRecipeView2: View {
                         }
                         .padding()
                         
-                    }  //.frame(minWidth: proxy.size.width, idealWidth: proxy.size.width, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: proxy.size.height, idealHeight: proxy.size.height, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .topLeading)
+                   // }  //.frame(minWidth: proxy.size.width, idealWidth: proxy.size.width, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: proxy.size.height, idealHeight: proxy.size.height, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .topLeading)
                     
                     .actionSheet(isPresented: $showSheet) {
                         self.actionSheet

@@ -34,22 +34,22 @@ struct RecipeRowView: View {
     
     // MARK: - Properties
     fileprivate var item: SectionItem
-    var addedView: Bool = false
+    //var addedView: Bool = false
     
     // MARK: - Methods
-    fileprivate func getImageToSend() -> Image {
-        if addedView {
-            return anImage.anImage ?? Image("Default Image")
-        } else {
-            return Image(item.mainImage)
-        }
-    }
+//    fileprivate func getImageToSend() -> Image {
+//        if addedView {
+//            return anImage.anImage ?? Image("Default Image")
+//        } else {
+//            return Image(item.mainImage)
+//        }
+//    }
     
     
     // MARK: - View Process
     var body: some View {
         NavigationLink(destination: RecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item)) {
-            if addedView {
+//            if addedView {
                 VStack(alignment: .leading) {
                 HStack {
                     anImage.anImage?
@@ -76,33 +76,33 @@ struct RecipeRowView: View {
                 }
                 }
                 
-            } else {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(item.thumbnailImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40, height: 40, alignment: .leading)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.gray, lineWidth: 2))
-                        
-                        VStack {
-                            Text(item.name)
-                                .font(.system(size: 13))
-                        }
-                    }
-                    HStack(alignment: .top) {
-                        ForEach(item.restrictions, id: \.self) { restriction in
-                            Text(restriction)
-                                .font(.caption)
-                                .fontWeight(.black)
-                                .padding(10)
-                                .background(colors[restriction, default: .black]) .clipShape(Circle())
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-            }
+//            } else {
+//                VStack(alignment: .leading) {
+//                    HStack {
+//                        Image(item.thumbnailImage)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 40, height: 40, alignment: .leading)
+//                            .clipShape(Circle())
+//                            .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+//
+//                        VStack {
+//                            Text(item.name)
+//                                .font(.system(size: 13))
+//                        }
+//                    }
+//                    HStack(alignment: .top) {
+//                        ForEach(item.restrictions, id: \.self) { restriction in
+//                            Text(restriction)
+//                                .font(.caption)
+//                                .fontWeight(.black)
+//                                .padding(10)
+//                                .background(colors[restriction, default: .black]) .clipShape(Circle())
+//                                .foregroundColor(.white)
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 }

@@ -40,7 +40,9 @@
 		935398B22694E2780062931E /* ReczipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B12694E2780062931E /* ReczipesApp.swift */; };
 		935398B62694E27B0062931E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B52694E27B0062931E /* Assets.xcassets */; };
 		935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B82694E27B0062931E /* Preview Assets.xcassets */; };
-		9396EAB726BDF06C000FD136 /* NewFormRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */; };
+		936D524626CC6C8D00B3C1FE /* PlusSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D524526CC6C8D00B3C1FE /* PlusSignView.swift */; };
+		936D524826CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */; };
+		93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */; };
 		9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */ = {isa = PBXBuildFile; fileRef = 9396EAB826BDF0FE000FD136 /* SectionNames.json */; };
 		93AB40C526BECCF8005529AF /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40C426BECCF8005529AF /* MultiView.swift */; };
 		93AB40C726BECD93005529AF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40C626BECD93005529AF /* UserData.swift */; };
@@ -67,6 +69,8 @@
 		93ACB30726B9E9AA0010F71F /* ImageFilterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2F826B9E9AA0010F71F /* ImageFilterOperation.swift */; };
 		93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */; };
 		93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */; };
+		93D611A826CE971200664F14 /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A626CE971100664F14 /* Images.json */; };
+		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -118,7 +122,9 @@
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935398B82694E27B0062931E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		935398BF2694E2A90062931E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFormRecipes.swift; sourceTree = "<group>"; };
+		936D524526CC6C8D00B3C1FE /* PlusSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusSignView.swift; sourceTree = "<group>"; };
+		936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusSignAndRecipeRowView.swift; sourceTree = "<group>"; };
+		93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageAndNoteView.swift; sourceTree = "<group>"; };
 		9396EAB826BDF0FE000FD136 /* SectionNames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SectionNames.json; sourceTree = "<group>"; };
 		93AB40C426BECCF8005529AF /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		93AB40C626BECD93005529AF /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -145,6 +151,8 @@
 		93ACB2F826B9E9AA0010F71F /* ImageFilterOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFilterOperation.swift; sourceTree = "<group>"; };
 		93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaXOperation.swift; sourceTree = "<group>"; };
 		93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAccessor.swift; sourceTree = "<group>"; };
+		93D611A626CE971100664F14 /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
+		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,8 +175,6 @@
 				93AB40C426BECCF8005529AF /* MultiView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
 				931164E42697836600099F8D /* AcceptView.swift */,
-				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
-				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				93237A2D26A4E7E300032387 /* AddImageToRecipeView2.swift */,
 				93237A2F26A4E81700032387 /* AddNotesToRecipeView2.swift */,
 				93237A3126A4E84D00032387 /* NotesView.swift */,
@@ -178,6 +184,11 @@
 				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
 				93237A3726A4E92000032387 /* RoundButton2View.swift */,
 				93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */,
+				936D524526CC6C8D00B3C1FE /* PlusSignView.swift */,
+				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
+				936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */,
+				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
+				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,7 +201,6 @@
 				9341A0562698FBAD00DCA754 /* OrderingList.swift */,
 				931B5169269E4B660065F551 /* ModelStructs2.swift */,
 				93237A1426A4E37A00032387 /* AddedRecipes.swift */,
-				9396EAB626BDF06C000FD136 /* NewFormRecipes.swift */,
 				93237A2026A4E65400032387 /* Profile.swift */,
 				93AB40C626BECD93005529AF /* UserData.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
@@ -228,6 +238,8 @@
 		9341A05C2698FDE400DCA754 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				93D611A626CE971100664F14 /* Images.json */,
+				93D611A726CE971200664F14 /* Notes.json */,
 				9396EAB826BDF0FE000FD136 /* SectionNames.json */,
 				93237A1226A4E1A500032387 /* recipesShipped.json */,
 			);
@@ -375,6 +387,8 @@
 			files = (
 				93237A1326A4E1A500032387 /* recipesShipped.json in Resources */,
 				935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */,
+				93D611A826CE971200664F14 /* Images.json in Resources */,
+				93D611A926CE971200664F14 /* Notes.json in Resources */,
 				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
 				935398B62694E27B0062931E /* Assets.xcassets in Resources */,
 			);
@@ -393,9 +407,9 @@
 				93237A2126A4E65400032387 /* Profile.swift in Sources */,
 				93237A3226A4E84D00032387 /* NotesView.swift in Sources */,
 				93ACB2E026B9E8CD0010F71F /* SRecipeOutputOperation.swift in Sources */,
-				9396EAB726BDF06C000FD136 /* NewFormRecipes.swift in Sources */,
 				931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */,
 				9329219326BF234B00CDDD52 /* SRecipeGroupXOperation.swift in Sources */,
+				936D524826CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift in Sources */,
 				93AB40CD26BF2100005529AF /* GoogleSearchView.swift in Sources */,
 				93AB40C926BECDF2005529AF /* SearchBar.swift in Sources */,
 				93237A1C26A4E52400032387 /* RecipeDetailView.swift in Sources */,
@@ -409,6 +423,7 @@
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
 				931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */,
+				936D524626CC6C8D00B3C1FE /* PlusSignView.swift in Sources */,
 				931164E52697836600099F8D /* AcceptView.swift in Sources */,
 				93ACB2E226B9E8CD0010F71F /* ImageOutputOperation.swift in Sources */,
 				93237A2E26A4E7E300032387 /* AddImageToRecipeView2.swift in Sources */,
@@ -436,6 +451,7 @@
 				93ACB30726B9E9AA0010F71F /* ImageFilterOperation.swift in Sources */,
 				93ACB30326B9E9AA0010F71F /* ImageXOperatIon.swift in Sources */,
 				93237A3A26A4E97500032387 /* ImagePicker.swift in Sources */,
+				93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */,
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,

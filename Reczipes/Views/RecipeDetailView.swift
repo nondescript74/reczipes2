@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct RecipeDetailView: View {
     // MARK: - Initializer
@@ -44,6 +45,8 @@ struct RecipeDetailView: View {
         case show = "Show"
         case notes = "Notes"
         case images = "Images"
+        case send = "Send"
+        case mail = "📩"
         case nbartitle = "Recipe Details"
     }
     
@@ -51,6 +54,7 @@ struct RecipeDetailView: View {
         case snp = "square.and.pencil"
         case pencil = "pencil"
         case gc = "greetingcard"
+        case mail = "envelope"
     }
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
@@ -60,6 +64,8 @@ struct RecipeDetailView: View {
     @State fileprivate var showingImages = false
     @State fileprivate var addingImage = false
     @State fileprivate var addingNote = false
+    @State var result: Result<MFMailComposeResult, Error>? = nil
+    @State var isShowingMailView = false
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
         let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)
@@ -74,80 +80,80 @@ struct RecipeDetailView: View {
         let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)
         let zmyImages = myImagesUrls.filter {$0.description.contains( item.id.description)}
         
-        #if DEBUG
+#if DEBUG
         if !zmyImages.isEmpty {
             print(msgs.recipeDetailView.rawValue + msgs.recipeImages.rawValue)
         } else {
             print(msgs.recipeDetailView.rawValue + msgs.recipeImagesNot.rawValue)
         }
-        #endif
+#endif
         
         return !zmyImages.isEmpty
     }
-
+    
     // MARK: - View Process
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                HStack(alignment: .top) {
-                    VStack {
-                        Button(action: {
-                            // What to perform
-                            self.order.add(item: self.item)
-                        }) {
-                            // How the button looks like
-                            RoundButton2View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.snp.rawValue, reversed: false)
-                        }
-                        Button(action: {
-                            // What to perform
-                            self.order.remove(item: self.item)
-                        }) {
-                            // How the button looks like
-                            RoundButton2View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
-                        }
-                    }  //.frame(width: proxy.size.width / 3 , height: 100, alignment: .center)
-                    
-                    
-                    ZStack {
-                        if UIImage(named: item.mainImage) == nil {
-                            anImage.anImage?
-                                .resizable()
-                                .scaledToFit()
-                                .padding(.all, 5)
-//                                .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
-                        } else {
-                            Image(item.mainImage)
-                                .resizable()
-                                .scaledToFit()
-                                .padding(.all, 5)
-//                                .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
-                        }
-                        
-                        Text("Photo: \(item.photocredit)")
-                            .background(Color.black)
-                            .font(.caption)
-                            .foregroundColor(.white)
-                            .frame(width: proxy.size.width / 3, height: 100, alignment: .bottomTrailing)
+                ZStack {
+                    if UIImage(named: item.mainImage) == nil {
+                        anImage.anImage?
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.all, 5)
+                    } else {
+                        Image(item.mainImage)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.all, 5)
                     }
                     
-                    VStack {
-                        Button(action: {
-                            // What to perform
-                            self.showingNotes.toggle()
-                        }) {
-                            // How the button looks like
-                            RoundButton2View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.pencil.rawValue, reversed: true)
-                        }
-                        Button(action: {
-                            // What to perform
-                            self.showingImages.toggle()
-                        }) {
-                            // How the button looks like
-                            RoundButton2View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.gc.rawValue, reversed: true)
-                        }
-                    }  //.frame(width: proxy.size.width / 3, height: 100, alignment: .center)
+                    Text("Photo: \(item.photocredit)")
+                        .background(Color.black)
+                        .font(.caption)
+                        .foregroundColor(.white)
+                        .frame(width: proxy.size.width / 3, height: 100, alignment: .bottomTrailing)
+                }
+                
+                HStack {
+                    Button(action: {
+                        // What to perform
+                        self.order.add(item: self.item)
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.snp.rawValue, reversed: false)
+                    }
+                    Button(action: {
+                        // What to perform
+                        self.order.remove(item: self.item)
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
+                    }
+                    Button(action: {
+                        // What to perform
+                        self.showingNotes.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.pencil.rawValue, reversed: true)
+                    }
+                    Button(action: {
+                        // What to perform
+                        self.showingImages.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.gc.rawValue, reversed: true)
+                    }
                     
-                }.frame(width: proxy.size.width, height: 200, alignment: .leading)
+                    Button(action: {
+                        // What to perform
+                        self.isShowingMailView.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.send.rawValue, someTextBottom: labelz.mail.rawValue, someImage: imagez.mail.rawValue, reversed: true)
+                    }.disabled(!MFMailComposeViewController.canSendMail())
+                    
+                }
                 
                 if showingNotes == true && hasNotes() {
                     NotesView(recipeuuid: self.item.id.description)
@@ -161,7 +167,7 @@ struct RecipeDetailView: View {
                 }
                 Spacer()
             }
-                        
+            
             .sheet(isPresented: $addingImage) {
                 AddImageToRecipeView2()
             }
@@ -170,8 +176,12 @@ struct RecipeDetailView: View {
                 AddNotesToRecipeView2()
             }
             
+            .sheet(isPresented: $isShowingMailView) {
+                MailView(result: self.$result)
+            }
+            
             .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)
-
+            
         }
     }
 }

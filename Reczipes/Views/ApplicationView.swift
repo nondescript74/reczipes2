@@ -40,12 +40,6 @@ struct ApplicationView: View {
                     Text(tabs.multibook.rawValue)
                 }
             
-            SendMailView()
-                .tabItem {
-                    Image(uiImage: scribblevariable!)
-                    Text(tabs.send.rawValue)
-                }
-            
             AddRecipeView5()
                 .tabItem {
                     Image(uiImage: imageDocDocFill!)
@@ -56,12 +50,6 @@ struct ApplicationView: View {
                 .tabItem {
                     Image(uiImage: scribblevariable!)
                     Text(tabs.multiAdd.rawValue)
-                }
-            
-            MultiView(show: MultiView.Selectors.notyet)
-                .tabItem {
-                    Image(uiImage: folderfillbadgeplus!)
-                    Text(tabs.tjc.rawValue)
                 }
 
         }

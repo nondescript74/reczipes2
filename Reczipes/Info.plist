@@ -2,25 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSContactsUsageDescription</key>
-	<string>We need to access Contacts to send recipes</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need to add to the Photo Library</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to access contents of the Photo Library</string>
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>We need to save and retrieve recipes to Documents</string>
-	<key>NSCameraUsageDescription</key>
-	<string>We need to be able to take photos</string>
-	<key>UIRequiresPersistentWiFi</key>
-	<true/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>
@@ -28,5 +16,7 @@
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<false/>
 	</dict>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
 </dict>
 </plist>

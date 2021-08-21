@@ -27,15 +27,14 @@
 		93237A3226A4E84D00032387 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3126A4E84D00032387 /* NotesView.swift */; };
 		93237A3426A4E87900032387 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3326A4E87900032387 /* ImagesView.swift */; };
 		93237A3626A4E8C000032387 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3526A4E8C000032387 /* SafariView.swift */; };
-		93237A3826A4E92000032387 /* RoundButton2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3726A4E92000032387 /* RoundButton2View.swift */; };
 		93237A3A26A4E97500032387 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3926A4E97500032387 /* ImagePicker.swift */; };
 		93237A3C26A4E98100032387 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A3B26A4E98100032387 /* ImagePickerView.swift */; };
 		9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */; };
 		9329219026BF231700CDDD52 /* SRecipeGroupOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218E26BF231700CDDD52 /* SRecipeGroupOutputOperation.swift */; };
 		9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */; };
 		9329219326BF234B00CDDD52 /* SRecipeGroupXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */; };
-		9334918026D1514800047BAB /* SendMailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334917F26D1514800047BAB /* SendMailView.swift */; };
-		9334918226D1535A00047BAB /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334918126D1535A00047BAB /* MailView.swift */; };
+		9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334918326D1B15B00047BAB /* RoundButton3View.swift */; };
+		9334918626D1BA4000047BAB /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334918526D1BA4000047BAB /* MailView.swift */; };
 		9341A0552698FB5200DCA754 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0542698FB5200DCA754 /* ApplicationView.swift */; };
 		9341A0572698FBAD00DCA754 /* OrderingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0562698FBAD00DCA754 /* OrderingList.swift */; };
 		9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A05A2698FCE500DCA754 /* AllRecipesView.swift */; };
@@ -109,15 +108,14 @@
 		93237A3126A4E84D00032387 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		93237A3326A4E87900032387 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		93237A3526A4E8C000032387 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
-		93237A3726A4E92000032387 /* RoundButton2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton2View.swift; sourceTree = "<group>"; };
 		93237A3926A4E97500032387 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		93237A3B26A4E98100032387 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupProvider.swift; sourceTree = "<group>"; };
 		9329218E26BF231700CDDD52 /* SRecipeGroupOutputOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupOutputOperation.swift; sourceTree = "<group>"; };
 		9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupCreateOperation.swift; sourceTree = "<group>"; };
 		9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupXOperation.swift; sourceTree = "<group>"; };
-		9334917F26D1514800047BAB /* SendMailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMailView.swift; sourceTree = "<group>"; };
-		9334918126D1535A00047BAB /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		9334918326D1B15B00047BAB /* RoundButton3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton3View.swift; sourceTree = "<group>"; };
+		9334918526D1BA4000047BAB /* MailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = Reczipes/Models/MailView.swift; sourceTree = SOURCE_ROOT; };
 		9341A0542698FB5200DCA754 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		9341A0562698FBAD00DCA754 /* OrderingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingList.swift; sourceTree = "<group>"; };
 		9341A05A2698FCE500DCA754 /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
@@ -186,14 +184,14 @@
 				93237A3526A4E8C000032387 /* SafariView.swift */,
 				93AB40C826BECDF2005529AF /* SearchBar.swift */,
 				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
-				93237A3726A4E92000032387 /* RoundButton2View.swift */,
+				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */,
 				936D524526CC6C8D00B3C1FE /* PlusSignView.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
 				936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
-				9334917F26D1514800047BAB /* SendMailView.swift */,
+				9334918526D1BA4000047BAB /* MailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,7 +208,6 @@
 				93AB40C626BECD93005529AF /* UserData.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
 				93237A2B26A4E7A200032387 /* Vitamins.swift */,
-				9334918126D1535A00047BAB /* MailView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,7 +406,6 @@
 			files = (
 				9329219026BF231700CDDD52 /* SRecipeGroupOutputOperation.swift in Sources */,
 				9341A0572698FBAD00DCA754 /* OrderingList.swift in Sources */,
-				9334918026D1514800047BAB /* SendMailView.swift in Sources */,
 				93ACB2BC26B9E73F0010F71F /* TriviaProvider.swift in Sources */,
 				93237A2126A4E65400032387 /* Profile.swift in Sources */,
 				93237A3226A4E84D00032387 /* NotesView.swift in Sources */,
@@ -426,7 +422,7 @@
 				93237A2326A4E68100032387 /* Nutrition.swift in Sources */,
 				93237A1526A4E37A00032387 /* AddedRecipes.swift in Sources */,
 				93237A3C26A4E98100032387 /* ImagePickerView.swift in Sources */,
-				9334918226D1535A00047BAB /* MailView.swift in Sources */,
+				9334918626D1BA4000047BAB /* MailView.swift in Sources */,
 				93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */,
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
@@ -444,6 +440,7 @@
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
+				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
 				9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */,
 				93AB40C726BECD93005529AF /* UserData.swift in Sources */,
@@ -466,7 +463,6 @@
 				93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */,
 				93ACB30126B9E9AA0010F71F /* SRecipeXOperation.swift in Sources */,
 				93ACB2FD26B9E9AA0010F71F /* AsyncOperation.swift in Sources */,
-				93237A3826A4E92000032387 /* RoundButton2View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -605,8 +601,11 @@
 				INFOPLIST_KEY_CFBundleExecutable = Reczipes;
 				INFOPLIST_KEY_CFBundleName = Reczipes;
 				INFOPLIST_KEY_CFBundleVersion = 1;
-				INFOPLIST_KEY_NSContactsUsageDescription = "To share recipes we ask to access your Contacts and their information 🙏🏼";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "To save your created recipe information we save files to your Documents folder";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to be able to take photos";
+				INFOPLIST_KEY_NSContactsUsageDescription = "We need to access Contacts to send recipes";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We need to save and retrieve recipes to Documents";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to add to the Photo Library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access contents of the Photo Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -633,7 +632,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -642,8 +641,11 @@
 				INFOPLIST_KEY_CFBundleExecutable = Reczipes;
 				INFOPLIST_KEY_CFBundleName = Reczipes;
 				INFOPLIST_KEY_CFBundleVersion = 1;
-				INFOPLIST_KEY_NSContactsUsageDescription = "To share recipes we ask to access your Contacts and their information 🙏🏼";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "To save your created recipe information we save files to your Documents folder";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to be able to take photos";
+				INFOPLIST_KEY_NSContactsUsageDescription = "We need to access Contacts to send recipes";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We need to save and retrieve recipes to Documents";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to add to the Photo Library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access contents of the Photo Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

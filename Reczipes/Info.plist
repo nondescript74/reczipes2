@@ -3,9 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>NSContactsUsageDescription</key>
-	<string>To share recipes we ask to access your Contacts and their information 🙏🏼</string>
+	<string>We need to access Contacts to send recipes</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need to add to the Photo Library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to access contents of the Photo Library</string>
 	<key>NSDocumentsFolderUsageDescription</key>
-	<string>To save your created recipe information we save files to your Documents folder</string>
+	<string>We need to save and retrieve recipes to Documents</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need to be able to take photos</string>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>

@@ -65,7 +65,7 @@ struct AddRecipeView5: View {
     @State private var bookselected:Int = 0
     @State private var recipeSaved:Bool = false
     @State private var recipeRequested:Bool = false
-    @State fileprivate var searchTerm : String = ""
+    @State fileprivate var searchTerm : String = "Enter search terms, click ?"
     @State var show: Selectors = .notyet
     // MARK: - Properties
     enum Selectors {
@@ -237,16 +237,16 @@ struct AddRecipeView5: View {
                     
                     SearchBar(text: $searchTerm)
                         .padding()
-                    Text(msgs.makeFindSelection.rawValue)
-                        .padding(.bottom, 5)
-                    
-                    Text(msgs.enterValidUrl.rawValue)
-                        .padding(.bottom, 5)
+//                    Text(msgs.makeFindSelection.rawValue)
+//                        .padding(.bottom, 5)
+//
+//                    Text(msgs.enterValidUrl.rawValue)
+//                        .padding(.bottom, 5)
                     
                     TextField(msgs.enterValidUrl.rawValue, text: $urlString)
                         .padding(.bottom, 10)
-                    
-                    Text(msgs.pickSection.rawValue)
+//                    
+//                    Text(msgs.pickSection.rawValue)
                     
                     Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
                         ForEach(0..<zx) { index in

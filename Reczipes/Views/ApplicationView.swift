@@ -21,6 +21,7 @@ struct ApplicationView: View {
         case addEdit = "Add/Edit"
         case tjc = "Trivia"
         case auth = "Sign In"
+        case send = "Mail To"
         case indian = "Indian"
         case random = "Random"
         case ingredients = "Ingred"
@@ -37,6 +38,12 @@ struct ApplicationView: View {
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
                     Text(tabs.multibook.rawValue)
+                }
+            
+            SendMailView()
+                .tabItem {
+                    Image(uiImage: scribblevariable!)
+                    Text(tabs.send.rawValue)
                 }
             
             AddRecipeView5()

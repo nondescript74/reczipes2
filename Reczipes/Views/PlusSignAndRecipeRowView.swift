@@ -28,7 +28,7 @@ struct PlusSignAndRecipeRowView: View {
     }
     var body: some View {
         HStack {
-            PlusSignView()
+            PlusSignView(sectionItem: self.item)
             RecipeRowView(sectionItem: self.item)
         }
     }

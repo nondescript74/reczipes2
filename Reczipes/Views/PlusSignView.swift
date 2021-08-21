@@ -9,18 +9,30 @@ import SwiftUI
 
 struct PlusSignView: View {
     
+    // MARK: - Initializer
+    init(sectionItem: SectionItem) {
+        self.myRecipe = sectionItem
+    }
+    
+    // MARK: - EnvironmentObject
+    @EnvironmentObject var addedRecipes: AddedRecipes
+    
     // MARK: - Properties
-    fileprivate enum msgs: String {
+    private var myRecipe: SectionItem
+    private enum msgs: String {
         case psv = "PlusSignView"
         case plus = "+"
         case writingRecipe = "Adding Recipe"
     }
+    
     // MARK: - Methods
     private func performAddRecipeToAddedRecipes() {
-#if DEBUG
-                print(msgs.psv.rawValue + msgs.writingRecipe.rawValue)
-#endif
+        #if DEBUG
+            print(msgs.psv.rawValue + msgs.writingRecipe.rawValue)
+        #endif
+        //addedRecipes.a
     }
+    
     var body: some View {
         Button(action: {
             // What to perform
@@ -39,6 +51,6 @@ struct PlusSignView: View {
 
 struct PlusSignView_Previews: PreviewProvider {
     static var previews: some View {
-        PlusSignView()
+        PlusSignView(sectionItem: SectionItem.example)
     }
 }

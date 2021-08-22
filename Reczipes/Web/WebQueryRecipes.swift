@@ -10,7 +10,6 @@ import SwiftUI
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Environment Variables
-    //@Environment(\.managedObjectContext) var managedObjectContext
     // MARK: - Published
     @Published var anImage: Image?
     @Published var recipeInfo: SRecipe?
@@ -18,7 +17,7 @@ public class WebQueryRecipes: ObservableObject {
     @Published var extractedSRecipe: SRecipe?
     @Published var aTrivia: Trivia?
     @Published var joke: Joke?
-    //MARK: - State
+    // MARK: - State
     // MARK: - Properties
     private enum myQuery: String {
         case query = "query="
@@ -29,7 +28,6 @@ public class WebQueryRecipes: ObservableObject {
         case recipeInfo = "&addRecipeInformation=true"
         case extract = "url="
         case trivia, joke = ""
-
     }
     
     enum callerId: String {
@@ -41,7 +39,7 @@ public class WebQueryRecipes: ObservableObject {
     fileprivate enum urlThings: String {
         case recipes = "https://api.spoonacular.com/recipes/search"
         case recipesComplex = "https://api.spoonacular.com/recipes/complexSearch"
-        case imageWeb = "https://spoonacular.com/cdn/ingredients_" // 100x100/apple.jpg
+        case imageWeb = "https://spoonacular.com/cdn/ingredients_" //  
         case images = "https://spoonacular.com/recipeImages/"
         case ingredients = "https://api.spoonacular.com/recipes/findByIngredients"
         case similar, information = "https://api.spoonacular.com/recipes/"
@@ -61,17 +59,9 @@ public class WebQueryRecipes: ObservableObject {
     }
     
     enum imageSizes: String {
-//        case ninetyx90 = "90x90"
-//        case two40x150 = "240x150"
-//        case three12x150 = "312x250"
-//        case three12x231 = "312x231"
-//        case four80x360 = "480x360"
-//        case five56x370 = "556x370"
-//        case six36x393 = "636x393"
         case hundredx100 = "100x100"
         case two50x250 = "250x250"
         case five100x500 = "500x500"
-        
     }
     
     enum myGets: String {
@@ -167,18 +157,6 @@ public class WebQueryRecipes: ObservableObject {
         urlComponents.query = myQuery.extract.rawValue + urlString + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
-//
-//    func findSimilarRecipes(id: Int32) {
-//        urlComponents = URLComponents(string: urlThings.similar.rawValue + id.description + urlThings.similarPartDeux.rawValue)!
-//        urlComponents.query = myQuery.nutritionFalse.rawValue  + Profile.apiKeyE.z.rawValue
-//        myTask(aswitch: myGets.FindSimilar.rawValue)
-//    }
-//
-//    func getRecipeInformation(id: Int64) {
-//        urlComponents = URLComponents(string: urlThings.information.rawValue + id.description + urlThings.informationPartDeux.rawValue)!
-//        urlComponents.query = myQuery.nutritionFalse.rawValue  + Profile.apiKeyE.z.rawValue
-//        myTask(aswitch: myGets.FindInformation.rawValue)
-//    }
     
     func getTrivia() {
         urlComponents = URLComponents(string: urlThings.trivia.rawValue)!

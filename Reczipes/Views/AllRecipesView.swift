@@ -23,7 +23,11 @@ struct AllRecipesView: View {
         NavigationView {
             VStack {
                 Text(msgs.arv.rawValue).bold()
-                    
+//                    .background(
+//                        Image("zdesert"),
+//                        alignment: .topLeading
+//                    ).scaledToFill()
+                
                 List {
                     ForEach(myBook, id: \.self) { section in
                         Section(header: Text(section.name).padding()) {
@@ -37,8 +41,6 @@ struct AllRecipesView: View {
                 }.listStyle(GroupedListStyle())
             }
         }
-        //.navigationBarTitle(msgs.arv.rawValue)
-        //.navigationBarHidden(false)
     }
     
 }

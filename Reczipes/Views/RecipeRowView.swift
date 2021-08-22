@@ -60,7 +60,8 @@ struct RecipeRowView: View {
                             .font(.caption)
                             .fontWeight(.black)
                             .padding(10)
-                            .background(colors[restriction, default: .black]) .clipShape(Circle())
+                            .background(colors[restriction, default: .secondary])
+                            .clipShape(Rectangle())
                             .foregroundColor(.white)
                     }
                 }

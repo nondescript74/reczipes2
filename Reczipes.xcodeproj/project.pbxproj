@@ -38,6 +38,11 @@
 		9341A0552698FB5200DCA754 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0542698FB5200DCA754 /* ApplicationView.swift */; };
 		9341A0572698FBAD00DCA754 /* OrderingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0562698FBAD00DCA754 /* OrderingList.swift */; };
 		9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A05A2698FCE500DCA754 /* AllRecipesView.swift */; };
+		934AC08326D28FCF007EBF20 /* OrderIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AC08226D28FCF007EBF20 /* OrderIngredientsView.swift */; };
+		934AC08526D29000007EBF20 /* Profile Views in Resources */ = {isa = PBXBuildFile; fileRef = 934AC08426D29000007EBF20 /* Profile Views */; };
+		934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AC08626D29040007EBF20 /* ExtendendIngredientsView2.swift */; };
+		934AC08926D29812007EBF20 /* ExtendedIngredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AC08826D29812007EBF20 /* ExtendedIngredView.swift */; };
+		934AC08B26D298D2007EBF20 /* ImageWithSectionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AC08A26D298D2007EBF20 /* ImageWithSectionItemView.swift */; };
 		935398B22694E2780062931E /* ReczipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B12694E2780062931E /* ReczipesApp.swift */; };
 		935398B62694E27B0062931E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B52694E27B0062931E /* Assets.xcassets */; };
 		935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B82694E27B0062931E /* Preview Assets.xcassets */; };
@@ -119,6 +124,11 @@
 		9341A0542698FB5200DCA754 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		9341A0562698FBAD00DCA754 /* OrderingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingList.swift; sourceTree = "<group>"; };
 		9341A05A2698FCE500DCA754 /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
+		934AC08226D28FCF007EBF20 /* OrderIngredientsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderIngredientsView.swift; sourceTree = "<group>"; };
+		934AC08426D29000007EBF20 /* Profile Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Profile Views"; sourceTree = "<group>"; };
+		934AC08626D29040007EBF20 /* ExtendendIngredientsView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendendIngredientsView2.swift; sourceTree = "<group>"; };
+		934AC08826D29812007EBF20 /* ExtendedIngredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedIngredView.swift; sourceTree = "<group>"; };
+		934AC08A26D298D2007EBF20 /* ImageWithSectionItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageWithSectionItemView.swift; sourceTree = "<group>"; };
 		935398AE2694E2780062931E /* Reczipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reczipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935398B12694E2780062931E /* ReczipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReczipesApp.swift; sourceTree = "<group>"; };
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -171,6 +181,7 @@
 		930310C52695DC33006910EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				934AC08426D29000007EBF20 /* Profile Views */,
 				9341A0542698FB5200DCA754 /* ApplicationView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				9307666326C41ABD00583B7A /* AddRecipeView5.swift */,
@@ -179,6 +190,10 @@
 				931164E42697836600099F8D /* AcceptView.swift */,
 				93237A2D26A4E7E300032387 /* AddImageToRecipeView2.swift */,
 				93237A2F26A4E81700032387 /* AddNotesToRecipeView2.swift */,
+				934AC08226D28FCF007EBF20 /* OrderIngredientsView.swift */,
+				934AC08626D29040007EBF20 /* ExtendendIngredientsView2.swift */,
+				934AC08826D29812007EBF20 /* ExtendedIngredView.swift */,
+				934AC08A26D298D2007EBF20 /* ImageWithSectionItemView.swift */,
 				93237A3126A4E84D00032387 /* NotesView.swift */,
 				93237A3326A4E87900032387 /* ImagesView.swift */,
 				93237A3526A4E8C000032387 /* SafariView.swift */,
@@ -393,6 +408,7 @@
 				93D611A826CE971200664F14 /* Images.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
 				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
+				934AC08526D29000007EBF20 /* Profile Views in Resources */,
 				935398B62694E27B0062931E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,8 +446,10 @@
 				936D524626CC6C8D00B3C1FE /* PlusSignView.swift in Sources */,
 				931164E52697836600099F8D /* AcceptView.swift in Sources */,
 				93ACB2E226B9E8CD0010F71F /* ImageOutputOperation.swift in Sources */,
+				934AC08B26D298D2007EBF20 /* ImageWithSectionItemView.swift in Sources */,
 				93237A2E26A4E7E300032387 /* AddImageToRecipeView2.swift in Sources */,
 				93237A3626A4E8C000032387 /* SafariView.swift in Sources */,
+				934AC08926D29812007EBF20 /* ExtendedIngredView.swift in Sources */,
 				93ACB30426B9E9AA0010F71F /* JokeXOperation.swift in Sources */,
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
 				93237A3026A4E81700032387 /* AddNotesToRecipeView2.swift in Sources */,
@@ -442,6 +460,7 @@
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
 				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
+				934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */,
 				9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */,
 				93AB40C726BECD93005529AF /* UserData.swift in Sources */,
 				9307666426C41ABD00583B7A /* AddRecipeView5.swift in Sources */,
@@ -460,6 +479,7 @@
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
+				934AC08326D28FCF007EBF20 /* OrderIngredientsView.swift in Sources */,
 				93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */,
 				93ACB30126B9E9AA0010F71F /* SRecipeXOperation.swift in Sources */,
 				93ACB2FD26B9E9AA0010F71F /* AsyncOperation.swift in Sources */,

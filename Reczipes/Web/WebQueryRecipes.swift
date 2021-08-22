@@ -33,13 +33,9 @@ public class WebQueryRecipes: ObservableObject {
     }
     
     enum callerId: String {
-        //case xrecipes = "xrecipes"
         case fullurlbeingsupplied = "Full Url supplied"
         case srecipes = "srecipes"
-//        case srecipes_big = "srecipes_big"
-//        case random = "random"
-//        case complex = "complex"
-//        case extract = "extract"
+        case webimage = "fullUrl"
     }
     
     fileprivate enum urlThings: String {
@@ -65,13 +61,13 @@ public class WebQueryRecipes: ObservableObject {
     }
     
     enum imageSizes: String {
-        case ninetyx90 = "90x90"
-        case two40x150 = "240x150"
-        case three12x150 = "312x250"
-        case three12x231 = "312x231"
-        case four80x360 = "480x360"
-        case five56x370 = "556x370"
-        case six36x393 = "636x393"
+//        case ninetyx90 = "90x90"
+//        case two40x150 = "240x150"
+//        case three12x150 = "312x250"
+//        case three12x231 = "312x231"
+//        case four80x360 = "480x360"
+//        case five56x370 = "556x370"
+//        case six36x393 = "636x393"
         case hundredx100 = "100x100"
         case two50x250 = "250x250"
         case five100x500 = "500x500"
@@ -148,8 +144,8 @@ public class WebQueryRecipes: ObservableObject {
         switch type {
         case callerId.fullurlbeingsupplied.rawValue:
             myRetStr = imageName
-        case callerId.srecipes.rawValue:
-            myRetStr =  urlThings.imageWeb.rawValue + imageSizes.five100x500.rawValue + delimiterDirs + imageName
+        case callerId.srecipes.rawValue, callerId.webimage.rawValue:
+            myRetStr =  urlThings.imageWeb.rawValue + imageSizes.hundredx100.rawValue + delimiterDirs + imageName
         default:
             fatalError(messagesDebug.unknownCallerID.rawValue)
         }

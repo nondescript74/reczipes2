@@ -51,6 +51,12 @@ struct ApplicationView: View {
                     Image(uiImage: scribblevariable!)
                     Text(tabs.multiAdd.rawValue)
                 }
+            
+            OrderIngredientsView()
+                .tabItem {
+                    Image(uiImage: squareandarrowdown!)
+                    Text(tabs.ingredients.rawValue)
+                }
 
         }
         .environmentObject(order)

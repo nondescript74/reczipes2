@@ -15,6 +15,7 @@ struct ExtendedIngredView: View {
     }
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient!
+
     // MARK: - Methods
     fileprivate func getMetaInfo(meta: [String?]?) -> String {
         var myReturnMetaInfo: String = ""
@@ -43,15 +44,18 @@ struct ImageAndNameView: View {
     }
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient!
+    private enum msgs: String {
+        case noIngredName = "No Ingredient Name??"
+    }
     // MARK: Methods
     // MARK: - View Process
     var body: some View {
         HStack(alignment: .center) {
             ImageWithSectionItemView(extendedIngredient: myExtIngredient)
                 Spacer()
-            Text(myExtIngredient.name ?? "No Ingredient Name??")
+            Text(myExtIngredient.name ?? msgs.noIngredName.rawValue)
                 .font(.headline)
-                .foregroundColor(.blue)
+                //.foregroundColor(.blue)
                 .padding()
         }
     }
@@ -64,10 +68,15 @@ struct MeasureView: View {
     }
     // MARK: - Properties
     fileprivate var myMeasure: Measure!
+    private enum msgs: String {
+        case noAmount = "No amount??"
+        case noUnitShort = "No unitShort??"
+        case noUnitLong = "No unitLong??"
+    }
     var body: some View {
         HStack(alignment: .top) {
-            Text(myMeasure.amount?.description ?? "No amount??")
-            Text(myMeasure.unitLong ?? "No unitShort??")
+            Text(myMeasure.amount?.description ?? msgs.noAmount.rawValue)
+            Text(myMeasure.unitLong ?? msgs.noUnitLong.rawValue)
         }
     }
 }

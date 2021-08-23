@@ -18,7 +18,6 @@ import CoreData
 
 final class UserData: ObservableObject {
     // MARK: - Environment
-    //@Environment(\.managedObjectContext) var managedObjectContext
     
     @Published var showFavoritesOnly = false
     @Published var profile = Profile.default

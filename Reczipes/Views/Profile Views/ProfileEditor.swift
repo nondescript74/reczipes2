@@ -19,35 +19,46 @@ struct ProfileEditor: View {
     @State fileprivate var showingVitamins = false
     @State fileprivate var prefersNotification = false
     @State fileprivate var loadNewRecipes = false
+    // MARK: - Properties
+    private enum msgs: String {
+        case uname: "Username"
+        case enablNotif: "Enable Notifications"
+        case enablNutr: "Enable Nutrition"
+        case enablVitInSearch: "Enable Vitamin set in search"
+        case loadNewRecip: "Load New Recipe Set next launch"
+        case seasPhoto: "Seasonal Photo"
+        case numbrRetr: "Number retrieved"
+        case countz: "Count"
+    }
     // MARK: - View Process
     var body: some View {
         List {
             HStack {
-                Text("Username").bold()
+                Text(msgs.uname.rawValue).bold()
                 Divider()
-                TextField("Username", text: $profile.username)
+                TextField(msgs.uname.rawValue, text: $profile.username)
             }
             
             Toggle(isOn: $profile.prefersNotifications) {
-                Text("Enable Notifications")
+                Text(msgs.enablNotif.rawValue)
             }.disabled(self.prefersNotification == false)
             
             Toggle(isOn: $profile.prefersNutritionInclusion) {
-                Text("Enable Nutrition in search")
+                Text(msgs.enablNutr.rawValue)
             }.disabled(self.showingNutrition == false)
             
             Toggle(isOn: $profile.prefersVitaminInclusion) {
-                Text("Enable Vitamin set in search")
+                Text(msgs.enablVitInSearch.rawValue)
             }.disabled(self.showingVitamins == false)
             
             Toggle(isOn: $profile.loadNewRecipes) {
-                Text("Load New Recipe Set next launch")
+                Text(msgs.loadNewRecip.rawValue)
             }.disabled(self.loadNewRecipes == false)
             
             VStack(alignment: .leading, spacing: 20) {
-                Text("Seasonal Photo").bold()
+                Text(msgs.seasPhoto.rawValue).bold()
                 
-                Picker("Seasonal Photo", selection: $profile.seasonalPhoto) {
+                Picker(msgs.seasPhoto.rawValue, selection: $profile.seasonalPhoto) {
                     ForEach(Profile.Season.allCases, id: \.self) { season in
                         Image(season.rawValue).tag(season).frame(minHeight: 150)
                     }
@@ -58,9 +69,9 @@ struct ProfileEditor: View {
             }
             
             VStack(alignment: .leading, spacing: 20) {
-                Text("Number retrieved").bold()
+                Text(msgs.numbrRetr.rawValue).bold()
                 
-                Picker("Count", selection: $profile.numberOfRecipes) {
+                Picker(msgs.countz.rawValue, selection: $profile.numberOfRecipes) {
                     ForEach(Profile.NumberZ.allCases, id: \.self) { numberx in
                         Text(numberx.rawValue.description).tag(numberx)
                     }

@@ -99,20 +99,19 @@ struct RecipeDetailView: View {
                     if UIImage(named: item.mainImage) == nil {
                         anImage.anImage?
                             .resizable()
-                            .scaledToFit()
                             .padding(.all, 5)
                     } else {
                         Image(item.mainImage)
                             .resizable()
-                            .scaledToFit()
                             .padding(.all, 5)
                     }
                     
                     Text("Photo: \(item.photocredit)")
-                        .background(Color.black)
+                        .background(Color.gray)
                         .font(.caption)
                         .foregroundColor(.white)
-                        .frame(width: proxy.size.width / 3, height: 100, alignment: .bottomTrailing)
+                        .padding()
+                        //.frame(width: proxy.size.width, height: 100, alignment: .bottomTrailing)
                 }
                 
                 HStack {

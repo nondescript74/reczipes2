@@ -46,9 +46,9 @@ struct AddNotesToRecipeView2: View {
     fileprivate func addRecipeNote() {
         if recipeNote == ""  {
             
-            #if DEBUG
+#if DEBUG
             print(msgs.AddNotesToRecipeView2.rawValue + msgs.noteWithoutText.rawValue)
-            #endif
+#endif
             
             return
         }
@@ -68,72 +68,73 @@ struct AddNotesToRecipeView2: View {
             if !resultz {
                 recipeNoteSaved = false
                 
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddNotesToRecipeView2.rawValue + msgs.failed.rawValue)
-                #endif
+#endif
                 
             } else {
                 recipeNote = ""
                 recipeNoteSaved = true
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddNotesToRecipeView2.rawValue + msgs.success.rawValue)
-                #endif
+#endif
             }
         } catch {
             recipeNoteSaved = false
             
-            #if DEBUG
+#if DEBUG
             print(msgs.AddNotesToRecipeView2.rawValue + msgs.failed.rawValue)
-            #endif
+#endif
         }
         return
     }
     
     // MARK: - View Process
     var body: some View {
-         NavigationView {
-            ScrollView {
-                VStack {
-                    Text(msgs.navigationTitle.rawValue)
-                        .font(Font.system(size: 30, weight: .bold, design: .rounded))
-                        .padding()
-                    
-                    Text(msgs.initialRequestString.rawValue)
-                        .foregroundColor(.red)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                    
-                    Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                        ForEach(0..<constructAllRecipes().count) { index in
-                            Text(constructAllRecipes()[index].name)
-                                .foregroundColor(.blue)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+        NavigationView {
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack {
+                        Text(msgs.navigationTitle.rawValue)
+                            .font(Font.system(size: 30, weight: .bold, design: .rounded))
+                            .padding()
+                        
+                        Text(msgs.initialRequestString.rawValue)
+                            .foregroundColor(.red)
+                            .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        
+                        Picker(msgs.picker.rawValue, selection: $recipeSelected) {
+                            ForEach(0..<constructAllRecipes().count) { index in
+                                Text(constructAllRecipes()[index].name)
+                                    .foregroundColor(.blue)
+                                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                            }
                         }
+                        .labelsHidden()
+                        .clipped()
+                        
+                        //                    Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
+                        //                        .foregroundColor(.black)
+                        //                        .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        //                        .padding()
+                        //
+                        //                    Text(msgs.initialNoteString.rawValue)
+                        //                        .foregroundColor(.red)
+                        //                        .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        //
+                        TextEditor(text: $recipeNote)
+                            .foregroundColor(Color.blue)
+                            .padding(10)
+                        //.font(Font.system(size: 15, weight: .medium, design: .serif))
+                        //.multilineTextAlignment(.leading)
+                            .frame(height: proxy.size.height, alignment: .center)
+                            .border(Color.black, width: 2)
+                        //.background(Color.gray)
                     }
-                    .labelsHidden()
-                    .clipped()
                     
-                    Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
-                        .foregroundColor(.black)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        .padding()
-                    
-                    Text(msgs.initialNoteString.rawValue)
-                        .foregroundColor(.red)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                    
-                    TextEditor(text: $recipeNote)
-                        .foregroundColor(Color.blue)
-                        .padding(10)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        .multilineTextAlignment(.leading)
-                        .frame(height: 200, alignment: .center)
-                        .border(Color.black, width: 3)
-                        .background(Color.gray)
-                        .padding(5)
-                }
-                
-                .alert(isPresented: $recipeNoteSaved)   {
-                    return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
+                    .alert(isPresented: $recipeNoteSaved)   {
+                        return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
+                    }
                 }
             }
             .padding()

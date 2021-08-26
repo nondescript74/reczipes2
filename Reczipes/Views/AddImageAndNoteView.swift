@@ -12,8 +12,7 @@ struct AddImageAndNoteView: View {
         VStack {
             AddImageToRecipeView2()
             AddNotesToRecipeView2()
-                .padding()
-        }
+        }.padding(.all)
     }
 }
 

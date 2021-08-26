@@ -25,7 +25,7 @@ struct AddImageToRecipeView2: View {
     // MARK: - Properties
     fileprivate enum msgs: String {
         case AddImageToRecipeView2 = "AddImageToRecipeView2: "
-        case initialRequestString = "Pick a recipe below ..."
+        case recipePickRequestString = "Pick a recipe below ..."
         case navigationTitle = "Add Recipe Image"
         case buttonTitle = "✚ Image"
         case selected = " Selected"
@@ -37,7 +37,7 @@ struct AddImageToRecipeView2: View {
         case choose = "Choose"
         case photolib = "Photo Library"
         case camera = "Camera"
-        case bigmsg = "Choose a picture from camera or photolibrary..."
+        case bigmsg = "Choose a picture from ..."
         case saving = "Saving Recipe Image"
         case up = "Image is Up, rotate by pi / 2"
         case left = "Image is left, rotating by pi"
@@ -181,66 +181,66 @@ struct AddImageToRecipeView2: View {
     // MARK: - View Process
     var body: some View {
         NavigationView {
-             GeometryReader { proxy in
-            ScrollView {
-                //VStack {
-                Text(msgs.navigationTitle.rawValue)
-                    .font(Font.system(size: 30, weight: .bold, design: .rounded))
-                    .padding()
-                Text(msgs.initialRequestString.rawValue)
-                    .foregroundColor(.red)
-                    .font(Font.system(size: 15, weight: .medium, design: .serif))
-                Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                    ForEach(0..<constructAllRecipes().count) { index in
-                        Text(constructAllRecipes()[index].name)
+            GeometryReader { proxy in
+                //ScrollView {
+                    VStack {
+                    Text(msgs.navigationTitle.rawValue)
+                        .font(Font.system(size: 30, weight: .bold, design: .rounded))
+                        .padding()
+                    Text(msgs.recipePickRequestString.rawValue)
+                        .foregroundColor(.red)
+                        .font(Font.system(size: 15, weight: .medium, design: .serif))
+                    Picker(msgs.picker.rawValue, selection: $recipeSelected) {
+                        ForEach(0..<constructAllRecipes().count) { index in
+                            Text(constructAllRecipes()[index].name)
+                                .foregroundColor(.blue)
+                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        }
+                    }
+                    .labelsHidden()
+                    .clipped()
+                    
+                    //                Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
+                    //                    .foregroundColor(.black)
+                    //                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                    //                    .padding()
+                    //                Text(msgs.selectPhoto.rawValue)
+                    //                    .foregroundColor(.red)
+                    //                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                    Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
+                        .resizable()
+                        .frame(width: proxy.size.width / 4, height: proxy.size.height / 4)
+                    Button(action: {
+                        // What to perform
+                        self.showSheet = true
+                    }) {
+                        // How the button looks like
+                        Text(msgs.bigmsg.rawValue)
                             .foregroundColor(.blue)
                             .font(Font.system(size: 15, weight: .medium, design: .serif))
                     }
-                }
-                .labelsHidden()
-                .clipped()
-                
-//                Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
-//                    .foregroundColor(.black)
-//                    .font(Font.system(size: 15, weight: .medium, design: .serif))
-//                    .padding()
-//                Text(msgs.selectPhoto.rawValue)
-//                    .foregroundColor(.red)
-//                    .font(Font.system(size: 15, weight: .medium, design: .serif))
-                Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
-                    .resizable()
-                    .frame(width: proxy.size.width / 4, height: proxy.size.height / 4)
-                Button(action: {
-                    // What to perform
-                    self.showSheet = true
-                }) {
-                    // How the button looks like
-                    Text(msgs.bigmsg.rawValue)
-                        .foregroundColor(.blue)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                }
-                .padding()
-                
-                // }  //.frame(minWidth: proxy.size.width, idealWidth: proxy.size.width, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: proxy.size.height, idealHeight: proxy.size.height, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .topLeading)
-                
-                .actionSheet(isPresented: $showSheet) {
-                    self.actionSheet
-                }
-                .alert(isPresented: $recipeImageSaved)   {
-                    return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
-                }
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
-                }
-                .padding()
-                .navigationBarItems(
-                    trailing: Button(action: addRecipeImage) {
-                        Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
+                    .padding()
+                    
+                    // }  //.frame(minWidth: proxy.size.width, idealWidth: proxy.size.width, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: proxy.size.height, idealHeight: proxy.size.height, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .topLeading)
+                    
+                    .actionSheet(isPresented: $showSheet) {
+                        self.actionSheet
                     }
-                )
-            }
+                    .alert(isPresented: $recipeImageSaved)   {
+                        return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+                    }
+                    .sheet(isPresented: $showImagePicker) {
+                        ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                    }
+                    .padding()
+                    .navigationBarItems(
+                        trailing: Button(action: addRecipeImage) {
+                            Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
                         }
-            //}
+                    )
+               // }
+            }
+            }
         }
     }
 }

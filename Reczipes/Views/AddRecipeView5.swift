@@ -58,14 +58,14 @@ struct AddRecipeView5: View {
         
     }
     // MARK: - State
-    @State private var hasRecipeBook:Bool = false
-    @State private var restrictions:String = ""
-    @State private var urlString:String = ""
-    @State private var xection:Int = 0
-    @State private var bookselected:Int = 0
-    @State private var recipeSaved:Bool = false
-    @State private var recipeRequested:Bool = false
-    @State fileprivate var searchTerm : String = "Enter search terms, click ?"
+    @State private var hasRecipeBook: Bool = false
+    @State private var restrictions: String = ""
+    @State private var urlString: String = ""
+    @State private var xection: Int = 0
+    @State private var bookselected: Int = 0
+    @State private var recipeSaved: Bool = false
+    @State private var recipeRequested: Bool = false
+    @State fileprivate var searchTerm: String = "Enter search terms, click ?"
     @State var show: Selectors = .notyet
     // MARK: - Properties
     enum Selectors {

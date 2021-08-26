@@ -26,7 +26,7 @@ struct AddNotesToRecipeView2: View {
         case picker = "Recipes"
         case failed = "Note save failed"
         case success = "Note save succeeded"
-        case noteWithoutText = "Note has no text content"
+        case noteWithoutText = "Note has no text entered"
         case json = "json"
         case ok = "Okay"
     }
@@ -45,11 +45,9 @@ struct AddNotesToRecipeView2: View {
     
     fileprivate func addRecipeNote() {
         if recipeNote == ""  {
-            
 #if DEBUG
             print(msgs.AddNotesToRecipeView2.rawValue + msgs.noteWithoutText.rawValue)
 #endif
-            
             return
         }
         
@@ -95,9 +93,21 @@ struct AddNotesToRecipeView2: View {
             GeometryReader { proxy in
                 ScrollView {
                     VStack {
-                        Text(msgs.navigationTitle.rawValue)
-                            .font(Font.system(size: 30, weight: .bold, design: .rounded))
-                            .padding()
+                        HStack {
+                            Text(msgs.navigationTitle.rawValue)
+                                .font(Font.system(size: 30, weight: .bold, design: .rounded))
+                                .padding()
+                            
+                            Button(action: {
+                                //what to perform
+                                self.addRecipeNote()
+                            }) {
+                                // how the button looks
+                                Text(msgs.buttonTitle.rawValue)
+                                    .fontWeight(.bold)
+                                    .font(Font.system(size: 20, weight: .medium, design: .serif))
+                            }
+                        }
                         
                         Text(msgs.initialRequestString.rawValue)
                             .foregroundColor(.red)
@@ -139,10 +149,11 @@ struct AddNotesToRecipeView2: View {
             }
             .padding()
             
-            .navigationBarItems(
-                trailing: Button(action: addRecipeNote) {
-                    Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .rounded))
-                })
+//            .navigationBarItems(
+//                trailing: Button(action: addRecipeNote) {
+//                    Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .rounded))
+//                }
+//            )
         }
         
     }

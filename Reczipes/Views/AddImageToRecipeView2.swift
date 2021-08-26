@@ -31,6 +31,7 @@ struct AddImageToRecipeView2: View {
         case selected = " Selected"
         case picker = "Recipes"
         case failed = "Image save failed"
+        case noimageset = "No Image selected yet"
         case success = "Image save succeeded"
         case json = "json"
         case selectPhoto = "Select Photo"
@@ -129,6 +130,13 @@ struct AddImageToRecipeView2: View {
     }
     
     fileprivate func addRecipeImage() {
+        
+        if image == nil {
+#if DEBUG
+            print(msgs.AddImageToRecipeView2.rawValue + msgs.noimageset.rawValue)
+#endif
+            return
+        }
         let combinedRecipes = constructAllRecipes()
         
         let sectionItem = combinedRecipes[recipeSelected]
@@ -183,10 +191,23 @@ struct AddImageToRecipeView2: View {
         NavigationView {
             GeometryReader { proxy in
                 //ScrollView {
-                    VStack {
-                    Text(msgs.navigationTitle.rawValue)
-                        .font(Font.system(size: 30, weight: .bold, design: .rounded))
-                        .padding()
+                VStack {
+                    HStack {
+                        Text(msgs.navigationTitle.rawValue)
+                            .font(Font.system(size: 30, weight: .bold, design: .rounded))
+                            .padding()
+                        Button(action: {
+                            //what to perform
+                            self.addRecipeImage()
+                        }) {
+                            // how the button looks
+                            Text(msgs.buttonTitle.rawValue)
+                                .fontWeight(.bold)
+                                .font(Font.system(size: 20, weight: .medium, design: .serif))
+                        }
+                        
+                    }
+                    
                     Text(msgs.recipePickRequestString.rawValue)
                         .foregroundColor(.red)
                         .font(Font.system(size: 15, weight: .medium, design: .serif))
@@ -233,13 +254,13 @@ struct AddImageToRecipeView2: View {
                         ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
                     }
                     .padding()
-                    .navigationBarItems(
-                        trailing: Button(action: addRecipeImage) {
-                            Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
-                        }
-                    )
-               // }
-            }
+                    //                    .navigationBarItems(
+                    //                        trailing: Button(action: addRecipeImage) {
+                    //                            Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
+                    //                        }
+                    //                    )
+                    // }
+                }
             }
         }
     }

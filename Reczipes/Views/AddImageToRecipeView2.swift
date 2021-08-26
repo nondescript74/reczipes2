@@ -33,7 +33,7 @@ struct AddImageToRecipeView2: View {
         case failed = "Image save failed"
         case success = "Image save succeeded"
         case json = "json"
-        case select = "Select Photo"
+        case selectPhoto = "Select Photo"
         case choose = "Choose"
         case photolib = "Photo Library"
         case camera = "Camera"
@@ -54,7 +54,7 @@ struct AddImageToRecipeView2: View {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             // camera is available
             sourceTypes = [.camera, .photoLibrary, .savedPhotosAlbum]
-            return ActionSheet(title: Text(msgs.select.rawValue),
+            return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
                                message: Text(msgs.choose.rawValue),
                                buttons: [
                                 .default(Text(msgs.photolib.rawValue)) {
@@ -69,7 +69,7 @@ struct AddImageToRecipeView2: View {
                                ])
         } else {
             sourceTypes = [.photoLibrary, .savedPhotosAlbum]
-            return ActionSheet(title: Text(msgs.select.rawValue),
+            return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
                                message: Text(msgs.choose.rawValue),
                                buttons: [
                                 .default(Text(msgs.photolib.rawValue)) {
@@ -85,33 +85,33 @@ struct AddImageToRecipeView2: View {
         let zImg = uiimage
         switch zImg.imageOrientation {
         case UIImage.Orientation.up:
-            #if DEBUG
+#if DEBUG
             print(msgs.AddImageToRecipeView2.rawValue + msgs.up.rawValue)
-            #endif
+#endif
             let zCopy = zImg.rotate(radians:  .pi / 2)
             return zCopy!
         case UIImage.Orientation.down:
-            #if DEBUG
+#if DEBUG
             print(msgs.AddImageToRecipeView2.rawValue + msgs.down.rawValue)
-            #endif
+#endif
             let zCopy = zImg.rotate(radians:  3 * .pi / 2)
             return zCopy!
         case UIImage.Orientation.left:
-            #if DEBUG
+#if DEBUG
             print(msgs.AddImageToRecipeView2.rawValue + msgs.left.rawValue)
-            #endif
+#endif
             let zCopy = zImg.rotate(radians: .pi)
             return zCopy!
         case UIImage.Orientation.right:
-            #if DEBUG
+#if DEBUG
             print(msgs.AddImageToRecipeView2.rawValue + msgs.right.rawValue)
-            #endif
+#endif
             let zCopy = zImg.rotate(radians: 0)
             return zCopy!
         default:
-            #if DEBUG
+#if DEBUG
             print(msgs.AddImageToRecipeView2.rawValue + msgs.other.rawValue)
-            #endif
+#endif
             return zImg
         }
         //        if zImg.imageOrientation == UIImage.Orientation.up {
@@ -144,9 +144,9 @@ struct AddImageToRecipeView2: View {
             let dateString = Date().description
             let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId.description + delimiterFileNames + dateString, fileType: msgs.json.rawValue, data: encodedImageData)
             if !resultz {
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddImageToRecipeView2.rawValue + msgs.failed.rawValue)
-                #endif
+#endif
                 
                 recipeImageSaved = false
                 
@@ -154,17 +154,17 @@ struct AddImageToRecipeView2: View {
                 recipeNote = ""
                 recipeImageSaved = true
                 
-                #if DEBUG
+#if DEBUG
                 print(msgs.AddImageToRecipeView2.rawValue + msgs.success.rawValue)
-                #endif
+#endif
             }
         } catch {
             
             recipeImageSaved = false
             
-            #if DEBUG
+#if DEBUG
             print(msgs.AddImageToRecipeView2.rawValue + msgs.failed.rawValue)
-            #endif
+#endif
         }
         return
     }
@@ -181,65 +181,65 @@ struct AddImageToRecipeView2: View {
     // MARK: - View Process
     var body: some View {
         NavigationView {
-           // GeometryReader { proxy in
-                ScrollView {
-                    //VStack {
-                        Text(msgs.navigationTitle.rawValue)
-                            .font(Font.system(size: 30, weight: .bold, design: .rounded))
-                            .padding()
-                        Text(msgs.initialRequestString.rawValue)
-                            .foregroundColor(.red)
-                            .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                            ForEach(0..<constructAllRecipes().count) { index in
-                                Text(constructAllRecipes()[index].name)
-                                    .foregroundColor(.blue)
-                                    .font(Font.system(size: 15, weight: .medium, design: .serif))
-                            }
-                        }
-                        .labelsHidden()
-                        .clipped()
-                        
-                        Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
-                            .foregroundColor(.black)
-                            .font(Font.system(size: 15, weight: .medium, design: .serif))
-                            .padding()
-                        Text(msgs.select.rawValue)
-                            .foregroundColor(.red)
-                            .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
-                            .resizable()
-                            .frame(width: 150, height: 100)
-                        Button(action: {
-                            // What to perform
-                            self.showSheet = true
-                        }) {
-                            // How the button looks like
-                            Text(msgs.bigmsg.rawValue)
-                                .foregroundColor(.blue)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        }
-                        .padding()
-                        
-                   // }  //.frame(minWidth: proxy.size.width, idealWidth: proxy.size.width, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: proxy.size.height, idealHeight: proxy.size.height, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .topLeading)
-                    
-                    .actionSheet(isPresented: $showSheet) {
-                        self.actionSheet
-                    }
-                    .alert(isPresented: $recipeImageSaved)   {
-                        return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
-                    }
-                    .sheet(isPresented: $showImagePicker) {
-                        ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
-                    }
+             GeometryReader { proxy in
+            ScrollView {
+                //VStack {
+                Text(msgs.navigationTitle.rawValue)
+                    .font(Font.system(size: 30, weight: .bold, design: .rounded))
                     .padding()
-                        .navigationBarItems(
-                            trailing: Button(action: addRecipeImage) {
-                                Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
-                            }
-                        )
+                Text(msgs.initialRequestString.rawValue)
+                    .foregroundColor(.red)
+                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                Picker(msgs.picker.rawValue, selection: $recipeSelected) {
+                    ForEach(0..<constructAllRecipes().count) { index in
+                        Text(constructAllRecipes()[index].name)
+                            .foregroundColor(.blue)
+                            .font(Font.system(size: 15, weight: .medium, design: .serif))
+                    }
                 }
-                //            }
+                .labelsHidden()
+                .clipped()
+                
+//                Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
+//                    .foregroundColor(.black)
+//                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+//                    .padding()
+//                Text(msgs.selectPhoto.rawValue)
+//                    .foregroundColor(.red)
+//                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
+                    .resizable()
+                    .frame(width: proxy.size.width / 4, height: proxy.size.height / 4)
+                Button(action: {
+                    // What to perform
+                    self.showSheet = true
+                }) {
+                    // How the button looks like
+                    Text(msgs.bigmsg.rawValue)
+                        .foregroundColor(.blue)
+                        .font(Font.system(size: 15, weight: .medium, design: .serif))
+                }
+                .padding()
+                
+                // }  //.frame(minWidth: proxy.size.width, idealWidth: proxy.size.width, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: proxy.size.height, idealHeight: proxy.size.height, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .topLeading)
+                
+                .actionSheet(isPresented: $showSheet) {
+                    self.actionSheet
+                }
+                .alert(isPresented: $recipeImageSaved)   {
+                    return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                }
+                .padding()
+                .navigationBarItems(
+                    trailing: Button(action: addRecipeImage) {
+                        Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .serif))
+                    }
+                )
+            }
+                        }
             //}
         }
     }

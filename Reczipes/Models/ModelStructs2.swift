@@ -161,10 +161,6 @@ struct SectionItem: Codable, Equatable, Identifiable, Hashable {
         name
     }
     
-    var thumbnailImage: String {
-        "\(mainImage)-thumb"
-    }
-    
     static func == (lhs: SectionItem, rhs: SectionItem) -> Bool {
         if lhs.id == rhs.id {
             return true

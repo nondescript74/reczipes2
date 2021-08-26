@@ -176,7 +176,7 @@ struct RecipeDetailView: View {
             }
             
             .sheet(isPresented: $isShowingMailView) {
-                MailView(result: self.$result)
+                MailView(result: self.$result, sectItem: self.item)
             }
             
             .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)

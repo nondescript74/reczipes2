@@ -149,6 +149,26 @@ struct BookSection: Codable, Equatable, Identifiable, Hashable {
 //    static let example3 = SecItemWBookName(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: nil, photocredit: "Kenji Lopez-Alt", restrictions: ["G"], bookName: recipeBooks2[0])
 //}
 
+struct SectionItemNotesImages: Codable, Equatable, Identifiable, Hashable {
+    var id: UUID
+    var name: String
+    var recipeData: Data
+    var recipeImages: Data
+    var recipeNotes: Data
+    
+    static func == (lhs: SectionItemNotesImages, rhs: SectionItemNotesImages) -> Bool {
+        if lhs.id == rhs.id {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 struct SectionItem: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
     var name: String

@@ -133,7 +133,7 @@ struct AddNotesToRecipeView2: View {
                         //                        .font(Font.system(size: 15, weight: .medium, design: .serif))
                         //
                         TextEditor(text: $recipeNote)
-                            .foregroundColor(Color.blue)
+                            //.foregroundColor(Color.blue)
                             .padding(10)
                         //.font(Font.system(size: 15, weight: .medium, design: .serif))
                         //.multilineTextAlignment(.leading)

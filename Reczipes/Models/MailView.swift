@@ -25,9 +25,12 @@ struct MailView: UIViewControllerRepresentable {
         case json = ".json"
         case success = "mailComposeController finished with success"
         case failedMC = "mailComposeController finished with failure"
+        case recipehasnotes = "This recipe has notes to send"
+        case separator = " : "
+        case mailwithattachmentscreated = "A recipe with note and/or images if availabe attached as data to mail"
     }
     
-
+    private let fileIO = FileIO()
     
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         
@@ -79,17 +82,46 @@ struct MailView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         
+        //let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId + delimiterFileNames + dateString, fileType: msgs.json.rawValue, data: encodedNoteData)
+        
+        
         if MFMailComposeViewController.canSendMail() {
             do {
-                let encodedSectItem = try JSONEncoder().encode(sectItem)
+                let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)  // set of urls to files
+                let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
+#if DEBUG
+                print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(thisSetOfNotes.count)")
+            
+#endif
+                let jSONEncode = JSONEncoder()
+                let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)  // set of urls to files
+                let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
+                
+                let encodedSectItem = try jSONEncode.encode(sectItem)
                 let encodedSectItemData = Data(encodedSectItem)
+                
+                let encodedSetOfNotes = try jSONEncode.encode(thisSetOfNotes)
+                let encodedSetOfNotesData = Data(encodedSetOfNotes)
+                
+                let encodedSetOfImages = try jSONEncode.encode(thisSetOfImages)
+                let encodedSetOfImagesData = Data(encodedSetOfImages)
+                
                 let dateString = Date().description
                 let resultName = sectItem.name + delimiterFileNames + delimiterFileNames + dateString + msgs.json.rawValue
+                
+                let sectionItemNotesImages: SectionItemNotesImages = SectionItemNotesImages(id: UUID(), name: resultName, recipeData: encodedSectItemData, recipeImages: encodedSetOfImagesData, recipeNotes: encodedSetOfNotesData)
+                let encodedSectionItemNotesImages = try jSONEncode.encode(sectionItemNotesImages)
+                let encodedSectionItemNotesImagesData = Data(encodedSectionItemNotesImages)
+                
                 let vc = MFMailComposeViewController()
                 vc.mailComposeDelegate = context.coordinator
                 vc.setSubject(msgs.messSubj.rawValue)
                 vc.setMessageBody(sectItem.url, isHTML: false)
-                vc.addAttachmentData(encodedSectItemData, mimeType: msgs.json.rawValue, fileName: resultName)
+                vc.addAttachmentData(encodedSectionItemNotesImagesData, mimeType: msgs.json.rawValue, fileName: resultName)
+                
+#if DEBUG
+                print(msgs.mv.rawValue + msgs.mailwithattachmentscreated.rawValue)
+#endif
                 return vc
                 
             } catch {

@@ -26,6 +26,7 @@ struct MailView: UIViewControllerRepresentable {
         case success = "mailComposeController finished with success"
         case failedMC = "mailComposeController finished with failure"
         case recipehasnotes = "This recipe has notes to send"
+        case recipehasimages = "This recipe has images to send"
         case separator = " : "
         case mailwithattachmentscreated = "A recipe with note and/or images if availabe attached as data to mail"
     }
@@ -87,15 +88,19 @@ struct MailView: UIViewControllerRepresentable {
         
         if MFMailComposeViewController.canSendMail() {
             do {
+                let jSONEncode = JSONEncoder()
+                
                 let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)  // set of urls to files
                 let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
 #if DEBUG
                 print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(thisSetOfNotes.count)")
-            
 #endif
-                let jSONEncode = JSONEncoder()
+                
                 let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)  // set of urls to files
                 let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
+#if DEBUG
+                print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(thisSetOfImages.count)")
+#endif
                 
                 let encodedSectItem = try jSONEncode.encode(sectItem)
                 let encodedSectItemData = Data(encodedSectItem)

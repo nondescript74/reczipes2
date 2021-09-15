@@ -19,7 +19,7 @@ struct RecipeRowView: View {
         if item.imageUrl == nil {
             
 #if DEBUG
-            print("RecipeRowView: sectionItem.imageUrl is nil, using thumbnail in app")
+            print("RecipeRowView: sectionItem.imageUrl is nil")
 #endif
             
         } else {
@@ -34,6 +34,11 @@ struct RecipeRowView: View {
     
     // MARK: - Properties
     fileprivate var item: SectionItem
+    private let widthImage: CGFloat = 100
+    private let heightImage: CGFloat = 70
+    private let overlayLWidth: CGFloat = 2
+    private let paddingSize: CGFloat = 2
+    private let lineLimit: Int = 3
     
     // MARK: - Methods
     
@@ -45,24 +50,24 @@ struct RecipeRowView: View {
                     anImage.anImage?
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 40, height: 40, alignment: .leading)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                        .frame(width: widthImage, height: heightImage, alignment: .leading)
+                        .clipShape(Rectangle())
+                        .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
                     
-                    VStack {
-                        Text(item.name)
-                            .font(.system(size: 13))
-                    }
+                    //VStack {
+                    Text(item.name)
+                    //.font(.system(size: 13))
+                    //}
                 }
                 HStack {
                     ForEach(item.restrictions, id: \.self) { restriction in
                         Text(restriction)
                             .font(.caption)
-                            .fontWeight(.black)
-                            .padding(10)
-                            .background(colors[restriction, default: .secondary])
+                        //.fontWeight(.black)
+                            .padding(paddingSize)
+                        //.background(colors[restriction, default: .secondary])
                             .clipShape(Rectangle())
-                            .foregroundColor(.white)
+                        //.foregroundColor(.white)
                     }
                 }
             }

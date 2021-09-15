@@ -10,11 +10,14 @@ import Foundation
 import SwiftUI
 
 struct SearchBar: UIViewRepresentable {
-        
+    
+    private let myPrompt: String = "Enter search terms, click ?"
+    
     @Binding var text: String
     
     class Coordinator: NSObject, UISearchBarDelegate   {
         @Binding var text: String
+        
         
         init(text: Binding<String>) {
             _text = text
@@ -32,6 +35,7 @@ struct SearchBar: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.delegate = context.coordinator
+        searchBar.prompt = self.myPrompt
         return searchBar
     }
     func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {

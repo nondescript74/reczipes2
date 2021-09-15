@@ -65,7 +65,7 @@ struct AddRecipeView5: View {
     @State private var bookselected: Int = 0
     @State private var recipeSaved: Bool = false
     @State private var recipeRequested: Bool = false
-    @State fileprivate var searchTerm: String = "Enter search terms, click ?"
+    @State fileprivate var searchTerm: String = ""
     @State var show: Selectors = .notyet
     // MARK: - Properties
     enum Selectors {
@@ -234,19 +234,16 @@ struct AddRecipeView5: View {
         NavigationView {
             GeometryReader(content: { geometry in
                 VStack(alignment: .leading, spacing: 10) {
-                    
-                    SearchBar(text: $searchTerm)
-                        .padding()
-//                    Text(msgs.makeFindSelection.rawValue)
-//                        .padding(.bottom, 5)
-//
-//                    Text(msgs.enterValidUrl.rawValue)
-//                        .padding(.bottom, 5)
+                    HStack(alignment: .center, spacing: 1) {
+                        SearchBar(text: $searchTerm)
+                            //.padding()
+                        Button(action: getSRecipeGroup) {
+                            Text(msgs.find.rawValue).fontWeight(.bold)
+                        }
+                    }
                     
                     TextField(msgs.enterValidUrl.rawValue, text: $urlString)
                         .padding(.bottom, 10)
-//                    
-//                    Text(msgs.pickSection.rawValue)
                     
                     Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
                         ForEach(0..<zx) { index in
@@ -254,8 +251,8 @@ struct AddRecipeView5: View {
                         }
                     }
                     
-                    Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
-                        .padding(5)
+//                    Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
+//                        .padding(5)
                     
                     List   {
                         if show == Selectors.names {
@@ -284,11 +281,6 @@ struct AddRecipeView5: View {
                 
             })
                 .padding()
-                .navigationBarItems(
-                    leading: Button(action: getSRecipeGroup) {
-                        Text(msgs.find.rawValue).fontWeight(.bold)
-                    }
-                )
                 .navigationBarTitle(msgs.addRecipe.rawValue)
         }
     }

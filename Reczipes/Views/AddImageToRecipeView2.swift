@@ -212,7 +212,7 @@ struct AddImageToRecipeView2: View {
                         .foregroundColor(.red)
                         .font(Font.system(size: 15, weight: .medium, design: .serif))
                     Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                        ForEach(0..<constructAllRecipes().count) { index in
+                        ForEach(0..<constructAllRecipes().count, id: \.self) { index in
                             Text(constructAllRecipes()[index].name)
                                 .foregroundColor(.blue)
                                 .font(Font.system(size: 15, weight: .medium, design: .serif))

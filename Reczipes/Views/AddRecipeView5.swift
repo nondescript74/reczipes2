@@ -246,7 +246,7 @@ struct AddRecipeView5: View {
                         .padding(.bottom, 10)
                     
                     Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
-                        ForEach(0..<zx) { index in
+                        ForEach(0..<zx, id: \.self) { index in
                             Text("\(getBookSectionNames()[index])")
                         }
                     }

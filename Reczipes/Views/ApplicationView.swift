@@ -57,7 +57,7 @@ struct ApplicationView: View {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
                 }
-
+            
         }
         .environmentObject(order)
         .environmentObject(addedRecipes)

@@ -54,7 +54,7 @@ struct AllRecipesView_Previews: PreviewProvider {
             AllRecipesView()
                 .environmentObject(order)
                 .environmentObject(addedRecipes)
-                .colorScheme(.dark)
+                .colorScheme(.light)
         }
     }
 }

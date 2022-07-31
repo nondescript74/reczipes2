@@ -18,13 +18,20 @@ struct ExtendedIngredView: View {
 
     // MARK: - Methods
     fileprivate func getMetaInfo(meta: [String?]?) -> String {
-        var myReturnMetaInfo: String = ""
-        if !meta!.isEmpty {
-            for item in meta! {
-                myReturnMetaInfo += item!
-                myReturnMetaInfo += ", "
+        var myReturnMetaInfo: String = "meta is nil"
+        if meta != nil {
+            if !meta!.isEmpty {
+                for item in meta! {
+                    myReturnMetaInfo += item!
+                    myReturnMetaInfo += ", "
+                }
+            } else {
+                myReturnMetaInfo = "meta is empty"
             }
+        } else {
+            
         }
+        
         return myReturnMetaInfo
     }
     // MARK: - View Process

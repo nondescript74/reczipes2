@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -77,6 +77,8 @@
 		93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */; };
 		93D611A826CE971200664F14 /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A626CE971100664F14 /* Images.json */; };
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
+		F860FF7E289AB83900F41975 /* AddRecipeView6.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860FF7D289AB83900F41975 /* AddRecipeView6.swift */; };
+		F8966C1028987464002D6FCE /* ATestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8966C0F28987464002D6FCE /* ATestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -165,6 +167,8 @@
 		93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAccessor.swift; sourceTree = "<group>"; };
 		93D611A626CE971100664F14 /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
+		F860FF7D289AB83900F41975 /* AddRecipeView6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView6.swift; sourceTree = "<group>"; };
+		F8966C0F28987464002D6FCE /* ATestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,7 @@
 				9341A0542698FB5200DCA754 /* ApplicationView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				9307666326C41ABD00583B7A /* AddRecipeView5.swift */,
+				F860FF7D289AB83900F41975 /* AddRecipeView6.swift */,
 				93AB40C426BECCF8005529AF /* MultiView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
 				931164E42697836600099F8D /* AcceptView.swift */,
@@ -207,6 +212,7 @@
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
+				F8966C0F28987464002D6FCE /* ATestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,7 +387,7 @@
 				};
 			};
 			buildConfigurationList = 935398A92694E2780062931E /* Build configuration list for PBXProject "Reczipes" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -458,6 +464,7 @@
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
+				F8966C1028987464002D6FCE /* ATestView.swift in Sources */,
 				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
 				934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */,
@@ -473,6 +480,7 @@
 				9341A0552698FB5200DCA754 /* ApplicationView.swift in Sources */,
 				93AB40CB26BECE3A005529AF /* RoundedButtonView.swift in Sources */,
 				93ACB30726B9E9AA0010F71F /* ImageFilterOperation.swift in Sources */,
+				F860FF7E289AB83900F41975 /* AddRecipeView6.swift in Sources */,
 				93ACB30326B9E9AA0010F71F /* ImageXOperatIon.swift in Sources */,
 				93237A3A26A4E97500032387 /* ImagePicker.swift in Sources */,
 				93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */,
@@ -613,7 +621,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -655,7 +663,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

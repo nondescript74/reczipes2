@@ -1,6 +1,6 @@
 //
 //  SearchBar.swift
-//  CRecipes
+//  Reczipes
 //
 //  Created by Zahirudeen Premji on 4/20/20.
 //  Copyright © 2020 Zahirudeen Premji. All rights reserved.
@@ -33,9 +33,11 @@ struct SearchBar: UIViewRepresentable {
     }
     
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
-        let searchBar = UISearchBar(frame: .zero)
+        let searchBar = UISearchBar()
         searchBar.delegate = context.coordinator
-        searchBar.prompt = self.myPrompt
+        searchBar.autocorrectionType = .no
+        searchBar.placeholder = myPrompt
+        //searchBar.prompt = self.myPrompt
         return searchBar
     }
     func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {

@@ -49,7 +49,7 @@ struct RecipeRowView: View {
                 HStack {
                     anImage.anImage?
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: widthImage, height: heightImage, alignment: .leading)
                         .clipShape(Rectangle())
                         .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))

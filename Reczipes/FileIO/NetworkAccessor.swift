@@ -1,6 +1,6 @@
 //
 //  NetworkAccessor.swift
-//  CRecipes
+//  Reczipes
 //
 //  Created by Zahirudeen Premji on 10/30/17.
 //  Copyright © 2017 Zahirudeen Premji. All rights reserved.

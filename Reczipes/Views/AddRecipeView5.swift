@@ -78,8 +78,8 @@ struct AddRecipeView5: View {
     func verifyUrl(urlString: String?) -> Bool {
         guard let urlString = urlString,
               let url = URL(string: urlString) else {
-                  return false
-              }
+            return false
+        }
         extractedSRecipe.findExtracted(urlString: urlString)
         recipeRequested = true
         return UIApplication.shared.canOpenURL(url)
@@ -233,17 +233,13 @@ struct AddRecipeView5: View {
     var body: some View {
         NavigationView {
             GeometryReader(content: { geometry in
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack(alignment: .center, spacing: 1) {
+                VStack {
+                    HStack(alignment: .center) {
                         SearchBar(text: $searchTerm)
-                            //.padding()
                         Button(action: getSRecipeGroup) {
                             Text(msgs.find.rawValue).fontWeight(.bold)
                         }
                     }
-                    
-                    TextField(msgs.enterValidUrl.rawValue, text: $urlString)
-                        .padding(.bottom, 10)
                     
                     Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
                         ForEach(0..<zx, id: \.self) { index in
@@ -251,8 +247,6 @@ struct AddRecipeView5: View {
                         }
                     }
                     
-//                    Text("\(getBookSectionNames()[xection])" + " " + msgs.selected.rawValue)
-//                        .padding(5)
                     
                     List   {
                         if show == Selectors.names {
@@ -280,8 +274,8 @@ struct AddRecipeView5: View {
                 }
                 
             })
-                .padding()
-                .navigationBarTitle(msgs.addRecipe.rawValue)
+            .padding()
+            .navigationBarTitle(msgs.addRecipe.rawValue)
         }
     }
 }

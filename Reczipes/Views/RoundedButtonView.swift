@@ -1,6 +1,6 @@
 //
 //  RoundedButtonView.swift
-//  CRecipes
+//  Reczipes
 //
 //  Created by Zahirudeen Premji on 5/15/20.
 //  Copyright © 2020 Zahirudeen Premji. All rights reserved.

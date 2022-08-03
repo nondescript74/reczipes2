@@ -16,7 +16,7 @@ public class AddedRecipes: ObservableObject {
     // MARK: - Publisher
     @Published var bookSections = [BookSection]()
     // MARK: Queue
-    private let queue = DispatchQueue(label: "com.bodopine.crecipes.addedrecipes.queue")
+    private let queue = DispatchQueue(label: "com.headydiscy.reczipes.addedrecipes.queue")
     // MARK: - Properties
     fileprivate enum msgs: String {
         case addedRecipes = "AddedRecipes: "

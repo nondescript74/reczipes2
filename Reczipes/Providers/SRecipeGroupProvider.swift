@@ -1,6 +1,6 @@
 //
 //  SRecipeGroupProvider.swift
-//  CRecipes
+//  Reczipes
 //
 //  Created by Zahirudeen Premji on 6/9/20.
 //  Copyright © 2020 Zahirudeen Premji. All rights reserved.

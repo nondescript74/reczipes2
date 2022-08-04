@@ -88,7 +88,8 @@ struct AddRecipeView5: View {
     func getSRecipeGroup() {
         show = Selectors.names
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded)
+        let cuisine = getBookSectionNames()[xection]
+        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     

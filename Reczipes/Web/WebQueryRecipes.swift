@@ -28,7 +28,7 @@ public class WebQueryRecipes: ObservableObject {
         case recipeInfo = "&addRecipeInformation=true"
         case extract = "url="
         case trivia, joke = ""
-        case cuisine = "indian"
+        case cuisine = "&cuisine="
     }
     
     enum callerId: String {
@@ -109,13 +109,15 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.FindSRecipe.rawValue)
     }
     
-    func getSearched(searchString: String, numberSent: Int) {
+    func getSearched(searchString: String, numberSent: Int, cuisine: String) {
         if searchString == "" {
             return
         }
-        let mySearchTerms = parseSearchString(searchstring: searchString)
+        var mySearchTerms = parseSearchString(searchstring: searchString)
+        mySearchTerms += " "
+        mySearchTerms += cuisine
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query = myQuery.query.rawValue + mySearchTerms + myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.z.rawValue
+        urlComponents.query = myQuery.query.rawValue +  mySearchTerms + myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindSRecipeGroup.rawValue)
     }
     

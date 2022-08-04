@@ -18,7 +18,7 @@ struct ApplicationView: View {
     fileprivate enum tabs: String {
         case multibook = "Books"
         case web = "Search"
-        case addEdit = "Add/Edit"
+        case addEdit = "Find/Add"
         case tjc = "Trivia"
         case auth = "Sign In"
         case send = "Mail To"
@@ -31,6 +31,7 @@ struct ApplicationView: View {
         case imageAdd = "+Image"
         case multiAdd = "+Note/Image"
     }
+    
     
     var body: some View {
         TabView {
@@ -66,6 +67,7 @@ struct ApplicationView: View {
 }
 
 struct ApplicationView_Previews: PreviewProvider {
+    
     static var previews: some View {
         ApplicationView()
     }

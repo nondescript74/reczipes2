@@ -1,0 +1,433 @@
+{
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": false,
+    "dairyFree": false,
+    "veryHealthy": false,
+    "cheap": false,
+    "veryPopular": false,
+    "sustainable": false,
+    "weightWatcherSmartPoints": 0,
+    "gaps": "no",
+    "lowFodmap": false,
+    "preparationMinutes": 10,
+    "cookingMinutes": 10,
+    "aggregateLikes": 0,
+    "spoonacularScore": 0.0,
+    "healthScore": 0.0,
+    "pricePerServing": 0.0,
+    "extendedIngredients": [{
+        "id": 10219,
+        "aisle": "Meat",
+        "image": "meat-ground.jpg",
+        "consistency": "solid",
+        "name": "ground pork",
+        "original": "1 pound ground pork",
+        "originalString": "1 pound ground pork",
+        "originalName": "ground pork",
+        "amount": 1.0,
+        "unit": "pound",
+        "meta": [],
+        "metaInformation": [],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "lb",
+                "unitLong": "pound"
+            },
+            "metric": {
+                "amount": 453.592,
+                "unitShort": "g",
+                "unitLong": "grams"
+            }
+        }
+    }, {
+        "id": 16124,
+        "aisle": "Ethnic Foods;Condiments",
+        "image": "soy-sauce.jpg",
+        "consistency": "liquid",
+        "name": "soy sauce",
+        "original": "3 tablespoons soy sauce",
+        "originalString": "3 tablespoons soy sauce",
+        "originalName": "soy sauce",
+        "amount": 3.0,
+        "unit": "tablespoons",
+        "meta": [],
+        "metaInformation": [],
+        "measures": {
+            "us": {
+                "amount": 3.0,
+                "unitShort": "Tbsps",
+                "unitLong": "Tbsps"
+            },
+            "metric": {
+                "amount": 3.0,
+                "unitShort": "Tbsps",
+                "unitLong": "Tbsps"
+            }
+        }
+    }, {
+        "id": 11216,
+        "aisle": "Produce;Ethnic Foods;Spices and Seasonings",
+        "image": "ginger.png",
+        "consistency": "solid",
+        "name": "ginger",
+        "original": "2 teaspoons ginger, peeled and minced",
+        "originalString": "2 teaspoons ginger, peeled and minced",
+        "originalName": "ginger, peeled and minced",
+        "amount": 2.0,
+        "unit": "teaspoons",
+        "meta": ["minced", "peeled"],
+        "metaInformation": ["minced", "peeled"],
+        "measures": {
+            "us": {
+                "amount": 2.0,
+                "unitShort": "tsps",
+                "unitLong": "teaspoons"
+            },
+            "metric": {
+                "amount": 2.0,
+                "unitShort": "tsps",
+                "unitLong": "teaspoons"
+            }
+        }
+    }, {
+        "id": 11215,
+        "aisle": "Produce",
+        "image": "garlic.png",
+        "consistency": "solid",
+        "name": "garlic",
+        "original": "1 clove garlic, minced",
+        "originalString": "1 clove garlic, minced",
+        "originalName": "garlic, minced",
+        "amount": 1.0,
+        "unit": "clove",
+        "meta": ["minced"],
+        "metaInformation": ["minced"],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "clove",
+                "unitLong": "clove"
+            },
+            "metric": {
+                "amount": 1.0,
+                "unitShort": "clove",
+                "unitLong": "clove"
+            }
+        }
+    }, {
+        "id": 4058,
+        "aisle": "Ethnic Foods",
+        "image": "sesame-oil.png",
+        "consistency": "liquid",
+        "name": "sesame oil",
+        "original": "1 teaspoon toasted sesame oil",
+        "originalString": "1 teaspoon toasted sesame oil",
+        "originalName": "toasted sesame oil",
+        "amount": 1.0,
+        "unit": "teaspoon",
+        "meta": ["toasted"],
+        "metaInformation": ["toasted"],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "tsp",
+                "unitLong": "teaspoon"
+            },
+            "metric": {
+                "amount": 1.0,
+                "unitShort": "tsp",
+                "unitLong": "teaspoon"
+            }
+        }
+    }, {
+        "id": 1032009,
+        "aisle": "Spices and Seasonings",
+        "image": "red-pepper-flakes.jpg",
+        "consistency": "solid",
+        "name": "pepper",
+        "original": "1/2 teaspoon crushed red pepper",
+        "originalString": "1/2 teaspoon crushed red pepper",
+        "originalName": "crushed red pepper",
+        "amount": 0.5,
+        "unit": "teaspoon",
+        "meta": ["red", "crushed"],
+        "metaInformation": ["red", "crushed"],
+        "measures": {
+            "us": {
+                "amount": 0.5,
+                "unitShort": "tsps",
+                "unitLong": "teaspoons"
+            },
+            "metric": {
+                "amount": 0.5,
+                "unitShort": "tsps",
+                "unitLong": "teaspoons"
+            }
+        }
+    }, {
+        "id": 4047,
+        "aisle": "Health Foods;Baking",
+        "image": "oil-coconut.jpg",
+        "consistency": "liquid",
+        "name": "coconut oil",
+        "original": "1 tablespoon coconut oil",
+        "originalString": "1 tablespoon coconut oil",
+        "originalName": "coconut oil",
+        "amount": 1.0,
+        "unit": "tablespoon",
+        "meta": [],
+        "metaInformation": [],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "Tbsp",
+                "unitLong": "Tbsp"
+            },
+            "metric": {
+                "amount": 1.0,
+                "unitShort": "Tbsp",
+                "unitLong": "Tbsp"
+            }
+        }
+    }, {
+        "id": 11109,
+        "aisle": "Produce",
+        "image": "cabbage.jpg",
+        "consistency": "solid",
+        "name": "cabbage",
+        "original": "1/2 large green cabbage, trimmed and sliced (or 1 whole small green cabbage)",
+        "originalString": "1/2 large green cabbage, trimmed and sliced (or 1 whole small green cabbage)",
+        "originalName": "green cabbage, trimmed and sliced (or 1 whole small green cabbage)",
+        "amount": 0.5,
+        "unit": "large",
+        "meta": ["whole", "green", "trimmed", "sliced", "(or 1 small cabbage)"],
+        "metaInformation": ["whole", "green", "trimmed", "sliced", "(or 1 small cabbage)"],
+        "measures": {
+            "us": {
+                "amount": 0.5,
+                "unitShort": "large",
+                "unitLong": "larges"
+            },
+            "metric": {
+                "amount": 0.5,
+                "unitShort": "large",
+                "unitLong": "larges"
+            }
+        }
+    }, {
+        "id": 6194,
+        "aisle": "Canned and Jarred",
+        "image": "chicken-broth.png",
+        "consistency": "liquid",
+        "name": "veggie broth",
+        "original": "1 cup chicken broth, or veggie broth",
+        "originalString": "1 cup chicken broth, or veggie broth",
+        "originalName": "chicken broth, or veggie broth",
+        "amount": 1.0,
+        "unit": "cup",
+        "meta": [],
+        "metaInformation": [],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "cup",
+                "unitLong": "cup"
+            },
+            "metric": {
+                "amount": 236.588,
+                "unitShort": "ml",
+                "unitLong": "milliliters"
+            }
+        }
+    }, {
+        "id": 99038,
+        "aisle": "Pasta and Rice",
+        "image": "brown-rice-vermicelli.png",
+        "consistency": "solid",
+        "name": "brown rice noodles",
+        "original": "brown rice noodles, cooked according to package directions (for serving)",
+        "originalString": "brown rice noodles, cooked according to package directions (for serving)",
+        "originalName": "brown rice noodles, cooked according to directions (for serving)",
+        "amount": 1.0,
+        "unit": "package",
+        "meta": ["cooked", "according to directions", "(for serving)"],
+        "metaInformation": ["cooked", "according to directions", "(for serving)"],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "pkg",
+                "unitLong": "package"
+            },
+            "metric": {
+                "amount": 1.0,
+                "unitShort": "pkg",
+                "unitLong": "package"
+            }
+        }
+    }, {
+        "id": 11291,
+        "aisle": "Produce",
+        "image": "spring-onions.jpg",
+        "consistency": "solid",
+        "name": "green onions",
+        "original": "green onions, sliced, optional garnish",
+        "originalString": "green onions, sliced, optional garnish",
+        "originalName": "green onions, sliced, optional garnish",
+        "amount": 1.0,
+        "unit": "serving",
+        "meta": ["sliced"],
+        "metaInformation": ["sliced"],
+        "measures": {
+            "us": {
+                "amount": 1.0,
+                "unitShort": "serving",
+                "unitLong": "serving"
+            },
+            "metric": {
+                "amount": 1.0,
+                "unitShort": "serving",
+                "unitLong": "serving"
+            }
+        }
+    }],
+    "id": -1,
+    "title": "Braised Asian Meatballs and Cabbage",
+    "readyInMinutes": 20,
+    "sourceUrl": "https://www.100daysofrealfood.com/braised-asian-meatballs-and-cabbage/",
+    "image": "https://www.100daysofrealfood.com/wp-content/uploads/2017/05/Braised-Asian-Meatballs-and-Cabbage-1.jpg",
+    "imageType": "jpg",
+    "summary": null,
+    "cuisines": [],
+    "dishTypes": [],
+    "diets": [],
+    "occasions": [],
+    "instructions": "Instructions\n\nIn a large mixing bowl, use your hands to combine the pork, soy sauce, ginger, garlic, sesame oil, and red pepper flakes. Form into golf ball sized meatballs and set aside.\n\nIn a large sauté pan (with sides and a lid), heat the coconut oil over medium-high heat. Brown the meatballs on all sides, about 5 minutes. \n\nAdd the cabbage and cook while stirring for another minute or two until it begins to wilt. \n\nPour in the broth, cover with the lid, and cook until the meatballs are done all the way through (no longer pink on the inside), another 5 minutes.\n\nRemove the lid and simmer for another minute or two so the liquid can reduce slightly. Pour over rice noodles, garnish with green onions, and serve warm. ",
+    "analyzedInstructions": [{
+        "name": "",
+        "steps": [{
+            "number": 1,
+            "step": "In a large mixing bowl, use your hands to combine the pork, soy sauce, ginger, garlic, sesame oil, and red pepper flakes. Form into golf ball sized meatballs and set aside.",
+            "ingredients": [{
+                "id": 1032009,
+                "name": "red pepper flakes",
+                "localizedName": "red pepper flakes",
+                "image": "red-pepper-flakes.jpg"
+            }, {
+                "id": 4058,
+                "name": "sesame oil",
+                "localizedName": "sesame oil",
+                "image": "sesame-oil.png"
+            }, {
+                "id": 10110219,
+                "name": "meatballs",
+                "localizedName": "meatballs",
+                "image": "meatballs.png"
+            }, {
+                "id": 16124,
+                "name": "soy sauce",
+                "localizedName": "soy sauce",
+                "image": "soy-sauce.jpg"
+            }, {
+                "id": 11215,
+                "name": "garlic",
+                "localizedName": "garlic",
+                "image": "garlic.png"
+            }, {
+                "id": 11216,
+                "name": "ginger",
+                "localizedName": "ginger",
+                "image": "ginger.png"
+            }, {
+                "id": 10010219,
+                "name": "pork",
+                "localizedName": "pork",
+                "image": "pork-tenderloin-raw.png"
+            }],
+            "equipment": [{
+                "id": 405907,
+                "name": "mixing bowl",
+                "localizedName": "mixing bowl",
+                "image": "mixing-bowl.jpg"
+            }]
+        }, {
+            "number": 2,
+            "step": "In a large sauté pan (with sides and a lid), heat the coconut oil over medium-high heat. Brown the meatballs on all sides, about 5 minutes. ",
+            "ingredients": [{
+                "id": 4047,
+                "name": "coconut oil",
+                "localizedName": "coconut oil",
+                "image": "oil-coconut.jpg"
+            }, {
+                "id": 10110219,
+                "name": "meatballs",
+                "localizedName": "meatballs",
+                "image": "meatballs.png"
+            }],
+            "equipment": [{
+                "id": 404645,
+                "name": "frying pan",
+                "localizedName": "frying pan",
+                "image": "pan.png"
+            }],
+            "length": {
+                "number": 5,
+                "unit": "minutes"
+            }
+        }, {
+            "number": 3,
+            "step": "Add the cabbage and cook while stirring for another minute or two until it begins to wilt. ",
+            "ingredients": [{
+                "id": 11109,
+                "name": "cabbage",
+                "localizedName": "cabbage",
+                "image": "cabbage.jpg"
+            }],
+            "equipment": []
+        }, {
+            "number": 4,
+            "step": "Pour in the broth, cover with the lid, and cook until the meatballs are done all the way through (no longer pink on the inside), another 5 minutes.",
+            "ingredients": [{
+                "id": 10110219,
+                "name": "meatballs",
+                "localizedName": "meatballs",
+                "image": "meatballs.png"
+            }, {
+                "id": 1006615,
+                "name": "broth",
+                "localizedName": "broth",
+                "image": "chicken-broth.png"
+            }],
+            "equipment": [],
+            "length": {
+                "number": 5,
+                "unit": "minutes"
+            }
+        }, {
+            "number": 5,
+            "step": "Remove the lid and simmer for another minute or two so the liquid can reduce slightly.",
+            "ingredients": [],
+            "equipment": []
+        }, {
+            "number": 6,
+            "step": "Pour over rice noodles, garnish with green onions, and serve warm. ",
+            "ingredients": [{
+                "id": 11291,
+                "name": "green onions",
+                "localizedName": "green onions",
+                "image": "spring-onions.jpg"
+            }, {
+                "id": 20133,
+                "name": "rice noodles",
+                "localizedName": "rice noodles",
+                "image": "dried-rice-noodles.jpg"
+            }],
+            "equipment": []
+        }]
+    }],
+    "sourceName": null,
+    "creditsText": null,
+    "originalId": null
+}
+

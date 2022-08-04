@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SearchBar: UIViewRepresentable {
     
-    private let myPrompt: String = "Enter search terms, click ?"
+    private let myPrompt: String = "Enter words & click ? or 🤷🏽‍♂️"
     
     @Binding var text: String
     

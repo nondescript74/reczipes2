@@ -22,11 +22,7 @@ struct AllRecipesView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(msgs.arv.rawValue).bold()
-//                    .background(
-//                        Image("zdesert"),
-//                        alignment: .topLeading
-//                    ).scaledToFill()
+                Text(msgs.arv.rawValue).font(.largeTitle).bold()
                 
                 List {
                     ForEach(myBook, id: \.self) { section in

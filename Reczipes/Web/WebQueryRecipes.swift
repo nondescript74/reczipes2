@@ -28,6 +28,7 @@ public class WebQueryRecipes: ObservableObject {
         case recipeInfo = "&addRecipeInformation=true"
         case extract = "url="
         case trivia, joke = ""
+        case cuisine = "indian"
     }
     
     enum callerId: String {

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		930310C82695DC75006910EF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Model.swift */; };
 		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
-		9307666426C41ABD00583B7A /* AddRecipeView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9307666326C41ABD00583B7A /* AddRecipeView5.swift */; };
 		931164E52697836600099F8D /* AcceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931164E42697836600099F8D /* AcceptView.swift */; };
 		931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B5169269E4B660065F551 /* ModelStructs2.swift */; };
 		931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B516B269E4BFE0065F551 /* CommonItems.swift */; };
@@ -46,7 +45,6 @@
 		935398B22694E2780062931E /* ReczipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B12694E2780062931E /* ReczipesApp.swift */; };
 		935398B62694E27B0062931E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B52694E27B0062931E /* Assets.xcassets */; };
 		935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B82694E27B0062931E /* Preview Assets.xcassets */; };
-		936D524826CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */; };
 		93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */; };
 		9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */ = {isa = PBXBuildFile; fileRef = 9396EAB826BDF0FE000FD136 /* SectionNames.json */; };
 		93AB40C526BECCF8005529AF /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AB40C426BECCF8005529AF /* MultiView.swift */; };
@@ -78,6 +76,8 @@
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F8966C1028987464002D6FCE /* ATestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8966C0F28987464002D6FCE /* ATestView.swift */; };
 		F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */ = {isa = PBXBuildFile; fileRef = F8CE26D3289C75B1003483DD /* SRecipeExample.json */; };
+		F8CE26D6289D84A2003483DD /* PlusSignAndRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE26D5289D84A2003483DD /* PlusSignAndRecipeRowView.swift */; };
+		F8CE26D8289D8633003483DD /* FindRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE26D7289D8633003483DD /* FindRecipeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,7 +96,6 @@
 /* Begin PBXFileReference section */
 		930310C72695DC75006910EF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		930310C9269666B1006910EF /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
-		9307666326C41ABD00583B7A /* AddRecipeView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView5.swift; sourceTree = "<group>"; };
 		931164E42697836600099F8D /* AcceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptView.swift; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
 		931B516B269E4BFE0065F551 /* CommonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonItems.swift; sourceTree = "<group>"; };
@@ -135,7 +134,6 @@
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935398B82694E27B0062931E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		935398BF2694E2A90062931E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusSignAndRecipeRowView.swift; sourceTree = "<group>"; };
 		93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageAndNoteView.swift; sourceTree = "<group>"; };
 		9396EAB826BDF0FE000FD136 /* SectionNames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SectionNames.json; sourceTree = "<group>"; };
 		93AB40C426BECCF8005529AF /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
@@ -167,6 +165,8 @@
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F8966C0F28987464002D6FCE /* ATestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATestView.swift; sourceTree = "<group>"; };
 		F8CE26D3289C75B1003483DD /* SRecipeExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample.json; sourceTree = "<group>"; };
+		F8CE26D5289D84A2003483DD /* PlusSignAndRecipeRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusSignAndRecipeRowView.swift; sourceTree = "<group>"; };
+		F8CE26D7289D8633003483DD /* FindRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +186,7 @@
 				934AC08426D29000007EBF20 /* Profile Views */,
 				9341A0542698FB5200DCA754 /* ApplicationView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
-				9307666326C41ABD00583B7A /* AddRecipeView5.swift */,
+				F8CE26D7289D8633003483DD /* FindRecipeView.swift */,
 				93AB40C426BECCF8005529AF /* MultiView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
 				931164E42697836600099F8D /* AcceptView.swift */,
@@ -204,7 +204,7 @@
 				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
-				936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */,
+				F8CE26D5289D84A2003483DD /* PlusSignAndRecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
@@ -432,10 +432,10 @@
 				93ACB2E026B9E8CD0010F71F /* SRecipeOutputOperation.swift in Sources */,
 				931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */,
 				9329219326BF234B00CDDD52 /* SRecipeGroupXOperation.swift in Sources */,
-				936D524826CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift in Sources */,
 				93AB40CD26BF2100005529AF /* GoogleSearchView.swift in Sources */,
 				93AB40C926BECDF2005529AF /* SearchBar.swift in Sources */,
 				93237A1C26A4E52400032387 /* RecipeDetailView.swift in Sources */,
+				F8CE26D6289D84A2003483DD /* PlusSignAndRecipeRowView.swift in Sources */,
 				93237A1F26A4E59500032387 /* FileIO.swift in Sources */,
 				93ACB2DF26B9E8CD0010F71F /* ImageCreateOperation.swift in Sources */,
 				93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */,
@@ -459,6 +459,7 @@
 				930310C82695DC75006910EF /* Model.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
+				F8CE26D8289D8633003483DD /* FindRecipeView.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
 				F8966C1028987464002D6FCE /* ATestView.swift in Sources */,
@@ -467,7 +468,6 @@
 				934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */,
 				9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */,
 				93AB40C726BECD93005529AF /* UserData.swift in Sources */,
-				9307666426C41ABD00583B7A /* AddRecipeView5.swift in Sources */,
 				93237A2C26A4E7A200032387 /* Vitamins.swift in Sources */,
 				935398B22694E2780062931E /* ReczipesApp.swift in Sources */,
 				93AB40C526BECCF8005529AF /* MultiView.swift in Sources */,

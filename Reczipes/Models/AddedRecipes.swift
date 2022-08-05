@@ -19,7 +19,7 @@ public class AddedRecipes: ObservableObject {
     private let queue = DispatchQueue(label: "com.headydiscy.reczipes.addedrecipes.queue")
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case addedRecipes = "AddedRecipes: "
+        case ar = "AddedRecipes: "
         case added = "Added: "
         case removed = "Removed: "
         case changed = "Changed: "
@@ -39,7 +39,7 @@ public class AddedRecipes: ObservableObject {
     var totalSections: Int {
         
         #if DEBUG
-        print(msgs.addedRecipes.rawValue + msgs.returningbooksections.rawValue + "\(bookSections.count)")
+        print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + "\(bookSections.count)")
         #endif
         
         return queue.sync {
@@ -57,7 +57,7 @@ public class AddedRecipes: ObservableObject {
         }
         
         #if DEBUG
-        print(msgs.addedRecipes.rawValue + msgs.returningbooksections.rawValue + msgs.addedrecipes.rawValue)
+        print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + msgs.addedrecipes.rawValue)
         #endif
         
         return queue.sync {
@@ -76,7 +76,7 @@ public class AddedRecipes: ObservableObject {
         }
         
         #if DEBUG
-        print(msgs.addedRecipes.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)
+        print(msgs.ar.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)
         #endif
         
         return queue.sync {
@@ -94,7 +94,7 @@ public class AddedRecipes: ObservableObject {
         return queue.sync {
             
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)
+            print(msgs.ar.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)
             #endif
             
             return returningSectionItems
@@ -109,14 +109,14 @@ public class AddedRecipes: ObservableObject {
             }
             
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + msgs.added.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            print(msgs.ar.rawValue + msgs.added.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
             #endif
             
         } else {
             // already contains this book section, append items from this into already exisitng
             
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + msgs.exists.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            print(msgs.ar.rawValue + msgs.exists.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
             #endif
             
             if let index = bookSections.firstIndex(of: bookSection) {
@@ -133,7 +133,7 @@ public class AddedRecipes: ObservableObject {
             }
             
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + msgs.removed.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            print(msgs.ar.rawValue + msgs.removed.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
             #endif
         }
         
@@ -150,9 +150,9 @@ public class AddedRecipes: ObservableObject {
             self.addBookSection(bookSection: myNewBookSection)
             
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
-            print(msgs.addedRecipes.rawValue + msgs.addingfrom.rawValue, addingItemsFrom.id.description, msgs.space.rawValue, addingItemsFrom.name)
-            print(msgs.addedRecipes.rawValue + msgs.newsection.rawValue, myNewBookSection.id.description, msgs.space.rawValue, myNewBookSection.name)
+            print(msgs.ar.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            print(msgs.ar.rawValue + msgs.addingfrom.rawValue, addingItemsFrom.id.description, msgs.space.rawValue, addingItemsFrom.name)
+            print(msgs.ar.rawValue + msgs.newsection.rawValue, myNewBookSection.id.description, msgs.space.rawValue, myNewBookSection.name)
             #endif
         }  else {
             // booksection does not exist, create new
@@ -169,27 +169,27 @@ public class AddedRecipes: ObservableObject {
         let myBookSectionDirectoryUrls =  FileIO().checkContentsOfDir(dirname: recipeFolderName + delimiterDirs + recipesName)
 
         #if DEBUG
-        print(msgs.addedRecipes.rawValue  + myBookSectionDirectoryUrls.description)
+        print(msgs.ar.rawValue  + myBookSectionDirectoryUrls.description)
         #endif
 
         for aURLForSection in myBookSectionDirectoryUrls {
             // each of these is a directory for a section in the list
 
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + aURLForSection.description)
+            print(msgs.ar.rawValue + aURLForSection.description)
             #endif
 
             let myInsideUrls = FileIO().readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipesName + delimiterDirs + aURLForSection.lastPathComponent) // should be 1 or more BookSections as files stored
 
             #if DEBUG
-            print(msgs.addedRecipes.rawValue + myInsideUrls.description)
+            print(msgs.ar.rawValue + myInsideUrls.description)
             #endif
 
             for aUrl in myInsideUrls {
                 let myFileAsSectionItemDataAtUrl = FileIO().getFileDataAtUrl(url: aUrl)
 
                 #if DEBUG
-                print(msgs.addedRecipes.rawValue + myFileAsSectionItemDataAtUrl.description)
+                print(msgs.ar.rawValue + myFileAsSectionItemDataAtUrl.description)
                 #endif
 
                 // check for the BookSection to already be added, if so, add the SectionItem within this BookSection to that existing one

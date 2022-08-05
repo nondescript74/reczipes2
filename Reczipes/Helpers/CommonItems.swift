@@ -70,6 +70,7 @@ fileprivate enum msgs: String {
     case returningpresetrecipes = "Returning Preset Recipes "
     case returningbooksectionssf = "Returning BookSections in single file"
     case recipesFile = "recipesShipped"
+    case csrtsi = "Converted SRecipe to SectionItem"
 }
 
 func constructRestrictions(srecipe: SRecipe) -> [String] {
@@ -129,25 +130,21 @@ func getAllPresetRecipes() -> [SectionItem]  {
     return myReturningRecipes
 }
 
-//func getAllPresetRecipes() -> [SectionItem]  {
-//    var myReturningRecipes:[SectionItem] = []
-//    let bookSections0 = Bundle.main.decode([BookSection].self, from: recipeBooks2[0] + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
-//    for aSection in bookSections0 {
-//        myReturningRecipes.append(contentsOf: aSection.items)
-//    }
-//
-//    let bookSections1 = Bundle.main.decode([BookSection].self, from: recipeBooks2[1] + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
-//    for aSection in bookSections1 {
-//        myReturningRecipes.append(contentsOf: aSection.items)
-//    }
-//
-//#if DEBUG
-//    print(msgs.returningpresetrecipes.rawValue + myReturningRecipes.count.description)
-//#endif
-//    return myReturningRecipes
-//}
 
 
+func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
+    let item = SectionItem(id: UUID(),
+                            name: srecipe.title ?? SectionItem.example.name,
+                            url: srecipe.sourceUrl ?? SectionItem.example.url,
+                            imageUrl: srecipe.image,
+                            photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
+                            restrictions: constructRestrictions(srecipe: srecipe))
+    
+#if DEBUG
+    print(msgs.csrtsi.rawValue + item.name)
+#endif
+    return item
+}
 
 func getBookSectionNames() -> [String] {
     var returningNames:[String] = []
@@ -158,15 +155,6 @@ func getBookSectionNames() -> [String] {
     let sortedNames = returningNames.sorted(by: {$0 < $1})
     return sortedNames
 }
-
-//func getBookNames() -> [String] {
-//    var returningNames:[String] = []
-//    for abookName in recipeBooks2 {
-//        returningNames.append(abookName)
-//    }
-//    let sortedNames = returningNames.sorted(by: {$0 < $1})
-//    return sortedNames
-//}
 
 extension Bundle {
     func decode<T: Decodable>(_ type: T.Type, from file: String) -> T {

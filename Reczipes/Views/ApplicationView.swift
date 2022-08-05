@@ -16,20 +16,23 @@ struct ApplicationView: View {
     
     // MARK: - Properties
     fileprivate enum tabs: String {
-        case multibook = "Books"
-        case web = "Search"
-        case addEdit = "Find/Add"
-        case tjc = "Trivia"
-        case auth = "Sign In"
-        case send = "Mail To"
-        case indian = "Indian"
-        case random = "Random"
+//        case multibook = "Books"
+        case books = "Books"
+//        case web = "Search"
+//        case addEdit = "Find/Add"
+        case find = "Find"
+//        case tjc = "Trivia"
+//        case auth = "Sign In"
+//        case send = "Mail To"
+//        case indian = "Indian"
+//        case random = "Random"
         case ingredients = "Ingred"
-        case search = "Google"
-        case viewFolder = "Contents"
-        case noteAdd = "+Note"
-        case imageAdd = "+Image"
+//        case search = "Google"
+//        case viewFolder = "Contents"
+//        case noteAdd = "+Note"
+//        case imageAdd = "+Image"
         case multiAdd = "+Note/Image"
+        case jt = "Joke/Trivia"
     }
     
     
@@ -38,13 +41,13 @@ struct ApplicationView: View {
             AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
-                    Text(tabs.multibook.rawValue)
+                    Text(tabs.books.rawValue)
                 }
             
-            AddRecipeView5()
+            FindRecipeView()
                 .tabItem {
                     Image(uiImage: imageDocDocFill!)
-                    Text(tabs.addEdit.rawValue)
+                    Text(tabs.find.rawValue)
                 }
             
             AddImageAndNoteView()
@@ -59,6 +62,12 @@ struct ApplicationView: View {
                     Text(tabs.ingredients.rawValue)
                 }
             
+            MultiView(show: .notyet)
+                .tabItem {
+                    Image(uiImage: crosscirclefill!)
+                    Text(tabs.jt.rawValue)
+                }
+            
         }
         .environmentObject(order)
         .environmentObject(addedRecipes)
@@ -66,9 +75,9 @@ struct ApplicationView: View {
     }
 }
 
-struct ApplicationView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        ApplicationView()
-    }
-}
+//struct ApplicationView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        ApplicationView()
+//    }
+//}

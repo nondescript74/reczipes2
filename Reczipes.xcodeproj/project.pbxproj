@@ -46,7 +46,6 @@
 		935398B22694E2780062931E /* ReczipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935398B12694E2780062931E /* ReczipesApp.swift */; };
 		935398B62694E27B0062931E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B52694E27B0062931E /* Assets.xcassets */; };
 		935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 935398B82694E27B0062931E /* Preview Assets.xcassets */; };
-		936D524626CC6C8D00B3C1FE /* PlusSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D524526CC6C8D00B3C1FE /* PlusSignView.swift */; };
 		936D524826CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */; };
 		93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */; };
 		9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */ = {isa = PBXBuildFile; fileRef = 9396EAB826BDF0FE000FD136 /* SectionNames.json */; };
@@ -136,7 +135,6 @@
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935398B82694E27B0062931E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		935398BF2694E2A90062931E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		936D524526CC6C8D00B3C1FE /* PlusSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusSignView.swift; sourceTree = "<group>"; };
 		936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusSignAndRecipeRowView.swift; sourceTree = "<group>"; };
 		93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageAndNoteView.swift; sourceTree = "<group>"; };
 		9396EAB826BDF0FE000FD136 /* SectionNames.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SectionNames.json; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
 				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */,
-				936D524526CC6C8D00B3C1FE /* PlusSignView.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
 				936D524726CC6D6400B3C1FE /* PlusSignAndRecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
@@ -450,7 +447,6 @@
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
 				931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */,
-				936D524626CC6C8D00B3C1FE /* PlusSignView.swift in Sources */,
 				931164E52697836600099F8D /* AcceptView.swift in Sources */,
 				93ACB2E226B9E8CD0010F71F /* ImageOutputOperation.swift in Sources */,
 				934AC08B26D298D2007EBF20 /* ImageWithSectionItemView.swift in Sources */,

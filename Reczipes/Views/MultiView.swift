@@ -26,8 +26,8 @@ struct MultiView: View {
     }
     
     private enum msgs: String {
-        case findrecipes = "Find Recipes"
-        case readFilesInASDsuccess = "Success"
+//        case findrecipes = "Find Recipes"
+//        case readFilesInASDsuccess = "Success"
         case userProfile = "User Profile"
         case makeSelection = "Click Joke or Trivia"
         case noTitle = "No Recipe Title"

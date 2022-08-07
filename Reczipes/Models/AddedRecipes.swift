@@ -161,7 +161,6 @@ public class AddedRecipes: ObservableObject {
         }
     }
     
-    
     func constructBookSectionsFromFiles() {
         var myBookSectionsConstructed:Array<BookSection> = []
         // contained in recipefolder by BookSection

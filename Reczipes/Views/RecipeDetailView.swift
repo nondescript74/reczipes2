@@ -39,6 +39,9 @@ struct RecipeDetailView: View {
     
     fileprivate enum labelz: String {
         case order = "Order"
+        case add = "Add"
+        case save = "Save"
+        case recipe = "This"
         case ingredients = "Ingred"
         case remove = "Remove"
         case trash = "trash"
@@ -55,6 +58,7 @@ struct RecipeDetailView: View {
         case pencil = "pencil"
         case gc = "greetingcard"
         case mail = "envelope"
+        case add = "plus"
     }
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
@@ -66,6 +70,7 @@ struct RecipeDetailView: View {
     @State fileprivate var addingNote = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
+    @State fileprivate var recipeSaved = false
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
         let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)
@@ -115,6 +120,13 @@ struct RecipeDetailView: View {
                 }
                 
                 HStack {
+                    Button(action: {
+                        // What to perform
+                        self.recipeSaved.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
+                    }
                     Button(action: {
                         // What to perform
                         self.order.add(item: self.item)
@@ -178,6 +190,10 @@ struct RecipeDetailView: View {
             
             .sheet(isPresented: $isShowingMailView) {
                 MailView(result: self.$result, sectItem: self.item)
+            }
+            
+            .alert(isPresented: $recipeSaved)   {
+                return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }
             
             .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)

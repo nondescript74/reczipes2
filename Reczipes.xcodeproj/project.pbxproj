@@ -76,7 +76,6 @@
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F8966C1028987464002D6FCE /* ATestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8966C0F28987464002D6FCE /* ATestView.swift */; };
 		F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */ = {isa = PBXBuildFile; fileRef = F8CE26D3289C75B1003483DD /* SRecipeExample.json */; };
-		F8CE26D6289D84A2003483DD /* PlusSignAndRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE26D5289D84A2003483DD /* PlusSignAndRecipeRowView.swift */; };
 		F8CE26D8289D8633003483DD /* FindRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CE26D7289D8633003483DD /* FindRecipeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -165,7 +164,6 @@
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F8966C0F28987464002D6FCE /* ATestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATestView.swift; sourceTree = "<group>"; };
 		F8CE26D3289C75B1003483DD /* SRecipeExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample.json; sourceTree = "<group>"; };
-		F8CE26D5289D84A2003483DD /* PlusSignAndRecipeRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusSignAndRecipeRowView.swift; sourceTree = "<group>"; };
 		F8CE26D7289D8633003483DD /* FindRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRecipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +202,6 @@
 				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93AB40CA26BECE3A005529AF /* RoundedButtonView.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
-				F8CE26D5289D84A2003483DD /* PlusSignAndRecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
@@ -435,7 +432,6 @@
 				93AB40CD26BF2100005529AF /* GoogleSearchView.swift in Sources */,
 				93AB40C926BECDF2005529AF /* SearchBar.swift in Sources */,
 				93237A1C26A4E52400032387 /* RecipeDetailView.swift in Sources */,
-				F8CE26D6289D84A2003483DD /* PlusSignAndRecipeRowView.swift in Sources */,
 				93237A1F26A4E59500032387 /* FileIO.swift in Sources */,
 				93ACB2DF26B9E8CD0010F71F /* ImageCreateOperation.swift in Sources */,
 				93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */,
@@ -617,7 +613,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -659,7 +655,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

@@ -152,6 +152,7 @@ struct RecipeDetailView: View {
                         RoundButton3View(someTextTop: labelz.send.rawValue, someTextBottom: labelz.mail.rawValue, someImage: imagez.mail.rawValue, reversed: true)
                     }.disabled(!MFMailComposeViewController.canSendMail())
                     
+                    
                 }
                 
                 if showingNotes == true && hasNotes() {

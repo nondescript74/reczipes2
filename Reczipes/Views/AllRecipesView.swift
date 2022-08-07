@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AllRecipesView: View {
+    // MARK: - Environment Objects
+    @EnvironmentObject var addedRecipes: AddedRecipes
     // MARK: - Properties
     fileprivate enum msgs: String {
         case arv = "All Recipes View"
@@ -15,9 +17,12 @@ struct AllRecipesView: View {
     }
     // MARK: - Methods
     fileprivate var myBook: [BookSection] {
-        return Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
+        let addedSections = addedRecipes.bookSections.sorted(by: {$0.name < $1.name})  // anything in added Recipes
+        var totalSections = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
+//        return Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
         // recipebook comes from embedded file shipped
-        
+        totalSections += addedSections
+        return totalSections
     }
     var body: some View {
         NavigationView {

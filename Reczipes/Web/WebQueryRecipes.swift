@@ -29,6 +29,7 @@ public class WebQueryRecipes: ObservableObject {
         case extract = "url="
         case trivia, joke = ""
         case cuisine = "&cuisine="
+        case tags = "&tags="
     }
     
     enum callerId: String {
@@ -145,9 +146,9 @@ public class WebQueryRecipes: ObservableObject {
         return myRetStr
     }
     
-    func findByRandom(searchString: String, numberSent: Int) {
+    func findByRandom(searchString: String, numberSent: Int, tags: String) {
         urlComponents = URLComponents(string: urlThings.randomrecipes.rawValue)!
-        urlComponents.query = myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.z.rawValue
+        urlComponents.query = myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + myQuery.tags.rawValue + tags.lowercased() + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindRandom.rawValue)
     }
     

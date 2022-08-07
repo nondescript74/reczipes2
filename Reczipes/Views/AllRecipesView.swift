@@ -19,7 +19,6 @@ struct AllRecipesView: View {
     fileprivate var myBook: [BookSection] {
         let addedSections = addedRecipes.bookSections.sorted(by: {$0.name < $1.name})  // anything in added Recipes
         var totalSections = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
-//        return Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
         // recipebook comes from embedded file shipped
         totalSections += addedSections
         return totalSections

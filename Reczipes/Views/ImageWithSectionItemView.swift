@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ImageWithSectionItemView: View {  // used in OrderIngredientsView
+struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Initializer

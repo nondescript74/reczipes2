@@ -34,8 +34,8 @@ struct FindRecipeView: View {
         case notyet
         case names
         case random
-//        case search
     }
+    
     // MARK: - Methods
     
     func getSRecipeGroup() {
@@ -49,7 +49,8 @@ struct FindRecipeView: View {
     func findRandom() {
         show = Selectors.random
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded)
+        let cuisine = getBookSectionNames()[xection]
+        sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
         endEditing()
     }
     

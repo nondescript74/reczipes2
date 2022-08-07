@@ -103,6 +103,8 @@ struct BookSection: Codable, Equatable, Identifiable, Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    static let example = BookSection(id: UUID(), name: "Z", items: [SectionItem.example, SectionItem.example2, SectionItem.example3])
 }
 
 //struct BookSection2: Codable, Equatable, Identifiable, Hashable {

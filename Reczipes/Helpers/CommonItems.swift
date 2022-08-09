@@ -77,7 +77,7 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
     var myRestrictions:[String] = []
     
     if ((srecipe.sustainable) != nil) && srecipe.sustainable == true {
-        myRestrictions.append("SUS")
+        myRestrictions.append("SUST")
     }
     if (((srecipe.cheap) != nil)  && (srecipe.cheap) == true) {
         myRestrictions.append("CHEAP")
@@ -86,22 +86,22 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
         myRestrictions.append("VEGAN")
     }
     if (((srecipe.vegetarian) != nil)  && (srecipe.vegetarian) == true) {
-        myRestrictions.append("VEG")
+        myRestrictions.append("VEGET")
     }
     if (((srecipe.glutenFree) != nil)  && (srecipe.glutenFree) == true) {
-        myRestrictions.append("GF")
+        myRestrictions.append("GlutenF")
     }
     if (((srecipe.dairyFree) != nil)  && (srecipe.dairyFree) == true) {
-        myRestrictions.append("DF")
+        myRestrictions.append("DairyF")
     }
     if (((srecipe.veryHealthy) != nil)  && (srecipe.veryHealthy) == true) {
-        myRestrictions.append("VH")
+        myRestrictions.append("VeryH")
     }
     if (((srecipe.veryPopular) != nil)  && (srecipe.veryPopular) == true) {
-        myRestrictions.append("VP")
+        myRestrictions.append("VeryP")
     }
     if (((srecipe.lowFodmap) != nil)  && (srecipe.lowFodmap) == true) {
-        myRestrictions.append("LFM")
+        myRestrictions.append("LowFM")
     }
     return myRestrictions
 }

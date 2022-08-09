@@ -65,6 +65,12 @@ struct FindRecipeView: View {
             GeometryReader(content: { geometry in
                 VStack {
                     Text(msgs.fr.rawValue).font(.largeTitle).bold()
+                    Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
+                        ForEach(0..<zx, id: \.self) { index in
+                            Text("\(getBookSectionNames()[index])")
+                        }
+                    }
+                    
                     HStack(alignment: .center) {
                         SearchBar(text: $searchTerm).padding(.trailing, 5)
                         Button(action: getSRecipeGroup) {
@@ -75,13 +81,6 @@ struct FindRecipeView: View {
                         }.padding(.trailing, 10)
 
                     }
-                    
-                    Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
-                        ForEach(0..<zx, id: \.self) { index in
-                            Text("\(getBookSectionNames()[index])")
-                        }
-                    }
-                    
                     
                     List   {
                         if show == Selectors.names {
@@ -103,11 +102,11 @@ struct FindRecipeView: View {
     }
 }
 
-#if DEBUG
+
 struct FindRecipeView_Previews: PreviewProvider {
     static var previews: some View {
         FindRecipeView()
             .previewDevice("iPhone Xr")
     }
 }
-#endif
+

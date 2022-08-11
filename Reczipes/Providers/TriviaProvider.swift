@@ -10,7 +10,8 @@ import Foundation
 import SwiftUI
 
 public class TriviaProvider {
-
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var triviaUrl: URL
@@ -32,7 +33,7 @@ public class TriviaProvider {
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
         #if DEBUG
-        print("OperationQueue for TriviaProvider is launched")
+        if zBug { print("OperationQueue for TriviaProvider is launched")}
         #endif
     }
     

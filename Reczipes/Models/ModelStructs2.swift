@@ -104,7 +104,7 @@ struct BookSection: Codable, Equatable, Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    static let example = BookSection(id: UUID(), name: "Z", items: [SectionItem.example, SectionItem.example2, SectionItem.example3])
+    static let example = BookSection(id: UUID(uuidString: "29E93882-20A2-47A5-8BA0-2B81B7898BFC")!, name: "Other", items: [])
 }
 
 //struct BookSection2: Codable, Equatable, Identifiable, Hashable {

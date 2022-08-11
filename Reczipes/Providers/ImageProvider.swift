@@ -10,7 +10,9 @@ import Foundation
 import SwiftUI
 
 public class ImageProvider {
-    // MARK: - Properites
+    // MARK: - Debug local
+    private var zBug:Bool = false
+    // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var imageUrl: URL
     // MARK: Required Initializer
@@ -31,7 +33,7 @@ public class ImageProvider {
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
         #if DEBUG
-        print("OperationQueue for ImageProvider is launched")
+        if zBug { print("OperationQueue for ImageProvider is launched")}
         #endif
     }
     

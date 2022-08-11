@@ -9,6 +9,8 @@
 import Foundation
 
 public class SRecipeProvider {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var recipeUrl: URL
@@ -29,7 +31,7 @@ public class SRecipeProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         #if DEBUG
-        print("OperationQueue for SRecipeProvider is launched")
+        if zBug { print("OperationQueue for SRecipeProvider is launched") }
         #endif
     }
     

@@ -9,16 +9,30 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
+#if DEBUG
+    // MARK: - Local debug flag
+    fileprivate var zBug: Bool = true
+#endif
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem) {
         self.item = sectionItem
+        self.cuisine = ""
+        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+        
+    }
+    
+    init(imageString: String, sectionItem: SectionItem, cuisine: String) {
+        self.item = sectionItem
+        self.cuisine = cuisine
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
     }
+    
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Properties
     var item: SectionItem
     let fileIO = FileIO()
+    var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView = "RecipeDetailView: "
         case nothing = "Nothing"
@@ -86,14 +100,35 @@ struct RecipeDetailView: View {
         let zmyImages = myImagesUrls.filter {$0.description.contains( item.id.description)}
         
 #if DEBUG
-        if !zmyImages.isEmpty {
-            print(msgs.recipeDetailView.rawValue + msgs.recipeImages.rawValue)
-        } else {
-            print(msgs.recipeDetailView.rawValue + msgs.recipeImagesNot.rawValue)
+        if zBug {
+            if !zmyImages.isEmpty {
+                print(msgs.recipeDetailView.rawValue + msgs.recipeImages.rawValue)
+            } else {
+                print(msgs.recipeDetailView.rawValue + msgs.recipeImagesNot.rawValue)
+            }
         }
 #endif
         
         return !zmyImages.isEmpty
+    }
+    
+    fileprivate func createBookSection() {
+        
+        var myUUID = BookSection.example.id
+        var myBookSection = BookSection.example
+        for asection in addedRecipes.bookSections {
+            if asection.name.lowercased() == cuisine.lowercased() {
+                myUUID = asection.id
+                myBookSection = asection
+            }
+        }
+        addedRecipes.changeBookSection(bookSection: myBookSection,
+                                       addingItemsFrom: BookSection(id: myUUID,
+                                                                    name: cuisine,
+                                                                    items: [item])
+        )
+        
+        self.recipeSaved.toggle()
     }
     
     // MARK: - View Process
@@ -116,17 +151,17 @@ struct RecipeDetailView: View {
                         .font(.caption)
                         .foregroundColor(.white)
                         .padding()
-                        //.frame(width: proxy.size.width, height: 100, alignment: .bottomTrailing)
+                    //.frame(width: proxy.size.width, height: 100, alignment: .bottomTrailing)
                 }
                 
                 HStack {
                     Button(action: {
                         // What to perform
-                        self.recipeSaved.toggle()
+                        self.createBookSection()
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
-                    }
+                    }.disabled(cuisine.isEmpty)
                     Button(action: {
                         // What to perform
                         self.order.add(item: self.item)
@@ -183,21 +218,16 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingImage) {
                 AddImageToRecipeView2()
             }
-            
             .sheet(isPresented: $addingNote) {
                 AddNotesToRecipeView2()
             }
-            
             .sheet(isPresented: $isShowingMailView) {
                 MailView(result: self.$result, sectItem: self.item)
             }
-            
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }
-            
             .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)
-            
         }
     }
 }

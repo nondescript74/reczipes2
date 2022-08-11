@@ -32,7 +32,8 @@ struct AllRecipesView: View {
                     ForEach(myBook, id: \.self) { section in
                         Section(header: Text(section.name).padding()) {
                             ForEach(section.items) { item in
-                                RecipeRowView(sectionItem: item)
+//                                RecipeRowView(sectionItem: item)
+                                RecipeRowView(sectionItem: item, cuisine: section.name)
                                     .padding()
                             }
                             

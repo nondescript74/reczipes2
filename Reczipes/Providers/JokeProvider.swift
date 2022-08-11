@@ -9,6 +9,8 @@
 import Foundation
 
 public class JokeProvider {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var jokeUrl: URL
@@ -30,7 +32,7 @@ public class JokeProvider {
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
         #if DEBUG
-        print("OperationQueue for JokeProvider is launched")
+        if zBug { print("OperationQueue for JokeProvider is launched")}
         #endif
     }
     

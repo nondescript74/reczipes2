@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RecipeRowView: View {
+    // MARK: - Debug
+    private var zBug:Bool = false
     // MARK: - Environment
     @EnvironmentObject var addedRecipes: AddedRecipes
     // MARK: - ObservedObject
@@ -15,17 +17,48 @@ struct RecipeRowView: View {
     // MARK: - Initializer
     init(sectionItem: SectionItem) {
         self.item = sectionItem
+        self.cuisine = ""
         // check for empty
         if item.imageUrl == nil {
             
 #if DEBUG
-            print("RecipeRowView: sectionItem.imageUrl is nil")
+            if zBug {
+                print("RecipeRowView: sectionItem.imageUrl is nil")
+            }
 #endif
             
         } else {
             
 #if DEBUG
-            print("RecipeRowView: sectionItem.imageUrl available, going to get")
+            if zBug {
+                print("RecipeRowView: no cuisine available")
+                print("RecipeRowView: sectionItem.imageUrl available, going to get")
+            }
+#endif
+            
+            anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+        }
+    }
+    
+    init(sectionItem: SectionItem, cuisine: String) {
+        self.item = sectionItem
+        self.cuisine = cuisine.lowercased()
+        // check for empty
+        if item.imageUrl == nil {
+            
+#if DEBUG
+            if zBug {
+                print("RecipeRowView: sectionItem.imageUrl is nil")
+            }
+#endif
+            
+        } else {
+            
+#if DEBUG
+            if zBug {
+                print("RecipeRowView: cuisine available: ", cuisine)
+                print("RecipeRowView: sectionItem.imageUrl available, going to get: ")
+            }
 #endif
             
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
@@ -34,6 +67,7 @@ struct RecipeRowView: View {
     
     // MARK: - Properties
     fileprivate var item: SectionItem
+    fileprivate var cuisine: String = ""
     private let widthImage: CGFloat = 100
     private let heightImage: CGFloat = 70
     private let overlayLWidth: CGFloat = 2
@@ -44,7 +78,7 @@ struct RecipeRowView: View {
     
     // MARK: - View Process
     var body: some View {
-        NavigationLink(destination: RecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item)) {
+        NavigationLink(destination: RecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item, cuisine: cuisine)) {
             VStack(alignment: .leading) {
                 HStack {
                     anImage.anImage?
@@ -63,11 +97,8 @@ struct RecipeRowView: View {
                     ForEach(item.restrictions, id: \.self) { restriction in
                         Text(restriction)
                             .font(.caption)
-                        //.fontWeight(.black)
                             .padding(paddingSize)
-                        //.background(colors[restriction, default: .secondary])
                             .clipShape(Rectangle())
-                        //.foregroundColor(.white)
                     }
                 }
             }
@@ -82,7 +113,6 @@ struct RecipeRowView_Previews: PreviewProvider {
             RecipeRowView(sectionItem: SectionItem.example)
             RecipeRowView(sectionItem: SectionItem.example2)
         }.previewDevice("iPhone Xr")
-        
     }
 }
 #endif

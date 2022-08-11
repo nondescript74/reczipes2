@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class AddedRecipes: ObservableObject {
+    // MARK: - Local Debug
+    var zBug:Bool = false
+    var zBug2:Bool = true
     // MARK: - Initializer
     init() {
         // nothing for now
+    }
+    init(bundleFileName: String) {
+        
     }
     // MARK: - Environment
     // MARK: - Publisher
@@ -23,6 +30,8 @@ public class AddedRecipes: ObservableObject {
         case added = "Added: "
         case removed = "Removed: "
         case changed = "Changed: "
+        case recipeExists = "Recipe already in added recipes, not added - "
+        case zeroitems = "can't have 0 items to be added"
         case exists = "BookSection Already Exists "
         case modifying = "Modifying Existing BookSection "
         case addingfrom = "Adding items from BookSection "
@@ -38,7 +47,7 @@ public class AddedRecipes: ObservableObject {
     
     var totalSections: Int {
 #if DEBUG
-        print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + "\(bookSections.count)")
+        if zBug { print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + "\(bookSections.count)") }
 #endif
         
         return queue.sync {
@@ -56,7 +65,7 @@ public class AddedRecipes: ObservableObject {
         }
         
 #if DEBUG
-        print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + msgs.addedrecipes.rawValue)
+        if zBug { print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + msgs.addedrecipes.rawValue)}
 #endif
         
         return queue.sync {
@@ -75,7 +84,7 @@ public class AddedRecipes: ObservableObject {
         }
         
 #if DEBUG
-        print(msgs.ar.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)
+        if zBug { print(msgs.ar.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)}
 #endif
         
         return queue.sync {
@@ -93,7 +102,7 @@ public class AddedRecipes: ObservableObject {
         return queue.sync {
             
 #if DEBUG
-            print(msgs.ar.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)
+            if zBug { print(msgs.ar.rawValue + msgs.returningsectionitems.rawValue + returningSectionItems.count.description)}
 #endif
             
             return returningSectionItems
@@ -108,14 +117,14 @@ public class AddedRecipes: ObservableObject {
             }
             
 #if DEBUG
-            print(msgs.ar.rawValue + msgs.added.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            if zBug { print(msgs.ar.rawValue + msgs.added.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
 #endif
             
         } else {
             // already contains this book section, append items from this into already exisitng
             
 #if DEBUG
-            print(msgs.ar.rawValue + msgs.exists.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            if zBug { print(msgs.ar.rawValue + msgs.exists.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
 #endif
             
             if let index = bookSections.firstIndex(of: bookSection) {
@@ -132,28 +141,47 @@ public class AddedRecipes: ObservableObject {
             }
             
 #if DEBUG
-            print(msgs.ar.rawValue + msgs.removed.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
+            if zBug { print(msgs.ar.rawValue + msgs.removed.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
 #endif
         }
         
     }
     
+    func isRecipeUnique(newRecipe: SectionItem, oldRecipe: SectionItem) -> Bool {
+        return newRecipe.id == oldRecipe.id
+    }
+    
     func changeBookSection(bookSection: BookSection, addingItemsFrom: BookSection)  {
-        if let index = bookSections.firstIndex(of: bookSection) {
-            let myBookSectionToModify = bookSections[index]
-            let myExistingItems = myBookSectionToModify.items
-            var myNewItems = addingItemsFrom.items
-            myNewItems.append(contentsOf: myExistingItems)
-            let myNewBookSection = BookSection(id: bookSection.id, name: bookSection.name, items: myNewItems)
-            self.removeBookSection(bookSection: bookSection)
-            self.addBookSection(bookSection: myNewBookSection)
-            
+        if bookSections.firstIndex(of: bookSection) != nil {
+//            let myBookSectionToModify = bookSections[index]
+//            let myExistingRecipes = myBookSectionToModify.items
+            let recipeToAdd = addingItemsFrom.items.first
+            if (recipeToAdd != nil) {  // should contain
+                if bookSection.items.contains(recipeToAdd!) {
+                    // already in nothing to do
 #if DEBUG
-            print(msgs.ar.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
-            print(msgs.ar.rawValue + msgs.addingfrom.rawValue, addingItemsFrom.id.description, msgs.space.rawValue, addingItemsFrom.name)
-            print(msgs.ar.rawValue + msgs.newsection.rawValue, myNewBookSection.id.description, msgs.space.rawValue, myNewBookSection.name)
+                    print(msgs.ar.rawValue + msgs.recipeExists.rawValue, recipeToAdd!.name)
 #endif
+                } else {
+                    var newBookSection = bookSection
+                    newBookSection.items.append(recipeToAdd!)
+                    self.removeBookSection(bookSection: bookSection)
+                    self.addBookSection(bookSection: newBookSection)
+#if DEBUG
+                    if zBug { print(msgs.ar.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+                    if zBug { print(msgs.ar.rawValue + msgs.addingfrom.rawValue, addingItemsFrom.id.description, msgs.space.rawValue, addingItemsFrom.name)}
+                    if zBug { print(msgs.ar.rawValue + msgs.newsection.rawValue, newBookSection.id.description, msgs.space.rawValue, newBookSection.name)}
+#endif
+                }
+            } else {
+                fatalError(msgs.ar.rawValue + msgs.zeroitems.rawValue)
+            }
+            
+            
         }  else {
+#if DEBUG
+            if zBug { print(msgs.ar.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+#endif
             // booksection does not exist, create new
             queue.sync {
                 bookSections.append(addingItemsFrom)
@@ -167,27 +195,27 @@ public class AddedRecipes: ObservableObject {
         let myBookSectionDirectoryUrls =  FileIO().checkContentsOfDir(dirname: recipeFolderName + delimiterDirs + recipesName)
         
 #if DEBUG
-        print(msgs.ar.rawValue  + myBookSectionDirectoryUrls.description)
+        if zBug { print(msgs.ar.rawValue  + myBookSectionDirectoryUrls.description)}
 #endif
         
         for aURLForSection in myBookSectionDirectoryUrls {
             // each of these is a directory for a section in the list
             
 #if DEBUG
-            print(msgs.ar.rawValue + aURLForSection.description)
+            if zBug { print(msgs.ar.rawValue + aURLForSection.description)}
 #endif
             
             let myInsideUrls = FileIO().readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipesName + delimiterDirs + aURLForSection.lastPathComponent) // should be 1 or more BookSections as files stored
             
 #if DEBUG
-            print(msgs.ar.rawValue + myInsideUrls.description)
+            if zBug { print(msgs.ar.rawValue + myInsideUrls.description)}
 #endif
             
             for aUrl in myInsideUrls {
                 let myFileAsSectionItemDataAtUrl = FileIO().getFileDataAtUrl(url: aUrl)
                 
 #if DEBUG
-                print(msgs.ar.rawValue + myFileAsSectionItemDataAtUrl.description)
+                if zBug { print(msgs.ar.rawValue + myFileAsSectionItemDataAtUrl.description)}
 #endif
                 
                 // check for the BookSection to already be added, if so, add the SectionItem within this BookSection to that existing one
@@ -220,7 +248,6 @@ public class AddedRecipes: ObservableObject {
 #endif
                 }
             }
-            
         }
         
         // we now have an array of BookSections which does not contain duplicates

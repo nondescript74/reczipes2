@@ -14,6 +14,8 @@ protocol ImageCreateOperationDataProvider {
 }
 
 class ImageCreateOperation: Operation {
+    // MARK: Debug local
+    var zBug:Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: ((Image?) -> ())?
@@ -43,25 +45,25 @@ class ImageCreateOperation: Operation {
         if self.isCancelled { return }
         
         #if DEBUG
-        print("ImgCrtOp: Image debug description ", image.debugDescription)
+        if zBug { print("ImgCrtOp: Image debug description ", image.debugDescription)}
         #endif
         
         
         if let image = UIImage(data: data) {
             
             #if DEBUG
-            print("ImgCrtOp: Image from data ", image.debugDescription)
+            if zBug { print("ImgCrtOp: Image from data ", image.debugDescription)}
             #endif
             
             myImage = Image.init(uiImage: image)
                         
             #if DEBUG
-            print("ImgCrtOp: Created Image with data, myImage is ", myImage.debugDescription)
+            if zBug { print("ImgCrtOp: Created Image with data, myImage is ", myImage.debugDescription)}
             #endif
             
         } else {
             #if DEBUG
-            print("ImgCrtOp: Can't create image")
+            if zBug { print("ImgCrtOp: Can't create image")}
             #endif
         }
         

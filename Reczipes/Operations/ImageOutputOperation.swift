@@ -13,6 +13,8 @@ protocol ImageOutputOperationDataProvider {
 }
 
 class ImageOutputOperation: ImageXOperation {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: -  Properties
     fileprivate var inputImage: Image?
     fileprivate var completion: (Image?) -> ()
@@ -42,7 +44,7 @@ class ImageOutputOperation: ImageXOperation {
         if self.isCancelled { return }
         
         #if DEBUG
-        print("ImageOutputOperation Image debug description ", imagez.debugDescription)
+        if zBug { print("ImageOutputOperation Image debug description ", imagez.debugDescription)}
         #endif
         
         if isCancelled { return }

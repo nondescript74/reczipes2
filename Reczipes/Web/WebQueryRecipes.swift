@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 public class WebQueryRecipes: ObservableObject {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Environment Variables
     // MARK: - Published
     @Published var anImage: Image?
@@ -191,7 +193,7 @@ public class WebQueryRecipes: ObservableObject {
                         self.anImage = myImage
                         
                         #if DEBUG
-                        print(messagesDebug.foundimage.rawValue)
+                        if self.zBug { print(messagesDebug.foundimage.rawValue)}
                         #endif
                     }
                 }

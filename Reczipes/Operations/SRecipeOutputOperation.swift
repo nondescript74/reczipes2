@@ -14,6 +14,8 @@ protocol SRecipeOutputOperationDataProvider {
 }
 
 class SRecipeOutputOperation: SRecipeXOperation {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: -  Properties
     fileprivate var inputSRecipe: SRecipe?
     fileprivate var completion: (SRecipe?) -> ()
@@ -43,7 +45,7 @@ class SRecipeOutputOperation: SRecipeXOperation {
         if self.isCancelled { return }
         
         #if DEBUG
-        print("SRecipeCreateOperation SRecipe debug description ", srecipez.debugDescription)
+        if zBug { print("SRecipeCreateOperation SRecipe debug description ", srecipez.debugDescription) }
         #endif
         
         if isCancelled { return }

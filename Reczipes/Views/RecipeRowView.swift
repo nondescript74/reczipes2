@@ -22,9 +22,7 @@ struct RecipeRowView: View {
         if item.imageUrl == nil {
             
 #if DEBUG
-            if zBug {
-                print("RecipeRowView: sectionItem.imageUrl is nil")
-            }
+            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
 #endif
             
         } else {
@@ -32,8 +30,7 @@ struct RecipeRowView: View {
 #if DEBUG
             if zBug {
                 print("RecipeRowView: no cuisine available")
-                print("RecipeRowView: sectionItem.imageUrl available, going to get")
-            }
+                print("RecipeRowView: sectionItem.imageUrl available, going to get")}
 #endif
             
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
@@ -47,9 +44,7 @@ struct RecipeRowView: View {
         if item.imageUrl == nil {
             
 #if DEBUG
-            if zBug {
-                print("RecipeRowView: sectionItem.imageUrl is nil")
-            }
+            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
 #endif
             
         } else {
@@ -57,8 +52,7 @@ struct RecipeRowView: View {
 #if DEBUG
             if zBug {
                 print("RecipeRowView: cuisine available: ", cuisine)
-                print("RecipeRowView: sectionItem.imageUrl available, going to get: ")
-            }
+                print("RecipeRowView: sectionItem.imageUrl available, going to get: ")}
 #endif
             
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)

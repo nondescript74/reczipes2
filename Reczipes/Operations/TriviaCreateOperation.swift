@@ -14,6 +14,8 @@ protocol TriviaCreateOperationDataProvider {
 }
 
 class TriviaCreateOperation: Operation {
+    // MARK: Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: ((Trivia?) -> ())?
@@ -49,7 +51,7 @@ class TriviaCreateOperation: Operation {
         guard myData != nil else { return }
         
         #if DEBUG
-        print(msgs.TriviaCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)
+        if zBug { print(msgs.TriviaCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription) }
         #endif
         
         if self.isCancelled { return }
@@ -58,7 +60,7 @@ class TriviaCreateOperation: Operation {
             let trivia = try JSONDecoder().decode(Trivia.self, from: myData!)
             myTrivia = trivia
             #if DEBUG
-            print(msgs.TriviaCreateOperation.rawValue + msgs.trivia.rawValue, trivia)
+            if zBug { print(msgs.TriviaCreateOperation.rawValue + msgs.trivia.rawValue, trivia)}
             #endif
         } catch {
             #if DEBUG
@@ -68,7 +70,7 @@ class TriviaCreateOperation: Operation {
         }
         
         #if DEBUG
-        print(msgs.success.rawValue, myTrivia.debugDescription)
+        if zBug { print(msgs.success.rawValue, myTrivia.debugDescription)}
         #endif
         
         if self.isCancelled { return }

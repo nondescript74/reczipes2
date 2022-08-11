@@ -14,6 +14,8 @@ protocol SRecipeCreateOperationDataProvider {
 }
 
 class SRecipeCreateOperation: Operation {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: ((SRecipe?) -> ())?
@@ -49,7 +51,7 @@ class SRecipeCreateOperation: Operation {
         guard myData != nil else { return }
         
         #if DEBUG
-        print(msgs.SRecipeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)
+        if zBug { print(msgs.SRecipeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)}
         #endif
         
         if self.isCancelled { return }
@@ -58,17 +60,17 @@ class SRecipeCreateOperation: Operation {
             let recipe = try JSONDecoder().decode(SRecipe.self, from: myData!)
             myRecipe = recipe
             #if DEBUG
-            print(msgs.SRecipeCreateOperation.rawValue + msgs.recipe.rawValue, recipe)
+            if zBug { print(msgs.SRecipeCreateOperation.rawValue + msgs.recipe.rawValue, recipe)}
             #endif
         } catch {
             #if DEBUG
-            print("Error took place\(error.localizedDescription).")
+            if zBug { print("Error took place\(error.localizedDescription).") }
             #endif
             fatalError(msgs.SRecipeCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
         #if DEBUG
-        print(msgs.success.rawValue, myRecipe.debugDescription)
+        if zBug { print(msgs.success.rawValue, myRecipe.debugDescription) }
         #endif
         
         if self.isCancelled { return }

@@ -14,6 +14,8 @@ protocol JokeCreateOperationDataProvider {
 }
 
 class JokeCreateOperation: Operation {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: ((Joke?) -> ())?
@@ -49,7 +51,7 @@ class JokeCreateOperation: Operation {
         guard myData != nil else { return }
         
         #if DEBUG
-        print(msgs.JokeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)
+        if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription) }
         #endif
         
         if self.isCancelled { return }
@@ -58,17 +60,17 @@ class JokeCreateOperation: Operation {
             let joke = try JSONDecoder().decode(Joke.self, from: myData!)
             myJoke = joke
             #if DEBUG
-            print(msgs.JokeCreateOperation.rawValue + msgs.joke.rawValue, joke)
+            if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.joke.rawValue, joke) }
             #endif
         } catch {
             #if DEBUG
-            print("Error took place\(error.localizedDescription).")
+            if zBug { print("Error took place\(error.localizedDescription).") }
             #endif
             fatalError(msgs.JokeCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
         #if DEBUG
-        print(msgs.success.rawValue, myJoke.debugDescription)
+        if zBug { print(msgs.success.rawValue, myJoke.debugDescription)}
         #endif
         
         if self.isCancelled { return }

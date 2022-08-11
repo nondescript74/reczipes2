@@ -13,6 +13,8 @@ protocol SRecipeGroupOutputOperationDataProvider {
 }
 
 class SRecipeGroupOutputOperation: SRecipeGroupXOperation {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: - Properties
     fileprivate var inputsrecipe: [SRecipe]?
     fileprivate let completion: ([SRecipe]?) -> ()
@@ -42,7 +44,7 @@ class SRecipeGroupOutputOperation: SRecipeGroupXOperation {
         if self.isCancelled { return }
         
         #if DEBUG
-        print("SRecipeGroupOutputOperation srecipe ", srecipez.debugDescription)
+        if zBug { print("SRecipeGroupOutputOperation srecipe ", srecipez.debugDescription) }
         #endif
         
         if isCancelled { return }

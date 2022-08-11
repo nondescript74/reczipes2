@@ -14,6 +14,8 @@ protocol TriviaOutputOperationDataProvider {
 }
 
 class TriviaOutputOperation: TriviaXOperation {
+    // MARK: Debug local
+    private var zBug:Bool = false
     // MARK: -  Properties
     fileprivate var inputTrivia: Trivia?
     fileprivate var completion: (Trivia?) -> ()
@@ -43,7 +45,7 @@ class TriviaOutputOperation: TriviaXOperation {
         if self.isCancelled { return }
         
         #if DEBUG
-        print("TriviaCreateOperation Trivia debug description ", triviaz.debugDescription)
+        if zBug { print("TriviaCreateOperation Trivia debug description ", triviaz.debugDescription)}
         #endif
         
         if isCancelled { return }

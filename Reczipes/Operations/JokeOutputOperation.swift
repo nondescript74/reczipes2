@@ -12,6 +12,8 @@ protocol JokeOutputOperationDataProvider {
 }
 
 class JokeOutputOperation: JokeXOperation {
+    // MARK: - Debug local
+    private var zBug:Bool = false
     // MARK: -  Properties
     fileprivate var inputJoke: Joke?
     fileprivate var completion: (Joke?) -> ()

@@ -16,7 +16,7 @@ struct AddNotesToRecipeView2: View {
     @State fileprivate var recipeNoteSaved:Bool = false
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case AddNotesToRecipeView2 = "AddNotesToRecipeView2: "
+        case AddNotesToRecipeView2, AN2RV = "AddNotesToRecipeView2: "
         case initialRequestString = "Pick a recipe below ..."
         case initialNoteString = "Enter a recipe note below ..."
         case navigationTitle = "Add Recipe Note"

@@ -24,7 +24,7 @@ struct AddImageToRecipeView2: View {
     @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case AddImageToRecipeView2 = "AddImageToRecipeView2: "
+        case AddImageToRecipeView2, AIRV = "AddImageToRecipeView2: "
         case recipePickRequestString = "Pick a recipe below ..."
         case navigationTitle = "Add Recipe Image"
         case buttonTitle = "✚ Image"

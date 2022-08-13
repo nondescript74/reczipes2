@@ -34,8 +34,9 @@ struct RecipeDetailView: View {
     let fileIO = FileIO()
     var cuisine: String = ""
     fileprivate enum msgs: String {
-        case recipeDetailView = "RecipeDetailView: "
+        case recipeDetailView, RDV = "RecipeDetailView: "
         case nothing = "Nothing"
+        case sectIsOther = "Section Name is set to Other"
         case addImage = "Add Images To Recipe"
         case addNote = "Add Note To Recipe"
         case plusNote = "+ Note"
@@ -120,15 +121,27 @@ struct RecipeDetailView: View {
             if asection.name.lowercased() == cuisine.lowercased() {
                 myUUID = asection.id
                 myBookSection = asection
+                
+#if DEBUG
+                if zBug {
+                    if myUUID == BookSection.example.id {
+                        print(msgs.RDV.rawValue + msgs.sectIsOther.rawValue)}
+                } 
+#endif  
             }
         }
-        addedRecipes.changeBookSection(bookSection: myBookSection,
-                                       addingItemsFrom: BookSection(id: myUUID,
-                                                                    name: cuisine,
-                                                                    items: [item])
-        )
+        if addedRecipes.isRecipeAlreadyIn(newRecipe: item) {
+            // nothing to do, already in
+        } else {
+            addedRecipes.changeBookSection(bookSection: myBookSection,
+                                           addingItemsFrom: BookSection(id: myUUID,
+                                                                        name: cuisine,
+                                                                        items: [item]))
+            self.recipeSaved.toggle()
+        }
         
-        self.recipeSaved.toggle()
+        
+        
     }
     
     // MARK: - View Process

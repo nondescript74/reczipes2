@@ -147,8 +147,16 @@ public class AddedRecipes: ObservableObject {
         
     }
     
-    func isRecipeUnique(newRecipe: SectionItem, oldRecipe: SectionItem) -> Bool {
+    func isRecipeNotUnique(newRecipe: SectionItem, oldRecipe: SectionItem) -> Bool {
         return newRecipe.id == oldRecipe.id
+    }
+    
+    func isRecipeAlreadyIn(newRecipe: SectionItem) -> Bool {
+        if getAllRecipes().contains(newRecipe) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func changeBookSection(bookSection: BookSection, addingItemsFrom: BookSection)  {

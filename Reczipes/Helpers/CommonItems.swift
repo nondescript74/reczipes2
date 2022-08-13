@@ -69,7 +69,7 @@ fileprivate enum msgs: String {
     case json = "json"
     case returningpresetrecipes = "Returning Preset Recipes "
     case returningbooksectionssf = "Returning BookSections in single file"
-    case recipesFile = "recipesShipped"
+//    case recipesFile = "recipesShipped"
     case csrtsi = "Converted SRecipe to SectionItem"
 }
 
@@ -116,19 +116,19 @@ func getBookSectionsInFile(filename: String) -> [BookSection] {
     return bookSections1
 }
 
-func getAllPresetRecipes() -> [SectionItem]  {
-    var myReturningRecipes:[SectionItem] = []
-    let bookSections0 = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
-    for aSection in bookSections0 {
-        myReturningRecipes.append(contentsOf: aSection.items)
-    }
-
-    
-#if DEBUG
-    print(msgs.returningpresetrecipes.rawValue + myReturningRecipes.count.description)
-#endif
-    return myReturningRecipes
-}
+//func getAllPresetRecipes() -> [SectionItem]  {
+//    var myReturningRecipes:[SectionItem] = []
+//    let bookSections0 = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
+//    for aSection in bookSections0 {
+//        myReturningRecipes.append(contentsOf: aSection.items)
+//    }
+//
+//    
+//#if DEBUG
+//    print(msgs.returningpresetrecipes.rawValue + myReturningRecipes.count.description)
+//#endif
+//    return myReturningRecipes
+//}
 
 
 

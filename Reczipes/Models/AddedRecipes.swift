@@ -14,11 +14,10 @@ public class AddedRecipes: ObservableObject {
     var zBug2:Bool = true
     // MARK: - Initializer
     init() {
-        // nothing for now
+        let totalSections = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
+        self.bookSections = totalSections
     }
-    init(bundleFileName: String) {
-        
-    }
+
     // MARK: - Environment
     // MARK: - Publisher
     @Published var bookSections = [BookSection]()
@@ -27,6 +26,7 @@ public class AddedRecipes: ObservableObject {
     // MARK: - Properties
     fileprivate enum msgs: String {
         case ar = "AddedRecipes: "
+        case recipesFile = "recipesShipped.json"
         case added = "Added: "
         case removed = "Removed: "
         case changed = "Changed: "

@@ -34,13 +34,17 @@ struct AddNotesToRecipeView2: View {
     fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
     
-    fileprivate func constructAllRecipes() -> [SectionItem]  {
-        let newlyAddedRecipes = addedRecipes.getAllRecipes() // if any added
-        let myPresetRecipes = getAllPresetRecipes()
-        var combinedRecipes = myPresetRecipes
-        combinedRecipes.append(contentsOf: newlyAddedRecipes)
-        combinedRecipes = combinedRecipes.sorted(by: ({$0.name < $1.name}))
-        return combinedRecipes
+//    fileprivate func constructAllRecipes() -> [SectionItem]  {
+//        let newlyAddedRecipes = addedRecipes.getAllRecipes() // if any added
+//        let myPresetRecipes = getAllPresetRecipes()
+//        var combinedRecipes = myPresetRecipes
+//        combinedRecipes.append(contentsOf: newlyAddedRecipes)
+//        combinedRecipes = combinedRecipes.sorted(by: ({$0.name < $1.name}))
+//        return combinedRecipes
+//    }
+    
+    fileprivate func constructAllRecipes() -> [SectionItem] {
+        return addedRecipes.getAllRecipes()
     }
     
     fileprivate func addRecipeNote() {
@@ -51,7 +55,8 @@ struct AddNotesToRecipeView2: View {
             return
         }
         
-        let combinedRecipes = constructAllRecipes()
+//        let combinedRecipes = constructAllRecipes()
+        let combinedRecipes = addedRecipes.getAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id.description
         let sectionItemName = sectionItem.name

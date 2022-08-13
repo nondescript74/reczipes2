@@ -51,6 +51,9 @@ struct AddImageToRecipeView2: View {
     fileprivate let fileIO = FileIO()
     fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
+    fileprivate func constructAllRecipes() -> [SectionItem] {
+        return addedRecipes.getAllRecipes()
+    }
     var actionSheet: ActionSheet {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             // camera is available
@@ -176,15 +179,16 @@ struct AddImageToRecipeView2: View {
         }
         return
     }
-    
-    fileprivate func constructAllRecipes() -> [SectionItem]  {
-        let newlyAddedRecipes = addedRecipes.getAllRecipes() // if any added
-        let myPresetRecipes = getAllPresetRecipes()
-        var combinedRecipes = myPresetRecipes
-        combinedRecipes.append(contentsOf: newlyAddedRecipes)
-        combinedRecipes = combinedRecipes.sorted(by: ({$0.name < $1.name}))
-        return combinedRecipes
-    }
+//    
+//    fileprivate func constructAllRecipes() -> [SectionItem]  {
+//        let newlyAddedRecipes = addedRecipes.getAllRecipes() // if any added
+//        let myPresetRecipes = getAllPresetRecipes()
+//        var combinedRecipes = myPresetRecipes
+//        combinedRecipes.append(contentsOf: newlyAddedRecipes)
+//        combinedRecipes = combinedRecipes.sorted(by: ({$0.name < $1.name}))
+//        return combinedRecipes
+//    }
+//
     
     // MARK: - View Process
     var body: some View {

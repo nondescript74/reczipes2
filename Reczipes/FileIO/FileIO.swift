@@ -56,9 +56,9 @@ class FileIO: NSObject {
             do {
                 let fileURLs = try fileManager.contentsOfDirectory(at: myDocuDirUrl, includingPropertiesForKeys: nil)
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.docudir.rawValue + fileURLs.debugDescription, fileURLs.count.description)}
-                #endif
+#endif
                 
                 return fileURLs
             } catch {
@@ -78,17 +78,17 @@ class FileIO: NSObject {
             myDocumentsUrl.appendPathComponent(dirname, isDirectory: true)
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.foldercontents.rawValue + msgs.xcassets.rawValue + contents.count.description)}
-            #endif
+#endif
             
             return contents
             
         } catch {
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.foldercontents.rawValue + msgs.cannotFindFolder.rawValue)}
-            #endif
+#endif
             return []
         }
     }
@@ -112,9 +112,9 @@ class FileIO: NSObject {
             myxcassetsUrl.appendPathComponent("Assets.xcassets", isDirectory: true)
             let contents = try fileManager.contentsOfDirectory(at: myxcassetsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.foldercontents.rawValue + msgs.xcassets.rawValue + contents.count.description)}
-            #endif
+#endif
             
             return contents
             
@@ -133,9 +133,9 @@ class FileIO: NSObject {
             
             try data.write(to: myDocumentsUrl.appendingPathComponent(fileNameToSave + delimiterFiletype + fileType))
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.success.rawValue, myDocumentsUrl.debugDescription)}
-            #endif
+#endif
             
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
@@ -160,7 +160,7 @@ class FileIO: NSObject {
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
 #if DEBUG
-if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValue, myDocumentsUrl.debugDescription)}
+            if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValue, myDocumentsUrl.debugDescription)}
 #endif
             
             if contents.count >= 0  {
@@ -187,28 +187,28 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
             
             myReturnFilesUrls = contents
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + " " + myReturnFilesUrls.count.description)}
-            #endif
+#endif
             
         } catch {
             switch myReturnFilesUrls.count {
-//            case 0:
-//                #if DEBUG
-//                if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + msgs.empty.rawValue)
-//                #endif
+                //            case 0:
+                //                #if DEBUG
+                //                if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + msgs.empty.rawValue)
+                //                #endif
             default:
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.cannotFindFolder.rawValue)}
-                #endif
+#endif
                 break
             }
             
         }
         
-        #if DEBUG
+#if DEBUG
         if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + msgs.count.rawValue + myReturnFilesUrls.count.description)}
-        #endif
+#endif
         return myReturnFilesUrls  // can be empty
     }
     
@@ -222,24 +222,24 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
             myDocumentsUrl.appendPathComponent(folderName)
             let tempz = myDocumentsUrl.appendingPathComponent(fileNameToSave + delimiterFiletype + fileType)
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.tempz.rawValue + tempz.absoluteString)}
-            #endif
+#endif
             
             let resultz = createRecipeFolders(folderName: folderName)
             
             switch resultz {
             case true:
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.createdRecipeFolder.rawValue)}
-                #endif
+#endif
                 
             case false:
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.fail.rawValue)}
-                #endif
+#endif
                 
                 return resultz
             }
@@ -249,23 +249,23 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
             
             if contents.count > 0  {
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.createdRecipeFolder.rawValue + msgs.write.rawValue + msgs.success.rawValue)}
-                #endif
+#endif
                 
                 return true
             } else {
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.write.rawValue + msgs.note.rawValue + msgs.fail.rawValue)}
-                #endif
+#endif
                 
                 return false
             }
         } catch {
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.wtf.rawValue)}
-            #endif
+#endif
             return false
         }
     }
@@ -279,16 +279,16 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
             myDocumentsUrl.appendPathComponent(recipeFolder)
             let contentsRFD = try FileManager.default.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue, contentsRFD.count)}
-            #endif
+#endif
             
             return contentsRFD
         } catch {
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.checkContentsRecipeFolder.rawValue + recipeFolder + " " + msgs.cannotFindFolder.rawValue)}
-            #endif
+#endif
             return []
         }
     }
@@ -314,9 +314,9 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
             myDocumentsUrl.appendPathComponent(folderName)
             try FileManager.default.createDirectory(at: myDocumentsUrl, withIntermediateDirectories: true)
             
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue + msgs.success.rawValue)}  // continue without save
-            #endif
+#endif
             
             return true
         } catch {
@@ -330,16 +330,16 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
                 
                 _ = try FileManager.default.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: nil)
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue)}
-                #endif
+#endif
                 
                 return true
             } catch {
                 
-                #if DEBUG
+#if DEBUG
                 if zBug { print(msgs.fileIO.rawValue + msgs.createdRecipeFolder.rawValue + msgs.fail.rawValue)}
-                #endif
+#endif
                 
                 return false
             }
@@ -353,9 +353,9 @@ if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValu
                 do {
                     try fileManager.removeItem(at: aUrl)
                 } catch {
-                    #if DEBUG
+#if DEBUG
                     if zBug { print(msgs.fileIO.rawValue + " Failed remove of aUrl in recipeFolder")}
-                    #endif
+#endif
                 }
             }
         }

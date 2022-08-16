@@ -19,7 +19,7 @@ public class AddedRecipes: ObservableObject {
         let userAddedBookSectionURLs = fileIO.checkContentsRecipeFolder(recipeFolder: msgs.reczipes.rawValue)
         if userAddedBookSectionURLs.isEmpty {
             // create Reczipes folder in users documents
-            fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
+            _ = fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
             if zBug || zBug2 {
                 print(msgs.ar.rawValue + msgs.created.rawValue )
             }
@@ -43,7 +43,15 @@ public class AddedRecipes: ObservableObject {
             if totalShippedSectionsPlus.contains(aUASection) {
                 // modify and the one already in total
                 let index = totalShippedSectionsPlus.firstIndex(of: aUASection)
-                totalShippedSectionsPlus[index!].items += aUASection.items
+                for auitem in aUASection.items {
+                    if totalShippedSectionsPlus[index!].items.contains(auitem) {
+                        // nothing to do
+                    } else {
+                        // add it
+                        totalShippedSectionsPlus[index!].items.append(auitem)
+                    }
+                }
+                
 #if DEBUG
                 if zBug || zBug2 {
                     print(msgs.ar.rawValue + msgs.initAdded.rawValue )

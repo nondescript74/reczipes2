@@ -34,7 +34,7 @@ class FileIO: NSObject {
         case cannotCreateRNotesFolder = "Cannot create Folder"
         case cannotCreateRecipeFolder = "Cannot create Recipe Folder"
         case cannotFindFolder = "Cannot find requested folder"
-        case createdRNotesFolder = "Created RecipeNotesFolder or already exists"
+        case createdRecipeNotesFolder = "Created RecipeNotesFolder or already exists"
         case createdRecipeFolder = "Created the RecipeFolder or already exists"
         case recipeNotesFolderExists = "Recipe Notes Folder already exists "
         case recipeFolderExists = "The folder requested already exists"
@@ -147,6 +147,31 @@ class FileIO: NSObject {
         } catch {
             fatalError(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.wtf.rawValue)
         }
+    }
+    
+    func readFilesInFolderInDocuments(folderName: String) -> [URL] {
+        do {
+            var myDocumentsUrl = try fileManager.url(for: .documentDirectory,
+                                                     in: .userDomainMask,
+                                                     appropriateFor: nil,
+                                                     create: true)
+            myDocumentsUrl.appendPathComponent(folderName)
+            
+            let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            
+#if DEBUG
+if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValue, myDocumentsUrl.debugDescription)}
+#endif
+            
+            if contents.count >= 0  {
+                return contents
+            } else {
+                return []
+            }
+        } catch {
+            fatalError(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.wtf.rawValue)
+        }
+        
     }
     
     func readFileInRecipeNotesOrImagesFolderInDocuments(folderName: String) -> [URL] {
@@ -306,7 +331,7 @@ class FileIO: NSObject {
                 _ = try FileManager.default.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: nil)
                 
                 #if DEBUG
-                if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue + msgs.success.rawValue)}
+                if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue)}
                 #endif
                 
                 return true

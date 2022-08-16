@@ -11,23 +11,73 @@ import SwiftUI
 public class AddedRecipes: ObservableObject {
     // MARK: - Local Debug
     var zBug:Bool = false
-    var zBug2:Bool = true
+    var zBug2:Bool = false
     // MARK: - Initializer
     init() {
-        let totalSections = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
-        self.bookSections = totalSections
+        let fileIO = FileIO()
+        let jsonDecoder = JSONDecoder()
+        let userAddedBookSectionURLs = fileIO.checkContentsRecipeFolder(recipeFolder: msgs.reczipes.rawValue)
+        if userAddedBookSectionURLs.isEmpty {
+            // create Reczipes folder in users documents
+            fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
+            if zBug || zBug2 {
+                print(msgs.ar.rawValue + msgs.created.rawValue )
+            }
+        }
+        var userAddedBookSections:[BookSection] = []
+        var totalShippedSectionsPlus = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
+        for aUrl in userAddedBookSectionURLs {
+            let dataAtUrl = fileIO.getFileDataAtUrl(url: aUrl)
+            let json = try? jsonDecoder.decode(BookSection.self, from: dataAtUrl)
+            if json != nil {
+                userAddedBookSections.append(json!)
+#if DEBUG
+                if zBug || zBug2 {
+                    print(msgs.ar.rawValue + msgs.loaded.rawValue + msgs.changed.rawValue + (json?.name ?? "none") )
+                }
+#endif
+            }
+        }
+        // now check if booksections are duplicated so move added recipes into the total
+        for aUASection in userAddedBookSections {
+            if totalShippedSectionsPlus.contains(aUASection) {
+                // modify and the one already in total
+                let index = totalShippedSectionsPlus.firstIndex(of: aUASection)
+                totalShippedSectionsPlus[index!].items += aUASection.items
+#if DEBUG
+                if zBug || zBug2 {
+                    print(msgs.ar.rawValue + msgs.initAdded.rawValue )
+                }
+#endif
+            } else {
+                // add this one to total since total does not contain
+                totalShippedSectionsPlus.append(aUASection)
+#if DEBUG
+                if zBug || zBug2 {
+                    print(msgs.ar.rawValue + msgs.tSDoesNotHave.rawValue + msgs.added.rawValue )
+                }
+#endif
+            }
+        }
+        self.bookSections = totalShippedSectionsPlus
     }
-
     // MARK: - Environment
     // MARK: - Publisher
     @Published var bookSections = [BookSection]()
     // MARK: Queue
-    private let queue = DispatchQueue(label: "com.headydiscy.reczipes.addedrecipes.queue")
+    private let queue = DispatchQueue(label: "com.headydiscy.reczipes.queue")
     // MARK: - Properties
     fileprivate enum msgs: String {
         case ar = "AddedRecipes: "
         case recipesFile = "recipesShipped.json"
+        case reczipes = "Reczipes"
         case added = "Added: "
+        case wrote = "Wrote to documents: "
+        case tSDoesNotHave = "totalSections does not have, added this booksection"
+        case initAdded = "init: aUASection items added to totalSections"
+        case failedWrite = "Failed to write to documents folder"
+        case created = "Created Reczipes folder in User documents folder"
+        case loaded = "Loaded "
         case removed = "Removed: "
         case changed = "Changed: "
         case recipeExists = "Recipe already in added recipes, not added - "
@@ -110,15 +160,15 @@ public class AddedRecipes: ObservableObject {
     }
     
     func addBookSection(bookSection: BookSection) {
+        let fileIO = FileIO()
+        let jsonEncoder = JSONEncoder()
         if !bookSections.contains(bookSection) {
-            
             queue.sync {
                 bookSections.append(bookSection)
-            }
-            
 #if DEBUG
             if zBug { print(msgs.ar.rawValue + msgs.added.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
 #endif
+            }
             
         } else {
             // already contains this book section, append items from this into already exisitng
@@ -130,6 +180,21 @@ public class AddedRecipes: ObservableObject {
             if let index = bookSections.firstIndex(of: bookSection) {
                 let myBookSectionToModify = bookSections[index]
                 self.changeBookSection(bookSection: myBookSectionToModify, addingItemsFrom: bookSection)
+            }
+        }
+        
+        // now write it out to documents for persistence
+        let jsonData = try? jsonEncoder.encode(bookSection)
+        if jsonData != nil {
+            let result = fileIO.writeFileInFolderInDocuments(folderName: msgs.reczipes.rawValue, fileNameToSave: bookSection.name, fileType: msgs.json.rawValue, data: jsonData!)
+            if result {
+#if DEBUG
+    if zBug { print(msgs.ar.rawValue + msgs.wrote.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+#endif
+            } else {
+#if DEBUG
+    if zBug { print(msgs.ar.rawValue + msgs.failedWrite.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+#endif
             }
         }
     }
@@ -161,8 +226,8 @@ public class AddedRecipes: ObservableObject {
     
     func changeBookSection(bookSection: BookSection, addingItemsFrom: BookSection)  {
         if bookSections.firstIndex(of: bookSection) != nil {
-//            let myBookSectionToModify = bookSections[index]
-//            let myExistingRecipes = myBookSectionToModify.items
+            //            let myBookSectionToModify = bookSections[index]
+            //            let myExistingRecipes = myBookSectionToModify.items
             let recipeToAdd = addingItemsFrom.items.first
             if (recipeToAdd != nil) {  // should contain
                 if bookSection.items.contains(recipeToAdd!) {

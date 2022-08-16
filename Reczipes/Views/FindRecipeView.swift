@@ -13,7 +13,7 @@ struct FindRecipeView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
     // MARK: - ObservedObject
-    @ObservedObject var extractedSRecipe = WebQueryRecipes()
+//    @ObservedObject var extractedSRecipe = WebQueryRecipes()
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate var fileIO = FileIO()

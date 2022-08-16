@@ -21,6 +21,7 @@ struct ApplicationView: View {
 //        case web = "Search"
 //        case addEdit = "Find/Add"
         case find = "Find"
+        case ext = "Extract"
 //        case tjc = "Trivia"
 //        case auth = "Sign In"
 //        case send = "Mail To"
@@ -48,6 +49,12 @@ struct ApplicationView: View {
                 .tabItem {
                     Image(uiImage: imageDocDocFill!)
                     Text(tabs.find.rawValue)
+                }
+            
+            ExtractRecipeView()
+                .tabItem {
+                    Image(uiImage: scribblevariable!)
+                    Text(tabs.ext.rawValue)
                 }
             
             AddImageAndNoteView()

@@ -23,7 +23,7 @@ struct ApplicationView: View {
         case find = "Find"
         case ext = "Extract"
 //        case tjc = "Trivia"
-//        case auth = "Sign In"
+        case auth = "Sign In"
 //        case send = "Mail To"
 //        case indian = "Indian"
 //        case random = "Random"
@@ -39,6 +39,11 @@ struct ApplicationView: View {
     
     var body: some View {
         TabView {
+            AuthView()
+                .tabItem{
+                    Image(uiImage: wandNStarsImage)
+                    Text(tabs.auth.rawValue)
+                }
             AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)

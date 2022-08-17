@@ -74,6 +74,7 @@
 		93D611A826CE971200664F14 /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A626CE971100664F14 /* Images.json */; };
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
+		F8304A7328AD348500867C6F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7228AD348500867C6F /* AuthView.swift */; };
 		F86B63BE28AC39CA00CA4595 /* ExtractRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86B63BD28AC39CA00CA4595 /* ExtractRecipeView.swift */; };
 		F8966C1028987464002D6FCE /* ATestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8966C0F28987464002D6FCE /* ATestView.swift */; };
 		F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */ = {isa = PBXBuildFile; fileRef = F8CE26D3289C75B1003483DD /* SRecipeExample.json */; };
@@ -163,6 +164,8 @@
 		93D611A626CE971100664F14 /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
+		F8304A7228AD348500867C6F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		F8304A7428AD35B300867C6F /* Reczipes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reczipes.entitlements; sourceTree = "<group>"; };
 		F86B63BD28AC39CA00CA4595 /* ExtractRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractRecipeView.swift; sourceTree = "<group>"; };
 		F8966C0F28987464002D6FCE /* ATestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATestView.swift; sourceTree = "<group>"; };
 		F8CE26D3289C75B1003483DD /* SRecipeExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample.json; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F8966C0F28987464002D6FCE /* ATestView.swift */,
+				F8304A7228AD348500867C6F /* AuthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +290,7 @@
 		935398B02694E2780062931E /* Reczipes */ = {
 			isa = PBXGroup;
 			children = (
+				F8304A7428AD35B300867C6F /* Reczipes.entitlements */,
 				935398B12694E2780062931E /* ReczipesApp.swift */,
 				93ACB2EA26B9E90C0010F71F /* Operations */,
 				93ACB2BD26B9E76B0010F71F /* Providers */,
@@ -446,6 +451,7 @@
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
 				931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */,
+				F8304A7328AD348500867C6F /* AuthView.swift in Sources */,
 				931164E52697836600099F8D /* AcceptView.swift in Sources */,
 				93ACB2E226B9E8CD0010F71F /* ImageOutputOperation.swift in Sources */,
 				934AC08B26D298D2007EBF20 /* ImageWithSectionItemView.swift in Sources */,
@@ -616,8 +622,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 96;
+				CURRENT_PROJECT_VERSION = 100;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -658,8 +665,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 96;
+				CURRENT_PROJECT_VERSION = 100;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

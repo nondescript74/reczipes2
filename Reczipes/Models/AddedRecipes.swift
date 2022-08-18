@@ -234,8 +234,6 @@ public class AddedRecipes: ObservableObject {
     
     func changeBookSection(bookSection: BookSection, addingItemsFrom: BookSection)  {
         if bookSections.firstIndex(of: bookSection) != nil {
-            //            let myBookSectionToModify = bookSections[index]
-            //            let myExistingRecipes = myBookSectionToModify.items
             let recipeToAdd = addingItemsFrom.items.first
             if (recipeToAdd != nil) {  // should contain
                 if bookSection.items.contains(recipeToAdd!) {
@@ -324,16 +322,15 @@ public class AddedRecipes: ObservableObject {
                     }
                 } catch {
                     // cannot decode
-#if DEBUG
                     print("Cannot decode")
-#endif
                 }
             }
         }
         
         // we now have an array of BookSections which does not contain duplicates
-        for bookSection in myBookSectionsConstructed {
-            self.addBookSection(bookSection: bookSection)
-        }
+//        for bookSection in myBookSectionsConstructed {
+//            self.addBookSection(bookSection: bookSection)
+//        }
+        self.bookSections = myBookSectionsConstructed
     }
 }

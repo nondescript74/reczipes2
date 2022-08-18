@@ -154,8 +154,8 @@ struct BookSection: Codable, Equatable, Identifiable, Hashable {
 struct SectionItemNotesImages: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
     var name: String
-    var recipeData: Data
-    var recipeImages: Data
+    var recipeData: Data  // sectionItem
+    var recipeImages: Data  //
     var recipeNotes: Data
     
     static func == (lhs: SectionItemNotesImages, rhs: SectionItemNotesImages) -> Bool {

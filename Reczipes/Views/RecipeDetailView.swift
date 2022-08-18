@@ -41,6 +41,7 @@ struct RecipeDetailView: View {
         case addNote = "Add Note To Recipe"
         case plusNote = "+ Note"
         case plusImage = "+ Image"
+        case exists = "Recipe already saved"
         case recipeImages = "RecipeImagesFolder has Images"
         case recipeNotes = "RecipeNotesFolder has Notes"
         case recipeImagesNot = "RecipeImagesFolder has no Images"
@@ -132,6 +133,11 @@ struct RecipeDetailView: View {
         }
         if addedRecipes.isRecipeAlreadyIn(newRecipe: item) {
             // nothing to do, already in
+#if DEBUG
+                if zBug {
+                    print(msgs.RDV.rawValue + msgs.exists.rawValue)
+                }
+#endif
         } else {
             addedRecipes.changeBookSection(bookSection: myBookSection,
                                            addingItemsFrom: BookSection(id: myUUID,

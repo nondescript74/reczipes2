@@ -34,16 +34,20 @@ struct ApplicationView: View {
 //        case imageAdd = "+Image"
         case multiAdd = "+Note/Image"
         case jt = "Joke/Trivia"
+        case settings = "Settings"
     }
-    
+    // MARK: - Methods
+    private func getAppVersionAndBuild() {
+        return
+    }
     
     var body: some View {
         TabView {
-            AuthView()
-                .tabItem{
-                    Image(uiImage: wandNStarsImage)
-                    Text(tabs.auth.rawValue)
-                }
+//            AuthView()
+//                .tabItem{
+//                    Image(uiImage: wandNStarsImage)
+//                    Text(tabs.auth.rawValue)
+//                }
             AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
@@ -78,6 +82,12 @@ struct ApplicationView: View {
                 .tabItem {
                     Image(uiImage: crosscirclefill!)
                     Text(tabs.jt.rawValue)
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Image(uiImage: wandNStarsImage)
+                    Text(tabs.settings.rawValue)
                 }
             
         }

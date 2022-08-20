@@ -9,16 +9,34 @@ import SwiftUI
 
 struct SettingsView: View {
     // MARK: - Debug
-    private var zBug: Bool = true
+    private var zBug:Bool = false
+    // MARK: - Environment Variables
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var userData: UserData
     // MARK: - Properties
     private var versionLabel = ""
     private var buildLabel = ""
+    fileprivate enum msgs:String {
+        case sv = "SettingsView: "
+        case cfsv = "CFBundleShortVersionString"
+        case cfb = "CFBundleVersion"
+        case z = "Hello, Z"
+        case vers = "Version: "
+        case build = "Build: "
+        case nvn = "No Version #???"
+        case nbn = "No Build #???"
+    }
     // MARK: - Methods
     var body: some View {
         VStack {
-            Text("Hello Z!")
-            Text("Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "No Version Number ???")")
-            Text("Build: \(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "No Build Number ???")")
+            Text(msgs.z.rawValue)
+            Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
+            Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
+            
+            ProfileHost()
+            
+            NutritionSummary(profile: userData.profile)
+            
         }
         
     }

@@ -21,14 +21,14 @@ struct ProfileEditor: View {
     @State fileprivate var loadNewRecipes = false
     // MARK: - Properties
     private enum msgs: String {
-        case uname: "Username"
-        case enablNotif: "Enable Notifications"
-        case enablNutr: "Enable Nutrition"
-        case enablVitInSearch: "Enable Vitamin set in search"
-        case loadNewRecip: "Load New Recipe Set next launch"
-        case seasPhoto: "Seasonal Photo"
-        case numbrRetr: "Number retrieved"
-        case countz: "Count"
+        case uname = "Username"
+        case enablNotif = "Enable Notifications"
+        case enablNutr = "Enable Nutrition"
+        case enablVitInSearch = "Enable Vitamin set in search"
+        case loadNewRecip = "Load New Recipe Set next launch"
+        case seasPhoto = "Seasonal Photo"
+        case numbrRetr = "Number retrieved"
+        case countz = "Count"
     }
     // MARK: - View Process
     var body: some View {

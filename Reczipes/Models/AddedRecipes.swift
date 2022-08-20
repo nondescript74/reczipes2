@@ -89,10 +89,13 @@ public class AddedRecipes: ObservableObject {
         case removed = "Removed: "
         case changed = "Changed: "
         case recipeExists = "Recipe already in added recipes, not added - "
+        case recipeRemoved = "Recipe removed from BookSection "
+        case recipeDNE = "Recipe does not exist in BookSection, can't remove"
         case zeroitems = "can't have 0 items to be added"
         case exists = "BookSection Already Exists "
         case modifying = "Modifying Existing BookSection "
         case addingfrom = "Adding items from BookSection "
+        case addingrecipe = "Adding a recipe "
         case returningbooksections = "Returning BookSections "
         case returningsectionitems = "Returning Recipes "
         case returningsectionnames = "Returning BookSection names  "
@@ -207,6 +210,21 @@ public class AddedRecipes: ObservableObject {
         }
     }
     
+    
+    func removeRecipeInBookSection(recipe: SectionItem, bookSection: BookSection) {
+        if bookSections.firstIndex(of: bookSection) != nil {
+            queue.sync {
+                if bookSections[(bookSections.firstIndex(of: bookSection)!)].items.contains(recipe) {
+                    bookSections[(bookSections.firstIndex(of: bookSection)!)].items.remove(at: (bookSections[(bookSections.firstIndex(of: bookSection)!)].items.firstIndex(of: recipe)!))
+                } else {
+                    // nothting to do , doesnt exist
+                }
+            }
+        } else {
+            // nothing since booksection supplied doesn't exist
+        }
+    }
+    
     func removeBookSection(bookSection: BookSection) {
         if let index = bookSections.firstIndex(of: bookSection) {
             _ = queue.sync {
@@ -266,6 +284,71 @@ public class AddedRecipes: ObservableObject {
                 bookSections.append(addingItemsFrom)
             }
         }
+    }
+    
+    func changeBookSectionAddingItems(bookSection: BookSection, recipeToAdd: SectionItem) {
+        if bookSections.firstIndex(of: bookSection) != nil {
+                if bookSection.items.contains(recipeToAdd) {
+                    // already in nothing to do
+#if DEBUG
+                    print(msgs.ar.rawValue + msgs.recipeExists.rawValue, recipeToAdd.name)
+#endif
+                } else {
+                    var newBookSection = bookSection
+                    newBookSection.items.append(recipeToAdd)
+                    self.removeBookSection(bookSection: bookSection)
+                    self.addBookSection(bookSection: newBookSection)
+#if DEBUG
+                    if zBug { print(msgs.ar.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+                    if zBug { print(msgs.ar.rawValue + msgs.addingrecipe.rawValue)}
+#endif
+                }
+            
+        }  else {
+#if DEBUG
+            if zBug { print(msgs.ar.rawValue + msgs.modifying.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+#endif
+            // booksection does not exist, create new
+            queue.sync {
+                var myBookSection = bookSection
+                myBookSection.items = [recipeToAdd]
+                bookSections.append(bookSection)
+            }
+        }
+    }
+    
+    func changeBookSectionRemovingRecipe(recipe: SectionItem, bookSection: BookSection) {
+        var myBookSection = bookSection
+        
+        if let indx = myBookSection.items.firstIndex(of: recipe)  {
+            queue.sync {
+                myBookSection.items.remove(at: indx)
+            }
+#if DEBUG
+            if zBug { print(msgs.ar.rawValue + msgs.recipeRemoved.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+#endif
+            
+        } else {
+#if DEBUG
+            if zBug { print(msgs.ar.rawValue + msgs.recipeDNE.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
+#endif
+        }
+        
+    }
+    
+    func moveRecipeFromOneBookSectionToOther(recipe: SectionItem, originalBookSection: BookSection, newBookSectionName: String) {
+        self.changeBookSectionRemovingRecipe(recipe: recipe, bookSection: originalBookSection)
+        let bookSectionNames = getBookSectionNames()
+        if bookSectionNames.contains(newBookSectionName.lowercased()) {
+            changeBookSectionAddingItems(bookSection: getBookSectionWithName(name: newBookSectionName), recipeToAdd: recipe)
+            removeRecipeInBookSection(recipe: recipe, bookSection: originalBookSection)
+        } else {
+            self.bookSections.append(BookSection(id: UUID(), name: newBookSectionName, items: [recipe]))
+        }
+    }
+    
+    func getBookSectionWithName(name: String) -> BookSection {
+        return bookSections.filter({$0.name == name}).first ?? BookSection(id: UUID(), name: name, items: [])
     }
     
     func constructBookSectionsFromFiles() {

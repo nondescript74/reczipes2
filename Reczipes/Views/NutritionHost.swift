@@ -48,7 +48,8 @@ struct NutritionHost: View {
                 
             }
             if self.mode?.wrappedValue == .inactive {
-                NutritionSummary(nutrition: self.userData.nutrition)
+                NutritionSummary(profile: userData.profile)
+//                NutritionSummary(nutrition: self.userData.nutrition)
             } else {
                 NutritionEditor(nutrition: $draftNutrition)
                     .onAppear {

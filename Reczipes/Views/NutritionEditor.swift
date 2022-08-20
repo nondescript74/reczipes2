@@ -29,7 +29,7 @@ struct NutritionEditor_Previews: PreviewProvider {
             .environment(\.colorScheme, .dark)
             .previewDevice("iPhone Xr")
             .environmentObject(UserData())
-            .environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+            //.environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }
 #endif

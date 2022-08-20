@@ -55,7 +55,7 @@ struct ProfileHost_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHost()
             .environmentObject(UserData())
-            .environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+//            .environment(\.managedObjectContext)
     }
 }
 #endif

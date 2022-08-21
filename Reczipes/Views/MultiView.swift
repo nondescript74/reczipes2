@@ -16,7 +16,7 @@ struct MultiView: View {
     // MARK: - State
     @State fileprivate var searchTerm : String = ""
     @State var show: Selectors
-    @State fileprivate var showingProfile: Bool = false
+    //    @State fileprivate var showingProfile: Bool = false
     
     // MARK: - Properties
     enum Selectors {
@@ -26,34 +26,38 @@ struct MultiView: View {
     }
     
     private enum msgs: String {
-//        case findrecipes = "Find Recipes"
-//        case readFilesInASDsuccess = "Success"
-        case userProfile = "User Profile"
+        //        case findrecipes = "Find Recipes"
+        //        case readFilesInASDsuccess = "Success"
+        //        case userProfile = "User Profile"
+        case jort = "Joke and Trivia"
         case makeSelection = "Click Joke or Trivia"
         case noTitle = "No Recipe Title"
         case noJoke = "No Joke?"
         case noTrivia = "No Trivia?"
+        case trivia = "olive"
+        case joke = "joke"
     }
     
     private enum labelz: String {
         case trivia = "Trivia"
         case joke = "Joke"
+        case get = "Get"
     }
     
-    private enum imagez: String {
-        case zhome = "zhome"
-        case triviathumb = "Trivia-thumb"
-        case jokethumb = "Joke-thumb"
-    }
+    //    private enum imagez: String {
+    ////        case zhome = "zhome"
+    //        case triviathumb = "Trivia-thumb"
+    //        case jokethumb = "Joke-thumb"
+    //    }
     
-    var profileButton: some View {
-        Button(action: { self.showingProfile.toggle() }) {
-            Image(uiImage: UIImage(named: imagez.zhome.rawValue)!.scaledDown(into: CGSize(width: 40, height: 40), centered: true))
-                .imageScale(.large)
-                .accessibility(label: Text(msgs.userProfile.rawValue))
-                .padding()
-        }
-    }
+    //    var profileButton: some View {
+    //        Button(action: { self.showingProfile.toggle() }) {
+    //            Image(uiImage: UIImage(named: imagez.zhome.rawValue)!.scaledDown(into: CGSize(width: 40, height: 40), centered: true))
+    //                .imageScale(.large)
+    //                .accessibility(label: Text(msgs.userProfile.rawValue))
+    //                .padding()
+    //        }
+    //    }
     
     // MARK:- Methods
     func getTrivia() {
@@ -71,6 +75,8 @@ struct MultiView: View {
         GeometryReader { proxy in
             NavigationView {
                 VStack {
+                    Text(msgs.jort.rawValue).font(.largeTitle).bold()
+                        .padding(.bottom)
                     Text(msgs.makeSelection.rawValue)
                         .font(.callout)
                         .foregroundColor(.black)
@@ -78,10 +84,10 @@ struct MultiView: View {
                     
                     HStack {
                         Button(action: {self.getTrivia()}) {
-                            RoundedButtonView(someText: labelz.trivia.rawValue, someImage: Image(imagez.triviathumb.rawValue))
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
                         }.padding()
                         Button(action: {self.getJoke()}) {
-                            RoundedButtonView(someText: labelz.joke.rawValue, someImage: Image(imagez.jokethumb.rawValue))
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
                         }.padding()
                     }
                     

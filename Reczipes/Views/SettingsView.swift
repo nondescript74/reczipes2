@@ -17,7 +17,7 @@ struct SettingsView: View {
     private var versionLabel = ""
     private var buildLabel = ""
     fileprivate enum msgs:String {
-        case sv = "SettingsView: "
+        case sv = "User Settings View"
         case cfsv = "CFBundleShortVersionString"
         case cfb = "CFBundleVersion"
         case z = "Hello, Z"
@@ -29,13 +29,13 @@ struct SettingsView: View {
     // MARK: - Methods
     var body: some View {
         VStack {
-            Text(msgs.z.rawValue)
+            Text(msgs.sv.rawValue).font(.largeTitle).bold()
             Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
             Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
             
             ProfileHost()
             
-            NutritionSummary(profile: userData.profile)
+            NutritionHost()
             
         }
         

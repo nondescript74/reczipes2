@@ -19,34 +19,35 @@ struct NutritionRowView: View {
     fileprivate var myValueName: String
     fileprivate var myMinVal: Int
     fileprivate var myMaxVal: Int
+    fileprivate enum msgs: String {
+        case sep = " : "
+        case min = " min "
+        case max = " max "
+    }
     // MARK: - View Process
     var body: some View {
         HStack(alignment: .top) {
-            Text(myValueName + " : ")
-                .foregroundColor(.purple)
-                .fontWeight(.bold)
-                .frame(width: 125, height: 20, alignment: .leading)
-                .padding()
+            Text(myValueName + msgs.sep.rawValue)
+//                .foregroundColor(.purple)
+//                .frame(width: 125, height: 20, alignment: .leading)
                 
-            HStack {
-                Text(" min ")
+//            HStack {
+                Text(msgs.min.rawValue)
                 Text(myMinVal.description)
-                    .bold()
-                    .font(.body)
+//                    .font(.body)
                     .foregroundColor(.orange)
-            }
-            .frame(width: 70, height: 20, alignment: .leading)
-            .padding()
-            HStack {
-                Text("max ")
+//            }
+//            .frame(width: 70, height: 20, alignment: .leading)
+//            .padding()
+//            HStack {
+                Text(msgs.max.rawValue)
                 Text(myMaxVal.description)
-                    .bold()
-                    .font(.body)
+//                    .font(.body)
                     .foregroundColor(.red)
-            }
-            .frame(width: 100, height: 20, alignment: .leading)
-            .padding()
-        }
+//            }
+//            .frame(width: 100, height: 20, alignment: .leading)
+//            .padding()
+        }.padding()
         
     }
 }

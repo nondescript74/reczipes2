@@ -8,29 +8,29 @@
 
 import SwiftUI
 
-struct RoundedButtonView: View {
-    
-    // MARK: - Properties
-    var someText: String
-    var someImage: Image
-    var colorFrame: Color = Color.black
-    var colorBackground: Color = Color.init("ED7D3A")
-    
-    // MARK: - View Process
-    var body: some View {
-        ZStack {
-            someImage
-                .padding(2)
-            Text(someText)
-                .foregroundColor(.blue)
-                .background(Color.white)
-                .rotationEffect(Angle(degrees: 0))
-                .font(Font.system(size: 10, weight: .bold, design: .rounded))
-        }
-        //.clipShape(Circle())
-        .overlay(RoundedRectangle(cornerSize: CGSize(width: 3, height: 3)).stroke(Color.gray, lineWidth: 2))
-    }
-}
+//struct RoundedButtonView: View {
+//    
+//    // MARK: - Properties
+//    var someText: String
+//    var someImage: Image
+//    var colorFrame: Color = Color.black
+//    var colorBackground: Color = Color.init("ED7D3A")
+//    
+//    // MARK: - View Process
+//    var body: some View {
+//        ZStack {
+//            someImage
+//                .padding(2)
+//            Text(someText)
+//                .foregroundColor(.blue)
+//                .background(Color.white)
+//                .rotationEffect(Angle(degrees: 0))
+//                .font(Font.system(size: 10, weight: .bold, design: .rounded))
+//        }
+//        //.clipShape(Circle())
+//        .overlay(RoundedRectangle(cornerSize: CGSize(width: 3, height: 3)).stroke(Color.gray, lineWidth: 2))
+//    }
+//}
 
 struct RoundedButtonView2: View {
     

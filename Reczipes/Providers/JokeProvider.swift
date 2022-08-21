@@ -17,12 +17,12 @@ public class JokeProvider {
     
     init(jokeUrl: URL, completion: @escaping (Joke?) -> ()) {
         self.jokeUrl = jokeUrl
-    
+        
         // Create the operations
         let dataLoadJoke = DataLoadOperation(url: self.jokeUrl)
         let jokeCreate = JokeCreateOperation(data: nil)
         let jokeOut = JokeOutputOperation(joke: nil, completion: completion)
-
+        
         let operations = [dataLoadJoke, jokeCreate, jokeOut]
         
         // Add dependencies
@@ -31,9 +31,9 @@ public class JokeProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        #if DEBUG
+#if DEBUG
         if zBug { print("OperationQueue for JokeProvider is launched")}
-        #endif
+#endif
     }
     
     func cancel() {

@@ -33,6 +33,7 @@ struct Nutrition: Identifiable, Hashable {
                                 maxProtein: 100,
                                 maxFat: 100,
                                 maxSaturatedFat: 100,
+                                maxFiber: 100,
                                 maxSodium: 100,
                                 maxSugar: 100,
                                 maxCalories: 800)
@@ -60,6 +61,7 @@ struct Nutrition: Identifiable, Hashable {
     var  maxProtein: Int = 100
     var  maxFat: Int = 100
     var  maxSaturatedFat: Int = 100
+    var  maxFiber: Int = 100
     var  maxSodium: Int = 100
     var  maxSugar: Int = 100
     var  maxCalories: Int = 800

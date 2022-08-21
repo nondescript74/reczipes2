@@ -321,7 +321,7 @@ public class AddedRecipes: ObservableObject {
         var myBookSection = bookSection
         
         if let indx = myBookSection.items.firstIndex(of: recipe)  {
-            queue.sync {
+            _ = queue.sync {
                 myBookSection.items.remove(at: indx)
             }
 #if DEBUG

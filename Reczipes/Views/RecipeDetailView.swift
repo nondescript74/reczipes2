@@ -11,7 +11,7 @@ import MessageUI
 struct RecipeDetailView: View {
 #if DEBUG
     // MARK: - Local debug flag
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug:Bool = true
 #endif
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem) {
@@ -57,6 +57,7 @@ struct RecipeDetailView: View {
         case order = "Order"
         case add = "Add"
         case save = "Save"
+        case move = "Move"
         case recipe = "This"
         case ingredients = "Ingred"
         case remove = "Remove"
@@ -87,6 +88,7 @@ struct RecipeDetailView: View {
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     @State fileprivate var recipeSaved = false
+    @State fileprivate var showingMoveView = false
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
         let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)
@@ -139,15 +141,13 @@ struct RecipeDetailView: View {
                 }
 #endif
         } else {
-            addedRecipes.changeBookSection(bookSection: myBookSection,
-                                           addingItemsFrom: BookSection(id: myUUID,
-                                                                        name: cuisine,
-                                                                        items: [item]))
+            addedRecipes.changeBookSectionAddingRecipe(bookSection: myBookSection, recipeToAdd: item)
+//            addedRecipes.changeBookSection(bookSection: myBookSection,
+//                                           addingItemsFrom: BookSection(id: myUUID,
+//                                                                        name: cuisine,
+//                                                                        items: [item]))
             self.recipeSaved.toggle()
         }
-        
-        
-        
     }
     
     // MARK: - View Process
@@ -174,6 +174,13 @@ struct RecipeDetailView: View {
                 }
                 
                 HStack {
+                    Button(action: {
+                        // What to perform
+                        self.showingMoveView.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.move.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
+                    }.disabled(cuisine.isEmpty)
                     Button(action: {
                         // What to perform
                         self.createBookSection()
@@ -226,6 +233,9 @@ struct RecipeDetailView: View {
                 }
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id.description)
+                }
+                if showingMoveView == true && cuisine != "" {
+                   MoveRecipeView(movingRecipe: self.item, moveFromBookSection: self.cuisine)
                 }
                 
                 VStack {

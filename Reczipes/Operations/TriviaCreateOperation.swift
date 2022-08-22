@@ -50,28 +50,28 @@ class TriviaCreateOperation: Operation {
         
         guard myData != nil else { return }
         
-        #if DEBUG
+#if DEBUG
         if zBug { print(msgs.TriviaCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription) }
-        #endif
+#endif
         
         if self.isCancelled { return }
         
         do {
             let trivia = try JSONDecoder().decode(Trivia.self, from: myData!)
             myTrivia = trivia
-            #if DEBUG
+#if DEBUG
             if zBug { print(msgs.TriviaCreateOperation.rawValue + msgs.trivia.rawValue, trivia)}
-            #endif
+#endif
         } catch {
-            #if DEBUG
+#if DEBUG
             print("Error took place\(error.localizedDescription).")
-            #endif
+#endif
             fatalError(msgs.TriviaCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
-        #if DEBUG
+#if DEBUG
         if zBug { print(msgs.success.rawValue, myTrivia.debugDescription)}
-        #endif
+#endif
         
         if self.isCancelled { return }
         completion?(myTrivia)

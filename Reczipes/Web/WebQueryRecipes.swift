@@ -182,7 +182,7 @@ public class WebQueryRecipes: ObservableObject {
         }
         
         #if DEBUG
-        print(url.absoluteString)
+        if zBug {print(url.absoluteString)}
         #endif
         
         switch aswitch {
@@ -210,7 +210,7 @@ public class WebQueryRecipes: ObservableObject {
         }
         
         #if DEBUG
-        print(url.absoluteString)
+        if zBug {print(url.absoluteString)}
         #endif
         
         switch aswitch {
@@ -222,7 +222,7 @@ public class WebQueryRecipes: ObservableObject {
                         self.recipeInfo = recipeinfo!
                         
                         #if DEBUG
-                        print(messagesDebug.foundsrecipe.rawValue)
+                        if zBug {print(messagesDebug.foundsrecipe.rawValue)}
                         #endif
                     }
                 }
@@ -248,7 +248,7 @@ public class WebQueryRecipes: ObservableObject {
                         self.sRecipeGroup = srecipes!
                         
                         #if DEBUG
-                        print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? self.defaultRequiredCount)
+                        if self.zBug {print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? self.defaultRequiredCount)}
                         #endif
                     }
                 }
@@ -261,7 +261,7 @@ public class WebQueryRecipes: ObservableObject {
                         self.extractedSRecipe = srecipe!
                         
                         #if DEBUG
-                        print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)
+                        if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
                         #endif
                     }
                 }
@@ -274,7 +274,7 @@ public class WebQueryRecipes: ObservableObject {
                         self.aTrivia = trivia!
                         
                         #if DEBUG
-                        print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)
+                        if self.zBug {print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)}
                         #endif
                     }
                 }
@@ -287,7 +287,7 @@ public class WebQueryRecipes: ObservableObject {
                         self.joke = joke!
                         
                         #if DEBUG
-                        print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)
+                        if self.zBug {print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)}
                         #endif
                     }
                 }

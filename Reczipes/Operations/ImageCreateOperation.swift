@@ -44,27 +44,27 @@ class ImageCreateOperation: Operation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
+#if DEBUG
         if zBug { print("ImgCrtOp: Image debug description ", image.debugDescription)}
-        #endif
+#endif
         
         
         if let image = UIImage(data: data) {
             
-            #if DEBUG
+#if DEBUG
             if zBug { print("ImgCrtOp: Image from data ", image.debugDescription)}
-            #endif
+#endif
             
             myImage = Image.init(uiImage: image)
-                        
-            #if DEBUG
+            
+#if DEBUG
             if zBug { print("ImgCrtOp: Created Image with data, myImage is ", myImage.debugDescription)}
-            #endif
+#endif
             
         } else {
-            #if DEBUG
+#if DEBUG
             if zBug { print("ImgCrtOp: Can't create image")}
-            #endif
+#endif
         }
         
         if self.isCancelled { return }

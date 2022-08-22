@@ -43,9 +43,9 @@ class ImageOutputOperation: ImageXOperation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
+#if DEBUG
         if zBug { print("ImageOutputOperation Image debug description ", imagez.debugDescription)}
-        #endif
+#endif
         
         if isCancelled { return }
         completion(imagez)

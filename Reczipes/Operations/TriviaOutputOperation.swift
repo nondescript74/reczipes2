@@ -44,9 +44,9 @@ class TriviaOutputOperation: TriviaXOperation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
+#if DEBUG
         if zBug { print("TriviaCreateOperation Trivia debug description ", triviaz.debugDescription)}
-        #endif
+#endif
         
         if isCancelled { return }
         completion(triviaz)

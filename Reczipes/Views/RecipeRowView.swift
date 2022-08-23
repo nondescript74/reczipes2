@@ -20,41 +20,35 @@ struct RecipeRowView: View {
         self.cuisine = ""
         // check for empty
         if item.imageUrl == nil {
-            
 #if DEBUG
-            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
+            print("RecipeRowView: sectionItem.imageUrl is nil")
 #endif
-            
         } else {
             
 #if DEBUG
-            if zBug {
-                print("RecipeRowView: no cuisine available")
-                print("RecipeRowView: sectionItem.imageUrl available, going to get")}
+            print("RecipeRowView: no cuisine available")
+            print("RecipeRowView: sectionItem.imageUrl available, going to get")
 #endif
-            
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }
     
     init(sectionItem: SectionItem, cuisine: String) {
         self.item = sectionItem
-        self.cuisine = cuisine.lowercased()
+        self.cuisine = cuisine
         // check for empty
         if item.imageUrl == nil {
             
 #if DEBUG
-            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
+            print("RecipeRowView: sectionItem.imageUrl is nil")
 #endif
             
         } else {
             
 #if DEBUG
-            if zBug {
-                print("RecipeRowView: cuisine available: ", cuisine)
-                print("RecipeRowView: sectionItem.imageUrl available, going to get: ")}
+            print("RecipeRowView: cuisine available: ", cuisine)
+            print("RecipeRowView: sectionItem.imageUrl available, going to get: ")
 #endif
-            
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }

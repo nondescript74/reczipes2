@@ -16,7 +16,7 @@ struct MoveRecipeView: View {
     init(movingRecipe:SectionItem, moveFromBookSection:String) {
         self.myMovingRecipe = movingRecipe
         self.myMoveFromSection = moveFromBookSection
-        self.xectionFrom = 0
+//        self.xectionFrom = getBookSectionNames().firstIndex(of: moveFromBookSection)!
     }
     // MARK: - State
     @State private var xectionTo: Int = getBookSectionNames().count - 1
@@ -28,10 +28,10 @@ struct MoveRecipeView: View {
         case recipez = "Moving: "
         case mvfrom = "From"
         case mvto = "To"
-        case doit = "Do"
-        case doit2 = "It"
+        case doit = "Do It!"
+        case doit2 = ""
     }
-    private var xectionFrom: Int = 0
+//    private var xectionFrom: Int = 0
     fileprivate enum imagez: String {
         case snp = "square.and.pencil"
         case pencil = "pencil"
@@ -41,7 +41,7 @@ struct MoveRecipeView: View {
     }
     // MARK: - Methods
     private func moveRecipe() {
-        addedRecipes.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe, originalBookSection: getBookSectionNames()[xectionFrom], newBookSectionName: getBookSectionNames()[xectionFrom])
+        addedRecipes.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe, originalBookSection: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!], newBookSectionName: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!])
     }
     var body: some View {
         VStack {
@@ -51,7 +51,7 @@ struct MoveRecipeView: View {
                 .fontWeight(.medium)
             HStack {
                 Text(msgs.mvfrom.rawValue)
-                Text(getBookSectionNames()[xectionFrom])
+                Text(getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!])
                     .foregroundColor(.red)
                 Text(msgs.mvto.rawValue)
                 Picker("", selection: $xectionTo) { let zx = getBookSectionNames().count
@@ -64,10 +64,10 @@ struct MoveRecipeView: View {
                     self.moveRecipe()
                 }) {
                     // How the button looks like
-                    RoundButton3View(someTextTop: msgs.doit.rawValue, someTextBottom: msgs.doit2.rawValue, someImage: imagez.gc.rawValue, reversed: true)
+                    RoundButton3View(someTextTop: msgs.doit.rawValue, someTextBottom: msgs.doit2.rawValue, someImage: imagez.snp.rawValue, reversed: true)
                 }
             }
-        }
+        }.padding()
         
     }
 }

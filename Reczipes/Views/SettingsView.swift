@@ -37,6 +37,8 @@ struct SettingsView: View {
             
             NutritionHost()
             
+            ATestView()
+            
         }
         
     }

@@ -14,12 +14,12 @@ struct RecipeDetailView: View {
     fileprivate var zBug:Bool = true
 #endif
     // MARK: - Initializer
-    init(imageString: String, sectionItem: SectionItem) {
-        self.item = sectionItem
-        self.cuisine = ""
-        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
-        
-    }
+//    init(imageString: String, sectionItem: SectionItem) {
+//        self.item = sectionItem
+//        self.cuisine = ""
+//        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+//        
+//    }
     
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
         self.item = sectionItem
@@ -176,17 +176,17 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        self.showingMoveView.toggle()
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.move.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
-                    }.disabled(cuisine.isEmpty)
-                    Button(action: {
-                        // What to perform
                         self.createBookSection()
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
+                    }.disabled(cuisine.isEmpty)
+                    Button(action: {
+                        // What to perform
+                        self.showingMoveView.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.move.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
                     }.disabled(cuisine.isEmpty)
                     Button(action: {
                         // What to perform
@@ -269,7 +269,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem.example3)
+            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem.example3, cuisine: getBookSectionNames().last!)
                 .environmentObject(order)
         }
     }

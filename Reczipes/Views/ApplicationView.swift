@@ -43,7 +43,7 @@ struct ApplicationView: View {
     
     var body: some View {
         TabView {
-//            AuthView()
+//            ATestView()
 //                .tabItem{
 //                    Image(uiImage: wandNStarsImage)
 //                    Text(tabs.auth.rawValue)

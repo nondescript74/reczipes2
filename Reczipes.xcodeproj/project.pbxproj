@@ -82,6 +82,7 @@
 		F8304A8628B1688700867C6F /* NutritionHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A8328B1688700867C6F /* NutritionHost.swift */; };
 		F8304A8728B1688700867C6F /* NutritionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A8428B1688700867C6F /* NutritionEditor.swift */; };
 		F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A8128B1688700867C6F /* NutritionSummary.swift */; };
+		F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */; };
 		F86B63BE28AC39CA00CA4595 /* ExtractRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86B63BD28AC39CA00CA4595 /* ExtractRecipeView.swift */; };
 		F86EB12328B2710E0098DC75 /* MoveRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EB12228B2710E0098DC75 /* MoveRecipeView.swift */; };
 		F8966C1028987464002D6FCE /* ATestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8966C0F28987464002D6FCE /* ATestView.swift */; };
@@ -181,6 +182,7 @@
 		F8304A8228B1688700867C6F /* NutritionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionRowView.swift; sourceTree = "<group>"; };
 		F8304A8328B1688700867C6F /* NutritionHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionHost.swift; sourceTree = "<group>"; };
 		F8304A8428B1688700867C6F /* NutritionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionEditor.swift; sourceTree = "<group>"; };
+		F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOrExtractView.swift; sourceTree = "<group>"; };
 		F86B63BD28AC39CA00CA4595 /* ExtractRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractRecipeView.swift; sourceTree = "<group>"; };
 		F86EB12228B2710E0098DC75 /* MoveRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRecipeView.swift; sourceTree = "<group>"; };
 		F8966C0F28987464002D6FCE /* ATestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATestView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				F804499528A0644700F631C8 /* ApplicationView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				F8CE26D7289D8633003483DD /* FindRecipeView.swift */,
+				F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */,
 				F86B63BD28AC39CA00CA4595 /* ExtractRecipeView.swift */,
 				93AB40C426BECCF8005529AF /* MultiView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
@@ -480,6 +483,7 @@
 				F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */,
 				F8304A7328AD348500867C6F /* AuthView.swift in Sources */,
 				931164E52697836600099F8D /* AcceptView.swift in Sources */,
+				F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */,
 				93ACB2E226B9E8CD0010F71F /* ImageOutputOperation.swift in Sources */,
 				F8304A7828AEE9A200867C6F /* SettingsView.swift in Sources */,
 				934AC08B26D298D2007EBF20 /* ImageWithSectionItemView.swift in Sources */,

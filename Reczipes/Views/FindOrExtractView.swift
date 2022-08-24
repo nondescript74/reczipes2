@@ -74,6 +74,7 @@ struct FindOrExtractView: View {
     // MARK: - View Process
     var body: some View {
         NavigationView {
+            VStack {
                 VStack {
                     Text(msgs.fr.rawValue).font(.largeTitle).bold()
                     
@@ -94,42 +95,37 @@ struct FindOrExtractView: View {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)
                     }
+                }.padding()
+                Divider()
+                VStack {
+                    Text(msgs.er.rawValue).font(.largeTitle).bold()
                     
-                    VStack {
-                        Text(msgs.er.rawValue).font(.largeTitle).bold()
-                        Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
-                            ForEach(0..<zx, id: \.self) { index in
-                                Text("\(getBookSectionNames()[index])")
-                            }
-                        }
+                    HStack(alignment: .center) {
+                        TextField(msgs.entertext.rawValue, text: $urlString)
+                        Button(action: extractRecipe) {
+                            Text(msgs.extract.rawValue).font(.largeTitle).bold()
+                        }.padding(.trailing, 20)
                         
-                        HStack(alignment: .center) {
-                            TextField(msgs.entertext.rawValue, text: $urlString)
-                            Button(action: extractRecipe) {
-                                Text(msgs.extract.rawValue).font(.largeTitle).bold()
-                            }.padding(.trailing, 20)
-                            
-                        }
-                    }
-                    
-                    List   {
-                        if show == Selectors.names {
-                            ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                                RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
-                            }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-                        }
-                        if show == Selectors.random {
-                            ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                                RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
-                            }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-                        }
-                        if show == Selectors.extract {
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: getBookSectionNames()[xection])
-                        }
                     }
                 }.padding()
+                Divider()
+                List   {
+                    if show == Selectors.names {
+                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
+                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                    }
+                    if show == Selectors.random {
+                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
+                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                    }
+                    if show == Selectors.extract {
+                        RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: getBookSectionNames()[xection])
+                    }
+                }
+            }
             
-
         }
     }
 }

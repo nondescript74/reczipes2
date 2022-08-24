@@ -20,8 +20,9 @@ struct ApplicationView: View {
         case books = "Books"
         //        case web = "Search"
         //        case addEdit = "Find/Add"
-        case find = "Find"
-        case ext = "Extract"
+//        case find = "Find"
+//        case ext = "Extract"
+        case frextr = "Find/Extract"
         //        case tjc = "Trivia"
         case auth = "Sign In"
         //        case send = "Mail To"
@@ -56,7 +57,7 @@ struct ApplicationView: View {
             FindOrExtractView()
                 .tabItem {
                     Image(uiImage: scribblevariable!)
-                    Text(tabs.ext.rawValue)
+                    Text(tabs.frextr.rawValue)
                 }
             
             //            FindRecipeView()

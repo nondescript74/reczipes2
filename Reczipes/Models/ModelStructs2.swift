@@ -184,7 +184,7 @@ struct SectionItem: Codable, Equatable, Identifiable, Hashable {
     }
     
     static func == (lhs: SectionItem, rhs: SectionItem) -> Bool {
-        if lhs.id == rhs.id {
+        if lhs.name == rhs.name {
             return true
         } else {
             return false
@@ -192,7 +192,7 @@ struct SectionItem: Codable, Equatable, Identifiable, Hashable {
     }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(name)
     }
     
     static let example = SectionItem(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["V", "G"])

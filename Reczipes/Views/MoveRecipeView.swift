@@ -39,7 +39,9 @@ struct MoveRecipeView: View {
     }
     // MARK: - Methods
     private func moveRecipe() {
-        addedRecipes.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe, originalBookSection: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!], newBookSectionName: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!])
+        addedRecipes.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe,
+                                                         originalBookSectionName: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!],
+                                                         newBookSectionName: getBookSectionNames()[xectionTo])
     }
     var body: some View {
         VStack {
@@ -62,7 +64,10 @@ struct MoveRecipeView: View {
                     self.moveRecipe()
                 }) {
                     // How the button looks like
-                    RoundButton3View(someTextTop: msgs.doit.rawValue, someTextBottom: msgs.doit2.rawValue, someImage: imagez.snp.rawValue, reversed: true)
+                    RoundButton3View(someTextTop: msgs.doit.rawValue,
+                                     someTextBottom: msgs.doit2.rawValue,
+                                     someImage: imagez.snp.rawValue,
+                                     reversed: true)
                 }
             }
         }.padding()

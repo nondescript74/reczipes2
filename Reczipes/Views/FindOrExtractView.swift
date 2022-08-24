@@ -121,7 +121,7 @@ struct FindOrExtractView: View {
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.extract {
-                        RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: getBookSectionNames()[xection])
+                        RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: (extractedSRecipe.extractedSRecipe?.cuisines?.first ?? BookSection.example.name)! )
                     }
                 }
             }

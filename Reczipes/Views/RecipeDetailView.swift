@@ -209,21 +209,24 @@ struct RecipeDetailView: View {
                     
                     
                 }
-                
+                Divider()
                 if showingNotes == true && hasNotes() {
                     NotesView(recipeuuid: self.item.id.description)
                 }
+                Divider()
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id.description)
                 }
+                Divider()
                 if showingMoveView == true && cuisine != "" {
                    MoveRecipeView(movingRecipe: self.item, moveFromBookSection: self.cuisine)
                 }
+                Divider()
                 
                 VStack {
                     SafariView(url: URL(string: item.url)!)
                 }
-                Spacer()
+//                Spacer()
             }
             
             .sheet(isPresented: $addingImage) {

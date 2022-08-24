@@ -11,7 +11,7 @@ import MessageUI
 struct RecipeDetailView: View {
 #if DEBUG
     // MARK: - Local debug flag
-    fileprivate var zBug:Bool = true
+    fileprivate var zBug:Bool = false
 #endif
     // MARK: - Initializer
 //    init(imageString: String, sectionItem: SectionItem) {
@@ -116,23 +116,9 @@ struct RecipeDetailView: View {
         return !zmyImages.isEmpty
     }
     
-    fileprivate func createBookSection() {
+    fileprivate func saveBookSection() {
         
-        var myUUID = BookSection.example.id
-        var myBookSection = BookSection.example
-        for asection in addedRecipes.bookSections {
-            if asection.name.lowercased() == cuisine.lowercased() {
-                myUUID = asection.id
-                myBookSection = asection
-                
-#if DEBUG
-                if zBug {
-                    if myUUID == BookSection.example.id {
-                        print(msgs.RDV.rawValue + msgs.sectIsOther.rawValue)}
-                } 
-#endif  
-            }
-        }
+        let myBookSection = addedRecipes.getBookSectionWithName(name: cuisine)
         if addedRecipes.isRecipeAlreadyIn(newRecipe: item) {
             // nothing to do, already in
 #if DEBUG
@@ -142,10 +128,6 @@ struct RecipeDetailView: View {
 #endif
         } else {
             addedRecipes.changeBookSectionAddingRecipe(bookSection: myBookSection, recipeToAdd: item)
-//            addedRecipes.changeBookSection(bookSection: myBookSection,
-//                                           addingItemsFrom: BookSection(id: myUUID,
-//                                                                        name: cuisine,
-//                                                                        items: [item]))
             self.recipeSaved.toggle()
         }
     }
@@ -176,7 +158,7 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        self.createBookSection()
+                        self.saveBookSection()
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)

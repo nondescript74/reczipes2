@@ -34,14 +34,6 @@ struct AddNotesToRecipeView2: View {
     fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
     
-//    fileprivate func constructAllRecipes() -> [SectionItem]  {
-//        let newlyAddedRecipes = addedRecipes.getAllRecipes() // if any added
-//        let myPresetRecipes = getAllPresetRecipes()
-//        var combinedRecipes = myPresetRecipes
-//        combinedRecipes.append(contentsOf: newlyAddedRecipes)
-//        combinedRecipes = combinedRecipes.sorted(by: ({$0.name < $1.name}))
-//        return combinedRecipes
-//    }
     
     fileprivate func constructAllRecipes() -> [SectionItem] {
         return addedRecipes.getAllRecipes()
@@ -55,7 +47,6 @@ struct AddNotesToRecipeView2: View {
             return
         }
         
-//        let combinedRecipes = constructAllRecipes()
         let combinedRecipes = addedRecipes.getAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id.description
@@ -127,24 +118,12 @@ struct AddNotesToRecipeView2: View {
                         }
                         .labelsHidden()
                         .clipped()
-                        
-                        //                    Text("\(constructAllRecipes()[recipeSelected].name)" + msgs.selected.rawValue)
-                        //                        .foregroundColor(.black)
-                        //                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        //                        .padding()
-                        //
-                        //                    Text(msgs.initialNoteString.rawValue)
-                        //                        .foregroundColor(.red)
-                        //                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        //
+
                         TextEditor(text: $recipeNote)
                             //.foregroundColor(Color.blue)
                             .padding(10)
-                        //.font(Font.system(size: 15, weight: .medium, design: .serif))
-                        //.multilineTextAlignment(.leading)
                             .frame(height: proxy.size.height, alignment: .center)
                             .border(Color.black, width: 2)
-                        //.background(Color.gray)
                     }
                     
                     .alert(isPresented: $recipeNoteSaved)   {
@@ -153,12 +132,6 @@ struct AddNotesToRecipeView2: View {
                 }
             }
             .padding()
-            
-//            .navigationBarItems(
-//                trailing: Button(action: addRecipeNote) {
-//                    Text(msgs.buttonTitle.rawValue).fontWeight(.bold).font(Font.system(size: 20, weight: .medium, design: .rounded))
-//                }
-//            )
         }
         
     }

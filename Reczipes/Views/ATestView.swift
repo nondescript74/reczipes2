@@ -15,6 +15,12 @@ struct ATestView: View {
         
     }
     
+    private enum msgs:String {
+        case ddir = "Contents of Documents"
+        case rdir = "Contents of Reczipes"
+        case recz = "Reczipes"
+    }
+    
     @State var searchTerm: String = ""
     @State var urlString: String = ""
     
@@ -24,15 +30,28 @@ struct ATestView: View {
     private let fileIO = FileIO()
     
     var body: some View {
+//        VStack {
+//            HStack(alignment: .center ) {
+//                SearchBar(text: $searchTerm)
+//                Text("?").padding()
+//            }
         VStack {
-            HStack(alignment: .center ) {
-                SearchBar(text: $searchTerm)
-                Text("?").padding()
-            }
-            ForEach(fileIO.checkDocuDirContents(), id: \.self) { fname in
-                Text(fname.absoluteString)
+            Text(msgs.ddir.rawValue)
+            List {
+                ForEach(fileIO.checkDocuDirContents(), id: \.self) { fname in
+                    Text(fname.absoluteString)
+                }
             }
         }
+        VStack {
+            Text(msgs.rdir.rawValue)
+            List {
+                ForEach(fileIO.checkContentsOfDir(dirname: msgs.recz.rawValue), id: \.self) { fname in
+                    Text(fname.absoluteString)
+                }
+            }
+        }
+//        }
     }
 }
 

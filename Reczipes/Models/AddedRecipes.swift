@@ -10,8 +10,7 @@ import SwiftUI
 
 public class AddedRecipes: ObservableObject {
     // MARK: - Local Debug
-    var zBug:Bool = true
-    var zBug2:Bool = true
+    var zBug:Bool = false
     // MARK: - Initializer
     init() {
         let fileIO = FileIO()
@@ -20,7 +19,7 @@ public class AddedRecipes: ObservableObject {
         if userAddedBookSectionURLs.isEmpty {
             // create Reczipes folder in users documents
             _ = fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
-            if zBug || zBug2 {
+            if zBug  {
                 print(msgs.ar.rawValue + msgs.created.rawValue )
             }
         }
@@ -34,7 +33,7 @@ public class AddedRecipes: ObservableObject {
             if json != nil {
                 userAddedBookSections.append(json!)
 #if DEBUG
-                if zBug || zBug2 {
+                if zBug  {
                     print(msgs.ar.rawValue + msgs.loaded.rawValue + msgs.changed.rawValue + (json?.name ?? "none") )
                 }
 #endif
@@ -47,14 +46,16 @@ public class AddedRecipes: ObservableObject {
                 let index = totalShippedSectionsPlus.firstIndex(of: aUASection)
                 for auitem in aUASection.items {
                     if totalShippedSectionsPlus[index!].items.contains(auitem) {
-                        // nothing to do, recipe already exists in shipped
+                        // recipe already exists in shipped, replace with this
+                        totalShippedSectionsPlus[index!].items.remove(at: totalShippedSectionsPlus[index!].items.firstIndex(of: auitem)!)
                     } else {
-                        // add it to shipped
-                        totalShippedSectionsPlus[index!].items.append(auitem)
+                        
+                        
                     }
+                    totalShippedSectionsPlus[index!].items.append(auitem)
                 }
 #if DEBUG
-                if zBug || zBug2 {
+                if zBug  {
                     print(msgs.ar.rawValue + msgs.initAdded.rawValue )
                 }
 #endif
@@ -62,7 +63,7 @@ public class AddedRecipes: ObservableObject {
                 // add this one to total since total does not contain
                 totalShippedSectionsPlus.append(aUASection)
 #if DEBUG
-                if zBug || zBug2 {
+                if zBug  {
                     print(msgs.ar.rawValue + msgs.tSDoesNotHave.rawValue + msgs.added.rawValue )
                 }
 #endif
@@ -169,6 +170,16 @@ public class AddedRecipes: ObservableObject {
             
             return returningSectionItems
         }
+    }
+    
+    func getBookSectionWithName(name: String) -> BookSection {
+        for bookSection in bookSections {
+            if bookSection.name == name {
+                return bookSection
+            }
+        }
+        // none exists so must ensure clean create and id handling
+        return BookSection(id: UUID(), name: name, items: [])
     }
     
     func addBookSection(bookSection: BookSection) {

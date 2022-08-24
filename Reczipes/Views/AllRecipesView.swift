@@ -13,15 +13,10 @@ struct AllRecipesView: View {
     // MARK: - Properties
     fileprivate enum msgs: String {
         case arv = "All Recipes View"
-//        case recipesFile = "recipesShipped.json"
     }
     // MARK: - Methods
     fileprivate var myBook: [BookSection] {
         let addedSections = addedRecipes.bookSections.sorted(by: {$0.name < $1.name})  // anything in added Recipes
-//        var totalSections = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
-        // recipebook comes from embedded file shipped
-//        totalSections += addedSections
-//        return totalSections
         return addedSections
     }
     var body: some View {
@@ -33,7 +28,6 @@ struct AllRecipesView: View {
                     ForEach(myBook, id: \.self) { section in
                         Section(header: Text(section.name).padding()) {
                             ForEach(section.items) { item in
-//                                RecipeRowView(sectionItem: item)
                                 RecipeRowView(sectionItem: item, cuisine: section.name)
                                     .padding()
                             }

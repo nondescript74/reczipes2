@@ -12,7 +12,7 @@ import CoreData
 
 class FileIO: NSObject {
     // MARK: - Debug local
-    private var zBug:Bool = true
+    private var zBug:Bool = false
     // MARK: - Properties
     var fileManager: FileManager = FileManager.default
     fileprivate enum msgs:String {

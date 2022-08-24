@@ -42,7 +42,7 @@ struct ExtractRecipeView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader(content: { geometry in
+//            GeometryReader(content: { geometry in
                 VStack {
                     Text(msgs.er.rawValue).font(.largeTitle).bold()
                     Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
@@ -64,10 +64,9 @@ struct ExtractRecipeView: View {
                             RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: getBookSectionNames()[xection])
                         }
                     }
-                }
-                
-            })
-            .padding()
+                }.padding()
+//            })
+//            .padding()
         }
     }
 }

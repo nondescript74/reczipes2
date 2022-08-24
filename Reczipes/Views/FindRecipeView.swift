@@ -62,9 +62,10 @@ struct FindRecipeView: View {
     // MARK: - View Process
     var body: some View {
         NavigationView {
-            GeometryReader(content: { geometry in
+//            GeometryReader(content: { geometry in
                 VStack {
                     Text(msgs.fr.rawValue).font(.largeTitle).bold()
+                    
                     Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
                         ForEach(0..<zx, id: \.self) { index in
                             Text("\(getBookSectionNames()[index])")
@@ -73,13 +74,14 @@ struct FindRecipeView: View {
                     
                     HStack(alignment: .center) {
                         SearchBar(text: $searchTerm).padding(.trailing, 5)
+                        
                         Button(action: getSRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 20)
+                        
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)
-
                     }
                     
                     List   {
@@ -94,10 +96,10 @@ struct FindRecipeView: View {
                             }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                         }
                     }
-                }
+                }.padding()
                 
-            })
-            .padding()
+//            })
+//            .padding()
         }
     }
 }

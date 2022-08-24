@@ -9,14 +9,13 @@ import SwiftUI
 
 struct MoveRecipeView: View {
     // MARK: - Debug local
-    private var zBug:Bool = true
+    private var zBug:Bool = false
     // MARK: - Environment Objects
     @EnvironmentObject var addedRecipes: AddedRecipes
     // MARK: - Initializer
     init(movingRecipe:SectionItem, moveFromBookSection:String) {
         self.myMovingRecipe = movingRecipe
         self.myMoveFromSection = moveFromBookSection
-//        self.xectionFrom = getBookSectionNames().firstIndex(of: moveFromBookSection)!
     }
     // MARK: - State
     @State private var xectionTo: Int = getBookSectionNames().count - 1
@@ -31,7 +30,6 @@ struct MoveRecipeView: View {
         case doit = "Do It!"
         case doit2 = ""
     }
-//    private var xectionFrom: Int = 0
     fileprivate enum imagez: String {
         case snp = "square.and.pencil"
         case pencil = "pencil"

@@ -32,9 +32,9 @@ class ImageXOperation: Operation {
             .first as? ImageXOperationDataProvider {
             image = dataProvider.image
         }
-        #if DEBUG
+        
         print(image.debugDescription)
-        #endif
+        
         
         filterOutput = image
         return filterOutput

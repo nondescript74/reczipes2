@@ -22,7 +22,7 @@ struct NutritionEditor: View {
     }
 }
 
-#if DEBUG
+
 struct NutritionEditor_Previews: PreviewProvider {
     static var previews: some View {
         NutritionEditor(nutrition: .constant(.default))
@@ -32,4 +32,4 @@ struct NutritionEditor_Previews: PreviewProvider {
             //.environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }
-#endif
+

@@ -51,15 +51,15 @@ struct MailView: UIViewControllerRepresentable {
             }
             guard error == nil else {
                 self.result = .failure(error!)
-#if DEBUG
+
                 print(msgs.mv.rawValue + msgs.failedMC.rawValue)
-#endif
+
                 return
             }
             self.result = .success(result)
-#if DEBUG
+
                 print(msgs.mv.rawValue + msgs.success.rawValue)
-#endif
+
         }
     }
     
@@ -92,15 +92,15 @@ struct MailView: UIViewControllerRepresentable {
                 
                 let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)  // set of urls to files
                 let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
-#if DEBUG
+
                 print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(thisSetOfNotes.count)")
-#endif
+
                 
                 let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)  // set of urls to files
                 let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
-#if DEBUG
+
                 print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(thisSetOfImages.count)")
-#endif
+
                 
                 let encodedSectItem = try jSONEncode.encode(sectItem)
                 let encodedSectItemData = Data(encodedSectItem)
@@ -124,23 +124,23 @@ struct MailView: UIViewControllerRepresentable {
                 vc.setMessageBody(sectItem.url, isHTML: false)
                 vc.addAttachmentData(encodedSectionItemNotesImagesData, mimeType: msgs.json.rawValue, fileName: resultName)
                 
-#if DEBUG
+
                 print(msgs.mv.rawValue + msgs.mailwithattachmentscreated.rawValue)
-#endif
+
                 return vc
                 
             } catch {
-#if DEBUG
+
                 print(msgs.mv.rawValue + msgs.failedData.rawValue)
-#endif
+
                 fatalError()
             }
             
         } else {
             
-#if DEBUG
+
             print(msgs.mv.rawValue + msgs.noAddress.rawValue)
-#endif
+
             fatalError()
         }
         

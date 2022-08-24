@@ -75,10 +75,10 @@ struct MoveRecipeView: View {
     }
 }
 
-#if DEBUG
+
 struct MoveRecipeView_Previews: PreviewProvider {
     static var previews: some View {
         MoveRecipeView(movingRecipe: SectionItem.example3, moveFromBookSection: BookSection.example.name)
     }
 }
-#endif
+

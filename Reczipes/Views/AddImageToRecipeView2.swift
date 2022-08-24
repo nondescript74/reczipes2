@@ -89,39 +89,39 @@ struct AddImageToRecipeView2: View {
         let zImg = uiimage
         switch zImg.imageOrientation {
         case UIImage.Orientation.up:
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.up.rawValue)
-#endif
+
             let zCopy = zImg.rotate(radians:  .pi / 2)
             return zCopy!
         case UIImage.Orientation.down:
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.down.rawValue)
-#endif
+
             let zCopy = zImg.rotate(radians:  3 * .pi / 2)
             return zCopy!
         case UIImage.Orientation.left:
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.left.rawValue)
-#endif
+
             let zCopy = zImg.rotate(radians: .pi)
             return zCopy!
         case UIImage.Orientation.right:
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.right.rawValue)
-#endif
+
             let zCopy = zImg.rotate(radians: 0)
             return zCopy!
         default:
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.other.rawValue)
-#endif
+
             return zImg
         }
         //        if zImg.imageOrientation == UIImage.Orientation.up {
-        //            #if DEBUG
+        //            
         //            print(msgs.imagesview.rawValue + msgs.up.rawValue)
-        //            #endif
+        //            
         //            return zImg
         //        } else {
         //            UIGraphicsBeginImageContext(zImg.size)
@@ -135,9 +135,9 @@ struct AddImageToRecipeView2: View {
     fileprivate func addRecipeImage() {
         
         if image == nil {
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.noimageset.rawValue)
-#endif
+
             return
         }
         let combinedRecipes = constructAllRecipes()
@@ -155,9 +155,9 @@ struct AddImageToRecipeView2: View {
             let dateString = Date().description
             let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId.description + delimiterFileNames + dateString, fileType: msgs.json.rawValue, data: encodedImageData)
             if !resultz {
-#if DEBUG
+
                 print(msgs.AddImageToRecipeView2.rawValue + msgs.failed.rawValue)
-#endif
+
                 
                 recipeImageSaved = false
                 
@@ -165,17 +165,17 @@ struct AddImageToRecipeView2: View {
                 recipeNote = ""
                 recipeImageSaved = true
                 
-#if DEBUG
+
                 print(msgs.AddImageToRecipeView2.rawValue + msgs.success.rawValue)
-#endif
+
             }
         } catch {
             
             recipeImageSaved = false
             
-#if DEBUG
+
             print(msgs.AddImageToRecipeView2.rawValue + msgs.failed.rawValue)
-#endif
+
         }
         return
     }
@@ -270,11 +270,11 @@ struct AddImageToRecipeView2: View {
     }
 }
 
-#if DEBUG
+
 struct AddImageToRecipeView2_Previews: PreviewProvider {
     static var previews: some View {
         AddImageToRecipeView2()
     }
 }
-#endif
+
 

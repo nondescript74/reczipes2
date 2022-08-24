@@ -46,7 +46,7 @@ struct ListHeader: View {
     }
 }
 
-#if DEBUG
+
 // MARK: - Previews
 struct OrderIngredientsView_Previews: PreviewProvider {
     // MARK: Properties
@@ -58,4 +58,4 @@ struct OrderIngredientsView_Previews: PreviewProvider {
         
     }
 }
-#endif
+

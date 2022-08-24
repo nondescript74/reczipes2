@@ -9,10 +9,10 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
-#if DEBUG
+
     // MARK: - Local debug flag
     fileprivate var zBug:Bool = false
-#endif
+
     // MARK: - Initializer
 //    init(imageString: String, sectionItem: SectionItem) {
 //        self.item = sectionItem
@@ -103,7 +103,7 @@ struct RecipeDetailView: View {
         let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)
         let zmyImages = myImagesUrls.filter {$0.description.contains( item.id.description)}
         
-#if DEBUG
+
         if zBug {
             if !zmyImages.isEmpty {
                 print(msgs.recipeDetailView.rawValue + msgs.recipeImages.rawValue)
@@ -111,7 +111,7 @@ struct RecipeDetailView: View {
                 print(msgs.recipeDetailView.rawValue + msgs.recipeImagesNot.rawValue)
             }
         }
-#endif
+
         
         return !zmyImages.isEmpty
     }
@@ -121,11 +121,11 @@ struct RecipeDetailView: View {
         let myBookSection = addedRecipes.getBookSectionWithName(name: cuisine)
         if addedRecipes.isRecipeAlreadyIn(newRecipe: item) {
             // nothing to do, already in
-#if DEBUG
+
                 if zBug {
                     print(msgs.RDV.rawValue + msgs.exists.rawValue)
                 }
-#endif
+
         } else {
             addedRecipes.changeBookSectionAddingRecipe(bookSection: myBookSection, recipeToAdd: item)
             self.recipeSaved.toggle()
@@ -246,7 +246,7 @@ struct RecipeDetailView: View {
     }
 }
 
-#if DEBUG
+
 struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - Environment
     static let order = OrderingList()
@@ -259,4 +259,4 @@ struct RecipeDetailView_Previews: PreviewProvider {
         }
     }
 }
-#endif
+

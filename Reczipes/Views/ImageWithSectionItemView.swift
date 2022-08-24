@@ -15,9 +15,9 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
     init(extendedIngredient: ExtendedIngredient) {
         self.item = extendedIngredient
         
-        #if DEBUG
+        
         print(extendedIngredient.name ?? "No Name??")
-        #endif
+        
         
         anImage.getImageFromUrl(urlString: extendedIngredient.image ?? "Default Image", type: WebQueryRecipes.callerId.webimage)
     }
@@ -31,7 +31,7 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
     }
 }
 
-#if DEBUG
+
 struct ImageWithSectionItemView_Previews: PreviewProvider {
     static let order = OrderingList()
     static var previews: some View {
@@ -42,4 +42,4 @@ struct ImageWithSectionItemView_Previews: PreviewProvider {
         }
     }
 }
-#endif
+

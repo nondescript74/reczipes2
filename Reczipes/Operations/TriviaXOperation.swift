@@ -31,9 +31,9 @@ class TriviaXOperation: Operation {
             .first as? TriviaXOperationDataProvider {
             trivia = dataProvider.trivia
         }
-        #if DEBUG
+        
         print(trivia.debugDescription)
-        #endif
+        
         
         filterOutput = trivia
         return filterOutput

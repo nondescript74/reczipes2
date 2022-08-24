@@ -50,7 +50,7 @@ struct ProfileHost: View {
     }
 }
 
-#if DEBUG
+
 struct ProfileHost_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHost()
@@ -58,4 +58,4 @@ struct ProfileHost_Previews: PreviewProvider {
 //            .environment(\.managedObjectContext)
     }
 }
-#endif
+

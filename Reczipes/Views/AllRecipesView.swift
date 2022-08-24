@@ -41,7 +41,7 @@ struct AllRecipesView: View {
     
 }
 
-#if DEBUG
+
 struct AllRecipesView_Previews: PreviewProvider {
     static let order = OrderingList()
     static let addedRecipes = AddedRecipes()
@@ -54,4 +54,4 @@ struct AllRecipesView_Previews: PreviewProvider {
         }
     }
 }
-#endif
+

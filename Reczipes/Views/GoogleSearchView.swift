@@ -54,7 +54,7 @@ struct GoogleSearchView: View  {
 
 
 
-#if DEBUG
+
 // MARK: - Previews
 struct GoogleSearchView_Previews: PreviewProvider {
     
@@ -69,4 +69,4 @@ struct GoogleSearchView_Previews: PreviewProvider {
         }
     }
 }
-#endif
+

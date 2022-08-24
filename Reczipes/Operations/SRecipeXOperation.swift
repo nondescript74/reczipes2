@@ -31,9 +31,9 @@ class SRecipeXOperation: Operation {
             .first as? SRecipeXOperationDataProvider {
             srecipe = dataProvider.srecipe
         }
-        #if DEBUG
+        
         print(srecipe.debugDescription)
-        #endif
+        
         
         filterOutput = srecipe
         return filterOutput

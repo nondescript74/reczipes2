@@ -110,11 +110,11 @@ struct MultiView: View {
     }
 }
 
-#if DEBUG
+
 struct MultiView_Previews: PreviewProvider {
     static var previews: some View {
         MultiView(show: .notyet)
             .previewDevice("iPhone Xr")
     }
 }
-#endif
+

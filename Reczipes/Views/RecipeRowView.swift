@@ -20,15 +20,15 @@ struct RecipeRowView: View {
         self.cuisine = ""
         // check for empty
         if item.imageUrl == nil {
-#if DEBUG
-            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
-#endif
+
+//            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
+
         } else {
             
-#if DEBUG
-            if zBug {print("RecipeRowView: no cuisine available")}
-            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get")}
-#endif
+
+//            if zBug {print("RecipeRowView: no cuisine available")}
+//            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get")}
+
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }
@@ -39,16 +39,16 @@ struct RecipeRowView: View {
         // check for empty
         if item.imageUrl == nil {
             
-#if DEBUG
-            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
-#endif
+
+//            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
+
             
         } else {
             
-#if DEBUG
-            if zBug {print("RecipeRowView: cuisine available: ", cuisine)}
-            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get: ")}
-#endif
+//
+//            if zBug {print("RecipeRowView: cuisine available: ", cuisine)}
+//            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get: ")}
+
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }
@@ -94,7 +94,7 @@ struct RecipeRowView: View {
     }
 }
 
-#if DEBUG
+
 struct RecipeRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
@@ -103,5 +103,5 @@ struct RecipeRowView_Previews: PreviewProvider {
         }.previewDevice("iPhone Xr")
     }
 }
-#endif
+
 

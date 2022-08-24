@@ -58,9 +58,9 @@ class SRecipeGroupCreateOperation: Operation {
             print("Error took place\(error.localizedDescription).")
         }
         
-        #if DEBUG
+        
         if zBug { print("SRecipeGroupCreateOperation created an array of SRecipes", mySRecipes!.count) }
-        #endif  
+          
         
         if self.isCancelled { return }
         completion?(mySRecipes)

@@ -49,10 +49,10 @@ struct NutritionSummary: View {
     }
 }
 
-#if DEBUG
+
 struct NutritionSummary_Previews: PreviewProvider {
     static var previews: some View {
         NutritionSummary(profile: Profile.default)
     }
 }
-#endif
+

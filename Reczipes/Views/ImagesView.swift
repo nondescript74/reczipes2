@@ -39,15 +39,15 @@ struct ImagesView: View {
                 myImagesConstructed.append(imagez)
             } catch {
                 
-                #if DEBUG
+                
                 print(msgs.imagesview.rawValue + msgs.cantdecodeimage.rawValue)
-                #endif
+                
             }
         }
         
-        #if DEBUG
+        
         print(msgs.imagesview.rawValue + msgs.numberofimages.rawValue + "\(myImagesConstructed.count)")
-        #endif
+        
         
         return myImagesConstructed
     }
@@ -56,35 +56,35 @@ struct ImagesView: View {
         let zImg = UIImage(data: data)!
         switch zImg.imageOrientation {
         case UIImage.Orientation.up:
-            #if DEBUG
+            
             print(msgs.imagesview.rawValue + msgs.up.rawValue)
-            #endif
+            
             return zImg
         case UIImage.Orientation.down:
-            #if DEBUG
+            
             print(msgs.imagesview.rawValue + msgs.down.rawValue)
-            #endif
+            
             return zImg
         case UIImage.Orientation.left:
-            #if DEBUG
+            
             print(msgs.imagesview.rawValue + msgs.left.rawValue)
-            #endif
+            
             return zImg
         case UIImage.Orientation.right:
-            #if DEBUG
+            
             print(msgs.imagesview.rawValue + msgs.right.rawValue)
-            #endif
+            
             return zImg
         default:
-            #if DEBUG
+            
             print(msgs.imagesview.rawValue + msgs.other.rawValue)
-            #endif
+            
             return zImg
         }
 //        if zImg.imageOrientation == UIImage.Orientation.up {
-//            #if DEBUG
+//            
 //            print(msgs.imagesview.rawValue + msgs.up.rawValue)
-//            #endif
+//            
 //            return zImg
 //        } else {
 //            UIGraphicsBeginImageContext(zImg.size)
@@ -109,10 +109,10 @@ struct ImagesView: View {
     }
 }
 
-#if DEBUG
+
 struct ImagesView_Previews: PreviewProvider {
     static var previews: some View {
         ImagesView(recipeuuid: "9926BA12-55C3-4B26-800B-B68AA8D80474")
     }
 }
-#endif
+

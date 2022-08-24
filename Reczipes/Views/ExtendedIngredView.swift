@@ -104,7 +104,7 @@ struct MeasuresView: View {
     }
 }
 
-#if DEBUG
+
 struct MeasuresView_Previews: PreviewProvider {
     static let myExtendedIngredient: ExtendedIngredient = ExtendedIngredient.extendedIngredientExample
     static var previews: some View {
@@ -115,4 +115,4 @@ struct MeasuresView_Previews: PreviewProvider {
         }
     }
 }
-#endif
+

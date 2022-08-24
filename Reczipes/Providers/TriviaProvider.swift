@@ -32,9 +32,9 @@ public class TriviaProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        #if DEBUG
+        
         if zBug { print("OperationQueue for TriviaProvider is launched")}
-        #endif
+        
     }
     
     func cancel() {

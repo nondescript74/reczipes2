@@ -33,9 +33,9 @@ struct NotesView: View {
                 myNotesConstructed.append(note)
             } catch {
                 
-                #if DEBUG
+                
                 print(msgs.notesview.rawValue + msgs.cantdecodenote.rawValue)
-                #endif
+                
             }
         }
         
@@ -43,9 +43,9 @@ struct NotesView: View {
         let savedNotes = nmyNotes.filter { $0.recipeuuid.description == myRecipeUUID.description}
         myNotesConstructed.append(contentsOf: savedNotes)
         
-        #if DEBUG
+        
         print(msgs.notesview.rawValue + msgs.numberofnotes.rawValue + "\(myNotesConstructed.count)")
-        #endif
+        
         
         return myNotesConstructed
     }
@@ -60,11 +60,11 @@ struct NotesView: View {
 }
 
 
-#if DEBUG
+
 struct NotesView_Previews: PreviewProvider {
     static var previews: some View {
         NotesView(recipeuuid: Note.example1.recipeuuid)
     }
 }
-#endif
+
 

@@ -50,28 +50,28 @@ class JokeCreateOperation: Operation {
         
         guard myData != nil else { return }
         
-        #if DEBUG
+        
         if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription) }
-        #endif
+        
         
         if self.isCancelled { return }
         
         do {
             let joke = try JSONDecoder().decode(Joke.self, from: myData!)
             myJoke = joke
-            #if DEBUG
+            
             if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.joke.rawValue, joke) }
-            #endif
+            
         } catch {
-            #if DEBUG
+            
             if zBug { print("Error took place\(error.localizedDescription).") }
-            #endif
+            
             fatalError(msgs.JokeCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
-        #if DEBUG
+        
         if zBug { print(msgs.success.rawValue, myJoke.debugDescription)}
-        #endif
+        
         
         if self.isCancelled { return }
         completion?(myJoke)

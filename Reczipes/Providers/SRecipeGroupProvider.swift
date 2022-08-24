@@ -30,9 +30,9 @@ public class SRecipeGroupProvider {
         recipeGroupOut.addDependency(recipeGroupCreate)
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
-        #if DEBUG
+        
         if zBug { print("OperationQueue for SRecipeGroupProvider is launched")}
-        #endif
+        
     }
     
     func cancel() {

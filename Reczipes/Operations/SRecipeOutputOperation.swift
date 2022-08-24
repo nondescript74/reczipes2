@@ -44,9 +44,9 @@ class SRecipeOutputOperation: SRecipeXOperation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
+        
         if zBug { print("SRecipeCreateOperation SRecipe debug description ", srecipez.debugDescription) }
-        #endif
+        
         
         if isCancelled { return }
         completion(srecipez)

@@ -181,9 +181,9 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
         
-#if DEBUG
+
         if zBug {print(url.absoluteString)}
-#endif
+
         
         switch aswitch {
         case myGets.FindImage.rawValue:
@@ -192,9 +192,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.anImage = myImage
                         
-#if DEBUG
+
                         if self.zBug { print(messagesDebug.foundimage.rawValue)}
-#endif
+
                     }
                 }
             }
@@ -209,9 +209,9 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
         
-#if DEBUG
+
         if zBug {print(url.absoluteString)}
-#endif
+
         
         switch aswitch {
             
@@ -221,9 +221,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async { [self] in
                         self.recipeInfo = recipeinfo!
                         
-#if DEBUG
+
                         if zBug {print(messagesDebug.foundsrecipe.rawValue)}
-#endif
+
                     }
                 }
             }
@@ -234,9 +234,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async { [self] in
                         self.sRecipeGroup = srecipes!
                         
-#if DEBUG
+
                         print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? self.defaultRequiredCount)
-#endif
+
                     }
                 }
             }
@@ -247,9 +247,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.sRecipeGroup = srecipes!
                         
-#if DEBUG
+
                         if self.zBug {print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? self.defaultRequiredCount)}
-#endif
+
                     }
                 }
             }
@@ -260,9 +260,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.extractedSRecipe = srecipe!
                         
-#if DEBUG
+
                         if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
-#endif
+
                     }
                 }
             }
@@ -273,9 +273,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.aTrivia = trivia!
                         
-#if DEBUG
+
                         if self.zBug {print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)}
-#endif
+
                     }
                 }
             }
@@ -286,9 +286,9 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.joke = joke!
                         
-#if DEBUG
+
                         if self.zBug {print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)}
-#endif
+
                     }
                 }
             }

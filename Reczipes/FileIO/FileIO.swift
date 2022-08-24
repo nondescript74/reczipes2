@@ -56,9 +56,9 @@ class FileIO: NSObject {
             do {
                 let fileURLs = try fileManager.contentsOfDirectory(at: myDocuDirUrl, includingPropertiesForKeys: nil)
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.docudir.rawValue + fileURLs.debugDescription, fileURLs.count.description)}
-#endif
+
                 
                 return fileURLs
             } catch {
@@ -78,17 +78,17 @@ class FileIO: NSObject {
             myDocumentsUrl.appendPathComponent(dirname, isDirectory: true)
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.foldercontents.rawValue + msgs.xcassets.rawValue + contents.count.description)}
-#endif
+
             
             return contents
             
         } catch {
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.foldercontents.rawValue + msgs.cannotFindFolder.rawValue)}
-#endif
+
             return []
         }
     }
@@ -112,9 +112,9 @@ class FileIO: NSObject {
             myxcassetsUrl.appendPathComponent("Assets.xcassets", isDirectory: true)
             let contents = try fileManager.contentsOfDirectory(at: myxcassetsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.foldercontents.rawValue + msgs.xcassets.rawValue + contents.count.description)}
-#endif
+
             
             return contents
             
@@ -133,9 +133,9 @@ class FileIO: NSObject {
             
             try data.write(to: myDocumentsUrl.appendingPathComponent(fileNameToSave + delimiterFiletype + fileType))
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.success.rawValue, myDocumentsUrl.debugDescription)}
-#endif
+
             
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
@@ -159,9 +159,9 @@ class FileIO: NSObject {
             
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.success.rawValue, myDocumentsUrl.debugDescription)}
-#endif
+
             
             if contents.count >= 0  {
                 return contents
@@ -187,28 +187,28 @@ class FileIO: NSObject {
             
             myReturnFilesUrls = contents
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + " " + myReturnFilesUrls.count.description)}
-#endif
+
             
         } catch {
             switch myReturnFilesUrls.count {
                 //            case 0:
-                //                #if DEBUG
+                //                
                 //                if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + msgs.empty.rawValue)
-                //                #endif
+                //                
             default:
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.cannotFindFolder.rawValue)}
-#endif
+
                 break
             }
             
         }
         
-#if DEBUG
+
         if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + msgs.count.rawValue + myReturnFilesUrls.count.description)}
-#endif
+
         return myReturnFilesUrls  // can be empty
     }
     
@@ -222,24 +222,24 @@ class FileIO: NSObject {
             myDocumentsUrl.appendPathComponent(folderName)
             let tempz = myDocumentsUrl.appendingPathComponent(fileNameToSave + delimiterFiletype + fileType)
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.tempz.rawValue + tempz.absoluteString)}
-#endif
+
             
             let resultz = createRecipeFolders(folderName: folderName)
             
             switch resultz {
             case true:
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.createdRecipeFolder.rawValue)}
-#endif
+
                 
             case false:
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.fail.rawValue)}
-#endif
+
                 
                 return resultz
             }
@@ -249,23 +249,23 @@ class FileIO: NSObject {
             
             if contents.count > 0  {
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.createdRecipeFolder.rawValue + msgs.write.rawValue + msgs.success.rawValue)}
-#endif
+
                 
                 return true
             } else {
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.write.rawValue + msgs.note.rawValue + msgs.fail.rawValue)}
-#endif
+
                 
                 return false
             }
         } catch {
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.wtf.rawValue)}
-#endif
+
             return false
         }
     }
@@ -279,16 +279,16 @@ class FileIO: NSObject {
             myDocumentsUrl.appendPathComponent(recipeFolder)
             let contentsRFD = try FileManager.default.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue, contentsRFD.count)}
-#endif
+
             
             return contentsRFD
         } catch {
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.checkContentsRecipeFolder.rawValue + recipeFolder + " " + msgs.cannotFindFolder.rawValue)}
-#endif
+
             return []
         }
     }
@@ -314,9 +314,9 @@ class FileIO: NSObject {
             myDocumentsUrl.appendPathComponent(folderName)
             try FileManager.default.createDirectory(at: myDocumentsUrl, withIntermediateDirectories: true)
             
-#if DEBUG
+
             if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue + msgs.success.rawValue)}  // continue without save
-#endif
+
             
             return true
         } catch {
@@ -330,16 +330,16 @@ class FileIO: NSObject {
                 
                 _ = try FileManager.default.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: nil)
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue)}
-#endif
+
                 
                 return true
             } catch {
                 
-#if DEBUG
+
                 if zBug { print(msgs.fileIO.rawValue + msgs.createdRecipeFolder.rawValue + msgs.fail.rawValue)}
-#endif
+
                 
                 return false
             }
@@ -353,9 +353,9 @@ class FileIO: NSObject {
                 do {
                     try fileManager.removeItem(at: aUrl)
                 } catch {
-#if DEBUG
+
                     if zBug { print(msgs.fileIO.rawValue + " Failed remove of aUrl in recipeFolder")}
-#endif
+
                 }
             }
         }

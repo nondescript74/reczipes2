@@ -47,10 +47,10 @@ struct ProfileSummary: View {
     }
 }
 
-#if DEBUG
+
 struct ProfileSummary_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSummary(profile: Profile.default)
     }
 }
-#endif
+

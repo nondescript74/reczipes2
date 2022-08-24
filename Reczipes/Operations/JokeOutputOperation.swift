@@ -42,9 +42,9 @@ class JokeOutputOperation: JokeXOperation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
+        
         print("JokeCreateOperation Joke debug description ", jokez.debugDescription)
-        #endif
+        
         
         if isCancelled { return }
         completion(jokez)

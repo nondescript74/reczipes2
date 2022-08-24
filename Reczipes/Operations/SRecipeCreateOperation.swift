@@ -50,28 +50,28 @@ class SRecipeCreateOperation: Operation {
         
         guard myData != nil else { return }
         
-        #if DEBUG
+        
         if zBug { print(msgs.SRecipeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)}
-        #endif
+        
         
         if self.isCancelled { return }
         
         do {
             let recipe = try JSONDecoder().decode(SRecipe.self, from: myData!)
             myRecipe = recipe
-            #if DEBUG
+            
             if zBug { print(msgs.SRecipeCreateOperation.rawValue + msgs.recipe.rawValue, recipe)}
-            #endif
+            
         } catch {
-            #if DEBUG
+            
             if zBug { print("Error took place\(error.localizedDescription).") }
-            #endif
+            
             fatalError(msgs.SRecipeCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
-        #if DEBUG
+        
         if zBug { print(msgs.success.rawValue, myRecipe.debugDescription) }
-        #endif
+        
         
         if self.isCancelled { return }
         completion?(myRecipe)

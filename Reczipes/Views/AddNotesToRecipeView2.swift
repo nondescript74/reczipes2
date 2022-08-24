@@ -41,9 +41,9 @@ struct AddNotesToRecipeView2: View {
     
     fileprivate func addRecipeNote() {
         if recipeNote == ""  {
-#if DEBUG
+
             print(msgs.AddNotesToRecipeView2.rawValue + msgs.noteWithoutText.rawValue)
-#endif
+
             return
         }
         
@@ -62,23 +62,23 @@ struct AddNotesToRecipeView2: View {
             if !resultz {
                 recipeNoteSaved = false
                 
-#if DEBUG
+
                 print(msgs.AddNotesToRecipeView2.rawValue + msgs.failed.rawValue)
-#endif
+
                 
             } else {
                 recipeNote = ""
                 recipeNoteSaved = true
-#if DEBUG
+
                 print(msgs.AddNotesToRecipeView2.rawValue + msgs.success.rawValue)
-#endif
+
             }
         } catch {
             recipeNoteSaved = false
             
-#if DEBUG
+
             print(msgs.AddNotesToRecipeView2.rawValue + msgs.failed.rawValue)
-#endif
+
         }
         return
     }
@@ -138,12 +138,12 @@ struct AddNotesToRecipeView2: View {
 }
 
 
-#if DEBUG
+
 struct AddNotesToRecipeView2_Previews: PreviewProvider {
     static var previews: some View {
         AddNotesToRecipeView2(recipeSelected: 0)
     }
 }
-#endif
+
 
 

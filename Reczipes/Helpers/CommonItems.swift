@@ -109,9 +109,9 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
 func getBookSectionsInFile(filename: String) -> [BookSection] {
     let bookSections1 = Bundle.main.decode([BookSection].self, from: filename + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
     
-#if DEBUG
+
     print(msgs.returningbooksectionssf.rawValue + bookSections1.count.description)
-#endif
+
     
     return bookSections1
 }
@@ -124,9 +124,9 @@ func getBookSectionsInFile(filename: String) -> [BookSection] {
 //    }
 //
 //    
-//#if DEBUG
+//
 //    print(msgs.returningpresetrecipes.rawValue + myReturningRecipes.count.description)
-//#endif
+//
 //    return myReturningRecipes
 //}
 
@@ -140,9 +140,9 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
                             photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
                             restrictions: constructRestrictions(srecipe: srecipe))
     
-#if DEBUG
+
     print(msgs.csrtsi.rawValue + item.name)
-#endif
+
     return item
 }
 

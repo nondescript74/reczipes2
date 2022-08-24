@@ -31,9 +31,9 @@ class JokeXOperation: Operation {
             .first as? JokeXOperationDataProvider {
             joke = dataProvider.joke
         }
-        #if DEBUG
+        
         print(joke.debugDescription)
-        #endif
+        
         
         filterOutput = joke
         return filterOutput

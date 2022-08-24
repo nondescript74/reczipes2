@@ -43,9 +43,9 @@ class SRecipeGroupOutputOperation: SRecipeGroupXOperation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
+        
         if zBug { print("SRecipeGroupOutputOperation srecipe ", srecipez.debugDescription) }
-        #endif
+        
         
         if isCancelled { return }
         completion(srecipez)

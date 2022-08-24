@@ -32,9 +32,9 @@ public class ImageProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        #if DEBUG
+        
         if zBug { print("OperationQueue for ImageProvider is launched")}
-        #endif
+        
     }
     
     func cancel() {

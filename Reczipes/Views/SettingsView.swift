@@ -32,12 +32,13 @@ struct SettingsView: View {
             Text(msgs.sv.rawValue).font(.largeTitle).bold()
             Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
             Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
+            Divider()
             
-            ProfileHost().padding()
-            NutritionHost().padding()
-            ATestView().padding()
+//            ProfileHost().padding()
+//            NutritionHost().padding()
+            FilesDisplayView()
         }
-            }
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {

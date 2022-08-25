@@ -22,6 +22,10 @@ struct AddImageToRecipeView2: View {
     @State fileprivate var image:UIImage?
     @State fileprivate var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
+    // MARK: - Initializer
+    init() {
+        
+    }
     // MARK: - Properties
     fileprivate enum msgs: String {
         case AddImageToRecipeView2, AIRV = "AddImageToRecipeView2: "
@@ -47,12 +51,16 @@ struct AddImageToRecipeView2: View {
         case other = "Not LRUDown"
     }
     
-    
     fileprivate let fileIO = FileIO()
     fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
     fileprivate func constructAllRecipes() -> [SectionItem] {
-        return addedRecipes.getAllRecipes()
+        let shippedBookSections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json")
+        var recipesShipped:[SectionItem] = []
+        for aBS in shippedBookSections {
+            recipesShipped += aBS.items
+        }
+        return addedRecipes.getAllRecipes() + recipesShipped
     }
     var actionSheet: ActionSheet {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
@@ -140,7 +148,7 @@ struct AddImageToRecipeView2: View {
 
             return
         }
-        let combinedRecipes = constructAllRecipes()
+        let combinedRecipes = self.constructAllRecipes()
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id.description

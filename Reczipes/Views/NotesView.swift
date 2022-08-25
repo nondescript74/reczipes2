@@ -24,7 +24,7 @@ struct NotesView: View {
     // MARK: - Methods
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
-        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + "/" + recipeNotesFolderName)
+        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName:recipeNotesFolderName)
         let zmyNotesUrls = myNotesUrls.filter {$0.description.contains(myRecipeUUID.description)}
         for aUrl in zmyNotesUrls {
             let noteData = fileIO.getFileDataAtUrl(url: aUrl)

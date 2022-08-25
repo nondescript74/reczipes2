@@ -12,7 +12,7 @@ struct ProfileEditor: View {
     // MARK: - Binding
     @Binding var profile: Profile
     // MARK: - Environment Variables
-    @Environment(\.managedObjectContext) var managedObjectContext
+//    @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var userData: UserData
     // MARK: - State
     @State fileprivate var showingNutrition = false
@@ -41,19 +41,19 @@ struct ProfileEditor: View {
             
             Toggle(isOn: $profile.prefersNotifications) {
                 Text(msgs.enablNotif.rawValue)
-            }.disabled(self.prefersNotification == false)
+            } //.disabled(self.prefersNotification == false)
             
             Toggle(isOn: $profile.prefersNutritionInclusion) {
                 Text(msgs.enablNutr.rawValue)
-            }.disabled(self.showingNutrition == false)
+            } //.disabled(self.showingNutrition == false)
             
             Toggle(isOn: $profile.prefersVitaminInclusion) {
                 Text(msgs.enablVitInSearch.rawValue)
-            }.disabled(self.showingVitamins == false)
+            } //.disabled(self.showingVitamins == false)
             
             Toggle(isOn: $profile.loadNewRecipes) {
                 Text(msgs.loadNewRecip.rawValue)
-            }.disabled(self.loadNewRecipes == false)
+            } //.disabled(self.loadNewRecipes == false)
             
             VStack(alignment: .leading, spacing: 20) {
                 Text(msgs.seasPhoto.rawValue).bold()

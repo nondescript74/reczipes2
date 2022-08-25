@@ -181,6 +181,7 @@ class FileIO: NSObject {
                                                      in: .userDomainMask,
                                                      appropriateFor: nil,
                                                      create: true)
+            myDocumentsUrl.appendPathComponent(recipesName)
             myDocumentsUrl.appendPathComponent(folderName)
             
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
@@ -192,18 +193,8 @@ class FileIO: NSObject {
 
             
         } catch {
-            switch myReturnFilesUrls.count {
-                //            case 0:
-                //                
-                //                if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.foldercontents.rawValue + msgs.empty.rawValue)
-                //                
-            default:
+            if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.cannotFindFolder.rawValue)}
 
-                if zBug { print(msgs.fileIO.rawValue + msgs.read.rawValue + msgs.cannotFindFolder.rawValue)}
-
-                break
-            }
-            
         }
         
 
@@ -219,6 +210,7 @@ class FileIO: NSObject {
                                                      in: .userDomainMask,
                                                      appropriateFor: nil,
                                                      create: true)
+            myDocumentsUrl.appendPathComponent(recipesName)
             myDocumentsUrl.appendPathComponent(folderName)
             let tempz = myDocumentsUrl.appendingPathComponent(fileNameToSave + delimiterFiletype + fileType)
             
@@ -230,17 +222,9 @@ class FileIO: NSObject {
             
             switch resultz {
             case true:
-                
-
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.createdRecipeFolder.rawValue)}
-
-                
             case false:
-                
-
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.fail.rawValue)}
-
-                
                 return resultz
             }
             
@@ -248,24 +232,14 @@ class FileIO: NSObject {
             let contents = try fileManager.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             
             if contents.count > 0  {
-                
-
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.createdRecipeFolder.rawValue + msgs.write.rawValue + msgs.success.rawValue)}
-
-                
                 return true
             } else {
-                
-
                 if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.write.rawValue + msgs.note.rawValue + msgs.fail.rawValue)}
-
-                
                 return false
             }
         } catch {
-
             if zBug { print(msgs.fileIO.rawValue + msgs.write.rawValue + msgs.cannotCreateRecipeFolder.rawValue + msgs.wtf.rawValue)}
-
             return false
         }
     }
@@ -311,12 +285,16 @@ class FileIO: NSObject {
                                                      in: .userDomainMask,
                                                      appropriateFor: nil,
                                                      create: true)
+            if folderName != recipesName {
+                myDocumentsUrl.appendPathComponent(recipesName)
+            }
+            
             myDocumentsUrl.appendPathComponent(folderName)
+            
             try FileManager.default.createDirectory(at: myDocumentsUrl, withIntermediateDirectories: true)
             
 
-            if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue + msgs.success.rawValue)}  // continue without save
-
+            if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue + msgs.success.rawValue)}
             
             return true
         } catch {
@@ -326,22 +304,19 @@ class FileIO: NSObject {
                                                          in: .userDomainMask,
                                                          appropriateFor: nil,
                                                          create: true)
+                if folderName != recipesName {
+                    myDocumentsUrl.appendPathComponent(recipesName)
+                }
                 myDocumentsUrl.appendPathComponent(folderName)
                 
                 _ = try FileManager.default.contentsOfDirectory(at: myDocumentsUrl, includingPropertiesForKeys: nil)
-                
-
+                // folder exists
                 if zBug { print(msgs.fileIO.rawValue + msgs.recipeFolderExists.rawValue)}
-
-                
-                return true
+                    return true
             } catch {
-                
-
+                // could not create folder
                 if zBug { print(msgs.fileIO.rawValue + msgs.createdRecipeFolder.rawValue + msgs.fail.rawValue)}
-
-                
-                return false
+                    fatalError("Could not create the folder")
             }
         }
     }

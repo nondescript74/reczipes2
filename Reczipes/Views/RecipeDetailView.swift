@@ -230,7 +230,7 @@ struct RecipeDetailView: View {
             }
             
             .sheet(isPresented: $addingImage) {
-                AddImageToRecipeView2()
+                AddImageAndNoteView()
             }
             .sheet(isPresented: $addingNote) {
                 AddNotesToRecipeView2()

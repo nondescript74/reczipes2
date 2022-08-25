@@ -8,11 +8,230 @@
 import SwiftUI
 
 struct AddImageAndNoteView: View {
+    // MARK: - Initializer
+    // MARK: EnvironmentObject
+    @EnvironmentObject var addedRecipes: AddedRecipes
+    // MARK: - State
+    @State fileprivate var recipeSelected: Int = 0
+    @State fileprivate var recipeNote: String = ""
+    @State fileprivate var showSheet: Bool = false
+    @State fileprivate var showImagePicker: Bool = false
+    @State fileprivate var recipeImageSaved:Bool = false
+    @State fileprivate var image:UIImage?
+    @State fileprivate var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
+    // MARK: - Properties
+    fileprivate enum msgs: String {
+        case aianv = "Add Image And/Or Note"
+        case recipePickRequestString = "Pick a recipe below ..."
+        case buttonTitle = "✚ Image"
+        case selected = " Selected"
+        case picker = "Recipes"
+        case failed = "Image save failed"
+        case noimageset = "No Image selected yet"
+        case success = "Image save succeeded"
+        case json = "json"
+        case selectPhoto = "Select Photo"
+        case choose = "Choose"
+        case photolib = "Photo Library"
+        case camera = "Camera"
+        case bigmsg = "Choose a picture from ..."
+        case saving = "Saving Recipe Image"
+        case up = "Image is Up, rotate by pi / 2"
+        case left = "Image is left, rotating by pi"
+        case right = "Image is right, no rotation needed"
+        case down = "Image is down, rotate 3 pi / 2"
+        case other = "Not LRUDown"
+    }
+    fileprivate let fileIO = FileIO()
+    // MARK: - Methods
+    fileprivate func constructAllRecipes() -> [SectionItem] {
+        let shippedBookSections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json")
+        var recipesShipped:[SectionItem] = []
+        for aBS in shippedBookSections {
+            recipesShipped += aBS.items
+        }
+        return addedRecipes.getAllRecipes() + recipesShipped
+    }
+    
+    fileprivate func addRecipeImage() {
+        
+        if image == nil {
+            
+            print(msgs.aianv.rawValue + msgs.noimageset.rawValue)
+            
+            return
+        }
+        let combinedRecipes = self.constructAllRecipes()
+        
+        let sectionItem = combinedRecipes[recipeSelected]
+        let sectionItemId = sectionItem.id.description
+        let sectionItemName = sectionItem.name
+        
+        let rotatedImage = rotateImageIfNecessary(uiimage: image!)
+        
+        let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
+        do {
+            let encodedImage = try JSONEncoder().encode(myImageToAdd)
+            let encodedImageData = Data(encodedImage)
+            let dateString = Date().description
+            let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId.description + delimiterFileNames, fileType: msgs.json.rawValue, data: encodedImageData)
+            if !resultz {
+                
+                print(msgs.aianv.rawValue + msgs.failed.rawValue)
+                
+                recipeImageSaved = false
+            } else {
+                recipeNote = ""
+                recipeImageSaved = true
+                
+                print(msgs.aianv.rawValue + msgs.success.rawValue)
+            }
+        } catch {
+            recipeImageSaved = false
+            
+            print(msgs.aianv.rawValue + msgs.failed.rawValue)
+        }
+        return
+    }
+    
+    fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {
+        let zImg = uiimage
+        switch zImg.imageOrientation {
+        case UIImage.Orientation.up:
+            
+            print(msgs.aianv.rawValue + msgs.up.rawValue)
+            
+            let zCopy = zImg.rotate(radians:  .pi / 2)
+            return zCopy!
+        case UIImage.Orientation.down:
+            
+            print(msgs.aianv.rawValue + msgs.down.rawValue)
+            
+            let zCopy = zImg.rotate(radians:  3 * .pi / 2)
+            return zCopy!
+        case UIImage.Orientation.left:
+            
+            print(msgs.aianv.rawValue + msgs.left.rawValue)
+            
+            let zCopy = zImg.rotate(radians: .pi)
+            return zCopy!
+        case UIImage.Orientation.right:
+            
+            print(msgs.aianv.rawValue + msgs.right.rawValue)
+            
+            let zCopy = zImg.rotate(radians: 0)
+            return zCopy!
+        default:
+            
+            print(msgs.aianv.rawValue + msgs.other.rawValue)
+            
+            return zImg
+        }
+        //        if zImg.imageOrientation == UIImage.Orientation.up {
+        //
+        //            print(msgs.imagesview.rawValue + msgs.up.rawValue)
+        //
+        //            return zImg
+        //        } else {
+        //            UIGraphicsBeginImageContext(zImg.size)
+        //            zImg.draw(in: CGRect(origin: .zero, size: zImg.size))
+        //            let zCopy = UIGraphicsGetImageFromCurrentImageContext()!
+        //            UIGraphicsEndImageContext()
+        //            return zCopy
+        //        }
+    }
+    
+    var actionSheet: ActionSheet {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            // camera is available
+            sourceTypes = [.camera, .photoLibrary, .savedPhotosAlbum]
+            return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
+                               message: Text(msgs.choose.rawValue),
+                               buttons: [
+                                .default(Text(msgs.photolib.rawValue)) {
+                                    self.showImagePicker = true
+                                    self.sourceType = .photoLibrary
+                                },
+                                .default(Text(msgs.camera.rawValue)) {
+                                    self.showImagePicker = true
+                                    self.sourceType = .camera
+                                },
+                                .cancel()
+                               ])
+        } else {
+            sourceTypes = [.photoLibrary, .savedPhotosAlbum]
+            return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
+                               message: Text(msgs.choose.rawValue),
+                               buttons: [
+                                .default(Text(msgs.photolib.rawValue)) {
+                                    self.showImagePicker = true
+                                    self.sourceType = .photoLibrary
+                                },
+                                .cancel()
+                               ])
+        }
+    }
+    
     var body: some View {
-        VStack {
-            AddImageToRecipeView2()
-            AddNotesToRecipeView2()
-        }.padding(.all)
+        NavigationView {
+            GeometryReader { proxy in
+                VStack {
+                    Text(msgs.aianv.rawValue).font(.largeTitle).bold()
+                    VStack {
+                        
+                        Text(msgs.recipePickRequestString.rawValue)
+                            .foregroundColor(.red)
+                            .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        Picker(msgs.picker.rawValue, selection: $recipeSelected) {
+                            ForEach(0..<constructAllRecipes().count, id: \.self) { index in
+                                Text(constructAllRecipes()[index].name)
+                                    .foregroundColor(.blue)
+                                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                            }
+                        }.padding()
+                    }
+                    
+                    Divider()
+                    
+                    VStack {
+                        Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
+                            .resizable()
+                            .frame(width: proxy.size.width / 2, height: proxy.size.height / 4)
+                        Button(action: {
+                            // What to perform
+                            self.showSheet = true
+                        }) {
+                            // How the button looks like
+                            Text(msgs.bigmsg.rawValue)
+                                .foregroundColor(.blue)
+                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        }
+                    }
+                    
+                    Button(action: {
+                        //what to perform
+                        self.addRecipeImage()
+                    }) {
+                        // how the button looks
+                        Text(msgs.buttonTitle.rawValue)
+                            .fontWeight(.bold)
+                            .font(Font.system(size: 20, weight: .medium, design: .serif))
+                    }
+                    
+                    .actionSheet(isPresented: $showSheet) {
+                        self.actionSheet
+                    }
+                    .alert(isPresented: $recipeImageSaved)   {
+                        return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+                    }
+                    .sheet(isPresented: $showImagePicker) {
+                        ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                    }
+                    
+                }
+            }
+        }
     }
 }
 

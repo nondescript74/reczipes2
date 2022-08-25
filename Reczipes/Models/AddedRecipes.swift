@@ -16,29 +16,42 @@ public class AddedRecipes: ObservableObject {
         let fileIO = FileIO()
         let jsonDecoder = JSONDecoder()
         let userAddedBookSectionURLs = fileIO.checkContentsRecipeFolder(recipeFolder: msgs.reczipes.rawValue)
+        var userAddedBookSections:[BookSection] = []
         if userAddedBookSectionURLs.isEmpty {
             // create Reczipes folder in users documents
-            _ = fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
-            if zBug  {
-                print(msgs.ar.rawValue + msgs.created.rawValue )
-            }
-        }
-        var userAddedBookSections:[BookSection] = []
-        // get all the shipped recipes
-        var totalShippedSectionsPlus = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
-        // now if there were any saved by user, merge them with the shipped recipes
-        for aUrl in userAddedBookSectionURLs {
-            let dataAtUrl = fileIO.getFileDataAtUrl(url: aUrl)
-            let json = try? jsonDecoder.decode(BookSection.self, from: dataAtUrl)
-            if json != nil {
-                userAddedBookSections.append(json!)
-
+            let result = fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
+            if result {
                 if zBug  {
-                    print(msgs.ar.rawValue + msgs.loaded.rawValue + msgs.changed.rawValue + (json?.name ?? "none") )
+                    print(msgs.ar.rawValue + msgs.created.rawValue )
+                }
+            }
+        } else {
+            // now if there were any saved by user, merge them with the shipped recipes
+            for aUrl in userAddedBookSectionURLs {
+                if aUrl.absoluteString.contains(recipeNotesFolderName) || aUrl.absoluteString.contains(recipeImagesFolderName) {
+                    // nothing to do this is a note or image
+                } else {
+                    // ok, get the user added recipe
+                    // it is possible for the user to have added notes or images to shipped recipes without adding any recipes
+                    if zBug { print(msgs.ar.rawValue + msgs.skipped.rawValue)}
+                    
+                    let dataAtUrl = fileIO.getFileDataAtUrl(url: aUrl)
+                    let json = try? jsonDecoder.decode(BookSection.self, from: dataAtUrl)
+                    if json != nil {
+                        userAddedBookSections.append(json!)
+
+                        if zBug { print(msgs.ar.rawValue + msgs.loaded.rawValue + msgs.changed.rawValue + (json?.name ?? "none"))}
+
+                    }
                 }
 
             }
+            
         }
+        
+        // get all the shipped recipes
+        var totalShippedSectionsPlus = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue).sorted(by: {$0.name < $1.name})
+
         // now check if booksections are duplicated so move added recipes into the total
         for aUASection in userAddedBookSections {
             if totalShippedSectionsPlus.contains(aUASection) {
@@ -82,6 +95,7 @@ public class AddedRecipes: ObservableObject {
         case recipesFile = "recipesShipped.json"
         case reczipes = "Reczipes"
         case added = "Added: "
+        case skipped = "Skipped due to note or image"
         case wrote = "Wrote to documents: "
         case tSDoesNotHave = "totalSections does not have, added this booksection"
         case initAdded = "init: aUASection items added to totalSections"
@@ -109,10 +123,7 @@ public class AddedRecipes: ObservableObject {
     }
     
     var totalSections: Int {
-
         if zBug { print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + "\(bookSections.count)") }
-
-        
         return queue.sync {
             return bookSections.count
         }
@@ -126,11 +137,8 @@ public class AddedRecipes: ObservableObject {
         for zBookSection in bookSections {
             returningSectionItems.append(contentsOf: zBookSection.items)
         }
-        
-
         if zBug { print(msgs.ar.rawValue + msgs.returningbooksections.rawValue + msgs.addedrecipes.rawValue)}
 
-        
         return queue.sync {
             return returningSectionItems
         }
@@ -187,7 +195,6 @@ public class AddedRecipes: ObservableObject {
                 bookSections.append(bookSection)
                 if zBug { print(msgs.ar.rawValue + msgs.added.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
             }
-            
         } else {
             // already contains this book section, append items from this into already exisitng
             if zBug { print(msgs.ar.rawValue + msgs.exists.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
@@ -202,14 +209,12 @@ public class AddedRecipes: ObservableObject {
         if jsonData != nil {
             let result = fileIO.writeFileInFolderInDocuments(folderName: msgs.reczipes.rawValue, fileNameToSave: bookSection.name, fileType: msgs.json.rawValue, data: jsonData!)
             if result {
-
                 if zBug { print(msgs.ar.rawValue + msgs.wrote.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
-
             } else {
-
                 print(msgs.ar.rawValue + msgs.failedWrite.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)
-
             }
+        } else {
+            print("Can't encode recipe, not saved to disk")
         }
     }
     
@@ -218,10 +223,11 @@ public class AddedRecipes: ObservableObject {
             _ = queue.sync {
                 bookSections.remove(at: index)
             }
-            
-
             if zBug { print(msgs.ar.rawValue + msgs.removed.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
-
+            let fileIO = FileIO()
+            fileIO.removeFileInRecipeFolder(recipeFolder: msgs.reczipes.rawValue, fileName: bookSection.name)
+        } else {
+            // does not exist, nothing to do
         }
     }
     
@@ -271,16 +277,10 @@ public class AddedRecipes: ObservableObject {
             _ = queue.sync {
                 myBookSection.items.remove(at: indx)
             }
-
             if zBug { print(msgs.ar.rawValue + msgs.recipeRemoved.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
-
-            
         } else {
-
             if zBug { print(msgs.ar.rawValue + msgs.recipeDNE.rawValue, bookSection.id.description, msgs.space.rawValue, bookSection.name)}
-
         }
-        
     }
     
     func moveRecipeFromOneBookSectionToOther(recipe: SectionItem, originalBookSectionName: String, newBookSectionName: String) {

@@ -33,8 +33,6 @@ struct AddNotesToRecipeView2: View {
     fileprivate let fileIO = FileIO()
     fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
-    
-    
     fileprivate func constructAllRecipes() -> [SectionItem] {
         return addedRecipes.getAllRecipes()
     }

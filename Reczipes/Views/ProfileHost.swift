@@ -13,7 +13,7 @@ struct ProfileHost: View {
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData
     // MARK: - ManagedObjectContext
-    @Environment(\.managedObjectContext) var managedObjectContext
+//    @Environment(\.managedObjectContext) var managedObjectContext
     //MARK: - State
     @State fileprivate var draftProfile = Profile.default
     // MARK: - View Process

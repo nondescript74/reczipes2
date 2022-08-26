@@ -14,17 +14,18 @@ public class AddedRecipes: ObservableObject {
     // MARK: - Initializer
     init() {
         let fileIO = FileIO()
+        let resultBaseFolder = fileIO.createRecipeFolders()
         let jsonDecoder = JSONDecoder()
-        let userAddedBookSectionURLs = fileIO.checkContentsRecipeFolder(recipeFolder: msgs.reczipes.rawValue)
+        let userAddedBookSectionURLs = fileIO.checkContentsReczipesFolder()
         var userAddedBookSections:[BookSection] = []
         if userAddedBookSectionURLs.isEmpty {
-            // create Reczipes folder in users documents
-            let result = fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
-            if result {
-                if zBug  {
-                    print(msgs.ar.rawValue + msgs.created.rawValue )
-                }
-            }
+//            // create Reczipes folder in users documents
+//            let result = fileIO.createRecipeFolders(folderName: msgs.reczipes.rawValue)
+//            if result {
+//                if zBug  {
+//                    print(msgs.ar.rawValue + msgs.created.rawValue )
+//                }
+//            }
         } else {
             // now if there were any saved by user, merge them with the shipped recipes
             for aUrl in userAddedBookSectionURLs {
@@ -303,70 +304,4 @@ public class AddedRecipes: ObservableObject {
             }
         }
     }
-    
-    //    func constructBookSectionsFromFiles() {
-    //        var myBookSectionsConstructed:Array<BookSection> = []
-    //        // contained in recipefolder by BookSection
-    //        let myBookSectionDirectoryUrls =  FileIO().checkContentsOfDir(dirname: recipeFolderName + delimiterDirs + recipesName)
-    //
-    //
-    //        if zBug { print(msgs.ar.rawValue  + myBookSectionDirectoryUrls.description)}
-    //
-    //
-    //        for aURLForSection in myBookSectionDirectoryUrls {
-    //            // each of these is a directory for a section in the list
-    //
-    //
-    //            if zBug { print(msgs.ar.rawValue + aURLForSection.description)}
-    //
-    //
-    //            let myInsideUrls = FileIO().readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipesName + delimiterDirs + aURLForSection.lastPathComponent) // should be 1 or more BookSections as files stored
-    //
-    //
-    //            if zBug { print(msgs.ar.rawValue + myInsideUrls.description)}
-    //
-    //
-    //            for aUrl in myInsideUrls {
-    //                let myFileAsSectionItemDataAtUrl = FileIO().getFileDataAtUrl(url: aUrl)
-    //
-    //
-    //                if zBug { print(msgs.ar.rawValue + myFileAsSectionItemDataAtUrl.description)}
-    //
-    //
-    //                // check for the BookSection to already be added, if so, add the SectionItem within this BookSection to that existing one
-    //                // if BookSection does not exist, create one with the currently embedded SectionItem in it
-    //
-    //                do {
-    //                    let myBookSection = try JSONDecoder().decode(BookSection.self, from: myFileAsSectionItemDataAtUrl)
-    //                    let sectionItemsContained = myBookSection.items  // should only have one item
-    //                    for aSectionItem in sectionItemsContained {
-    //                        let containedAlready = myBookSectionsConstructed.filter({$0.id == myBookSection.id})
-    //
-    //                        if containedAlready.count > 0 {
-    //                            let myAlreadyExistingBookSectionId = (containedAlready.first?.id)!  // first found
-    //                            let myAlreadyExistingBookSectionName = (containedAlready.first?.name)!
-    //                            let myAlreadyExistingBookSectionItems = containedAlready.first?.items
-    //                            var myItems = myAlreadyExistingBookSectionItems  // get all the items
-    //                            myItems?.append(aSectionItem)
-    //                            let newBookSectionToInsert = BookSection(id: myAlreadyExistingBookSectionId, name: myAlreadyExistingBookSectionName, items: myItems!)
-    //                            var newSetOfSections = myBookSectionsConstructed.filter({$0.name != newBookSectionToInsert.name})
-    //                            newSetOfSections.append(newBookSectionToInsert)
-    //                            myBookSectionsConstructed = newSetOfSections
-    //                        } else {
-    //                            myBookSectionsConstructed.append(myBookSection)
-    //                        }
-    //                    }
-    //                } catch {
-    //                    // cannot decode
-    //                    print("Cannot decode")
-    //                }
-    //            }
-    //        }
-    //
-    //        // we now have an array of BookSections which does not contain duplicates
-    ////        for bookSection in myBookSectionsConstructed {
-    ////            self.addBookSection(bookSection: bookSection)
-    ////        }
-    //        self.bookSections = myBookSectionsConstructed
-    //    }
 }

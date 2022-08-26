@@ -91,7 +91,7 @@ struct RecipeDetailView: View {
     @State fileprivate var showingMoveView = false
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
-        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)
+        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)
         let zmyNotes = myNotesUrls.filter {$0.description.contains( item.id.description)}
         let nmyNotes = Bundle.main.decode([Note].self, from: namez.notes.rawValue + namez.json.rawValue)  // array of Note
         let savedNotes = nmyNotes.filter { $0.recipeuuid.description == item.id.description }
@@ -100,7 +100,7 @@ struct RecipeDetailView: View {
     }
     
     fileprivate func hasImages() -> Bool {
-        let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)
+        let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)
         let zmyImages = myImagesUrls.filter {$0.description.contains( item.id.description)}
         
 
@@ -222,18 +222,16 @@ struct RecipeDetailView: View {
                    MoveRecipeView(movingRecipe: self.item, moveFromBookSection: self.cuisine)
                 }
                 Divider()
-                
                 VStack {
                     SafariView(url: URL(string: item.url)!)
                 }
-//                Spacer()
             }
             
             .sheet(isPresented: $addingImage) {
                 AddImageAndNoteView()
             }
             .sheet(isPresented: $addingNote) {
-                AddNotesToRecipeView2()
+                AddImageAndNoteView()
             }
             .sheet(isPresented: $isShowingMailView) {
                 MailView(result: self.$result, sectItem: self.item)

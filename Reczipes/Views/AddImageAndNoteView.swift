@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct AddImageAndNoteView: View {
+    // MARK: - Debug local
+    private let zBug = true
     // MARK: - Initializer
     // MARK: EnvironmentObject
     @EnvironmentObject var addedRecipes: AddedRecipes
+    // MARK: - Focus for textfield
+    @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
     @State fileprivate var recipeSelected: Int = 0
     @State fileprivate var recipeNote: String = ""
+    @State fileprivate var recipeNoteSaved:Bool = false
     @State fileprivate var showSheet: Bool = false
     @State fileprivate var showImagePicker: Bool = false
     @State fileprivate var recipeImageSaved:Bool = false
@@ -22,28 +27,33 @@ struct AddImageAndNoteView: View {
     @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case aianv = "Add Image And/Or Note"
+        case aianv = "Add Image/Note"
         case recipePickRequestString = "Pick a recipe below ..."
-        case buttonTitle = "✚ Image"
+        case buttonTitleImage = "✚ Image"
+        case buttonTitleNote = "✚ Note"
         case selected = " Selected"
         case picker = "Recipes"
-        case failed = "Image save failed"
+        case failed = "Image/Note save failed"
         case noimageset = "No Image selected yet"
-        case success = "Image save succeeded"
+        case success = "Image/Note save succeeded"
         case json = "json"
         case selectPhoto = "Select Photo"
         case choose = "Choose"
         case photolib = "Photo Library"
         case camera = "Camera"
         case bigmsg = "Choose a picture from ..."
-        case saving = "Saving Recipe Image"
+        case saving = "Saving Recipe Image or Note"
         case up = "Image is Up, rotate by pi / 2"
         case left = "Image is left, rotating by pi"
         case right = "Image is right, no rotation needed"
         case down = "Image is down, rotate 3 pi / 2"
         case other = "Not LRUDown"
+        case initialNoteString = "Enter a recipe note below ..."
+        case noteWithoutText = "Note has no text entered"
+        case ok = "Okay"
     }
     fileprivate let fileIO = FileIO()
+    fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
     fileprivate func constructAllRecipes() -> [SectionItem] {
         let shippedBookSections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json")
@@ -55,11 +65,8 @@ struct AddImageAndNoteView: View {
     }
     
     fileprivate func addRecipeImage() {
-        
         if image == nil {
-            
-            print(msgs.aianv.rawValue + msgs.noimageset.rawValue)
-            
+            if zBug {print(msgs.aianv.rawValue + msgs.noimageset.rawValue)}
             return
         }
         let combinedRecipes = self.constructAllRecipes()
@@ -74,22 +81,17 @@ struct AddImageAndNoteView: View {
         do {
             let encodedImage = try JSONEncoder().encode(myImageToAdd)
             let encodedImageData = Data(encodedImage)
-            let dateString = Date().description
+//            let dateString = Date().description
             let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId.description + delimiterFileNames, fileType: msgs.json.rawValue, data: encodedImageData)
             if !resultz {
-                
                 print(msgs.aianv.rawValue + msgs.failed.rawValue)
-                
                 recipeImageSaved = false
             } else {
-                recipeNote = ""
                 recipeImageSaved = true
-                
-                print(msgs.aianv.rawValue + msgs.success.rawValue)
+                if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
             }
         } catch {
             recipeImageSaved = false
-            
             print(msgs.aianv.rawValue + msgs.failed.rawValue)
         }
         return
@@ -100,25 +102,23 @@ struct AddImageAndNoteView: View {
         switch zImg.imageOrientation {
         case UIImage.Orientation.up:
             
-            print(msgs.aianv.rawValue + msgs.up.rawValue)
-            
+            if zBug {print(msgs.aianv.rawValue + msgs.up.rawValue)}
             let zCopy = zImg.rotate(radians:  .pi / 2)
             return zCopy!
         case UIImage.Orientation.down:
-            
-            print(msgs.aianv.rawValue + msgs.down.rawValue)
+            if zBug {print(msgs.aianv.rawValue + msgs.down.rawValue)}
             
             let zCopy = zImg.rotate(radians:  3 * .pi / 2)
             return zCopy!
         case UIImage.Orientation.left:
             
-            print(msgs.aianv.rawValue + msgs.left.rawValue)
+            if zBug {print(msgs.aianv.rawValue + msgs.left.rawValue)}
             
             let zCopy = zImg.rotate(radians: .pi)
             return zCopy!
         case UIImage.Orientation.right:
             
-            print(msgs.aianv.rawValue + msgs.right.rawValue)
+            if zBug {print(msgs.aianv.rawValue + msgs.right.rawValue)}
             
             let zCopy = zImg.rotate(radians: 0)
             return zCopy!
@@ -140,6 +140,39 @@ struct AddImageAndNoteView: View {
         //            UIGraphicsEndImageContext()
         //            return zCopy
         //        }
+    }
+    
+    fileprivate func addRecipeNote() {
+        if recipeNote == ""  {
+            if zBug {print(msgs.aianv.rawValue + msgs.noteWithoutText.rawValue)}
+            return
+        }
+        
+        let combinedRecipes = addedRecipes.getAllRecipes()
+        let sectionItem = combinedRecipes[recipeSelected]
+        let sectionItemId = sectionItem.id.description
+        let sectionItemName = sectionItem.name
+        
+        let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
+        do {
+            let encodedNote = try JSONEncoder().encode(myNoteToAdd)
+            let encodedNoteData = Data(encodedNote)
+            let dateString = Date().description
+            let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId + delimiterFileNames + dateString, fileType: msgs.json.rawValue, data: encodedNoteData)
+            
+            if !resultz {
+                recipeNoteSaved = false
+                print(msgs.aianv.rawValue + msgs.failed.rawValue)
+            } else {
+                recipeNote = ""
+                recipeNoteSaved = true
+                if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
+            }
+        } catch {
+            recipeNoteSaved = false
+            print(msgs.aianv.rawValue + msgs.failed.rawValue)
+        }
+        return
     }
     
     var actionSheet: ActionSheet {
@@ -191,7 +224,6 @@ struct AddImageAndNoteView: View {
                             }
                         }.padding()
                     }
-                    
                     Divider()
                     
                     VStack {
@@ -206,29 +238,53 @@ struct AddImageAndNoteView: View {
                             Text(msgs.bigmsg.rawValue)
                                 .foregroundColor(.blue)
                                 .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        }
+                        }.padding(.bottom)
+                        
+                        HStack {
+                            Button(action: {
+                                //what to perform
+                                self.addRecipeImage()
+                            }) {
+                                // how the button looks
+                                Text(msgs.buttonTitleImage.rawValue)
+                                    .fontWeight(.bold)
+                                    .font(Font.system(size: 20, weight: .medium, design: .serif))
+                            }
+                            
+                            Button(action: {
+                                //what to perform
+                                textFieldIsFocused = false
+                                self.addRecipeNote()
+                            }) {
+                                // how the button looks
+                                Text(msgs.buttonTitleNote.rawValue)
+                                    .fontWeight(.bold)
+                                    .font(Font.system(size: 20, weight: .medium, design: .serif))
+                            }
+                        }.padding(.bottom)
                     }
+                    Divider()
                     
-                    Button(action: {
-                        //what to perform
-                        self.addRecipeImage()
-                    }) {
-                        // how the button looks
-                        Text(msgs.buttonTitle.rawValue)
-                            .fontWeight(.bold)
-                            .font(Font.system(size: 20, weight: .medium, design: .serif))
+                    VStack {
+                        TextEditor(text: $recipeNote)
+                            .padding(10)
+                            .frame(height: proxy.size.height / 4, alignment: .center)
+                            .border(Color.black, width: 2)
+                            .focused($textFieldIsFocused)
+                        
                     }
-                    
-                    .actionSheet(isPresented: $showSheet) {
-                        self.actionSheet
-                    }
-                    .alert(isPresented: $recipeImageSaved)   {
-                        return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
-                    }
-                    .sheet(isPresented: $showImagePicker) {
-                        ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
-                    }
-                    
+                }.padding(.bottom)
+                .actionSheet(isPresented: $showSheet) {
+                    self.actionSheet
+                }
+                .alert(isPresented: $recipeImageSaved)   {
+                    return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+                }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                }
+                .alert(isPresented: $recipeNoteSaved)   {
+                    return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
                 }
             }
         }

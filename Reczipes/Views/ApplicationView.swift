@@ -83,12 +83,12 @@ struct ApplicationView: View {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
                 }
-            
-            MultiView(show: .notyet)
-                .tabItem {
-                    Image(uiImage: crosscirclefill!)
-                    Text(tabs.jt.rawValue)
-                }
+//            
+//            MultiView(show: .notyet)
+//                .tabItem {
+//                    Image(uiImage: crosscirclefill!)
+//                    Text(tabs.jt.rawValue)
+//                }
             
             SettingsView()
                 .tabItem {

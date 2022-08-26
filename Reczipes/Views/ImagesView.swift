@@ -29,7 +29,7 @@ struct ImagesView: View {
     // MARK: - Methods
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
         var myImagesConstructed:Array<ImageSaved> = []
-        let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)
+        let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)
         let zmyImagesUrls = myImagesUrls.filter {$0.description.contains(myRecipeUUID.description)}
         for aUrl in zmyImagesUrls {
             let imageData = fileIO.getFileDataAtUrl(url: aUrl)
@@ -39,15 +39,12 @@ struct ImagesView: View {
                 myImagesConstructed.append(imagez)
             } catch {
                 
-                
                 print(msgs.imagesview.rawValue + msgs.cantdecodeimage.rawValue)
-                
             }
         }
         
         
         print(msgs.imagesview.rawValue + msgs.numberofimages.rawValue + "\(myImagesConstructed.count)")
-        
         
         return myImagesConstructed
     }

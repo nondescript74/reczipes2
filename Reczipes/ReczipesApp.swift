@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct ReczipesApp: App {
     
+    
     var body: some Scene {
         WindowGroup {
             ApplicationView()

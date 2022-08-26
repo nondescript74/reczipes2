@@ -88,13 +88,13 @@ struct MailView: UIViewControllerRepresentable {
             do {
                 let jSONEncode = JSONEncoder()
                 
-                let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeNotesFolderName)  // set of urls to files
+                let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)  // set of urls to files
                 let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
 
                 print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(thisSetOfNotes.count)")
 
                 
-                let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeFolderName + delimiterDirs + recipeImagesFolderName)  // set of urls to files
+                let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)  // set of urls to files
                 let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
 
                 print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(thisSetOfImages.count)")

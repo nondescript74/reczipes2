@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ImagesView: View {
+    // MARK: - Environment
+    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Initializer
     init(recipeuuid: String) {
         self.myRecipeUUID = UUID(uuidString: recipeuuid)!
@@ -15,7 +17,7 @@ struct ImagesView: View {
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
     fileprivate var myImages:[ImageSaved] = []
-    fileprivate let fileIO = FileIO()
+//    fileprivate let fileIO = FileIO()
     fileprivate enum msgs: String {
         case imagesview = "ImagesView: "
         case cantdecodeimage = "Can't decode image from data"
@@ -29,20 +31,21 @@ struct ImagesView: View {
     // MARK: - Methods
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
         var myImagesConstructed:Array<ImageSaved> = []
-        let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)
-        let zmyImagesUrls = myImagesUrls.filter {$0.description.contains(myRecipeUUID.description)}
-        for aUrl in zmyImagesUrls {
-            let imageData = fileIO.getFileDataAtUrl(url: aUrl)
-            do {
-                let imagez = try JSONDecoder().decode(ImageSaved.self, from: imageData)
-                // now get the image
-                myImagesConstructed.append(imagez)
-            } catch {
-                
-                print(msgs.imagesview.rawValue + msgs.cantdecodeimage.rawValue)
-            }
-        }
-        
+        myImagesConstructed = fileMgr.getUserImages().filter({$0.recipeuuid.description == myRecipeUUID.description})
+        myImagesConstructed.append(contentsOf: fileMgr.getShippedImages().filter({$0.recipeuuid.description == myRecipeUUID.description}))
+//        let myImagesUrls = fileMgr.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)
+//        let zmyImagesUrls = myImagesUrls.filter {$0.description.contains(myRecipeUUID.description)}
+//        for aUrl in zmyImagesUrls {
+//            let imageData = fileMgr.getFileDataAtUrl(url: aUrl)
+//            do {
+//                let imagez = try JSONDecoder().decode(ImageSaved.self, from: imageData)
+//                // now get the image
+//                myImagesConstructed.append(imagez)
+//            } catch {
+//
+//                print(msgs.imagesview.rawValue + msgs.cantdecodeimage.rawValue)
+//            }
+//        }
         
         print(msgs.imagesview.rawValue + msgs.numberofimages.rawValue + "\(myImagesConstructed.count)")
         

@@ -9,6 +9,9 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
+    //MARK: - Environment
+    @EnvironmentObject var order: OrderingList
+    @EnvironmentObject var fileMgr: FileMgr
 
     // MARK: - Local debug flag
     fileprivate var zBug:Bool = false
@@ -31,7 +34,7 @@ struct RecipeDetailView: View {
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Properties
     var item: SectionItem
-    let fileIO = FileIO()
+//    let fileIO = FileIO()
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -51,6 +54,7 @@ struct RecipeDetailView: View {
     fileprivate enum namez: String {
         case notes = "Notes"
         case json = ".json"
+        case images = "Images"
     }
     
     fileprivate enum labelz: String {
@@ -77,9 +81,8 @@ struct RecipeDetailView: View {
         case mail = "envelope"
         case add = "plus"
     }
-    //MARK: - Environment
-    @EnvironmentObject var order: OrderingList
-    @EnvironmentObject var addedRecipes: AddedRecipes
+
+//    @EnvironmentObject var addedRecipes: AddedRecipes
     // MARK: - State
     @State fileprivate var showingNotes = false
     @State fileprivate var showingImages = false
@@ -91,46 +94,53 @@ struct RecipeDetailView: View {
     @State fileprivate var showingMoveView = false
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
-        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)
-        let zmyNotes = myNotesUrls.filter {$0.description.contains( item.id.description)}
-        let nmyNotes = Bundle.main.decode([Note].self, from: namez.notes.rawValue + namez.json.rawValue)  // array of Note
-        let savedNotes = nmyNotes.filter { $0.recipeuuid.description == item.id.description }
-        
-        return !zmyNotes.isEmpty || !savedNotes.isEmpty
+        let myNotesUrls = fileMgr.getUserNotes() // fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)
+        let userNotes = myNotesUrls.filter {$0.recipeuuid.contains( item.id.description)}
+        let shippedNotes = Bundle.main.decode([Note].self, from: namez.notes.rawValue + namez.json.rawValue).filter({$0.recipeuuid.contains(item.id.description)})  // array of Note
+//        let savedNotes = nmyNotes.filter { $0.recipeuuid.description == item.id.description }
+        var totalNotes = shippedNotes
+        totalNotes.append(contentsOf: userNotes)
+//        return !zmyNotes.isEmpty || !savedNotes.isEmpty
+        return !totalNotes.isEmpty
     }
     
     fileprivate func hasImages() -> Bool {
-        let myImagesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)
-        let zmyImages = myImagesUrls.filter {$0.description.contains( item.id.description)}
-        
-
-        if zBug {
-            if !zmyImages.isEmpty {
-                print(msgs.recipeDetailView.rawValue + msgs.recipeImages.rawValue)
-            } else {
-                print(msgs.recipeDetailView.rawValue + msgs.recipeImagesNot.rawValue)
-            }
-        }
-
-        
-        return !zmyImages.isEmpty
+        let myImagesUrls = fileMgr.getUserImages()
+        let userImages = myImagesUrls.filter {$0.recipeuuid.contains( item.id.description)}
+        let shippedImages = Bundle.main.decode([ImageSaved].self, from: namez.notes.rawValue + namez.json.rawValue).filter({$0.recipeuuid.contains(item.id.description)})  // array of Note
+//        let savedNotes = nmyNotes.filter { $0.recipeuuid.description == item.id.description }
+        var totalImages = shippedImages
+        totalImages.append(contentsOf: userImages)
+//        let zmyImages = myImagesUrls.filter {$0.description.contains( item.id.description)}
+//
+//
+//        if zBug {
+//            if !zmyImages.isEmpty {
+//                print(msgs.recipeDetailView.rawValue + msgs.recipeImages.rawValue)
+//            } else {
+//                print(msgs.recipeDetailView.rawValue + msgs.recipeImagesNot.rawValue)
+//            }
+//        }
+//
+//
+        return !totalImages.isEmpty
     }
     
-    fileprivate func saveBookSection() {
-        
-        let myBookSection = addedRecipes.getBookSectionWithName(name: cuisine)
-        if addedRecipes.isRecipeAlreadyIn(newRecipe: item) {
-            // nothing to do, already in
-
-                if zBug {
-                    print(msgs.RDV.rawValue + msgs.exists.rawValue)
-                }
-
-        } else {
-            addedRecipes.changeBookSectionAddingRecipe(bookSection: myBookSection, recipeToAdd: item)
-            self.recipeSaved.toggle()
-        }
-    }
+//    fileprivate func saveBookSection() {
+//
+//        let myBookSection = addedRecipes.getBookSectionWithName(name: cuisine)
+//        if addedRecipes.isRecipeAlreadyIn(newRecipe: item) {
+//            // nothing to do, already in
+//
+//                if zBug {
+//                    print(msgs.RDV.rawValue + msgs.exists.rawValue)
+//                }
+//
+//        } else {
+//            addedRecipes.changeBookSectionAddingRecipe(bookSection: myBookSection, recipeToAdd: item)
+//            self.recipeSaved.toggle()
+//        }
+//    }
     
     // MARK: - View Process
     var body: some View {
@@ -158,7 +168,25 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        self.saveBookSection()
+                        let getz = fileMgr.getBookSectionIdforName(name: cuisine)
+                        if (getz != nil) {
+                            let result = fileMgr.AddRecipeToBookSection(recipe: item, bookSectionUUID: getz!)
+                            if result {
+                                recipeSaved = true
+                            }  else {
+                                fatalError("Can't save recipe")
+                            }
+                        } else {
+                            // bs does not exist, create and save in user space
+                            let newBS = BookSection(id: UUID(), name: cuisine, items: [item])
+                            let result = fileMgr.addNewBookSection(bookSection: newBS)
+                            if result {
+                                recipeSaved = true
+                            }  else {
+                                fatalError("Can't save recipe")
+                            }
+                        }
+                        
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
@@ -248,7 +276,8 @@ struct RecipeDetailView: View {
 struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - Environment
     static let order = OrderingList()
-    static let addedRecipes = AddedRecipes()
+    static let fileMgr = FileMgr()
+//    static let addedRecipes = AddedRecipes()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {

@@ -67,7 +67,7 @@ var colorForegroundButton: Color = Color.init("A4B8C4")
 let colors: [String: Color] = ["D": .purple, "G": .pink, "N": .red, "S": .blue, "V": .green, "VX": .green, "L": .gray, "H": .orange, "P": .yellow]
 
 fileprivate enum msgs: String {
-    case json = "json"
+    
     case returningpresetrecipes = "Returning Preset Recipes "
     case returningbooksectionssf = "Returning BookSections in single file"
 //    case recipesFile = "recipesShipped"
@@ -105,16 +105,6 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
         myRestrictions.append("LowFM")
     }
     return myRestrictions
-}
-
-func getBookSectionsInFile(filename: String) -> [BookSection] {
-    let bookSections1 = Bundle.main.decode([BookSection].self, from: filename + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
-    
-
-    print(msgs.returningbooksectionssf.rawValue + bookSections1.count.description)
-
-    
-    return bookSections1
 }
 
 //func getAllPresetRecipes() -> [SectionItem]  {

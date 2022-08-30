@@ -9,15 +9,32 @@ import SwiftUI
 
 struct AllRecipesView: View {
     // MARK: - Environment Objects
-    @EnvironmentObject var addedRecipes: AddedRecipes
+//    @EnvironmentObject var addedRecipes: AddedRecipes
+    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Properties
     fileprivate enum msgs: String {
         case arv = "All Recipes View"
     }
     // MARK: - Methods
     fileprivate var myBook: [BookSection] {
-        let addedSections = addedRecipes.bookSections.sorted(by: {$0.name < $1.name})  // anything in added Recipes
-        return addedSections
+        var myReturn: [BookSection] = []
+        let shipped = fileMgr.getShippedBookSections()
+        let user = fileMgr.getUserBookSections()
+        for abs in shipped {
+            if (user.filter({$0.id == abs.id}).first != nil) {
+                let userItems: [SectionItem] = (user.filter({$0.id == abs.id}).first!.items)
+                var combinedItems: [SectionItem] = userItems
+                combinedItems.append(contentsOf: abs.items)
+                let bsCombinedItems = BookSection(id: abs.id, name: abs.name, items: combinedItems)
+                myReturn.append(bsCombinedItems)
+            } else {
+                myReturn.append(abs)
+            }
+        }
+//        let addedSections = addedRecipes.bookSections.sorted(by: {$0.name < $1.name})  // anything in added Recipes
+//        return addedSections
+        myReturn = myReturn.sorted(by: {$0.name < $1.name})
+        return myReturn
     }
     var body: some View {
         NavigationView {
@@ -44,12 +61,13 @@ struct AllRecipesView: View {
 
 struct AllRecipesView_Previews: PreviewProvider {
     static let order = OrderingList()
-    static let addedRecipes = AddedRecipes()
+    static let fileMgr = FileMgr()
+//    static let addedRecipes = AddedRecipes()
     static var previews: some View {
         Group {
             AllRecipesView()
                 .environmentObject(order)
-                .environmentObject(addedRecipes)
+                .environmentObject(fileMgr)
                 .colorScheme(.light)
         }
     }

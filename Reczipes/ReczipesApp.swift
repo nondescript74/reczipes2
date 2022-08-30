@@ -15,8 +15,10 @@ struct ReczipesApp: App {
         WindowGroup {
             ApplicationView()
                 .environmentObject(OrderingList())
-                .environmentObject(AddedRecipes())
+                .environmentObject(FileMgr())
+//                .environmentObject(AddedRecipes())
                 .environmentObject(UserData())
+                .environmentObject(FileMgr())
         }
     }
 }

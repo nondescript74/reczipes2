@@ -11,7 +11,8 @@ struct MoveRecipeView: View {
     // MARK: - Debug local
     private var zBug:Bool = false
     // MARK: - Environment Objects
-    @EnvironmentObject var addedRecipes: AddedRecipes
+//    @EnvironmentObject var addedRecipes: AddedRecipes
+    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Initializer
     init(movingRecipe:SectionItem, moveFromBookSection:String) {
         self.myMovingRecipe = movingRecipe
@@ -39,7 +40,7 @@ struct MoveRecipeView: View {
     }
     // MARK: - Methods
     private func moveRecipe() {
-        addedRecipes.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe,
+        fileMgr.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe,
                                                          originalBookSectionName: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!],
                                                          newBookSectionName: getBookSectionNames()[xectionTo])
     }

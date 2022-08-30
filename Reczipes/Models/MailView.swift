@@ -10,9 +10,9 @@ import UIKit
 import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
-    
     // MARK: - Environment
     @Environment(\.presentationMode) var presentation
+    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - State
     @Binding var result: Result<MFMailComposeResult, Error>?
     // MARK: - Properties
@@ -31,7 +31,7 @@ struct MailView: UIViewControllerRepresentable {
         case mailwithattachmentscreated = "A recipe with note and/or images if availabe attached as data to mail"
     }
     
-    private let fileIO = FileIO()
+    //    private let fileIO = FileIO()
     
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         
@@ -51,15 +51,15 @@ struct MailView: UIViewControllerRepresentable {
             }
             guard error == nil else {
                 self.result = .failure(error!)
-
+                
                 print(msgs.mv.rawValue + msgs.failedMC.rawValue)
-
+                
                 return
             }
             self.result = .success(result)
-
-                print(msgs.mv.rawValue + msgs.success.rawValue)
-
+            
+            print(msgs.mv.rawValue + msgs.success.rawValue)
+            
         }
     }
     
@@ -68,18 +68,18 @@ struct MailView: UIViewControllerRepresentable {
                            result: $result)
     }
     
-//    func createMailComposeViewController() -> MFMailComposeViewController {
-//        let mailComposeViewController = MFMailComposeViewController()
-//        mailComposeViewController.mailComposeDelegate = self
-//        mailComposeViewController.setToRecipients(["example@test.test"])
-//        mailComposeViewController.setSubject("subject")
-//        mailComposeViewController.setMessageBody("test body", isHTML: false)
-//        return mailComposeViewController
-//    }
+    //    func createMailComposeViewController() -> MFMailComposeViewController {
+    //        let mailComposeViewController = MFMailComposeViewController()
+    //        mailComposeViewController.mailComposeDelegate = self
+    //        mailComposeViewController.setToRecipients(["example@test.test"])
+    //        mailComposeViewController.setSubject("subject")
+    //        mailComposeViewController.setMessageBody("test body", isHTML: false)
+    //        return mailComposeViewController
+    //    }
     
-//    func createRecipeWithImagesAndNotes() -> SectionItem {
-//        
-//    }
+    //    func createRecipeWithImagesAndNotes() -> SectionItem {
+    //
+    //    }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         
@@ -87,26 +87,30 @@ struct MailView: UIViewControllerRepresentable {
         if MFMailComposeViewController.canSendMail() {
             do {
                 let jSONEncode = JSONEncoder()
+                var myNotesConstructed:Array<Note> = []
+                myNotesConstructed = fileMgr.getUserNotes().filter({$0.recipeuuid.description == sectItem.id.description})
+                myNotesConstructed.append(contentsOf: fileMgr.getShippedNotes().filter({$0.recipeuuid.description == sectItem.id.description}))
+                //                let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)  // set of urls to files
+                //                let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
                 
-                let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)  // set of urls to files
-                let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
-
-                print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(thisSetOfNotes.count)")
-
+                print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(myNotesConstructed.count)")
                 
-                let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)  // set of urls to files
-                let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
-
-                print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(thisSetOfImages.count)")
-
+                var myImagesConstructed:Array<ImageSaved> = []
+                myImagesConstructed = fileMgr.getUserImages().filter({$0.recipeuuid.description == sectItem.id.description})
+                myImagesConstructed.append(contentsOf: fileMgr.getShippedImages().filter({$0.recipeuuid.description == sectItem.id.description}))
+                //                let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)  // set of urls to files
+                //                let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
+                
+                print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(myImagesConstructed.count)")
+                
                 
                 let encodedSectItem = try jSONEncode.encode(sectItem)
                 let encodedSectItemData = Data(encodedSectItem)
                 
-                let encodedSetOfNotes = try jSONEncode.encode(thisSetOfNotes)
+                let encodedSetOfNotes = try jSONEncode.encode(myNotesConstructed)
                 let encodedSetOfNotesData = Data(encodedSetOfNotes)
                 
-                let encodedSetOfImages = try jSONEncode.encode(thisSetOfImages)
+                let encodedSetOfImages = try jSONEncode.encode(myImagesConstructed)
                 let encodedSetOfImagesData = Data(encodedSetOfImages)
                 
                 let dateString = Date().description
@@ -122,24 +126,18 @@ struct MailView: UIViewControllerRepresentable {
                 vc.setMessageBody(sectItem.url, isHTML: false)
                 vc.addAttachmentData(encodedSectionItemNotesImagesData, mimeType: msgs.json.rawValue, fileName: resultName)
                 
-
                 print(msgs.mv.rawValue + msgs.mailwithattachmentscreated.rawValue)
-
                 return vc
                 
             } catch {
-
+                
                 print(msgs.mv.rawValue + msgs.failedData.rawValue)
-
+                
                 fatalError()
             }
             
         } else {
-            
-
-            print(msgs.mv.rawValue + msgs.noAddress.rawValue)
-
-            fatalError()
+            fatalError(msgs.mv.rawValue + msgs.noAddress.rawValue)
         }
         
     }

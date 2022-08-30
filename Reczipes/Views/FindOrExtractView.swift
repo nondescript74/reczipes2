@@ -9,14 +9,14 @@ import SwiftUI
 
 struct FindOrExtractView: View {
     // MARK: - EnvironmentObject
-    @EnvironmentObject var addedRecipes: AddedRecipes
+//    @EnvironmentObject var fileMgr: FileMgr
+//    @EnvironmentObject var addedRecipes: AddedRecipes
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
     // MARK: - Properties
-    fileprivate var fileIO = FileIO()
     fileprivate enum msgs: String {
         case fr = "Find Recipe"
         case books = "Recipe Books"

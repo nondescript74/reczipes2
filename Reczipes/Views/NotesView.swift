@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NotesView: View {
+    // MARK: - Environment
+    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Initializer
     init(recipeuuid: String) {
         self.myRecipeUUID = UUID(uuidString: recipeuuid)!
@@ -15,7 +17,7 @@ struct NotesView: View {
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
     fileprivate var myNotes:[Note] = []
-    fileprivate let fileIO = FileIO()
+//    fileprivate let fileIO = FileIO()
     fileprivate enum msgs: String {
         case notesview = "NotesView: "
         case cantdecodenote = "Can't decode note from data"
@@ -24,29 +26,29 @@ struct NotesView: View {
     // MARK: - Methods
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
-        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName:recipeNotesFolderName)
-        let zmyNotesUrls = myNotesUrls.filter {$0.description.contains(myRecipeUUID.description)}
-        for aUrl in zmyNotesUrls {
-            let noteData = fileIO.getFileDataAtUrl(url: aUrl)
-            do {
-                let note = try JSONDecoder().decode(Note.self, from: noteData)
-                myNotesConstructed.append(note)
-            } catch {
-                
-                
-                print(msgs.notesview.rawValue + msgs.cantdecodenote.rawValue)
-                
-            }
-        }
-        
-        let nmyNotes = Bundle.main.decode([Note].self, from: "Notes.json")  // array of Note
-        let savedNotes = nmyNotes.filter { $0.recipeuuid.description == myRecipeUUID.description}
-        myNotesConstructed.append(contentsOf: savedNotes)
-        
-        
+        myNotesConstructed = fileMgr.getUserNotes().filter({$0.recipeuuid.description == myRecipeUUID.description})
+        myNotesConstructed.append(contentsOf: fileMgr.getShippedNotes().filter({$0.recipeuuid.description == myRecipeUUID.description}))
+//        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName:recipeNotesFolderName)
+//        let zmyNotesUrls = myNotesUrls.filter {$0.description.contains(myRecipeUUID.description)}
+//        for aUrl in zmyNotesUrls {
+//            let noteData = fileIO.getFileDataAtUrl(url: aUrl)
+//            do {
+//                let note = try JSONDecoder().decode(Note.self, from: noteData)
+//                myNotesConstructed.append(note)
+//            } catch {
+//
+//
+//                print(msgs.notesview.rawValue + msgs.cantdecodenote.rawValue)
+//
+//            }
+//        }
+//
+//        let nmyNotes = Bundle.main.decode([Note].self, from: "Notes.json")  // array of Note
+//        let savedNotes = nmyNotes.filter { $0.recipeuuid.description == myRecipeUUID.description}
+//        myNotesConstructed.append(contentsOf: savedNotes)
+//
+//
         print(msgs.notesview.rawValue + msgs.numberofnotes.rawValue + "\(myNotesConstructed.count)")
-        
-        
         return myNotesConstructed
     }
     // MARK: - View Process

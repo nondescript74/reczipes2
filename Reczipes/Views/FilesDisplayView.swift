@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FilesDisplayView: View {
+    // MARK: - Environment Objects
+    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Properties
     private enum msgs:String {
         case ddir = "Contents of Documents"
@@ -18,7 +20,7 @@ struct FilesDisplayView: View {
     }
     var fileUrls:[URL] = []
     private var fileNames:[URL] = []
-    private let fileIO = FileIO()
+//    private let fileIO = FileIO()
     // MARK: - State
     @State var searchTerm: String = ""
     @State var urlString: String = ""
@@ -28,24 +30,24 @@ struct FilesDisplayView: View {
         NavigationView {
             VStack {
                 Text(msgs.ddir.rawValue).bold()
-                ForEach(fileIO.checkDocuDirContents(), id: \.self) { fname in
+                ForEach(fileMgr.checkDocuDirContents(), id: \.self) { fname in
                     Text(fname.absoluteString).font(.body)
                 }
                 Text(msgs.rdir.rawValue).bold()
-                ForEach(fileIO.checkContentsRecipeFolder(recipeFolder: recipesName), id: \.self) { fname in
+                ForEach(fileMgr.checkContentsReczipesFolder(), id: \.self) { fname in
                     Text(fname.absoluteString).font(.body)
                 }
             
                 Divider()
                 
                 Text(msgs.ridir.rawValue).bold()
-                ForEach(fileIO.checkContentsRecipeFolder(recipeFolder: recipeImagesFolderName), id: \.self) { fname in
+                ForEach(fileMgr.checkContentsRecipeFolder(recipeFolder: recipeImagesFolderName), id: \.self) { fname in
                     Text(fname.absoluteString).font(.body)
                 }
                 
                 
                 Text(msgs.rndir.rawValue).bold()
-                ForEach(fileIO.checkContentsRecipeFolder(recipeFolder: recipeNotesFolderName), id: \.self) { fname in
+                ForEach(fileMgr.checkContentsRecipeFolder(recipeFolder: recipeNotesFolderName), id: \.self) { fname in
                     Text(fname.absoluteString).font(.body)
                 }
             }

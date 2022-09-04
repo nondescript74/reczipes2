@@ -56,14 +56,8 @@ struct AddImageAndNoteView: View {
     fileprivate let encoder = JSONEncoder()
     // MARK: - Methods
     fileprivate func constructAllRecipes() -> [SectionItem] {
-        //        let shippedBookSections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json")
-        //        var recipesShipped:[SectionItem] = []
-        //        for aBS in shippedBookSections {
-        //            recipesShipped += aBS.items
-        //        }
-        //        return addedRecipes.getAllRecipes() + recipesShipped
-        let bsUser = fileMgr.getUserBookSections()
-        let bsShipped = fileMgr.getShippedBookSections()
+        let bsUser = fileMgr.userBookSectionsDirContents
+        let bsShipped = fileMgr.shippedBookSectionsDirContents
         var recipesCombined: [SectionItem] = []
         
         for abs in bsShipped {
@@ -85,37 +79,19 @@ struct AddImageAndNoteView: View {
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id.description
-//        let sectionItemName = sectionItem.name
-        
         let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
         let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
-        let result = fileMgr.addRecipeImage(image: myImageToAdd)
-        if result {
-            recipeImageSaved = true
-            if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
-        } else {
-            recipeImageSaved = false
-            print(msgs.aianv.rawValue + msgs.failed.rawValue)
-        }
-        //        do {
-        //            let encodedImage = try JSONEncoder().encode(myImageToAdd)
-        //            let encodedImageData = Data(encodedImage)
-        ////            let dateString = Date().description
-        ////            let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId.description + delimiterFileNames, fileType: msgs.json.rawValue, data: encodedImageData)
-        //
-        //            if !resultz {
-        //                print(msgs.aianv.rawValue + msgs.failed.rawValue)
-        //                recipeImageSaved = false
-        //            } else {
-        //                recipeImageSaved = true
-        //                if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
-        //            }
-        //        } catch {
-        //            recipeImageSaved = false
-        //            print(msgs.aianv.rawValue + msgs.failed.rawValue)
-        //        }
-        return
+        fileMgr.addRecipeImage(image: myImageToAdd)
+//        let result = fileMgr.addRecipeImage(image: myImageToAdd)
+//        if result {
+//            recipeImageSaved = true
+//            if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
+//        } else {
+//            recipeImageSaved = false
+//            print(msgs.aianv.rawValue + msgs.failed.rawValue)
+//        }
+//        return
     }
     
     fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {
@@ -149,18 +125,6 @@ struct AddImageAndNoteView: View {
             
             return zImg
         }
-        //        if zImg.imageOrientation == UIImage.Orientation.up {
-        //
-        //            print(msgs.imagesview.rawValue + msgs.up.rawValue)
-        //
-        //            return zImg
-        //        } else {
-        //            UIGraphicsBeginImageContext(zImg.size)
-        //            zImg.draw(in: CGRect(origin: .zero, size: zImg.size))
-        //            let zCopy = UIGraphicsGetImageFromCurrentImageContext()!
-        //            UIGraphicsEndImageContext()
-        //            return zCopy
-        //        }
     }
     
     fileprivate func addRecipeNote() {
@@ -169,39 +133,20 @@ struct AddImageAndNoteView: View {
             return
         }
         let combinedRecipes = self.constructAllRecipes()
-//        let combinedRecipes = addedRecipes.getAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id.description
-//        let sectionItemName = sectionItem.name
         
         let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
-        let result = fileMgr.addRecipeNote(note: myNoteToAdd)
-        if result {
-            recipeNoteSaved = true
-            if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
-        } else {
-            recipeNoteSaved = false
-            print(msgs.aianv.rawValue + msgs.failed.rawValue)
-        }
-//        do {
-//            let encodedNote = try JSONEncoder().encode(myNoteToAdd)
-//            let encodedNoteData = Data(encodedNote)
-//            let dateString = Date().description
-//            let resultz = fileIO.writeFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName, fileNameToSave: sectionItemName + delimiterFileNames + sectionItemId + delimiterFileNames + dateString, fileType: msgs.json.rawValue, data: encodedNoteData)
-//
-//            if !resultz {
-//                recipeNoteSaved = false
-//                print(msgs.aianv.rawValue + msgs.failed.rawValue)
-//            } else {
-//                recipeNote = ""
-//                recipeNoteSaved = true
-//                if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
-//            }
-//        } catch {
+        fileMgr.addRecipeNote(note: myNoteToAdd)
+//        let result = fileMgr.addRecipeNote(note: myNoteToAdd)
+//        if result {
+//            recipeNoteSaved = true
+//            if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
+//        } else {
 //            recipeNoteSaved = false
 //            print(msgs.aianv.rawValue + msgs.failed.rawValue)
 //        }
-        return
+//        return
     }
     
     var actionSheet: ActionSheet {

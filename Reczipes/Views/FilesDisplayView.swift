@@ -19,7 +19,7 @@ struct FilesDisplayView: View {
         case fdisp = "Files Display"
     }
     var fileUrls:[URL] = []
-    private var fileNames:[URL] = []
+//    private var fileNames:[URL] = []
 //    private let fileIO = FileIO()
     // MARK: - State
     @State var searchTerm: String = ""
@@ -30,26 +30,34 @@ struct FilesDisplayView: View {
         NavigationView {
             VStack {
                 Text(msgs.ddir.rawValue).bold()
-                ForEach(fileMgr.checkDocuDirContents(), id: \.self) { fname in
+                ForEach(fileMgr.docsDirContents, id: \.self) { fname in
                     Text(fname.absoluteString).font(.body)
+                }.refreshable {
+                     
                 }
                 Text(msgs.rdir.rawValue).bold()
-                ForEach(fileMgr.checkContentsReczipesFolder(), id: \.self) { fname in
-                    Text(fname.absoluteString).font(.body)
-                }
+//                ForEach(fileMgr.shippedBookSectionsDirContents, id: \.self) { fname in
+//                    Text(fname.absoluteString).font(.body)
+//                }.refreshable {
+//
+//                }
             
                 Divider()
                 
                 Text(msgs.ridir.rawValue).bold()
-                ForEach(fileMgr.checkContentsRecipeFolder(recipeFolder: recipeImagesFolderName), id: \.self) { fname in
-                    Text(fname.absoluteString).font(.body)
-                }
+//                ForEach(fileMgr.checkContentsRecipeFolder(recipeFolder: recipeImagesFolderName), id: \.self) { fname in
+//                    Text(fname.absoluteString).font(.body)
+//                }.refreshable {
+//
+//                }
                 
                 
                 Text(msgs.rndir.rawValue).bold()
-                ForEach(fileMgr.checkContentsRecipeFolder(recipeFolder: recipeNotesFolderName), id: \.self) { fname in
-                    Text(fname.absoluteString).font(.body)
-                }
+//                ForEach(fileMgr.checkContentsRecipeFolder(recipeFolder: recipeNotesFolderName), id: \.self) { fname in
+//                    Text(fname.absoluteString).font(.body)
+//                }.refreshable {
+//
+//                }
             }
         }.navigationTitle(Text(msgs.fdisp.rawValue))
     }

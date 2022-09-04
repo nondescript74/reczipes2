@@ -83,23 +83,18 @@ struct MailView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         
-        
         if MFMailComposeViewController.canSendMail() {
             do {
                 let jSONEncode = JSONEncoder()
                 var myNotesConstructed:Array<Note> = []
-                myNotesConstructed = fileMgr.getUserNotes().filter({$0.recipeuuid.description == sectItem.id.description})
-                myNotesConstructed.append(contentsOf: fileMgr.getShippedNotes().filter({$0.recipeuuid.description == sectItem.id.description}))
-                //                let getNotes = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeNotesFolderName)  // set of urls to files
-                //                let thisSetOfNotes = getNotes.filter({"\($0)".contains(sectItem.id.uuidString)})
+                myNotesConstructed = fileMgr.userRecipesNotesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description})
+                myNotesConstructed.append(contentsOf: fileMgr.shippedRecipesNotesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description}))
                 
                 print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(myNotesConstructed.count)")
                 
                 var myImagesConstructed:Array<ImageSaved> = []
-                myImagesConstructed = fileMgr.getUserImages().filter({$0.recipeuuid.description == sectItem.id.description})
-                myImagesConstructed.append(contentsOf: fileMgr.getShippedImages().filter({$0.recipeuuid.description == sectItem.id.description}))
-                //                let getImages = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)  // set of urls to files
-                //                let thisSetOfImages = getImages.filter({"\($0)".contains(sectItem.id.uuidString)})
+                myImagesConstructed = fileMgr.userRecipesImagesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description})
+                myImagesConstructed.append(contentsOf: fileMgr.shippedRecipesImagesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description}))
                 
                 print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(myImagesConstructed.count)")
                 

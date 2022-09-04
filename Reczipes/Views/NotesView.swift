@@ -26,28 +26,10 @@ struct NotesView: View {
     // MARK: - Methods
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
-        myNotesConstructed = fileMgr.getUserNotes().filter({$0.recipeuuid.description == myRecipeUUID.description})
-        myNotesConstructed.append(contentsOf: fileMgr.getShippedNotes().filter({$0.recipeuuid.description == myRecipeUUID.description}))
-//        let myNotesUrls = fileIO.readFileInRecipeNotesOrImagesFolderInDocuments(folderName:recipeNotesFolderName)
-//        let zmyNotesUrls = myNotesUrls.filter {$0.description.contains(myRecipeUUID.description)}
-//        for aUrl in zmyNotesUrls {
-//            let noteData = fileIO.getFileDataAtUrl(url: aUrl)
-//            do {
-//                let note = try JSONDecoder().decode(Note.self, from: noteData)
-//                myNotesConstructed.append(note)
-//            } catch {
-//
-//
-//                print(msgs.notesview.rawValue + msgs.cantdecodenote.rawValue)
-//
-//            }
-//        }
-//
-//        let nmyNotes = Bundle.main.decode([Note].self, from: "Notes.json")  // array of Note
-//        let savedNotes = nmyNotes.filter { $0.recipeuuid.description == myRecipeUUID.description}
-//        myNotesConstructed.append(contentsOf: savedNotes)
-//
-//
+        fileMgr.getUserNotes()
+        fileMgr.getShippedNotes()
+        myNotesConstructed = fileMgr.userRecipesNotesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description})
+        myNotesConstructed.append(contentsOf: fileMgr.shippedRecipesNotesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description}))
         print(msgs.notesview.rawValue + msgs.numberofnotes.rawValue + "\(myNotesConstructed.count)")
         return myNotesConstructed
     }

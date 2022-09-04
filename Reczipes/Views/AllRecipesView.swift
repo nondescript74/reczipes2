@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AllRecipesView: View {
     // MARK: - Environment Objects
-//    @EnvironmentObject var addedRecipes: AddedRecipes
     @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Properties
     fileprivate enum msgs: String {
@@ -18,8 +17,8 @@ struct AllRecipesView: View {
     // MARK: - Methods
     fileprivate var myBook: [BookSection] {
         var myReturn: [BookSection] = []
-        let shipped = fileMgr.getShippedBookSections()
-        let user = fileMgr.getUserBookSections()
+        let shipped = fileMgr.shippedBookSectionsDirContents
+        let user = fileMgr.userBookSectionsDirContents
         for abs in shipped {
             if (user.filter({$0.id == abs.id}).first != nil) {
                 let userItems: [SectionItem] = (user.filter({$0.id == abs.id}).first!.items)
@@ -31,8 +30,6 @@ struct AllRecipesView: View {
                 myReturn.append(abs)
             }
         }
-//        let addedSections = addedRecipes.bookSections.sorted(by: {$0.name < $1.name})  // anything in added Recipes
-//        return addedSections
         myReturn = myReturn.sorted(by: {$0.name < $1.name})
         return myReturn
     }
@@ -52,6 +49,9 @@ struct AllRecipesView: View {
                         }
                     }
                 }.listStyle(GroupedListStyle())
+                    .refreshable {
+//                        await fileMgr.reload()
+                    }
             }
         }
     }
@@ -62,7 +62,7 @@ struct AllRecipesView: View {
 struct AllRecipesView_Previews: PreviewProvider {
     static let order = OrderingList()
     static let fileMgr = FileMgr()
-//    static let addedRecipes = AddedRecipes()
+    //    static let addedRecipes = AddedRecipes()
     static var previews: some View {
         Group {
             AllRecipesView()

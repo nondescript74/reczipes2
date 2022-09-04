@@ -31,21 +31,8 @@ struct ImagesView: View {
     // MARK: - Methods
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
         var myImagesConstructed:Array<ImageSaved> = []
-        myImagesConstructed = fileMgr.getUserImages().filter({$0.recipeuuid.description == myRecipeUUID.description})
-        myImagesConstructed.append(contentsOf: fileMgr.getShippedImages().filter({$0.recipeuuid.description == myRecipeUUID.description}))
-//        let myImagesUrls = fileMgr.readFileInRecipeNotesOrImagesFolderInDocuments(folderName: recipeImagesFolderName)
-//        let zmyImagesUrls = myImagesUrls.filter {$0.description.contains(myRecipeUUID.description)}
-//        for aUrl in zmyImagesUrls {
-//            let imageData = fileMgr.getFileDataAtUrl(url: aUrl)
-//            do {
-//                let imagez = try JSONDecoder().decode(ImageSaved.self, from: imageData)
-//                // now get the image
-//                myImagesConstructed.append(imagez)
-//            } catch {
-//
-//                print(msgs.imagesview.rawValue + msgs.cantdecodeimage.rawValue)
-//            }
-//        }
+        myImagesConstructed = fileMgr.userRecipesImagesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description})
+        myImagesConstructed.append(contentsOf: fileMgr.shippedRecipesImagesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description}))
         
         print(msgs.imagesview.rawValue + msgs.numberofimages.rawValue + "\(myImagesConstructed.count)")
         
@@ -101,7 +88,6 @@ struct ImagesView: View {
                 HStack(alignment: .top) {
                     ForEach(constructImagesIfAvailable(), id: \.self) { savedImage in
                         Image(uiImage: rotateImageIfNecessary(data: savedImage.imageSaved).scaledDown(into: CGSize(width: proxy.size.width / 2, height: proxy.size.height / 2)))
-                        // UIImage(data: savedImage.imageSaved)!.scaledDown(into: CGSize(width: proxy.size.width / 2, height: proxy.size.height / 2))
                     }
                 }
             }

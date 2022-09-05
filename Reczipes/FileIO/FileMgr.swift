@@ -25,7 +25,7 @@ public class FileMgr: FileManager, ObservableObject {
     override init() {
         
         super.init()
-
+        
         createRecipesFolder()
         getDocuDirContents()
         getShippedBookSections()
@@ -34,7 +34,7 @@ public class FileMgr: FileManager, ObservableObject {
         getUserNotes()
         getShippedImages()
         getUserImages()
-            
+        
     }
     
     // MARK: - Publisher
@@ -53,7 +53,7 @@ public class FileMgr: FileManager, ObservableObject {
         case rFolderExists = "Reczipes folder already exists"
         case rFolderCreated = "Reczipes folder created "
         case rNotesFolderCreated = "RecipeNotes Folder created "
-        case reNotesFolderExists = "RecipeNotes Folder already exists "
+        case rNotesFolderExists = "RecipeNotes Folder already exists "
         case rImagesFolderCreated = "RecipeImages Folder created "
         case rImagesFolderExists = "RecipeImages Folder already exists "
         case json = ".json"
@@ -91,44 +91,48 @@ public class FileMgr: FileManager, ObservableObject {
         }
         
         let myReczipesDirUrl:URL = myDocuDirUrl!.appending(path: recipesName)
-        if fileManager.fileExists(atPath: myReczipesDirUrl.absoluteString) {
+        if !self.fileManager.fileExists(atPath: myReczipesDirUrl.absoluteString, isDirectory: &isDirectory) {
+            do {
+                try self.fileManager.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
+                if zBug { print(msgs.fm.rawValue + msgs.rFolderExists.rawValue)}
+            } catch {
+                fatalError("Can't create reczipes directory")
+            }
+            
+        } else {
+            // exists
             if zBug { print(msgs.fm.rawValue + msgs.rFolderExists.rawValue)}
-            // directory exists
-            // check for images, notes
         }
         
+        
         let myReczNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
-        if fileManager.fileExists(atPath: myReczNotesDirUrl.absoluteString) {
-            if zBug { print(msgs.fm.rawValue + msgs.reNotesFolderExists.rawValue)}
-            // directory for notes exists
-            // check for images
-        } else {
-            // create notes folder
-            DispatchQueue.main.async { [self] in
-                do {
-                    try fileManager.createDirectory(at: myReczNotesDirUrl, withIntermediateDirectories: true)
-                    if zBug { print(msgs.fm.rawValue + msgs.rNotesFolderCreated.rawValue)}
-                } catch  {
-                    fatalError()
-                }
+//        if !self.fileManager.fileExists(atPath: myReczNotesDirUrl.absoluteString, isDirectory: &isDirectory) {
+            do {
+                try self.fileManager.createDirectory(at: myReczNotesDirUrl, withIntermediateDirectories: true)
+                if zBug { print(msgs.fm.rawValue + msgs.rNotesFolderCreated.rawValue)}
+            } catch {
+                fatalError("Can't create RecipeNotes directory")
             }
-        }
+            
+//        } else {
+            // exists
+//            if zBug { print(msgs.fm.rawValue + msgs.rNotesFolderExists.rawValue)}
+//        }
+
         let myReczImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
-        if fileManager.fileExists(atPath: myReczImagesDirUrl.absoluteString, isDirectory: &isDirectory) {
-            if zBug { print(msgs.fm.rawValue + msgs.rImagesFolderExists.rawValue)}
-            // directory for notes exists
-            // all folders exist
-        } else {
-            // create images folder
-            DispatchQueue.main.async { [self] in
-                do {
-                    try fileManager.createDirectory(at: myReczImagesDirUrl, withIntermediateDirectories: true)
-                    if zBug { print(msgs.fm.rawValue + msgs.rImagesFolderCreated.rawValue)}
-                } catch  {
-                    fatalError()
-                }
+        
+//        if !self.fileManager.fileExists(atPath: myReczImagesDirUrl.absoluteString, isDirectory: &isDirectory) {
+            do {
+                try self.fileManager.createDirectory(at: myReczImagesDirUrl, withIntermediateDirectories: true)
+                if zBug { print(msgs.fm.rawValue + msgs.rImagesFolderCreated.rawValue)}
+            } catch {
+                fatalError("Can't create RecipeNotes directory")
             }
-        }
+//            
+//        } else {
+//            // exists
+//            if zBug { print(msgs.fm.rawValue + msgs.rImagesFolderExists.rawValue)}
+//        }
     }
     
     private func createHomeDirPathUrl() -> URL {
@@ -144,16 +148,16 @@ public class FileMgr: FileManager, ObservableObject {
     }
     
     func getDocuDirContents() {
-            let myDocuDirUrl = createHomeDirPathUrl()
-            DispatchQueue.main.async { [self] in
-                do {
-                    let fileURLs = try fileManager.contentsOfDirectory(at: myDocuDirUrl, includingPropertiesForKeys: nil)
-                    if zBug { print(msgs.fm.rawValue + msgs.docudir.rawValue + fileURLs.debugDescription, fileURLs.count.description)}
-                    self.docsDirContents = fileURLs
-                } catch {
-                    fatalError(msgs.fm.rawValue + msgs.fail.rawValue)
-                }
+        let myDocuDirUrl = createHomeDirPathUrl()
+        DispatchQueue.main.async { [self] in
+            do {
+                let fileURLs = try fileManager.contentsOfDirectory(at: myDocuDirUrl, includingPropertiesForKeys: nil)
+                if zBug { print(msgs.fm.rawValue + msgs.docudir.rawValue + fileURLs.debugDescription, fileURLs.count.description)}
+                self.docsDirContents = fileURLs
+            } catch {
+                fatalError(msgs.fm.rawValue + msgs.fail.rawValue)
             }
+        }
     }
     
     func getContentsReczipesFolder() {
@@ -237,13 +241,13 @@ public class FileMgr: FileManager, ObservableObject {
         }
         
     }
-
+    
     func getRecipesInShippedBookSection(bookSectionUUID: UUID) -> [SectionItem] {
         self.getShippedBookSections()
         var filteredShippedRecipes :[SectionItem] = []
         
-            let bss = shippedBookSectionsDirContents.filter({$0.id == bookSectionUUID})
-            filteredShippedRecipes = bss.first?.items ?? [SectionItem]()
+        let bss = shippedBookSectionsDirContents.filter({$0.id == bookSectionUUID})
+        filteredShippedRecipes = bss.first?.items ?? [SectionItem]()
         
         return filteredShippedRecipes
     }
@@ -251,15 +255,15 @@ public class FileMgr: FileManager, ObservableObject {
     func getRecipesInUserBookSection(bookSectionUUID: UUID) -> [SectionItem] {
         self.getUserBookSections()
         var filteredUserRecipes: [SectionItem] = []
-            let bss = userBookSectionsDirContents.filter({$0.id == bookSectionUUID})
-            filteredUserRecipes = bss.first?.items ?? [SectionItem]()
+        let bss = userBookSectionsDirContents.filter({$0.id == bookSectionUUID})
+        filteredUserRecipes = bss.first?.items ?? [SectionItem]()
         
         return filteredUserRecipes
         
     }
     
     func getShippedNotes() {
-        shippedRecipesNotesFolderContents.removeAll()
+        //        shippedRecipesNotesFolderContents.removeAll()
         DispatchQueue.main.async { [self] in
             let notes:[Note] = Bundle.main.decode([Note].self, from: msgs.notesshipd.rawValue + msgs.json.rawValue).sorted(by: {$0.note < $1.note})
             shippedRecipesNotesFolderContents = notes
@@ -267,21 +271,21 @@ public class FileMgr: FileManager, ObservableObject {
     }
     
     func getShippedImages() {
-//        shippedRecipesImagesFolderContents.removeAll()
-//        DispatchQueue.main.async { [self] in
-//            let images:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.imagesshipd.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid})
-//            shippedRecipesImagesFolderContents = images
-//        }
+        //        shippedRecipesImagesFolderContents.removeAll()
+        //        DispatchQueue.main.async { [self] in
+        //            let images:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.imagesshipd.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid})
+        //            shippedRecipesImagesFolderContents = images
+        //        }
     }
     
     func getUserNotes() {
-        userRecipesNotesFolderContents.removeAll()
+        //        userRecipesNotesFolderContents.removeAll()
         DispatchQueue.main.async { [self] in
             do {
                 let myDocuDirUrl = try self.fileManager.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: false)
                 
                 let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
                 let myNotesDirURL = myReczipesDirUrl.appending(path: msgs.rnotes.rawValue)
@@ -292,6 +296,7 @@ public class FileMgr: FileManager, ObservableObject {
                         // nothing to do
                         if zBug { print(msgs.fm.rawValue + msgs.nunotes.rawValue)}
                     } else {
+                        userRecipesNotesFolderContents = []
                         for aurl in urls {
                             do {
                                 let data = try Data(contentsOf: aurl)
@@ -304,7 +309,7 @@ public class FileMgr: FileManager, ObservableObject {
                             }
                         }
                     }
-
+                    
                 } catch  {
                     // no contents
                 }
@@ -316,18 +321,18 @@ public class FileMgr: FileManager, ObservableObject {
     }
     
     func getUserImages() {
-        userRecipesImagesFolderContents.removeAll()
+        //        userRecipesImagesFolderContents.removeAll()
         DispatchQueue.main.async { [self] in
             do {
                 let myDocuDirUrl = try self.fileManager.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: false)
                 
                 let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
                 let myImagesDirURL = myReczipesDirUrl.appending(path: msgs.rimages.rawValue)
                 
-
+                
                 do {
                     let urls = try fileManager.contentsOfDirectory(at: myImagesDirURL, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
                     if urls.isEmpty {
@@ -386,9 +391,9 @@ public class FileMgr: FileManager, ObservableObject {
         DispatchQueue.main.async { [self] in
             do {
                 let myDocuDirUrl = try self.fileManager.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: false)
                 
                 
                 let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
@@ -414,7 +419,7 @@ public class FileMgr: FileManager, ObservableObject {
                                         do {
                                             try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + msgs.json.rawValue))
                                             if zBug { print(msgs.fm.rawValue + msgs.wrjson.rawValue)}
-                                        
+                                            
                                         } catch  {
                                             fatalError("Cannot write to user recipes folder")
                                         }
@@ -422,7 +427,7 @@ public class FileMgr: FileManager, ObservableObject {
                                         fatalError("Cannot encode booksection to json")
                                     }
                                 }
-
+                                
                             } catch  {
                                 // not a json file
                                 fatalError("This is not a json file")
@@ -505,7 +510,7 @@ public class FileMgr: FileManager, ObservableObject {
             } else {
                 // nothing to do recipe does not exist
             }
-
+            
         } else {
             // nothing to do book section does nto exist
         }
@@ -530,9 +535,9 @@ public class FileMgr: FileManager, ObservableObject {
         DispatchQueue.main.async { [self] in
             do {
                 let myDocuDirUrl = try self.fileManager.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: false)
                 
                 let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
                 let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
@@ -556,13 +561,13 @@ public class FileMgr: FileManager, ObservableObject {
     }
     
     func addRecipeNote(note: Note) {
- 
+        
         DispatchQueue.main.async { [self] in
             do {
                 let myDocuDirUrl = try self.fileManager.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
+                                                            in: .userDomainMask,
+                                                            appropriateFor: nil,
+                                                            create: false)
                 
                 let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
                 let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
@@ -574,6 +579,8 @@ public class FileMgr: FileManager, ObservableObject {
                     do {
                         try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(note.recipeuuid.description + msgs.json.rawValue))
                         if zBug { print(msgs.fm.rawValue + msgs.notejson.rawValue)}
+                        let result = try contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
+                        if zBug { print(msgs.fm.rawValue + "Contents count " + "\(result.count)")}
                     } catch  {
                         fatalError("Cannot write to user RecipeNotes folder")
                     }

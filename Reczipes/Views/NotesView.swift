@@ -26,8 +26,8 @@ struct NotesView: View {
     // MARK: - Methods
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
-        fileMgr.getUserNotes()
-        fileMgr.getShippedNotes()
+//        fileMgr.getUserNotes()
+//        fileMgr.getShippedNotes()
         myNotesConstructed = fileMgr.userRecipesNotesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description})
         myNotesConstructed.append(contentsOf: fileMgr.shippedRecipesNotesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description}))
         print(msgs.notesview.rawValue + msgs.numberofnotes.rawValue + "\(myNotesConstructed.count)")

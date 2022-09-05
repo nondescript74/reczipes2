@@ -95,8 +95,8 @@ struct RecipeDetailView: View {
     }
     
     fileprivate func hasImages() -> Bool {
-        fileMgr.getUserImages()
-        fileMgr.getShippedImages()
+//        fileMgr.getUserImages()
+//        fileMgr.getShippedImages()
         let myImagesUrls = fileMgr.userRecipesImagesFolderContents
         let userImages = myImagesUrls.filter {$0.recipeuuid.contains( item.id.description)}
         let shippedImages = fileMgr.shippedRecipesImagesFolderContents.filter({$0.recipeuuid.contains(item.id.description)})  // array of Note

@@ -109,7 +109,6 @@ struct FilesDisplayView: View {
             VStack {
                 Text(msgs.ddir.rawValue).bold()
                 List {
-                    
                     ForEach(getDocuDirContents(lpc: true), id: \.self) { fname in
                         Text(fname).font(.body)
                     }

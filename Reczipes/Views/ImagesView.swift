@@ -31,7 +31,7 @@ struct ImagesView: View {
         case recz = "Reczipes"
         case fau = "Found an Image"
         case rshippd = "recipesShipped"
-        case json = ".json"
+//        case json = ".json"
     }
     var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
@@ -77,7 +77,7 @@ struct ImagesView: View {
             
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rshippd.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rshippd.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid})
         if shippedImages.isEmpty  {
             // nothin
         } else {

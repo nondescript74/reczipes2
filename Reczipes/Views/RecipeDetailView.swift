@@ -40,16 +40,20 @@ struct RecipeDetailView: View {
         case recipeImagesNot = "RecipeImagesFolder has no Images"
         case recipeNotesNot = "RecipeNotesFolder has no Notes"
         case recz = "Reczipes"
-        case json = ".json"
+//        case json = ".json"
         case wrjson = "Successfully wrote booksection"
         case notejson = "Successfully wrote note"
         case imgjson = "Successfully wrote image"
+        case rshipd = "recipesShipped"
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case fuar = "Found user added recipe"
         
     }
     
     fileprivate enum namez: String {
         case notes = "Notes"
-        case json = ".json"
+//        case json = ".json"
         case images = "Images"
     }
     
@@ -126,7 +130,7 @@ struct RecipeDetailView: View {
             fatalError("Cannot read or decode from notes")
         }
         
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: namez.notes.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
+        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: namez.notes.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
         if shippedNotes.isEmpty  {
             
         } else {
@@ -166,7 +170,7 @@ struct RecipeDetailView: View {
             fatalError("Cannot read or decode from notes")
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: namez.images.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: namez.images.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
         if shippedImages.isEmpty  {
             
         } else {
@@ -190,39 +194,56 @@ struct RecipeDetailView: View {
         var myReturn:UUID?
 //        let escape: Character = "\""
         // special characters are escaped
-        if !getBookSectionNames().contains(name) {
+        if getBookSectionNames().contains(name) {
             // bs with that exists
-            myReturn = getBookSections().filter({$0.name == name}).first!.id
+            myReturn = constructAllSections().filter({$0.name == name}).first!.id
         }
         return myReturn
     }
     
-    func getBookSections() -> [BookSection] {
+    fileprivate func constructAllSections() -> [BookSection] {
         var myReturn: [BookSection] = []
         let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        
-        do {
-            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles).filter({$0.lastPathComponent.contains(msgs.json.rawValue)})
-            for aurl in urls {
-                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrl.absoluteString.appending(aurl.absoluteString))!
-                let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
-                myReturn.append(aBookSection)
+        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
+        myReturn = bookSections
+        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+        let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
+        if !test {
+            do {
+                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
+            } catch {
+                fatalError("Cannot create directory")
             }
-            let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
-            for aBS in bookSections {
-                myReturn.append(aBS)
+        }
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            
+            for aurl in urls {
+                if aurl.pathComponents.contains(msgs.rnotes.rawValue) || aurl.pathComponents.contains(msgs.rimages.rawValue)  {
+                    // skip these folders
+                } else {
+                    let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+                    do {
+                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
+                        myReturn.append(aBookSection)
+                        if zBug { print(msgs.RDV.rawValue + msgs.fuar.rawValue)}
+                        
+                    } catch  {
+                        // not a json file
+                        fatalError("This directory has illegal files")
+                    }
+                }
             }
         } catch  {
-            fatalError("Can't read contents of users recipes dir")
+            // no contents or does not exist
         }
-        
         return myReturn
     }
     
     func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
         var myReturn:BookSection?
-        let bs = getBookSections().filter({$0.id == bookSectionUUID})
+        let bs = constructAllSections().filter({$0.id == bookSectionUUID})
         myReturn = bs.first
         return myReturn
     }
@@ -237,7 +258,7 @@ struct RecipeDetailView: View {
             // exists
             do {
                 // first try in user recipes
-                var bookSections = getBookSections()
+                let bookSections = constructAllSections()
                 for aBookSection in bookSections {
                     if aBookSection.id == bookSectionUUID {
                         // found it, items are SectionItems
@@ -250,7 +271,7 @@ struct RecipeDetailView: View {
                             let encodedJSON = try encoder.encode(newBookSection)
                             // now write out
                             do {
-                                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + msgs.json.rawValue))
+                                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + json))
                                 if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
                                 
                             } catch  {
@@ -285,7 +306,7 @@ struct RecipeDetailView: View {
                 let encodedJSON = try encoder.encode(newBookSection)
                 // now write out
                 do {
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + msgs.json.rawValue))
+                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + json))
                     if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
                 } catch  {
                     fatalError("Cannot write to user booksections folder")

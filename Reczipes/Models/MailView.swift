@@ -23,7 +23,7 @@ struct MailView: UIViewControllerRepresentable {
         case messSubj = "Hi, thought you might like this recipe I cook"
         case failedData = "Failed encoding SectionItem to Data"
         case noAddress = "User mail sending not available"
-        case json = ".json"
+//        case json = ".json"
         case success = "mailComposeController finished with success"
         case failedMC = "mailComposeController finished with failure"
         case recipehasnotes = "This recipe has notes to send"
@@ -80,7 +80,7 @@ struct MailView: UIViewControllerRepresentable {
             
         }
         
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
+        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
         if shippedNotes.isEmpty  {
             
         } else {
@@ -116,7 +116,7 @@ struct MailView: UIViewControllerRepresentable {
             
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
         if shippedImages.isEmpty  {
             
         } else {
@@ -187,7 +187,7 @@ struct MailView: UIViewControllerRepresentable {
                 let encodedSetOfImagesData = Data(encodedSetOfImages)
                 
                 let dateString = Date().description
-                let resultName = sectItem.name + delimiterFileNames + delimiterFileNames + dateString + msgs.json.rawValue
+                let resultName = sectItem.name + delimiterFileNames + delimiterFileNames + dateString + json
                 
                 let sectionItemNotesImages: SectionItemNotesImages = SectionItemNotesImages(id: UUID(), name: resultName, recipeData: encodedSectItemData, recipeImages: encodedSetOfImagesData, recipeNotes: encodedSetOfNotesData)
                 let encodedSectionItemNotesImages = try jSONEncode.encode(sectionItemNotesImages)
@@ -197,7 +197,7 @@ struct MailView: UIViewControllerRepresentable {
                 vc.mailComposeDelegate = context.coordinator
                 vc.setSubject(msgs.messSubj.rawValue)
                 vc.setMessageBody(sectItem.url, isHTML: false)
-                vc.addAttachmentData(encodedSectionItemNotesImagesData, mimeType: msgs.json.rawValue, fileName: resultName)
+                vc.addAttachmentData(encodedSectionItemNotesImagesData, mimeType: json, fileName: resultName)
                 
                 print(msgs.mv.rawValue + msgs.mailwithattachmentscreated.rawValue)
                 return vc

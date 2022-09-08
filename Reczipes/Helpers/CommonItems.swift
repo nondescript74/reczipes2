@@ -21,6 +21,7 @@ public let recipeImagesFolderName = "RecipeImages"
 //public var recipeBooks:[String] = ["CRecipeBook0", "IndianRecipes0", "Added Recipes"]
 //public var recipeBooks2:[String] = ["Carol", "Indian", "Added", "Diane", "Z", "Rafiq", "Chinese"]
 let myBookSectionsIdNames: [BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json")
+public let json = ".json"
 
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
@@ -70,8 +71,29 @@ fileprivate enum msgs: String {
     
     case returningpresetrecipes = "Returning Preset Recipes "
     case returningbooksectionssf = "Returning BookSections in single file"
-//    case recipesFile = "recipesShipped"
-    case csrtsi = "Converted SRecipe to SectionItem"
+    case rshipd = "recipesShipped"
+    case rnotes = "RecipeNotes"
+    case rimages = "RecipeImages"
+    case fuar = "Found user added recipe"
+    case ci = "CommonItems"
+}
+
+private var decoder: JSONDecoder = JSONDecoder()
+private var encoder: JSONEncoder = JSONEncoder()
+
+
+func getDocuDirUrl() -> URL {
+    var myReturn:URL
+    do {
+        let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
+                                                       in: .userDomainMask,
+                                                       appropriateFor: nil,
+                                                       create: false)
+        myReturn = myDocuDirUrl
+    } catch {
+        fatalError()
+    }
+    return myReturn
 }
 
 func constructRestrictions(srecipe: SRecipe) -> [String] {
@@ -116,7 +138,7 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
                             restrictions: constructRestrictions(srecipe: srecipe))
     
 
-    print(msgs.csrtsi.rawValue + item.name)
+    print(msgs.ci.rawValue + item.name)
 
     return item
 }

@@ -31,7 +31,7 @@ struct MoveRecipeView: View {
         case recz = "Reczipes"
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
-        case json = "json"
+//        case json = ".json"
         case mrv = "Move Recipe View: "
         case fuar = "Found a user added recipe"
     }
@@ -103,7 +103,7 @@ struct MoveRecipeView: View {
             let aBookSection = BookSection(id: myBSToModify.id, name: myBSToModify.name, items: existingRecipes)
             let ajsonfile = try encoder.encode(aBookSection)
 
-            try ajsonfile.write(to: myReczipesDirUrl.appendingPathComponent( msgs.json.rawValue))
+            try ajsonfile.write(to: myReczipesDirUrl.appendingPathComponent( json))
             if zBug { print(msgs.mrv.rawValue + "Wrote recipe to user folder")}
         } catch {
             if zBug { print(msgs.mrv.rawValue + "Can't encode booksection")}
@@ -134,7 +134,7 @@ struct MoveRecipeView: View {
             let aBookSection = BookSection(id: UUID(), name: getBookSectionNames()[xectionTo], items: [myMovingRecipe])
             do {
                 let ajsonfile = try encoder.encode(aBookSection)
-                try ajsonfile.write(to: myReczipesDirUrl.appendingPathComponent( msgs.json.rawValue))
+                try ajsonfile.write(to: myReczipesDirUrl.appendingPathComponent( json))
                 if zBug { print(msgs.mrv.rawValue + "Wrote recipe to a newly created user section")}
             } catch  {
                 fatalError()

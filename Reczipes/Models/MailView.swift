@@ -10,9 +10,10 @@ import UIKit
 import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
+    // MARK: - Debug local\
+    private var zBug: Bool = true
     // MARK: - Environment
     @Environment(\.presentationMode) var presentation
-    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - State
     @Binding var result: Result<MFMailComposeResult, Error>?
     // MARK: - Properties
@@ -29,9 +30,101 @@ struct MailView: UIViewControllerRepresentable {
         case recipehasimages = "This recipe has images to send"
         case separator = " : "
         case mailwithattachmentscreated = "A recipe with note and/or images if availabe attached as data to mail"
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case fan = "Found a Note"
+        case fani = "Found an ImageSaved"
+    }
+    var isDirectory: ObjCBool = true
+    private var decoder: JSONDecoder = JSONDecoder()
+    private var encoder: JSONEncoder = JSONEncoder()
+    // MARK: - Methods
+    private func getDocuDirUrl() -> URL {
+        var myReturn:URL
+        do {
+            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false)
+            myReturn = myDocuDirUrl
+        } catch {
+            fatalError()
+        }
+        return myReturn
     }
     
-    //    private let fileIO = FileIO()
+    fileprivate func constructNotesIfAvailable() -> Array<Note> {
+        var myNotesConstructed:Array<Note> = []
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
+        
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rnotes.rawValue),
+                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
+            // now shipped recipes
+            
+            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+            for aurl in urls {
+                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+                do {
+                    let aNote = try decoder.decode(Note.self, from: ajsonfile)
+                    myNotesConstructed.append(aNote)
+                    if zBug { print(msgs.mv.rawValue + msgs.fan.rawValue)}
+                    
+                } catch  {
+                    // not a json file
+                    fatalError("Cannot decode This directory has illegal files")
+                }
+            }
+        } catch {
+            
+        }
+        
+        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
+        if shippedNotes.isEmpty  {
+            
+        } else {
+            myNotesConstructed.append(contentsOf: shippedNotes)
+        }
+        return myNotesConstructed
+    }
+    
+    fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
+        var myImagesConstructed:Array<ImageSaved> = []
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
+        
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rimages.rawValue),
+                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
+            // now shipped recipes
+            
+            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+            for aurl in urls {
+                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+                do {
+                    let anImageSaved = try decoder.decode(ImageSaved.self, from: ajsonfile)
+                    myImagesConstructed.append(anImageSaved)
+                    if zBug { print(msgs.mv.rawValue + msgs.fani.rawValue)}
+                    
+                } catch  {
+                    // not a json file
+                    fatalError("Cannot decode This directory has illegal files")
+                }
+            }
+        } catch {
+            
+        }
+        
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + msgs.json.rawValue).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
+        if shippedImages.isEmpty  {
+            
+        } else {
+            myImagesConstructed.append(contentsOf: shippedImages)
+        }
+        return myImagesConstructed
+    }
+    
     
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         
@@ -68,33 +161,18 @@ struct MailView: UIViewControllerRepresentable {
                            result: $result)
     }
     
-    //    func createMailComposeViewController() -> MFMailComposeViewController {
-    //        let mailComposeViewController = MFMailComposeViewController()
-    //        mailComposeViewController.mailComposeDelegate = self
-    //        mailComposeViewController.setToRecipients(["example@test.test"])
-    //        mailComposeViewController.setSubject("subject")
-    //        mailComposeViewController.setMessageBody("test body", isHTML: false)
-    //        return mailComposeViewController
-    //    }
-    
-    //    func createRecipeWithImagesAndNotes() -> SectionItem {
-    //
-    //    }
-    
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         
         if MFMailComposeViewController.canSendMail() {
             do {
                 let jSONEncode = JSONEncoder()
                 var myNotesConstructed:Array<Note> = []
-                myNotesConstructed = fileMgr.userRecipesNotesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description})
-                myNotesConstructed.append(contentsOf: fileMgr.shippedRecipesNotesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description}))
+                myNotesConstructed = constructNotesIfAvailable()
                 
                 print(msgs.mv.rawValue + msgs.recipehasnotes.rawValue + msgs.separator.rawValue + "\(myNotesConstructed.count)")
                 
                 var myImagesConstructed:Array<ImageSaved> = []
-                myImagesConstructed = fileMgr.userRecipesImagesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description})
-                myImagesConstructed.append(contentsOf: fileMgr.shippedRecipesImagesFolderContents.filter({$0.recipeuuid.description == sectItem.id.description}))
+                myImagesConstructed = constructImagesIfAvailable()
                 
                 print(msgs.mv.rawValue + msgs.recipehasimages.rawValue + msgs.separator.rawValue + "\(myImagesConstructed.count)")
                 
@@ -125,16 +203,13 @@ struct MailView: UIViewControllerRepresentable {
                 return vc
                 
             } catch {
-                
                 print(msgs.mv.rawValue + msgs.failedData.rawValue)
-                
                 fatalError()
             }
             
         } else {
             fatalError(msgs.mv.rawValue + msgs.noAddress.rawValue)
         }
-        
     }
     
     func updateUIViewController(_ uiViewController: MFMailComposeViewController,

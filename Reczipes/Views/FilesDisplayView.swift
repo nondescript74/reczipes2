@@ -40,22 +40,31 @@ struct FilesDisplayView: View {
         return myReturn
     }
     
-    private func getDocuDirContents() -> [String] {
+    private func getDocuDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl(), includingPropertiesForKeys: [])
-            myReturn = contUrls.map({$0.absoluteString})
+            if lpc {
+                myReturn = contUrls.map({$0.lastPathComponent})
+            } else {
+                myReturn = contUrls.map({$0.absoluteString})
+            }
+            
         } catch  {
             
         }
         return myReturn
     }
     
-    private func getReczDirContents() -> [String] {
+    private func getReczDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
-            myReturn = contUrls.map({$0.absoluteString})
+            if lpc {
+                myReturn = contUrls.map({$0.lastPathComponent})
+            } else {
+                myReturn = contUrls.map({$0.absoluteString})
+            }
         } catch  {
             
         }
@@ -63,22 +72,30 @@ struct FilesDisplayView: View {
     }
     
     
-    private func getReczNotesDirContents() -> [String] {
+    private func getReczNotesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.recznotes.rawValue), includingPropertiesForKeys: [])
-            myReturn = contUrls.map({$0.absoluteString})
+            if lpc {
+                myReturn = contUrls.map({$0.lastPathComponent})
+            } else {
+                myReturn = contUrls.map({$0.absoluteString})
+            }
         } catch  {
             
         }
         return myReturn
     }
     
-    private func getReczImagesDirContents() -> [String] {
+    private func getReczImagesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.reczimages.rawValue), includingPropertiesForKeys: [])
-            myReturn = contUrls.map({$0.absoluteString})
+            if lpc {
+                myReturn = contUrls.map({$0.lastPathComponent})
+            } else {
+                myReturn = contUrls.map({$0.absoluteString})
+            }
         } catch  {
             
         }
@@ -93,25 +110,25 @@ struct FilesDisplayView: View {
                 Text(msgs.ddir.rawValue).bold()
                 List {
                     
-                    ForEach(getDocuDirContents(), id: \.self) { fname in
+                    ForEach(getDocuDirContents(lpc: true), id: \.self) { fname in
                         Text(fname).font(.body)
                     }
                 }.padding()
                 Text(msgs.rdir.rawValue).bold()
                 List {
-                    ForEach(getReczDirContents(), id: \.self) { fname in
+                    ForEach(getReczDirContents(lpc: true), id: \.self) { fname in
                         Text(fname).font(.body)
                     }
                 }.padding()
                 Text(msgs.ridir.rawValue).bold()
                 List {
-                    ForEach(getReczImagesDirContents(), id: \.self) { fname in
+                    ForEach(getReczImagesDirContents(lpc: true), id: \.self) { fname in
                         Text(fname).font(.body)
                     }
                 }.padding()
                 Text(msgs.rndir.rawValue).bold()
                 List {
-                    ForEach(getReczNotesDirContents(), id: \.self) { fname in
+                    ForEach(getReczNotesDirContents(lpc: true), id: \.self) { fname in
                         Text(fname).font(.body)
                     }
                 }.padding()

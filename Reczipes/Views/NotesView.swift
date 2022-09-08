@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct NotesView: View {
+    // MARK: - Debug local
+    private var zBug: Bool = true
     // MARK: - Environment
-    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Initializer
     init(recipeuuid: String) {
         self.myRecipeUUID = UUID(uuidString: recipeuuid)!
@@ -17,20 +18,52 @@ struct NotesView: View {
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
     fileprivate var myNotes:[Note] = []
-//    fileprivate let fileIO = FileIO()
+    var isDirectory: ObjCBool = true
+    private var decoder: JSONDecoder = JSONDecoder()
+    private var encoder: JSONEncoder = JSONEncoder()
     fileprivate enum msgs: String {
-        case notesview = "NotesView: "
+        case nv = "NotesView: "
         case cantdecodenote = "Can't decode note from data"
         case numberofnotes = "Number of notes for recipe "
+        case recz = "Reczipes"
     }
     // MARK: - Methods
+    private func getDocuDirUrl() -> URL {
+        var myReturn:URL
+        do {
+            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
+                                                        in: .userDomainMask,
+                                                        appropriateFor: nil,
+                                                        create: false)
+            myReturn = myDocuDirUrl
+        } catch {
+            fatalError()
+        }
+        return myReturn
+    }
+    
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
-//        fileMgr.getUserNotes()
-//        fileMgr.getShippedNotes()
-        myNotesConstructed = fileMgr.userRecipesNotesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description})
-        myNotesConstructed.append(contentsOf: fileMgr.shippedRecipesNotesFolderContents.filter({$0.recipeuuid.description == myRecipeUUID.description}))
-        print(msgs.notesview.rawValue + msgs.numberofnotes.rawValue + "\(myNotesConstructed.count)")
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
+        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
+        let myNotesDirUrlStr = myNotesDirUrl.absoluteString
+      
+            do {
+                let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
+                if zBug { print(msgs.nv.rawValue + "Contents count " + "\(result.count)")}
+                for aUrl in result {
+                    let data = FileManager.default.contents(atPath: myNotesDirUrlStr.appending(aUrl.absoluteString))!
+                    let decodedJSON = try decoder.decode(Note.self, from: data)
+                    myNotesConstructed.append(decodedJSON)
+                }
+               
+            } catch  {
+                fatalError("Cannot read or decode from notes")
+            }
+
+        myNotesConstructed = myNotesConstructed.filter({$0.recipeuuid.description == myRecipeUUID.description})
+        print(msgs.nv.rawValue + msgs.numberofnotes.rawValue + "\(myNotesConstructed.count)")
         return myNotesConstructed
     }
     // MARK: - View Process

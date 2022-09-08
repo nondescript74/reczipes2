@@ -9,10 +9,8 @@ import SwiftUI
 
 struct MoveRecipeView: View {
     // MARK: - Debug local
-    private var zBug:Bool = false
+    private var zBug:Bool = true
     // MARK: - Environment Objects
-//    @EnvironmentObject var addedRecipes: AddedRecipes
-    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Initializer
     init(movingRecipe:SectionItem, moveFromBookSection:String) {
         self.myMovingRecipe = movingRecipe
@@ -30,6 +28,12 @@ struct MoveRecipeView: View {
         case mvto = "To"
         case doit = "Do It!"
         case doit2 = ""
+        case recz = "Reczipes"
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case json = "json"
+        case mrv = "Move Recipe View: "
+        case fuar = "Found a user added recipe"
     }
     fileprivate enum imagez: String {
         case snp = "square.and.pencil"
@@ -38,12 +42,108 @@ struct MoveRecipeView: View {
         case mail = "envelope"
         case add = "plus"
     }
+    var isDirectory: ObjCBool = true
+    private var decoder: JSONDecoder = JSONDecoder()
+    private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func moveRecipe() {
-        fileMgr.moveRecipeFromOneBookSectionToOther(recipe: self.myMovingRecipe,
-                                                         originalBookSectionName: getBookSectionNames()[getBookSectionNames().firstIndex(of: myMoveFromSection)!],
-                                                         newBookSectionName: getBookSectionNames()[xectionTo])
+    private func getDocuDirUrl() -> URL {
+        var myReturn:URL
+        do {
+            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
+                                                        in: .userDomainMask,
+                                                        appropriateFor: nil,
+                                                        create: false)
+            myReturn = myDocuDirUrl
+        } catch {
+            fatalError()
+        }
+        return myReturn
     }
+    private func moveRecipe() {
+        var myBs: [BookSection] = []
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
+        
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+            for aurl in urls {
+                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+                    do {
+                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
+                        if aBookSection.name == myMoveFromSection {
+                            myBs.append(aBookSection)
+                        }
+                        if zBug { print(msgs.mrv.rawValue + msgs.fuar.rawValue)}
+                        
+                    } catch  {
+                        // not a json file
+                        fatalError("This directory has illegal files")
+                    }
+            }
+        } catch  {
+            // no contents
+        }
+        if myBs.isEmpty {
+            // nothing to do
+            return
+        }
+        var existingRecipes = myBs.first!.items
+        if existingRecipes.contains(myMovingRecipe) {
+            let idx = existingRecipes.firstIndex(of: myMovingRecipe)
+            if idx != nil {
+                existingRecipes.remove(at: idx!)
+            }
+        }
+        
+        var myBSToModify = myBs.first!
+        myBSToModify.items = existingRecipes
+        
+        do {
+            let aBookSection = BookSection(id: myBSToModify.id, name: myBSToModify.name, items: existingRecipes)
+            let ajsonfile = try encoder.encode(aBookSection)
+
+            try ajsonfile.write(to: myReczipesDirUrl.appendingPathComponent( msgs.json.rawValue))
+            if zBug { print(msgs.mrv.rawValue + "Wrote recipe to user folder")}
+        } catch {
+            if zBug { print(msgs.mrv.rawValue + "Can't encode booksection")}
+            fatalError()
+        }
+        // get the move to booksection and rewrite it with the new recipe
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+            for aurl in urls {
+                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+                    do {
+                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
+                        if aBookSection.name == (getBookSectionNames()[xectionTo]) {
+                            myBs.append(aBookSection)
+                        }
+                        if zBug { print(msgs.mrv.rawValue + msgs.fuar.rawValue)}
+                        
+                    } catch  {
+                        // not a json file
+                        fatalError("This directory has illegal files")
+                    }
+            }
+        } catch  {
+            // no contents
+        }
+        if myBs.isEmpty {
+            let aBookSection = BookSection(id: UUID(), name: getBookSectionNames()[xectionTo], items: [myMovingRecipe])
+            do {
+                let ajsonfile = try encoder.encode(aBookSection)
+                try ajsonfile.write(to: myReczipesDirUrl.appendingPathComponent( msgs.json.rawValue))
+                if zBug { print(msgs.mrv.rawValue + "Wrote recipe to a newly created user section")}
+            } catch  {
+                fatalError()
+            }
+            
+            
+        }
+    }
+    
     var body: some View {
         VStack {
             Text(msgs.title.rawValue)

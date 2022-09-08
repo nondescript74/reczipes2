@@ -107,22 +107,6 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
     return myRestrictions
 }
 
-//func getAllPresetRecipes() -> [SectionItem]  {
-//    var myReturningRecipes:[SectionItem] = []
-//    let bookSections0 = Bundle.main.decode([BookSection].self, from: msgs.recipesFile.rawValue + delimiterFiletype + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
-//    for aSection in bookSections0 {
-//        myReturningRecipes.append(contentsOf: aSection.items)
-//    }
-//
-//    
-//
-//    print(msgs.returningpresetrecipes.rawValue + myReturningRecipes.count.description)
-//
-//    return myReturningRecipes
-//}
-
-
-
 func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
     let item = SectionItem(id: UUID(),
                             name: srecipe.title ?? SectionItem.example.name,

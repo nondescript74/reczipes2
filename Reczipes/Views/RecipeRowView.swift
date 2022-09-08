@@ -11,8 +11,6 @@ struct RecipeRowView: View {
     // MARK: - Debug
     private var zBug:Bool = false
     // MARK: - Environment
-//    @EnvironmentObject var addedRecipes: AddedRecipes
-    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Initializer

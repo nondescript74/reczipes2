@@ -12,7 +12,7 @@ struct AddImageAndNoteView: View {
     private let zBug = true
     // MARK: - Initializer
     // MARK: EnvironmentObject
-    @EnvironmentObject var fileMgr: FileMgr
+//    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Focus for textfield
     @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
@@ -28,6 +28,7 @@ struct AddImageAndNoteView: View {
     // MARK: - Properties
     fileprivate enum msgs: String {
         case aianv = "Add Image/Note"
+        case rshipd = "recipesShipped"
         case recipePickRequestString = "Pick a recipe below ..."
         case buttonTitleImage = "✚ Image"
         case buttonTitleNote = "✚ Note"
@@ -51,23 +52,80 @@ struct AddImageAndNoteView: View {
         case initialNoteString = "Enter a recipe note below ..."
         case noteWithoutText = "Note has no text entered"
         case ok = "Okay"
+        case recz = "Reczipes"
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case gbss = "Got shipped booksections"
+        case fuar = "Found user added recipe"
+        case nur = "No user recipes"
+        case nunotes = "No user notes"
+        case nuimages = "No user images"
+        case fanote = "Found a note"
+        case faimage = "Found an image"
+        case wrjson = "Successfully wrote booksection"
+        case notejson = "Successfully wrote note"
+        case imgjson = "Successfully wrote image"
+        case fail = "Failed"
+        case succes = "Success"
     }
-    //    fileprivate let fileIO = FileIO()
-    fileprivate let encoder = JSONEncoder()
+    var isDirectory: ObjCBool = true
+    private var decoder: JSONDecoder = JSONDecoder()
+    private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
+    private func getDocuDirUrl() -> URL {
+        var myReturn:URL
+        do {
+            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
+                                                        in: .userDomainMask,
+                                                        appropriateFor: nil,
+                                                        create: false)
+            myReturn = myDocuDirUrl
+        } catch {
+            fatalError()
+        }
+        return myReturn
+    }
     fileprivate func constructAllRecipes() -> [SectionItem] {
-        let bsUser = fileMgr.userBookSectionsDirContents
-        let bsShipped = fileMgr.shippedBookSectionsDirContents
-        var recipesCombined: [SectionItem] = []
+        var myReturn: [SectionItem] = []
+        var myBs: [BookSection] = []
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
         
-        for abs in bsShipped {
-            recipesCombined.append(contentsOf: abs.items)
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+            for aurl in urls {
+                if aurl.pathComponents.contains(msgs.rnotes.rawValue) || aurl.pathComponents.contains(msgs.rimages.rawValue)  {
+                    // skip these folders
+                } else {
+                    let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+                    do {
+                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
+                        myBs.append(aBookSection)
+                        if zBug { print(msgs.aianv.rawValue + msgs.fuar.rawValue)}
+                        
+                    } catch  {
+                        // not a json file
+                        fatalError("This directory has illegal files")
+                    }
+                    for abs in myBs {
+                        myReturn.append(contentsOf: abs.items)
+                    }
+                }
+            }
+        } catch  {
+            // no contents
         }
-        
-        for abs in bsUser {
-            recipesCombined.append(contentsOf: abs.items)
+
+        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + msgs.json.rawValue).sorted(by: {$0.name < $1.name})
+        if bookSections.isEmpty  {
+            
+        } else {
+            for abs in bookSections {
+                myReturn.append(contentsOf: abs.items)
+            }
         }
-        return recipesCombined
+        return myReturn
     }
     
     fileprivate func addRecipeImage() {
@@ -75,6 +133,8 @@ struct AddImageAndNoteView: View {
             if zBug {print(msgs.aianv.rawValue + msgs.noimageset.rawValue)}
             return
         }
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
         let combinedRecipes = self.constructAllRecipes()
         
         let sectionItem = combinedRecipes[recipeSelected]
@@ -82,16 +142,23 @@ struct AddImageAndNoteView: View {
         let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
         let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
-        fileMgr.addRecipeImage(image: myImageToAdd)
-//        let result = fileMgr.addRecipeImage(image: myImageToAdd)
-//        if result {
-//            recipeImageSaved = true
-//            if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
-//        } else {
-//            recipeImageSaved = false
-//            print(msgs.aianv.rawValue + msgs.failed.rawValue)
-//        }
-//        return
+
+        
+            
+            
+            let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+            do {
+                let encodedJSON = try encoder.encode(myImageToAdd)
+                // now write out
+                do {
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.description + msgs.json.rawValue))
+                    if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
+                } catch  {
+                    fatalError("Cannot write to user RecipeImages folder")
+                }
+            } catch  {
+                fatalError("Cannot encode booksection to json")
+            }
     }
     
     fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {
@@ -132,21 +199,30 @@ struct AddImageAndNoteView: View {
             if zBug {print(msgs.aianv.rawValue + msgs.noteWithoutText.rawValue)}
             return
         }
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
+        
         let combinedRecipes = self.constructAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id.description
         
+        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
+        
         let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
-        fileMgr.addRecipeNote(note: myNoteToAdd)
-//        let result = fileMgr.addRecipeNote(note: myNoteToAdd)
-//        if result {
-//            recipeNoteSaved = true
-//            if zBug {print(msgs.aianv.rawValue + msgs.success.rawValue)}
-//        } else {
-//            recipeNoteSaved = false
-//            print(msgs.aianv.rawValue + msgs.failed.rawValue)
-//        }
-//        return
+        do {
+            let encodedJSON = try encoder.encode(myNoteToAdd)
+            // now write out
+            do {
+                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.description + msgs.json.rawValue))
+                if zBug { print(msgs.aianv.rawValue + msgs.notejson.rawValue)}
+                let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
+                if zBug { print(msgs.aianv.rawValue + "Contents count " + "\(result.count)")}
+            } catch  {
+                fatalError("Cannot write to user RecipeNotes folder")
+            }
+        } catch  {
+            fatalError("Cannot encode booksection to json")
+        }
     }
     
     var actionSheet: ActionSheet {

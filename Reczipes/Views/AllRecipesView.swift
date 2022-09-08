@@ -8,28 +8,60 @@
 import SwiftUI
 
 struct AllRecipesView: View {
+    // MARK: - Debug local
+    private var zBug: Bool = true
     // MARK: - Environment Objects
-    @EnvironmentObject var fileMgr: FileMgr
+    //    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Properties
     fileprivate enum msgs: String {
         case arv = "All Recipes View"
+        case recz = "Reczipes"
+        case rshipd = "recipesShipped"
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case json = ".json"
     }
+    var isDirectory: ObjCBool = true
+    private var decoder: JSONDecoder = JSONDecoder()
+    private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    fileprivate var myBook: [BookSection] {
-        var myReturn: [BookSection] = []
-        let shipped = fileMgr.shippedBookSectionsDirContents
-        let user = fileMgr.userBookSectionsDirContents
-        for abs in shipped {
-            if (user.filter({$0.id == abs.id}).first != nil) {
-                let userItems: [SectionItem] = (user.filter({$0.id == abs.id}).first!.items)
-                var combinedItems: [SectionItem] = userItems
-                combinedItems.append(contentsOf: abs.items)
-                let bsCombinedItems = BookSection(id: abs.id, name: abs.name, items: combinedItems)
-                myReturn.append(bsCombinedItems)
-            } else {
-                myReturn.append(abs)
-            }
+    private func getDocuDirUrl() -> URL {
+        var myReturn:URL
+        do {
+            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false)
+            myReturn = myDocuDirUrl
+        } catch {
+            fatalError()
         }
+        return myReturn
+    }
+    func getBookSections() -> [BookSection] {
+        var myReturn: [BookSection] = []
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
+        
+        do {
+            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles).filter({$0.lastPathComponent.contains(msgs.json.rawValue)})
+            for aurl in urls {
+                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrl.absoluteString.appending(aurl.absoluteString))!
+                let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
+                myReturn.append(aBookSection)
+            }
+            let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+            for aBS in bookSections {
+                myReturn.append(aBS)
+            }
+        } catch  {
+            fatalError("Can't read contents of users recipes dir")
+        }
+        
+        return myReturn
+    }
+    fileprivate var myBook: [BookSection] {
+        var myReturn = getBookSections()
         myReturn = myReturn.sorted(by: {$0.name < $1.name})
         return myReturn
     }
@@ -50,7 +82,7 @@ struct AllRecipesView: View {
                     }
                 }.listStyle(GroupedListStyle())
                     .refreshable {
-//                        await fileMgr.reload()
+                        //                        await fileMgr.reload()
                     }
             }
         }
@@ -61,13 +93,11 @@ struct AllRecipesView: View {
 
 struct AllRecipesView_Previews: PreviewProvider {
     static let order = OrderingList()
-    static let fileMgr = FileMgr()
-    //    static let addedRecipes = AddedRecipes()
+
     static var previews: some View {
         Group {
             AllRecipesView()
                 .environmentObject(order)
-                .environmentObject(fileMgr)
                 .colorScheme(.light)
         }
     }

@@ -12,8 +12,8 @@ struct ImagesView: View {
     private var zBug: Bool = true
     // MARK: - Environment
     // MARK: - Initializer
-    init(recipeuuid: String) {
-        self.myRecipeUUID = UUID(uuidString: recipeuuid)!
+    init(recipeuuid: UUID) {
+        self.myRecipeUUID = recipeuuid
     }
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
@@ -77,7 +77,7 @@ struct ImagesView: View {
             
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rshippd.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rshippd.rawValue + json).sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
         if shippedImages.isEmpty  {
             // nothin
         } else {
@@ -149,7 +149,7 @@ struct ImagesView: View {
 
 struct ImagesView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagesView(recipeuuid: "9926BA12-55C3-4B26-800B-B68AA8D80474")
+        ImagesView(recipeuuid: UUID(uuidString: "9926BA12-55C3-4B26-800B-B68AA8D80474")!)
     }
 }
 

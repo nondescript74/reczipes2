@@ -118,16 +118,17 @@ struct RecipeDetailView: View {
             } catch  {
                 fatalError("Cannot read or decode from notes")
             }
-            
+        // 34FB9E0B-7DE9-4E79-B3FE-F9577468A296
         
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
+        var shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
+        shippedNotes = shippedNotes.filter({$0.recipeuuid == item.id})
         if shippedNotes.isEmpty  {
             
         } else {
             myNotesConstructed.append(contentsOf: shippedNotes)
         }
         
-        myNotesConstructed = myNotesConstructed.filter({$0.recipeuuid == self.item.id.uuidString})
+        myNotesConstructed = myNotesConstructed.filter({$0.recipeuuid == self.item.id})
         if myNotesConstructed.count == 0 {
             if zBug {print(msgs.RDV.rawValue + msgs.recipeNotesNot.rawValue)}
         } else {
@@ -159,14 +160,14 @@ struct RecipeDetailView: View {
             fatalError("Cannot read or decode from images")
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString}).filter({$0.recipeuuid == item.id})
         if shippedImages.isEmpty  {
             
         } else {
             myImagesConstructed.append(contentsOf: shippedImages)
         }
         
-        myImagesConstructed = myImagesConstructed.filter({$0.recipeuuid == self.item.id.uuidString})
+        myImagesConstructed = myImagesConstructed.filter({$0.recipeuuid == self.item.id})
         if myImagesConstructed.count == 0 {
             if zBug {print(msgs.RDV.rawValue + msgs.recipeImagesNot.rawValue)}
         } else {
@@ -391,11 +392,11 @@ struct RecipeDetailView: View {
                 }
                 Divider()
                 if showingNotes == true && hasNotes() {
-                    NotesView(recipeuuid: self.item.id.description)
+                    NotesView(recipeuuid: self.item.id)
                 }
                 Divider()
                 if showingImages == true && hasImages() {
-                    ImagesView(recipeuuid: self.item.id.description)
+                    ImagesView(recipeuuid: self.item.id)
                 }
                 Divider()
                 if showingMoveView == true && cuisine != "" {

@@ -80,7 +80,7 @@ struct MailView: UIViewControllerRepresentable {
             
         }
         
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
+        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + json).sorted(by: {$0.recipeuuid.description < $1.recipeuuid.description}).filter({$0.recipeuuid.description == sectItem.id.uuidString})
         if shippedNotes.isEmpty  {
             
         } else {
@@ -116,7 +116,7 @@ struct MailView: UIViewControllerRepresentable {
             
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == sectItem.id.uuidString})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + json).sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString}).filter({$0.recipeuuid.uuidString == sectItem.id.uuidString})
         if shippedImages.isEmpty  {
             
         } else {

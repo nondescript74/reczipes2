@@ -138,7 +138,7 @@ struct AddImageAndNoteView: View {
         let combinedRecipes = self.constructAllRecipes()
         
         let sectionItem = combinedRecipes[recipeSelected]
-        let sectionItemId = sectionItem.id.description
+        let sectionItemId = sectionItem.id
         let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
         let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
@@ -151,7 +151,7 @@ struct AddImageAndNoteView: View {
                 let encodedJSON = try encoder.encode(myImageToAdd)
                 // now write out
                 do {
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.description + json))
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + json))
                     if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
                 } catch  {
                     fatalError("Cannot write to user RecipeImages folder")
@@ -204,7 +204,7 @@ struct AddImageAndNoteView: View {
         
         let combinedRecipes = self.constructAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
-        let sectionItemId = sectionItem.id.description
+        let sectionItemId = sectionItem.id
         
         let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
         
@@ -213,7 +213,7 @@ struct AddImageAndNoteView: View {
             let encodedJSON = try encoder.encode(myNoteToAdd)
             // now write out
             do {
-                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.description + json))
+                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.uuidString + json))
                 if zBug { print(msgs.aianv.rawValue + msgs.notejson.rawValue)}
                 let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
                 if zBug { print(msgs.aianv.rawValue + "Contents count " + "\(result.count)")}

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ImageSaved: Codable, Equatable, Hashable {
-    var recipeuuid: String
+    var recipeuuid: UUID
     var imageSaved: Data
     
     static func == (lhs: ImageSaved, rhs: ImageSaved) -> Bool {
@@ -25,12 +25,12 @@ struct ImageSaved: Codable, Equatable, Hashable {
         hasher.combine(imageSaved)
     }
     
-    static let example1 = ImageSaved(recipeuuid: "3D4CDED8-51A3-46FB-8384-C48773B8B640", imageSaved: Data())
-    static let example2 = ImageSaved(recipeuuid: "3D4CDED8-51A3-46FB-8384-C48773B8B640", imageSaved: Data())
+    static let example1 = ImageSaved(recipeuuid: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, imageSaved: Data())
+    static let example2 = ImageSaved(recipeuuid: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, imageSaved: Data())
 }
 
 struct Note: Codable, Equatable, Hashable {
-    var recipeuuid: String
+    var recipeuuid: UUID
     var note:String
     
     static func == (lhs: Note, rhs: Note) -> Bool {
@@ -46,8 +46,9 @@ struct Note: Codable, Equatable, Hashable {
         hasher.combine(note)
     }
     
-    static let example1 = Note(recipeuuid: "3D4CDED8-51A3-46FB-8384-C48773B8B640", note: "First time, Z thought they were too tender. This time, tried 152F for 24 hours. ￼this temp was pretty perfect. Took about an hour to finish in the oven though.  Maybe a hotter oven for awhile next time.")
-    static let example2 = Note(recipeuuid: "3D4CDED8-51A3-46FB-8384-C48773B8B640", note: "Just a note")
+    
+    static let example1 = Note(recipeuuid: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, note: "First time, Z thought they were too tender. This time, tried 152F for 24 hours. ￼this temp was pretty perfect. Took about an hour to finish in the oven though.  Maybe a hotter oven for awhile next time.")
+    static let example2 = Note(recipeuuid: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, note: "Just a note")
 }
 
 struct Notes: Codable, Equatable, Hashable {

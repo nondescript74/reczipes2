@@ -12,7 +12,7 @@ struct RecipeDetailView: View {
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     // MARK: - Local debug flag
-    fileprivate var zBug:Bool = false
+    fileprivate var zBug:Bool = true
     
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
@@ -49,12 +49,6 @@ struct RecipeDetailView: View {
         case rimages = "RecipeImages"
         case fuar = "Found user added recipe"
         
-    }
-    
-    fileprivate enum namez: String {
-        case notes = "Notes"
-//        case json = ".json"
-        case images = "Images"
     }
     
     fileprivate enum labelz: String {
@@ -112,25 +106,21 @@ struct RecipeDetailView: View {
     
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
-        let myNotesDirUrlStr = myNotesDirUrl.absoluteString
-        
-        do {
-            let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
-            if zBug { print(msgs.RDV.rawValue + "Contents count " + "\(result.count)")}
-            for aUrl in result {
-                let data = FileManager.default.contents(atPath: myNotesDirUrlStr.appending(aUrl.absoluteString))!
-                let decodedJSON = try decoder.decode(Note.self, from: data)
-                myNotesConstructed.append(decodedJSON)
+
+            do {
+                let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rnotes.rawValue), includingPropertiesForKeys: [])
+                if zBug { print(msgs.RDV.rawValue + "Contents count " + "\(contUrls.count)")}
+                for aUrl in contUrls {
+                    let data = FileManager.default.contents(atPath: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rnotes.rawValue).absoluteString.appending(aUrl.lastPathComponent))!
+                    let decodedJSON = try decoder.decode(Note.self, from: data)
+                    myNotesConstructed.append(decodedJSON)
+                }
+            } catch  {
+                fatalError("Cannot read or decode from notes")
             }
             
-        } catch  {
-            fatalError("Cannot read or decode from notes")
-        }
         
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: namez.notes.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
+        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
         if shippedNotes.isEmpty  {
             
         } else {
@@ -138,7 +128,11 @@ struct RecipeDetailView: View {
         }
         
         myNotesConstructed = myNotesConstructed.filter({$0.recipeuuid == self.item.id.uuidString})
-        print(msgs.RDV.rawValue + msgs.recipeNotes.rawValue + "\(myNotesConstructed.count)")
+        if myNotesConstructed.count == 0 {
+            if zBug {print(msgs.RDV.rawValue + msgs.recipeNotesNot.rawValue)}
+        } else {
+            if zBug { print(msgs.RDV.rawValue + msgs.recipeNotes.rawValue + " \(myNotesConstructed.count)")}
+        }
         return myNotesConstructed
     }
     fileprivate func hasNotes() -> Bool {
@@ -152,25 +146,20 @@ struct RecipeDetailView: View {
     
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
         var myImagesConstructed:Array<ImageSaved> = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
-        let myImagesDirUrlStr = myImagesDirUrl.absoluteString
         
         do {
-            let result = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [])
-            if zBug { print(msgs.RDV.rawValue + "Contents count " + "\(result.count)")}
-            for aUrl in result {
-                let data = FileManager.default.contents(atPath: myImagesDirUrlStr.appending(aUrl.absoluteString))!
+            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rimages.rawValue), includingPropertiesForKeys: [])
+            if zBug { print(msgs.RDV.rawValue + "Contents count " + "\(contUrls.count)")}
+            for aUrl in contUrls {
+                let data = FileManager.default.contents(atPath: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rimages.rawValue).absoluteString.appending(aUrl.lastPathComponent))!
                 let decodedJSON = try decoder.decode(ImageSaved.self, from: data)
                 myImagesConstructed.append(decodedJSON)
             }
-            
         } catch  {
-            fatalError("Cannot read or decode from notes")
+            fatalError("Cannot read or decode from images")
         }
         
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: namez.images.rawValue + json).sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid < $1.recipeuuid}).filter({$0.recipeuuid == item.id.uuidString})
         if shippedImages.isEmpty  {
             
         } else {
@@ -178,7 +167,12 @@ struct RecipeDetailView: View {
         }
         
         myImagesConstructed = myImagesConstructed.filter({$0.recipeuuid == self.item.id.uuidString})
-        print(msgs.RDV.rawValue + msgs.recipeImages.rawValue + "\(myImagesConstructed.count)")
+        if myImagesConstructed.count == 0 {
+            if zBug {print(msgs.RDV.rawValue + msgs.recipeImagesNot.rawValue)}
+        } else {
+            if zBug { print(msgs.RDV.rawValue + msgs.recipeImages.rawValue + " \(myImagesConstructed.count)")}
+        }
+        
         return myImagesConstructed
     }
     
@@ -210,11 +204,12 @@ struct RecipeDetailView: View {
         let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
         let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
         if !test {
-            do {
-                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
-            } catch {
-                fatalError("Cannot create directory")
-            }
+            fatalError(msgs.RDV.rawValue + "Cannot find Reczipes directory")
+//            do {
+//                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
+//            } catch {
+//                fatalError("Cannot create directory")
+//            }
         }
         do {
             let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)

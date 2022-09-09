@@ -97,25 +97,26 @@ struct AllRecipesView: View {
             }
         }
         do {
-            var urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+//            var urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
             // skip these folders
             urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
             urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
             
-            for aurl in urls {
-                
-                let ajsonfile = FileManager.default.contents(atPath: aurl.absoluteString)
-                do {
-                    let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
-                    myReturn.append(aBookSection)
-                    if zBug { print(msgs.arv.rawValue + msgs.fuar.rawValue)}
-                    
-                } catch  {
-                    // not a json file
-                    fatalError("This directory has illegal files")
-                }
-                
-            }
+//            for aurl in urls {
+////                print(aurl.debugDescription)  // file
+//                
+//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))
+//                do {
+//                    let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
+//                    myReturn.append(aBookSection)
+//                    if zBug { print(msgs.arv.rawValue + msgs.fuar.rawValue)}
+//                    
+//                } catch  {
+//                    // not a json file
+//                    fatalError("This directory has illegal files")
+//                }
+//            }
         } catch  {
             // no contents or does not exist
         }

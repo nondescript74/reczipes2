@@ -21,6 +21,7 @@ struct ExtendendIngredientsView2: View {
                 ForEach(extractedSRecipe.extractedSRecipe?.extendedIngredients ?? [ExtendedIngredient.extendedIngredientExample], id: \.self) { extIng in
                     ExtendedIngredView(extendedIngredient: extIng!)
                 }.disabled(extractedSRecipe.extractedSRecipe?.extendedIngredients == nil)
+                    .padding([.top, .bottom])
             }
         }
     }

@@ -18,7 +18,7 @@ struct ExtendedIngredView: View {
 
     // MARK: - Methods
     fileprivate func getMetaInfo(meta: [String?]?) -> String {
-        var myReturnMetaInfo: String = "meta is nil"
+        var myReturnMetaInfo: String = "meta:"
         if meta != nil {
             if !meta!.isEmpty {
                 for item in meta! {
@@ -26,7 +26,7 @@ struct ExtendedIngredView: View {
                     myReturnMetaInfo += ", "
                 }
             } else {
-                myReturnMetaInfo = "meta is empty"
+                myReturnMetaInfo = "meta: empty"
             }
         } else {
             

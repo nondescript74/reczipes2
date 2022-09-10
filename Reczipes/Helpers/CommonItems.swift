@@ -294,11 +294,11 @@ extension FileManager {
                 
                 try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rimages.rawValue), withIntermediateDirectories: true)
                 
-                #if DEBUG
+#if DEBUG
                 print("FileManager: " + " Created Reczipes directory")
                 print("FileManager: " + " Created RecipeNotes directory")
                 print("FileManager: " + " Created RecipeImages directory")
-                #endif
+#endif
                 
             } catch {
                 fatalError("Cannot create directories")
@@ -317,9 +317,9 @@ extension FileManager {
                     let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
                     myReturn.append(aBookSection)
                     
-                    #if DEBUG
+#if DEBUG
                     print(msgs.ci.rawValue + msgs.fuar.rawValue)
-                    #endif
+#endif
                     
                 } catch  {
                     // not a json file
@@ -363,15 +363,20 @@ extension FileManager {
     func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
         
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
+        
         do {
-            var notesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(msgs.rnotes.rawValue), includingPropertiesForKeys: [])
-            notesUrls = notesUrls.filter({$0.pathComponents.contains("json")})
+            let notesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            
 #if DEBUG
-                print(msgs.ci.rawValue + "Contents count " + "\(notesUrls.count)")
+            print(msgs.ci.rawValue + " User added Notes Contents count " + "\(notesUrls.count)")
 #endif
             for anoteurl in notesUrls {
-                let data = FileManager.default.contents(atPath: anoteurl.absoluteString)
-                let decodedJSON = try decoder.decode(Note.self, from: data!)
+                
+                let data = try Data(contentsOf: myNotesDirUrl.appendingPathComponent(anoteurl.lastPathComponent))
+                let decodedJSON = try decoder.decode(Note.self, from: data)
                 myNotesConstructed.append(decodedJSON)
             }
         } catch  {
@@ -380,19 +385,21 @@ extension FileManager {
         
         let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
         if shippedNotes.isEmpty  {
-            
+#if DEBUG
+            print(msgs.ci.rawValue + " shipped Notes Contents count " + "\(shippedNotes.count)")
+#endif
         } else {
             myNotesConstructed.append(contentsOf: shippedNotes)
         }
         
         if myNotesConstructed.count == 0 {
-            #if DEBUG
-            print(msgs.ci.rawValue + "No User recipe notes")
-            #endif
+#if DEBUG
+            print(msgs.ci.rawValue + " No User recipe notes")
+#endif
         } else {
-            #if DEBUG
-            print(msgs.ci.rawValue + "User recipe notes exist: " + " \(myNotesConstructed.count)")
-            #endif
+#if DEBUG
+            print(msgs.ci.rawValue + " User recipe notes exist: " + " \(myNotesConstructed.count)")
+#endif
         }
         return myNotesConstructed
     }
@@ -402,13 +409,17 @@ extension FileManager {
     func constructImagesIfAvailable() -> Array<ImageSaved> {
         var myImagesConstructed:Array<ImageSaved> = []
         
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+        
         do {
-            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(msgs.rimages.rawValue), includingPropertiesForKeys: [])
-            #if DEBUG
-            print(msgs.ci.rawValue + "Contents count " + "\(contUrls.count)")
-            #endif
-            for aUrl in contUrls {
-                let data = FileManager.default.contents(atPath: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(msgs.rimages.rawValue).absoluteString.appending(aUrl.lastPathComponent))!
+            let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+#if DEBUG
+            print(msgs.ci.rawValue + " User added Images Contents count " + "\(imagesUrls.count)")
+#endif
+            for anImageUrl in imagesUrls {
+                let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
                 let decodedJSON = try decoder.decode(ImageSaved.self, from: data)
                 myImagesConstructed.append(decodedJSON)
             }
@@ -418,21 +429,22 @@ extension FileManager {
         
         let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
         if shippedImages.isEmpty  {
-            
+#if DEBUG
+            print(msgs.ci.rawValue + " shipped Images Contents count " + "\(shippedImages.count)")
+#endif
         } else {
             myImagesConstructed.append(contentsOf: shippedImages)
         }
         
         if myImagesConstructed.count == 0 {
-            #if DEBUG
-            print(msgs.ci.rawValue + "No user images")
-            #endif
+#if DEBUG
+            print(msgs.ci.rawValue + " No user images")
+#endif
         } else {
-            #if DEBUG
-            print(msgs.ci.rawValue + "User images exist: " + " \(myImagesConstructed.count)")
-            #endif
+#if DEBUG
+            print(msgs.ci.rawValue + " User images exist: " + " \(myImagesConstructed.count)")
+#endif
         }
-        
         return myImagesConstructed
     }
 }

@@ -310,20 +310,16 @@ extension FileManager {
             // skip these folders
             urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
             urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
-            urls = urls.filter({$0.pathComponents.contains("json")})
+        
             
             for aurl in urls {
-                let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
-                let decodedJSON = try decoder.decode(Note.self, from: data)
-                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))
                 do {
-                    let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
-                    myReturn.append(aBookSection)
-                    
+                let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
+                let aBookSection = try decoder.decode(BookSection.self, from: data)
+                myReturn.append(aBookSection)
 #if DEBUG
                     print(msgs.ci.rawValue + msgs.fuar.rawValue)
 #endif
-                    
                 } catch  {
                     // not a json file
                     fatalError("This directory has illegal files")

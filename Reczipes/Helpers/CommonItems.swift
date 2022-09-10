@@ -305,6 +305,7 @@ extension FileManager {
             }
         }
         do {
+            
             var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName), includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             // skip these folders
             urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
@@ -312,6 +313,8 @@ extension FileManager {
             urls = urls.filter({$0.pathComponents.contains("json")})
             
             for aurl in urls {
+                let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
+                let decodedJSON = try decoder.decode(Note.self, from: data)
                 let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))
                 do {
                     let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
@@ -355,6 +358,10 @@ extension FileManager {
             }
         }
         
+        let bs = constructAllSections()
+        for abs in bs {
+            myReturn.append(contentsOf: abs.items)
+        }
         return myReturn
     }
 }
@@ -374,7 +381,6 @@ extension FileManager {
             print(msgs.ci.rawValue + " User added Notes Contents count " + "\(notesUrls.count)")
 #endif
             for anoteurl in notesUrls {
-                
                 let data = try Data(contentsOf: myNotesDirUrl.appendingPathComponent(anoteurl.lastPathComponent))
                 let decodedJSON = try decoder.decode(Note.self, from: data)
                 myNotesConstructed.append(decodedJSON)

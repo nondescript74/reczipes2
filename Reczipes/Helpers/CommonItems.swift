@@ -131,15 +131,15 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
 
 func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
     let item = SectionItem(id: UUID(),
-                            name: srecipe.title ?? SectionItem.example.name,
-                            url: srecipe.sourceUrl ?? SectionItem.example.url,
-                            imageUrl: srecipe.image,
-                            photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
-                            restrictions: constructRestrictions(srecipe: srecipe))
+                           name: srecipe.title ?? SectionItem.example.name,
+                           url: srecipe.sourceUrl ?? SectionItem.example.url,
+                           imageUrl: srecipe.image,
+                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
+                           restrictions: constructRestrictions(srecipe: srecipe))
     
-
+    
     print(msgs.ci.rawValue + item.name)
-
+    
     return item
 }
 
@@ -266,5 +266,173 @@ extension String {
             let name = part.components(separatedBy: delimiterSet)[0]
             return name.isEmpty ? nil : name
         }
+    }
+}
+
+extension FileManager {
+    func directoryExists(atUrl url: URL) -> Bool {
+        var isDirectory: ObjCBool = false
+        let exists = self.fileExists(atPath: url.path, isDirectory:&isDirectory)
+        return exists && isDirectory.boolValue
+    }
+}
+
+extension FileManager {
+    func constructAllSections() -> [BookSection] {
+        var myReturn: [BookSection] = []
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
+        myReturn = bookSections
+        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+        let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
+        if !test {
+            do {
+                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
+                
+                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rnotes.rawValue), withIntermediateDirectories: true)
+                
+                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rimages.rawValue), withIntermediateDirectories: true)
+                
+                #if DEBUG
+                print("FileManager: " + " Created Reczipes directory")
+                print("FileManager: " + " Created RecipeNotes directory")
+                print("FileManager: " + " Created RecipeImages directory")
+                #endif
+                
+            } catch {
+                fatalError("Cannot create directories")
+            }
+        }
+        do {
+            var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName), includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            // skip these folders
+            urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
+            urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
+            urls = urls.filter({$0.pathComponents.contains("json")})
+            
+            for aurl in urls {
+                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))
+                do {
+                    let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
+                    myReturn.append(aBookSection)
+                    
+                    #if DEBUG
+                    print(msgs.ci.rawValue + msgs.fuar.rawValue)
+                    #endif
+                    
+                } catch  {
+                    // not a json file
+                    fatalError("This directory has illegal files")
+                }
+            }
+        } catch  {
+            // no contents or does not exist
+        }
+        return myReturn
+    }
+}
+
+
+
+extension FileManager {
+    func constructAllRecipes() -> [SectionItem] {
+        var myReturn: [SectionItem] = []
+        let myBs: [BookSection] = self.constructAllSections()
+        if myBs.isEmpty {
+            
+        } else {
+            for abs in myBs {
+                myReturn.append(contentsOf: abs.items)
+            }
+        }
+        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
+        if bookSections.isEmpty  {
+            
+        } else {
+            for abs in bookSections {
+                myReturn.append(contentsOf: abs.items)
+            }
+        }
+        
+        return myReturn
+    }
+}
+
+extension FileManager {
+    func constructNotesIfAvailable() -> Array<Note> {
+        var myNotesConstructed:Array<Note> = []
+        
+        do {
+            var notesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(msgs.rnotes.rawValue), includingPropertiesForKeys: [])
+            notesUrls = notesUrls.filter({$0.pathComponents.contains("json")})
+#if DEBUG
+                print(msgs.ci.rawValue + "Contents count " + "\(notesUrls.count)")
+#endif
+            for anoteurl in notesUrls {
+                let data = FileManager.default.contents(atPath: anoteurl.absoluteString)
+                let decodedJSON = try decoder.decode(Note.self, from: data!)
+                myNotesConstructed.append(decodedJSON)
+            }
+        } catch  {
+            fatalError("Cannot read or decode from notes")
+        }
+        
+        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
+        if shippedNotes.isEmpty  {
+            
+        } else {
+            myNotesConstructed.append(contentsOf: shippedNotes)
+        }
+        
+        if myNotesConstructed.count == 0 {
+            #if DEBUG
+            print(msgs.ci.rawValue + "No User recipe notes")
+            #endif
+        } else {
+            #if DEBUG
+            print(msgs.ci.rawValue + "User recipe notes exist: " + " \(myNotesConstructed.count)")
+            #endif
+        }
+        return myNotesConstructed
+    }
+}
+
+extension FileManager {
+    func constructImagesIfAvailable() -> Array<ImageSaved> {
+        var myImagesConstructed:Array<ImageSaved> = []
+        
+        do {
+            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(msgs.rimages.rawValue), includingPropertiesForKeys: [])
+            #if DEBUG
+            print(msgs.ci.rawValue + "Contents count " + "\(contUrls.count)")
+            #endif
+            for aUrl in contUrls {
+                let data = FileManager.default.contents(atPath: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(msgs.rimages.rawValue).absoluteString.appending(aUrl.lastPathComponent))!
+                let decodedJSON = try decoder.decode(ImageSaved.self, from: data)
+                myImagesConstructed.append(decodedJSON)
+            }
+        } catch  {
+            fatalError("Cannot read or decode from images")
+        }
+        
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
+        if shippedImages.isEmpty  {
+            
+        } else {
+            myImagesConstructed.append(contentsOf: shippedImages)
+        }
+        
+        if myImagesConstructed.count == 0 {
+            #if DEBUG
+            print(msgs.ci.rawValue + "No user images")
+            #endif
+        } else {
+            #if DEBUG
+            print(msgs.ci.rawValue + "User images exist: " + " \(myImagesConstructed.count)")
+            #endif
+        }
+        
+        return myImagesConstructed
     }
 }

@@ -26,20 +26,6 @@ struct FilesDisplayView: View {
     @State var searchTerm: String = ""
     @State var urlString: String = ""
     // MARK: - Methods
-    private func getDocuDirUrl() -> URL {
-        var myReturn:URL
-        do {
-            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
-            myReturn = myDocuDirUrl
-        } catch {
-            fatalError()
-        }
-        return myReturn
-    }
-    
     private func getDocuDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {

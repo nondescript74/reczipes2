@@ -46,19 +46,6 @@ struct MoveRecipeView: View {
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func getDocuDirUrl() -> URL {
-        var myReturn:URL
-        do {
-            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
-            myReturn = myDocuDirUrl
-        } catch {
-            fatalError()
-        }
-        return myReturn
-    }
     private func moveRecipe() {
         var myBs: [BookSection] = []
         let myDocuDirUrl = getDocuDirUrl()

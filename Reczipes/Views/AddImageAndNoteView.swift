@@ -72,61 +72,48 @@ struct AddImageAndNoteView: View {
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func getDocuDirUrl() -> URL {
-        var myReturn:URL
-        do {
-            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
-                                                        in: .userDomainMask,
-                                                        appropriateFor: nil,
-                                                        create: false)
-            myReturn = myDocuDirUrl
-        } catch {
-            fatalError()
-        }
-        return myReturn
-    }
-    fileprivate func constructAllRecipes() -> [SectionItem] {
-        var myReturn: [SectionItem] = []
-        var myBs: [BookSection] = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        
-        do {
-            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-            for aurl in urls {
-                if aurl.pathComponents.contains(msgs.rnotes.rawValue) || aurl.pathComponents.contains(msgs.rimages.rawValue)  {
-                    // skip these folders
-                } else {
-                    let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-                    do {
-                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
-                        myBs.append(aBookSection)
-                        if zBug { print(msgs.aianv.rawValue + msgs.fuar.rawValue)}
-                        
-                    } catch  {
-                        // not a json file
-                        fatalError("This directory has illegal files")
-                    }
-                    for abs in myBs {
-                        myReturn.append(contentsOf: abs.items)
-                    }
-                }
-            }
-        } catch  {
-            // no contents
-        }
-
-        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
-        if bookSections.isEmpty  {
-            
-        } else {
-            for abs in bookSections {
-                myReturn.append(contentsOf: abs.items)
-            }
-        }
-        return myReturn
-    }
+//    fileprivate func constructAllRecipes() -> [SectionItem] {
+//        var myReturn: [SectionItem] = []
+//        var myBs: [BookSection] = []
+//        let myDocuDirUrl = getDocuDirUrl()
+//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
+//        
+//        do {
+//            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+//            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+//            for aurl in urls {
+//                if aurl.pathComponents.contains(msgs.rnotes.rawValue) || aurl.pathComponents.contains(msgs.rimages.rawValue)  {
+//                    // skip these folders
+//                } else {
+//                    let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+//                    do {
+//                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
+//                        myBs.append(aBookSection)
+//                        if zBug { print(msgs.aianv.rawValue + msgs.fuar.rawValue)}
+//                        
+//                    } catch  {
+//                        // not a json file
+//                        fatalError("This directory has illegal files")
+//                    }
+//                    for abs in myBs {
+//                        myReturn.append(contentsOf: abs.items)
+//                    }
+//                }
+//            }
+//        } catch  {
+//            // no contents
+//        }
+//
+//        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
+//        if bookSections.isEmpty  {
+//            
+//        } else {
+//            for abs in bookSections {
+//                myReturn.append(contentsOf: abs.items)
+//            }
+//        }
+//        return myReturn
+//    }
     
     fileprivate func addRecipeImage() {
         if image == nil {
@@ -135,7 +122,7 @@ struct AddImageAndNoteView: View {
         }
         let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        let combinedRecipes = self.constructAllRecipes()
+        let combinedRecipes = FileManager.default.constructAllRecipes()
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
@@ -202,7 +189,7 @@ struct AddImageAndNoteView: View {
         let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
         
-        let combinedRecipes = self.constructAllRecipes()
+        let combinedRecipes = FileManager.default.constructAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
         
@@ -267,8 +254,8 @@ struct AddImageAndNoteView: View {
                             .foregroundColor(.red)
                             .font(Font.system(size: 15, weight: .medium, design: .serif))
                         Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                            ForEach(0..<constructAllRecipes().count, id: \.self) { index in
-                                Text(constructAllRecipes()[index].name)
+                            ForEach(0..<FileManager.default.constructAllRecipes().count, id: \.self) { index in
+                                Text(FileManager.default.constructAllRecipes()[index].name)
                                     .foregroundColor(.blue)
                                     .font(Font.system(size: 15, weight: .medium, design: .serif))
                             }

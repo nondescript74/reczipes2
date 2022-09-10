@@ -40,7 +40,7 @@ struct RecipeDetailView: View {
         case recipeImagesNot = "RecipeImagesFolder has no Images"
         case recipeNotesNot = "RecipeNotesFolder has no Notes"
         case recz = "Reczipes"
-//        case json = ".json"
+        //        case json = ".json"
         case wrjson = "Successfully wrote booksection"
         case notejson = "Successfully wrote note"
         case imgjson = "Successfully wrote image"
@@ -48,6 +48,7 @@ struct RecipeDetailView: View {
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
         case fuar = "Found user added recipe"
+        case fuabs = "Found user BookSection"
         
     }
     
@@ -86,58 +87,13 @@ struct RecipeDetailView: View {
     @State var isShowingMailView = false
     @State fileprivate var recipeSaved = false
     @State fileprivate var showingMoveView = false
-    var isDirectory: ObjCBool = true
+//    var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func getDocuDirUrl() -> URL {
-        var myReturn:URL
-        do {
-            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
-                                                           in: .userDomainMask,
-                                                           appropriateFor: nil,
-                                                           create: false)
-            myReturn = myDocuDirUrl
-        } catch {
-            fatalError()
-        }
-        return myReturn
-    }
-    
-    fileprivate func constructNotesIfAvailable() -> Array<Note> {
-        var myNotesConstructed:Array<Note> = []
-
-            do {
-                let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rnotes.rawValue), includingPropertiesForKeys: [])
-                if zBug { print(msgs.RDV.rawValue + "Contents count " + "\(contUrls.count)")}
-                for aUrl in contUrls {
-                    let data = FileManager.default.contents(atPath: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rnotes.rawValue).absoluteString.appending(aUrl.lastPathComponent))!
-                    let decodedJSON = try decoder.decode(Note.self, from: data)
-                    myNotesConstructed.append(decodedJSON)
-                }
-            } catch  {
-                fatalError("Cannot read or decode from notes")
-            }
-        // 34FB9E0B-7DE9-4E79-B3FE-F9577468A296
-        
-        var shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
-        shippedNotes = shippedNotes.filter({$0.recipeuuid == item.id})
-        if shippedNotes.isEmpty  {
-            
-        } else {
-            myNotesConstructed.append(contentsOf: shippedNotes)
-        }
-        
-        myNotesConstructed = myNotesConstructed.filter({$0.recipeuuid == self.item.id})
-        if myNotesConstructed.count == 0 {
-            if zBug {print(msgs.RDV.rawValue + msgs.recipeNotesNot.rawValue)}
-        } else {
-            if zBug { print(msgs.RDV.rawValue + msgs.recipeNotes.rawValue + " \(myNotesConstructed.count)")}
-        }
-        return myNotesConstructed
-    }
     fileprivate func hasNotes() -> Bool {
-        let userNotes = constructNotesIfAvailable()
+        var userNotes = FileManager.default.constructNotesIfAvailable()
+        userNotes = userNotes.filter({$0.recipeuuid == item.id})
         if userNotes.isEmpty {
             return false
         }
@@ -145,41 +101,11 @@ struct RecipeDetailView: View {
         
     }
     
-    fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
-        var myImagesConstructed:Array<ImageSaved> = []
-        
-        do {
-            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rimages.rawValue), includingPropertiesForKeys: [])
-            if zBug { print(msgs.RDV.rawValue + "Contents count " + "\(contUrls.count)")}
-            for aUrl in contUrls {
-                let data = FileManager.default.contents(atPath: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.rimages.rawValue).absoluteString.appending(aUrl.lastPathComponent))!
-                let decodedJSON = try decoder.decode(ImageSaved.self, from: data)
-                myImagesConstructed.append(decodedJSON)
-            }
-        } catch  {
-            fatalError("Cannot read or decode from images")
-        }
-        
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString}).filter({$0.recipeuuid == item.id})
-        if shippedImages.isEmpty  {
-            
-        } else {
-            myImagesConstructed.append(contentsOf: shippedImages)
-        }
-        
-        myImagesConstructed = myImagesConstructed.filter({$0.recipeuuid == self.item.id})
-        if myImagesConstructed.count == 0 {
-            if zBug {print(msgs.RDV.rawValue + msgs.recipeImagesNot.rawValue)}
-        } else {
-            if zBug { print(msgs.RDV.rawValue + msgs.recipeImages.rawValue + " \(myImagesConstructed.count)")}
-        }
-        
-        return myImagesConstructed
-    }
     
     fileprivate func hasImages() -> Bool {
-        let userImages = constructImagesIfAvailable()
-        if userImages.isEmpty {
+        var imageSaveds = FileManager.default.constructImagesIfAvailable()
+        imageSaveds = imageSaveds.filter({$0.recipeuuid == item.id})
+        if imageSaveds.isEmpty {
             return false
         }
         return true
@@ -187,59 +113,18 @@ struct RecipeDetailView: View {
     
     func getBookSectionIDForName(name: String) -> UUID? {
         var myReturn:UUID?
-//        let escape: Character = "\""
+        //        let escape: Character = "\""
         // special characters are escaped
         if getBookSectionNames().contains(name) {
             // bs with that exists
-            myReturn = constructAllSections().filter({$0.name == name}).first!.id
-        }
-        return myReturn
-    }
-    
-    fileprivate func constructAllSections() -> [BookSection] {
-        var myReturn: [BookSection] = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
-        myReturn = bookSections
-        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-        let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
-        if !test {
-            fatalError(msgs.RDV.rawValue + "Cannot find Reczipes directory")
-//            do {
-//                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
-//            } catch {
-//                fatalError("Cannot create directory")
-//            }
-        }
-        do {
-            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-            
-            for aurl in urls {
-                if aurl.pathComponents.contains(msgs.rnotes.rawValue) || aurl.pathComponents.contains(msgs.rimages.rawValue)  {
-                    // skip these folders
-                } else {
-                    let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-                    do {
-                        let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
-                        myReturn.append(aBookSection)
-                        if zBug { print(msgs.RDV.rawValue + msgs.fuar.rawValue)}
-                        
-                    } catch  {
-                        // not a json file
-                        fatalError("This directory has illegal files")
-                    }
-                }
-            }
-        } catch  {
-            // no contents or does not exist
+            myReturn = FileManager.default.constructAllSections().filter({$0.name == name}).first!.id
         }
         return myReturn
     }
     
     func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
         var myReturn:BookSection?
-        let bs = constructAllSections().filter({$0.id == bookSectionUUID})
+        let bs = FileManager.default.constructAllSections().filter({$0.id == bookSectionUUID})
         myReturn = bs.first
         return myReturn
     }
@@ -254,50 +139,27 @@ struct RecipeDetailView: View {
             // exists
             do {
                 // first try in user recipes
-                let bookSections = constructAllSections()
-                for aBookSection in bookSections {
-                    if aBookSection.id == bookSectionUUID {
-                        // found it, items are SectionItems
-                        var newItemsArray = aBookSection.items
-                        newItemsArray.append(recipe)
-                        let newBookSection = BookSection(id: bookSectionUUID, name: aBookSection.name, items: newItemsArray)
-                        // now save it to user recipes
-                        // first encode
-                        do {
-                            let encodedJSON = try encoder.encode(newBookSection)
-                            // now write out
-                            do {
-                                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + json))
-                                if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
-                                
-                            } catch  {
-                                fatalError("Cannot write to user recipes folder")
-                            }
-                        } catch  {
-                            fatalError("Cannot encode booksection to json")
-                        }
-                    }
+//                let bookSections = constructAllSections()
+//                var abookSection = bookSections.filter({$0.id == bookSectionUUID}).first
+                var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
+                do {
+                    abookSection.items = [recipe]
+                    abookSection.id = UUID()
+                    let encodedJSON = try encoder.encode(abookSection)
+                    // now write out
+                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + json))
+                    if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
+                } catch  {
+                    fatalError(msgs.RDV.rawValue + " Cannot encode booksection to json")
                 }
             }
-
+            
         } else {
             // does not exist
             // create bookSection and add recipe
             // user the uuid of shipped booksections (if such a uuid exist in shipped) to create this booksection in the user section
-            var id:UUID
-            let name:String
-            if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
-                // a booksection with that UUID exists
-                let bs = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
-                id = bs.id
-                name = bs.name
-            } else {
-                // no such ID
-                id = bookSectionUUID
-                name = "Z" + Date().description
-            }
-            
-            let newBookSection = BookSection(id: id, name:  name, items: [recipe])
+            // a booksection with that UUID exists
+            let newBookSection = BookSection(id: UUID(), name: cuisine, items: [recipe])
             do {
                 let encodedJSON = try encoder.encode(newBookSection)
                 // now write out
@@ -344,13 +206,13 @@ struct RecipeDetailView: View {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
                     }.disabled(cuisine.isEmpty)
-                    Button(action: {
-                        // What to perform
-                        self.showingMoveView.toggle()
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.move.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
-                    }.disabled(cuisine.isEmpty)
+//                    Button(action: {
+//                        // What to perform
+//                        self.showingMoveView.toggle()
+//                    }) {
+//                        // How the button looks like
+//                        RoundButton3View(someTextTop: labelz.move.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
+//                    }.disabled(cuisine.isEmpty)
                     Button(action: {
                         // What to perform
                         self.order.add(item: self.item)

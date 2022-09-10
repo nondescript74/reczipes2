@@ -39,19 +39,6 @@ struct MailView: UIViewControllerRepresentable {
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func getDocuDirUrl() -> URL {
-        var myReturn:URL
-        do {
-            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
-                                                           in: .userDomainMask,
-                                                           appropriateFor: nil,
-                                                           create: false)
-            myReturn = myDocuDirUrl
-        } catch {
-            fatalError()
-        }
-        return myReturn
-    }
     
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []

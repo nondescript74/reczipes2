@@ -21,23 +21,10 @@ struct AllRecipesView: View {
         case fuar = "Found user added recipe"
         //        case json = ".json"
     }
-    var isDirectory: ObjCBool = false
+//    var isDirectory: ObjCBool = false
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func getDocuDirUrl() -> URL {
-        var myReturn:URL
-        do {
-            let myDocuDirUrl = try FileManager.default.url(for: .documentDirectory,
-                                                           in: .userDomainMask,
-                                                           appropriateFor: nil,
-                                                           create: false)
-            myReturn = myDocuDirUrl
-        } catch {
-            fatalError()
-        }
-        return myReturn
-    }
     //    func getBookSections() -> [BookSection] {
     //        var myReturn: [BookSection] = []
     //        let myDocuDirUrl = getDocuDirUrl()
@@ -76,56 +63,10 @@ struct AllRecipesView: View {
         }
         return myReturn
     }
-    fileprivate func constructAllSections() -> [BookSection] {
-        var myReturn: [BookSection] = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
-        myReturn = bookSections
-        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-        let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
-        if !test {
-            do {
-                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
-                if zBug { print(msgs.arv.rawValue + " Created Reczipes directory")}
-                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rnotes.rawValue), withIntermediateDirectories: true)
-                if zBug { print(msgs.arv.rawValue + " Created RecipeNotes directory")}
-                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rimages.rawValue), withIntermediateDirectories: true)
-                if zBug { print(msgs.arv.rawValue + " Created RecipeImages directory")}
-            } catch {
-                fatalError("Cannot create directories")
-            }
-        }
-        do {
-//            var urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-            var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
-            // skip these folders
-            urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
-            urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
-            
-//            for aurl in urls {
-////                print(aurl.debugDescription)  // file
-//                
-//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))
-//                do {
-//                    let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile!)
-//                    myReturn.append(aBookSection)
-//                    if zBug { print(msgs.arv.rawValue + msgs.fuar.rawValue)}
-//                    
-//                } catch  {
-//                    // not a json file
-//                    fatalError("This directory has illegal files")
-//                }
-//            }
-        } catch  {
-            // no contents or does not exist
-        }
-        return myReturn
-    }
     
     fileprivate func constructAllRecipes() -> [SectionItem] {
         var myReturn: [SectionItem] = []
-        let myBs: [BookSection] = constructAllSections()
+        let myBs: [BookSection] = FileManager.default.constructAllSections()
         for aBS in myBs {
             for aSI in aBS.items {
                 myReturn.append(aSI)
@@ -135,7 +76,7 @@ struct AllRecipesView: View {
     }
     
     fileprivate var myBook: [BookSection] {
-        var myReturn = constructAllSections()
+        var myReturn = FileManager.default.constructAllSections()
         myReturn = myReturn.sorted(by: {$0.name < $1.name})
         return myReturn
     }
@@ -176,13 +117,3 @@ struct AllRecipesView_Previews: PreviewProvider {
         }
     }
 }
-
-extension FileManager {
-
-    func directoryExists(atUrl url: URL) -> Bool {
-        var isDirectory: ObjCBool = false
-        let exists = self.fileExists(atPath: url.path, isDirectory:&isDirectory)
-        return exists && isDirectory.boolValue
-    }
-}
-

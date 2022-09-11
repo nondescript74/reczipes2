@@ -284,7 +284,7 @@ extension FileManager {
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
         let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
         myReturn = bookSections
-        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+//        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
         let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
         if !test {
             do {
@@ -310,7 +310,7 @@ extension FileManager {
             // skip these folders
             urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
             urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
-        
+            
             
             for aurl in urls {
                 do {
@@ -328,6 +328,7 @@ extension FileManager {
         } catch  {
             // no contents or does not exist
         }
+
         return myReturn
     }
 }

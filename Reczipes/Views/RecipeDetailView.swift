@@ -111,13 +111,27 @@ struct RecipeDetailView: View {
         return true
     }
     
-    func getBookSectionIDForName(name: String) -> UUID? {
-        var myReturn:UUID?
+    func getBookSectionIDForName(name: String) -> UUID {
+        var myReturn:UUID
         //        let escape: Character = "\""
         // special characters are escaped
         if getBookSectionNames().contains(name) {
-            // bs with that exists
-            myReturn = FileManager.default.constructAllSections().filter({$0.name == name}).first!.id
+            // bs name exists, recipes may not exist in the section
+            var sections = FileManager.default.constructAllSections()
+            sections = sections.filter({$0.name == name})
+            if sections.isEmpty {
+                var builtinNames = myBookSectionsIdNames
+                builtinNames = builtinNames.filter({$0.name == name})
+                if builtinNames.isEmpty {
+                    fatalError(msgs.RDV.rawValue + " no uuid available for name")
+                }
+                myReturn = builtinNames.first!.id
+            } else {
+                myReturn = sections.first!.id
+            }
+            
+        } else {
+            fatalError(msgs.RDV.rawValue + " no id with name in builtin booksectionnames")
         }
         return myReturn
     }
@@ -200,7 +214,7 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        addRecipeToBookSection(recipe: item, bookSectionUUID: getBookSectionIDForName(name: cuisine)!)
+                        addRecipeToBookSection(recipe: item, bookSectionUUID: getBookSectionIDForName(name: cuisine))
                         recipeSaved = true
                     }) {
                         // How the button looks like

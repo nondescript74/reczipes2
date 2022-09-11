@@ -13,7 +13,7 @@ public var colorFontLists:Color = Color.init("ED7D3A")
 public var iPhoneXrPreviewDevice:PreviewDevice = "iPhone Xr"
 public var iPadAir2PreviewDevice:PreviewDevice = "iPad Air 2"
 public let spoonacular:String = "Spoonacular"
-public let recipeFolderName = "RecipeFolder"
+//public let recipeFolderName = "RecipeFolder"
 //public let recipeImagesAndNotesFolderName = "NotesPlusImages"
 public let recipesName = "Reczipes"
 public let recipeNotesFolderName = "RecipeNotes"
@@ -22,7 +22,6 @@ public let recipeImagesFolderName = "RecipeImages"
 //public var recipeBooks2:[String] = ["Carol", "Indian", "Added", "Diane", "Z", "Rafiq", "Chinese"]
 let myBookSectionsIdNames: [BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json")
 public let json = ".json"
-
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
 
@@ -81,6 +80,14 @@ fileprivate enum msgs: String {
 private var decoder: JSONDecoder = JSONDecoder()
 private var encoder: JSONEncoder = JSONEncoder()
 
+
+func hasSpecialCharacters(string: String) -> Bool {
+    if string.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil {
+        return true
+    } else {
+        return false
+    }
+}
 
 func getDocuDirUrl() -> URL {
     var myReturn:URL

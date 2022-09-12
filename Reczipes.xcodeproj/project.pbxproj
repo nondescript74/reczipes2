@@ -68,6 +68,7 @@
 		93D611A826CE971200664F14 /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A626CE971100664F14 /* Images.json */; };
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
+		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
 		F8304A7328AD348500867C6F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7228AD348500867C6F /* AuthView.swift */; };
 		F8304A7828AEE9A200867C6F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7728AEE9A200867C6F /* SettingsView.swift */; };
 		F8304A7A28B1685A00867C6F /* ProfileHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7928B1685A00867C6F /* ProfileHost.swift */; };
@@ -161,6 +162,7 @@
 		93D611A626CE971100664F14 /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
+		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		F8304A7228AD348500867C6F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		F8304A7428AD35B300867C6F /* Reczipes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reczipes.entitlements; sourceTree = "<group>"; };
 		F8304A7728AEE9A200867C6F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				93AB40C626BECD93005529AF /* UserData.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
 				93237A2B26A4E7A200032387 /* Vitamins.swift */,
+				F815305928CFCE6400E9ECC0 /* KeychainItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				93237A3426A4E87900032387 /* ImagesView.swift in Sources */,
 				93ACB2E126B9E8CD0010F71F /* TriviaOutputOperation.swift in Sources */,
 				F86EB12328B2710E0098DC75 /* MoveRecipeView.swift in Sources */,
+				F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */,
 				F8304A8628B1688700867C6F /* NutritionHost.swift in Sources */,
 				9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */,
 				F8304A8728B1688700867C6F /* NutritionEditor.swift in Sources */,
@@ -636,7 +640,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 138;
+				CURRENT_PROJECT_VERSION = 140;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -661,7 +665,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -679,7 +683,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 138;
+				CURRENT_PROJECT_VERSION = 140;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -704,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

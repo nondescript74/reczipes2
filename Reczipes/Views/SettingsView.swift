@@ -21,7 +21,7 @@ struct SettingsView: View {
     private var versionLabel = ""
     private var buildLabel = ""
     private enum msgs:String {
-        case sv = "User Settings View"
+        case sv = "User Settings"
         case cfsv = "CFBundleShortVersionString"
         case cfb = "CFBundleVersion"
         case z = "Hello, Z"
@@ -64,6 +64,8 @@ struct SettingsView: View {
             Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
             Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
             Divider()
+            AuthView()
+            Divider()
             
 //            VStack {
 //                Text(msgs.jort.rawValue).font(.largeTitle).bold()
@@ -97,7 +99,7 @@ struct SettingsView: View {
 //            ProfileHost().padding()
 //            NutritionHost().padding()
             FilesDisplayView()
-        }
+        }.padding()
     }
 }
 

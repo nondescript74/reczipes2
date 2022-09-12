@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct ApplicationView: View {
     
@@ -24,9 +25,6 @@ struct ApplicationView: View {
         case settings = "Settings"
     }
     // MARK: - Methods
-    private func getAppVersionAndBuild() {
-        return
-    }
     
     var body: some View {
         TabView {

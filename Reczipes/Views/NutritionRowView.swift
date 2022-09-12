@@ -28,25 +28,13 @@ struct NutritionRowView: View {
     var body: some View {
         HStack(alignment: .top) {
             Text(myValueName + msgs.sep.rawValue)
-//                .foregroundColor(.purple)
-//                .frame(width: 125, height: 20, alignment: .leading)
-                
-//            HStack {
-                Text(msgs.min.rawValue)
-                Text(myMinVal.description)
-//                    .font(.body)
-                    .foregroundColor(.orange)
-//            }
-//            .frame(width: 70, height: 20, alignment: .leading)
-//            .padding()
-//            HStack {
-                Text(msgs.max.rawValue)
-                Text(myMaxVal.description)
-//                    .font(.body)
-                    .foregroundColor(.red)
-//            }
-//            .frame(width: 100, height: 20, alignment: .leading)
-//            .padding()
+                .foregroundColor(.mint)
+            Text(msgs.min.rawValue)
+            Text(myMinVal.description)
+                .foregroundColor(.orange)
+            Text(msgs.max.rawValue)
+            Text(myMaxVal.description)
+                .foregroundColor(.blue)
         }.padding()
         
     }

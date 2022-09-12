@@ -12,16 +12,11 @@ import CoreData
 struct NutritionHost: View {
     
     // MARK; - Debug
-    var zBug:Bool = false
-    
+    private var zBug: Bool = false
     // MARK:- Environment
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData
-    
     // MARK: - ManagedObjectContext
-    @Environment(\.managedObjectContext) var managedObjectContext
-    
-    
     //MARK: - State
     @State var draftNutrition = Nutrition.default
     

@@ -10,6 +10,7 @@ import Foundation
 struct Profile {
     var username: String
     var id: String
+    var email: String
     var prefersNotifications: Bool
     var prefersNutritionInclusion: Bool
     var prefersVitaminInclusion: Bool
@@ -20,10 +21,11 @@ struct Profile {
     var vitamins: Vitamins
     var loadNewRecipes: Bool
 
-    static let `default` = Self(username: "somebody@gmail.com", id: "Sample ID", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition.default, vitamins: Vitamins.default, loadnewrecipes: false)
+    static let `default` = Self(username: "Z", id: "Sample ID", email: "somebody@gmail.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition.default, vitamins: Vitamins.default, loadnewrecipes: false)
     
-    init(username: String, id: String, prefersNotifications: Bool = true, prefersNutrition: Bool = false, prefersVitamins: Bool = false, seasonalPhoto: Season = .summer, numberz: NumberZ = NumberZ.four, nutrition: Nutrition, vitamins: Vitamins, loadnewrecipes: Bool = false) {
+    init(username: String, id: String, email:String, prefersNotifications: Bool = true, prefersNutrition: Bool = false, prefersVitamins: Bool = false, seasonalPhoto: Season = .summer, numberz: NumberZ = NumberZ.four, nutrition: Nutrition, vitamins: Vitamins, loadnewrecipes: Bool = false) {
         self.username = username
+        self.email = email
         self.id = id
         self.prefersNotifications = prefersNotifications
         self.prefersNutritionInclusion = prefersNutrition

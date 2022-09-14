@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoveRecipeView: View {
     // MARK: - Debug local
-    private var zBug:Bool = true
+    private var zBug:Bool = false
     // MARK: - Environment Objects
     // MARK: - Initializer
     init(movingRecipe:SectionItem, moveFromBookSection:String) {
@@ -31,7 +31,6 @@ struct MoveRecipeView: View {
         case recz = "Reczipes"
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
-//        case json = ".json"
         case mrv = "Move Recipe View: "
         case fuar = "Found a user added recipe"
     }
@@ -42,7 +41,6 @@ struct MoveRecipeView: View {
         case mail = "envelope"
         case add = "plus"
     }
-    var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotesView: View {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Environment
     // MARK: - Initializer
     init(recipeuuid: UUID) {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImagesView: View {
     // MARK: Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Environment
     // MARK: - Initializer
     init(recipeuuid: UUID) {
@@ -33,49 +33,9 @@ struct ImagesView: View {
         case rshippd = "recipesShipped"
 //        case json = ".json"
     }
-//    var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-//    fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
-//        var myImagesConstructed:Array<ImageSaved> = []
-//        let myDocuDirUrl = getDocuDirUrl()
-//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-//
-//        do {
-//            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rimages.rawValue), includingPropertiesForKeys: []).filter({$0.absoluteString.contains(myRecipeUUID.uuidString)})
-//            // now shipped recipes
-//
-//            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-//            for aurl in urls {
-//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-//                do {
-//                    let anImageSaved = try decoder.decode(ImageSaved.self, from: ajsonfile)
-//                    myImagesConstructed.append(anImageSaved)
-//                    if zBug { print(msgs.iv.rawValue + msgs.fau.rawValue)}
-//
-//                } catch  {
-//                    // not a json file
-//                    fatalError("Cannot decode This directory has illegal files")
-//                }
-//            }
-//        } catch {
-//
-//        }
-//
-//        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rshippd.rawValue + json).sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
-//        if shippedImages.isEmpty  {
-//            // nothin
-//        } else {
-//            myImagesConstructed.append(contentsOf: shippedImages)
-//
-//        }
-//
-//        print(msgs.iv.rawValue + msgs.numberofimages.rawValue + "\(myImagesConstructed.count)")
-//
-//        return myImagesConstructed
-//    }
-    
     fileprivate func rotateImageIfNecessary(data: Data) -> UIImage {
         let zImg = UIImage(data: data)!
         switch zImg.imageOrientation {

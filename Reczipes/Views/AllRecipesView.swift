@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllRecipesView: View {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Environment Objects
     // MARK: - Properties
     fileprivate enum msgs: String {
@@ -25,30 +25,6 @@ struct AllRecipesView: View {
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    //    func getBookSections() -> [BookSection] {
-    //        var myReturn: [BookSection] = []
-    //        let myDocuDirUrl = getDocuDirUrl()
-    //        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-    //
-    //        do {
-    //            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles).filter({$0.lastPathComponent.contains(json)})
-    //            for aurl in urls {
-    //                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrl.absoluteString.appending(aurl.absoluteString))!
-    //                let aBookSection = try decoder.decode(BookSection.self, from: ajsonfile)
-    //                myReturn.append(aBookSection)
-    //            }
-    //            let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
-    //            for aBS in bookSections {
-    //                myReturn.append(aBS)
-    //            }
-    //        } catch  {
-    ////            fatalError("Can't read contents of users recipes dir")
-    //            // empty or not there?
-    //
-    //        }
-    //
-    //        return myReturn
-    //    }
     private func getReczDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {

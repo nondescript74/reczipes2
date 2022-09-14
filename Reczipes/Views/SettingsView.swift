@@ -34,9 +34,9 @@ struct SettingsView: View {
         case noTitle = "No Recipe Title"
         case noJoke = "No Joke?"
         case noTrivia = "No Trivia?"
-        case trivia = "olive"
-        case joke = "joke"
-    
+        case trivia = "questionmark.circle"
+        case joke = "lasso.sparkles"
+        
     }
     enum labelz: String {
         case trivia = "Trivia"
@@ -60,47 +60,55 @@ struct SettingsView: View {
     }
     var body: some View {
         VStack {
-            Text(msgs.sv.rawValue).font(.largeTitle).bold()
-            Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
-            Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
-            Text(userData.profile.username)
-            Text(userData.profile.email)
-            Divider()
-            AuthView()
-            Divider()
-            
-//            VStack {
-//                Text(msgs.jort.rawValue).font(.largeTitle).bold()
-//                    .padding(.bottom)
-//                Text(msgs.makeSelection.rawValue)
-//                    .font(.callout)
-//                    .foregroundColor(.black)
-//                    .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                
-//                HStack {
-//                    Button(action: {self.getTrivia()}) {
-//                        RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
-//                    }.padding()
-//                    Button(action: {self.getJoke()}) {
-//                        RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
-//                    }.padding()
-//                }
-//                
-//                List   {
-//                    if show == Selectors.trivia {
-//                        Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
-//                            .lineLimit(20)
-//                    }
-//                    if show == Selectors.joke {
-//                        Text(joke.joke?.text ?? msgs.noJoke.rawValue)
-//                            .lineLimit(20)
-//                    }
-//                }
-//            }
-            
-//            ProfileHost().padding()
-//            NutritionHost().padding()
-            FilesDisplayView()
+            VStack {
+                
+                Text(msgs.sv.rawValue).font(.largeTitle).bold()
+                Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
+                Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
+                Text(userData.profile.username)
+                Text(userData.profile.email)
+                
+                NavigationLink(destination: AuthView()) {
+                    Text("Sign in with Apple")
+                }
+                
+                NavigationLink(destination: FilesDisplayView()) {
+                    Text("Display user saved recipes, notes, images")
+                }
+                
+                NavigationLink(destination: ProfileHost()) {
+                    Text("View/Edit User profile settings")
+                }
+                
+                NavigationLink(destination: NutritionHost()) {
+                    Text("View/Edit user nutrition settings")
+                }
+                
+                HStack  {
+                    Button(action: {self.getTrivia()}) {
+                        RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
+                    }.padding()
+                    Button(action: {self.getJoke()}) {
+                        RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
+                    }.padding()
+                }
+            }
+            VStack {
+                if show == Selectors.trivia {
+                    Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
+                        .font(.body)
+                        .fontWeight(.light)
+                        .foregroundColor(.orange)
+                        .lineLimit(40)
+                }
+                if show == Selectors.joke {
+                    Text(joke.joke?.text ?? msgs.noJoke.rawValue)
+                        .font(.body)
+                        .fontWeight(.light)
+                        .foregroundColor(.mint)
+                        .lineLimit(40)
+                }
+            }
         }.padding()
     }
 }

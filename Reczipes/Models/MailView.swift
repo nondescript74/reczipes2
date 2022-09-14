@@ -11,7 +11,7 @@ import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
     // MARK: - Debug local\
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Environment
     @Environment(\.presentationMode) var presentation
     // MARK: - State
@@ -35,7 +35,6 @@ struct MailView: UIViewControllerRepresentable {
         case fan = "Found a Note"
         case fani = "Found an ImageSaved"
     }
-    var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods

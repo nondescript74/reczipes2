@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddImageAndNoteView: View {
     // MARK: - Debug local
-    private let zBug = true
+    private let zBug = false
     // MARK: - Initializer
     // MARK: EnvironmentObject
 //    @EnvironmentObject var fileMgr: FileMgr
@@ -78,7 +78,6 @@ struct AddImageAndNoteView: View {
             if zBug {print(msgs.aianv.rawValue + msgs.noimageset.rawValue)}
             return
         }
-//        let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = getDocuDirUrl().appending(path: msgs.recz.rawValue)
         let combinedRecipes = FileManager.default.constructAllRecipes()
         
@@ -90,9 +89,10 @@ struct AddImageAndNoteView: View {
             let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
             do {
                 let encodedJSON = try encoder.encode(myImageToAdd)
+                let suffix = Date().formatted(date: .abbreviated, time: .standard)
                 // now write out
                 do {
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + json))
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + "_" + suffix + json))
                     if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
                 } catch  {
                     fatalError("Cannot write to user RecipeImages folder")
@@ -152,9 +152,10 @@ struct AddImageAndNoteView: View {
         let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
         do {
             let encodedJSON = try encoder.encode(myNoteToAdd)
+            let suffix = Date().formatted(date: .abbreviated, time: .standard)
             // now write out
             do {
-                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.uuidString + json))
+                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.uuidString + "_" + suffix + json))
                 if zBug { print(msgs.aianv.rawValue + msgs.notejson.rawValue)}
                 let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
                 if zBug { print(msgs.aianv.rawValue + "Contents count " + "\(result.count)")}

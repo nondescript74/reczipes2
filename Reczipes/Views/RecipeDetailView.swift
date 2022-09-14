@@ -12,7 +12,7 @@ struct RecipeDetailView: View {
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     // MARK: - Local debug flag
-    fileprivate var zBug:Bool = true
+    fileprivate var zBug:Bool = false
     
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
@@ -87,7 +87,6 @@ struct RecipeDetailView: View {
     @State var isShowingMailView = false
     @State fileprivate var recipeSaved = false
     @State fileprivate var showingMoveView = false
-//    var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
@@ -113,7 +112,6 @@ struct RecipeDetailView: View {
     
     func getBookSectionIDForName(name: String) -> UUID {
         var myReturn:UUID
-        //        let escape: Character = "\""
         // special characters are escaped
         if getBookSectionNames().contains(name) {
             // bs name exists, recipes may not exist in the section
@@ -152,16 +150,14 @@ struct RecipeDetailView: View {
         if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
             // exists
             do {
-                // first try in user recipes
-//                let bookSections = constructAllSections()
-//                var abookSection = bookSections.filter({$0.id == bookSectionUUID}).first
                 var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
                 do {
                     abookSection.items = [recipe]
                     abookSection.id = UUID()
+                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
                     let encodedJSON = try encoder.encode(abookSection)
                     // now write out
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + json))
+                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + suffix + json))
                     if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
                 } catch  {
                     fatalError(msgs.RDV.rawValue + " Cannot encode booksection to json")
@@ -178,7 +174,8 @@ struct RecipeDetailView: View {
                 let encodedJSON = try encoder.encode(newBookSection)
                 // now write out
                 do {
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + json))
+                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + suffix + json))
                     if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
                 } catch  {
                     fatalError("Cannot write to user booksections folder")

@@ -291,7 +291,6 @@ extension FileManager {
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
         let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
         myReturn = bookSections
-//        let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
         let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
         if !test {
             do {

@@ -13,6 +13,7 @@ struct ApplicationView: View {
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
+    @EnvironmentObject var fridge: MyFridge
     
     // MARK: - Properties
     fileprivate enum tabs: String {
@@ -60,6 +61,7 @@ struct ApplicationView: View {
         }
         .environmentObject(order)
         .environmentObject(userData)
+        .environmentObject(fridge)
     }
 }
 

@@ -36,6 +36,7 @@ struct SettingsView: View {
         case noTrivia = "No Trivia?"
         case trivia = "questionmark.circle"
         case joke = "lasso.sparkles"
+        case signout = "rectangle.stack.badge.person.crop"
         
     }
     enum labelz: String {
@@ -58,58 +59,83 @@ struct SettingsView: View {
         show = Selectors.joke
         joke.getJoke()
     }
+    
+    
+//    private func signOutButtonPressed() {
+//        KeychainItem.deleteUserIdentifierFromKeychain()
+//        
+//        // Clear the user interface.
+//        userData.profile = Profile.default
+//    }
     var body: some View {
-        VStack {
+        NavigationView {
             VStack {
+                VStack {
+                    Text(msgs.sv.rawValue).font(.largeTitle).bold()
+                    Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
+                    Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
+                    Text(userData.profile.username)
+                    Text(userData.profile.email)
+                }.padding(.bottom)
                 
-                Text(msgs.sv.rawValue).font(.largeTitle).bold()
-                Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
-                Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
-                Text(userData.profile.username)
-                Text(userData.profile.email)
-                
-                NavigationLink(destination: AuthView()) {
-                    Text("Sign in with Apple")
+                VStack() {
+                    NavigationLink(destination: AuthView()) {
+                        Text("Sign in with Apple")
+                    }.padding(.bottom)
+                    
+                    NavigationLink(destination: FilesDisplayView()) {
+                        Text("Display user saved recipes, notes, images")
+                    }.padding(.bottom)
+                    
+                    NavigationLink(destination: ProfileHost()) {
+                        Text("View/Edit User profile settings")
+                    }.padding(.bottom)
+                    
+                    NavigationLink(destination: NutritionHost()) {
+                        Text("View/Edit user nutrition settings")
+                    }.padding(.bottom)
                 }
                 
-                NavigationLink(destination: FilesDisplayView()) {
-                    Text("Display user saved recipes, notes, images")
+                VStack {
+                    Text(msgs.jort.rawValue).font(.largeTitle).bold()
+                        .padding(.bottom)
+                    Text(msgs.makeSelection.rawValue)
+                        .font(.callout)
+                        .foregroundColor(.black)
+                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    
+                    HStack {
+                        Button(action: {self.getTrivia()}) {
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
+                        }.padding()
+                        Button(action: {self.getJoke()}) {
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
+                        }.padding()
+                        
+//                        Button(action: {self.signOutButtonPressed()}) {
+//                            RoundButton3View(someTextTop: "Sign out", someTextBottom: "", someImage: msgs.signout.rawValue)
+//                        }
+                    }
+                    
+                    List   {
+                        if show == Selectors.trivia {
+                            Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
+                                .font(.body)
+                                .fontWeight(.light)
+                                .foregroundColor(.orange)
+                                .lineLimit(40)
+                        }
+                        if show == Selectors.joke {
+                            Text(joke.joke?.text ?? msgs.noJoke.rawValue)
+                                .font(.body)
+                                .fontWeight(.light)
+                                .foregroundColor(.orange)
+                                .lineLimit(40)
+                        }
+                    }
                 }
-                
-                NavigationLink(destination: ProfileHost()) {
-                    Text("View/Edit User profile settings")
-                }
-                
-                NavigationLink(destination: NutritionHost()) {
-                    Text("View/Edit user nutrition settings")
-                }
-                
-                HStack  {
-                    Button(action: {self.getTrivia()}) {
-                        RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
-                    }.padding()
-                    Button(action: {self.getJoke()}) {
-                        RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
-                    }.padding()
-                }
-            }
-            VStack {
-                if show == Selectors.trivia {
-                    Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
-                        .font(.body)
-                        .fontWeight(.light)
-                        .foregroundColor(.orange)
-                        .lineLimit(40)
-                }
-                if show == Selectors.joke {
-                    Text(joke.joke?.text ?? msgs.noJoke.rawValue)
-                        .font(.body)
-                        .fontWeight(.light)
-                        .foregroundColor(.mint)
-                        .lineLimit(40)
-                }
-            }
-        }.padding()
+            }.padding()
+        }
     }
 }
 

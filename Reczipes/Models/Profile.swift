@@ -21,7 +21,7 @@ struct Profile {
     var vitamins: Vitamins
     var loadNewRecipes: Bool
 
-    static let `default` = Self(username: "Z", id: "Sample ID", email: "somebody@gmail.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition.default, vitamins: Vitamins.default, loadnewrecipes: false)
+    static let `default` = Self(username: "Guest", id: "Sample ID", email: "somebody@gmail.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition.default, vitamins: Vitamins.default, loadnewrecipes: false)
     
     init(username: String, id: String, email:String, prefersNotifications: Bool = true, prefersNutrition: Bool = false, prefersVitamins: Bool = false, seasonalPhoto: Season = .summer, numberz: NumberZ = NumberZ.four, nutrition: Nutrition, vitamins: Vitamins, loadnewrecipes: Bool = false) {
         self.username = username

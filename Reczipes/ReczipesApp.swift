@@ -16,6 +16,7 @@ struct ReczipesApp: App {
             ApplicationView()
                 .environmentObject(OrderingList())
                 .environmentObject(UserData())
+                .environmentObject(MyFridge())
         }
     }
 }

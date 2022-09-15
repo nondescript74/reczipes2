@@ -63,6 +63,7 @@ struct AuthView: View {
                             DispatchQueue.main.async {
                                 self.showPasswordCredentialAlert(username: username, password: password)
                             }
+                        
                     default:
                         break
                     }

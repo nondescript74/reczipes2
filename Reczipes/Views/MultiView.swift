@@ -26,9 +26,6 @@ struct MultiView: View {
     }
     
     private enum msgs: String {
-        //        case findrecipes = "Find Recipes"
-        //        case readFilesInASDsuccess = "Success"
-        //        case userProfile = "User Profile"
         case jort = "Joke and Trivia"
         case makeSelection = "Click Joke or Trivia"
         case noTitle = "No Recipe Title"
@@ -43,21 +40,6 @@ struct MultiView: View {
         case joke = "Joke"
         case get = "Get"
     }
-    
-    //    private enum imagez: String {
-    ////        case zhome = "zhome"
-    //        case triviathumb = "Trivia-thumb"
-    //        case jokethumb = "Joke-thumb"
-    //    }
-    
-    //    var profileButton: some View {
-    //        Button(action: { self.showingProfile.toggle() }) {
-    //            Image(uiImage: UIImage(named: imagez.zhome.rawValue)!.scaledDown(into: CGSize(width: 40, height: 40), centered: true))
-    //                .imageScale(.large)
-    //                .accessibility(label: Text(msgs.userProfile.rawValue))
-    //                .padding()
-    //        }
-    //    }
     
     // MARK:- Methods
     func getTrivia() {

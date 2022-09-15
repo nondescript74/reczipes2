@@ -12,6 +12,7 @@ public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
     private var zBug:Bool = false
     // MARK: - Environment Variables
+    @EnvironmentObject var userData: UserData
     // MARK: - Published
     @Published var anImage: Image?
     @Published var recipeInfo: SRecipe?
@@ -162,6 +163,11 @@ public class WebQueryRecipes: ObservableObject {
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
         urlComponents.query = myQuery.extract.rawValue + urlString + Profile.apiKeyE.z.rawValue
         myTask(aswitch: myGets.FindExtracted.rawValue)
+    }
+    
+    func findByIngredients() {
+        // for example, what's in my fridge
+        // https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
     }
     
     func getTrivia() {

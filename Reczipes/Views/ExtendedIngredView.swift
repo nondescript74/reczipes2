@@ -10,12 +10,13 @@ import SwiftUI
 struct ExtendedIngredView: View {
     
     // MARK: - Initializer
-    init(extendedIngredient: ExtendedIngredient) {
+    init(extendedIngredient: ExtendedIngredient, ratio: Double) {
         self.myExtIngredient = extendedIngredient
+        self.myRatio = ratio
     }
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient!
-
+    fileprivate var myRatio: Double
     // MARK: - Methods
     fileprivate func getMetaInfo(meta: [String?]?) -> String {
         var myReturnMetaInfo: String = "meta:"
@@ -51,6 +52,7 @@ struct ImageAndNameView: View {
     }
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient!
+    fileprivate var myExtIngRatio: Double = 1.0
     private enum msgs: String {
         case noIngredName = "No Ingredient Name??"
     }
@@ -111,7 +113,7 @@ struct MeasuresView_Previews: PreviewProvider {
         Group {
             //MeasureView(measure: Measure.measureExampleUS)
             //MeasuresView(measures: Measures.measuresExample)
-            ExtendedIngredView(extendedIngredient: myExtendedIngredient)
+            ExtendedIngredView(extendedIngredient: myExtendedIngredient, ratio: 1.0)
         }
     }
 }

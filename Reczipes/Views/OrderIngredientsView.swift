@@ -8,12 +8,14 @@
 
 import SwiftUI
 
+
+
 struct OrderIngredientsView: View {
     // MARK: - Initializer
     // MARK: - Environment Variables
     @EnvironmentObject var order: OrderingList
+    @EnvironmentObject var ratio: RecipeRatio
     // MARK: - State
-    @State fileprivate var ratio: Double = 1.0
     // MARK: - ObservedObject
     // MARK: - Properties
     fileprivate enum msgs: String {
@@ -36,11 +38,8 @@ struct OrderIngredientsView: View {
         case fq = "envelope"
         
     }
-    
+
     // MARK: - Methods
-    private func ratioRecipe(ratio: Double) {
-        self.ratio = ratio
-    }
     // MARK: - View Process
     var body: some View {
         NavigationView {
@@ -54,44 +53,44 @@ struct OrderIngredientsView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        ratioRecipe(ratio: 2.0)
+                        ratio.change(amount: 2.0)
                         
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.double.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.double.rawValue, reversed: false)
-                    }.disabled(order.items.count == 1)
+                    }  // .disabled(order.items.count == 1)
                     
                     Button(action: {
                         // What to perform
-                        ratioRecipe(ratio: 0.5)
+                        ratio.change(amount: 0.5)
                         
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.half.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.half.rawValue, reversed: false)
-                    }.disabled(order.items.count == 1)
+                    }   //.disabled(order.items.count == 1)
                     
                     Button(action: {
                         // What to perform
-                        ratioRecipe(ratio: 0.75)
+                        ratio.change(amount: 0.75)
                         
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.tq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.tq.rawValue, reversed: false)
-                    }.disabled(order.items.count == 1)
+                    }   //.disabled(order.items.count == 1)
                     
                     Button(action: {
                         // What to perform
-                        ratioRecipe(ratio: 1.25)
+                        ratio.change(amount: 1.25)
                         
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
-                    }.disabled(order.items.count == 1)
+                    }   //.disabled(order.items.count == 1)
                     
                 }
                 
-                ForEach(order.items, id: \.self) {item in
-                    ExtendendIngredientsView2(sectionitem: item, ratio: ratio)
+                ForEach(order.items, id: \.self) { item in
+                    ExtendendIngredientsView2(sectionitem: item)
                 }
                 
             }
@@ -113,14 +112,14 @@ struct ListHeader: View {
 
 
 // MARK: - Previews
-struct OrderIngredientsView_Previews: PreviewProvider {
-    // MARK: Properties
-    static let order: () = OrderingList().add(item: SectionItem.example)
-    static let userData = UserData()
-    static var previews: some View {
-        OrderIngredientsView()
-            .previewDevice("iPhone Xr")
-        
-    }
-}
+//struct OrderIngredientsView_Previews: PreviewProvider {
+//    // MARK: Properties
+//    static let order: () = OrderingList().add(item: SectionItem.example)
+//    static let userData = UserData()
+//    static var previews: some View {
+//        OrderIngredientsView(ratio: 1.0))
+//            .previewDevice("iPhone Xr")
+//
+//    }
+//}
 

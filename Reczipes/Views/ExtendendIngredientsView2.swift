@@ -11,18 +11,16 @@ struct ExtendendIngredientsView2: View {
     // MARK: - ObservedObject
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
     // MARK: - Initializer
-    init(sectionitem: SectionItem, ratio: Double) {  //
+    init(sectionitem: SectionItem) {  //
         extractedSRecipe.findExtracted(urlString: sectionitem.url)
-        self.ratio = ratio
     }
     // MARK: - Properties
-    fileprivate var ratio: Double = 1.0
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading) {
             List {
                 ForEach(extractedSRecipe.extractedSRecipe?.extendedIngredients ?? [ExtendedIngredient.extendedIngredientExample], id: \.self) { extIng in
-                    ExtendedIngredView(extendedIngredient: extIng!, ratio: self.ratio)
+                    ExtendedIngredView(extendedIngredient: extIng!)
                 }.disabled(extractedSRecipe.extractedSRecipe?.extendedIngredients == nil)
                     .padding([.top, .bottom])
             }
@@ -34,7 +32,7 @@ struct ExtendendIngredientsView2: View {
 struct ExtendendIngredientsView2_Previews: PreviewProvider {
     static let sectionItem = SectionItem.example
     static var previews: some View {
-        ExtendendIngredientsView2(sectionitem: sectionItem, ratio: 1.0)
+        ExtendendIngredientsView2(sectionitem: sectionItem)
     }
 }
 

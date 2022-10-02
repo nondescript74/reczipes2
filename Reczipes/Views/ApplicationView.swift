@@ -14,6 +14,7 @@ struct ApplicationView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var fridge: MyFridge
+    @EnvironmentObject var ratio: RecipeRatio
     
     // MARK: - Properties
     fileprivate enum tabs: String {
@@ -25,6 +26,8 @@ struct ApplicationView: View {
         case jt = "Joke/Trivia"
         case settings = "Settings"
     }
+    
+
     // MARK: - Methods
     
     var body: some View {

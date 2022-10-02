@@ -19,7 +19,7 @@ struct ExtendedIngredView: View {
     fileprivate var myExtIngredient: ExtendedIngredient!
     // MARK: - Methods
     fileprivate func getMetaInfo(meta: [String?]?) -> String {
-        var myReturnMetaInfo: String = "meta:"
+        var myReturnMetaInfo: String = ""
         if meta != nil {
             if !meta!.isEmpty {
                 for item in meta! {
@@ -110,7 +110,7 @@ struct MeasuresView: View {
             break
         default:
             testResult = (myMeasures.us?.amount)! * ratio.ratio
-            testResult = testResult.rounded()
+//            testResult = testResult.rounded()
         }
         switch testResultUnits {
         case "pounds?":
@@ -131,7 +131,7 @@ struct MeasuresView: View {
             break
         default:
             testResult = (myMeasures.metric?.amount)! * ratio.ratio
-            testResult = testResult.rounded()
+//            testResult = testResult.rounded()
         }
         switch testResultUnits {
         case "kilos?":

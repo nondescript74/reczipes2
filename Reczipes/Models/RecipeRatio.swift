@@ -16,7 +16,7 @@ class RecipeRatio: ObservableObject {
     }
     
     func change(amount: Double) {
-        ratio = amount.rounded()
+        ratio = amount
         print(msgs.rr.rawValue + msgs.changed.rawValue, ratio.description)
     }
 }

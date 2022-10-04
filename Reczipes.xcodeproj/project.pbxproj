@@ -68,6 +68,7 @@
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
 		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
+		F81A8CC628ECEB5B00FDB3EF /* BuildRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CC528ECEB5B00FDB3EF /* BuildRecipeView.swift */; };
 		F828685E28D28CA700BD0917 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828685D28D28CA700BD0917 /* MultiView.swift */; };
 		F82D1C9228E8F5E500DBBA77 /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9128E8F5E500DBBA77 /* RecipeRatio.swift */; };
 		F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */; };
@@ -168,6 +169,7 @@
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		F81A8CC528ECEB5B00FDB3EF /* BuildRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRecipeView.swift; sourceTree = "<group>"; };
 		F828685D28D28CA700BD0917 /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		F82D1C9128E8F5E500DBBA77 /* RecipeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
@@ -211,6 +213,7 @@
 				F828685D28D28CA700BD0917 /* MultiView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */,
+				F81A8CC528ECEB5B00FDB3EF /* BuildRecipeView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,
 				931164E42697836600099F8D /* AcceptView.swift */,
 				93715D9726CC728700F13E09 /* AddImageAndNoteView.swift */,
@@ -503,6 +506,7 @@
 				934AC08B26D298D2007EBF20 /* ImageWithSectionItemView.swift in Sources */,
 				93237A3626A4E8C000032387 /* SafariView.swift in Sources */,
 				934AC08926D29812007EBF20 /* ExtendedIngredView.swift in Sources */,
+				F81A8CC628ECEB5B00FDB3EF /* BuildRecipeView.swift in Sources */,
 				93ACB30426B9E9AA0010F71F /* JokeXOperation.swift in Sources */,
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
 				930310C82695DC75006910EF /* Model.swift in Sources */,
@@ -673,7 +677,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 160;
+				CURRENT_PROJECT_VERSION = 164;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -699,7 +703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -716,7 +720,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 160;
+				CURRENT_PROJECT_VERSION = 164;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -742,7 +746,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

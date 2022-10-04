@@ -13,7 +13,6 @@ struct MultiView: View {
     @ObservedObject var trivia = WebQueryRecipes()
     @ObservedObject var joke = WebQueryRecipes()
     // MARK: - State
-//    @State fileprivate var searchTerm : String = ""
     @State var show: Selectors
     // MARK: - Properties
     enum Selectors {
@@ -28,8 +27,8 @@ struct MultiView: View {
         case noTitle = "No Recipe Title"
         case noJoke = "No Joke?"
         case noTrivia = "No Trivia?"
-        case trivia = "olive"
-        case joke = "joke"
+        case trivia = "doc.on.doc"
+        case joke = "lasso.sparkles"
     }
     
     private enum labelz: String {

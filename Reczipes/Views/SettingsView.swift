@@ -29,45 +29,20 @@ struct SettingsView: View {
         case build = "Build: "
         case nvn = "No Version #???"
         case nbn = "No Build #???"
-        case jort = "Joke and Trivia"
         case makeSelection = "Click Joke or Trivia"
         case noTitle = "No Recipe Title"
-        case noJoke = "No Joke?"
-        case noTrivia = "No Trivia?"
-        case trivia = "questionmark.circle"
-        case joke = "lasso.sparkles"
         case signout = "rectangle.stack.badge.person.crop"
         
     }
     enum labelz: String {
-        case trivia = "Trivia"
-        case joke = "Joke"
         case get = "Get"
     }
     enum Selectors {
         case notyet
-        case trivia
-        case joke
     }
     // MARK: - Methods
-    func getTrivia() {
-        show = Selectors.trivia
-        trivia.getTrivia()
-    }
-    
-    func getJoke() {
-        show = Selectors.joke
-        joke.getJoke()
-    }
-    
-    
-//    private func signOutButtonPressed() {
-//        KeychainItem.deleteUserIdentifierFromKeychain()
-//        
-//        // Clear the user interface.
-//        userData.profile = Profile.default
-//    }
     var body: some View {
+        
         NavigationView {
             VStack {
                 VStack {
@@ -99,51 +74,16 @@ struct SettingsView: View {
                     }.padding(.bottom)
                 }
                 
-                VStack {
-                    Text(msgs.jort.rawValue).font(.largeTitle).bold()
-                        .padding(.bottom)
-                    Text(msgs.makeSelection.rawValue)
-                        .font(.callout)
-                        .foregroundColor(.black)
-                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    
-                    HStack {
-                        Button(action: {self.getTrivia()}) {
-                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
-                        }.padding()
-                        Button(action: {self.getJoke()}) {
-                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
-                        }.padding()
-                        
-//                        Button(action: {self.signOutButtonPressed()}) {
-//                            RoundButton3View(someTextTop: "Sign out", someTextBottom: "", someImage: msgs.signout.rawValue)
-//                        }
-                    }
-                    
-                    List   {
-                        if show == Selectors.trivia {
-                            Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
-                                .font(.body)
-                                .fontWeight(.light)
-                                .foregroundColor(.orange)
-                                .lineLimit(40)
-                        }
-                        if show == Selectors.joke {
-                            Text(joke.joke?.text ?? msgs.noJoke.rawValue)
-                                .font(.body)
-                                .fontWeight(.light)
-                                .foregroundColor(.orange)
-                                .lineLimit(40)
-                        }
-                    }
-                }
-            }.padding()
+            }
         }
+        
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    static let userdata = UserData()
     static var previews: some View {
         SettingsView()
+            .environmentObject(userdata)
     }
 }

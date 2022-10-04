@@ -121,12 +121,13 @@ struct ListHeader: View {
 // MARK: - Previews
 struct OrderIngredientsView_Previews: PreviewProvider {
     // MARK: Properties
-    static let order: () = OrderingList().add(item: SectionItem.example)
     static let userData = UserData()
     static let ratio = RecipeRatio()
+    static let order = OrderingList()
     static var previews: some View {
         OrderIngredientsView()
             .previewDevice("iPhone Xr")
+            .environmentObject(order)
 
     }
 }

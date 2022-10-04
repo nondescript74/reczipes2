@@ -15,7 +15,7 @@ struct Profile {
     var prefersNutritionInclusion: Bool
     var prefersVitaminInclusion: Bool
     var seasonalPhoto: Season
-    var spoonacularApiKey: String
+//    var spoonacularApiKey: String
     var numberOfRecipes: NumberZ
     var nutrition: Nutrition
     var vitamins: Vitamins
@@ -31,7 +31,7 @@ struct Profile {
         self.prefersNutritionInclusion = prefersNutrition
         self.prefersVitaminInclusion = prefersVitamins
         self.seasonalPhoto = seasonalPhoto
-        self.spoonacularApiKey = apiKeyE.z.rawValue
+//        self.spoonacularApiKey = apiKeyE.def.rawValue
         self.numberOfRecipes = numberz
         self.nutrition = nutrition
         self.vitamins = vitamins
@@ -68,8 +68,7 @@ struct Profile {
         case thirtytwo = 32
     }
     
-    enum apiKeyE: String {
-        case z = "&apiKey=27d2d9f90a8d4bf48e69ad6b819d7c1c"
-        //case carol = "&apiKey=e4f5bc5bd30946fd8de219c5b0e7e665"
-    }
+//    enum apiKeyE: String {
+//        case def = ""
+//    }
 }

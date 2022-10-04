@@ -120,8 +120,13 @@ public class WebQueryRecipes: ObservableObject {
         var mySearchTerms = parseSearchString(searchstring: searchString)
         mySearchTerms += " "
         mySearchTerms += cuisine
+        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key"
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query = myQuery.query.rawValue +  mySearchTerms + myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + Profile.apiKeyE.z.rawValue
+        urlComponents.query =
+        myQuery.query.rawValue + mySearchTerms +
+        myQuery.numberDesired.rawValue +
+        numberSent.description +
+        myQuery.recipeInfo.rawValue + key
         myTask(aswitch: myGets.FindSRecipeGroup.rawValue)
     }
     
@@ -151,7 +156,8 @@ public class WebQueryRecipes: ObservableObject {
     
     func findByRandom(searchString: String, numberSent: Int, tags: String) {
         urlComponents = URLComponents(string: urlThings.randomrecipes.rawValue)!
-        urlComponents.query = myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + myQuery.tags.rawValue + tags.lowercased() + Profile.apiKeyE.z.rawValue
+        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+        urlComponents.query = myQuery.numberDesired.rawValue + numberSent.description + myQuery.recipeInfo.rawValue + myQuery.tags.rawValue + tags.lowercased() + key
         myTask(aswitch: myGets.FindRandom.rawValue)
     }
     
@@ -161,7 +167,7 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
-        urlComponents.query = myQuery.extract.rawValue + urlString + Profile.apiKeyE.z.rawValue
+        urlComponents.query = myQuery.extract.rawValue + urlString + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
     
@@ -172,13 +178,13 @@ public class WebQueryRecipes: ObservableObject {
     
     func getTrivia() {
         urlComponents = URLComponents(string: urlThings.trivia.rawValue)!
-        urlComponents.query =  Profile.apiKeyE.z.rawValue
+        urlComponents.query =  UserDefaults.standard.string(forKey: "SpoonacularKey")
         myTask(aswitch: myGets.GetTrivia.rawValue)
     }
     
     func getJoke() {
         urlComponents = URLComponents(string: urlThings.joke.rawValue)!
-        urlComponents.query =  Profile.apiKeyE.z.rawValue
+        urlComponents.query =  UserDefaults.standard.string(forKey: "SpoonacularKey")
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     

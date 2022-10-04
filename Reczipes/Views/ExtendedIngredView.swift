@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ExtendedIngredView: View {
-    
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {
         self.myExtIngredient = extendedIngredient
@@ -63,31 +62,10 @@ struct ImageAndNameView: View {
                 Spacer()
             Text(myExtIngredient.name ?? msgs.noIngredName.rawValue)
                 .font(.headline)
-                //.foregroundColor(.blue)
                 .padding()
         }
     }
 }
-
-//struct MeasureView: View {
-//    // MARK: - Initializer
-//    init(measure: Measure) {
-//        self.myMeasure = measure
-//    }
-//    // MARK: - Properties
-//    fileprivate var myMeasure: Measure!
-//    private enum msgs: String {
-//        case noAmount = "No amount??"
-//        case noUnitShort = "No unitShort??"
-//        case noUnitLong = "No unitLong??"
-//    }
-//    var body: some View {
-//        HStack(alignment: .top) {
-//            Text(myMeasure.amount?.description ?? msgs.noAmount.rawValue)
-//            Text(myMeasure.unitLong ?? msgs.noUnitLong.rawValue)
-//        }
-//    }
-//}
 
 struct MeasuresView: View {
     // MARK: - Initializer
@@ -110,7 +88,6 @@ struct MeasuresView: View {
             break
         default:
             testResult = (myMeasures.us?.amount)! * ratio.ratio
-//            testResult = testResult.rounded()
         }
         switch testResultUnits {
         case "pounds?":
@@ -131,7 +108,6 @@ struct MeasuresView: View {
             break
         default:
             testResult = (myMeasures.metric?.amount)! * ratio.ratio
-//            testResult = testResult.rounded()
         }
         switch testResultUnits {
         case "kilos?":
@@ -155,8 +131,6 @@ struct MeasuresView_Previews: PreviewProvider {
     static let myExtendedIngredient: ExtendedIngredient = ExtendedIngredient.extendedIngredientExample
     static var previews: some View {
         Group {
-            //MeasureView(measure: Measure.measureExampleUS)
-            //MeasuresView(measures: Measures.measuresExample)
             ExtendedIngredView(extendedIngredient: myExtendedIngredient)
         }
     }

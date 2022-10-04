@@ -27,6 +27,7 @@ struct OrderIngredientsView: View {
         case double = "Double"
         case tq = "3/4"
         case fq = "5/4"
+        case full = "Full"
         case rec = "Recipe"
         
     }
@@ -36,7 +37,7 @@ struct OrderIngredientsView: View {
         case half = "pencil"
         case tq = "greetingcard"
         case fq = "envelope"
-        
+        case full = "cross.circle.fill"
     }
 
     // MARK: - Methods
@@ -53,12 +54,21 @@ struct OrderIngredientsView: View {
                 HStack {
                     Button(action: {
                         // What to perform
+                        ratio.change(amount: 1.0)
+                        
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.full.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.full.rawValue, reversed: false)
+                    }
+                    
+                    Button(action: {
+                        // What to perform
                         ratio.change(amount: 2.0)
                         
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.double.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.double.rawValue, reversed: false)
-                    }  // .disabled(order.items.count == 1)
+                    }
                     
                     Button(action: {
                         // What to perform
@@ -67,7 +77,7 @@ struct OrderIngredientsView: View {
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.half.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.half.rawValue, reversed: false)
-                    }   //.disabled(order.items.count == 1)
+                    }
                     
                     Button(action: {
                         // What to perform
@@ -76,7 +86,7 @@ struct OrderIngredientsView: View {
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.tq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.tq.rawValue, reversed: false)
-                    }   //.disabled(order.items.count == 1)
+                    }
                     
                     Button(action: {
                         // What to perform
@@ -85,14 +95,12 @@ struct OrderIngredientsView: View {
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
-                    }   //.disabled(order.items.count == 1)
-                    
+                    }
                 }
                 
                 ForEach(order.items, id: \.self) { item in
                     ExtendendIngredientsView2(sectionitem: item)
                 }
-                
             }
             .navigationBarTitle("Ingredient Ordering")
         }
@@ -104,7 +112,6 @@ struct ListHeader: View {
     var myText: String
     var body: some View {
         HStack {
-            //Image(systemName: "map")
             Text(myText).foregroundColor(.red)
         }
     }
@@ -112,14 +119,15 @@ struct ListHeader: View {
 
 
 // MARK: - Previews
-//struct OrderIngredientsView_Previews: PreviewProvider {
-//    // MARK: Properties
-//    static let order: () = OrderingList().add(item: SectionItem.example)
-//    static let userData = UserData()
-//    static var previews: some View {
-//        OrderIngredientsView(ratio: 1.0))
-//            .previewDevice("iPhone Xr")
-//
-//    }
-//}
+struct OrderIngredientsView_Previews: PreviewProvider {
+    // MARK: Properties
+    static let order: () = OrderingList().add(item: SectionItem.example)
+    static let userData = UserData()
+    static let ratio = RecipeRatio()
+    static var previews: some View {
+        OrderIngredientsView()
+            .previewDevice("iPhone Xr")
+
+    }
+}
 

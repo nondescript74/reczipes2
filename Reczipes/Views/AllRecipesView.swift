@@ -19,9 +19,8 @@ struct AllRecipesView: View {
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
         case fuar = "Found user added recipe"
-        //        case json = ".json"
+
     }
-//    var isDirectory: ObjCBool = false
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
@@ -73,12 +72,10 @@ struct AllRecipesView: View {
                     }
                 }.listStyle(GroupedListStyle())
                     .refreshable {
-                        //                        await fileMgr.reload()
                     }
             }
         }
     }
-    
 }
 
 

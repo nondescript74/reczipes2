@@ -144,8 +144,9 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
                            photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
                            restrictions: constructRestrictions(srecipe: srecipe))
     
-    
+#if DEBUG
     print(msgs.ci.rawValue + item.name)
+#endif
     
     return item
 }

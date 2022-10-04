@@ -65,6 +65,7 @@ struct ApplicationView: View {
         .environmentObject(order)
         .environmentObject(userData)
         .environmentObject(fridge)
+        .environmentObject(ratio)
     }
 }
 

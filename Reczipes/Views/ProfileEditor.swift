@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileEditor: View {
-    
     // MARK: - Binding
     @Binding var profile: Profile
     // MARK: - Environment Variables
@@ -19,8 +18,11 @@ struct ProfileEditor: View {
     @State fileprivate var showingVitamins = false
     @State fileprivate var prefersNotification = false
     @State fileprivate var loadNewRecipes = false
+    @State fileprivate var apiKey = ""
+    @State fileprivate var keyAvailable: Bool = false
     // MARK: - Properties
     private enum msgs: String {
+        case profE = "Profile Editor: "
         case uname = "Username"
         case enablNotif = "Enable Notifications"
         case enablNutr = "Enable Nutrition"
@@ -29,7 +31,18 @@ struct ProfileEditor: View {
         case seasPhoto = "Seasonal Photo"
         case numbrRetr = "Number retrieved"
         case countz = "Count"
+        case key = "Please enter your api key"
     }
+    
+    fileprivate enum labelz: String {
+        case top = "Enter"
+        case bot = "ApiKey"
+    }
+    
+    fileprivate enum imagez: String {
+        case prof = "greetingcard"
+    }
+    // MARK: - Methods
     // MARK: - View Process
     var body: some View {
         List {
@@ -37,23 +50,36 @@ struct ProfileEditor: View {
                 Text(msgs.uname.rawValue).bold()
                 Divider()
                 TextField(msgs.uname.rawValue, text: $profile.username)
+            }.padding(.bottom)
+            HStack {
+                
+                Button(action: {
+                    // What to perform
+                    keyAvailable.toggle()
+                    
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.top.rawValue, someTextBottom: labelz.bot.rawValue, someImage: imagez.prof.rawValue, reversed: false)
+                }.disabled(apiKey == "").padding(.bottom)
+                
+                TextField(msgs.key.rawValue, text: $apiKey)
             }
             
             Toggle(isOn: $profile.prefersNotifications) {
                 Text(msgs.enablNotif.rawValue)
-            } //.disabled(self.prefersNotification == false)
+            }
             
             Toggle(isOn: $profile.prefersNutritionInclusion) {
                 Text(msgs.enablNutr.rawValue)
-            } //.disabled(self.showingNutrition == false)
+            }
             
             Toggle(isOn: $profile.prefersVitaminInclusion) {
                 Text(msgs.enablVitInSearch.rawValue)
-            } //.disabled(self.showingVitamins == false)
+            }
             
             Toggle(isOn: $profile.loadNewRecipes) {
                 Text(msgs.loadNewRecip.rawValue)
-            } //.disabled(self.loadNewRecipes == false)
+            } 
             
             VStack(alignment: .leading, spacing: 20) {
                 Text(msgs.seasPhoto.rawValue).bold()
@@ -67,7 +93,7 @@ struct ProfileEditor: View {
                 .scaleEffect(x: 1, y: 2, anchor: .topLeading)
                 
             }
-            
+    
             VStack(alignment: .leading, spacing: 20) {
                 Text(msgs.numbrRetr.rawValue).bold()
                 
@@ -78,15 +104,16 @@ struct ProfileEditor: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
-            
             .padding(.top)
-            
+        }.sheet(isPresented: $keyAvailable) {
+            KeyView(apikey: apiKey)
         }
     }
 }
 
 
 struct ProfileEditor_Previews: PreviewProvider {
+    @Binding var keyValue: String
     static var previews: some View {
         Group {
             ProfileEditor(profile: .constant(.default))

@@ -11,7 +11,7 @@ struct ExtendendIngredientsView2: View {
     // MARK: - ObservedObject
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
     // MARK: - Initializer
-    init(sectionitem: SectionItem) {  //
+    init(sectionitem: SectionItem) {  
         extractedSRecipe.findExtracted(urlString: sectionitem.url)
     }
     // MARK: - Properties

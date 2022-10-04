@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllRecipesView: View {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    private var zBug:Bool = false
     // MARK: - Environment Objects
     // MARK: - Properties
     fileprivate enum msgs: String {

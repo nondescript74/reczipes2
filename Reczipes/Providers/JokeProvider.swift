@@ -12,6 +12,10 @@ public class JokeProvider {
     // MARK: - Debug local
     private var zBug:Bool = false
     // MARK: - Properties
+    fileprivate enum msgs: String {
+        case jp = "JokeProvider: "
+        case jpl = "OperationQueue for JokeProvider is launched"
+    }
     fileprivate let operationQueue = OperationQueue()
     var jokeUrl: URL
     
@@ -32,7 +36,7 @@ public class JokeProvider {
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
 
-        if zBug { print("OperationQueue for JokeProvider is launched")}
+        if zBug { print(msgs.jp.rawValue + msgs.jpl.rawValue)}
 
     }
     

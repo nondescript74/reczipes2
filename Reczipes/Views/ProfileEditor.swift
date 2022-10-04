@@ -18,8 +18,8 @@ struct ProfileEditor: View {
     @State fileprivate var showingVitamins = false
     @State fileprivate var prefersNotification = false
     @State fileprivate var loadNewRecipes = false
-    @State fileprivate var apiKey = ""
-    @State fileprivate var keyAvailable: Bool = false
+//    @State fileprivate var apiKey = ""
+//    @State fileprivate var keyAvailable: Bool = false
     // MARK: - Properties
     private enum msgs: String {
         case profE = "Profile Editor: "
@@ -31,12 +31,12 @@ struct ProfileEditor: View {
         case seasPhoto = "Seasonal Photo"
         case numbrRetr = "Number retrieved"
         case countz = "Count"
-        case key = "Please enter your api key"
+//        case key = "Please enter your api key"
     }
     
     fileprivate enum labelz: String {
         case top = "Enter"
-        case bot = "ApiKey"
+//        case bot = "ApiKey"
     }
     
     fileprivate enum imagez: String {
@@ -51,19 +51,19 @@ struct ProfileEditor: View {
                 Divider()
                 TextField(msgs.uname.rawValue, text: $profile.username)
             }.padding(.bottom)
-            HStack {
-                
-                Button(action: {
-                    // What to perform
-                    keyAvailable.toggle()
-                    
-                }) {
-                    // How the button looks like
-                    RoundButton3View(someTextTop: labelz.top.rawValue, someTextBottom: labelz.bot.rawValue, someImage: imagez.prof.rawValue, reversed: false)
-                }.disabled(apiKey == "").padding(.bottom)
-                
-                TextField(msgs.key.rawValue, text: $apiKey)
-            }
+//            HStack {
+//
+//                Button(action: {
+//                    // What to perform
+//                    keyAvailable.toggle()
+//
+//                }) {
+//                    // How the button looks like
+//                    RoundButton3View(someTextTop: labelz.top.rawValue, someTextBottom: labelz.bot.rawValue, someImage: imagez.prof.rawValue, reversed: false)
+//                }.disabled(apiKey == "").padding(.bottom)
+//
+//                TextField(msgs.key.rawValue, text: $apiKey)
+//            }
             
             Toggle(isOn: $profile.prefersNotifications) {
                 Text(msgs.enablNotif.rawValue)
@@ -105,9 +105,9 @@ struct ProfileEditor: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
             .padding(.top)
-        }.sheet(isPresented: $keyAvailable) {
-            KeyView(apikey: apiKey)
-        }
+        }  //.sheet(isPresented: $keyAvailable) {
+//            KeyView(apikey: apiKey)
+//        }
     }
 }
 

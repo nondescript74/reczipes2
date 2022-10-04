@@ -120,7 +120,7 @@ public class WebQueryRecipes: ObservableObject {
         var mySearchTerms = parseSearchString(searchstring: searchString)
         mySearchTerms += " "
         mySearchTerms += cuisine
-        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key"
+        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
         urlComponents.query =
         myQuery.query.rawValue + mySearchTerms +
@@ -178,13 +178,13 @@ public class WebQueryRecipes: ObservableObject {
     
     func getTrivia() {
         urlComponents = URLComponents(string: urlThings.trivia.rawValue)!
-        urlComponents.query =  UserDefaults.standard.string(forKey: "SpoonacularKey")
+        urlComponents.query =  (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         myTask(aswitch: myGets.GetTrivia.rawValue)
     }
     
     func getJoke() {
         urlComponents = URLComponents(string: urlThings.joke.rawValue)!
-        urlComponents.query =  UserDefaults.standard.string(forKey: "SpoonacularKey")
+        urlComponents.query =  (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
@@ -221,6 +221,9 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
         
+        if url.absoluteString.contains("NoKey") {
+            return
+        }
 
         if zBug {print(url.absoluteString)}
 

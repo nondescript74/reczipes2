@@ -94,6 +94,9 @@ struct SettingsView: View {
                     NavigationLink(destination: NutritionHost()) {
                         Text("View/Edit user nutrition settings")
                     }.padding(.bottom)
+                    NavigationLink(destination: KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")) {
+                        Text("Set user api key")
+                    }.padding(.bottom)
                 }
                 
                 VStack {

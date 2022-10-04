@@ -15,6 +15,11 @@ class JokeOutputOperation: JokeXOperation {
     // MARK: - Debug local
     private var zBug:Bool = false
     // MARK: -  Properties
+    fileprivate enum msgs: String {
+        case jo = "JokeOutputOperation: "
+        case jdd = " Joke debug description "
+    }
+    
     fileprivate var inputJoke: Joke?
     fileprivate var completion: (Joke?) -> ()
     // MARK: - Initializer
@@ -42,9 +47,9 @@ class JokeOutputOperation: JokeXOperation {
         
         if self.isCancelled { return }
         
-        
-        print("JokeCreateOperation Joke debug description ", jokez.debugDescription)
-        
+        #if DEBUG
+        if zBug {print(msgs.jo.rawValue + msgs.jdd.rawValue + jokez.debugDescription)}
+        #endif
         
         if isCancelled { return }
         completion(jokez)

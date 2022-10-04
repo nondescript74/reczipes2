@@ -207,8 +207,8 @@
 		930310C52695DC33006910EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F828685D28D28CA700BD0917 /* MultiView.swift */,
 				F804499528A0644700F631C8 /* ApplicationView.swift */,
+				F828685D28D28CA700BD0917 /* MultiView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */,
 				93237A3B26A4E98100032387 /* ImagePickerView.swift */,

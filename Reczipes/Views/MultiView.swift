@@ -12,12 +12,9 @@ struct MultiView: View {
     // MARK: - ObservedObject
     @ObservedObject var trivia = WebQueryRecipes()
     @ObservedObject var joke = WebQueryRecipes()
-    
     // MARK: - State
-    @State fileprivate var searchTerm : String = ""
+//    @State fileprivate var searchTerm : String = ""
     @State var show: Selectors
-    //    @State fileprivate var showingProfile: Bool = false
-    
     // MARK: - Properties
     enum Selectors {
         case notyet

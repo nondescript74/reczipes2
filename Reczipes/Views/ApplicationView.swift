@@ -61,6 +61,13 @@ struct ApplicationView: View {
                     Text(tabs.settings.rawValue)
                 }
             
+            MultiView(show: .notyet)
+                .tabItem {
+                    Image(uiImage: tortoise!)
+                    Text(tabs.jt.rawValue)
+                }
+                
+            
         }
         .environmentObject(order)
         .environmentObject(userData)
@@ -70,8 +77,16 @@ struct ApplicationView: View {
 }
 
 struct ApplicationView_Previews: PreviewProvider {
-
+    static let order = OrderingList()
+    static let userData = UserData()
+    static let myfridge = MyFridge()
+    static let rratio = RecipeRatio()
+    
     static var previews: some View {
         ApplicationView()
+            .environmentObject(order)
+            .environmentObject(userData)
+            .environmentObject(myfridge)
+            .environmentObject(rratio)
     }
 }

@@ -10,6 +10,23 @@ import SwiftUI
 struct ProfileSummary: View {
     // MARK: - Properties
     var profile: Profile
+    // MARK: - Methods
+    fileprivate func getRecips() -> [SectionItem] {
+        let myReturn = FileManager.default.constructUserSavedRecipesIfAvailable()
+        return myReturn
+    }
+    fileprivate func getNotes() -> [Note] {
+        let myReturn = FileManager.default.constructNotesIfAvailable()
+        return myReturn
+    }
+    fileprivate func getImages() -> [ImageSaved] {
+        let myReturn = FileManager.default.constructImagesIfAvailable()
+        return myReturn
+    }
+    fileprivate func getLatest() -> [SectionItem] {
+        var recips = getRecips()
+        return recips
+    }
     // MARK: - View Process
     var body: some View {
         List {
@@ -20,27 +37,26 @@ struct ProfileSummary: View {
             Text("Notifications: \(self.profile.prefersNotifications ? "On": "Off" )")
             Text("Include Nutrition: \(self.profile.prefersNutritionInclusion ? "On": "Off" )")
             Text("Include Vitamins: \(self.profile.prefersVitaminInclusion ? "On": "Off" )")
-            Text("Load New Recipe Set: \(self.profile.loadNewRecipes ? "On": "Off" )")
+//            Text("Load New Recipe Set: \(self.profile.loadNewRecipes ? "On": "Off" )")
             
             HStack {
                 Image(self.profile.seasonalPhoto.rawValue)
             }
             
-            Text("Items Retrieved: \(self.profile.numberOfRecipes.rawValue)")
+            Text("Items being retrieved: \(self.profile.numberOfRecipes.rawValue)")
                         
             VStack(alignment: .leading) {
-                Text("Completed Recipes")
-                    .font(.headline)
-                ScrollView(.horizontal) {
-                    HStack {
-                        Text("10 Recipes")
-                        Text("5 Cooks")
-                    }
-                }
+                Text("Number of saved recipes: \(getRecips().count)")
+                    
+                Text("Number of saved images: \(getImages().count)")
+                    
+                Text("Number of saved notes: \(getNotes().count)")
+                    
+
             }
             
             VStack(alignment: .leading) {
-                Text("Recent Recipes ... coming soon")
+                Text("Recent Recipes ... :  " + (getLatest().first?.name ?? "No recipes saved"))
                     .font(.headline)
             }
         }

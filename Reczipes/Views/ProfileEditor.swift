@@ -16,7 +16,7 @@ struct ProfileEditor: View {
     @State fileprivate var showingNutrition = false
     @State fileprivate var showingVitamins = false
     @State fileprivate var prefersNotification = false
-    @State fileprivate var loadNewRecipes = false
+//    @State fileprivate var loadNewRecipes = false
     // MARK: - Properties
     private enum msgs: String {
         case profE = "Profile Editor: "
@@ -24,7 +24,7 @@ struct ProfileEditor: View {
         case enablNotif = "Enable Notifications"
         case enablNutr = "Enable Nutrition"
         case enablVitInSearch = "Enable Vitamin set in search"
-        case loadNewRecip = "Load New Recipe Set next launch"
+//        case loadNewRecip = "Load New Recipe Set next launch"
         case seasPhoto = "Seasonal Photo"
         case numbrRetr = "Number retrieved"
         case countz = "Count"
@@ -58,9 +58,9 @@ struct ProfileEditor: View {
                 Text(msgs.enablVitInSearch.rawValue)
             }
             
-            Toggle(isOn: $profile.loadNewRecipes) {
-                Text(msgs.loadNewRecip.rawValue)
-            } 
+//            Toggle(isOn: $profile.loadNewRecipes) {
+//                Text(msgs.loadNewRecip.rawValue)
+//            }
             
             VStack(alignment: .leading, spacing: 20) {
                 Text(msgs.seasPhoto.rawValue).bold()

@@ -417,6 +417,33 @@ extension FileManager {
 }
 
 extension FileManager {
+    func constructUserSavedRecipesIfAvailable() -> [SectionItem] {
+        var mySavedRecipes:Array<SectionItem> = []
+        
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        
+        do {
+            var recipesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            recipesUrls = recipesUrls.filter({$0.lastPathComponent != recipeNotesFolderName})
+            recipesUrls = recipesUrls.filter({$0.lastPathComponent != recipeImagesFolderName})
+            
+#if DEBUG
+            print(msgs.ci.rawValue + " User added recipes Contents count " + "\(recipesUrls.count)")
+#endif
+            for arecipeurl in recipesUrls {
+                let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(arecipeurl.lastPathComponent))
+                let decodedJSON = try decoder.decode(SectionItem.self, from: data)
+                mySavedRecipes.append(decodedJSON)
+            }
+        } catch  {
+            fatalError("Cannot read or decode from notes")
+        }
+        return mySavedRecipes
+    }
+}
+
+extension FileManager {
     func constructNotesIfAvailable() -> Array<Note> {
         var myNotesConstructed:Array<Note> = []
         

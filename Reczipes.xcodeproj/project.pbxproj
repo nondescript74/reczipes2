@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930310C82695DC75006910EF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Model.swift */; };
+		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
 		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
 		931164E52697836600099F8D /* AcceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931164E42697836600099F8D /* AcceptView.swift */; };
 		931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B5169269E4B660065F551 /* ModelStructs2.swift */; };
@@ -112,7 +112,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		930310C72695DC75006910EF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		930310C72695DC75006910EF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		930310C9269666B1006910EF /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		931164E42697836600099F8D /* AcceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptView.swift; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
@@ -246,12 +246,12 @@
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F8304A7228AD348500867C6F /* AuthView.swift */,
+				F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */,
 				F8304A7728AEE9A200867C6F /* SettingsView.swift */,
 				F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */,
 				F86EB12228B2710E0098DC75 /* MoveRecipeView.swift */,
 				F8304A7928B1685A00867C6F /* ProfileHost.swift */,
 				F8304A7B28B1687200867C6F /* ProfileEditor.swift */,
-				F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */,
 				F8304A7D28B1687700867C6F /* ProfileSummary.swift */,
 				F8CC875E28D3AD6B0030133B /* FridgeHost.swift */,
 				F8CC876028D3AD7A0030133B /* FridgeEditor.swift */,
@@ -268,7 +268,7 @@
 		930310C62695DC46006910EF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				930310C72695DC75006910EF /* Model.swift */,
+				930310C72695DC75006910EF /* Contact.swift */,
 				931B5169269E4B660065F551 /* ModelStructs2.swift */,
 				93237A2026A4E65400032387 /* Profile.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
@@ -546,7 +546,7 @@
 				F81A8CC628ECEB5B00FDB3EF /* BuildRecipeView.swift in Sources */,
 				93ACB30426B9E9AA0010F71F /* JokeXOperation.swift in Sources */,
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
-				930310C82695DC75006910EF /* Model.swift in Sources */,
+				930310C82695DC75006910EF /* Contact.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
@@ -717,7 +717,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 176;
+				CURRENT_PROJECT_VERSION = 178;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -762,7 +762,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 176;
+				CURRENT_PROJECT_VERSION = 178;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

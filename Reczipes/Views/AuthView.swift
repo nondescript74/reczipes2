@@ -34,7 +34,7 @@ struct AuthView: View {
     
     var body: some View {
         VStack {
-            SignInWithAppleButton(.continue) { request in
+            SignInWithAppleButton(.signIn) { request in
                 request.requestedScopes = [.fullName, .email]
             } onCompletion: { result in
                 switch result {

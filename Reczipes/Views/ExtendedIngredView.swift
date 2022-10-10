@@ -50,7 +50,7 @@ struct ImageAndNameView: View {
     }
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient!
-    fileprivate var myExtIngRatio: Double = 1.0
+//    fileprivate var myExtIngRatio: Double = 1.0
     private enum msgs: String {
         case noIngredName = "No Ingredient Name??"
     }
@@ -64,6 +64,13 @@ struct ImageAndNameView: View {
                 .font(.headline)
                 .padding()
         }
+    }
+}
+
+struct ImageAndNameView_Previews: PreviewProvider {
+    static let myExtendedIngredient: ExtendedIngredient = ExtendedIngredient.extendedIngredientExample
+    static var previews: some View {
+        ImageAndNameView(extendedIngredient: ExtendedIngredient.extendedIngredientExample)
     }
 }
 
@@ -128,11 +135,15 @@ struct MeasuresView: View {
 
 
 struct MeasuresView_Previews: PreviewProvider {
+    static let ratio = RecipeRatio()
     static let myExtendedIngredient: ExtendedIngredient = ExtendedIngredient.extendedIngredientExample
     static var previews: some View {
         Group {
             ExtendedIngredView(extendedIngredient: myExtendedIngredient)
-        }
+        }.environmentObject(ratio)
     }
 }
+
+
+
 

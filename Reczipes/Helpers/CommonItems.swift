@@ -150,6 +150,53 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
     return item
 }
 
+
+func getUnitsMetric() -> [String] {
+    let units = ["ml", "cl", "liters", "grams", "kilograms"]
+    return units
+}
+
+func getUnitsImperial() -> [String] {
+    let units = ["teaspoon", "tablespoon", "cup", "pint", "quart", "gallon"]
+    return units
+}
+
+func getValues(unit: String) -> [String] {
+    var formattedValues: [String] = []
+    switch unit {
+        
+    case "metric":
+        let values: [Double] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10.0]
+        for value in values {
+            formattedValues.append(formatDigits(numberToFormat: value))
+        }
+        return formattedValues
+        
+    case "imperial":
+        let values: [String] = ["1/8", "1/4", "1/2", "3/4", "7/8", "1", "2", "3", "4", "5", "10"]
+        return values
+    default:
+        let values: [String] = ["1/8", "1/4", "1/2", "3/4", "7/8", "1", "2", "3", "4", "5", "10"]
+        return values
+    }
+   
+}
+
+func formatDigits(numberToFormat: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.maximumSignificantDigits = 2
+    guard let retStr = formatter.string(for: numberToFormat) else { return "No value" }
+    return retStr
+}
+
+func formatStringDoubleToNumber(stringToFormat: String) -> Double {
+    let formatter = NumberFormatter()
+    formatter.maximumSignificantDigits = 2
+    formatter.numberStyle = .decimal
+    let retNum = formatter.number(from: stringToFormat)
+    return retNum?.doubleValue ?? 0
+}
+
 func getBookSectionNames() -> [String] {
     var returningNames:[String] = []
     let idNameArray = myBookSectionsIdNames

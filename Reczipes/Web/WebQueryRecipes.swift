@@ -203,8 +203,6 @@ public class WebQueryRecipes: ObservableObject {
                 if myImage != nil {
                     DispatchQueue.main.async {
                         self.anImage = myImage
-                        
-
                         if self.zBug { print(messagesDebug.foundimage.rawValue)}
 
                     }

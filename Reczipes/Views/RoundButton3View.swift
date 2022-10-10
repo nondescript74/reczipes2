@@ -18,7 +18,6 @@ struct RoundButton3View: View {
     
     // MARK: - View Process
     var body: some View {
-        
         VStack {
             ZStack {
                 Image(systemName: someImage)
@@ -45,5 +44,5 @@ struct RoundButton3View: View {
 
 struct RoundButton3View_Previews: PreviewProvider {
     static var previews: some View {
-        RoundButton3View(someTextTop: "Add", someTextBottom: "Image", someImage: "plus", reversed: true)    }
+        RoundButton3View(someTextTop: "Add", someTextBottom: "Image", someImage: "plus", reversed: true)}
 }

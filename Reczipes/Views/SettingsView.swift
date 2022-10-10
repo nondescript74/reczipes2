@@ -75,7 +75,7 @@ struct SettingsView: View {
                 }
                 
             }
-        }
+        }.navigationBarTitleDisplayMode(.automatic)
         
     }
 }

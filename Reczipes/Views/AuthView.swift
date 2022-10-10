@@ -73,12 +73,14 @@ struct AuthView: View {
                     authenicated = false
                 }
             }.signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                .frame(minWidth: 140, idealWidth: 140, maxWidth: 140, minHeight: 30, idealHeight: 30, maxHeight: 30)
                 .alert(isPresented: $notauthenicated)   {
                     return Alert(title: Text("Authenication"), message: Text("Failed"), dismissButton: .default(Text("Ok")))
                 }
                 .alert(isPresented: $authenicated)   {
                     return Alert(title: Text("Authenication"), message: Text("Success"), dismissButton: .default(Text("Ok")))
                 }
+                
         }.padding()
         
     }
@@ -89,4 +91,6 @@ struct AuthView_Previews: PreviewProvider {
         AuthView()
     }
 }
-// https://developer.apple.com/forums/thread/656784
+/* https://developer.apple.com/forums/thread/656784
+https://developer.apple.com/design/human-interface-guidelines/technologies/sign-in-with-apple#sign-in-with-apple-buttons
+*/

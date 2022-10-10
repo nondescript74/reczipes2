@@ -29,9 +29,9 @@ struct SettingsView: View {
         case build = "Build: "
         case nvn = "No Version #???"
         case nbn = "No Build #???"
-        case makeSelection = "Click Joke or Trivia"
+//        case makeSelection = "Click Joke or Trivia"
         case noTitle = "No Recipe Title"
-        case signout = "rectangle.stack.badge.person.crop"
+//        case signout = "rectangle.stack.badge.person.crop"
         
     }
     enum labelz: String {
@@ -72,6 +72,10 @@ struct SettingsView: View {
                     NavigationLink(destination: KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")) {
                         Text("Set user api key")
                     }.padding(.bottom)
+                }
+                
+                VStack {
+                    MultiView(show: .notyet)
                 }
                 
             }

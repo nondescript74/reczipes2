@@ -61,11 +61,11 @@ struct ApplicationView: View {
                     Text(tabs.settings.rawValue)
                 }
             
-            MultiView(show: .notyet)
-                .tabItem {
-                    Image(uiImage: tortoise!)
-                    Text(tabs.jt.rawValue)
-                }
+//            MultiView(show: .notyet)
+//                .tabItem {
+//                    Image(uiImage: tortoise!)
+//                    Text(tabs.jt.rawValue)
+//                }
                 
             
         }

@@ -73,6 +73,7 @@ fileprivate enum msgs: String {
     case rnotes = "RecipeNotes"
     case rimages = "RecipeImages"
     case fuar = "Found user added recipe"
+    case combined = "Combined booksections into one booksections"
     case ci = "CommonItems"
 }
 
@@ -179,7 +180,7 @@ func getValues(unit: String) -> [String] {
         let values: [String] = ["1/8", "1/4", "1/2", "3/4", "7/8", "1", "2", "3", "4", "5", "10"]
         return values
     }
-   
+    
 }
 
 func formatDigits(numberToFormat: Double) -> String {
@@ -367,12 +368,28 @@ extension FileManager {
             
             for aurl in urls {
                 do {
-                let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
-                let aBookSection = try decoder.decode(BookSection.self, from: data)
-                myReturn.append(aBookSection)
+                    let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
+                    let aBookSection = try decoder.decode(BookSection.self, from: data)
+                    // may need to merge recipes if multiple booksections with same name, different id exist
 #if DEBUG
                     print(msgs.ci.rawValue + msgs.fuar.rawValue)
 #endif
+                    if myReturn.contains(where: {$0.name == aBookSection.name}) {
+                        var existing = myReturn.first(where: {$0.name == aBookSection.name})
+                        existing?.items.append(contentsOf: aBookSection.items)
+                        // let idx = myReturn.firstIndex(where: {$0.name == aBookSection.name})
+                        myReturn = myReturn.filter({$0.name != aBookSection.name})
+                        if (existing != nil) {
+                            myReturn.append(existing!)
+#if DEBUG
+                    print(msgs.ci.rawValue + msgs.combined.rawValue)
+                            
+#endif
+                        }
+                    } else {
+                        myReturn.append(aBookSection)
+                    }
+
                 } catch  {
                     // not a json file
                     fatalError("This directory has illegal files")
@@ -381,7 +398,7 @@ extension FileManager {
         } catch  {
             // no contents or does not exist
         }
-
+        
         return myReturn
     }
 }

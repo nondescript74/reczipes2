@@ -24,7 +24,7 @@ struct ProfileSummary: View {
         return myReturn
     }
     fileprivate func getLatest() -> [SectionItem] {
-        var recips = getRecips()
+        let recips = getRecips()
         return recips
     }
     // MARK: - View Process

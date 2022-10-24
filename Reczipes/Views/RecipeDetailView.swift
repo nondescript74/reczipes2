@@ -142,7 +142,7 @@ struct RecipeDetailView: View {
     }
     
     
-    func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) {
+    func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool {
         
         let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
@@ -151,14 +151,18 @@ struct RecipeDetailView: View {
             // exists
             do {
                 var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
+                if abookSection.items.contains(where: {$0.url == recipe.url}) {
+                    return false  // don't add recipe already in
+                }
                 do {
                     abookSection.items = [recipe]
                     abookSection.id = UUID()
-                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
                     let encodedJSON = try encoder.encode(abookSection)
                     // now write out
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + suffix + json))
+                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + dateSuffix() + json))
                     if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
+                    return true
                 } catch  {
                     fatalError(msgs.RDV.rawValue + " Cannot encode booksection to json")
                 }
@@ -174,9 +178,10 @@ struct RecipeDetailView: View {
                 let encodedJSON = try encoder.encode(newBookSection)
                 // now write out
                 do {
-                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + suffix + json))
+//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
                     if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
+                    return true
                 } catch  {
                     fatalError("Cannot write to user booksections folder")
                 }
@@ -211,19 +216,12 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        addRecipeToBookSection(recipe: item, bookSectionUUID: getBookSectionIDForName(name: cuisine))
-                        recipeSaved = true
+                        let result = addRecipeToBookSection(recipe: item, bookSectionUUID: getBookSectionIDForName(name: cuisine))
+                        recipeSaved = result
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
                     }.disabled(cuisine.isEmpty)
-//                    Button(action: {
-//                        // What to perform
-//                        self.showingMoveView.toggle()
-//                    }) {
-//                        // How the button looks like
-//                        RoundButton3View(someTextTop: labelz.move.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
-//                    }.disabled(cuisine.isEmpty)
                     Button(action: {
                         // What to perform
                         self.order.add(item: self.item)

@@ -73,8 +73,8 @@ fileprivate enum msgs: String {
     case rnotes = "RecipeNotes"
     case rimages = "RecipeImages"
     case fuar = "Found user added recipe"
-    case combined = "Combined booksections into one booksections"
-    case ci = "CommonItems"
+    case combined = "Combined booksections into one booksection"
+    case ci = "CommonItems: "
 }
 
 private var decoder: JSONDecoder = JSONDecoder()
@@ -206,6 +206,10 @@ func getBookSectionNames() -> [String] {
     }
     let sortedNames = returningNames.sorted(by: {$0 < $1})
     return sortedNames
+}
+
+func dateSuffix() -> String {
+    return Date().timeIntervalSinceReferenceDate.rounded().description
 }
 
 extension Bundle {
@@ -546,5 +550,29 @@ extension FileManager {
 #endif
         }
         return myImagesConstructed
+    }
+}
+
+extension FileManager {
+    func removeAddedRecipes() {
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        do {
+            let sectionUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            for aPath in sectionUrls {
+                do {
+                    try FileManager.default.removeItem(at: aPath)
+                } catch  {
+#if DEBUG
+            print(msgs.ci.rawValue + " Couldn't delete booksection")
+#endif
+                }
+            }
+        } catch   {
+             // no files
+#if DEBUG
+            print(msgs.ci.rawValue + " no booksection files found")
+#endif
+        }
     }
 }

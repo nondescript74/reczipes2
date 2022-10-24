@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     // MARK: - Debug
-    private var zBug:Bool = false
+    private var zBug:Bool = true
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - ObservedObject
@@ -17,11 +17,12 @@ struct SettingsView: View {
     @ObservedObject var joke = WebQueryRecipes()
     // MARK: - State
     @State private var show: Selectors = .notyet
+    @State private var showRemove = false
     // MARK: - Properties
     private var versionLabel = ""
     private var buildLabel = ""
     private enum msgs:String {
-        case sv = "User Settings"
+        case sv = "User Settings: "
         case cfsv = "CFBundleShortVersionString"
         case cfb = "CFBundleVersion"
         case z = "Hello, Z"
@@ -29,9 +30,10 @@ struct SettingsView: View {
         case build = "Build: "
         case nvn = "No Version #???"
         case nbn = "No Build #???"
-//        case makeSelection = "Click Joke or Trivia"
+        //        case makeSelection = "Click Joke or Trivia"
         case noTitle = "No Recipe Title"
-//        case signout = "rectangle.stack.badge.person.crop"
+        //        case signout = "rectangle.stack.badge.person.crop"
+        case remov = "removed all user recipes"
         
     }
     enum labelz: String {
@@ -41,8 +43,17 @@ struct SettingsView: View {
         case notyet
     }
     // MARK: - Methods
+    fileprivate func removeMyAddedRecipes() {
+        DispatchQueue.main.async {
+            FileManager.default.removeAddedRecipes()
+        }
+#if DEBUG
+        if zBug {print(msgs.sv.rawValue + msgs.remov.rawValue)}
+#endif
+        showRemove = false
+    }
+    
     var body: some View {
-        
         NavigationView {
             VStack {
                 VStack {
@@ -78,6 +89,24 @@ struct SettingsView: View {
                     MultiView(show: .notyet)
                 }
                 
+                VStack {
+                    Button("Tap to remove user recipes") {
+                        showRemove = true
+                    }.buttonStyle(.borderedProminent)
+                }
+                
+            }.padding(.bottom)
+            .actionSheet(isPresented: $showRemove) {
+                ActionSheet(title: Text("Remove All User Recipes"),
+                            message: Text("Choose"),
+                            buttons: [
+                                .cancel(),
+                                .destructive(
+                                    Text("Remove Recipes"),
+                                    action: removeMyAddedRecipes
+                                )
+                            ]
+                )
             }
         }.navigationBarTitleDisplayMode(.automatic)
         

@@ -67,7 +67,6 @@ struct AllRecipesView: View {
                                 RecipeRowView(sectionItem: item, cuisine: section.name)
                                     .padding()
                             }
-                            
                         }
                     }
                 }.listStyle(GroupedListStyle())

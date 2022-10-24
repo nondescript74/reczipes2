@@ -89,10 +89,10 @@ struct AddImageAndNoteView: View {
             let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
             do {
                 let encodedJSON = try encoder.encode(myImageToAdd)
-                let suffix = Date().formatted(date: .abbreviated, time: .standard)
+//                let suffix = Date().formatted(date: .abbreviated, time: .standard)
                 // now write out
                 do {
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + "_" + suffix + json))
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + "_" + dateSuffix() + json))
                     if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
                 } catch  {
                     fatalError("Cannot write to user RecipeImages folder")
@@ -152,10 +152,10 @@ struct AddImageAndNoteView: View {
         let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
         do {
             let encodedJSON = try encoder.encode(myNoteToAdd)
-            let suffix = Date().formatted(date: .abbreviated, time: .standard)
+//            let suffix = Date().formatted(date: .abbreviated, time: .standard)
             // now write out
             do {
-                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.uuidString + "_" + suffix + json))
+                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.uuidString + "_" + dateSuffix() + json))
                 if zBug { print(msgs.aianv.rawValue + msgs.notejson.rawValue)}
                 let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
                 if zBug { print(msgs.aianv.rawValue + "Contents count " + "\(result.count)")}

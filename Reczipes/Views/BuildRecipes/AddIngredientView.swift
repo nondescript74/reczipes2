@@ -26,7 +26,7 @@ struct AddIngredientView: View {
                         Text(name)
                     }
                 }
-            }
+            } 
             .searchable(text: $searchText) {
                 ForEach(searchResults, id: \.self) { result in
                     Text("Are you looking for \(result)?").searchCompletion(result)

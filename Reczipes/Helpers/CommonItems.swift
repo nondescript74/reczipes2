@@ -89,6 +89,11 @@ func hasSpecialCharacters(string: String) -> Bool {
     }
 }
 
+func getIngredList() -> [Ingredient] {
+    let listOfIngredients:[Ingredient] = Bundle.main.decode([Ingredient].self, from: "ingredients_list.json").sorted(by: {$0.id! < $1.id!})
+    return listOfIngredients
+}
+
 func getDocuDirUrl() -> URL {
     var myReturn:URL
     do {
@@ -338,6 +343,7 @@ extension FileManager {
 
 extension FileManager {
     func constructAllSections() -> [BookSection] {
+        
         var myReturn: [BookSection] = []
         let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)

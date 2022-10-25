@@ -328,8 +328,8 @@ struct WinePairing: Codable, Hashable, Equatable  {
 }
 
 struct Ingredient: Codable, Hashable, Identifiable, Equatable {
-    var id: Int64?
     var name: String?
+    var id: Int64?
     var localizedName: String?
     var image: String?
     

@@ -91,6 +91,8 @@
 		F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */; };
 		F86EB12328B2710E0098DC75 /* MoveRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EB12228B2710E0098DC75 /* MoveRecipeView.swift */; };
 		F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */; };
+		F8C77C79290742A300222C2D /* AddIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C77C78290742A300222C2D /* AddIngredientView.swift */; };
+		F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */ = {isa = PBXBuildFile; fileRef = F8C77C7C290744E600222C2D /* ingredients_list.json */; };
 		F8CC875728D380680030133B /* InMyFridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CC875628D380680030133B /* InMyFridge.swift */; };
 		F8CC875F28D3AD6B0030133B /* FridgeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CC875E28D3AD6B0030133B /* FridgeHost.swift */; };
 		F8CC876128D3AD7A0030133B /* FridgeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CC876028D3AD7A0030133B /* FridgeEditor.swift */; };
@@ -200,6 +202,8 @@
 		F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOrExtractView.swift; sourceTree = "<group>"; };
 		F86EB12228B2710E0098DC75 /* MoveRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRecipeView.swift; sourceTree = "<group>"; };
 		F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView.swift; sourceTree = "<group>"; };
+		F8C77C78290742A300222C2D /* AddIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientView.swift; sourceTree = "<group>"; };
+		F8C77C7C290744E600222C2D /* ingredients_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients_list.json; sourceTree = "<group>"; };
 		F8CC875628D380680030133B /* InMyFridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMyFridge.swift; sourceTree = "<group>"; };
 		F8CC875E28D3AD6B0030133B /* FridgeHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeHost.swift; sourceTree = "<group>"; };
 		F8CC876028D3AD7A0030133B /* FridgeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeEditor.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				F8304A8328B1688700867C6F /* NutritionHost.swift */,
 				F8304A8228B1688700867C6F /* NutritionRowView.swift */,
 				F8304A8128B1688700867C6F /* NutritionSummary.swift */,
+				F8C77C772907426F00222C2D /* BuildRecipes */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				F8CE26D3289C75B1003483DD /* SRecipeExample.json */,
 				F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */,
 				F81A8D4D28F483D300FDB3EF /* recipes.json */,
+				F8C77C7C290744E600222C2D /* ingredients_list.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -429,6 +435,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F8C77C772907426F00222C2D /* BuildRecipes */ = {
+			isa = PBXGroup;
+			children = (
+				F8C77C78290742A300222C2D /* AddIngredientView.swift */,
+			);
+			path = BuildRecipes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -492,6 +506,7 @@
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
 				93D611A826CE971200664F14 /* Images.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
+				F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */,
 				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
 				F81A8D5128F4858700FDB3EF /* License.txt in Resources */,
 				F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */,
@@ -581,6 +596,7 @@
 				93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */,
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
+				F8C77C79290742A300222C2D /* AddIngredientView.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
 				934AC08326D28FCF007EBF20 /* OrderIngredientsView.swift in Sources */,
 				93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */,
@@ -717,7 +733,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 192;
+				CURRENT_PROJECT_VERSION = 194;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -762,7 +778,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 192;
+				CURRENT_PROJECT_VERSION = 194;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

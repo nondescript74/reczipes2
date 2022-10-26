@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct BuildRecipeView: View {
-    // MARK: - ObservedObject
-    @ObservedObject var ingredient = WebQueryRecipes()
-    
+    // MARK: Initializer
+    init() {
+        show = .notyet
+    }
+    // MARK: - Environment Variables
+    @EnvironmentObject var ingredients: RecipeIngredients
+    @EnvironmentObject var instructions: RecipeInstructions
+    @EnvironmentObject var images: RecipeImages
+
     // MARK: - State
     @State var show: Selectors
-    @State fileprivate var ingredients: [Ingredient] = []
     // MARK: - Properties
     enum Selectors {
         case notyet
@@ -22,7 +27,7 @@ struct BuildRecipeView: View {
         case imgs
     }
     
-    private enum msgs: String {
+    fileprivate enum msgs: String {
         case br = "Build A Recipe"
         case makeSelection = "Click One of the selections"
         case noTitle = "No Recipe Title"
@@ -39,15 +44,14 @@ struct BuildRecipeView: View {
     
     // MARK:- Methods
     
-    func addIngredients() {
+    fileprivate func addIngredients() {
         show = Selectors.ingred
-        ingredient.getJoke()
     }
-    func addInstructions() {
+    fileprivate func addInstructions() {
         show = Selectors.instr
     }
     
-    func addImages() {
+    fileprivate func addImages() {
         show = Selectors.imgs
     }
     
@@ -75,36 +79,47 @@ struct BuildRecipeView: View {
                         }.padding()
                     }
                     
-                    
-                    List   {
-//                        BuildRowView(mori: "metric")
-                        if show == Selectors.notyet {
-                            Text("No activity")
-                        }
-                        if show == Selectors.ingred {
-//                            Text(ingredient.joke?.text ?? msgs.noIngr.rawValue)
-//                                .lineLimit(20)
-                        }
-                        if show == Selectors.instr {
-                            Text(ingredient.joke?.text ?? msgs.noIngr.rawValue)
-                                .lineLimit(20)
-                        }
-                        if show == Selectors.imgs {
-                            Text(ingredient.joke?.text ?? msgs.noIngr.rawValue)
-                                .lineLimit(20)
-                        }
+                    VStack {
+                        NavigationLink(destination: AddIngredientView()) {
+                            Text("Adding Ingredients ...")
+                        }.padding(.bottom).disabled(show != .ingred)
+                        
+                        NavigationLink(destination: AddInstructionsView()) {
+                            Text("Adding Instructions ...")
+                        }.padding(.bottom).disabled(show != .instr)
+                        
+                        NavigationLink(destination: AddImagesView()) {
+                            Text("Adding Pictures ...")
+                        }.padding(.bottom).disabled(show != .imgs)
                     }
-                }
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
+                    
+                    VStack {
+                        Text("Recipe Ingredients").foregroundColor(.gray)
+                        ForEach(ingredients.ingredients, id: \.self) { ingred in
+                            Text(ingred.name)
+                        }
+                        Text("Recipe Instructions").foregroundColor(.gray)
+                        ForEach(instructions.instructions, id:\.self) { instr in
+                            Text(instr.text)
+                        }
+                        Text("Recipe Images") 
+                    }
+                    
+                }.padding(.bottom)
+                
             }
         }
-        
     }
 }
 
 struct BuildRecipeView_Previews: PreviewProvider {
+    static let recipIngreds = RecipeIngredients()
+    static let recipInstrs = RecipeInstructions()
+    static let recipImgs = RecipeImages()
     static var previews: some View {
-        BuildRecipeView(show: .notyet)
+        BuildRecipeView()
+            .environmentObject(recipIngreds)
+            .environmentObject(recipInstrs)
+            .environmentObject(recipImgs)
     }
 }

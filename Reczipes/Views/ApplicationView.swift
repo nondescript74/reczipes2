@@ -15,6 +15,9 @@ struct ApplicationView: View {
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var fridge: MyFridge
     @EnvironmentObject var ratio: RecipeRatio
+    @EnvironmentObject var recipeIngreds: RecipeIngredients
+    @EnvironmentObject var recipeInstr: RecipeInstructions
+    @EnvironmentObject var recipeImgs: RecipeImages
     
     // MARK: - Properties
     fileprivate enum tabs: String {
@@ -27,11 +30,12 @@ struct ApplicationView: View {
         case settings = "Settings"
     }
     
-
+    
     // MARK: - Methods
     
     var body: some View {
         TabView {
+            
             AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
@@ -54,25 +58,27 @@ struct ApplicationView: View {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
                 }
-
+            
             SettingsView()
                 .tabItem {
                     Image(uiImage: wandNStarsImage)
                     Text(tabs.settings.rawValue)
                 }
             
-//            MultiView(show: .notyet)
-//                .tabItem {
-//                    Image(uiImage: tortoise!)
-//                    Text(tabs.jt.rawValue)
-//                }
-                
+            BuildRecipeView()
+                .tabItem {
+                    Image(uiImage: crosscirclefill!)
+                    Text(tabs.ingredients.rawValue)
+                }
             
         }
         .environmentObject(order)
         .environmentObject(userData)
         .environmentObject(fridge)
         .environmentObject(ratio)
+        .environmentObject(recipeIngreds)
+        .environmentObject(recipeInstr)
+        .environmentObject(recipeImgs)
     }
 }
 
@@ -81,6 +87,9 @@ struct ApplicationView_Previews: PreviewProvider {
     static let userData = UserData()
     static let myfridge = MyFridge()
     static let rratio = RecipeRatio()
+    static let recipIngreds = RecipeIngredients()
+    static let recipInstr = RecipeInstructions()
+    static let recipImgs = RecipeImages()
     
     static var previews: some View {
         ApplicationView()
@@ -88,5 +97,8 @@ struct ApplicationView_Previews: PreviewProvider {
             .environmentObject(userData)
             .environmentObject(myfridge)
             .environmentObject(rratio)
+            .environmentObject(recipIngreds)
+            .environmentObject(recipInstr)
+            .environmentObject(recipImgs)
     }
 }

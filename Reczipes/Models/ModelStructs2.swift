@@ -328,8 +328,8 @@ struct WinePairing: Codable, Hashable, Equatable  {
 }
 
 struct Ingredient: Codable, Hashable, Identifiable, Equatable {
-    var name: String?
-    var id: Int64?
+    var name: String
+    var id: Int64
     var localizedName: String?
     var image: String?
     
@@ -391,6 +391,19 @@ struct Length: Codable, Hashable, Equatable {
     
     static func == (lhs: Length, rhs: Length) -> Bool {
         if lhs.number == rhs.number && lhs.unit == rhs.unit {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+struct Instruction: Codable, Hashable, Identifiable {
+    var id: Int64
+    var text: String
+    
+    static func == (lhs: Instruction, rhs: Instruction) -> Bool {
+        if lhs.id == rhs.id && lhs.text == rhs.text {
             return true
         } else {
             return false

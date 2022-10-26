@@ -90,8 +90,13 @@ func hasSpecialCharacters(string: String) -> Bool {
 }
 
 func getIngredList() -> [Ingredient] {
-    let listOfIngredients:[Ingredient] = Bundle.main.decode([Ingredient].self, from: "ingredients_list.json").sorted(by: {$0.id! < $1.id!})
+    let listOfIngredients:[Ingredient] = Bundle.main.decode([Ingredient].self, from: "ingredients_list.json").sorted(by: {$0.id < $1.id})
     return listOfIngredients
+}
+
+func getIngredientForName(name: String) -> Ingredient {
+    let myList = getIngredList().filter({$0.name == name})
+    return myList.first ?? Ingredient(name: name, id: 99999999999)
 }
 
 func getDocuDirUrl() -> URL {

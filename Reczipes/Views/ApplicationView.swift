@@ -28,6 +28,7 @@ struct ApplicationView: View {
         case multiAdd = "+Note/Image"
         case jt = "Joke/Trivia"
         case settings = "Settings"
+        case build = "Build"
     }
     
     
@@ -67,8 +68,8 @@ struct ApplicationView: View {
             
             BuildRecipeView()
                 .tabItem {
-                    Image(uiImage: crosscirclefill!)
-                    Text(tabs.ingredients.rawValue)
+                    Image(uiImage: tortoise!)
+                    Text(tabs.build.rawValue)
                 }
             
         }

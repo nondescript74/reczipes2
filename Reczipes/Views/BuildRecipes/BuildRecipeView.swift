@@ -29,6 +29,7 @@ struct BuildRecipeView: View {
     
     fileprivate enum msgs: String {
         case br = "Build A Recipe"
+        case rec = "Recipe"
         case makeSelection = "Click One of the selections"
         case noTitle = "No Recipe Title"
         case noIngr = "No Ingredients Found?"
@@ -40,6 +41,8 @@ struct BuildRecipeView: View {
         case aingimg = "questionmark.circle"
         case aimgsbottom = "Images"
         case aimgsimg = "lasso.sparkles"
+        case savez = "Save"
+        case tor = "tortoise"
     }
     
     // MARK:- Methods
@@ -54,6 +57,50 @@ struct BuildRecipeView: View {
     fileprivate func addImages() {
         show = Selectors.imgs
     }
+    
+    fileprivate func saveIt() {
+        show = Selectors.notyet
+        let extIng = ExtendedIngredient()
+        let mySRecipe = SRecipe(aggregateLikes: 0,
+                                analyzedInstructions: [],
+                                cheap: false,
+                                cookingMinutes: 0,
+                                creditsText: "Z. Premji",
+                                cuisines: ["No cuisine"],
+                                dairyFree: false,
+                                diets: [],
+                                dishTypes: [],
+                                extendedIngredients: [],
+                                gaps: "",
+                                glutenFree: false,
+                                healthScore: 0.0,
+                                id: 99999999999,
+                                image: "",
+                                imageType: "",
+                                instructions: "First",
+                                license: "Z",
+                                lowFodmap: false,
+                                occasions: [],
+                                originalId: "999999999",
+                                preparationMinutes: 0,
+                                pricePerServing: 0.0,
+                                readyInMinutes: 0,
+                                servings: 0,
+                                sourceName: "Z",
+                                spoonacularScore: 0.0,
+                                spoonacularSourceUrl: "",
+                                summary: "This is a good recipe",
+                                sustainable: false,
+                                title: "",
+                                vegan: false,
+                                vegetarian: false,
+                                veryHealthy: false,
+                                veryPopular: false,
+                                weightWatcherSmartPoints: 0,
+                                winePairing: WinePairing()
+        )
+    }
+
     
     // MARK: - View Process
     var body: some View {
@@ -77,16 +124,20 @@ struct BuildRecipeView: View {
                         Button(action: {self.addImages()}) {
                             RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aimgsbottom.rawValue, someImage: msgs.aingimg.rawValue)
                         }.padding()
+                        Button(action: {self.saveIt()}) {
+                            RoundButton3View(someTextTop: msgs.savez.rawValue, someTextBottom: msgs.rec.rawValue, someImage: msgs.tor.rawValue)
+                        }.padding()
                     }
                     
                     VStack {
-                        NavigationLink(destination: AddIngredientView()) {
-                            Text("Adding Ingredients ...")
-                        }.padding(.bottom).disabled(show != .ingred)
                         
                         NavigationLink(destination: AddInstructionsView()) {
                             Text("Adding Instructions ...")
                         }.padding(.bottom).disabled(show != .instr)
+                        
+                        NavigationLink(destination: AddIngredientView()) {
+                            Text("Adding Ingredients ...")
+                        }.padding(.bottom).disabled(show != .ingred)
                         
                         NavigationLink(destination: AddImagesView()) {
                             Text("Adding Pictures ...")
@@ -98,12 +149,19 @@ struct BuildRecipeView: View {
                         ForEach(ingredients.ingredients, id: \.self) { ingred in
                             Text(ingred.name)
                         }
+                    }.padding(.bottom)
+                    
+                    VStack {
                         Text("Recipe Instructions").foregroundColor(.gray)
                         ForEach(instructions.instructions, id:\.self) { instr in
                             Text(instr.text)
                         }
+                    }.padding(.bottom)
+                    
+                    VStack {
                         Text("Recipe Images") 
-                    }
+                    }.padding(.bottom)
+                    
                     
                 }.padding(.bottom)
                 

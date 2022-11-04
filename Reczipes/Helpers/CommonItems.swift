@@ -138,10 +138,10 @@ func constructRestrictions(srecipe: SRecipe) -> [String] {
         myRestrictions.append("VeryH")
     }
     if (((srecipe.veryPopular) != nil)  && (srecipe.veryPopular) == true) {
-        myRestrictions.append("VeryP")
+        myRestrictions.append("VeryPop")
     }
     if (((srecipe.lowFodmap) != nil)  && (srecipe.lowFodmap) == true) {
-        myRestrictions.append("LowFM")
+        myRestrictions.append("LowFMp")
     }
     return myRestrictions
 }

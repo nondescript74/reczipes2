@@ -9,23 +9,23 @@ import SwiftUI
 
 struct BuildRecipeView: View {
     // MARK: Initializer
-    init() {
-        show = .notyet
-    }
+    
     // MARK: - Environment Variables
     @EnvironmentObject var ingredients: RecipeIngredients
     @EnvironmentObject var instructions: RecipeInstructions
     @EnvironmentObject var images: RecipeImages
-
+    
     // MARK: - State
-    @State var show: Selectors
+    @State fileprivate var showingInstructions = false
+    @State fileprivate var showingImages = false
+    @State fileprivate var showingIngredients = false
     // MARK: - Properties
-    enum Selectors {
-        case notyet
-        case ingred
-        case instr
-        case imgs
-    }
+    //    enum Selectors {
+    //        case notyet
+    //        case ingred
+    //        case instr
+    //        case imgs
+    //    }
     
     fileprivate enum msgs: String {
         case br = "Build A Recipe"
@@ -48,19 +48,22 @@ struct BuildRecipeView: View {
     // MARK:- Methods
     
     fileprivate func addIngredients() {
-        show = Selectors.ingred
+        var extIng = ExtendedIngredient.extendedIngredientExample
+        
+        
     }
     fileprivate func addInstructions() {
-        show = Selectors.instr
     }
     
     fileprivate func addImages() {
-        show = Selectors.imgs
     }
     
     fileprivate func saveIt() {
-        show = Selectors.notyet
-        let extIng = ExtendedIngredient()
+        
+        showingIngredients = false
+        showingInstructions = false
+        showingImages = false
+        
         let mySRecipe = SRecipe(aggregateLikes: 0,
                                 analyzedInstructions: [],
                                 cheap: false,
@@ -99,8 +102,9 @@ struct BuildRecipeView: View {
                                 weightWatcherSmartPoints: 0,
                                 winePairing: WinePairing()
         )
+        
     }
-
+    
     
     // MARK: - View Process
     var body: some View {
@@ -115,13 +119,13 @@ struct BuildRecipeView: View {
                         .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     
                     HStack {
-                        Button(action: {self.addInstructions()}) {
+                        Button(action: {showingInstructions.toggle()}) {
                             RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.ainsbottom.rawValue, someImage: msgs.ainsimg.rawValue)
                         }.padding()
-                        Button(action: {self.addIngredients()}) {
+                        Button(action: {showingIngredients.toggle()}) {
                             RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aingbottom.rawValue, someImage: msgs.aingimg.rawValue)
                         }.padding()
-                        Button(action: {self.addImages()}) {
+                        Button(action: {showingImages.toggle()}) {
                             RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aimgsbottom.rawValue, someImage: msgs.aingimg.rawValue)
                         }.padding()
                         Button(action: {self.saveIt()}) {
@@ -129,42 +133,20 @@ struct BuildRecipeView: View {
                         }.padding()
                     }
                     
-                    VStack {
-                        
-                        NavigationLink(destination: AddInstructionsView()) {
-                            Text("Adding Instructions ...")
-                        }.padding(.bottom).disabled(show != .instr)
-                        
-                        NavigationLink(destination: AddIngredientView()) {
-                            Text("Adding Ingredients ...")
-                        }.padding(.bottom).disabled(show != .ingred)
-                        
-                        NavigationLink(destination: AddImagesView()) {
-                            Text("Adding Pictures ...")
-                        }.padding(.bottom).disabled(show != .imgs)
-                    }
+                    NavigationLink(destination: AddInstructionsView()) {
+                        Text("Add Instructions").disabled(!showingInstructions)
+                    }.disabled(!showingInstructions)
                     
-                    VStack {
-                        Text("Recipe Ingredients").foregroundColor(.gray)
-                        ForEach(ingredients.ingredients, id: \.self) { ingred in
-                            Text(ingred.name)
-                        }
-                    }.padding(.bottom)
+                    NavigationLink(destination: AddIngredientView()) {
+                        Text("Add Ingredients").disabled(!showingIngredients)
+                    }.disabled(!showingIngredients)
                     
-                    VStack {
-                        Text("Recipe Instructions").foregroundColor(.gray)
-                        ForEach(instructions.instructions, id:\.self) { instr in
-                            Text(instr.text)
-                        }
-                    }.padding(.bottom)
-                    
-                    VStack {
-                        Text("Recipe Images") 
-                    }.padding(.bottom)
-                    
+                    NavigationLink(destination: AddImagesView()) {
+                        Text("Add Images").disabled(!showingImages)
+                    }.disabled(!showingImages)
                     
                 }.padding(.bottom)
-                
+                    
             }
         }
     }

@@ -12,7 +12,6 @@ struct AddImageAndNoteView: View {
     private let zBug = false
     // MARK: - Initializer
     // MARK: EnvironmentObject
-//    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Focus for textfield
     @FocusState private var textFieldIsFocused:Bool
     // MARK: - State

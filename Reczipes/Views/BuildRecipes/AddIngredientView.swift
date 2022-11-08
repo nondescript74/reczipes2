@@ -46,7 +46,7 @@ struct AddIngredientView: View {
             VStack {
                 List {
                     ForEach(searchResults, id: \.self) { name in
-                        Button("Add " + name, action: { addIngred(name: name)})
+                        Button(name, action: { addIngred(name: name)})
                             .buttonStyle(.bordered)
                     }
                 }

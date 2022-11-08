@@ -64,6 +64,7 @@ let myExtendedIngredients: [ExtendedIngredient] = Bundle.main.decode([ExtendedIn
 var colorBackgroundButton: Color = Color.init("ED7D3A")
 var colorForegroundButton: Color = Color.init("A4B8C4")
 let colors: [String: Color] = ["D": .purple, "G": .pink, "N": .red, "S": .blue, "V": .green, "VX": .green, "L": .gray, "H": .orange, "P": .yellow]
+let myMax: Int64 = 9223372036854775807
 
 fileprivate enum msgs: String {
     
@@ -96,7 +97,7 @@ func getIngredList() -> [Ingredient] {
 
 func getIngredientForName(name: String) -> Ingredient {
     let myList = getIngredList().filter({$0.name == name})
-    return myList.first ?? Ingredient(name: name, id: 99999999999)
+    return myList.first ?? Ingredient(name: name, id: Int64.random(in: 1..<myMax-1))
 }
 
 func getDocuDirUrl() -> URL {

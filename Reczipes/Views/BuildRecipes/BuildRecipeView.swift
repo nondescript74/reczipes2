@@ -9,6 +9,10 @@ import SwiftUI
 
 struct BuildRecipeView: View {
     // MARK: Initializer
+    init() {
+        self.id = UUID()
+        self.recipeName = "Z's Famous Recipe"
+    }
     
     // MARK: - Environment Variables
     @EnvironmentObject var ingredients: RecipeIngredients
@@ -16,16 +20,12 @@ struct BuildRecipeView: View {
     @EnvironmentObject var images: RecipeImages
     
     // MARK: - State
-    @State fileprivate var showingInstructions = false
-    @State fileprivate var showingImages = false
-    @State fileprivate var showingIngredients = false
+//    @State fileprivate var showingInstructions = false
+//    @State fileprivate var showingImages = false
+//    @State fileprivate var showingIngredients = false
+    @State fileprivate var recipeName = ""
     // MARK: - Properties
-    //    enum Selectors {
-    //        case notyet
-    //        case ingred
-    //        case instr
-    //        case imgs
-    //    }
+    fileprivate var id: UUID
     
     fileprivate enum msgs: String {
         case br = "Build A Recipe"
@@ -59,10 +59,10 @@ struct BuildRecipeView: View {
     }
     
     fileprivate func saveIt() {
-        
-        showingIngredients = false
-        showingInstructions = false
-        showingImages = false
+//
+//        showingIngredients = false
+//        showingInstructions = false
+//        showingImages = false
         
         let mySRecipe = SRecipe(aggregateLikes: 0,
                                 analyzedInstructions: [],
@@ -77,14 +77,14 @@ struct BuildRecipeView: View {
                                 gaps: "",
                                 glutenFree: false,
                                 healthScore: 0.0,
-                                id: 99999999999,
+                                id: Int64.random(in: 1..<myMax),
                                 image: "",
                                 imageType: "",
                                 instructions: "First",
                                 license: "Z",
                                 lowFodmap: false,
                                 occasions: [],
-                                originalId: "999999999",
+                                originalId: "",
                                 preparationMinutes: 0,
                                 pricePerServing: 0.0,
                                 readyInMinutes: 0,
@@ -113,37 +113,40 @@ struct BuildRecipeView: View {
                 VStack {
                     Text(msgs.br.rawValue).font(.largeTitle).bold()
                         .padding(.bottom)
-                    Text(msgs.makeSelection.rawValue)
-                        .font(.callout)
-                        .foregroundColor(.black)
-                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Divider()
+                    TextField("Enter Name", text: $recipeName)
+                    Divider()
+//                    Text(msgs.makeSelection.rawValue)
+//                        .font(.callout)
+//                        .foregroundColor(.black)
+//                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     
-                    HStack {
-                        Button(action: {showingInstructions.toggle()}) {
-                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.ainsbottom.rawValue, someImage: msgs.ainsimg.rawValue)
-                        }.padding()
-                        Button(action: {showingIngredients.toggle()}) {
-                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aingbottom.rawValue, someImage: msgs.aingimg.rawValue)
-                        }.padding()
-                        Button(action: {showingImages.toggle()}) {
-                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aimgsbottom.rawValue, someImage: msgs.aingimg.rawValue)
-                        }.padding()
-                        Button(action: {self.saveIt()}) {
-                            RoundButton3View(someTextTop: msgs.savez.rawValue, someTextBottom: msgs.rec.rawValue, someImage: msgs.tor.rawValue)
-                        }.padding()
-                    }
+//                    HStack {
+//                        Button(action: {showingInstructions.toggle()}) {
+//                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.ainsbottom.rawValue, someImage: msgs.ainsimg.rawValue)
+//                        }.padding()
+//                        Button(action: {showingIngredients.toggle()}) {
+//                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aingbottom.rawValue, someImage: msgs.aingimg.rawValue)
+//                        }.padding()
+//                        Button(action: {showingImages.toggle()}) {
+//                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aimgsbottom.rawValue, someImage: msgs.aingimg.rawValue)
+//                        }.padding()
+//                        Button(action: {self.saveIt()}) {
+//                            RoundButton3View(someTextTop: msgs.savez.rawValue, someTextBottom: msgs.rec.rawValue, someImage: msgs.tor.rawValue)
+//                        }.padding()
+//                    }
                     
                     NavigationLink(destination: AddInstructionsView()) {
-                        Text("Add Instructions").disabled(!showingInstructions)
-                    }.disabled(!showingInstructions)
-                    
+                        Text("Add Instructions")
+                    }  //.disabled(showingIngredients || showingImages)
+                    Divider()
                     NavigationLink(destination: AddIngredientView()) {
-                        Text("Add Ingredients").disabled(!showingIngredients)
-                    }.disabled(!showingIngredients)
-                    
-                    NavigationLink(destination: AddImagesView()) {
-                        Text("Add Images").disabled(!showingImages)
-                    }.disabled(!showingImages)
+                        Text("Add Ingredients")
+                    }  //.disabled(showingInstructions || showingImages)
+                    Divider()
+                    NavigationLink(destination: AddImagesView(id: self.id)) {
+                        Text("Add Images")
+                    }  //.disabled(showingInstructions || showingIngredients)
                     
                 }.padding(.bottom)
                     

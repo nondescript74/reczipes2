@@ -59,50 +59,7 @@ struct BuildRecipeView: View {
     }
     
     fileprivate func saveIt() {
-//
-//        showingIngredients = false
-//        showingInstructions = false
-//        showingImages = false
-        
-        let mySRecipe = SRecipe(aggregateLikes: 0,
-                                analyzedInstructions: [],
-                                cheap: false,
-                                cookingMinutes: 0,
-                                creditsText: "Z. Premji",
-                                cuisines: ["No cuisine"],
-                                dairyFree: false,
-                                diets: [],
-                                dishTypes: [],
-                                extendedIngredients: [],
-                                gaps: "",
-                                glutenFree: false,
-                                healthScore: 0.0,
-                                id: Int64.random(in: 1..<myMax),
-                                image: "",
-                                imageType: "",
-                                instructions: "First",
-                                license: "Z",
-                                lowFodmap: false,
-                                occasions: [],
-                                originalId: "",
-                                preparationMinutes: 0,
-                                pricePerServing: 0.0,
-                                readyInMinutes: 0,
-                                servings: 0,
-                                sourceName: "Z",
-                                spoonacularScore: 0.0,
-                                spoonacularSourceUrl: "",
-                                summary: "This is a good recipe",
-                                sustainable: false,
-                                title: "",
-                                vegan: false,
-                                vegetarian: false,
-                                veryHealthy: false,
-                                veryPopular: false,
-                                weightWatcherSmartPoints: 0,
-                                winePairing: WinePairing()
-        )
-        
+
     }
     
     
@@ -138,15 +95,15 @@ struct BuildRecipeView: View {
                     
                     NavigationLink(destination: AddInstructionsView()) {
                         Text("Add Instructions")
-                    }  //.disabled(showingIngredients || showingImages)
+                    }
                     Divider()
                     NavigationLink(destination: AddIngredientView()) {
                         Text("Add Ingredients")
-                    }  //.disabled(showingInstructions || showingImages)
+                    }
                     Divider()
                     NavigationLink(destination: AddImagesView(id: self.id)) {
                         Text("Add Images")
-                    }  //.disabled(showingInstructions || showingIngredients)
+                    }
                     
                 }.padding(.bottom)
                     

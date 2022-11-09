@@ -43,6 +43,16 @@ struct ExtendedIngredView: View {
     }
 }
 
+struct ExtendedIngredView_Previews: PreviewProvider {
+    static let myExtendedIngredient: ExtendedIngredient = ExtendedIngredient.extendedIngredientExample
+    static let ratio = RecipeRatio()
+    static var previews: some View {
+        ExtendedIngredView(extendedIngredient: myExtendedIngredient)
+            .environmentObject(ratio)
+    }
+
+}
+
 struct ImageAndNameView: View {
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {

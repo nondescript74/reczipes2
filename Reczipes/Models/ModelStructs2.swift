@@ -340,6 +340,9 @@ struct Ingredient: Codable, Hashable, Identifiable, Equatable {
             return false
         }
     }
+    
+    static let ingredientExample = Ingredient(name: "unsalted butter", id: 1145)
+    static let ingredientExample1 = Ingredient(name: "sugar", id: 19335)
 }
 
 struct Temperature:  Codable, Hashable, Equatable {
@@ -367,6 +370,8 @@ struct Equipment: Codable, Hashable, Equatable {
             return false
         }
     }
+    
+    static let equipmentExample = Equipment(id: Int64.random(in: 0..<myMax), name: "9 inch iron skillet")
 }
 
 struct Step: Codable, Hashable, Equatable {
@@ -383,6 +388,8 @@ struct Step: Codable, Hashable, Equatable {
             return false
         }
     }
+    
+    static let stepExample = Step(number: Int64.random(in: 0..<myMax), step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthExampleSeconds)
 }
 
 struct Length: Codable, Hashable, Equatable {
@@ -396,6 +403,7 @@ struct Length: Codable, Hashable, Equatable {
             return false
         }
     }
+    static let lengthExampleSeconds = Length(number: 10, unit: "seconds")
 }
 
 struct Instruction: Codable, Hashable, Identifiable {
@@ -414,12 +422,24 @@ struct Instruction: Codable, Hashable, Identifiable {
 struct AnalyzedInstructions: Codable, Hashable, Equatable {
     var name: String?
     var steps: [Step?]?
+    
+    static func == (lhs: AnalyzedInstructions, rhs: AnalyzedInstructions) -> Bool {
+        if lhs.name == rhs.name && lhs.steps == rhs.steps {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static let aInstructionsExample = AnalyzedInstructions(name: "Step 1", steps: [Step.stepExample])
+    
 }
 
 struct SRecipeGroup: Codable  {
     var results:[SRecipe]?  // when using random
     var recipes:[SRecipe]?  //when using find
 }
+
 
 struct SRecipe: Codable, Hashable, Identifiable, Equatable {
     var aggregateLikes:Int64?
@@ -502,4 +522,35 @@ struct Joke: Codable, Hashable, Equatable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(text)
     }
+}
+
+struct Diet: Codable, Hashable, Equatable {
+    var name: String
+    var id: Int
+    
+    
+    static func == (lhs: Diet, rhs: Diet) -> Bool {
+        if lhs.name == rhs.name && lhs.id == rhs.id {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+    
+    static let dietExampleGF = Diet(name: "Gluten Free", id: 0)
+    static let dietExampleKG = Diet(name: "Ketogenic", id: 1)
+    static let dietExampleVeg = Diet(name: "Vegetarian ", id: 2)
+    static let dietExampleLVeg = Diet(name: "Lacto Vegetarian", id: 3)
+    static let dietExampleOVeg = Diet(name: "Ovo Vegetarian", id: 4)
+    static let dietExamplePesc = Diet(name: "Pescatarian", id: 5)
+    static let dietExampleVega = Diet(name: "Vegan", id: 6)
+    static let dietExamplePaleo = Diet(name: "Paleo", id: 7)
+    static let dietExamplePrimal = Diet(name: "Primal", id: 8)
+    static let dietExampleLowFM = Diet(name: "Low FODMAP", id: 9)
+    static let dietExampleW30 = Diet(name: "Whole 30", id: 10)
+    
 }

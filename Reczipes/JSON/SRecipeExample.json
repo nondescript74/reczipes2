@@ -299,7 +299,7 @@
     "image": "https://www.100daysofrealfood.com/wp-content/uploads/2017/05/Braised-Asian-Meatballs-and-Cabbage-1.jpg",
     "imageType": "jpg",
     "summary": null,
-    "cuisines": [],
+    "cuisines": ["Chinese"],
     "dishTypes": [],
     "diets": [],
     "occasions": [],

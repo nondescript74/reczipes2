@@ -210,14 +210,14 @@ func formatStringDoubleToNumber(stringToFormat: String) -> Double {
 }
 
 func getBookSectionNames() -> [String] {
-    var returningNames:[String] = []
-    let idNameArray = myBookSectionsIdNames
-    for aIdName in idNameArray {
-        returningNames.append(aIdName.name)
+    var cuisines:[Cuisine] = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
+    var returningNames: [String] = []
+    for acuisine in cuisines {
+        returningNames.append(acuisine.name)
     }
-    let sortedNames = returningNames.sorted(by: {$0 < $1})
-    return sortedNames
+    return returningNames
 }
+
 
 func dateSuffix() -> String {
     return Date().timeIntervalSinceReferenceDate.rounded().description

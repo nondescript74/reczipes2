@@ -42,16 +42,6 @@ class RecipeIngredients: ObservableObject {
      var image: String?
      */
     
-    func change(item: Ingredient, name: String, id: Int64, localnmae: String, image: String) {
-        if ingredients.contains(item) {
-            ingredients.remove(at: 1)
-            ingredients.append(item)
-        }
-#if DEBUG
-        print(msgs.ri.rawValue + msgs.changed.rawValue, item.id.description, " ", item.name)
-#endif
-    }
-    
     func add(item: Ingredient) {
         if !ingredients.contains(item) {  // user may have hit the order button multiple times on the same recipe
             ingredients.append(item)

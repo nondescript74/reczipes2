@@ -38,15 +38,7 @@ struct RecipeRowView: View {
         // check for empty
         if item.imageUrl == nil {
             
-
-//            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
-
-            
         } else {
-            
-//
-//            if zBug {print("RecipeRowView: cuisine available: ", cuisine)}
-//            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get: ")}
 
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }

@@ -10,7 +10,7 @@ import SwiftUI
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
-    private var zBug:Bool = false
+    private var zBug:Bool = true
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - Published
@@ -171,9 +171,16 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
     
-    func findByIngredients() {
+    func findByIngredients(searchString: String, numberSent: Int, cuisine: String) {
+        // https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=2
+        // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
         // for example, what's in my fridge
-        // https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
+        // or getting a recipe equivalent to one you have written down
+//        let urlString = "https://api.spoonacular.com/recipes/findByIngredients?ingredients="  //apples,+flour,+sugar&number=2
+        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
+        urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.numberDesired.rawValue + numberSent.description + myQuery.cuisine.rawValue + cuisine.lowercased() + key
+        myTask(aswitch: myGets.FindByIngredients.rawValue)
     }
     
     func getTrivia() {
@@ -268,6 +275,19 @@ public class WebQueryRecipes: ObservableObject {
             }
             
         case myGets.FindExtracted.rawValue:
+            _ = SRecipeProvider(recipesUrl: url) { srecipe in
+                if srecipe != nil {
+                    DispatchQueue.main.async {
+                        self.extractedSRecipe = srecipe!
+                        
+
+                        if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
+
+                    }
+                }
+            }
+            
+        case myGets.FindByIngredients.rawValue:
             _ = SRecipeProvider(recipesUrl: url) { srecipe in
                 if srecipe != nil {
                     DispatchQueue.main.async {

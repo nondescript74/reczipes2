@@ -20,9 +20,9 @@ struct BuildRecipeView: View {
     @EnvironmentObject var images: RecipeImages
     
     // MARK: - State
-//    @State fileprivate var showingInstructions = false
-//    @State fileprivate var showingImages = false
-//    @State fileprivate var showingIngredients = false
+    @State fileprivate var showingInstructions = false
+    @State fileprivate var showingImages = false
+    @State fileprivate var showingIngredients = false
     @State fileprivate var recipeName = ""
     // MARK: - Properties
     fileprivate var id: UUID
@@ -45,6 +45,8 @@ struct BuildRecipeView: View {
         case tor = "tortoise"
     }
     
+    fileprivate let decoder = JSONDecoder()
+    
     // MARK:- Methods
     
     fileprivate func addIngredients() {
@@ -59,7 +61,7 @@ struct BuildRecipeView: View {
     }
     
     fileprivate func saveIt() {
-
+        
     }
     
     
@@ -70,43 +72,60 @@ struct BuildRecipeView: View {
                 VStack {
                     Text(msgs.br.rawValue).font(.largeTitle).bold()
                         .padding(.bottom)
-                    Divider()
-                    TextField("Enter Name", text: $recipeName)
-                    Divider()
-//                    Text(msgs.makeSelection.rawValue)
-//                        .font(.callout)
-//                        .foregroundColor(.black)
-//                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     
-//                    HStack {
-//                        Button(action: {showingInstructions.toggle()}) {
-//                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.ainsbottom.rawValue, someImage: msgs.ainsimg.rawValue)
-//                        }.padding()
-//                        Button(action: {showingIngredients.toggle()}) {
-//                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aingbottom.rawValue, someImage: msgs.aingimg.rawValue)
-//                        }.padding()
-//                        Button(action: {showingImages.toggle()}) {
-//                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aimgsbottom.rawValue, someImage: msgs.aingimg.rawValue)
-//                        }.padding()
-//                        Button(action: {self.saveIt()}) {
-//                            RoundButton3View(someTextTop: msgs.savez.rawValue, someTextBottom: msgs.rec.rawValue, someImage: msgs.tor.rawValue)
-//                        }.padding()
+                    TextField("Enter A Name", text: $recipeName)
+                    HStack {
+                        Button(action: {showingInstructions.toggle()}) {
+                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.ainsbottom.rawValue, someImage: msgs.ainsimg.rawValue)
+                        }
+                        NavigationLink(destination: AddInstructionsView()) {
+                            Text("Add").disabled(!showingInstructions)
+                        }
 //                    }
-                    
-                    NavigationLink(destination: AddInstructionsView()) {
-                        Text("Add Instructions")
+//
+//                    HStack {
+                        Button(action: {showingIngredients.toggle()}) {
+                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aingbottom.rawValue, someImage: msgs.aingimg.rawValue)
+                        }
+                        NavigationLink(destination: AddIngredientView()) {
+                            Text("Add").disabled(!showingIngredients)
+                        }
+//                    }
+//
+//                    HStack {
+                        Button(action: {showingImages.toggle()}) {
+                            RoundButton3View(someTextTop: msgs.top.rawValue, someTextBottom: msgs.aimgsbottom.rawValue, someImage: msgs.aingimg.rawValue)
+                        }
+                        NavigationLink(destination: AddImagesView(id: self.id)) {
+                            Text("Add").disabled(!showingImages)
+                        }
                     }
-                    Divider()
-                    NavigationLink(destination: AddIngredientView()) {
-                        Text("Add Ingredients")
+                    List {
+                        Text("Recipe Instructions")
+                        ForEach(instructions.instructions, id: \.self) { ins in
+                            Text(ins.text)
+                        }
                     }
-                    Divider()
-                    NavigationLink(destination: AddImagesView(id: self.id)) {
-                        Text("Add Images")
+                    List {
+                        Text("Recipe Ingredients")
+                        ForEach(ingredients.ingredients, id: \.self) {ing in
+                            Text(ing.name)
+                        }
                     }
-                    
+                    List {
+                        Text("Recipe Images")
+                        ForEach(images.images, id: \.self) { imgSvd in
+                            Image(uiImage: UIImage(data: imgSvd.imageSaved)!).disabled(images.total == 0)
+
+                        }
+                    }
+                    HStack {
+                        Button(action: {self.saveIt()}) {
+                            RoundButton3View(someTextTop: msgs.savez.rawValue, someTextBottom: msgs.rec.rawValue, someImage: msgs.tor.rawValue)
+                        }.padding()
+                    }
                 }.padding(.bottom)
-                    
+                
             }
         }
     }

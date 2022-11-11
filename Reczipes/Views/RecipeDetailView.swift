@@ -269,10 +269,10 @@ struct RecipeDetailView: View {
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id)
                 }
-                Divider()
-                if showingMoveView == true && cuisine != "" {
-                    MoveRecipeView(movingRecipe: self.item, moveFromBookSection: self.cuisine)
-                }
+//                Divider()
+//                if showingMoveView == true && cuisine != "" {
+//                    MoveRecipeView(movingRecipe: self.item, moveFromBookSection: self.cuisine)
+//                }
                 Divider()
                 VStack {
                     SafariView(url: URL(string: item.url)!)

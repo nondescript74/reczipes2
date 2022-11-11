@@ -22,7 +22,7 @@ class RecipeBeingBuilt: ObservableObject {
                                                      cheap: false,
                                                      cookingMinutes: 0,
                                                      creditsText: "Z. Premji",
-                                                     cuisines: ["Desserts & Sweets"],
+                                                     cuisines: ["Indian"],
                                                      dairyFree: false,
                                                      diets: [],
                                                      dishTypes: [],

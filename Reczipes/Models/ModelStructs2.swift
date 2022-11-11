@@ -554,3 +554,19 @@ struct Diet: Codable, Hashable, Equatable {
     static let dietExampleW30 = Diet(name: "Whole 30", id: 10)
     
 }
+
+struct Cuisine: Codable, Hashable, Equatable {
+    var name: String
+    
+    static func == (lhs: Cuisine, rhs: Cuisine) -> Bool {
+        if lhs.name == rhs.name {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+}

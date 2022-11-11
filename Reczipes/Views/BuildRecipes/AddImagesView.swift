@@ -14,6 +14,8 @@ struct AddImagesView: View {
     init(id: UUID) {
         self.id = id
     }
+    // MARK: - Environment Variables
+    @EnvironmentObject var images: RecipeImages
     // MARK: - State
     @State fileprivate var showSheet: Bool = false
     @State fileprivate var showImagePicker: Bool = false
@@ -47,9 +49,13 @@ struct AddImagesView: View {
         case imgjson = "Successfully wrote image"
         case fail = "Failed"
         case succes = "Success"
+        case before = "Image size before "
+        case after = "Image size after "
     }
     
     fileprivate var id: UUID
+    
+    fileprivate let size = CGSize(width: 160, height: 100)
     
     var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
@@ -61,11 +67,12 @@ struct AddImagesView: View {
             return
         }
         let myReczipesDirUrl:URL = getDocuDirUrl().appending(path: msgs.recz.rawValue)
-        let combinedRecipes = FileManager.default.constructAllRecipes()
         
         let rotatedImage = rotateImageIfNecessary(uiimage: image!)
+        let sizedImage = sizeImageIfNecessary(uiimage: rotatedImage)
         
-        let myImageToAdd = ImageSaved(recipeuuid: id, imageSaved: (rotatedImage.pngData()!))
+        
+        let myImageToAdd = ImageSaved(recipeuuid: id, imageSaved: (sizedImage.pngData()!))
             let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
             do {
                 let encodedJSON = try encoder.encode(myImageToAdd)
@@ -76,8 +83,21 @@ struct AddImagesView: View {
                     fatalError("Cannot write to user RecipeImages folder")
                 }
             } catch  {
-                fatalError("Cannot encode booksection to json")
+                fatalError("Cannot encode ImageSaved to json")
             }
+        images.add(item: myImageToAdd)
+    }
+    
+    fileprivate func sizeImageIfNecessary(uiimage: UIImage) -> UIImage {
+        let zImg = uiimage
+#if DEBUG
+        if zBug {print(msgs.aiv.rawValue, msgs.before.rawValue, zImg.size.debugDescription)}
+#endif
+        let newImg = zImg.scaledDown(into: size)
+#if DEBUG
+        if zBug{print(msgs.aiv.rawValue, msgs.after.rawValue, newImg.size.debugDescription)}
+#endif
+        return newImg
     }
     
     fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {
@@ -113,11 +133,11 @@ struct AddImagesView: View {
         }
     }
     var body: some View {
-//        GeometryReader { proxy in
+        GeometryReader { proxy in
             VStack {
                 Image(uiImage: (image ?? UIImage(named: msgs.defImg.rawValue))!)
-//                    .resizable()
-//                    .frame(width: proxy.size.width / 2, height: proxy.size.height / 4)
+                    .resizable()
+                    .frame(width: proxy.size.width / 2, height: proxy.size.height / 4)
                     
                 Button(action: {
                     // What to perform
@@ -141,6 +161,9 @@ struct AddImagesView: View {
                     }
                     
                 }.padding(.bottom)
+                HStack {
+                    
+                }
             }.padding()
         
             .actionSheet(isPresented: $showSheet) {
@@ -153,7 +176,7 @@ struct AddImagesView: View {
                 ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
             }
             
-//        }
+        }
 
     }
     
@@ -201,7 +224,9 @@ struct AddImagesView: View {
 }
 
 struct AddImagesView_Previews: PreviewProvider {
+    static let images = RecipeImages()
     static var previews: some View {
         AddImagesView(id: UUID())
+            .environmentObject(images)
     }
 }

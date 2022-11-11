@@ -93,7 +93,6 @@
 		F8864FFA2909E82300FD34AE /* RecipeInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FF92909E82300FD34AE /* RecipeInstructions.swift */; };
 		F8864FFC2909EA4000FD34AE /* RecipeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FFB2909EA4000FD34AE /* RecipeImages.swift */; };
 		F89FAC11291C690700CA30A6 /* RecipeBeingBuilt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89FAC10291C690700CA30A6 /* RecipeBeingBuilt.swift */; };
-		F89FAC13291EB9AF00CA30A6 /* cuisines.json in Resources */ = {isa = PBXBuildFile; fileRef = F89FAC12291EB9AF00CA30A6 /* cuisines.json */; };
 		F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */; };
 		F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */ = {isa = PBXBuildFile; fileRef = F8C77C7C290744E600222C2D /* ingredients_list.json */; };
 		F8CC875728D380680030133B /* InMyFridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CC875628D380680030133B /* InMyFridge.swift */; };
@@ -207,7 +206,6 @@
 		F8864FF92909E82300FD34AE /* RecipeInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstructions.swift; sourceTree = "<group>"; };
 		F8864FFB2909EA4000FD34AE /* RecipeImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImages.swift; sourceTree = "<group>"; };
 		F89FAC10291C690700CA30A6 /* RecipeBeingBuilt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBeingBuilt.swift; sourceTree = "<group>"; };
-		F89FAC12291EB9AF00CA30A6 /* cuisines.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cuisines.json; sourceTree = "<group>"; };
 		F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView.swift; sourceTree = "<group>"; };
 		F8C77C7C290744E600222C2D /* ingredients_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients_list.json; sourceTree = "<group>"; };
 		F8CC875628D380680030133B /* InMyFridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMyFridge.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 				F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */,
 				F81A8D4D28F483D300FDB3EF /* recipes.json */,
 				F8C77C7C290744E600222C2D /* ingredients_list.json */,
-				F89FAC12291EB9AF00CA30A6 /* cuisines.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -511,7 +508,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F89FAC13291EB9AF00CA30A6 /* cuisines.json in Resources */,
 				935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */,
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,

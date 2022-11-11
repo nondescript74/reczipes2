@@ -209,14 +209,28 @@ func formatStringDoubleToNumber(stringToFormat: String) -> Double {
     return retNum?.doubleValue ?? 0
 }
 
+func getBookSectionsIDNames() -> [BookSectionIDName] {
+    let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
+    return bsin
+}
+
 func getBookSectionNames() -> [String] {
-    var cuisines:[Cuisine] = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
+    let bsin = getBookSectionsIDNames()
     var returningNames: [String] = []
-    for acuisine in cuisines {
-        returningNames.append(acuisine.name)
+    for abs in bsin {
+        returningNames.append(abs.name)
     }
     return returningNames
 }
+
+//func getBookSectionNames() -> [String] {
+//    var cuisines:[Cuisine] = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
+//    var returningNames: [String] = []
+//    for acuisine in cuisines {
+//        returningNames.append(acuisine.name)
+//    }
+//    return returningNames
+//}
 
 
 func dateSuffix() -> String {

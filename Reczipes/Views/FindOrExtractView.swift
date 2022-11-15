@@ -90,11 +90,14 @@ struct FindOrExtractView: View {
         NavigationView {
             VStack {
                 VStack {
-                    Text(msgs.fr.rawValue).font(.largeTitle).bold()
+                    Text(msgs.fr.rawValue).fontWeight(.semibold)
                     
-                    Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
-                        ForEach(0..<zx, id: \.self) { index in
-                            Text("\(getBookSectionNames()[index])")
+                    HStack {
+                        Text("Pick a cuisine").foregroundColor(.cyan)
+                        Picker(msgs.books.rawValue, selection: $xection) { let zx = getBookSectionNames().count
+                            ForEach(0..<zx, id: \.self) { index in
+                                Text("\(getBookSectionNames()[index])")
+                            }
                         }
                     }
                     
@@ -112,7 +115,7 @@ struct FindOrExtractView: View {
                 }.padding()
                 Divider()
                 VStack {
-                    Text(msgs.er.rawValue).font(.largeTitle).bold()
+                    Text(msgs.er.rawValue).fontWeight(.semibold)
                     
                     HStack(alignment: .center) {
                         TextField(msgs.entertext.rawValue, text: $urlString)
@@ -124,16 +127,17 @@ struct FindOrExtractView: View {
                 }.padding()
                 Divider()
                 VStack {
-                    Text(msgs.ingred.rawValue).font(.largeTitle).bold()
+                    Text(msgs.ingred.rawValue).fontWeight(.semibold)
                     
                     HStack(alignment: .center) {
                         TextField(msgs.enteringreds.rawValue, text: $ingredsString)
                         Button(action: findByIngredients) {
-                            Text(msgs.extract.rawValue).font(.largeTitle).bold()
+                            Text(msgs.ingreds.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 20)
                         
                     }
                 }.padding()
+                Divider()
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in

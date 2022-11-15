@@ -69,9 +69,9 @@ struct SettingsView: View {
                         Text("Sign in with Apple")
                     }.padding(.bottom)
                     
-                    NavigationLink(destination: FilesDisplayView()) {
-                        Text("Display user saved recipes, notes, images")
-                    }.padding(.bottom)
+//                    NavigationLink(destination: FilesDisplayView()) {
+//                        Text("Display user saved recipes, notes, images")
+//                    }.padding(.bottom)
                     
                     NavigationLink(destination: ProfileHost()) {
                         Text("View/Edit User profile settings")
@@ -84,10 +84,10 @@ struct SettingsView: View {
                         Text("Set user api key")
                     }.padding(.bottom)
                 }
-                
-                VStack {
-                    MultiView(show: .notyet)
-                }
+//                
+//                VStack {
+//                    MultiView(show: .notyet)
+//                }
                 
                 VStack {
                     Button("Tap to remove user recipes") {

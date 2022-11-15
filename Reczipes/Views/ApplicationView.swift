@@ -23,6 +23,7 @@ struct ApplicationView: View {
     // MARK: - Properties
     fileprivate enum tabs: String {
         case books = "Books"
+        case uf = "User Files"
         case frextr = "Find/Extract"
         case auth = "Sign In"
         case ingredients = "Ingred"
@@ -71,6 +72,18 @@ struct ApplicationView: View {
                 .tabItem {
                     Image(uiImage: tortoise!)
                     Text(tabs.build.rawValue)
+                }
+            
+            FilesDisplayView()
+                .tabItem {
+                    Image(uiImage: hare!)
+                    Text(tabs.uf.rawValue)
+                }
+            
+            MultiView(show: .notyet)
+                .tabItem {
+                    Image(uiImage: suitImage)
+                    Text(tabs.jt.rawValue)
                 }
             
         }

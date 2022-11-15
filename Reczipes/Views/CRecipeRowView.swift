@@ -24,7 +24,6 @@ struct CRecipeRowView: View {
         } else {
             anImage.getImageFromUrl(urlString: item.image, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
-        theSRecipeInfo.getMySRecipeInfo(id: crecipe.id)
     }
     
     // MARK: - Properties

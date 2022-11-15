@@ -72,6 +72,11 @@
 		F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */; };
 		F81A8D4E28F483D300FDB3EF /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4D28F483D300FDB3EF /* recipes.json */; };
 		F81A8D5128F4858700FDB3EF /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D5028F4858700FDB3EF /* License.txt */; };
+		F81BADCC2922FC51004AE705 /* CRecipeGroupCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADCB2922FC51004AE705 /* CRecipeGroupCreateOperation.swift */; };
+		F81BADCE2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADCD2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift */; };
+		F81BADD02922FDD3004AE705 /* CRecipeGroupXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADCF2922FDD3004AE705 /* CRecipeGroupXOperation.swift */; };
+		F81BADD22922FE8E004AE705 /* CRecipeGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADD12922FE8E004AE705 /* CRecipeGroupProvider.swift */; };
+		F81BADD42923064E004AE705 /* CRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADD32923064E004AE705 /* CRecipeRowView.swift */; };
 		F828685E28D28CA700BD0917 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828685D28D28CA700BD0917 /* MultiView.swift */; };
 		F82D1C9228E8F5E500DBBA77 /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9128E8F5E500DBBA77 /* RecipeRatio.swift */; };
 		F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */; };
@@ -183,6 +188,11 @@
 		F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShipped.json; sourceTree = "<group>"; };
 		F81A8D4D28F483D300FDB3EF /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		F81A8D5028F4858700FDB3EF /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		F81BADCB2922FC51004AE705 /* CRecipeGroupCreateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupCreateOperation.swift; sourceTree = "<group>"; };
+		F81BADCD2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupOutputOperation.swift; sourceTree = "<group>"; };
+		F81BADCF2922FDD3004AE705 /* CRecipeGroupXOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupXOperation.swift; sourceTree = "<group>"; };
+		F81BADD12922FE8E004AE705 /* CRecipeGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupProvider.swift; sourceTree = "<group>"; };
+		F81BADD32923064E004AE705 /* CRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeRowView.swift; sourceTree = "<group>"; };
 		F828685D28D28CA700BD0917 /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		F82D1C9128E8F5E500DBBA77 /* RecipeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
@@ -247,6 +257,7 @@
 				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
 				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
+				F81BADD32923064E004AE705 /* CRecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F8304A7228AD348500867C6F /* AuthView.swift */,
@@ -376,6 +387,7 @@
 				93ACB2B726B9E73F0010F71F /* TriviaProvider.swift */,
 				93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */,
 				9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */,
+				F81BADD12922FE8E004AE705 /* CRecipeGroupProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -396,8 +408,11 @@
 				93ACB2D526B9E8CC0010F71F /* SRecipeOutputOperation.swift */,
 				93ACB2F226B9E9AA0010F71F /* SRecipeXOperation.swift */,
 				9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */,
+				F81BADCB2922FC51004AE705 /* CRecipeGroupCreateOperation.swift */,
 				9329218E26BF231700CDDD52 /* SRecipeGroupOutputOperation.swift */,
+				F81BADCD2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift */,
 				9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */,
+				F81BADCF2922FDD3004AE705 /* CRecipeGroupXOperation.swift */,
 				93ACB2D926B9E8CC0010F71F /* TriviaCreateOperation.swift */,
 				93ACB2D626B9E8CC0010F71F /* TriviaOutputOperation.swift */,
 				93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */,
@@ -543,9 +558,11 @@
 				F8CC875F28D3AD6B0030133B /* FridgeHost.swift in Sources */,
 				F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */,
 				F8864FF229099B0B00FD34AE /* AddIngredientView.swift in Sources */,
+				F81BADD42923064E004AE705 /* CRecipeRowView.swift in Sources */,
 				93ACB2DF26B9E8CD0010F71F /* ImageCreateOperation.swift in Sources */,
 				93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */,
 				F8864FF629099B4300FD34AE /* AddImagesView.swift in Sources */,
+				F81BADCC2922FC51004AE705 /* CRecipeGroupCreateOperation.swift in Sources */,
 				F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */,
 				93237A2326A4E68100032387 /* Nutrition.swift in Sources */,
 				93237A3C26A4E98100032387 /* ImagePickerView.swift in Sources */,
@@ -575,6 +592,7 @@
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				F8864FF429099B2000FD34AE /* AddInstructionsView.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
+				F81BADD22922FE8E004AE705 /* CRecipeGroupProvider.swift in Sources */,
 				F8864FFA2909E82300FD34AE /* RecipeInstructions.swift in Sources */,
 				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
@@ -589,6 +607,7 @@
 				93237A2C26A4E7A200032387 /* Vitamins.swift in Sources */,
 				935398B22694E2780062931E /* ReczipesApp.swift in Sources */,
 				93237A3426A4E87900032387 /* ImagesView.swift in Sources */,
+				F81BADD02922FDD3004AE705 /* CRecipeGroupXOperation.swift in Sources */,
 				93ACB2E126B9E8CD0010F71F /* TriviaOutputOperation.swift in Sources */,
 				F8CC876128D3AD7A0030133B /* FridgeEditor.swift in Sources */,
 				F81A8CCA28EF0F6300FDB3EF /* BuildRowView.swift in Sources */,
@@ -596,6 +615,7 @@
 				F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */,
 				F8304A8628B1688700867C6F /* NutritionHost.swift in Sources */,
 				9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */,
+				F81BADCE2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift in Sources */,
 				F8304A8728B1688700867C6F /* NutritionEditor.swift in Sources */,
 				93ACB30726B9E9AA0010F71F /* ImageFilterOperation.swift in Sources */,
 				F8CC876328D3AD8E0030133B /* FridgeSummary.swift in Sources */,

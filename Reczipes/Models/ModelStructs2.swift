@@ -434,6 +434,36 @@ struct AnalyzedInstructions: Codable, Hashable, Equatable {
     static let aInstructionsExample = AnalyzedInstructions(name: "Step 1", steps: [Step.stepExample])
     
 }
+struct CRecipe: Identifiable, Codable, Hashable {
+    /*
+     id": 488633,
+     "title": "gobi pakora , how to make gobi pakoras or cauliflower fritters",
+     "image": "https://spoonacular.com/recipeImages/488633-312x231.jpg",
+     "imageType": "jpg"
+     */
+    var id: Int
+    var title: String
+    var image: String
+    var imageType: String
+    
+    static func == (lhs: CRecipe, rhs: CRecipe) -> Bool {
+        if lhs.id == rhs.id && lhs.image == rhs.image {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    static let cRecipeExample = CRecipe(id: 488633,
+                                        title: "gobi pakora , how to make gobi pakoras or cauliflower fritters",
+                                        image: "https://spoonacular.com/recipeImages/488633-312x231.jpg",
+                                        imageType: "jpg"
+    )
+}
+
+struct CRecipeGroup: Codable {
+    var results: [CRecipe]?
+}
 
 struct SRecipeGroup: Codable  {
     var results:[SRecipe]?  // when using random

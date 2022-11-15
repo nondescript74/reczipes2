@@ -17,6 +17,7 @@ public class WebQueryRecipes: ObservableObject {
     @Published var anImage: Image?
     @Published var recipeInfo: SRecipe?
     @Published var sRecipeGroup = [SRecipe]()
+    @Published var cRecipeGroup = [CRecipe]()
     @Published var extractedSRecipe: SRecipe?
     @Published var aTrivia: Trivia?
     @Published var joke: Joke?
@@ -92,6 +93,7 @@ public class WebQueryRecipes: ObservableObject {
         case foundsrecipe = "Found an SRecipe"
         case foundextractedrecipe = "Extracted an SRecipe"
         case foundsrecipegroup = "Found SRecipeGroup"
+        case fcrgroup = "Found CRecipeGroup"
         case getTrivia = "Found trivia"
         case getJoke = "Found joke"
         case noTitle = "No title"
@@ -171,17 +173,29 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
     
-    func findByIngredients(searchString: String, numberSent: Int, cuisine: String) {
-        // https://api.spoonacular.com/recipes/complexSearch?query=pasta&maxFat=25&number=2
+    func findByIngredientsAndCusine(searchString: String, numberSent: Int, cuisine: String) {
+        // https://api.spoonacular.com/recipes/complexSearch?&includeIngredients=chicken,&number=2&cuisine=indian&instructionsRequired=true&apiKey=ccc
         // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
         // for example, what's in my fridge
         // or getting a recipe equivalent to one you have written down
-//        let urlString = "https://api.spoonacular.com/recipes/findByIngredients?ingredients="  //apples,+flour,+sugar&number=2
+
         let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
         urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.numberDesired.rawValue + numberSent.description + myQuery.cuisine.rawValue + cuisine.lowercased() + key
         myTask(aswitch: myGets.FindByIngredients.rawValue)
     }
+    
+//    func findByIngredients(searchString: String, numberSent: Int, cuisine: String) {
+//        // https://api.spoonacular.com/recipes/complexSearch?&includeIngredients=chicken,&number=2&cuisine=indian&instructionsRequired=true&apiKey=ccc
+//        // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
+//        // for example, what's in my fridge
+//        // or getting a recipe equivalent to one you have written down
+//
+//        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+//        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
+//        urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.numberDesired.rawValue + numberSent.description + myQuery.cuisine.rawValue + cuisine.lowercased() + key
+//        myTask(aswitch: myGets.FindByIngredients.rawValue)
+//    }
     
     func getTrivia() {
         urlComponents = URLComponents(string: urlThings.trivia.rawValue)!
@@ -279,7 +293,6 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipe != nil {
                     DispatchQueue.main.async {
                         self.extractedSRecipe = srecipe!
-                        
 
                         if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
 
@@ -288,13 +301,12 @@ public class WebQueryRecipes: ObservableObject {
             }
             
         case myGets.FindByIngredients.rawValue:
-            _ = SRecipeProvider(recipesUrl: url) { srecipe in
-                if srecipe != nil {
+            _ = CRecipeGroupProvider(recipesUrl: url) { crecipes in
+                if crecipes != nil {
                     DispatchQueue.main.async {
-                        self.extractedSRecipe = srecipe!
-                        
+                        self.cRecipeGroup = crecipes!
 
-                        if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
+                        if self.zBug {print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")}
 
                     }
                 }

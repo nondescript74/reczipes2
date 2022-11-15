@@ -47,7 +47,7 @@ class DataLoadOperation: AsyncOperation {
     }
 }
 
-extension DataLoadOperation: ImageCreateOperationDataProvider, SRecipeGroupCreateOperationDataProvider, SRecipeCreateOperationDataProvider, TriviaCreateOperationDataProvider, JokeCreateOperationDataProvider {
+extension DataLoadOperation: ImageCreateOperationDataProvider, SRecipeGroupCreateOperationDataProvider, SRecipeCreateOperationDataProvider, CRecipeGroupCreateOperationDataProvider, TriviaCreateOperationDataProvider, JokeCreateOperationDataProvider {
     var data: Data? { return loadedData }
 }
 

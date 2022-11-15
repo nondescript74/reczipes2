@@ -16,6 +16,7 @@ struct FindOrExtractView: View {
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
+    @ObservedObject var cRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
         case fr = "Find Recipe"
@@ -68,7 +69,7 @@ struct FindOrExtractView: View {
         show = Selectors.ingred
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
         let cuisine = getBookSectionNames()[xection]
-        sRecipeGroup.findByIngredients(searchString: ingredsString, numberSent: numberNeeded, cuisine: cuisine)
+        cRecipeGroup.findByIngredientsAndCusine(searchString: ingredsString, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
@@ -148,8 +149,8 @@ struct FindOrExtractView: View {
                         RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: (extractedSRecipe.extractedSRecipe?.cuisines?.first ?? BookSection.example.name)! )
                     }
                     if show == Selectors.ingred {
-                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
+                        ForEach(cRecipeGroup.cRecipeGroup) { crecipe in
+                            CRecipeRowView(crecipe: crecipe, cuisine: getBookSectionNames()[xection])
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddImagesView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Initializer
     init(id: UUID) {
         self.id = id

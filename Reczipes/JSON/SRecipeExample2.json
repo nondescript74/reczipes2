@@ -1,0 +1,533 @@
+{
+    "vegetarian": true,
+    "vegan": true,
+    "glutenFree": true,
+    "dairyFree": true,
+    "veryHealthy": true,
+    "cheap": false,
+    "veryPopular": true,
+    "sustainable": false,
+    "lowFodmap": false,
+    "weightWatcherSmartPoints": 9,
+    "gaps": "no",
+    "preparationMinutes": 25,
+    "cookingMinutes": 25,
+    "aggregateLikes": 633,
+    "healthScore": 100,
+    "creditsText": "Veg Recipes of India",
+    "sourceName": "Veg Recipes of India",
+    "pricePerServing": 204.27,
+    "extendedIngredients": [
+        {
+            "id": 1032035,
+            "aisle": "Spices and Seasonings",
+            "image": "curry-powder.jpg",
+            "consistency": "SOLID",
+            "name": "asafoetida powder",
+            "nameClean": "asafoetida",
+            "original": "a pinch of asafoetida powder",
+            "originalName": "a of asafoetida powder",
+            "amount": 1,
+            "unit": "pinch",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 1,
+                    "unitShort": "pinch",
+                    "unitLong": "pinch"
+                },
+                "metric": {
+                    "amount": 1,
+                    "unitShort": "pinch",
+                    "unitLong": "pinch"
+                }
+            }
+        },
+        {
+            "id": 16157,
+            "aisle": "Gluten Free;Ethnic Foods;Health Foods",
+            "image": "chickpea-flour-or-another-gluten-free-flour.jpg",
+            "consistency": "SOLID",
+            "name": "besan gram flour",
+            "nameClean": "chickpea flour",
+            "original": "2 cups besan/gram flour",
+            "originalName": "besan/gram flour",
+            "amount": 2,
+            "unit": "cups",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 2,
+                    "unitShort": "cups",
+                    "unitLong": "cups"
+                },
+                "metric": {
+                    "amount": 473.176,
+                    "unitShort": "ml",
+                    "unitLong": "milliliters"
+                }
+            }
+        },
+        {
+            "id": 99017,
+            "aisle": "Spices and Seasonings",
+            "image": "ajwain.jpg",
+            "consistency": "SOLID",
+            "name": "carom seeds",
+            "nameClean": "ajwain",
+            "original": "½ tsp carom seeds/ajwain",
+            "originalName": "carom seeds/ajwain",
+            "amount": 0.5,
+            "unit": "tsp",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 0.5,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                },
+                "metric": {
+                    "amount": 0.5,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                }
+            }
+        },
+        {
+            "id": 11135,
+            "aisle": "Produce",
+            "image": "cauliflower.jpg",
+            "consistency": "SOLID",
+            "name": "cauliflower",
+            "nameClean": "cauliflower",
+            "original": "1 medium cauliflower or gobi",
+            "originalName": "cauliflower or gobi",
+            "amount": 1,
+            "unit": "medium",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 1,
+                    "unitShort": "medium",
+                    "unitLong": "medium"
+                },
+                "metric": {
+                    "amount": 1,
+                    "unitShort": "medium",
+                    "unitLong": "medium"
+                }
+            }
+        },
+        {
+            "id": 4513,
+            "aisle": null,
+            "image": null,
+            "consistency": "SOLID",
+            "name": "frying oil",
+            "nameClean": null,
+            "original": "oil for deep frying or shallow frying the pakoras",
+            "originalName": "oil for deep frying or shallow frying the pakoras",
+            "amount": 3,
+            "unit": "servings",
+            "meta": [
+                "for deep frying"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 3,
+                    "unitShort": "servings",
+                    "unitLong": "servings"
+                },
+                "metric": {
+                    "amount": 3,
+                    "unitShort": "servings",
+                    "unitLong": "servings"
+                }
+            }
+        },
+        {
+            "id": 93663,
+            "aisle": "Ethnic Foods;Spices and Seasonings",
+            "image": "garam-masala.jpg",
+            "consistency": "SOLID",
+            "name": "garam masala",
+            "nameClean": "garam masala",
+            "original": "¼ tsp garam masala powder",
+            "originalName": "garam masala powder",
+            "amount": 0.25,
+            "unit": "tsp",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 0.25,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                },
+                "metric": {
+                    "amount": 0.25,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                }
+            }
+        },
+        {
+            "id": 10093754,
+            "aisle": "Ethnic Foods",
+            "image": "ginger-garlic-paste.png",
+            "consistency": "SOLID",
+            "name": "ginger-garlic paste",
+            "nameClean": "ginger garlic paste",
+            "original": "½ tbsp ginger-garlic paste",
+            "originalName": "ginger-garlic paste",
+            "amount": 0.5,
+            "unit": "tbsp",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 0.5,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                },
+                "metric": {
+                    "amount": 0.5,
+                    "unitShort": "Tbsps",
+                    "unitLong": "Tbsps"
+                }
+            }
+        },
+        {
+            "id": 1032027,
+            "aisle": "Spices and Seasonings",
+            "image": "seasoning.png",
+            "consistency": "SOLID",
+            "name": "rajma masala",
+            "nameClean": "seasoning mix",
+            "original": "1 tsp chaat masala to sprinkle from above",
+            "originalName": "chaat masala to sprinkle from above",
+            "amount": 1,
+            "unit": "tsp",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 1,
+                    "unitShort": "tsp",
+                    "unitLong": "teaspoon"
+                },
+                "metric": {
+                    "amount": 1,
+                    "unitShort": "tsp",
+                    "unitLong": "teaspoon"
+                }
+            }
+        },
+        {
+            "id": 2009,
+            "aisle": "Spices and Seasonings",
+            "image": "chili-powder.jpg",
+            "consistency": "SOLID",
+            "name": "red chili powder",
+            "nameClean": "chili powder",
+            "original": "½ tsp red chili powder",
+            "originalName": "red chili powder",
+            "amount": 0.5,
+            "unit": "tsp",
+            "meta": [
+                "red"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 0.5,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                },
+                "metric": {
+                    "amount": 0.5,
+                    "unitShort": "tsps",
+                    "unitLong": "teaspoons"
+                }
+            }
+        },
+        {
+            "id": 2047,
+            "aisle": "Spices and Seasonings",
+            "image": "salt.jpg",
+            "consistency": "SOLID",
+            "name": "salt",
+            "nameClean": "table salt",
+            "original": "rock salt or regular salt as required",
+            "originalName": "rock salt or regular salt as required",
+            "amount": 3,
+            "unit": "servings",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 3,
+                    "unitShort": "servings",
+                    "unitLong": "servings"
+                },
+                "metric": {
+                    "amount": 3,
+                    "unitShort": "servings",
+                    "unitLong": "servings"
+                }
+            }
+        },
+        {
+            "id": 2043,
+            "aisle": "Spices and Seasonings",
+            "image": "turmeric.jpg",
+            "consistency": "SOLID",
+            "name": "turmeric powder",
+            "nameClean": "turmeric",
+            "original": "a pinch of turmeric powder or haldi",
+            "originalName": "a of turmeric powder or haldi",
+            "amount": 1,
+            "unit": "pinch",
+            "meta": [],
+            "measures": {
+                "us": {
+                    "amount": 1,
+                    "unitShort": "pinch",
+                    "unitLong": "pinch"
+                },
+                "metric": {
+                    "amount": 1,
+                    "unitShort": "pinch",
+                    "unitLong": "pinch"
+                }
+            }
+        },
+        {
+            "id": 14412,
+            "aisle": "Beverages",
+            "image": "water.png",
+            "consistency": "LIQUID",
+            "name": "water",
+            "nameClean": "water",
+            "original": "water - add as required to make a thick flowing batter",
+            "originalName": "water - add as required to make a thick flowing batter",
+            "amount": 3,
+            "unit": "servings",
+            "meta": [
+                "thick"
+            ],
+            "measures": {
+                "us": {
+                    "amount": 3,
+                    "unitShort": "servings",
+                    "unitLong": "servings"
+                },
+                "metric": {
+                    "amount": 3,
+                    "unitShort": "servings",
+                    "unitLong": "servings"
+                }
+            }
+        }
+    ],
+    "id": 488633,
+    "title": "gobi pakora , how to make gobi pakoras or cauliflower fritters",
+    "readyInMinutes": 50,
+    "servings": 3,
+    "sourceUrl": "http://www.vegrecipesofindia.com/gobi-pakora-cauliflower-pakora/",
+    "image": "https://spoonacular.com/recipeImages/488633-556x370.jpg",
+    "imageType": "jpg",
+    "summary": "Gobi pakora , how to make gobi pakoras or cauliflower fritters might be just the main course you are searching for. One portion of this dish contains around <b>19g of protein</b>, <b>7g of fat</b>, and a total of <b>342 calories</b>. This gluten free and vegan recipe serves 3 and costs <b>$1.13 per serving</b>. Many people made this recipe, and 633 would say it hit the spot. If you have chaat masala to sprinkle from above, ginger-garlic paste, shallow frying the pakoras, and a few other ingredients on hand, you can make it. To use up the salt you could follow this main course with the <a href=\"https://spoonacular.com/recipes/apple-turnovers-recipe-48175\">Apple Turnovers Recipe</a> as a dessert. From preparation to the plate, this recipe takes around <b>50 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 96%</b>. This score is super. Try <a href=\"https://spoonacular.com/recipes/tandoori-gobi-or-gobi-tikka-how-to-make-tandoori-gobi-gobi-s-487270\">tandoori gobi or gobi tikka, how to make tandoori gobi | gobi s</a>, <a href=\"https://spoonacular.com/recipes/aloo-gobi-curry-how-to-make-punjabi-aloo-gobi-dhaba-style-486716\">aloo gobi curry, how to make punjabi aloo gobi | dhaba style</a>, and <a href=\"https://spoonacular.com/recipes/aloo-gobi-restaurant-style-how-to-make-aloo-gobi-masala-486918\">aloo gobi restaurant style, how to make aloo gobi masala</a> for similar recipes.",
+    "cuisines": [
+        "Indian",
+        "Asian"
+    ],
+    "dishTypes": [
+        "lunch",
+        "main course",
+        "main dish",
+        "dinner"
+    ],
+    "diets": [
+        "gluten free",
+        "dairy free",
+        "lacto ovo vegetarian",
+        "vegan"
+    ],
+    "occasions": [],
+    "winePairing": {
+        "pairedWines": [
+            "riesling",
+            "gewurztraminer",
+            "chenin blanc"
+        ],
+        "pairingText": "Riesling, Gewurztraminer, and Chenin Blanc are my top picks for Asian. The best wine for Asian food depends on the cuisine and dish - of course - but these acidic whites pair with a number of traditional meals, spicy or not. The Domaine LesSurre Dry Cuvee Classique Riesling with a 4.8 out of 5 star rating seems like a good match. It costs about 23 dollars per bottle.",
+        "productMatches": [
+            {
+                "id": 2044656,
+                "title": "Domaine LesSurre Dry Cuvee Classique Riesling",
+                "description": "Domaine Leseurre’s Riesling juice is fermented 100% in stainless tanks. While on its lees, the wine is hand-stirred (bâtonnage sur lies) once per month, for 11 months. This process develops an additional complexity of flavors and aromas. This dry Riesling has scents of citrus blossoms and lemon zest, layered on the palate with hints of pear. This riesling pairs well with trout amandine, raw oysters and is a lovely aperitif.",
+                "price": "$22.99",
+                "imageUrl": "https://spoonacular.com/productImages/2044656-312x231.jpg",
+                "averageRating": 0.96,
+                "ratingCount": 14,
+                "score": 0.9367441860465116,
+                "link": "https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fdomaine-lessurre-dry-cuvee-classique-riesling-2017%2F567286"
+            }
+        ]
+    },
+    "instructions": "boil enough water with salt.break or chop the cauliflower in medium sized florets.rinse them well and add them to the boiling water.switch off the flame and let the cauliflower florets be immersed in the water for 10-12 minutes.drain and then marinate the cauliflower with red chili powder, turmeric powder, ginger-garlic paste, garam masala powder. mix very well and keep aside for 8-10 minutes.in another bowl, make a smooth batter with the besan/gram flour, asafoetida, baking soda or baking powder, salt and water.heat oil in a kadai or deep fryer.take each marinated cauliflower and dip in the batter.coat each floret with the batter and add these in the medium hot oil.fry till the pakoras are crisp and golden evenly.drain on paper towels.serve the gobi pakora hot or warm with any green chutney or sauce, sprinkled with chaat masala, lemon juice and chopped coriander leaves.",
+    "analyzedInstructions": [
+        {
+            "name": "",
+            "steps": [
+                {
+                    "number": 1,
+                    "step": "boil enough water with salt.break or chop the cauliflower in medium sized florets.rinse them well and add them to the boiling water.switch off the flame and let the cauliflower florets be immersed in the water for 10-12 minutes.drain and then marinate the cauliflower with red chili powder, turmeric powder, ginger-garlic paste, garam masala powder. mix very well and keep aside for 8-10 minutes.in another bowl, make a smooth batter with the besan/gram flour, asafoetida, baking soda or baking powder, salt and water.heat oil in a kadai or deep fryer.take each marinated cauliflower and dip in the batter.coat each floret with the batter and add these in the medium hot oil.fry till the pakoras are crisp and golden evenly.drain on paper towels.serve the gobi pakora hot or warm with any green chutney or sauce, sprinkled with chaat masala, lemon juice and chopped coriander leaves.",
+                    "ingredients": [
+                        {
+                            "id": 10011135,
+                            "name": "cauliflower florets",
+                            "localizedName": "cauliflower florets",
+                            "image": "cauliflower.jpg"
+                        },
+                        {
+                            "id": 10093754,
+                            "name": "ginger garlic paste",
+                            "localizedName": "ginger garlic paste",
+                            "image": "ginger-garlic-paste.png"
+                        },
+                        {
+                            "id": 2009,
+                            "name": "chili powder",
+                            "localizedName": "chili powder",
+                            "image": "chili-powder.jpg"
+                        },
+                        {
+                            "id": 2043,
+                            "name": "turmeric",
+                            "localizedName": "turmeric",
+                            "image": "turmeric.jpg"
+                        },
+                        {
+                            "id": 18369,
+                            "name": "baking powder",
+                            "localizedName": "baking powder",
+                            "image": "white-powder.jpg"
+                        },
+                        {
+                            "id": 10393663,
+                            "name": "chaat masala",
+                            "localizedName": "chaat masala",
+                            "image": "ground-coriander.jpg"
+                        },
+                        {
+                            "id": 93663,
+                            "name": "garam masala",
+                            "localizedName": "garam masala",
+                            "image": "garam-masala.jpg"
+                        },
+                        {
+                            "id": 18372,
+                            "name": "baking soda",
+                            "localizedName": "baking soda",
+                            "image": "white-powder.jpg"
+                        },
+                        {
+                            "id": 11135,
+                            "name": "cauliflower",
+                            "localizedName": "cauliflower",
+                            "image": "cauliflower.jpg"
+                        },
+                        {
+                            "id": 9152,
+                            "name": "lemon juice",
+                            "localizedName": "lemon juice",
+                            "image": "lemon-juice.jpg"
+                        },
+                        {
+                            "id": 1032035,
+                            "name": "asafoetida",
+                            "localizedName": "asafoetida",
+                            "image": "curry-powder.jpg"
+                        },
+                        {
+                            "id": 1012013,
+                            "name": "coriander",
+                            "localizedName": "coriander",
+                            "image": "ground-coriander.jpg"
+                        },
+                        {
+                            "id": 0,
+                            "name": "chutney",
+                            "localizedName": "chutney",
+                            "image": ""
+                        },
+                        {
+                            "id": 16157,
+                            "name": "chickpea flour",
+                            "localizedName": "chickpea flour",
+                            "image": "chickpea-flour-or-another-gluten-free-flour.jpg"
+                        },
+                        {
+                            "id": 20081,
+                            "name": "all purpose flour",
+                            "localizedName": "all purpose flour",
+                            "image": "flour.png"
+                        },
+                        {
+                            "id": 0,
+                            "name": "sauce",
+                            "localizedName": "sauce",
+                            "image": ""
+                        },
+                        {
+                            "id": 14412,
+                            "name": "water",
+                            "localizedName": "water",
+                            "image": "water.png"
+                        },
+                        {
+                            "id": 2047,
+                            "name": "salt",
+                            "localizedName": "salt",
+                            "image": "salt.jpg"
+                        },
+                        {
+                            "id": 0,
+                            "name": "dip",
+                            "localizedName": "dip",
+                            "image": ""
+                        },
+                        {
+                            "id": 4582,
+                            "name": "cooking oil",
+                            "localizedName": "cooking oil",
+                            "image": "vegetable-oil.jpg"
+                        }
+                    ],
+                    "equipment": [
+                        {
+                            "id": 405895,
+                            "name": "paper towels",
+                            "localizedName": "paper towels",
+                            "image": "paper-towels.jpg"
+                        },
+                        {
+                            "id": 404759,
+                            "name": "deep fryer",
+                            "localizedName": "deep fryer",
+                            "image": "deep-fryer.jpg"
+                        },
+                        {
+                            "id": 404783,
+                            "name": "bowl",
+                            "localizedName": "bowl",
+                            "image": "bowl.jpg"
+                        }
+                    ],
+                    "length": {
+                        "number": 22,
+                        "unit": "minutes"
+                    }
+                }
+            ]
+        }
+    ],
+    "originalId": null
+}

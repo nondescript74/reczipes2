@@ -10,7 +10,7 @@ import SwiftUI
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
-    private var zBug:Bool = true
+    private var zBug: Bool = true
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - Published
@@ -113,6 +113,17 @@ public class WebQueryRecipes: ObservableObject {
     func getMySRecipe(url: URL) {
         urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         myTask(aswitch: myGets.FindSRecipe.rawValue)
+    }
+    
+    func getMySRecipeInfo(id: Int) {
+        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+        urlComponents = URLComponents(string: urlThings.information.rawValue)!
+        urlComponents.path.append("\(id)")
+        urlComponents.path.append(urlThings.informationPartDeux.rawValue)
+        urlComponents.query =
+        myQuery.query.rawValue + key
+        myTask(aswitch: myGets.FindInformation.rawValue)
+        
     }
     
     func getSearched(searchString: String, numberSent: Int, cuisine: String) {
@@ -249,13 +260,14 @@ public class WebQueryRecipes: ObservableObject {
         
         switch aswitch {
             
-        case myGets.FindSRecipe.rawValue:
+//        case myGets.FindInformation.rawValue:
+//            break
+//
+        case myGets.FindSRecipe.rawValue, myGets.FindInformation.rawValue:
             _ = SRecipeProvider(recipesUrl: url) { recipeinfo  in
                 if self.recipeInfo != nil {
                     DispatchQueue.main.async { [self] in
                         self.recipeInfo = recipeinfo!
-                        
-
                         if zBug {print(messagesDebug.foundsrecipe.rawValue)}
 
                     }
@@ -267,8 +279,6 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async { [self] in
                         self.sRecipeGroup = srecipes!
-                        
-
                         print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? self.defaultRequiredCount)
 
                     }

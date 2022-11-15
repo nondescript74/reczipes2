@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CRecipeRowView: View {
     // MARK: - Debug
-    private var zBug:Bool = true
+    private var zBug: Bool = false
     // MARK: - Environment
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
+    @ObservedObject var theSRecipeInfo = WebQueryRecipes()  // need to get this asynch just like the image
     // MARK: - Initializer
     init(crecipe: CRecipe, cuisine: String) {
         self.item = crecipe
@@ -23,6 +24,7 @@ struct CRecipeRowView: View {
         } else {
             anImage.getImageFromUrl(urlString: item.image, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
+        theSRecipeInfo.getMySRecipeInfo(id: crecipe.id)
     }
     
     // MARK: - Properties
@@ -38,20 +40,21 @@ struct CRecipeRowView: View {
     
     // MARK: - View Process
     var body: some View {
-        //NavigationLink(destination: CRecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item, cuisine: cuisine)) {
+        NavigationLink(destination: RecipeDetailView(imageString: item.image, crecipe: item, cuisine: cuisine)) {
+            
             VStack(alignment: .leading) {
-               
-                    anImage.anImage?
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: widthImage, height: heightImage, alignment: .leading)
-                        .clipShape(Rectangle())
-                        .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
-                    
-                    Text(item.title)
+                
+                anImage.anImage?
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: widthImage, height: heightImage, alignment: .leading)
+                    .clipShape(Rectangle())
+                    .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
+                
+                Text(item.title)
                 
             }
-        
+        }
     }
 }
 

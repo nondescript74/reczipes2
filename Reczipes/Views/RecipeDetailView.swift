@@ -18,6 +18,15 @@ struct RecipeDetailView: View {
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
+        self.citem = CRecipe.cRecipeExample
+        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+        
+    }
+    
+    init(imageString: String, crecipe: CRecipe, cuisine: String) {
+        self.citem = crecipe
+        self.cuisine = cuisine
+        self.item = SectionItem.example
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
     }
     
@@ -25,6 +34,7 @@ struct RecipeDetailView: View {
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Properties
     var item: SectionItem
+    var citem: CRecipe
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "

@@ -58,7 +58,7 @@ class CRecipeGroupCreateOperation: Operation {
         }
         
         
-        if zBug { print("CRecipeGroupCreateOperation created an array of CRecipes", myCRecipes!.count) }
+        if zBug { print("CRecipeGroupCreateOperation created an array of CRecipes ", myCRecipes!.count) }
           
         
         if self.isCancelled { return }

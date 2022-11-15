@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddInstructionsView: View {
     // MARK: - Local Debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
     @EnvironmentObject var instructions: RecipeInstructions
     // MARK: - State

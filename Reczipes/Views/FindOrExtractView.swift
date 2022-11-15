@@ -151,7 +151,7 @@ struct FindOrExtractView: View {
                     if show == Selectors.ingred {
                         ForEach(cRecipeGroup.cRecipeGroup) { crecipe in
                             CRecipeRowView(crecipe: crecipe, cuisine: getBookSectionNames()[xection])
-                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                        }.disabled(cRecipeGroup.cRecipeGroup.isEmpty)
                     }
                 }
             }

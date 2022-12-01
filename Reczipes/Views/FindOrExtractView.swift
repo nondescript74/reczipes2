@@ -9,14 +9,13 @@ import SwiftUI
 
 struct FindOrExtractView: View {
     // MARK: - EnvironmentObject
-//    @EnvironmentObject var fileMgr: FileMgr
-//    @EnvironmentObject var addedRecipes: AddedRecipes
+    //    @EnvironmentObject var fileMgr: FileMgr
+    //    @EnvironmentObject var addedRecipes: AddedRecipes
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
-    @ObservedObject var cRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
         case fr = "Find Recipe"
@@ -24,7 +23,6 @@ struct FindOrExtractView: View {
         case find = "?"
         case random = "🤷🏽‍♂️"
         case er = "Extract Recipe"
-        case ingred = "Find By Ingredients"
         case entertext = "Enter Recipe URL"
         case extract = "✂️"
         case ingreds = "🍒"
@@ -44,11 +42,9 @@ struct FindOrExtractView: View {
         case extract
         case names
         case random
-        case ingred
     }
     
     // MARK: - Methods
-    
     func getSRecipeGroup() {
         show = Selectors.names
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
@@ -62,14 +58,6 @@ struct FindOrExtractView: View {
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
         let cuisine = getBookSectionNames()[xection]
         sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
-        endEditing()
-    }
-    
-    func findByIngredients() {
-        show = Selectors.ingred
-        let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = getBookSectionNames()[xection]
-        cRecipeGroup.findByIngredientsAndCusine(searchString: ingredsString, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
@@ -126,18 +114,6 @@ struct FindOrExtractView: View {
                     }
                 }.padding()
                 Divider()
-                VStack {
-                    Text(msgs.ingred.rawValue).fontWeight(.semibold)
-                    
-                    HStack(alignment: .center) {
-                        TextField(msgs.enteringreds.rawValue, text: $ingredsString)
-                        Button(action: findByIngredients) {
-                            Text(msgs.ingreds.rawValue).font(.largeTitle).bold()
-                        }.padding(.trailing, 20)
-                        
-                    }
-                }.padding()
-                Divider()
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
@@ -151,11 +127,6 @@ struct FindOrExtractView: View {
                     }
                     if show == Selectors.extract {
                         RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: (extractedSRecipe.extractedSRecipe?.cuisines?.first ?? BookSection.example.name)! )
-                    }
-                    if show == Selectors.ingred {
-                        ForEach(cRecipeGroup.cRecipeGroup) { crecipe in
-                            CRecipeRowView(crecipe: crecipe, cuisine: getBookSectionNames()[xection])
-                        }.disabled(cRecipeGroup.cRecipeGroup.isEmpty)
                     }
                 }
             }

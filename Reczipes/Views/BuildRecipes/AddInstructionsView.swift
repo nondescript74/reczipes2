@@ -18,7 +18,7 @@ struct AddInstructionsView: View {
     
     // MARK: - Methods
     fileprivate func addInstr() {
-        instructions.add(item: Instruction(id: Int64.random(in: 1..<myMax), text: myText))
+        instructions.add(item: Instruction(id: Int64.random(in: 1..<myMaxInt64), text: myText))
         myText = ""
     }
     

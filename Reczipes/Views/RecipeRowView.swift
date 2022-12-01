@@ -89,7 +89,7 @@ struct RecipeRowView: View {
 struct RecipeRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            RecipeRowView(sectionItem: SectionItem.example)
+            RecipeRowView(sectionItem: SectionItem.example, cuisine: "Indian")
             RecipeRowView(sectionItem: SectionItem.example2)
         }.previewDevice("iPhone Xr")
     }

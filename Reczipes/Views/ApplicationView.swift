@@ -94,6 +94,7 @@ struct ApplicationView: View {
         .environmentObject(recipeIngreds)
         .environmentObject(recipeInstr)
         .environmentObject(recipeImgs)
+        .environmentObject(rbb)
     }
 }
 
@@ -105,6 +106,7 @@ struct ApplicationView_Previews: PreviewProvider {
     static let recipIngreds = RecipeIngredients()
     static let recipInstr = RecipeInstructions()
     static let recipImgs = RecipeImages()
+    static let rbb = RecipeBeingBuilt()
     
     static var previews: some View {
         ApplicationView()
@@ -115,5 +117,6 @@ struct ApplicationView_Previews: PreviewProvider {
             .environmentObject(recipIngreds)
             .environmentObject(recipInstr)
             .environmentObject(recipImgs)
+            .environmentObject(rbb)
     }
 }

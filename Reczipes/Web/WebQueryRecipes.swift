@@ -26,9 +26,9 @@ public class WebQueryRecipes: ObservableObject {
     private enum myQuery: String {
         case query = "query="
         case numberDesired = "&number="
-        case ingredients = "ingredients="
-        case nutritionFalse = "?includeNutrition=false"
-        case nutritionTrue = "?includeNutrition=true"
+        case ingredients = "includeIngredients="
+        case nutritionFalse = "includeNutrition=false"
+//        case nutritionTrue = "includeNutrition=true"
         case recipeInfo = "&addRecipeInformation=true"
         case extract = "url="
         case trivia, joke = ""
@@ -115,16 +115,15 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.FindSRecipe.rawValue)
     }
     
-    func getMySRecipeInfo(id: Int) {
-        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
-        urlComponents = URLComponents(string: urlThings.information.rawValue)!
-        urlComponents.path.append("\(id)")
-        urlComponents.path.append(urlThings.informationPartDeux.rawValue)
-        urlComponents.query =
-        myQuery.query.rawValue + key
-        myTask(aswitch: myGets.FindInformation.rawValue)
-        
-    }
+//    func getMySRecipeInfo(id: Int) {
+//        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+//        urlComponents = URLComponents(string: urlThings.information.rawValue)!
+//        urlComponents.path.append("\(id)")
+//        urlComponents.path.append(urlThings.informationPartDeux.rawValue)
+//        urlComponents.query = myQuery.nutritionFalse.rawValue + key
+//        myTask(aswitch: myGets.FindInformation.rawValue)
+//        // https://api.spoonacular.com/recipes/488633/information?includeNutrition=false&apiKey=
+//    }
     
     func getSearched(searchString: String, numberSent: Int, cuisine: String) {
         if searchString == "" {
@@ -175,7 +174,7 @@ public class WebQueryRecipes: ObservableObject {
     }
     
     func findExtracted(urlString: String) {
-        // https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&apiKey=apiKey
+        // https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&apiKey=apiKey=ooo
         if !urlString.isValidURL {
             return
         }
@@ -184,19 +183,7 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
     
-    func findByIngredientsAndCusine(searchString: String, numberSent: Int, cuisine: String) {
-        // https://api.spoonacular.com/recipes/complexSearch?&includeIngredients=chicken,&number=2&cuisine=indian&instructionsRequired=true&apiKey=ccc
-        // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
-        // for example, what's in my fridge
-        // or getting a recipe equivalent to one you have written down
-
-        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
-        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.numberDesired.rawValue + numberSent.description + myQuery.cuisine.rawValue + cuisine.lowercased() + key
-        myTask(aswitch: myGets.FindByIngredients.rawValue)
-    }
-    
-//    func findByIngredients(searchString: String, numberSent: Int, cuisine: String) {
+//    func findByIngredientsAndCusine(searchString: String, numberSent: Int, cuisine: String) {
 //        // https://api.spoonacular.com/recipes/complexSearch?&includeIngredients=chicken,&number=2&cuisine=indian&instructionsRequired=true&apiKey=ccc
 //        // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
 //        // for example, what's in my fridge
@@ -236,7 +223,6 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.anImage = myImage
                         if self.zBug { print(messagesDebug.foundimage.rawValue)}
-
                     }
                 }
             }
@@ -257,19 +243,14 @@ public class WebQueryRecipes: ObservableObject {
 
         if zBug {print(url.absoluteString)}
 
-        
         switch aswitch {
-            
-//        case myGets.FindInformation.rawValue:
-//            break
-//
+    
         case myGets.FindSRecipe.rawValue, myGets.FindInformation.rawValue:
             _ = SRecipeProvider(recipesUrl: url) { recipeinfo  in
                 if self.recipeInfo != nil {
                     DispatchQueue.main.async { [self] in
                         self.recipeInfo = recipeinfo!
                         if zBug {print(messagesDebug.foundsrecipe.rawValue)}
-
                     }
                 }
             }
@@ -279,8 +260,7 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async { [self] in
                         self.sRecipeGroup = srecipes!
-                        print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? self.defaultRequiredCount)
-
+                        if self.zBug {print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? self.defaultRequiredCount)}
                     }
                 }
             }
@@ -290,10 +270,7 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async {
                         self.sRecipeGroup = srecipes!
-                        
-
                         if self.zBug {print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? self.defaultRequiredCount)}
-
                     }
                 }
             }
@@ -303,34 +280,27 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipe != nil {
                     DispatchQueue.main.async {
                         self.extractedSRecipe = srecipe!
-
                         if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
-
                     }
                 }
             }
             
-        case myGets.FindByIngredients.rawValue:
-            _ = CRecipeGroupProvider(recipesUrl: url) { crecipes in
-                if crecipes != nil {
-                    DispatchQueue.main.async {
-                        self.cRecipeGroup = crecipes!
-
-                        if self.zBug {print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")}
-
-                    }
-                }
-            }
+//        case myGets.FindByIngredients.rawValue:
+//            _ = CRecipeGroupProvider(recipesUrl: url) { crecipes in
+//                if crecipes != nil {
+//                    DispatchQueue.main.async {
+//                        self.cRecipeGroup = crecipes!
+//                        if self.zBug {print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")}
+//                    }
+//                }
+//            }
             
         case myGets.GetTrivia.rawValue:
             _ = TriviaProvider(triviaUrl: url) { trivia in
                 if trivia != nil {
                     DispatchQueue.main.async {
                         self.aTrivia = trivia!
-                        
-
                         if self.zBug {print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)}
-
                     }
                 }
             }
@@ -340,10 +310,7 @@ public class WebQueryRecipes: ObservableObject {
                 if joke != nil {
                     DispatchQueue.main.async {
                         self.joke = joke!
-                        
-
                         if self.zBug {print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)}
-
                     }
                 }
             }

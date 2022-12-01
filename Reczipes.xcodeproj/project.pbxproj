@@ -76,8 +76,8 @@
 		F81BADCE2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADCD2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift */; };
 		F81BADD02922FDD3004AE705 /* CRecipeGroupXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADCF2922FDD3004AE705 /* CRecipeGroupXOperation.swift */; };
 		F81BADD22922FE8E004AE705 /* CRecipeGroupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADD12922FE8E004AE705 /* CRecipeGroupProvider.swift */; };
-		F81BADD42923064E004AE705 /* CRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADD32923064E004AE705 /* CRecipeRowView.swift */; };
 		F81BADD62923F104004AE705 /* SRecipeExample2.json in Resources */ = {isa = PBXBuildFile; fileRef = F81BADD52923F104004AE705 /* SRecipeExample2.json */; };
+		F81BADDC2927DA47004AE705 /* CRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81BADDB2927DA47004AE705 /* CRecipeViewModel.swift */; };
 		F828685E28D28CA700BD0917 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828685D28D28CA700BD0917 /* MultiView.swift */; };
 		F82D1C9228E8F5E500DBBA77 /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9128E8F5E500DBBA77 /* RecipeRatio.swift */; };
 		F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */; };
@@ -92,13 +92,16 @@
 		F8304A8728B1688700867C6F /* NutritionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A8428B1688700867C6F /* NutritionEditor.swift */; };
 		F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A8128B1688700867C6F /* NutritionSummary.swift */; };
 		F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */; };
+		F86648622937A9A400C78F38 /* RecipeSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86648612937A9A400C78F38 /* RecipeSteps.swift */; };
 		F8864FF229099B0B00FD34AE /* AddIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FF129099B0B00FD34AE /* AddIngredientView.swift */; };
 		F8864FF429099B2000FD34AE /* AddInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FF329099B2000FD34AE /* AddInstructionsView.swift */; };
 		F8864FF629099B4300FD34AE /* AddImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FF529099B4300FD34AE /* AddImagesView.swift */; };
 		F8864FF82909E1D900FD34AE /* RecipeIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FF72909E1D900FD34AE /* RecipeIngredients.swift */; };
 		F8864FFA2909E82300FD34AE /* RecipeInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FF92909E82300FD34AE /* RecipeInstructions.swift */; };
 		F8864FFC2909EA4000FD34AE /* RecipeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8864FFB2909EA4000FD34AE /* RecipeImages.swift */; };
+		F8865DA32938FFE90007A95F /* CreateSRecipeFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8865DA22938FFE90007A95F /* CreateSRecipeFieldsView.swift */; };
 		F89FAC11291C690700CA30A6 /* RecipeBeingBuilt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89FAC10291C690700CA30A6 /* RecipeBeingBuilt.swift */; };
+		F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BAA1A3292D8EE0008AFEAD /* Images.json */; };
 		F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */; };
 		F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */ = {isa = PBXBuildFile; fileRef = F8C77C7C290744E600222C2D /* ingredients_list.json */; };
 		F8CC875728D380680030133B /* InMyFridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CC875628D380680030133B /* InMyFridge.swift */; };
@@ -193,8 +196,8 @@
 		F81BADCD2922FD2A004AE705 /* CRecipeGroupOutputOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupOutputOperation.swift; sourceTree = "<group>"; };
 		F81BADCF2922FDD3004AE705 /* CRecipeGroupXOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupXOperation.swift; sourceTree = "<group>"; };
 		F81BADD12922FE8E004AE705 /* CRecipeGroupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeGroupProvider.swift; sourceTree = "<group>"; };
-		F81BADD32923064E004AE705 /* CRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeRowView.swift; sourceTree = "<group>"; };
 		F81BADD52923F104004AE705 /* SRecipeExample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample2.json; sourceTree = "<group>"; };
+		F81BADDB2927DA47004AE705 /* CRecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRecipeViewModel.swift; sourceTree = "<group>"; };
 		F828685D28D28CA700BD0917 /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		F82D1C9128E8F5E500DBBA77 /* RecipeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
@@ -211,13 +214,16 @@
 		F8304A8328B1688700867C6F /* NutritionHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionHost.swift; sourceTree = "<group>"; };
 		F8304A8428B1688700867C6F /* NutritionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionEditor.swift; sourceTree = "<group>"; };
 		F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOrExtractView.swift; sourceTree = "<group>"; };
+		F86648612937A9A400C78F38 /* RecipeSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSteps.swift; sourceTree = "<group>"; };
 		F8864FF129099B0B00FD34AE /* AddIngredientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientView.swift; sourceTree = "<group>"; };
 		F8864FF329099B2000FD34AE /* AddInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstructionsView.swift; sourceTree = "<group>"; };
 		F8864FF529099B4300FD34AE /* AddImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImagesView.swift; sourceTree = "<group>"; };
 		F8864FF72909E1D900FD34AE /* RecipeIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredients.swift; sourceTree = "<group>"; };
 		F8864FF92909E82300FD34AE /* RecipeInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstructions.swift; sourceTree = "<group>"; };
 		F8864FFB2909EA4000FD34AE /* RecipeImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImages.swift; sourceTree = "<group>"; };
+		F8865DA22938FFE90007A95F /* CreateSRecipeFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSRecipeFieldsView.swift; sourceTree = "<group>"; };
 		F89FAC10291C690700CA30A6 /* RecipeBeingBuilt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBeingBuilt.swift; sourceTree = "<group>"; };
+		F8BAA1A3292D8EE0008AFEAD /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
 		F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView.swift; sourceTree = "<group>"; };
 		F8C77C7C290744E600222C2D /* ingredients_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients_list.json; sourceTree = "<group>"; };
 		F8CC875628D380680030133B /* InMyFridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMyFridge.swift; sourceTree = "<group>"; };
@@ -259,7 +265,6 @@
 				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
 				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
-				F81BADD32923064E004AE705 /* CRecipeRowView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F8304A7228AD348500867C6F /* AuthView.swift */,
@@ -324,6 +329,7 @@
 		9341A05C2698FDE400DCA754 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				F8BAA1A3292D8EE0008AFEAD /* Images.json */,
 				93D611A726CE971200664F14 /* Notes.json */,
 				9396EAB826BDF0FE000FD136 /* SectionNames.json */,
 				F8CE26D3289C75B1003483DD /* SRecipeExample.json */,
@@ -434,7 +440,9 @@
 				F89FAC10291C690700CA30A6 /* RecipeBeingBuilt.swift */,
 				F8864FF72909E1D900FD34AE /* RecipeIngredients.swift */,
 				F8864FF92909E82300FD34AE /* RecipeInstructions.swift */,
+				F86648612937A9A400C78F38 /* RecipeSteps.swift */,
 				F8864FFB2909EA4000FD34AE /* RecipeImages.swift */,
+				F81BADDB2927DA47004AE705 /* CRecipeViewModel.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -463,6 +471,7 @@
 				F8864FF329099B2000FD34AE /* AddInstructionsView.swift */,
 				F8864FF529099B4300FD34AE /* AddImagesView.swift */,
 				F81A8CC928EF0F6300FDB3EF /* BuildRowView.swift */,
+				F8865DA22938FFE90007A95F /* CreateSRecipeFieldsView.swift */,
 			);
 			path = BuildRecipes;
 			sourceTree = "<group>";
@@ -527,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */,
+				F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */,
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
 				F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */,
@@ -562,7 +572,7 @@
 				F8CC875F28D3AD6B0030133B /* FridgeHost.swift in Sources */,
 				F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */,
 				F8864FF229099B0B00FD34AE /* AddIngredientView.swift in Sources */,
-				F81BADD42923064E004AE705 /* CRecipeRowView.swift in Sources */,
+				F8865DA32938FFE90007A95F /* CreateSRecipeFieldsView.swift in Sources */,
 				93ACB2DF26B9E8CD0010F71F /* ImageCreateOperation.swift in Sources */,
 				93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */,
 				F8864FF629099B4300FD34AE /* AddImagesView.swift in Sources */,
@@ -598,6 +608,7 @@
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
 				F81BADD22922FE8E004AE705 /* CRecipeGroupProvider.swift in Sources */,
 				F8864FFA2909E82300FD34AE /* RecipeInstructions.swift in Sources */,
+				F81BADDC2927DA47004AE705 /* CRecipeViewModel.swift in Sources */,
 				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
 				F82D1C9228E8F5E500DBBA77 /* RecipeRatio.swift in Sources */,
@@ -616,6 +627,7 @@
 				F8CC876128D3AD7A0030133B /* FridgeEditor.swift in Sources */,
 				F81A8CCA28EF0F6300FDB3EF /* BuildRowView.swift in Sources */,
 				F89FAC11291C690700CA30A6 /* RecipeBeingBuilt.swift in Sources */,
+				F86648622937A9A400C78F38 /* RecipeSteps.swift in Sources */,
 				F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */,
 				F8304A8628B1688700867C6F /* NutritionHost.swift in Sources */,
 				9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */,
@@ -765,7 +777,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 214;
+				CURRENT_PROJECT_VERSION = 222;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -810,7 +822,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 214;
+				CURRENT_PROJECT_VERSION = 222;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

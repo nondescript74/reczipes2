@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Foundation
+import Combine
 
 public var colorFontLists:Color = Color.init("ED7D3A")
 public var iPhoneXrPreviewDevice:PreviewDevice = "iPhone Xr"
@@ -64,7 +65,8 @@ let myExtendedIngredients: [ExtendedIngredient] = Bundle.main.decode([ExtendedIn
 var colorBackgroundButton: Color = Color.init("ED7D3A")
 var colorForegroundButton: Color = Color.init("A4B8C4")
 let colors: [String: Color] = ["D": .purple, "G": .pink, "N": .red, "S": .blue, "V": .green, "VX": .green, "L": .gray, "H": .orange, "P": .yellow]
-let myMax: Int64 = 9223372036854775807
+let myMax: Int = Int.max
+let myMaxInt64: Int64 = Int64.max
 
 fileprivate enum msgs: String {
     
@@ -97,7 +99,7 @@ func getIngredList() -> [Ingredient] {
 
 func getIngredientForName(name: String) -> Ingredient {
     let myList = getIngredList().filter({$0.name == name})
-    return myList.first ?? Ingredient(name: name, id: Int64.random(in: 1..<myMax-1))
+    return myList.first ?? Ingredient(name: name, id: Int64.random(in: 1..<myMaxInt64-1))
 }
 
 func getDocuDirUrl() -> URL {
@@ -601,4 +603,49 @@ extension FileManager {
 #endif
         }
     }
+}
+
+extension Publisher {
+  
+  /// Executes an asyncronous call and returns its result to the downstream subscriber.
+  ///
+  /// - Parameter transform: A closure that takes an element as a parameter and returns a publisher that produces elements of that type.
+  /// - Returns: A publisher that transforms elements from an upstream  publisher into a publisher of that element’s type.
+  func `await`<T>(_ transform: @escaping (Output) async -> T) -> AnyPublisher<T, Failure> {
+    flatMap { value -> Future<T, Failure> in
+      Future { promise in
+        Task {
+          let result = await transform(value)
+          promise(.success(result))
+        }
+      }
+    }
+    .eraseToAnyPublisher()
+  }
+  
+  /// Performs the specified closures when publisher events occur.
+  ///
+  /// This is an overloaded version of ``Publisher/handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)`` that only
+  /// accepts a closure for the `receiveOutput` events. Use it to inspect events as they pass through the pipeline.
+  ///
+  /// - Parameters:
+  ///   - receiveOutput: A closure that executes when the publisher receives a value from the upstream publisher.
+  /// - Returns: A publisher that performs the specified closures when publisher events occur.
+  func handleEvents(_ receiveOutput: (@escaping (Self.Output) -> Void)) -> Publishers.HandleEvents<Self> {
+    self.handleEvents(receiveOutput: receiveOutput)
+  }
+  
+  /// Performs the specified closures when publisher events occur.
+  ///
+  /// This is an overloaded version of ``Publisher/handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)`` that only
+  /// accepts a closure for the `receiveOutput` events. Use it to execute side effects while events pass down the pipeline.
+  ///
+  /// - Parameters:
+  ///   - receiveOutput: A closure that executes when the publisher receives a value from the upstream publisher.
+  /// - Returns: A publisher that performs the specified closures when publisher events occur.
+  func handleEvents(_ receiveOutput: (@escaping () -> Void)) -> Publishers.HandleEvents<Self> {
+    self.handleEvents { output in
+      receiveOutput()
+    }
+  }
 }

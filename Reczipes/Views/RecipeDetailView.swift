@@ -9,32 +9,31 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
-    //MARK: - Environment
-    @EnvironmentObject var order: OrderingList
     // MARK: - Local debug flag
     fileprivate var zBug:Bool = false
-    
+    //MARK: - Environment
+    @EnvironmentObject var order: OrderingList
+    // MARK: - ObservedObject
+    @ObservedObject var anImage = WebQueryRecipes()
+//    @ObservedObject var recipeInfo = WebQueryRecipes()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
-        self.citem = CRecipe.cRecipeExample
-        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
-        
-    }
-    
-    init(imageString: String, crecipe: CRecipe, cuisine: String) {
-        self.citem = crecipe
-        self.cuisine = cuisine
-        self.item = SectionItem.example
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
     }
+
     
-    // MARK: - ObservedObject
-    @ObservedObject var anImage = WebQueryRecipes()
+//    init(imageString: String, crecipe: CRecipe, cuisine: String) {
+//        self.cuisine = cuisine
+//        self.item = SectionItem.example
+//        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+//        recipeInfo.getMySRecipeInfo(id: crecipe.id)
+//    }
+    
+
     // MARK: - Properties
-    var item: SectionItem
-    var citem: CRecipe
+    var item: SectionItem = SectionItem.example2
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -261,13 +260,13 @@ struct RecipeDetailView: View {
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.gc.rawValue, reversed: true)
                     }
                     
-                    Button(action: {
-                        // What to perform
-                        self.isShowingMailView.toggle()
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.send.rawValue, someTextBottom: labelz.mail.rawValue, someImage: imagez.mail.rawValue, reversed: true)
-                    }.disabled(!MFMailComposeViewController.canSendMail())
+//                    Button(action: {
+//                        // What to perform
+//                        self.isShowingMailView.toggle()
+//                    }) {
+//                        // How the button looks like
+//                        RoundButton3View(someTextTop: labelz.send.rawValue, someTextBottom: labelz.mail.rawValue, someImage: imagez.mail.rawValue, reversed: true)
+//                    }.disabled(!MFMailComposeViewController.canSendMail())
                     
                     
                 }
@@ -288,16 +287,15 @@ struct RecipeDetailView: View {
                     SafariView(url: URL(string: item.url)!)
                 }
             }
-            
             .sheet(isPresented: $addingImage) {
                 AddImageAndNoteView()
             }
             .sheet(isPresented: $addingNote) {
                 AddImageAndNoteView()
             }
-            .sheet(isPresented: $isShowingMailView) {
-                //                MailView(result: self.$result, sectItem: self.item)
-            }
+//            .sheet(isPresented: $isShowingMailView) {
+//                //                MailView(result: self.$result, sectItem: self.item)
+//            }
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }

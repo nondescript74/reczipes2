@@ -371,7 +371,7 @@ struct Equipment: Codable, Hashable, Equatable {
         }
     }
     
-    static let equipmentExample = Equipment(id: Int64.random(in: 0..<myMax), name: "9 inch iron skillet")
+    static let equipmentExample = Equipment(id: Int64.random(in: 0..<myMaxInt64), name: "9 inch iron skillet")
 }
 
 struct Step: Codable, Hashable, Equatable {
@@ -389,7 +389,7 @@ struct Step: Codable, Hashable, Equatable {
         }
     }
     
-    static let stepExample = Step(number: Int64.random(in: 0..<myMax), step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthExampleSeconds)
+    static let stepExample = Step(number: Int64.random(in: 0..<myMaxInt64), step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthExampleSeconds)
 }
 
 struct Length: Codable, Hashable, Equatable {
@@ -473,7 +473,7 @@ struct SRecipeGroup: Codable  {
 
 struct SRecipe: Codable, Hashable, Identifiable, Equatable {
     var aggregateLikes:Int64?
-    var analyzedInstructions:[AnalyzedInstructions?]?
+    var analyzedInstructions:[AnalyzedInstructions?]? //
     var cheap:Bool?
     var cookingMinutes:Int64?
     var creditsText:String?
@@ -485,7 +485,7 @@ struct SRecipe: Codable, Hashable, Identifiable, Equatable {
     var gaps:String?
     var glutenFree:Bool?
     var healthScore:Double?
-    var id:Int64?
+    var id:Int
     var image:String?
     var imageType:String?
     var instructions:String?
@@ -600,3 +600,29 @@ struct Cuisine: Codable, Hashable, Equatable {
         hasher.combine(name)
     }
 }
+
+//struct NavigationButton<Label, Destination>: View where Label: View, Destination: View {
+//  @State
+//  private var isSheetPresented = false
+//  
+//  private var title: Label
+//  private var description: String?
+//  private var destination: () -> Destination
+//  
+//  public init(_ title: Label, description: String? = nil, @ViewBuilder destination: @escaping () -> Destination) {
+//    self.title = title
+//    self.description = description
+//    self.destination = destination
+//  }
+//  
+//  var body: some View {
+//    Button(action: { isSheetPresented.toggle()} ) {
+//      title
+//        .sheet(isPresented: $isSheetPresented) {
+//          NavigationView {
+//            destination()
+//          }
+//        }
+//    }
+//  }
+//}

@@ -13,7 +13,7 @@ protocol CRecipeGroupOutputOperationDataProvider {
 
 class CRecipeGroupOutputOperation: CRecipeGroupXOperation {
     // MARK: - Debug local
-    private var zBug:Bool = false
+    private var zBug:Bool = true
     // MARK: - Properties
     fileprivate var inputcrecipe: [CRecipe]?
     fileprivate let completion: ([CRecipe]?) -> ()

@@ -39,15 +39,6 @@ struct KeyView: View {
             Text("User supplied key: " + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"))
             Divider()
             HStack {
-//                Button(action: {
-//                    // What to perform
-//                    keyAvailable.toggle()
-//
-//                }) {
-//                    // How the button looks like
-//                    RoundButton3View(someTextTop: labelz.top.rawValue, someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
-//                }.disabled(apiKey == "").padding(.bottom)
-                
                 Button(action: {
                     // What to perform
                     UserDefaults.standard.set(apiKey, forKey: "SpoonacularKey")

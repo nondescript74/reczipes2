@@ -68,7 +68,7 @@ struct ApplicationView: View {
                     Text(tabs.settings.rawValue)
                 }
             
-            BuildRecipeView()
+            CreateSRecipeFieldsView()
                 .tabItem {
                     Image(uiImage: tortoise!)
                     Text(tabs.build.rawValue)

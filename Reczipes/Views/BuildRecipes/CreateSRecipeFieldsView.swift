@@ -16,30 +16,63 @@ struct CreateSRecipeFieldsView: View {
     
     // MARK: - Properties
     fileprivate enum msgs: String {
+        case en = "Enter recipe name"
         case al = "Aggregate likes"
         case chp = "Cheap?"
+        case cm = "Cooking minutes"
+        case cred = "Credits"
+        case cuis = "Pick a cuisine"
+        case df = "Dairy Free?"
     }
-
+    
+    @State fileprivate var recName: String = ""
     @State fileprivate var aggLikes: Int = 0
     @State fileprivate var cheap: Bool = true
+    @State fileprivate var cookmin: Int = 0
+    @State fileprivate var creds: String = ""
+    @State fileprivate var xection: Int = 0
+    @State fileprivate var dairyF: Bool = false
+    
+    // MARK: - Methods
+    fileprivate func saveIt() -> Bool {
+        return false
+    }
     var body: some View {
         NavigationView {
-            Form {
-                Picker(msgs.al.rawValue, selection: $aggLikes) {
-                    ForEach(0 ..< 100) {
-                        Text("\($0) likes")
+            VStack {
+                Form {
+                    TextField(msgs.en.rawValue, text: $recName)
+                    Picker(msgs.al.rawValue, selection: $aggLikes) {
+                        ForEach(0 ..< 100) {
+                            Text("\($0) likes")
+                        }
+                    }
+                    HStack {
+                        Text(msgs.chp.rawValue)
+                        Button("Change", action:{cheap.toggle()}).buttonStyle(.bordered)
+                    }
+                    
+                    Picker(msgs.cm.rawValue, selection: $cookmin) {
+                        ForEach(0 ..< 300) {
+                            Text("\($0) minutes")
+                        }
+                    }
+                    TextField(msgs.cred.rawValue, text: $creds)
+                    Picker(msgs.cuis.rawValue, selection: $xection) { let zx = getBookSectionNames().count
+                        ForEach(0..<zx, id: \.self) { index in
+                            Text("\(getBookSectionNames()[index])")
+                        }
+                    }
+                    HStack {
+                        Text(msgs.df.rawValue)
+                        Button("Change", action:{dairyF.toggle()}).buttonStyle(.bordered)
                     }
                 }
-                HStack {
-                    Text(msgs.chp.rawValue)
-                    Button("True", action:{cheap.toggle()}).buttonStyle(.bordered)
-                    switch cheap {
-                    case true:
-                        Text("True").padding(.leading)
-                    default:
-                        Text("False").padding(.leading)
-                    }
-                }
+                Text(msgs.al.rawValue + " " + aggLikes.description)
+                Text(msgs.chp.rawValue + " " + cheap.description)
+                Text(msgs.cm.rawValue + " " + cookmin.description)
+                Text(msgs.df.rawValue + " " + dairyF.description)
+                Button("Save", action: {_ = saveIt()})
             }
         }
     }
@@ -47,7 +80,6 @@ struct CreateSRecipeFieldsView: View {
 
 struct CreateSRecipeFieldsView_Previews: PreviewProvider {
     static let rbb = RecipeBeingBuilt()
-    @State fileprivate var aLikes: String?
     static var previews: some View {
         CreateSRecipeFieldsView()
             .environmentObject(rbb)

@@ -66,7 +66,6 @@
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
 		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
-		F81A8CC628ECEB5B00FDB3EF /* BuildRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CC528ECEB5B00FDB3EF /* BuildRecipeView.swift */; };
 		F81A8CCA28EF0F6300FDB3EF /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CC928EF0F6300FDB3EF /* BuildRowView.swift */; };
 		F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */; };
 		F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */; };
@@ -186,7 +185,6 @@
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
-		F81A8CC528ECEB5B00FDB3EF /* BuildRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRecipeView.swift; sourceTree = "<group>"; };
 		F81A8CC928EF0F6300FDB3EF /* BuildRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShipped.json; sourceTree = "<group>"; };
@@ -466,7 +464,6 @@
 		F8C77C772907426F00222C2D /* BuildRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				F81A8CC528ECEB5B00FDB3EF /* BuildRecipeView.swift */,
 				F8864FF129099B0B00FD34AE /* AddIngredientView.swift */,
 				F8864FF329099B2000FD34AE /* AddInstructionsView.swift */,
 				F8864FF529099B4300FD34AE /* AddImagesView.swift */,
@@ -597,7 +594,6 @@
 				93237A3626A4E8C000032387 /* SafariView.swift in Sources */,
 				F8864FF82909E1D900FD34AE /* RecipeIngredients.swift in Sources */,
 				934AC08926D29812007EBF20 /* ExtendedIngredView.swift in Sources */,
-				F81A8CC628ECEB5B00FDB3EF /* BuildRecipeView.swift in Sources */,
 				93ACB30426B9E9AA0010F71F /* JokeXOperation.swift in Sources */,
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
 				930310C82695DC75006910EF /* Contact.swift in Sources */,

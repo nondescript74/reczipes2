@@ -48,9 +48,9 @@ struct RecipeDetailView: View {
         case recipeNotes = "RecipeNotesFolder has Notes"
         case recipeImagesNot = "RecipeImagesFolder has no Images"
         case recipeNotesNot = "RecipeNotesFolder has no Notes"
-        case recz = "Reczipes"
+        //case recz = "Reczipes"
         //        case json = ".json"
-        case wrjson = "Successfully wrote booksection"
+        //case wrjson = "Successfully wrote booksection"
         case notejson = "Successfully wrote note"
         case imgjson = "Successfully wrote image"
         case rshipd = "recipesShipped"
@@ -106,9 +106,7 @@ struct RecipeDetailView: View {
             return false
         }
         return true
-        
     }
-    
     
     fileprivate func hasImages() -> Bool {
         var imageSaveds = FileManager.default.constructImagesIfAvailable()
@@ -119,86 +117,86 @@ struct RecipeDetailView: View {
         return true
     }
     
-    func getBookSectionIDForName(name: String) -> UUID {
-        var myReturn:UUID
-        // special characters are escaped
-        if getBookSectionNames().contains(name) {
-            // bs name exists, recipes may not exist in the section
-            var sections = FileManager.default.constructAllSections()
-            sections = sections.filter({$0.name == name})
-            if sections.isEmpty {
-                var builtinNames = myBookSectionsIdNames
-                builtinNames = builtinNames.filter({$0.name == name})
-                if builtinNames.isEmpty {
-                    fatalError(msgs.RDV.rawValue + " no uuid available for name")
-                }
-                myReturn = builtinNames.first!.id
-            } else {
-                myReturn = sections.first!.id
-            }
-            
-        } else {
-            fatalError(msgs.RDV.rawValue + " no id with name in builtin booksectionnames")
-        }
-        return myReturn
-    }
-    
-    func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
-        var myReturn:BookSection?
-        let bs = FileManager.default.constructAllSections().filter({$0.id == bookSectionUUID})
-        myReturn = bs.first
-        return myReturn
-    }
-    
-    
-    func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool {
-        
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
-        
-        if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
-            // exists
-            do {
-                var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
-                if abookSection.items.contains(where: {$0.url == recipe.url}) {
-                    return false  // don't add recipe already in
-                }
-                do {
-                    abookSection.items = [recipe]
-                    abookSection.id = UUID()
-//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
-                    let encodedJSON = try encoder.encode(abookSection)
-                    // now write out
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + dateSuffix() + json))
-                    if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
-                    return true
-                } catch  {
-                    fatalError(msgs.RDV.rawValue + " Cannot encode booksection to json")
-                }
-            }
-            
-        } else {
-            // does not exist
-            // create bookSection and add recipe
-            // user the uuid of shipped booksections (if such a uuid exist in shipped) to create this booksection in the user section
-            // a booksection with that UUID exists
-            let newBookSection = BookSection(id: UUID(), name: cuisine, items: [recipe])
-            do {
-                let encodedJSON = try encoder.encode(newBookSection)
-                // now write out
-                do {
-//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
-                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
-                    if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
-                    return true
-                } catch  {
-                    fatalError("Cannot write to user booksections folder")
-                }
-            } catch  {
-                fatalError("Cannot encode booksection to json")
-            }
-        }
-    }
+//    func getBookSectionIDForName(name: String) -> UUID {
+//        var myReturn:UUID
+//        // special characters are escaped
+//        if getBookSectionNames().contains(name) {
+//            // bs name exists, recipes may not exist in the section
+//            var sections = FileManager.default.constructAllSections()
+//            sections = sections.filter({$0.name == name})
+//            if sections.isEmpty {
+//                var builtinNames = myBookSectionsIdNames
+//                builtinNames = builtinNames.filter({$0.name == name})
+//                if builtinNames.isEmpty {
+//                    fatalError(msgs.RDV.rawValue + " no uuid available for name")
+//                }
+//                myReturn = builtinNames.first!.id
+//            } else {
+//                myReturn = sections.first!.id
+//            }
+//            
+//        } else {
+//            fatalError(msgs.RDV.rawValue + " no id with name in builtin booksectionnames")
+//        }
+//        return myReturn
+//    }
+//    
+//    func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
+//        var myReturn:BookSection?
+//        let bs = FileManager.default.constructAllSections().filter({$0.id == bookSectionUUID})
+//        myReturn = bs.first
+//        return myReturn
+//    }
+//    
+//    
+//    func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool {
+//        
+//        let myDocuDirUrl = getDocuDirUrl()
+//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
+//        
+//        if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
+//            // exists
+//            do {
+//                var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
+//                if abookSection.items.contains(where: {$0.url == recipe.url}) {
+//                    return false  // don't add recipe already in
+//                }
+//                do {
+//                    abookSection.items = [recipe]
+//                    abookSection.id = UUID()
+////                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+//                    let encodedJSON = try encoder.encode(abookSection)
+//                    // now write out
+//                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + dateSuffix() + json))
+//                    if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
+//                    return true
+//                } catch  {
+//                    fatalError(msgs.RDV.rawValue + " Cannot encode booksection to json")
+//                }
+//            }
+//            
+//        } else {
+//            // does not exist
+//            // create bookSection and add recipe
+//            // user the uuid of shipped booksections (if such a uuid exist in shipped) to create this booksection in the user section
+//            // a booksection with that UUID exists
+//            let newBookSection = BookSection(id: UUID(), name: cuisine, items: [recipe])
+//            do {
+//                let encodedJSON = try encoder.encode(newBookSection)
+//                // now write out
+//                do {
+////                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+//                    try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
+//                    if zBug { print(msgs.RDV.rawValue + msgs.wrjson.rawValue)}
+//                    return true
+//                } catch  {
+//                    fatalError("Cannot write to user booksections folder")
+//                }
+//            } catch  {
+//                fatalError("Cannot encode booksection to json")
+//            }
+//        }
+//    }
     
     // MARK: - View Process
     var body: some View {

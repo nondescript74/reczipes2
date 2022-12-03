@@ -22,20 +22,78 @@ struct CreateSRecipeFieldsView: View {
         case cm = "Cooking minutes"
         case cred = "Credits"
         case cuis = "Pick a cuisine"
+        case cuisine = "Cuisine"
         case df = "Dairy Free?"
+        case diet = "Diet"
+        case gf = "Gluten Free?"
+        case hs = "Healthscore"
     }
-    
+
     @State fileprivate var recName: String = ""
-    @State fileprivate var aggLikes: Int = 0
+    @State fileprivate var aggLikes: Int64 = 0
+    @State fileprivate var selectionValues: [Int64] = Array(0...500)
     @State fileprivate var cheap: Bool = true
-    @State fileprivate var cookmin: Int = 0
+    @State fileprivate var cookmin: Int64 = 0
     @State fileprivate var creds: String = ""
     @State fileprivate var xection: Int = 0
+    @State fileprivate var selectionValues2: [Int] = Array(0...getBookSectionNames().count - 1)
     @State fileprivate var dairyF: Bool = false
+    @State fileprivate var cuisines: String = ""
+    @State fileprivate var diets: String = ""
+    @State fileprivate var gf: Bool = false
+    @State fileprivate var hscore: Double = 0.0
+    
     
     // MARK: - Methods
     fileprivate func saveIt() -> Bool {
-        return false
+        rbb.srecipe?.aggregateLikes = self.aggLikes
+        rbb.srecipe?.cheap = self.cheap
+        rbb.srecipe?.cookingMinutes = self.cookmin
+        rbb.srecipe?.creditsText = self.creds
+        rbb.srecipe?.dairyFree = self.dairyF
+        rbb.srecipe?.cuisines = [getBookSectionNames()[xection]]
+        rbb.srecipe?.diets = [self.diets]
+        rbb.srecipe?.dishTypes = []
+        rbb.srecipe?.extendedIngredients = []
+        rbb.srecipe?.gaps = ""
+        rbb.srecipe?.glutenFree = self.gf
+        rbb.srecipe?.healthScore = self.hscore
+        rbb.srecipe?.id = Int.random(in: 100001..<myMax)
+        rbb.srecipe?.image = ""
+        rbb.srecipe?.imageType = ""
+        rbb.srecipe?.instructions = ""
+        rbb.srecipe?.license = ""
+        rbb.srecipe?.lowFodmap = false
+        rbb.srecipe?.occasions = []
+        rbb.srecipe?.originalId = ""
+        rbb.srecipe?.preparationMinutes = 0
+        rbb.srecipe?.pricePerServing = 0.0
+        rbb.srecipe?.readyInMinutes = 0
+        rbb.srecipe?.servings = 0
+        rbb.srecipe?.sourceName = "Z"
+        rbb.srecipe?.sourceUrl = ""
+        rbb.srecipe?.spoonacularScore = 0
+        rbb.srecipe?.spoonacularSourceUrl = ""
+        rbb.srecipe?.summary = ""
+        rbb.srecipe?.sustainable = false
+        rbb.srecipe?.title = ""
+        rbb.srecipe?.vegan = false
+        rbb.srecipe?.vegetarian = false
+        rbb.srecipe?.veryHealthy = false
+        rbb.srecipe?.veryPopular = false
+        rbb.srecipe?.weightWatcherSmartPoints = 0
+        rbb.srecipe?.winePairing = WinePairing()
+        
+        if rbb.srecipe != nil {
+            let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
+            let result = addRecipeToBookSection(recipe: sectionItem, bookSectionUUID: getBookSectionIDForName(name: getBookSectionNames()[xection]))
+            if !result {
+                return false
+            }
+        } else {
+            return false
+        }
+        return true
     }
     var body: some View {
         NavigationView {
@@ -43,8 +101,8 @@ struct CreateSRecipeFieldsView: View {
                 Form {
                     TextField(msgs.en.rawValue, text: $recName)
                     Picker(msgs.al.rawValue, selection: $aggLikes) {
-                        ForEach(0 ..< 100) {
-                            Text("\($0) likes")
+                        ForEach(selectionValues, id: \.self) {
+                            Text("\($0)")
                         }
                     }
                     HStack {
@@ -53,13 +111,13 @@ struct CreateSRecipeFieldsView: View {
                     }
                     
                     Picker(msgs.cm.rawValue, selection: $cookmin) {
-                        ForEach(0 ..< 300) {
+                        ForEach(selectionValues, id: \.self) {
                             Text("\($0) minutes")
                         }
                     }
                     TextField(msgs.cred.rawValue, text: $creds)
                     Picker(msgs.cuis.rawValue, selection: $xection) { let zx = getBookSectionNames().count
-                        ForEach(0..<zx, id: \.self) { index in
+                        ForEach(selectionValues2, id: \.self) { index in
                             Text("\(getBookSectionNames()[index])")
                         }
                     }
@@ -72,6 +130,10 @@ struct CreateSRecipeFieldsView: View {
                 Text(msgs.chp.rawValue + " " + cheap.description)
                 Text(msgs.cm.rawValue + " " + cookmin.description)
                 Text(msgs.df.rawValue + " " + dairyF.description)
+                
+                Text(msgs.cuisine.rawValue + " " + cuisines)
+                Text(msgs.diet.rawValue + " " + diets)
+                
                 Button("Save", action: {_ = saveIt()})
             }
         }

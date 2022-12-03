@@ -239,6 +239,91 @@ func dateSuffix() -> String {
     return Date().timeIntervalSinceReferenceDate.rounded().description
 }
 
+func getBookSectionIDForName(name: String) -> UUID {
+    var myReturn:UUID
+    // special characters are escaped
+    if getBookSectionNames().contains(name) {
+        // bs name exists, recipes may not exist in the section
+        var sections = FileManager.default.constructAllSections()
+        sections = sections.filter({$0.name == name})
+        if sections.isEmpty {
+            var builtinNames = myBookSectionsIdNames
+            builtinNames = builtinNames.filter({$0.name == name})
+            if builtinNames.isEmpty {
+                fatalError("no uuid available for name")
+            }
+            myReturn = builtinNames.first!.id
+        } else {
+            myReturn = sections.first!.id
+        }
+        
+    } else {
+        fatalError("no id with name in builtin booksectionnames")
+    }
+    return myReturn
+}
+
+func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
+    var myReturn:BookSection?
+    let bs = FileManager.default.constructAllSections().filter({$0.id == bookSectionUUID})
+    myReturn = bs.first
+    return myReturn
+}
+
+
+func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool {
+    
+    let myDocuDirUrl = getDocuDirUrl()
+    let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+    
+    if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
+        // exists
+        do {
+            var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
+            if abookSection.items.contains(where: {$0.url == recipe.url}) {
+                return false  // don't add recipe already in
+            }
+            do {
+                abookSection.items = [recipe]
+                abookSection.id = UUID()
+//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+                let encodedJSON = try encoder.encode(abookSection)
+                // now write out
+                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + dateSuffix() + json))
+                #if DEBUG
+                print("Successfully wrote booksection")
+                #endif
+                return true
+            } catch  {
+                fatalError("Cannot encode booksection to json")
+            }
+        }
+        
+    } else {
+        // does not exist
+        // create bookSection and add recipe
+        // user the uuid of shipped booksections (if such a uuid exist in shipped) to create this booksection in the user section
+        // a booksection with that UUID exists
+        let newBookSection = BookSection(id: UUID(), name: "Created", items: [recipe])
+        do {
+            let encodedJSON = try encoder.encode(newBookSection)
+            // now write out
+            do {
+//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
+                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
+                #if DEBUG
+                print("Successfully wrote booksection")
+                #endif
+                return true
+            } catch  {
+                fatalError("Cannot write to user booksections folder")
+            }
+        } catch  {
+            fatalError("Cannot encode booksection to json")
+        }
+    }
+}
+
 extension Bundle {
     func decode<T: Decodable>(_ type: T.Type, from file: String) -> T {
         guard let url = self.url(forResource: file, withExtension: nil) else {

@@ -76,7 +76,7 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.spoonacularSourceUrl = ""
         rbb.srecipe?.summary = ""
         rbb.srecipe?.sustainable = false
-        rbb.srecipe?.title = ""
+        rbb.srecipe?.title = self.recName
         rbb.srecipe?.vegan = false
         rbb.srecipe?.vegetarian = false
         rbb.srecipe?.veryHealthy = false
@@ -84,7 +84,8 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.weightWatcherSmartPoints = 0
         rbb.srecipe?.winePairing = WinePairing()
         
-        if rbb.srecipe != nil {
+        if rbb.srecipe != nil && rbb.srecipe?.title != "" {
+            
             let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
             let result = addRecipeToBookSection(recipe: sectionItem, bookSectionUUID: getBookSectionIDForName(name: getBookSectionNames()[xection]))
             if !result {

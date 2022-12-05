@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FilesDisplayView: View {
+    // MARK: - Local debug
+    fileprivate var zBug: Bool = true
     // MARK: - Environment Objects
 //    @EnvironmentObject var fileMgr: FileMgr
     // MARK: - Initializer
@@ -25,6 +27,7 @@ struct FilesDisplayView: View {
     // MARK: - State
     @State var searchTerm: String = ""
     @State var urlString: String = ""
+    @State private var showRemove = false
     // MARK: - Methods
     private func getDocuDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
@@ -88,8 +91,16 @@ struct FilesDisplayView: View {
         return myReturn
     }
     
-    
-    
+    fileprivate func removeMyAddedRecipes() {
+        DispatchQueue.main.async {
+            FileManager.default.removeAddedRecipes()
+        }
+#if DEBUG
+        if zBug {print("FilesDisplayView: removed all user recipe files")}
+#endif
+        showRemove = false
+    }
+
     var body: some View {
         NavigationView {
             VStack {
@@ -117,8 +128,27 @@ struct FilesDisplayView: View {
                         Text(fname).font(.body)
                     }
                 }.padding()
+                VStack {
+                    Button("Tap to remove user recipes") {
+                        showRemove = true
+                    }.buttonStyle(.borderedProminent)
+                }
+
+            }
+            .actionSheet(isPresented: $showRemove) {
+                ActionSheet(title: Text("Remove All User Recipes"),
+                            message: Text("Choose"),
+                            buttons: [
+                                .cancel(),
+                                .destructive(
+                                    Text("Remove Recipes"),
+                                    action: removeMyAddedRecipes
+                                )
+                            ]
+                )
             }
         }.navigationTitle(Text(msgs.fdisp.rawValue))
+             
     }
 }
 

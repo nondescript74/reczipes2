@@ -11,7 +11,7 @@ struct AddIngredientView: View {
     // MARK: - Local Debug
     fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
-    @EnvironmentObject var ingredients: RecipeIngredients
+//    @EnvironmentObject var ingredients: RecipeIngredients
     // MARK: - State
     @State private var searchText = ""
     // MARK: - Properties
@@ -35,7 +35,7 @@ struct AddIngredientView: View {
 #endif
         }
         let toAdd = getIngredientForName(name: myFirst!.name)
-        ingredients.add(item: toAdd)
+//        ingredients.add(item: toAdd)
 #if DEBUG
         if zBug {print(toAdd.name + " " + toAdd.id.description)}
 #endif
@@ -70,10 +70,10 @@ struct AddIngredientView: View {
 }
 
 struct AddIngredientView_Previews: PreviewProvider {
-    static let recipIngreds = RecipeIngredients()
+//    static let recipIngreds = RecipeIngredients()
     static var previews: some View {
         AddIngredientView()
-            .environmentObject(recipIngreds)
+//            .environmentObject(recipIngreds)
     }
 }
 

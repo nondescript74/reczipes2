@@ -17,9 +17,9 @@ struct ReczipesApp: App {
                 .environmentObject(MyFridge())
                 .environmentObject(RecipeRatio())
                 .environmentObject(RecipeBeingBuilt())
-                .environmentObject(RecipeIngredients())
-                .environmentObject(RecipeInstructions())
-                .environmentObject(RecipeImages())
+//                .environmentObject(RecipeIngredients())
+//                .environmentObject(RecipeInstructions())
+//                .environmentObject(RecipeImages())
         }
     }
 }

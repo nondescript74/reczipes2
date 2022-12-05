@@ -16,9 +16,9 @@ struct ApplicationView: View {
     @EnvironmentObject var fridge: MyFridge
     @EnvironmentObject var ratio: RecipeRatio
     @EnvironmentObject var rbb: RecipeBeingBuilt
-    @EnvironmentObject var recipeIngreds: RecipeIngredients
-    @EnvironmentObject var recipeInstr: RecipeInstructions
-    @EnvironmentObject var recipeImgs: RecipeImages
+//    @EnvironmentObject var recipeIngreds: RecipeIngredients
+//    @EnvironmentObject var recipeInstr: RecipeInstructions
+//    @EnvironmentObject var recipeImgs: RecipeImages
     
     // MARK: - Properties
     fileprivate enum tabs: String {
@@ -91,9 +91,9 @@ struct ApplicationView: View {
         .environmentObject(userData)
         .environmentObject(fridge)
         .environmentObject(ratio)
-        .environmentObject(recipeIngreds)
-        .environmentObject(recipeInstr)
-        .environmentObject(recipeImgs)
+//        .environmentObject(recipeIngreds)
+//        .environmentObject(recipeInstr)
+//        .environmentObject(recipeImgs)
         .environmentObject(rbb)
     }
 }
@@ -103,9 +103,9 @@ struct ApplicationView_Previews: PreviewProvider {
     static let userData = UserData()
     static let myfridge = MyFridge()
     static let rratio = RecipeRatio()
-    static let recipIngreds = RecipeIngredients()
-    static let recipInstr = RecipeInstructions()
-    static let recipImgs = RecipeImages()
+//    static let recipIngreds = RecipeIngredients()
+//    static let recipInstr = RecipeInstructions()
+//    static let recipImgs = RecipeImages()
     static let rbb = RecipeBeingBuilt()
     
     static var previews: some View {
@@ -114,9 +114,9 @@ struct ApplicationView_Previews: PreviewProvider {
             .environmentObject(userData)
             .environmentObject(myfridge)
             .environmentObject(rratio)
-            .environmentObject(recipIngreds)
-            .environmentObject(recipInstr)
-            .environmentObject(recipImgs)
+//            .environmentObject(recipIngreds)
+//            .environmentObject(recipInstr)
+//            .environmentObject(recipImgs)
             .environmentObject(rbb)
     }
 }

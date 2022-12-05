@@ -236,7 +236,10 @@ func getBookSectionNames() -> [String] {
 
 
 func dateSuffix() -> String {
-    return Date().timeIntervalSinceReferenceDate.rounded().description
+    var retStr = Date().timeIntervalSinceReferenceDate.rounded().description
+    retStr.removeLast()
+    retStr.removeLast()
+    return retStr
 }
 
 func getBookSectionIDForName(name: String) -> UUID {

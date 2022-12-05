@@ -17,7 +17,7 @@ struct SettingsView: View {
     @ObservedObject var joke = WebQueryRecipes()
     // MARK: - State
     @State private var show: Selectors = .notyet
-    @State private var showRemove = false
+//    @State private var showRemove = false
     // MARK: - Properties
     private var versionLabel = ""
     private var buildLabel = ""
@@ -43,15 +43,15 @@ struct SettingsView: View {
         case notyet
     }
     // MARK: - Methods
-    fileprivate func removeMyAddedRecipes() {
-        DispatchQueue.main.async {
-            FileManager.default.removeAddedRecipes()
-        }
-#if DEBUG
-        if zBug {print(msgs.sv.rawValue + msgs.remov.rawValue)}
-#endif
-        showRemove = false
-    }
+//    fileprivate func removeMyAddedRecipes() {
+//        DispatchQueue.main.async {
+//            FileManager.default.removeAddedRecipes()
+//        }
+//#if DEBUG
+//        if zBug {print(msgs.sv.rawValue + msgs.remov.rawValue)}
+//#endif
+//        showRemove = false
+//    }
     
     var body: some View {
         NavigationView {
@@ -89,25 +89,25 @@ struct SettingsView: View {
 //                    MultiView(show: .notyet)
 //                }
                 
-                VStack {
-                    Button("Tap to remove user recipes") {
-                        showRemove = true
-                    }.buttonStyle(.borderedProminent)
-                }
+//                VStack {
+//                    Button("Tap to remove user recipes") {
+//                        showRemove = true
+//                    }.buttonStyle(.borderedProminent)
+//                }
                 
             }.padding(.bottom)
-            .actionSheet(isPresented: $showRemove) {
-                ActionSheet(title: Text("Remove All User Recipes"),
-                            message: Text("Choose"),
-                            buttons: [
-                                .cancel(),
-                                .destructive(
-                                    Text("Remove Recipes"),
-                                    action: removeMyAddedRecipes
-                                )
-                            ]
-                )
-            }
+//            .actionSheet(isPresented: $showRemove) {
+//                ActionSheet(title: Text("Remove All User Recipes"),
+//                            message: Text("Choose"),
+//                            buttons: [
+//                                .cancel(),
+//                                .destructive(
+//                                    Text("Remove Recipes"),
+//                                    action: removeMyAddedRecipes
+//                                )
+//                            ]
+//                )
+//            }
         }.navigationBarTitleDisplayMode(.automatic)
         
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FilesDisplayView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
     // MARK: - Initializer

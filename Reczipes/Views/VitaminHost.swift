@@ -19,7 +19,7 @@ struct VitaminHost: View {
     @EnvironmentObject var userData: UserData
     
     // MARK: - ManagedObjectContext
-    @Environment(\.managedObjectContext) var managedObjectContext
+//    @Environment(\.managedObjectContext) var managedObjectContext
     
     
     //MARK: - State

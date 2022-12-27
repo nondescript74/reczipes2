@@ -14,12 +14,10 @@ struct ReczipesApp: App {
             ApplicationView()
                 .environmentObject(OrderingList())
                 .environmentObject(UserData())
-                .environmentObject(MyFridge())
                 .environmentObject(RecipeRatio())
                 .environmentObject(RecipeBeingBuilt())
-//                .environmentObject(RecipeIngredients())
-//                .environmentObject(RecipeInstructions())
-//                .environmentObject(RecipeImages())
+                .environmentObject(AllUserRecipes())
+            
         }
     }
 }

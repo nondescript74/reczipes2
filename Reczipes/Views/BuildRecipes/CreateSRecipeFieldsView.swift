@@ -16,6 +16,7 @@ struct CreateSRecipeFieldsView: View {
     
     // MARK: - Properties
     fileprivate enum msgs: String {
+        case csrfv = "CSRFView: "
         case en = "Enter recipe name"
         case al = "Aggregate likes"
         case chp = "Cheap?"
@@ -36,12 +37,14 @@ struct CreateSRecipeFieldsView: View {
     @State fileprivate var cookmin: Int64 = 0
     @State fileprivate var creds: String = ""
     @State fileprivate var xection: Int = 0
+    @State fileprivate var xdiet: Diet = Diet.dietExampleKG
     @State fileprivate var selectionValues2: [Int] = Array(0...getBookSectionNames().count - 1)
     @State fileprivate var dairyF: Bool = false
     @State fileprivate var cuisines: String = ""
-    @State fileprivate var diets: String = ""
+    @State fileprivate var diets: [String] = []
     @State fileprivate var gf: Bool = false
     @State fileprivate var hscore: Double = 0.0
+    @State fileprivate var urlString: String = SectionItem.example.url
     
     
     // MARK: - Methods
@@ -52,7 +55,7 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.creditsText = self.creds
         rbb.srecipe?.dairyFree = self.dairyF
         rbb.srecipe?.cuisines = [getBookSectionNames()[xection]]
-        rbb.srecipe?.diets = [self.diets]
+        rbb.srecipe?.diets = self.diets
         rbb.srecipe?.dishTypes = []
         rbb.srecipe?.extendedIngredients = []
         rbb.srecipe?.gaps = ""
@@ -71,7 +74,7 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.readyInMinutes = 0
         rbb.srecipe?.servings = 0
         rbb.srecipe?.sourceName = "Z"
-        rbb.srecipe?.sourceUrl = ""
+        rbb.srecipe?.sourceUrl = urlString
         rbb.srecipe?.spoonacularScore = 0
         rbb.srecipe?.spoonacularSourceUrl = ""
         rbb.srecipe?.summary = ""
@@ -88,13 +91,24 @@ struct CreateSRecipeFieldsView: View {
             
             let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
             let result = addRecipeToBookSection(recipe: sectionItem, bookSectionUUID: getBookSectionIDForName(name: getBookSectionNames()[xection]))
+            if zBug {print("wrote sectionItem to existing BookSection")}
             if !result {
+                if zBug {print("Could not write sectionItem to existing BookSection")}
                 return false
             }
         } else {
             return false
         }
+        
         return true
+    }
+    
+    fileprivate func addDietToList() {
+        let str = xdiet.name
+        if !self.diets.contains(str) {
+            self.diets.append(str)
+        }
+        if zBug {print(msgs.csrfv.rawValue + diets.description)}
     }
     var body: some View {
         NavigationView {
@@ -117,7 +131,7 @@ struct CreateSRecipeFieldsView: View {
                         }
                     }
                     TextField(msgs.cred.rawValue, text: $creds)
-                    Picker(msgs.cuis.rawValue, selection: $xection) { let zx = getBookSectionNames().count
+                    Picker(msgs.cuis.rawValue, selection: $xection) {
                         ForEach(selectionValues2, id: \.self) { index in
                             Text("\(getBookSectionNames()[index])")
                         }
@@ -126,14 +140,23 @@ struct CreateSRecipeFieldsView: View {
                         Text(msgs.df.rawValue)
                         Button("Change", action:{dairyF.toggle()}).buttonStyle(.bordered)
                     }
+                    HStack {
+                        Picker(msgs.diet.rawValue, selection: $xdiet) {
+                            ForEach(Diet.dietExamplesAll, id: \.self) { example in
+                                Text(example.name)
+                            }
+                        }
+                        Button("Add", action:{addDietToList()}).buttonStyle(.bordered)
+                    }
+
                 }
                 Text(msgs.al.rawValue + " " + aggLikes.description)
                 Text(msgs.chp.rawValue + " " + cheap.description)
                 Text(msgs.cm.rawValue + " " + cookmin.description)
                 Text(msgs.df.rawValue + " " + dairyF.description)
+                Text(msgs.diet.rawValue + " " + diets.joined(separator: ", "))
                 
                 Text(msgs.cuisine.rawValue + " " + cuisines)
-                Text(msgs.diet.rawValue + " " + diets)
                 
                 Button("Save", action: {_ = saveIt()})
             }

@@ -84,6 +84,6 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(mori: "metric")
+        BuildRowView(mori: "imperial")
     }
 }

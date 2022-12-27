@@ -582,6 +582,7 @@ struct Diet: Codable, Hashable, Equatable {
     static let dietExamplePrimal = Diet(name: "Primal", id: 8)
     static let dietExampleLowFM = Diet(name: "Low FODMAP", id: 9)
     static let dietExampleW30 = Diet(name: "Whole 30", id: 10)
+    static let dietExamplesAll = [dietExampleGF, dietExampleKG, dietExampleVeg, dietExampleW30, dietExamplePesc, dietExampleVega, dietExamplePaleo, dietExampleLVeg, dietExampleOVeg, dietExamplePrimal, dietExampleLowFM]
     
 }
 

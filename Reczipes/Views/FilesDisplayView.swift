@@ -11,7 +11,7 @@ struct FilesDisplayView: View {
     // MARK: - Local debug
     fileprivate var zBug: Bool = true
     // MARK: - Environment Objects
-//    @EnvironmentObject var fileMgr: FileMgr
+    @EnvironmentObject var aur: AllUserRecipes
     // MARK: - Initializer
     // MARK: - Properties
     private enum msgs:String {

@@ -12,13 +12,13 @@ import CoreData
 struct NutritionHost: View {
     
     // MARK; - Debug
-    private var zBug:Bool = false
+    fileprivate var zBug:Bool = false
     // MARK:- Environment
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData
     // MARK: - ManagedObjectContext
     //MARK: - State
-    @State var draftNutrition = Nutrition.default
+    @State var draftNutrition: Nutrition = Nutrition.default
     
     // MARK: - Methods
     
@@ -63,7 +63,7 @@ struct NutritionHost: View {
 
 struct NutritionHost_Previews: PreviewProvider {
     static var previews: some View {
-        NutritionHost().environmentObject(UserData())
+        NutritionHost(draftNutrition: Nutrition.default).environmentObject(UserData())
     }
 }
 

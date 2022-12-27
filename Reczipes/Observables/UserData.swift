@@ -14,19 +14,11 @@ A model object that stores app data.
 
 import Combine
 import SwiftUI
-import CoreData
 
 final class UserData: ObservableObject {
-    // MARK: - Environment
-    
+    // MARK: - Publisher
     @Published var showFavoritesOnly = false
     @Published var profile = Profile.default
     @Published var vitamins = Vitamins.default
     @Published var nutrition = Nutrition.default
-}
-
-struct UserData_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("Hello, Z, Nothing to preview here")
-    }
 }

@@ -11,6 +11,7 @@ struct AllRecipesView: View {
     // MARK: - Debug local
     private var zBug:Bool = false
     // MARK: - Environment Objects
+    @EnvironmentObject var auu: AllUserRecipes
     // MARK: - Properties
     fileprivate enum msgs: String {
         case arv = "All Recipes View"
@@ -24,36 +25,9 @@ struct AllRecipesView: View {
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
-    private func getReczDirContents(lpc:Bool) -> [String] {
-        var myReturn:[String] = []
-        do {
-            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
-            if lpc {
-                myReturn = contUrls.map({$0.lastPathComponent})
-            } else {
-                myReturn = contUrls.map({$0.absoluteString})
-            }
-        } catch  {
-            
-        }
-        return myReturn
-    }
-    
-    fileprivate func constructAllRecipes() -> [SectionItem] {
-        var myReturn: [SectionItem] = []
-        let myBs: [BookSection] = FileManager.default.constructAllSections()
-        for aBS in myBs {
-            for aSI in aBS.items {
-                myReturn.append(aSI)
-            }
-        }
-        return myReturn
-    }
     
     fileprivate var myBook: [BookSection] {
-        var myReturn = FileManager.default.constructAllSections()
-        myReturn = myReturn.sorted(by: {$0.name < $1.name})
-        return myReturn
+        return auu.sections
     }
     var body: some View {
         NavigationView {
@@ -79,12 +53,12 @@ struct AllRecipesView: View {
 
 
 struct AllRecipesView_Previews: PreviewProvider {
-    static let order = OrderingList()
+//    static let order = OrderingList()
     
     static var previews: some View {
         Group {
             AllRecipesView()
-                .environmentObject(order)
+                .environmentObject(AllUserRecipes())
                 .colorScheme(.light)
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FridgeEditor: View {
     // MARK: - Environment Variables
-    @EnvironmentObject var fridge: MyFridge
+    @EnvironmentObject var fridge: FridgeContents
     // MARK: - State
     private enum msgs: String {
         case fe = "Fridge"

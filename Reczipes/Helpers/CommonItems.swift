@@ -10,6 +10,7 @@ import SwiftUI
 import Foundation
 import Combine
 
+
 public var colorFontLists:Color = Color.init("ED7D3A")
 public var iPhoneXrPreviewDevice:PreviewDevice = "iPhone Xr"
 public var iPadAir2PreviewDevice:PreviewDevice = "iPad Air 2"
@@ -278,21 +279,19 @@ func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool 
     
     let myDocuDirUrl = getDocuDirUrl()
     let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-    
+        
     if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
         // exists
         do {
-            var abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
+            let abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
             if abookSection.items.contains(where: {$0.url == recipe.url}) {
                 return false  // don't add recipe already in
             }
             do {
-                abookSection.items = [recipe]
-                abookSection.id = UUID()
-//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
-                let encodedJSON = try encoder.encode(abookSection)
+                let newBookSection = BookSection(id: abookSection.id, name: abookSection.name, items: [recipe])
+                let encodedJSON = try encoder.encode(newBookSection)
                 // now write out
-                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(abookSection.name + "_" + dateSuffix() + json))
+                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
                 #if DEBUG
                 print("Successfully wrote booksection")
                 #endif
@@ -301,29 +300,10 @@ func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool 
                 fatalError("Cannot encode booksection to json")
             }
         }
-        
+
     } else {
-        // does not exist
-        // create bookSection and add recipe
-        // user the uuid of shipped booksections (if such a uuid exist in shipped) to create this booksection in the user section
-        // a booksection with that UUID exists
-        let newBookSection = BookSection(id: UUID(), name: "Created", items: [recipe])
-        do {
-            let encodedJSON = try encoder.encode(newBookSection)
-            // now write out
-            do {
-//                    let suffix = Date().formatted(date: .abbreviated, time: .standard)
-                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
-                #if DEBUG
-                print("Successfully wrote booksection")
-                #endif
-                return true
-            } catch  {
-                fatalError("Cannot write to user booksections folder")
-            }
-        } catch  {
-            fatalError("Cannot encode booksection to json")
-        }
+        // uuid does not exist
+        return false
     }
 }
 
@@ -548,6 +528,28 @@ extension FileManager {
         let bs = constructAllSections()
         for abs in bs {
             myReturn.append(contentsOf: abs.items)
+        }
+        return myReturn
+    }
+}
+
+extension FileManager {
+    func saveBookSection(bsection: BookSection) -> Bool {
+        var myReturn: Bool = false
+        
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        do {
+            let encodedJSON = try encoder.encode(bsection)
+            // now write out
+            try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(bsection.name + "_" + dateSuffix() + json))
+            #if DEBUG
+            print("Successfully wrote booksection to reczipes directory")
+            #endif
+            myReturn = true
+       
+        } catch {
+            // can't save
         }
         return myReturn
     }

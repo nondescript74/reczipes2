@@ -11,29 +11,25 @@ struct AddInstructionsView: View {
     // MARK: - Local Debug
     fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
-    @EnvironmentObject var instructions: RecipeInstructions
+//    @EnvironmentObject var instructions: RecipeInstructions
     // MARK: - State
     @State fileprivate var myText: String = ""
     // MARK: - Properties
-    
+    var instructions: [Instruction] = [Instruction]()
     // MARK: - Methods
-    fileprivate func addInstr() {
-        instructions.add(item: Instruction(id: Int64.random(in: 1..<myMaxInt64), text: myText))
-        myText = ""
-    }
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
                     TextField("Enter", text: $myText)
-                    Button("Add " + myText, action: { addInstr()})
+                    Button("Add " + myText, action: { instructions.append(Instruction(id: Int64.random(in: 1..<myMaxInt64), text: myText))})
                         .buttonStyle(.bordered)
                 }.padding(.bottom)
                 
                 VStack {
                     Text("Added Instructions")
-                    ForEach(instructions.instructions, id: \.self) { instr in
+                    ForEach(instructions, id: \.self) { instr in
                         Text(instr.text)
                     }
                 }

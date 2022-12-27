@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  Contact.swift
 //  Reczipes
 //
 //  Created by Zahirudeen Premji on 7/7/21.

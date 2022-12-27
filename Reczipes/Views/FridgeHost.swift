@@ -10,22 +10,17 @@ import SwiftUI
 struct FridgeHost: View {
     // MARK:- Environment
     @Environment(\.editMode) var mode
-    @EnvironmentObject var userData: UserData
-    @EnvironmentObject var fridge: MyFridge
-    // MARK: - ManagedObjectContext
-    //MARK: - State
-    @State fileprivate var draftFridge = MyFridge.default
+    @EnvironmentObject var fridge: FridgeContents
+
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 if self.mode?.wrappedValue == .active {
                     Button("Cancel") {
-                        self.draftFridge = MyFridge.default
                         self.mode?.animation().wrappedValue = .inactive
                     }
                 }
-                
                 Spacer()
                 
                 EditButton()
@@ -36,13 +31,9 @@ struct FridgeHost: View {
             if self.mode?.wrappedValue == .inactive {
                 FridgeSummary()
             } else {
-//                FridgeEditor(fridge: $draftFridge.de)
-//                    .onAppear {
-//                        self.draftFridge = fridge
-//                    }
-//                    .onDisappear {
-//                        self.draftFridge = self.draftProfile
-//                    }
+                FridgeEditor()
+                    .onAppear {}
+                    .onDisappear {}
             }
         }
         .padding()
@@ -53,5 +44,7 @@ struct FridgeHost: View {
 struct FridgeHost_Previews: PreviewProvider {
     static var previews: some View {
         FridgeHost()
+            .environmentObject(FridgeContents())
+            
     }
 }

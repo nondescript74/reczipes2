@@ -50,20 +50,23 @@ struct FilesDisplayView: View {
     
     private func getReczDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
-        do {
-            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
-            if lpc {
-                myReturn = contUrls.map({$0.lastPathComponent})
-            } else {
-                myReturn = contUrls.map({$0.absoluteString})
-            }
-        } catch  {
-            
-        }
+//        do {
+//            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
+//            if lpc {
+//                myReturn = contUrls.map({$0.lastPathComponent})
+//            } else {
+//                myReturn = contUrls.map({$0.absoluteString})
+//            }
+//        } catch  {
+//
+//        }
         let myObsvBookSections = aur.sections
         for abs in myObsvBookSections {
-            if !myReturn.contains(abs.name) {
-                myReturn.append(abs.name)
+            let sectItems = abs.items
+            for aSectionItem in sectItems {
+                if !myReturn.contains(aSectionItem.name) {
+                    myReturn.append(aSectionItem.name)
+                }
             }
         }
         myReturn = myReturn.sorted()

@@ -81,10 +81,6 @@ fileprivate enum msgs: String {
     case ci = "CommonItems: "
 }
 
-//private var decoder: JSONDecoder = JSONDecoder()
-//private var encoder: JSONEncoder = JSONEncoder()
-
-
 func hasSpecialCharacters(string: String) -> Bool {
     if string.range(of: ".*[^A-Za-z0-9].*", options: .regularExpression) != nil {
         return true

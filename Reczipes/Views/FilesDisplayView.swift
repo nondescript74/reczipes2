@@ -12,6 +12,8 @@ struct FilesDisplayView: View {
     fileprivate var zBug: Bool = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aui: AllUserImages
+    @EnvironmentObject var aun: AllUserNotes
     
     // MARK: - Initializer
     // MARK: - Properties
@@ -58,6 +60,13 @@ struct FilesDisplayView: View {
         } catch  {
             
         }
+        let myObsvBookSections = aur.sections
+        for abs in myObsvBookSections {
+            if !myReturn.contains(abs.name) {
+                myReturn.append(abs.name)
+            }
+        }
+        myReturn = myReturn.sorted()
         return myReturn
     }
     
@@ -74,6 +83,13 @@ struct FilesDisplayView: View {
         } catch  {
             
         }
+        let myObsvNotes = aun.notes
+        for anote in myObsvNotes {
+            if !myReturn.contains(anote.note) {
+                myReturn.append(anote.note)
+            }
+        }
+        myReturn = myReturn.sorted()
         return myReturn
     }
     
@@ -86,9 +102,17 @@ struct FilesDisplayView: View {
             } else {
                 myReturn = contUrls.map({$0.absoluteString})
             }
+            for animg in aui.images {
+                if contUrls.contains(where: {$0.absoluteString.contains(animg.recipeuuid.uuidString)}) {
+                    // already in nothing to do
+                } else {
+                    myReturn.append(animg.recipeuuid.uuidString)
+                }
+            }
         } catch  {
             
         }
+        myReturn = myReturn.sorted()
         return myReturn
     }
     
@@ -156,5 +180,8 @@ struct FilesDisplayView: View {
 struct FilesDisplayView_Previews: PreviewProvider {
     static var previews: some View {
         FilesDisplayView()
+            .environmentObject(AllUserRecipes())
+            .environmentObject((AllUserNotes()))
+            .environmentObject(AllUserImages())
     }
 }

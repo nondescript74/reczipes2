@@ -9,7 +9,7 @@ import Foundation
 
 class AllUserNotes: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Publisher
     @Published var notes: [Note] = []
     // MARK: - Initializer

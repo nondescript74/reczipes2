@@ -12,6 +12,7 @@ struct FilesDisplayView: View {
     fileprivate var zBug: Bool = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
+    
     // MARK: - Initializer
     // MARK: - Properties
     private enum msgs:String {
@@ -38,9 +39,9 @@ struct FilesDisplayView: View {
             } else {
                 myReturn = contUrls.map({$0.absoluteString})
             }
-            
+
         } catch  {
-            
+
         }
         return myReturn
     }
@@ -92,8 +93,8 @@ struct FilesDisplayView: View {
     }
     
     fileprivate func removeMyAddedRecipes() {
-        DispatchQueue.main.async {
-            FileManager.default.removeAddedRecipes()
+        for abs in aur.sections {
+            aur.remove(bsection: abs)
         }
 #if DEBUG
         if zBug {print("FilesDisplayView: removed all user recipe files")}

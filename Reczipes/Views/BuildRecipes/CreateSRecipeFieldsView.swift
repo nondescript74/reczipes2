@@ -12,8 +12,8 @@ struct CreateSRecipeFieldsView: View {
     fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
     @EnvironmentObject var rbb: RecipeBeingBuilt
+    @EnvironmentObject var aur: AllUserRecipes
     // MARK: - Initializer
-    
     // MARK: - Properties
     fileprivate enum msgs: String {
         case csrfv = "CSRFView: "
@@ -38,9 +38,9 @@ struct CreateSRecipeFieldsView: View {
     @State fileprivate var creds: String = ""
     @State fileprivate var xection: Int = 0
     @State fileprivate var xdiet: Diet = Diet.dietExampleKG
-    @State fileprivate var selectionValues2: [Int] = Array(0...getBookSectionNames().count - 1)
+//    @State fileprivate var selectionValues2: [Int]
     @State fileprivate var dairyF: Bool = false
-    @State fileprivate var cuisines: String = ""
+    @State fileprivate var cuisine: String = ""
     @State fileprivate var diets: [String] = []
     @State fileprivate var gf: Bool = false
     @State fileprivate var hscore: Double = 0.0
@@ -54,7 +54,7 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.cookingMinutes = self.cookmin
         rbb.srecipe?.creditsText = self.creds
         rbb.srecipe?.dairyFree = self.dairyF
-        rbb.srecipe?.cuisines = [getBookSectionNames()[xection]]
+        rbb.srecipe?.cuisines = [aur.getBookSectionNames()[xection]]
         rbb.srecipe?.diets = self.diets
         rbb.srecipe?.dishTypes = []
         rbb.srecipe?.extendedIngredients = []
@@ -90,12 +90,9 @@ struct CreateSRecipeFieldsView: View {
         if rbb.srecipe != nil && rbb.srecipe?.title != "" {
             
             let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
-            let result = addRecipeToBookSection(recipe: sectionItem, bookSectionUUID: getBookSectionIDForName(name: getBookSectionNames()[xection]))
-            if zBug {print("wrote sectionItem to existing BookSection")}
-            if !result {
-                if zBug {print("Could not write sectionItem to existing BookSection")}
-                return false
-            }
+            aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: aur.getBookSectionNames()[xection]), recipe: sectionItem)
+//            let result = addRecipeToBookSection(recipe: sectionItem, bookSectionUUID: getBookSectionIDForName(name: getBookSectionNames()[xection]))
+//            if zBug {print("wrote sectionItem to existing BookSection")}
         } else {
             return false
         }
@@ -132,8 +129,8 @@ struct CreateSRecipeFieldsView: View {
                     }
                     TextField(msgs.cred.rawValue, text: $creds)
                     Picker(msgs.cuis.rawValue, selection: $xection) {
-                        ForEach(selectionValues2, id: \.self) { index in
-                            Text("\(getBookSectionNames()[index])")
+                        ForEach(aur.getBookSectionNames(), id: \.self) { name in
+                            Text(name)
                         }
                     }
                     HStack {
@@ -156,7 +153,7 @@ struct CreateSRecipeFieldsView: View {
                 Text(msgs.df.rawValue + " " + dairyF.description)
                 Text(msgs.diet.rawValue + " " + diets.joined(separator: ", "))
                 
-                Text(msgs.cuisine.rawValue + " " + cuisines)
+                Text(msgs.cuisine.rawValue + " " + cuisine)
                 
                 Button("Save", action: {_ = saveIt()})
             }

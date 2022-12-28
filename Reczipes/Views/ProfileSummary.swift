@@ -11,10 +11,10 @@ struct ProfileSummary: View {
     // MARK: - Properties
     var profile: Profile
     // MARK: - Methods
-    fileprivate func getRecips() -> [SectionItem] {
-        let myReturn = FileManager.default.constructUserSavedRecipesIfAvailable()
-        return myReturn
-    }
+//    fileprivate func getRecips() -> [SectionItem] {
+//        let myReturn = FileManager.default.constructUserSavedRecipesIfAvailable()
+//        return myReturn
+//    }
     fileprivate func getNotes() -> [Note] {
         let myReturn = FileManager.default.constructNotesIfAvailable()
         return myReturn
@@ -23,10 +23,10 @@ struct ProfileSummary: View {
         let myReturn = FileManager.default.constructImagesIfAvailable()
         return myReturn
     }
-    fileprivate func getLatest() -> [SectionItem] {
-        let recips = getRecips()
-        return recips
-    }
+//    fileprivate func getLatest() -> [SectionItem] {
+//        let recips = getRecips()
+//        return recips
+//    }
     // MARK: - View Process
     var body: some View {
         List {
@@ -46,7 +46,7 @@ struct ProfileSummary: View {
             Text("Items being retrieved: \(self.profile.numberOfRecipes.rawValue)")
                         
             VStack(alignment: .leading) {
-                Text("Number of saved recipes: \(getRecips().count)")
+//                Text("Number of saved recipes: \(getRecips().count)")
                     
                 Text("Number of saved images: \(getImages().count)")
                     
@@ -55,10 +55,10 @@ struct ProfileSummary: View {
 
             }
             
-            VStack(alignment: .leading) {
-                Text("Recent Recipes ... :  " + (getLatest().first?.name ?? "No recipes saved"))
-                    .font(.headline)
-            }
+//            VStack(alignment: .leading) {
+//                Text("Recent Recipes ... :  " + (getLatest().first?.name ?? "No recipes saved"))
+//                    .font(.headline)
+//            }
         }
     }
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 struct AddImageAndNoteView: View {
     // MARK: - Debug local
-    private let zBug = false
+    private let zBug = true
     // MARK: - Initializer
     // MARK: EnvironmentObject
+    @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aun: AllUserNotes
+    @EnvironmentObject var aui: AllUserImages
     // MARK: - Focus for textfield
     @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
@@ -71,34 +74,52 @@ struct AddImageAndNoteView: View {
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
+    fileprivate func constructAllSections() -> [BookSection] {
+        return aur.sections
+    }
+    
+    fileprivate func constructAllRecipes() -> [SectionItem] {
+        var myReturn: [SectionItem] = []
+        let myBs: [BookSection] = self.constructAllSections()
+        if myBs.isEmpty {
+            // nothing to do, no available booksections
+        } else {
+            for abs in myBs {
+                myReturn.append(contentsOf: abs.items) // all the recipes in the section
+            }
+        }
+        return myReturn
+    }
+    
     
     fileprivate func addRecipeImage() {
         if image == nil {
             if zBug {print(msgs.aianv.rawValue + msgs.noimageset.rawValue)}
             return
         }
-        let myReczipesDirUrl:URL = getDocuDirUrl().appending(path: msgs.recz.rawValue)
-        let combinedRecipes = FileManager.default.constructAllRecipes()
+        
+        let combinedRecipes = self.constructAllRecipes()
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
         let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
         let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
-            let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
-            do {
-                let encodedJSON = try encoder.encode(myImageToAdd)
-//                let suffix = Date().formatted(date: .abbreviated, time: .standard)
-                // now write out
-                do {
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + "_" + dateSuffix() + json))
-                    if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
-                } catch  {
-                    fatalError("Cannot write to user RecipeImages folder")
-                }
-            } catch  {
-                fatalError("Cannot encode booksection to json")
-            }
+        aui.addImage(imageSaved: myImageToAdd)
+//        let myReczipesDirUrl:URL = getDocuDirUrl().appending(path: msgs.recz.rawValue)
+//        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+//        do {
+//            let encodedJSON = try encoder.encode(myImageToAdd)
+//            do {
+//                try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + "_" + dateSuffix() + json))
+//                if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
+//                aui.addImage(imageSaved: myImageToAdd)
+//            } catch  {
+//                fatalError("Cannot write to user RecipeImages folder")
+//            }
+//        } catch  {
+//            fatalError("Cannot encode booksection to json")
+//        }
     }
     
     fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {
@@ -139,31 +160,14 @@ struct AddImageAndNoteView: View {
             if zBug {print(msgs.aianv.rawValue + msgs.noteWithoutText.rawValue)}
             return
         }
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.recz.rawValue)
         
-        let combinedRecipes = FileManager.default.constructAllRecipes()
+        let combinedRecipes = self.constructAllRecipes()
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
         
-        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
-        
         let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
-        do {
-            let encodedJSON = try encoder.encode(myNoteToAdd)
-//            let suffix = Date().formatted(date: .abbreviated, time: .standard)
-            // now write out
-            do {
-                try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(myNoteToAdd.recipeuuid.uuidString + "_" + dateSuffix() + json))
-                if zBug { print(msgs.aianv.rawValue + msgs.notejson.rawValue)}
-                let result = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [])
-                if zBug { print(msgs.aianv.rawValue + "Contents count " + "\(result.count)")}
-            } catch  {
-                fatalError("Cannot write to user RecipeNotes folder")
-            }
-        } catch  {
-            fatalError("Cannot encode booksection to json")
-        }
+        aun.addNote(note: myNoteToAdd)
+
     }
     
     var actionSheet: ActionSheet {
@@ -208,8 +212,8 @@ struct AddImageAndNoteView: View {
                             .foregroundColor(.red)
                             .font(Font.system(size: 15, weight: .medium, design: .serif))
                         Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                            ForEach(0..<FileManager.default.constructAllRecipes().count, id: \.self) { index in
-                                Text(FileManager.default.constructAllRecipes()[index].name)
+                            ForEach(0..<self.constructAllRecipes().count, id: \.self) { index in
+                                Text(self.constructAllRecipes()[index].name)
                                     .foregroundColor(.blue)
                                     .font(Font.system(size: 15, weight: .medium, design: .serif))
                             }

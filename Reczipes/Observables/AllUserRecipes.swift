@@ -15,10 +15,10 @@ class AllUserRecipes: ObservableObject {
     // MARK: - Initializer
     init() {
         self.sections = FileManager.default.constructAllSections()
-        #if DEBUG
+#if DEBUG
         print(msgs.aur.rawValue + "initialized")
-//        print(msgs.aur.rawValue + sections.debugDescription)
-        #endif
+        //        print(msgs.aur.rawValue + sections.debugDescription)
+#endif
     }
     //MARK: - Properties
     fileprivate enum msgs: String {
@@ -39,7 +39,32 @@ class AllUserRecipes: ObservableObject {
 #endif
         return sections.count
     }
+    // MARK: - Methods
+    func getBookSectionsIDNames() -> [BookSectionIDName] {
+        let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
+        return bsin
+    }
     
+    func getBookSectionIDForName(name: String) -> UUID {
+        var myReturn:UUID
+        let sectionIdNames = getBookSectionsIDNames()
+        if sectionIdNames.contains(where: {$0.name == name}) {
+            myReturn = sectionIdNames.filter({$0.name == name}).first!.id
+        } else {
+            fatalError("no uuid for name supplied, fatal")
+        }
+        
+        return myReturn
+    }
+    
+    func getBookSectionNames() -> [String] {
+        let sectionIdNames = getBookSectionsIDNames()
+        var returningNames: [String] = []
+        for abs in sectionIdNames {
+            returningNames.append(abs.name)
+        }
+        return returningNames
+    }
     func addRecipe(bsectionid: UUID, recipe: SectionItem) {
         if sections.contains(where: {$0.id == bsectionid}) {
             
@@ -58,16 +83,25 @@ class AllUserRecipes: ObservableObject {
 #if DEBUG
             // sections does not contain id or name
             // get name from built in name for the id supplied
-            let nameIDs = getBookSectionsIDNames()
+            let nameIDs = self.getBookSectionsIDNames()
             for bsin in nameIDs {
                 if bsin.id == bsectionid {
                     let newBS = BookSection(id: bsectionid, name: bsin.name, items: [recipe])
                     sections.append(newBS)
-                    let result = FileManager.default.saveBookSection(bsection: newBS)
-                    if result {
+                    let myDocuDirUrl = getDocuDirUrl()
+                    let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+                    do {
+                        let encodedJSON = try JSONEncoder().encode(newBS)
+                        // now write out
+                        try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBS.name + "_" + dateSuffix() + json))
+#if DEBUG
+                        print("Successfully wrote booksection to reczipes directory")
+#endif
                         print(msgs.aur.rawValue + msgs.chgNew.rawValue, newBS.name)
-                    } else {
-                        print(msgs.aur.rawValue + msgs.failedtw.rawValue)
+                        
+                    } catch {
+                        // can't save
+                        fatalError("Can't save booksection fatal")
                     }
                 }
             }
@@ -106,7 +140,6 @@ class AllUserRecipes: ObservableObject {
 #if DEBUG
             print(msgs.aur.rawValue + "Already contains this booksection", bsection.id.description, " ", bsection.name)
 #endif
-            
         }
     }
     

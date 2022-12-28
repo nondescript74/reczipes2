@@ -22,7 +22,7 @@ public let recipeNotesFolderName = "RecipeNotes"
 public let recipeImagesFolderName = "RecipeImages"
 //public var recipeBooks:[String] = ["CRecipeBook0", "IndianRecipes0", "Added Recipes"]
 //public var recipeBooks2:[String] = ["Carol", "Indian", "Added", "Diane", "Z", "Rafiq", "Chinese"]
-let myBookSectionsIdNames: [BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json")
+//let myBookSectionsIdNames: [BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json")
 public let json = ".json"
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
@@ -82,7 +82,7 @@ fileprivate enum msgs: String {
 }
 
 //private var decoder: JSONDecoder = JSONDecoder()
-private var encoder: JSONEncoder = JSONEncoder()
+//private var encoder: JSONEncoder = JSONEncoder()
 
 
 func hasSpecialCharacters(string: String) -> Bool {
@@ -211,23 +211,23 @@ func formatStringDoubleToNumber(stringToFormat: String) -> Double {
     let retNum = formatter.number(from: stringToFormat)
     return retNum?.doubleValue ?? 0
 }
-
-func getBookSectionsIDNames() -> [BookSectionIDName] {
-    let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
-    return bsin
-}
-
-func getBookSectionNames() -> [String] {
-    let bsin = getBookSectionsIDNames()
-    var returningNames: [String] = []
-    for abs in bsin {
-        returningNames.append(abs.name)
-    }
-    return returningNames
-}
+//
+//func getBookSectionsIDNames() -> [BookSectionIDName] {
+//    let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
+//    return bsin
+//}
 
 //func getBookSectionNames() -> [String] {
-//    var cuisines:[Cuisine] = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
+//    let bsin = getBookSectionsIDNames()
+//    var returningNames: [String] = []
+//    for abs in bsin {
+//        returningNames.append(abs.name)
+//    }
+//    return returningNames
+//}
+//
+//func getBookSectionNames() -> [String] {
+//    let cuisines:[Cuisine] = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
 //    var returningNames: [String] = []
 //    for acuisine in cuisines {
 //        returningNames.append(acuisine.name)
@@ -242,70 +242,70 @@ func dateSuffix() -> String {
     retStr.removeLast()
     return retStr
 }
+//
+//func getBookSectionIDForName(name: String) -> UUID {
+//    var myReturn:UUID
+//    // special characters are escaped
+//    if getBookSectionNames().contains(name) {
+//        // bs name exists, recipes may not exist in the section
+//        var sections = FileManager.default.constructAllSections()
+//        sections = sections.filter({$0.name == name})
+//        if sections.isEmpty {
+//            var builtinNames = myBookSectionsIdNames
+//            builtinNames = builtinNames.filter({$0.name == name})
+//            if builtinNames.isEmpty {
+//                fatalError("no uuid available for name")
+//            }
+//            myReturn = builtinNames.first!.id
+//        } else {
+//            myReturn = sections.first!.id
+//        }
+//        
+//    } else {
+//        fatalError("no id with name in builtin booksectionnames")
+//    }
+//    return myReturn
+//}
 
-func getBookSectionIDForName(name: String) -> UUID {
-    var myReturn:UUID
-    // special characters are escaped
-    if getBookSectionNames().contains(name) {
-        // bs name exists, recipes may not exist in the section
-        var sections = FileManager.default.constructAllSections()
-        sections = sections.filter({$0.name == name})
-        if sections.isEmpty {
-            var builtinNames = myBookSectionsIdNames
-            builtinNames = builtinNames.filter({$0.name == name})
-            if builtinNames.isEmpty {
-                fatalError("no uuid available for name")
-            }
-            myReturn = builtinNames.first!.id
-        } else {
-            myReturn = sections.first!.id
-        }
-        
-    } else {
-        fatalError("no id with name in builtin booksectionnames")
-    }
-    return myReturn
-}
-
-func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
-    var myReturn:BookSection?
-    let bs = FileManager.default.constructAllSections().filter({$0.id == bookSectionUUID})
-    myReturn = bs.first
-    return myReturn
-}
-
-
-func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool {
-    
-    let myDocuDirUrl = getDocuDirUrl()
-    let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-        
-    if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
-        // exists
-        do {
-            let abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
-            if abookSection.items.contains(where: {$0.url == recipe.url}) {
-                return false  // don't add recipe already in
-            }
-            do {
-                let newBookSection = BookSection(id: abookSection.id, name: abookSection.name, items: [recipe])
-                let encodedJSON = try encoder.encode(newBookSection)
-                // now write out
-                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
-                #if DEBUG
-                print("Successfully wrote booksection")
-                #endif
-                return true
-            } catch  {
-                fatalError("Cannot encode booksection to json")
-            }
-        }
-
-    } else {
-        // uuid does not exist
-        return false
-    }
-}
+//func getBookSectionWithUUID(bookSectionUUID: UUID) -> BookSection? {
+//    var myReturn:BookSection?
+//    let bs = FileManager.default.constructAllSections().filter({$0.id == bookSectionUUID})
+//    myReturn = bs.first
+//    return myReturn
+//}
+//
+//
+//func addRecipeToBookSection(recipe: SectionItem, bookSectionUUID: UUID) -> Bool {
+//
+//    let myDocuDirUrl = getDocuDirUrl()
+//    let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+//
+//    if (getBookSectionWithUUID(bookSectionUUID: bookSectionUUID) != nil) {
+//        // exists
+//        do {
+//            let abookSection = getBookSectionWithUUID(bookSectionUUID: bookSectionUUID)!
+//            if abookSection.items.contains(where: {$0.url == recipe.url}) {
+//                return false  // don't add recipe already in
+//            }
+//            do {
+//                let newBookSection = BookSection(id: abookSection.id, name: abookSection.name, items: [recipe])
+//                let encodedJSON = try JSONEncoder().encode(newBookSection)
+//                // now write out
+//                try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBookSection.name + "_" + dateSuffix() + json))
+//                #if DEBUG
+//                print("Successfully wrote booksection")
+//                #endif
+//                return true
+//            } catch  {
+//                fatalError("Cannot encode booksection to json")
+//            }
+//        }
+//
+//    } else {
+//        // uuid does not exist
+//        return false
+//    }
+//}
 
 //extension Bundle {
 //    func decode<T: Decodable>(_ type: T.Type, from file: String) -> T {

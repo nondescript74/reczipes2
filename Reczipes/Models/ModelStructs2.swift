@@ -586,6 +586,20 @@ struct Diet: Codable, Hashable, Equatable {
     
 }
 
+struct SectionName: Codable, Hashable, Equatable, Identifiable {
+    var id:  UUID
+    var name: String
+    
+    static func == (lhs: SectionName, rhs: SectionName) -> Bool {
+        if lhs.id == rhs.id && lhs.name == rhs.name {
+            return true
+        } else {
+            return false
+        }
+    }
+    static let example = SectionName(id: UUID(uuidString: "F4DA7B28-D403-4313-8AFF-E9645587C99E")!, name: "Beef")
+}
+
 struct Cuisine: Codable, Hashable, Equatable {
     var name: String
     

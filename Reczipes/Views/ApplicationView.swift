@@ -16,6 +16,8 @@ struct ApplicationView: View {
     @EnvironmentObject var ratio: RecipeRatio
     @EnvironmentObject var rbb: RecipeBeingBuilt
     @EnvironmentObject var auu: AllUserRecipes
+    @EnvironmentObject var aun: AllUserNotes
+    @EnvironmentObject var aui: AllUserImages
 
     
     // MARK: - Properties
@@ -96,7 +98,9 @@ struct ApplicationView_Previews: PreviewProvider {
     static let userData = UserData()
     static let rratio = RecipeRatio()
     static let rbb = RecipeBeingBuilt()
-    static let auu = AllUserRecipes()
+    static let aur = AllUserRecipes()
+    static let aun = AllUserNotes()
+    static let aui = AllUserImages()
     
     static var previews: some View {
         ApplicationView()
@@ -104,6 +108,8 @@ struct ApplicationView_Previews: PreviewProvider {
             .environmentObject(userData)
             .environmentObject(rratio)
             .environmentObject(rbb)
-            .environmentObject(auu)
+            .environmentObject(aur)
+            .environmentObject(aun)
+            .environmentObject(aui)
     }
 }

@@ -143,7 +143,7 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        aur.addRecipe(bsectionid: getBookSectionIDForName(name: cuisine), recipe: self.item)
+                        aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
 //                        let result = addRecipeToBookSection(recipe: item, bookSectionUUID: getBookSectionIDForName(name: cuisine))
                         recipeSaved = true
                     }) {
@@ -227,10 +227,11 @@ struct RecipeDetailView: View {
 struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - Environment
     static let order = OrderingList()
+    static let aur = AllUserRecipes()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem.example3, cuisine: getBookSectionNames().last!)
+            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem.example3, cuisine: aur.getBookSectionNames().last!)
                 .environmentObject(order)
         }
     }

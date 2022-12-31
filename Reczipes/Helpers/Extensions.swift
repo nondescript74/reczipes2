@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 import Combine
 
+fileprivate var zBug: Bool = false
+
 fileprivate enum msgs: String {
     
     case returningpresetrecipes = "Returning Preset Recipes "
@@ -24,6 +26,8 @@ fileprivate enum msgs: String {
     case fail = "Failed to remove a recipe "
     case counted = "User added recipes Contents count "
     case nobs = "No booksection files found"
+//    case uanc = " User added Notes Contents count "
+//    case snc = " Shipped Notes Contents count "
 }
 
 private var decoder: JSONDecoder = JSONDecoder()
@@ -38,9 +42,7 @@ extension Bundle {
         guard let data = try? Data(contentsOf: url) else {
             fatalError("Failed to load \(file) from bundle.")
         }
-        
-//        let decoder = JSONDecoder()
-        
+
         guard let decoded = try? decoder.decode(T.self, from: data) else {
             fatalError("Failed to decode \(file) from bundle.")
         }
@@ -194,7 +196,7 @@ extension FileManager {
                     let aBookSection = try decoder.decode(BookSection.self, from: data)
                     // may need to merge recipes if multiple booksections with same name, different id exist
 #if DEBUG
-                    print(msgs.ext.rawValue + msgs.fuar.rawValue)
+                    if zBug {print(msgs.ext.rawValue + msgs.fuar.rawValue)}
 #endif
                     if myReturn.contains(where: {$0.name == aBookSection.name}) {
                         var existing = myReturn.first(where: {$0.name == aBookSection.name})
@@ -204,7 +206,7 @@ extension FileManager {
                         if (existing != nil) {
                             myReturn.append(existing!)
 #if DEBUG
-                    print(msgs.ext.rawValue + msgs.combined.rawValue)
+                            if zBug {print(msgs.ext.rawValue + msgs.combined.rawValue)}
 
 #endif
                         }
@@ -223,174 +225,97 @@ extension FileManager {
 
         return myReturn
     }
-//}
-//
+}
+
 //extension FileManager {
-//    func constructAllRecipes() -> [SectionItem] {
-//        var myReturn: [SectionItem] = []
-//        let myBs: [BookSection] = self.constructAllSections()
-//        if myBs.isEmpty {
-//
-//        } else {
-//            for abs in myBs {
-//                myReturn.append(contentsOf: abs.items)
-//            }
-//        }
-//        let bookSections:[BookSection] = Bundle.main.decode([BookSection].self, from: msgs.rshipd.rawValue + json).sorted(by: {$0.name < $1.name})
-//        if bookSections.isEmpty  {
-//
-//        } else {
-//            for abs in bookSections {
-//                myReturn.append(contentsOf: abs.items)
-//            }
-//        }
-//
-//        let bs = constructAllSections()
-//        for abs in bs {
-//            myReturn.append(contentsOf: abs.items)
-//        }
-//        return myReturn
-//    }
-//}
-//
-//extension FileManager {
-//    func saveBookSection(bsection: BookSection) -> Bool {
-//        var myReturn: Bool = false
+//    func constructNotesIfAvailable() -> Array<Note> {
+//        var myNotesConstructed:Array<Note> = []
 //
 //        let myDocuDirUrl = getDocuDirUrl()
 //        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-//        do {
-//            let encodedJSON = try encoder.encode(bsection)
-//            // now write out
-//            try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(bsection.name + "_" + dateSuffix() + json))
-//            #if DEBUG
-//            print("Successfully wrote booksection to reczipes directory")
-//            #endif
-//            myReturn = true
-//
-//        } catch {
-//            // can't save
-//        }
-//        return myReturn
-//    }
-//}
-//
-//extension FileManager {
-//    func constructUserSavedRecipesIfAvailable() -> [SectionItem] {
-//        var mySavedRecipes:Array<SectionItem> = []
-//
-//        let myDocuDirUrl = getDocuDirUrl()
-//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+//        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
 //
 //        do {
-//            var recipesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-//            recipesUrls = recipesUrls.filter({$0.lastPathComponent != recipeNotesFolderName})
-//            recipesUrls = recipesUrls.filter({$0.lastPathComponent != recipeImagesFolderName})
+//            let notesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
 //
 //#if DEBUG
-//            print(msgs.ext.rawValue + msgs.counted.rawValue + "\(recipesUrls.count)")
+//            if zBug {print(msgs.ext.rawValue + msgs.uanc.rawValue + "\(notesUrls.count)")}
 //#endif
-//            for arecipeurl in recipesUrls {
-//                let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(arecipeurl.lastPathComponent))
-//                let decodedJSON = try decoder.decode(SectionItem.self, from: data)
-//                mySavedRecipes.append(decodedJSON)
+//            for anoteurl in notesUrls {
+//                let data = try Data(contentsOf: myNotesDirUrl.appendingPathComponent(anoteurl.lastPathComponent))
+//                let decodedJSON = try decoder.decode(Note.self, from: data)
+//                myNotesConstructed.append(decodedJSON)
 //            }
 //        } catch  {
 //            fatalError("Cannot read or decode from notes")
 //        }
-//        return mySavedRecipes
+//
+//        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
+//        if shippedNotes.isEmpty  {
+//#if DEBUG
+//            if zBug {print(msgs.ext.rawValue + msgs.snc.rawValue + "\(shippedNotes.count)")}
+//#endif
+//        } else {
+//            myNotesConstructed.append(contentsOf: shippedNotes)
+//        }
+//
+//        if myNotesConstructed.count == 0 {
+//#if DEBUG
+//            if zBug {print(msgs.ext.rawValue + " No User recipe notes")}
+//#endif
+//        } else {
+//#if DEBUG
+//            if zBug {print(msgs.ext.rawValue + " User recipe notes exist: " + " \(myNotesConstructed.count)")}
+//#endif
+//        }
+//        return myNotesConstructed
 //    }
-}
-
-extension FileManager {
-    func constructNotesIfAvailable() -> Array<Note> {
-        var myNotesConstructed:Array<Note> = []
-        
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-        let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
-        
-        do {
-            let notesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-            
-#if DEBUG
-            print(msgs.ext.rawValue + " User added Notes Contents count " + "\(notesUrls.count)")
-#endif
-            for anoteurl in notesUrls {
-                let data = try Data(contentsOf: myNotesDirUrl.appendingPathComponent(anoteurl.lastPathComponent))
-                let decodedJSON = try decoder.decode(Note.self, from: data)
-                myNotesConstructed.append(decodedJSON)
-            }
-        } catch  {
-            fatalError("Cannot read or decode from notes")
-        }
-        
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
-        if shippedNotes.isEmpty  {
-#if DEBUG
-            print(msgs.ext.rawValue + " shipped Notes Contents count " + "\(shippedNotes.count)")
-#endif
-        } else {
-            myNotesConstructed.append(contentsOf: shippedNotes)
-        }
-        
-        if myNotesConstructed.count == 0 {
-#if DEBUG
-            print(msgs.ext.rawValue + " No User recipe notes")
-#endif
-        } else {
-#if DEBUG
-            print(msgs.ext.rawValue + " User recipe notes exist: " + " \(myNotesConstructed.count)")
-#endif
-        }
-        return myNotesConstructed
-    }
-}
-
-extension FileManager {
-    func constructImagesIfAvailable() -> Array<ImageSaved> {
-        var myImagesConstructed:Array<ImageSaved> = []
-        
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
-        
-        do {
-            let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-#if DEBUG
-            print(msgs.ext.rawValue + " User added Images Contents count " + "\(imagesUrls.count)")
-#endif
-            for anImageUrl in imagesUrls {
-                let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
-                let decodedJSON = try decoder.decode(ImageSaved.self, from: data)
-                myImagesConstructed.append(decodedJSON)
-            }
-        } catch  {
-            fatalError("Cannot read or decode from images")
-        }
-        
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
-        if shippedImages.isEmpty  {
-#if DEBUG
-            print(msgs.ext.rawValue + " shipped Images Contents count " + "\(shippedImages.count)")
-#endif
-        } else {
-            myImagesConstructed.append(contentsOf: shippedImages)
-        }
-        
-        if myImagesConstructed.count == 0 {
-#if DEBUG
-            print(msgs.ext.rawValue + " No user images")
-#endif
-        } else {
-#if DEBUG
-            print(msgs.ext.rawValue + " User images exist: " + " \(myImagesConstructed.count)")
-#endif
-        }
-        return myImagesConstructed
-    }
-}
-
+//}
+//
+//extension FileManager {
+//    func constructImagesIfAvailable() -> Array<ImageSaved> {
+//        var myImagesConstructed:Array<ImageSaved> = []
+//
+//        let myDocuDirUrl = getDocuDirUrl()
+//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+//        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+//
+//        do {
+//            let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+//#if DEBUG
+//            print(msgs.ext.rawValue + " User added Images Contents count " + "\(imagesUrls.count)")
+//#endif
+//            for anImageUrl in imagesUrls {
+//                let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
+//                let decodedJSON = try decoder.decode(ImageSaved.self, from: data)
+//                myImagesConstructed.append(decodedJSON)
+//            }
+//        } catch  {
+//            fatalError("Cannot read or decode from images")
+//        }
+//
+//        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
+//        if shippedImages.isEmpty  {
+//#if DEBUG
+//            print(msgs.ext.rawValue + " shipped Images Contents count " + "\(shippedImages.count)")
+//#endif
+//        } else {
+//            myImagesConstructed.append(contentsOf: shippedImages)
+//        }
+//
+//        if myImagesConstructed.count == 0 {
+//#if DEBUG
+//            print(msgs.ext.rawValue + " No user images")
+//#endif
+//        } else {
+//#if DEBUG
+//            print(msgs.ext.rawValue + " User images exist: " + " \(myImagesConstructed.count)")
+//#endif
+//        }
+//        return myImagesConstructed
+//    }
+//}
+//
 //extension FileManager {
 //    func removeAddedRecipes() {
 //        let myDocuDirUrl = getDocuDirUrl()

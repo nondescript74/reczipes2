@@ -11,6 +11,7 @@ struct ImagesView: View {
     // MARK: Debug local
     private var zBug:Bool = false
     // MARK: - Environment
+    @EnvironmentObject var aui: AllUserImages
     // MARK: - Initializer
     init(recipeuuid: UUID) {
         self.myRecipeUUID = recipeuuid
@@ -83,7 +84,7 @@ struct ImagesView: View {
         GeometryReader { proxy in
             ScrollView(.horizontal) {
                 HStack(alignment: .top) {
-                    ForEach(FileManager.default.constructImagesIfAvailable().filter({$0.recipeuuid == myRecipeUUID}), id: \.self) { savedImage in
+                    ForEach(aui.images.filter({$0.recipeuuid == myRecipeUUID}), id: \.self) { savedImage in
                         Image(uiImage: rotateImageIfNecessary(data: savedImage.imageSaved).scaledDown(into: CGSize(width: proxy.size.width / 2, height: proxy.size.height / 2)))
                     }
                 }

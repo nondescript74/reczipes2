@@ -8,25 +8,25 @@ A view that summarizes a profile.
 import SwiftUI
 
 struct ProfileSummary: View {
+    // MARK: - Environment
+    @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aun: AllUserNotes
+    @EnvironmentObject var aui: AllUserImages
     // MARK: - Properties
     var profile: Profile
     // MARK: - Methods
-//    fileprivate func getRecips() -> [SectionItem] {
-//        let myReturn = FileManager.default.constructUserSavedRecipesIfAvailable()
-//        return myReturn
-//    }
+    fileprivate func getRecips() -> [SectionItem] {
+        let myReturn = aur.sections.flatMap({$0.items})
+        return myReturn
+    }
     fileprivate func getNotes() -> [Note] {
-        let myReturn = FileManager.default.constructNotesIfAvailable()
+        let myReturn = aun.notes
         return myReturn
     }
     fileprivate func getImages() -> [ImageSaved] {
-        let myReturn = FileManager.default.constructImagesIfAvailable()
+        let myReturn = aui.images
         return myReturn
     }
-//    fileprivate func getLatest() -> [SectionItem] {
-//        let recips = getRecips()
-//        return recips
-//    }
     // MARK: - View Process
     var body: some View {
         List {
@@ -46,7 +46,7 @@ struct ProfileSummary: View {
             Text("Items being retrieved: \(self.profile.numberOfRecipes.rawValue)")
                         
             VStack(alignment: .leading) {
-//                Text("Number of saved recipes: \(getRecips().count)")
+                Text("Number of saved recipes: \(getRecips().count)")
                     
                 Text("Number of saved images: \(getImages().count)")
                     

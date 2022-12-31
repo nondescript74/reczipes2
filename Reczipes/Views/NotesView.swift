@@ -11,6 +11,7 @@ struct NotesView: View {
     // MARK: - Debug local
     private var zBug:Bool = false
     // MARK: - Environment
+    @EnvironmentObject var aun: AllUserNotes
     // MARK: - Initializer
     init(recipeuuid: UUID) {
         self.myRecipeUUID = recipeuuid
@@ -64,7 +65,7 @@ struct NotesView: View {
     // MARK: - View Process
     var body: some View {
         List {
-            ForEach(FileManager.default.constructNotesIfAvailable().filter({$0.recipeuuid == myRecipeUUID}), id: \.self) { anote in
+            ForEach(aun.notes.filter({$0.recipeuuid == myRecipeUUID}), id: \.self) { anote in
                 Text(anote.note)
             }
         }

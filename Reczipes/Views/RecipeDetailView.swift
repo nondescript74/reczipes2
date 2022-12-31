@@ -14,9 +14,10 @@ struct RecipeDetailView: View {
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aui: AllUserImages
+    @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
-//    @ObservedObject var recipeInfo = WebQueryRecipes()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
         self.item = sectionItem
@@ -101,7 +102,7 @@ struct RecipeDetailView: View {
     private var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
-        var userNotes = FileManager.default.constructNotesIfAvailable()
+        var userNotes = aun.notes
         userNotes = userNotes.filter({$0.recipeuuid == item.id})
         if userNotes.isEmpty {
             return false
@@ -110,7 +111,7 @@ struct RecipeDetailView: View {
     }
     
     fileprivate func hasImages() -> Bool {
-        var imageSaveds = FileManager.default.constructImagesIfAvailable()
+        var imageSaveds = aui.images
         imageSaveds = imageSaveds.filter({$0.recipeuuid == item.id})
         if imageSaveds.isEmpty {
             return false
@@ -144,7 +145,6 @@ struct RecipeDetailView: View {
                     Button(action: {
                         // What to perform
                         aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
-//                        let result = addRecipeToBookSection(recipe: item, bookSectionUUID: getBookSectionIDForName(name: cuisine))
                         recipeSaved = true
                     }) {
                         // How the button looks like
@@ -197,10 +197,6 @@ struct RecipeDetailView: View {
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id)
                 }
-//                Divider()
-//                if showingMoveView == true && cuisine != "" {
-//                    MoveRecipeView(movingRecipe: self.item, moveFromBookSection: self.cuisine)
-//                }
                 Divider()
                 VStack {
                     SafariView(url: URL(string: item.url)!)

@@ -15,19 +15,63 @@ class AllUserImages: ObservableObject {
     @Published var images: [ImageSaved] = []
     // MARK: - Initializer
     init() {
-        self.images = FileManager.default.constructImagesIfAvailable()
+                var myImagesConstructed:Array<ImageSaved> = []
+        
+                let myDocuDirUrl = getDocuDirUrl()
+                let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+                let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+        
+                do {
+                    let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+        #if DEBUG
+                    if zBug {print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")}
+        #endif
+                    for anImageUrl in imagesUrls {
+                        let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
+                        let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
+                        myImagesConstructed.append(decodedJSON)
+                    }
+                } catch  {
+                    fatalError("Cannot read or decode from images")
+                }
+        
+                let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
+                if shippedImages.isEmpty  {
+        #if DEBUG
+                    if zBug {print(msgs.aui.rawValue + msgs.sic.rawValue + "\(shippedImages.count)")}
+        #endif
+                } else {
+                    myImagesConstructed.append(contentsOf: shippedImages)
+                }
+        
+                if myImagesConstructed.count == 0 {
+        #if DEBUG
+                    if zBug {print(msgs.aui.rawValue + msgs.nui.rawValue)}
+        #endif
+                } else {
+        #if DEBUG
+                    if zBug {print(msgs.aui.rawValue + msgs.uie.rawValue + " \(myImagesConstructed.count)")}
+        #endif
+                }
+
 #if DEBUG
-        print(msgs.aui.rawValue + "initialized", "count: ", self.images.count)
+        if zBug {print(msgs.aui.rawValue + msgs.initz.rawValue, msgs.count.rawValue, self.images.count)}
 #endif
     }
     // MARK: - Properties
     fileprivate enum msgs: String {
+        case initz = " Initialized"
+        case count = " Count: "
         case aui = "AllUserImages: "
         case appd = "Appended an image"
         case appdnot = "image already in, did not append"
         case remvd = "image removed"
         case json = ".json"
         case saved = " saved"
+        case uie = " User images exist: "
+        case nui = " No user images"
+        case sic = " Shipped Images Contents count "
+        case uai = " User added Images Contents count "
     }
     
     // MARK: - Methods
@@ -51,11 +95,11 @@ class AllUserImages: ObservableObject {
 
             images.append(imageSaved)
 #if DEBUG
-            print(msgs.aui.rawValue + msgs.appd.rawValue)
+            if zBug {print(msgs.aui.rawValue + msgs.appd.rawValue)}
 #endif
         } else {
 #if DEBUG
-            print(msgs.aui.rawValue + msgs.appdnot.rawValue)
+            if zBug {print(msgs.aui.rawValue + msgs.appdnot.rawValue)}
 #endif
         }
     }
@@ -66,7 +110,7 @@ class AllUserImages: ObservableObject {
         guard let idx = images.firstIndex(of: imageSaved) else { return }
         images.remove(at: idx)
 #if DEBUG
-        print(msgs.aui.rawValue + msgs.remvd.rawValue)
+        if zBug {print(msgs.aui.rawValue + msgs.remvd.rawValue)}
 #endif
     }
 }

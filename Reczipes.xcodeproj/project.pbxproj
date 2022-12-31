@@ -91,6 +91,9 @@
 		F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */; };
 		F8602F25294B7811002EAC1B /* FridgeContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8602F24294B7811002EAC1B /* FridgeContents.swift */; };
 		F8865DA32938FFE90007A95F /* CreateSRecipeFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8865DA22938FFE90007A95F /* CreateSRecipeFieldsView.swift */; };
+		F8B47596295E5BD500A271A8 /* restrictions.json in Resources */ = {isa = PBXBuildFile; fileRef = F8B47595295E5BD500A271A8 /* restrictions.json */; };
+		F8B47598295F3D3400A271A8 /* BuildRestrictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B47597295F3D3400A271A8 /* BuildRestrictionsView.swift */; };
+		F8B4759A295FAC0F00A271A8 /* ShowRestrExplView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B47599295FAC0F00A271A8 /* ShowRestrExplView.swift */; };
 		F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BAA1A3292D8EE0008AFEAD /* Images.json */; };
 		F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */; };
 		F8C3F525295A5601005A119B /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F524295A5601005A119B /* RecipeRatio.swift */; };
@@ -205,6 +208,9 @@
 		F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOrExtractView.swift; sourceTree = "<group>"; };
 		F8602F24294B7811002EAC1B /* FridgeContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeContents.swift; sourceTree = "<group>"; };
 		F8865DA22938FFE90007A95F /* CreateSRecipeFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSRecipeFieldsView.swift; sourceTree = "<group>"; };
+		F8B47595295E5BD500A271A8 /* restrictions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = restrictions.json; sourceTree = "<group>"; };
+		F8B47597295F3D3400A271A8 /* BuildRestrictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRestrictionsView.swift; sourceTree = "<group>"; };
+		F8B47599295FAC0F00A271A8 /* ShowRestrExplView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRestrExplView.swift; sourceTree = "<group>"; };
 		F8BAA1A3292D8EE0008AFEAD /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
 		F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView.swift; sourceTree = "<group>"; };
 		F8C3F524295A5601005A119B /* RecipeRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
@@ -319,6 +325,7 @@
 				F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */,
 				F81A8D4D28F483D300FDB3EF /* recipes.json */,
 				F8C77C7C290744E600222C2D /* ingredients_list.json */,
+				F8B47595295E5BD500A271A8 /* restrictions.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -448,6 +455,8 @@
 			isa = PBXGroup;
 			children = (
 				F8865DA22938FFE90007A95F /* CreateSRecipeFieldsView.swift */,
+				F8B47597295F3D3400A271A8 /* BuildRestrictionsView.swift */,
+				F8B47599295FAC0F00A271A8 /* ShowRestrExplView.swift */,
 			);
 			path = BuildRecipes;
 			sourceTree = "<group>";
@@ -513,6 +522,7 @@
 			files = (
 				935398B92694E27B0062931E /* Preview Assets.xcassets in Resources */,
 				F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */,
+				F8B47596295E5BD500A271A8 /* restrictions.json in Resources */,
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
 				F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */,
@@ -610,9 +620,11 @@
 				93715D9826CC728700F13E09 /* AddImageAndNoteView.swift in Sources */,
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
+				F8B47598295F3D3400A271A8 /* BuildRestrictionsView.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
 				934AC08326D28FCF007EBF20 /* OrderIngredientsView.swift in Sources */,
 				93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */,
+				F8B4759A295FAC0F00A271A8 /* ShowRestrExplView.swift in Sources */,
 				93ACB30126B9E9AA0010F71F /* SRecipeXOperation.swift in Sources */,
 				93ACB2FD26B9E9AA0010F71F /* AsyncOperation.swift in Sources */,
 			);
@@ -745,7 +757,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 228;
+				CURRENT_PROJECT_VERSION = 232;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -773,7 +785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2;
+				MARKETING_VERSION = 4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -790,7 +802,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 228;
+				CURRENT_PROJECT_VERSION = 232;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -818,7 +830,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2;
+				MARKETING_VERSION = 4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

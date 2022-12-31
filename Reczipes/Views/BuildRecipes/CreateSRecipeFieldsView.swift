@@ -36,11 +36,11 @@ struct CreateSRecipeFieldsView: View {
     @State fileprivate var cheap: Bool = true
     @State fileprivate var cookmin: Int64 = 0
     @State fileprivate var creds: String = ""
-    @State fileprivate var xection: Int = 0
+//    @State fileprivate var xection: Int = 0
     @State fileprivate var xdiet: Diet = Diet.dietExampleKG
 //    @State fileprivate var selectionValues2: [Int]
     @State fileprivate var dairyF: Bool = false
-    @State fileprivate var cuisine: String = ""
+    @State fileprivate var cuisine: String = "American"
     @State fileprivate var diets: [String] = []
     @State fileprivate var gf: Bool = false
     @State fileprivate var hscore: Double = 0.0
@@ -54,7 +54,7 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.cookingMinutes = self.cookmin
         rbb.srecipe?.creditsText = self.creds
         rbb.srecipe?.dairyFree = self.dairyF
-        rbb.srecipe?.cuisines = [aur.getBookSectionNames()[xection]]
+        rbb.srecipe?.cuisines = [cuisine]  //[aur.getBookSectionNames()[xection]]
         rbb.srecipe?.diets = self.diets
         rbb.srecipe?.dishTypes = []
         rbb.srecipe?.extendedIngredients = []
@@ -87,12 +87,10 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.weightWatcherSmartPoints = 0
         rbb.srecipe?.winePairing = WinePairing()
         
-        if rbb.srecipe != nil && rbb.srecipe?.title != "" {
+        if rbb.srecipe != nil && rbb.srecipe?.title != "" && aur.getBookSectionNames().contains(where: {$0 == cuisine}) {
             
             let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
-            aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: aur.getBookSectionNames()[xection]), recipe: sectionItem)
-//            let result = addRecipeToBookSection(recipe: sectionItem, bookSectionUUID: getBookSectionIDForName(name: getBookSectionNames()[xection]))
-//            if zBug {print("wrote sectionItem to existing BookSection")}
+            aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: sectionItem)
         } else {
             return false
         }
@@ -112,50 +110,46 @@ struct CreateSRecipeFieldsView: View {
             VStack {
                 Form {
                     TextField(msgs.en.rawValue, text: $recName)
-                    Picker(msgs.al.rawValue, selection: $aggLikes) {
-                        ForEach(selectionValues, id: \.self) {
-                            Text("\($0)")
-                        }
-                    }
-                    HStack {
-                        Text(msgs.chp.rawValue)
-                        Button("Change", action:{cheap.toggle()}).buttonStyle(.bordered)
-                    }
-                    
-                    Picker(msgs.cm.rawValue, selection: $cookmin) {
-                        ForEach(selectionValues, id: \.self) {
-                            Text("\($0) minutes")
-                        }
-                    }
+//                    Picker(msgs.al.rawValue, selection: $aggLikes) {
+//                        ForEach(selectionValues, id: \.self) {
+//                            Text("\($0)")
+//                        }
+//                    }
+//                    HStack {
+//                        Text(msgs.chp.rawValue)
+//                        Button("Change", action:{cheap.toggle()}).buttonStyle(.bordered)
+//                    }
+//                    
+//                    Picker(msgs.cm.rawValue, selection: $cookmin) {
+//                        ForEach(selectionValues, id: \.self) {
+//                            Text("\($0) minutes")
+//                        }
+//                    }
                     TextField(msgs.cred.rawValue, text: $creds)
-                    Picker(msgs.cuis.rawValue, selection: $xection) {
+                    Picker(msgs.cuis.rawValue, selection: $cuisine) {
                         ForEach(aur.getBookSectionNames(), id: \.self) { name in
                             Text(name)
                         }
                     }
+                    BuildRestrictionsView()
+
                     HStack {
-                        Text(msgs.df.rawValue)
-                        Button("Change", action:{dairyF.toggle()}).buttonStyle(.bordered)
+                        Button("Save", action: {_ = saveIt()})
                     }
-                    HStack {
-                        Picker(msgs.diet.rawValue, selection: $xdiet) {
-                            ForEach(Diet.dietExamplesAll, id: \.self) { example in
-                                Text(example.name)
-                            }
-                        }
-                        Button("Add", action:{addDietToList()}).buttonStyle(.bordered)
-                    }
+                    
+                    
 
                 }
-                Text(msgs.al.rawValue + " " + aggLikes.description)
-                Text(msgs.chp.rawValue + " " + cheap.description)
-                Text(msgs.cm.rawValue + " " + cookmin.description)
-                Text(msgs.df.rawValue + " " + dairyF.description)
-                Text(msgs.diet.rawValue + " " + diets.joined(separator: ", "))
                 
-                Text(msgs.cuisine.rawValue + " " + cuisine)
+//                Text(msgs.al.rawValue + " " + aggLikes.description)
+//                Text(msgs.chp.rawValue + " " + cheap.description)
+//                Text(msgs.cm.rawValue + " " + cookmin.description)
+//                Text(msgs.df.rawValue + " " + dairyF.description)
+//                Text(msgs.diet.rawValue + " " + diets.joined(separator: ", "))
                 
-                Button("Save", action: {_ = saveIt()})
+//                Text(msgs.cuisine.rawValue + " " + cuisine)
+                
+                
             }
         }
     }
@@ -166,6 +160,7 @@ struct CreateSRecipeFieldsView_Previews: PreviewProvider {
     static var previews: some View {
         CreateSRecipeFieldsView()
             .environmentObject(rbb)
+            .environmentObject(AllUserRecipes())
     }
 }
 

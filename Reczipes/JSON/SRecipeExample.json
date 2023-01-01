@@ -301,7 +301,7 @@
     "summary": null,
     "cuisines": ["Chinese"],
     "dishTypes": [],
-    "diets": [],
+    "diets": ["Primal"],
     "occasions": [],
     "instructions": "Instructions\n\nIn a large mixing bowl, use your hands to combine the pork, soy sauce, ginger, garlic, sesame oil, and red pepper flakes. Form into golf ball sized meatballs and set aside.\n\nIn a large sauté pan (with sides and a lid), heat the coconut oil over medium-high heat. Brown the meatballs on all sides, about 5 minutes. \n\nAdd the cabbage and cook while stirring for another minute or two until it begins to wilt. \n\nPour in the broth, cover with the lid, and cook until the meatballs are done all the way through (no longer pink on the inside), another 5 minutes.\n\nRemove the lid and simmer for another minute or two so the liquid can reduce slightly. Pour over rice noodles, garnish with green onions, and serve warm. ",
     "analyzedInstructions": [{

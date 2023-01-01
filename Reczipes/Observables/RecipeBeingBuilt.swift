@@ -17,7 +17,6 @@ class RecipeBeingBuilt: ObservableObject {
         
 #if DEBUG
         if zBug {print("RecipeBeingBuilt initialized as SRecipe.example")}
-//        if zBug {print("RecipeBeingBuilt restrictions are ", names.description)}
 #endif
         
     }

@@ -76,8 +76,10 @@ struct BuildRestrictionsView: View {
             
             VStack {
                 Text(rbb.sectionItem?.restrictions.description ?? "No restrictions")
+                Divider()
                 ForEach(rbb.sectionItem?.restrictions ?? [], id: \.self) { name in
                     Text(getDescForName(name:name))
+                    Divider()
                 }
             }
             

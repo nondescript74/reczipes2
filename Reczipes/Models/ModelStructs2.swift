@@ -458,7 +458,7 @@ struct SRecipe: Codable, Hashable, Identifiable, Equatable {
     var creditsText:String?
     var cuisines:[String?]?
     var dairyFree:Bool?
-    var diets:[String?]?
+    var diets:[String]?
     var dishTypes:[String?]?
     var extendedIngredients:[ExtendedIngredient?]?
     var gaps:String?

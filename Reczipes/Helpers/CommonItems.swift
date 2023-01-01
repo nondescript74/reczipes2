@@ -113,38 +113,38 @@ func getDocuDirUrl() -> URL {
     return myReturn
 }
 
-func constructRestrictions(srecipe: SRecipe) -> [String] {
-    var myRestrictions:[String] = []
-    
-    if ((srecipe.sustainable) != nil) && srecipe.sustainable == true {
-        myRestrictions.append("SUST")
-    }
-    if (((srecipe.cheap) != nil)  && (srecipe.cheap) == true) {
-        myRestrictions.append("CHEAP")
-    }
-    if (((srecipe.vegan) != nil)  && (srecipe.vegan) == true) {
-        myRestrictions.append("VEGAN")
-    }
-    if (((srecipe.vegetarian) != nil)  && (srecipe.vegetarian) == true) {
-        myRestrictions.append("VEGET")
-    }
-    if (((srecipe.glutenFree) != nil)  && (srecipe.glutenFree) == true) {
-        myRestrictions.append("GlutenF")
-    }
-    if (((srecipe.dairyFree) != nil)  && (srecipe.dairyFree) == true) {
-        myRestrictions.append("DairyF")
-    }
-    if (((srecipe.veryHealthy) != nil)  && (srecipe.veryHealthy) == true) {
-        myRestrictions.append("VeryH")
-    }
-    if (((srecipe.veryPopular) != nil)  && (srecipe.veryPopular) == true) {
-        myRestrictions.append("VeryPop")
-    }
-    if (((srecipe.lowFodmap) != nil)  && (srecipe.lowFodmap) == true) {
-        myRestrictions.append("LowFMp")
-    }
-    return myRestrictions
-}
+//func constructRestrictions(srecipe: SRecipe) -> [String] {
+//    var myRestrictions:[String] = []
+//
+//    if ((srecipe.sustainable) != nil) && srecipe.sustainable == true {
+//        myRestrictions.append("SUST")
+//    }
+//    if (((srecipe.cheap) != nil)  && (srecipe.cheap) == true) {
+//        myRestrictions.append("CHEAP")
+//    }
+//    if (((srecipe.vegan) != nil)  && (srecipe.vegan) == true) {
+//        myRestrictions.append("VEGAN")
+//    }
+//    if (((srecipe.vegetarian) != nil)  && (srecipe.vegetarian) == true) {
+//        myRestrictions.append("VEGET")
+//    }
+//    if (((srecipe.glutenFree) != nil)  && (srecipe.glutenFree) == true) {
+//        myRestrictions.append("GlutenF")
+//    }
+//    if (((srecipe.dairyFree) != nil)  && (srecipe.dairyFree) == true) {
+//        myRestrictions.append("DairyF")
+//    }
+//    if (((srecipe.veryHealthy) != nil)  && (srecipe.veryHealthy) == true) {
+//        myRestrictions.append("VeryH")
+//    }
+//    if (((srecipe.veryPopular) != nil)  && (srecipe.veryPopular) == true) {
+//        myRestrictions.append("VeryPop")
+//    }
+//    if (((srecipe.lowFodmap) != nil)  && (srecipe.lowFodmap) == true) {
+//        myRestrictions.append("LowFMp")
+//    }
+//    return myRestrictions
+//}
 
 func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
     let item = SectionItem(id: UUID(),
@@ -152,7 +152,8 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
                            url: srecipe.sourceUrl ?? SectionItem.example.url,
                            imageUrl: srecipe.image,
                            photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
-                           restrictions: constructRestrictions(srecipe: srecipe))
+                           restrictions: srecipe.diets ?? [])
+//                           restrictions: constructRestrictions(srecipe: srecipe))
     
 #if DEBUG
     print(msgs.ci.rawValue + item.name)

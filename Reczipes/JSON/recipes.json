@@ -8,28 +8,28 @@
                 "name": "Pressure Cooker Tafelspitz",
                 "url": "http://pressurecookerconvert.com/pressure-cooker-tafelspitz/",
                 "photocredit": "PressureCookerConvert",
-                "restrictions": ["V"]
+                "restrictions": ["Primal"]
             },
             {
                 "id": "9926BA12-55C3-4B26-800B-B68AA8D80474",
                 "name": "Beef and Cheese Manicotti",
                 "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/beef-and-cheese-manicotti-recipe-1914958",
                 "photocredit": "Giada De Laurentis",
-                "restrictions": ["V"]
+                "restrictions": ["Primal"]
             },
             {
                 "id": "B972DE25-8765-4CF8-947A-B5A3B47D6715",
                 "name": "Stir Fried Flank Steak With Mushrooms and Butter",
                 "url": "https://www.seriouseats.com/recipes/2014/04/easy-stir-fried-beef-with-mushrooms-and-butter.html",
                 "photocredit": "Shao Z",
-                "restrictions": ["V"]
+                "restrictions": ["Primal"]
             },
             {
                 "id": "1939E0BC-989E-4D1C-AC6F-0F5BF4370A4C",
                 "name": "Red Wine Braised Beef",
                 "url": "https://www.seriouseats.com/recipes/2019/12/red-wine-braised-beef-short-ribs-recipe.html",
                 "photocredit": "Vicky Wasik",
-                "restrictions": ["V"]
+                "restrictions": ["Primal"]
             }
         ]
     },
@@ -42,7 +42,7 @@
                 "name": "Spicy Salmon Curry",
                 "url": "https://www.indianhealthyrecipes.com/salmon-curry/",
                 "photocredit": "Swasthi's",
-                "restrictions": ["G"]
+                "restrictions": ["Gluten Free"]
             }
         ]
     },
@@ -55,7 +55,7 @@
                 "name": "Sichuan-Style Smashed Cucumber Salad",
                 "url": "https://www.seriouseats.com/recipes/2015/09/sichuan-style-smashed-cucumber-salad-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["G", "V", "D"]
+                "restrictions": ["Gluten Free", "Vegan", "D"]
             }
         ]
     },
@@ -68,14 +68,14 @@
                 "name": "Vegan Crispy Fried Tofu and Broccoli",
                 "url": "https://www.seriouseats.com/recipes/2014/02/vegan-experience-crispy-tofu-broccoli-stir-fry.html",
                 "photocredit": "Kenji Lopez Alt",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB",
                 "name": "Kenji Mapo Tofu Z likes",
                 "url": "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html",
                 "photocredit": "Kenji Lopez Alt",
-                "restrictions": ["G"]
+                "restrictions": ["Primal", "Gluten Free"]
             }
         ]
     },
@@ -88,28 +88,28 @@
                 "name": "Braised Asian Meatballs and Cabbage",
                 "url": "https://www.100daysofrealfood.com/braised-asian-meatballs-and-cabbage/",
                 "photocredit": "100 Days Of Real Food",
-                "restrictions": ["V"]
+                "restrictions": ["Primal"]
             },
             {
                 "id": "8E0B3899-DDE4-4C36-A454-269E95686E27",
                 "name": "Cinnamon Pork Loin and Potatoes",
                 "url": "https://www.allrecipes.com/recipe/39354/cinnamon-pork-loin-and-potatoes/",
                 "photocredit": "Allrecipes",
-                "restrictions": ["G"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "C54F1100-2DF9-4BCB-87F8-8ECD15E44886",
                 "name": "Stir-Fried Cucumbers With Spicy Ground Pork",
                 "url": "https://www.seriouseats.com/recipes/2015/05/stir-fried-cucumber-spicy-ground-pork-easy-dinner-recipe.html",
                 "photocredit": "Shao Z.",
-                "restrictions": ["G"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "3D4CDED8-51A3-46FB-8384-C48773B8B640",
                 "name": "Sous Vide Barbecue Pork Ribs",
                 "url": "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["G"]
+                "restrictions": ["Gluten Free"]
             }
         ]
     },
@@ -122,21 +122,21 @@
                 "name": "Cuban Style Pollo a la Plancha",
                 "url": "https://www.seriouseats.com/recipes/2020/04/cuban-style-pollo-a-la-plancha-marinated-and-griddled-chicken.html",
                 "photocredit": "Aaron Hutcherson",
-                "restrictions": ["G", "D"]
+                "restrictions": ["Gluten Free", "D"]
             },
             {
                 "id": "BEFEC23C-976C-4E09-8877-16D9B01EDF0C",
                 "name": "Herb-Roasted Turkey Breast and Stuffing",
                 "url": "https://www.seriouseats.com/recipes/2012/11/roast-turkey-breast-stuffing-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["G", "D"]
+                "restrictions": ["Gluten Free", "D"]
             },
             {
                 "id": "757A8A66-FFD8-4998-B580-FDF5C90F8BA8",
                 "name": "Takeout-Style Kung Pao Chicken",
                 "url": "https://www.seriouseats.com/recipes/2014/07/takeout-style-kung-pao-chicken-diced-chicken-peppers-peanuts-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["G", "D", "N"]
+                "restrictions": ["Gluten Free", "D", "N"]
             },
             {
                 "id": "9BD6DFB1-A01C-476E-87D4-AC31EC11B6F0",
@@ -150,7 +150,7 @@
                 "name": "Stir-Fried Chicken With Mushrooms and Oyster Sauce",
                 "url": "https://www.seriouseats.com/recipes/2014/07/stir-fried-chicken-mushrooms-oyster-sauce-recipe.html",
                 "photocredit": "Shao Z.",
-                "restrictions": ["G", "D"]
+                "restrictions": ["Gluten Free", "D"]
             }
         ]
     },
@@ -163,7 +163,7 @@
                 "name": "Nduja Mac and Cheese",
                 "url": "https://www.seriouseats.com/recipes/2020/03/nduja-mac-and-cheese.html",
                 "photocredit": "Vicky Wasik",
-                "restrictions": ["G", "D"]
+                "restrictions": ["Gluten Free", "D"]
             },
             {
                 "id": "FBD52E5A-B1BC-4B3D-AC79-156AC54AE45F",
@@ -197,35 +197,35 @@
                 "name": "Celery Soup",
                 "url": "https://www.google.com/amp/s/www.bonappetit.com/recipe/celery-soup",
                 "photocredit": "Brad Leone",
-                "restrictions": ["V", "G", "D"]
+                "restrictions": ["Vegan", "Gluten Free", "D"]
             },
             {
                 "id": "491655A0-1B03-4E93-8D06-6B3BAB63FEAE",
                 "name": "Vegan Lentil Soup",
                 "url": "https://www.seriouseats.com/recipes/2013/02/vegan-lentil-soup-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["V", "G", "D"]
+                "restrictions": ["Vegan", "Gluten Free", "D"]
             },
             {
                 "id": "34FB9E0B-7DE9-4E79-B3FE-F9577468A296",
                 "name": "Sausage, Kale, and Black-Eyed Pea Soup With Lemon and Rosemary",
                 "url": "https://www.seriouseats.com/recipes/2014/01/easy-sausage-kale-and-black-eyed-pea-soup-wit.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["V", "G"]
+                "restrictions": ["Vegan", "Gluten Free"]
             },
             {
                 "id": "F737E555-A743-4A82-B0FE-20E70E6A0704",
                 "name": "Hearty One-Pot Black-Eyed Pea Stew With Kale and Andouille",
                 "url": "https://www.seriouseats.com/recipes/2014/10/black-eyed-peas-kale-andouille-sausage-stew-one-pot-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["G"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "9E65A20E-D352-4328-99FF-B47A7CD7DC28",
                 "name": "Viet Beef Stew with Star Anise and Lemongrass",
                 "url": "https://www.foodandwine.com/recipes/viet-beef-stew-star-anise-and-lemongrass",
                 "photocredit": "Greg Dupree",
-                "restrictions": ["G"]
+                "restrictions": ["Gluten Free"]
             }
         ]
     },
@@ -238,35 +238,35 @@
                 "name": "Austrian-Style Potato Salad (Erdäpfelsalat)",
                 "url": "https://www.seriouseats.com/recipes/2017/07/erdapfelsalat-austrian-style-potato-salad-recipe.html",
                 "photocredit": "Seriouseats",
-                "restrictions": ["V", "D"]
+                "restrictions": ["Vegan", "D"]
             },
             {
                 "id": "C22C13A9-14B6-4E93-8741-159175B79C7B",
                 "name": "Heirloom Tomato Pie",
                 "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/heirloom-tomato-pie-recipe-1973826",
                 "photocredit": "Food Network",
-                "restrictions": ["V", "G", "D"]
+                "restrictions": ["Vegan", "Gluten Free", "D"]
             },
             {
                 "id": "9BDE0D4F-C2F8-4E6B-A5CC-A77FBA9C8920",
                 "name": "Mark Bittman's Cranberry Relish with Orange and Ginger",
                 "url": "https://www.seriouseats.com/recipes/2008/11/mark-bittman-cranberry-relish-with-orange-and-ginger-recipe.html",
                 "photocredit": "Lauren Allen",
-                "restrictions": ["V", "G", "D"]
+                "restrictions": ["Vegan", "Gluten Free", "D"]
             },
             {
                 "id": "844057F8-DFE8-4949-9E39-8D4131B21281",
                 "name": "Best Roasted Sweet Potatoes",
                 "url": "https://www.seriouseats.com/recipes/2010/11/the-best-roasted-sweet-potatoes-thanksgiving-sides-the-food-lab-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["V", "G", "D"]
+                "restrictions": ["Vegan", "Gluten Free", "D"]
             },
             {
                 "id": "18B1133A-390C-4572-97F5-A008DBB89091",
                 "name": "Best Mashed Sweet Potatoes",
                 "url": "https://www.seriouseats.com/recipes/2014/11/the-best-mashed-sweet-potatoes-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["V", "G", "D"]
+                "restrictions": ["Vegan", "Gluten Free", "D"]
             },
             {
                 "id": "04DE4256-DDF2-40BB-ADF6-25E55203C15C",
@@ -286,14 +286,14 @@
                 "name": "Yeasted Pumpkin Bread",
                 "url": "https://www.seriouseats.com/recipes/2018/10/yeasted-pumpkin-bread.html",
                 "photocredit": "Vicky Wasik",
-                "restrictions": ["V", "D"]
+                "restrictions": ["Vegan", "D"]
             },
             {
                 "id": "E28071B5-8385-456A-BD04-1CE169FF3A71",
                 "name": "English Muffin Toasting Bread",
                 "url": "https://www.kingarthurbaking.com/recipes/english-muffin-toasting-bread-recipe",
                 "photocredit": "King Arthur Baking",
-                "restrictions": ["V", "D"]
+                "restrictions": ["Vegan", "D"]
             }
             
         ]
@@ -307,7 +307,7 @@
                 "name": "Quick and Easy Dill Pickle Chips for Hamburgers and Sandwiches",
                 "url": "https://www.seriouseats.com/recipes/2016/09/quick-dill-pickle-chips-recipe.html",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["V", "D", "G"]
+                "restrictions": ["Vegan", "D", "Gluten Free"]
             }
         ]
     },
@@ -320,49 +320,49 @@
                 "name": "Classic Til Ke Ladoo (Indian Sweet Balls)",
                 "url": "https://www.thespruceeats.com/til-ke-sesame-laddoo-1957849",
                 "photocredit": "Saloni Desai/Flickr",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "5A3C1F7D-8446-4B61-80D7-6A613E25F6B4",
                 "name": "Sooji Ka Halwa (Indian Semolina)",
                 "url": "https://www.thespruceeats.com/semolina-halwa-dessert-1957814",
                 "photocredit": "TheSpruce",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "9FAA77FF-CD68-4616-8C4E-1BB456F32419",
                 "name": "Shahi Falooda",
                 "url": "https://www.thespruceeats.com/shahi-falooda-drink-dessert-1957844",
                 "photocredit": "luknaja / Getty Images",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "BFC427E5-E7AB-4BA5-8A1F-58F688DAC43F",
                 "name": "Kulfi (Indian Icecream)",
                 "url": "https://www.thespruceeats.com/kulfi-4800100",
                 "photocredit": "The Spruce / Kristina Vanni",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "9ED67065-A27D-4D0F-B4A2-5809E138BA14",
                 "name": "Gulgulas (Indian Banana Fritters)",
                 "url": "https://www.thespruceeats.com/gulgulas-banana-fritters-indian-style-1958023",
                 "photocredit": "Anjelagr / Dreamstime.com",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "887D3D0D-857B-4D8F-A7C7-189E2D4126D1",
                 "name": "Soft and Chewy Sugar Cookies Recipe",
                 "url": "https://www.seriouseats.com/recipes/2015/12/soft-and-chewy-sugar-cookie-recipe.html",
                 "photocredit": "Stella Parks",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "C4578739-D31E-4E13-8CDF-0558CFD6696F",
                 "name": "The Best Cherry Pie (With Fresh or Frozen Fruit)",
                 "url": "https://www.seriouseats.com/recipes/2016/06/fresh-cherry-pie-filling-recipe.html",
                 "photocredit": "Stella Parks",
-                "restrictions": ["V"]
+                "restrictions": ["Vegan"]
             }
         ]
     }

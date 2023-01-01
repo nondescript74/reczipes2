@@ -3,12 +3,12 @@
         "id":"F4DA7B28-D403-4313-8AFF-E9645587C99E",
         "name":"Beef",
         "items":[
-            {"restrictions":["GF"],
+            {"restrictions":["Gluten Free"],
                 "id":"9926BA12-55C3-4B26-800B-B68AA8D80474",
                 "imageUrl":"https:\/\/food.fnr.sndimg.com\/content\/dam\/images\/food\/fullset\/2004\/3\/12\/0\/ei1c08_beef_cheese_manicotti1.jpg.rend.hgtvcom.826.620.suffix\/1382723091841.jpeg",
                 "name":"Beef and Cheese Manicotti",
                 "url":"https:\/\/www.foodnetwork.com\/recipes\/giada-de-laurentiis\/beef-and-cheese-manicotti-recipe-1914958","photocredit":"Giada De Laurentis"},
-            {"restrictions":["GF"],
+            {"restrictions":["Gluten Free"],
                 "id":"B972DE25-8765-4CF8-947A-B5A3B47D6715",
                 "imageUrl":"https:\/\/www.seriouseats.com\/thmb\/7OxCaLUzvURVptbF4iMvl28n0Rg=\/960x0\/filters:no_upscale():max_bytes(150000):strip_icc()\/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__04__04022014-stirfry-beef-with-mixed-mushroom-and-butter-15-edit-5840b1f5917f4f08a1ba61fd86241876.jpg",
                 "name":"Stir Fried Flank Steak With Mushrooms and Butter",
@@ -38,7 +38,7 @@
                 "url": "https://www.theendlessmeal.com/thai-fish-curry/",
                 "imageUrl": "https://www.theendlessmeal.com/wp-content/uploads/2021/01/Thai-Fish-Curry-3-scaled.jpg",
                 "photocredit": "Swasthi's",
-                "restrictions": ["GF"]
+                "restrictions": ["Gluten Free"]
             }
         ]
     },
@@ -52,7 +52,7 @@
                 "url": "https://www.seriouseats.com/recipes/2015/09/sichuan-style-smashed-cucumber-salad-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/KuhKCDzMRkrehN_rMVpx9dRi14Y=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__09__20150909-smashed-sichuan-cucumber-kenji-6-13faec1c752d45b28765be8038422fde.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF", "VEG", "DF"]
+                "restrictions": ["Gluten Free", "VEG", "DF"]
             }
         ]
     },
@@ -74,7 +74,7 @@
                 "url": "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg",
                 "photocredit": "Kenji Lopez Alt",
-                "restrictions": ["GF", "DF"]
+                "restrictions": ["Gluten Free", "DF"]
             }
         ]
     },
@@ -96,7 +96,7 @@
                 "url": "https://www.seriouseats.com/recipes/2015/05/stir-fried-cucumber-spicy-ground-pork-easy-dinner-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/NCjX_ca9OO8FSS_HaWVb21LpgjU=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__04__20150424-stirfry-cucumber-with-spicy-ground-pork-shao-zhong-10-cadc6f08af9746e898842fd08d6efae1.jpg",
                 "photocredit": "Shao Z.",
-                "restrictions": ["GF"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "3D4CDED8-51A3-46FB-8384-C48773B8B640",
@@ -104,7 +104,7 @@
                 "url": "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF"]
+                "restrictions": ["Gluten Free"]
             }
         ]
     },
@@ -118,7 +118,7 @@
                 "url": "https://www.seriouseats.com/recipes/2020/04/cuban-style-pollo-a-la-plancha-marinated-and-griddled-chicken.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/YQIVakZY0AtBbwDxXbP2C2j0e1o=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__04__20200416-cuban-pollo-a-la-plancha-aaron-hutcherson-10-08b809c2c1c44ae2a89bc4fea9cdb717.jpg",
                 "photocredit": "Aaron Hutcherson",
-                "restrictions": ["GF", "DF"]
+                "restrictions": ["Gluten Free", "DF"]
             },
             {
                 "id": "BEFEC23C-976C-4E09-8877-16D9B01EDF0C",
@@ -126,7 +126,7 @@
                 "url": "https://www.seriouseats.com/recipes/2012/11/roast-turkey-breast-stuffing-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/NAPmRrORU43G3kNj3oQJPcJ0mJA=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2012__10__20121109-turkey-breast-stuffing-01-fb833cd2848140dc9ecc798130c46375.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF", "DD"]
+                "restrictions": ["Gluten Free", "DD"]
             },
             {
                 "id": "757A8A66-FFD8-4998-B580-FDF5C90F8BA8",
@@ -134,7 +134,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/07/takeout-style-kung-pao-chicken-diced-chicken-peppers-peanuts-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/5JaXzQ9ZiXx2yUyntroNe2blBX0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2014__07__2021-02-12-Take-Out-Kung-Pao-Chicken-MHOM-11-c46f6c06713c45c5a287ddbf08779d04.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF", "DF"]
+                "restrictions": ["Gluten Free", "DF"]
             },
             {
                 "id": "08DBCD51-9934-4451-8475-F7F9BF325014",
@@ -150,7 +150,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/07/stir-fried-chicken-mushrooms-oyster-sauce-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/uH0cj1jrvku8RR-5Pn-LVuUi4SM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__07__20140714-chicken-with-mushrooms-and-oyster-sauce-shao-zhong-9-da5c66447740480c89691faee1eb58be.jpg",
                 "photocredit": "Shao Z.",
-                "restrictions": ["GF", "DF"]
+                "restrictions": ["Gluten Free", "DF"]
             }
         ]
     },
@@ -164,7 +164,7 @@
                 "url": "https://www.seriouseats.com/recipes/2020/03/nduja-mac-and-cheese.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/ArR1_BIFRToItff4wQ0HQELnotE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__03__20200225-four-ingredient-nduja-mac-and-cheese-vicky-wasik-8-24696ed5fcf1419584e8bfd4f9efd33b.jpg",
                 "photocredit": "Vicky Wasik",
-                "restrictions": ["GF"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "FBD52E5A-B1BC-4B3D-AC79-156AC54AE45F",
@@ -180,7 +180,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/10/cast-iron-cooking-crispy-baked-pasta-mushrooms-sausage-parmesan-cream-sauce-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/cFGdHVpYBBYRQnNS1-IR7tLnqU8=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__10__20140930-past-mushroom-sausage-cast-iron-baked-43-a56eca341bf649aa90843cdccd3f2bca.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "3292C175-1C5F-40AD-AB0F-0C76C07397A8",
@@ -202,7 +202,7 @@
                 "url": "https://www.bonappetit.com/recipe/celery-soup",
                 "imageUrl": "https://assets.bonappetit.com/photos/57ad35aa53e63daf11a4dceb/master/w_1280,c_limit/celery-soup.jpg",
                 "photocredit": "Brad Leone",
-                "restrictions": ["VEGAN", "GF"]
+                "restrictions": ["VEGAN", "Gluten Free"]
             },
             {
                 "id": "491655A0-1B03-4E93-8D06-6B3BAB63FEAE",
@@ -210,7 +210,7 @@
                 "url": "https://www.seriouseats.com/recipes/2013/02/vegan-lentil-soup-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/Xg-fgROYWbwBsZm3c9Odvr6b6f0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2013__02__20120206-lentil-soup-recipe1-4ab2fb6e6f824a8b93bdacf3c4d21e82.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEGAN", "GF", "DF"]
+                "restrictions": ["VEGAN", "Gluten Free", "DF"]
             },
             {
                 "id": "34FB9E0B-7DE9-4E79-B3FE-F9577468A296",
@@ -218,7 +218,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/01/easy-sausage-kale-and-black-eyed-pea-soup-wit.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/m9HxFiedQVdr5IZQN2mYHTMX-J0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__01__20140109-sausage-kale-and-black-eyed-pea-soup-3-dea3a836aa5c4215bed0817d5e69e1db.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF"]
+                "restrictions": ["Gluten Free"]
             },
             {
                 "id": "F737E555-A743-4A82-B0FE-20E70E6A0704",
@@ -226,7 +226,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/10/black-eyed-peas-kale-andouille-sausage-stew-one-pot-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/aDtOY1ID88fZLCNeX2mktUCUN68=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__10__20141019-sausage-kale-black-eyed-pea-stew-1-87fb3f7680b64ed3b0cb02d489f56ad4.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["GF", "DF"]
+                "restrictions": ["Gluten Free", "DF"]
             },
             {
                 "id": "9E65A20E-D352-4328-99FF-B47A7CD7DC28",
@@ -234,7 +234,7 @@
                 "url": "https://www.foodandwine.com/recipes/viet-beef-stew-star-anise-and-lemongrass",
                 "imageUrl": "https://static.onecms.io/wp-content/uploads/sites/9/2015/01/viet-beef-stew-with-star-anise-and-lemongrass-ft-RECIPE0219.jpg",
                 "photocredit": "Greg Dupree",
-                "restrictions": ["GF", "DF"]
+                "restrictions": ["Gluten Free", "DF"]
             }
         ]
     },
@@ -256,7 +256,7 @@
                 "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/heirloom-tomato-pie-recipe-1973826",
                 "imageUrl": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/6/7/2/FNM_070111-WE-Dinners-036_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371597712259.jpeg",
                 "photocredit": "Food Network",
-                "restrictions": ["VEGAN", "GF", "DF"]
+                "restrictions": ["VEGAN", "Gluten Free", "DF"]
             },
             {
                 "id": "844057F8-DFE8-4949-9E39-8D4131B21281",
@@ -264,7 +264,7 @@
                 "url": "https://www.seriouseats.com/recipes/2010/11/the-best-roasted-sweet-potatoes-thanksgiving-sides-the-food-lab-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/4Sz5Zfuz6H2l7o-fNY-Xb_qqC4c=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__11__20150923-Thanksgiving-spread-vicky-wasik-004-choose-sides-c68226da83c542ed8fc9cbee67326175.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEGAN", "GF", "DF"]
+                "restrictions": ["VEGAN", "Gluten Free", "DF"]
             },
             {
                 "id": "18B1133A-390C-4572-97F5-A008DBB89091",
@@ -272,7 +272,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/11/the-best-mashed-sweet-potatoes-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/2U4xkguX9eQdDz1pqmJcVgwAaLM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__11__20141107-mashed-sweet-potatoes-food-lab-thanksgiving-08-f5a30257e95a480fad75061e13cab74d.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEG", "GF"]
+                "restrictions": ["VEG", "Gluten Free"]
             },
             {
                 "id": "04DE4256-DDF2-40BB-ADF6-25E55203C15C",
@@ -317,7 +317,7 @@
                 "url": "https://www.seriouseats.com/recipes/2016/09/quick-dill-pickle-chips-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/XSH5ChodyhsofxPqriZeMEADrCM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__09__20160913-quick-dill-pickle--2db2820742bc4efc843a43661514483f.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEGAN", "DF", "GF"]
+                "restrictions": ["VEGAN", "DF", "Gluten Free"]
             }
         ]
     },

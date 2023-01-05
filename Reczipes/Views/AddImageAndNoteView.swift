@@ -170,7 +170,7 @@ struct AddImageAndNoteView: View {
 
     }
     
-    var actionSheet: ActionSheet {
+    fileprivate var actionSheet: ActionSheet {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             // camera is available
             sourceTypes = [.camera, .photoLibrary, .savedPhotosAlbum]

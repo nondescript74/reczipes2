@@ -16,7 +16,6 @@ struct BuildRestrictionsView: View {
         for restriction in restrictions {
             names.append(restriction.name)
         }
-    
         return names
     }
     

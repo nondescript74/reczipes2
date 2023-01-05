@@ -12,7 +12,7 @@ import CoreData
 struct VitaminHost: View {
     
     // MARK; - Debug
-    var zBug:Bool = false
+    var zBug: Bool = false
     
     // MARK:- Environment
     @Environment(\.editMode) var mode

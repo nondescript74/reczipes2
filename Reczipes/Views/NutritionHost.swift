@@ -12,7 +12,7 @@ import CoreData
 struct NutritionHost: View {
     
     // MARK; - Debug
-    fileprivate var zBug:Bool = false
+    fileprivate var zBug: Bool = false
     // MARK:- Environment
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData

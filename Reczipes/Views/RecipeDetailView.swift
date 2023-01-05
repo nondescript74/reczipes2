@@ -10,7 +10,7 @@ import MessageUI
 
 struct RecipeDetailView: View {
     // MARK: - Local debug flag
-    fileprivate var zBug:Bool = false
+    fileprivate var zBug: Bool = false
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes

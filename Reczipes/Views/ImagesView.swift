@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImagesView: View {
     // MARK: Debug local
-    private var zBug:Bool = false
+    private var zBug: Bool = false
     // MARK: - Environment
     @EnvironmentObject var aui: AllUserImages
     // MARK: - Initializer

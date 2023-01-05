@@ -56,34 +56,34 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                VStack {
+//                VStack {
                     Text(msgs.sv.rawValue).font(.largeTitle).bold()
                     Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
                     Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
                     Text(userData.profile.username)
                     Text(userData.profile.email)
-                }.padding(.bottom)
+//                }.padding(.bottom)
                 
-                VStack() {
-                    NavigationLink(destination: AuthView()) {
-                        Text("Sign in with Apple")
-                    }.padding(.bottom)
-                    
+//                VStack() {
+//                    NavigationLink(destination: AuthView()) {
+//                        Text("Sign in with Apple")
+//                    }.padding(.bottom)
+//
 //                    NavigationLink(destination: FilesDisplayView()) {
 //                        Text("Display user saved recipes, notes, images")
 //                    }.padding(.bottom)
-                    
-                    NavigationLink(destination: ProfileHost()) {
-                        Text("View/Edit User profile settings")
-                    }.padding(.bottom)
-                    
-                    NavigationLink(destination: NutritionHost()) {
-                        Text("View/Edit user nutrition settings")
-                    }.padding(.bottom)
-                    NavigationLink(destination: KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")) {
-                        Text("Set user api key")
-                    }.padding(.bottom)
-                }
+//
+//                    NavigationLink(destination: ProfileHost()) {
+//                        Text("View/Edit User profile settings")
+//                    }.padding(.bottom)
+//
+//                    NavigationLink(destination: NutritionHost()) {
+//                        Text("View/Edit user nutrition settings")
+//                    }.padding(.bottom)
+//                    NavigationLink(destination: KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")) {
+//                        Text("Set user api key")
+//                    }.padding(.bottom)
+//                }
 //                
 //                VStack {
 //                    MultiView(show: .notyet)

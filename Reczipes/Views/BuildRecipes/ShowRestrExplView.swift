@@ -10,7 +10,7 @@ import SwiftUI
 struct ShowRestrExplView: View {
     @EnvironmentObject var rbb: RecipeBeingBuilt
     fileprivate func getRestrictions() -> [String] {
-        var myReturn: [String] = rbb.sectionItem?.restrictions ?? ["no restrictions"]
+        let myReturn: [String] = rbb.sectionItem?.restrictions ?? ["no restrictions"]
         return myReturn
     }
     var body: some View {

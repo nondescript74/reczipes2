@@ -14,7 +14,7 @@ protocol ImageOutputOperationDataProvider {
 
 class ImageOutputOperation: ImageXOperation {
     // MARK: - Debug local
-    private var zBug:Bool = false
+    private var zBug: Bool = false
     // MARK: -  Properties
     fileprivate var inputImage: Image?
     fileprivate var completion: (Image?) -> ()

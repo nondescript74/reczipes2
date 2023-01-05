@@ -28,6 +28,11 @@ struct CreateSRecipeFieldsView: View {
         case diet = "Diet"
         case gf = "Gluten Free?"
         case hs = "Healthscore"
+        case selectPhoto = "Select Photo"
+        case choose = "Choose"
+        case photolib = "Photo Library"
+        case camera = "Camera"
+        case bigmsg = "Choose a picture from ..."
     }
 
     @State fileprivate var recName: String = ""
@@ -45,6 +50,10 @@ struct CreateSRecipeFieldsView: View {
     @State fileprivate var gf: Bool = false
     @State fileprivate var hscore: Double = 0.0
     @State fileprivate var urlString: String = SectionItem.example.url
+    @State fileprivate var showImagePicker: Bool = false
+    @State fileprivate var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
+    @State fileprivate var image:UIImage?
     
     
     // MARK: - Methods
@@ -105,6 +114,38 @@ struct CreateSRecipeFieldsView: View {
         }
         if zBug {print(msgs.csrfv.rawValue + diets.description)}
     }
+    
+    fileprivate var actionSheet: ActionSheet {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            // camera is available
+            sourceTypes = [.camera, .photoLibrary, .savedPhotosAlbum]
+            return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
+                               message: Text(msgs.choose.rawValue),
+                               buttons: [
+                                .default(Text(msgs.photolib.rawValue)) {
+                                    self.showImagePicker = true
+                                    self.sourceType = .photoLibrary
+                                },
+                                .default(Text(msgs.camera.rawValue)) {
+                                    self.showImagePicker = true
+                                    self.sourceType = .camera
+                                },
+                                .cancel()
+                               ])
+        } else {
+            sourceTypes = [.photoLibrary, .savedPhotosAlbum]
+            return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
+                               message: Text(msgs.choose.rawValue),
+                               buttons: [
+                                .default(Text(msgs.photolib.rawValue)) {
+                                    self.showImagePicker = true
+                                    self.sourceType = .photoLibrary
+                                },
+                                .cancel()
+                               ])
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -132,24 +173,18 @@ struct CreateSRecipeFieldsView: View {
                         }
                     }
                     BuildRestrictionsView()
+                    
 
                     HStack {
                         Button("Save", action: {_ = saveIt()})
                     }
                     
                     
-
                 }
-                
-//                Text(msgs.al.rawValue + " " + aggLikes.description)
-//                Text(msgs.chp.rawValue + " " + cheap.description)
-//                Text(msgs.cm.rawValue + " " + cookmin.description)
-//                Text(msgs.df.rawValue + " " + dairyF.description)
-//                Text(msgs.diet.rawValue + " " + diets.joined(separator: ", "))
-                
-//                Text(msgs.cuisine.rawValue + " " + cuisine)
-                
-                
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                }
+
             }
         }
     }

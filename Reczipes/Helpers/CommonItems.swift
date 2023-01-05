@@ -208,6 +208,8 @@ func formatStringDoubleToNumber(stringToFormat: String) -> Double {
     let retNum = formatter.number(from: stringToFormat)
     return retNum?.doubleValue ?? 0
 }
+
+
 //
 //func getBookSectionsIDNames() -> [BookSectionIDName] {
 //    let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})

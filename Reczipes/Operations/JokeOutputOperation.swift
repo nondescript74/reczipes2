@@ -13,7 +13,7 @@ protocol JokeOutputOperationDataProvider {
 
 class JokeOutputOperation: JokeXOperation {
     // MARK: - Debug local
-    private var zBug:Bool = false
+    private var zBug: Bool = false
     // MARK: -  Properties
     fileprivate enum msgs: String {
         case jo = "JokeOutputOperation: "

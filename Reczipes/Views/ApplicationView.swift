@@ -31,6 +31,7 @@ struct ApplicationView: View {
         case jt = "Joke/Trivia"
         case settings = "Settings"
         case build = "Build"
+        case enterKey = "ApiKey"
     }
     
     
@@ -60,6 +61,18 @@ struct ApplicationView: View {
                 .tabItem {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
+                }
+            
+            AuthView()
+                .tabItem {
+                    Image(uiImage: wandNStarsImage)
+                    Text(tabs.auth.rawValue)
+                }
+            
+            KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+                .tabItem {
+                    Image(uiImage: wandNStarsImage)
+                    Text(tabs.enterKey.rawValue)
                 }
             
             SettingsView()

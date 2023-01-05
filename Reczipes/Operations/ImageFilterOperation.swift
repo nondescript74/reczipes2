@@ -35,7 +35,7 @@ public class ImageFilterOperation: Operation {
     @Published var filterOutput: Image?
     
     // MARK: - Debug
-    fileprivate var zBug:Bool = false
+    fileprivate var zBug: Bool = false
     fileprivate let _filterInput: Image?
     
     init(image: Image?) {

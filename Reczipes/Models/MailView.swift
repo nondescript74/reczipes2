@@ -11,7 +11,7 @@ import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
     // MARK: - Debug local\
-    private var zBug:Bool = false
+    private var zBug: Bool = false
     // MARK: - Environment
     @Environment(\.presentationMode) var presentation
     // MARK: - State

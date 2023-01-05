@@ -15,7 +15,7 @@ protocol ImageCreateOperationDataProvider {
 
 class ImageCreateOperation: Operation {
     // MARK: Debug local
-    var zBug:Bool = false
+    var zBug: Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: ((Image?) -> ())?

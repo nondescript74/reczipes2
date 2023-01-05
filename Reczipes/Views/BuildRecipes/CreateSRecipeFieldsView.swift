@@ -34,22 +34,23 @@ struct CreateSRecipeFieldsView: View {
         case camera = "Camera"
         case bigmsg = "Choose a picture from ..."
     }
-
+    
     @State fileprivate var recName: String = ""
     @State fileprivate var aggLikes: Int64 = 0
     @State fileprivate var selectionValues: [Int64] = Array(0...500)
     @State fileprivate var cheap: Bool = true
     @State fileprivate var cookmin: Int64 = 0
     @State fileprivate var creds: String = ""
-//    @State fileprivate var xection: Int = 0
+    //    @State fileprivate var xection: Int = 0
     @State fileprivate var xdiet: Diet = Diet.dietExampleKG
-//    @State fileprivate var selectionValues2: [Int]
+    //    @State fileprivate var selectionValues2: [Int]
     @State fileprivate var dairyF: Bool = false
     @State fileprivate var cuisine: String = "American"
     @State fileprivate var diets: [String] = []
     @State fileprivate var gf: Bool = false
     @State fileprivate var hscore: Double = 0.0
     @State fileprivate var urlString: String = SectionItem.example.url
+    @State fileprivate var showSheet: Bool = false
     @State fileprivate var showImagePicker: Bool = false
     @State fileprivate var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
@@ -148,43 +149,48 @@ struct CreateSRecipeFieldsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    TextField(msgs.en.rawValue, text: $recName)
-//                    Picker(msgs.al.rawValue, selection: $aggLikes) {
-//                        ForEach(selectionValues, id: \.self) {
-//                            Text("\($0)")
-//                        }
-//                    }
-//                    HStack {
-//                        Text(msgs.chp.rawValue)
-//                        Button("Change", action:{cheap.toggle()}).buttonStyle(.bordered)
-//                    }
-//                    
-//                    Picker(msgs.cm.rawValue, selection: $cookmin) {
-//                        ForEach(selectionValues, id: \.self) {
-//                            Text("\($0) minutes")
-//                        }
-//                    }
-                    TextField(msgs.cred.rawValue, text: $creds)
-                    Picker(msgs.cuis.rawValue, selection: $cuisine) {
-                        ForEach(aur.getBookSectionNames(), id: \.self) { name in
-                            Text(name)
+            GeometryReader { proxy in
+                VStack {
+                    Form {
+                        TextField(msgs.en.rawValue, text: $recName)
+                        TextField(msgs.cred.rawValue, text: $creds)
+                        Picker(msgs.cuis.rawValue, selection: $cuisine) {
+                            ForEach(aur.getBookSectionNames(), id: \.self) { name in
+                                Text(name)
+                            }
                         }
+                        Section {
+                            Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: proxy.size.width, height: proxy.size.height / 4)
+                            Button(action: {
+                                // What to perform
+                                self.showImagePicker = true
+                            }) {
+                                // How the button looks like
+                                Text(msgs.bigmsg.rawValue)
+                                    .foregroundColor(.blue)
+                                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                                    .frame(width: proxy.size.width, height: proxy.size.height / 30)
+                            }
+                        }
+                        
+                        BuildRestrictionsView()
+                        
+                        
+                        HStack {
+                            //                        Button("Pick Image", action: {_ = pickImage()})
+                            Button("Save", action: {_ = saveIt()})
+                        }
+                        
+                        
                     }
-                    BuildRestrictionsView()
-                    
-
-                    HStack {
-                        Button("Save", action: {_ = saveIt()})
+                    .sheet(isPresented: $showImagePicker) {
+                        ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
                     }
-                    
                     
                 }
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
-                }
-
             }
         }
     }

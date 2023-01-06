@@ -13,6 +13,7 @@ struct CreateSRecipeFieldsView: View {
     // MARK: - Environment Variables
     @EnvironmentObject var rbb: RecipeBeingBuilt
     @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aui: AllUserImages
     // MARK: - Initializer
     // MARK: - Properties
     fileprivate enum msgs: String {
@@ -33,6 +34,7 @@ struct CreateSRecipeFieldsView: View {
         case photolib = "Photo Library"
         case camera = "Camera"
         case bigmsg = "Choose a picture from ..."
+        case save = "Save Recipe"
     }
     
     @State fileprivate var recName: String = ""
@@ -41,9 +43,7 @@ struct CreateSRecipeFieldsView: View {
     @State fileprivate var cheap: Bool = true
     @State fileprivate var cookmin: Int64 = 0
     @State fileprivate var creds: String = ""
-    //    @State fileprivate var xection: Int = 0
     @State fileprivate var xdiet: Diet = Diet.dietExampleKG
-    //    @State fileprivate var selectionValues2: [Int]
     @State fileprivate var dairyF: Bool = false
     @State fileprivate var cuisine: String = "American"
     @State fileprivate var diets: [String] = []
@@ -97,14 +97,25 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.weightWatcherSmartPoints = 0
         rbb.srecipe?.winePairing = WinePairing()
         
-        if rbb.srecipe != nil && rbb.srecipe?.title != "" && aur.getBookSectionNames().contains(where: {$0 == cuisine}) {
-            
+        if rbb.srecipe != nil && rbb.srecipe?.title != "" && aur.getBookSectionNames().contains(where: {$0 == cuisine}) && image != nil  {
+                
+            let imageSaved = ImageSaved(recipeuuid: UUID(), imageSaved: (image?.pngData())!)
+            aui.addImage(imageSaved: imageSaved)
+
             let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
             aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: sectionItem)
+            
+#if DEBUG
+            if zBug {print(msgs.csrfv.rawValue + "saved SectionItem")}
+#endif
         } else {
+            
+#if DEBUG
+            if zBug {print(msgs.csrfv.rawValue + "Could not save, may be missing items")}
+#endif
             return false
         }
-        
+
         return true
     }
     
@@ -179,9 +190,18 @@ struct CreateSRecipeFieldsView: View {
                         BuildRestrictionsView()
                         
                         
-                        HStack {
-                            //                        Button("Pick Image", action: {_ = pickImage()})
-                            Button("Save", action: {_ = saveIt()})
+                        Section {
+                            Button(action: {
+                                // What to perform
+                                _ = saveIt()
+                            }) {
+                                // How the button looks like
+                                Text(msgs.save.rawValue)
+                                    .foregroundColor(.blue)
+                                    .font(Font.system(size: 15, weight: .medium, design: .serif))
+                                    .frame(width: proxy.size.width, height: proxy.size.height / 30)
+                            }
+                            
                         }
                         
                         

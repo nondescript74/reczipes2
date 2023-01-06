@@ -15,45 +15,50 @@ class AllUserImages: ObservableObject {
     @Published var images: [ImageSaved] = []
     // MARK: - Initializer
     init() {
-                var myImagesConstructed:Array<ImageSaved> = []
+        var myImagesConstructed:Array<ImageSaved> = []
         
-                let myDocuDirUrl = getDocuDirUrl()
-                let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-                let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
         
-                do {
-                    let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-        #if DEBUG
-                    if zBug {print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")}
-        #endif
-                    for anImageUrl in imagesUrls {
-                        let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
-                        let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
-                        myImagesConstructed.append(decodedJSON)
-                    }
-                } catch  {
-                    fatalError("Cannot read or decode from images")
-                }
+        do {
+            let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+#if DEBUG
+            if zBug {print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")}
+#endif
+            for anImageUrl in imagesUrls {
+                let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
+                let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
+                myImagesConstructed.append(decodedJSON)
+            }
+        } catch  {
+            fatalError("Cannot read or decode from images")
+        }
         
-                let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
-                if shippedImages.isEmpty  {
-        #if DEBUG
-                    if zBug {print(msgs.aui.rawValue + msgs.sic.rawValue + "\(shippedImages.count)")}
-        #endif
-                } else {
-                    myImagesConstructed.append(contentsOf: shippedImages)
-                }
+        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
         
-                if myImagesConstructed.count == 0 {
-        #if DEBUG
-                    if zBug {print(msgs.aui.rawValue + msgs.nui.rawValue)}
-        #endif
-                } else {
-        #if DEBUG
-                    if zBug {print(msgs.aui.rawValue + msgs.uie.rawValue + " \(myImagesConstructed.count)")}
-        #endif
-                }
-
+#if DEBUG
+        if zBug {print(msgs.aui.rawValue + msgs.sic.rawValue + "\(shippedImages.count)")}
+#endif
+        
+        if shippedImages.isEmpty  {
+            
+        } else {
+            myImagesConstructed.append(contentsOf: shippedImages)
+        }
+        
+        images = myImagesConstructed
+        
+        if myImagesConstructed.count == 0 {
+#if DEBUG
+            if zBug {print(msgs.aui.rawValue + msgs.nui.rawValue)}
+#endif
+        } else {
+#if DEBUG
+            if zBug {print(msgs.aui.rawValue + msgs.uie.rawValue + " \(myImagesConstructed.count)")}
+#endif
+        }
+        
 #if DEBUG
         if zBug {print(msgs.aui.rawValue + msgs.initz.rawValue, msgs.count.rawValue, self.images.count)}
 #endif
@@ -92,7 +97,7 @@ class AllUserImages: ObservableObject {
             } catch  {
                 fatalError("Cannot encode ImageSaved to json")
             }
-
+            
             images.append(imageSaved)
 #if DEBUG
             if zBug {print(msgs.aui.rawValue + msgs.appd.rawValue)}

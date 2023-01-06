@@ -44,6 +44,8 @@ class AllUserNotes: ObservableObject {
             myNotesConstructed.append(contentsOf: shippedNotes)
         }
         
+        notes = myNotesConstructed
+        
         if myNotesConstructed.count == 0 {
 #if DEBUG
             if zBug {print(msgs.aun.rawValue + " No User recipe notes")}

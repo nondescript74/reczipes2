@@ -14,12 +14,77 @@ class AllUserRecipes: ObservableObject {
     @Published var sections = [BookSection]()
     // MARK: - Initializer
     init() {
-        self.sections = FileManager.default.constructAllSections()
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
+        if !test {
+            do {
+                try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
+                
+                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rnotes.rawValue), withIntermediateDirectories: true)
+                
+                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rimages.rawValue), withIntermediateDirectories: true)
+                
 #if DEBUG
-        print(msgs.aur.rawValue + "initialized")
-        //        print(msgs.aur.rawValue + sections.debugDescription)
+                print("FileManager: " + " Created Reczipes directory")
+                print("FileManager: " + " Created RecipeNotes directory")
+                print("FileManager: " + " Created RecipeImages directory")
 #endif
+                
+            } catch {
+                fatalError("Cannot create directories")
+            }
+
+        }
+        
+        // directories exist
+        
+        // get all shipped recipes
+        sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+
+        
+        do {
+            var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName), includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+            // skip these folders
+            urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
+            urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
+            
+            
+            for aurl in urls {
+                do {
+                    let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
+                    let aBookSection = try JSONDecoder().decode(BookSection.self, from: data)
+                    // may need to merge recipes if multiple booksections with same name, different id exist
+#if DEBUG
+                    if zBug {print(msgs.ext.rawValue + msgs.fuar.rawValue)}
+#endif
+                    if sections.contains(where: {$0.name == aBookSection.name}) {
+                        var existing = sections.first(where: {$0.name == aBookSection.name})
+                        existing?.items.append(contentsOf: aBookSection.items)
+                        sections = sections.filter({$0.name != aBookSection.name})
+                        if (existing != nil) {
+                            sections.append(existing!)
+#if DEBUG
+                            if zBug {print(msgs.ext.rawValue + msgs.combined.rawValue)}
+#endif
+                        }
+                    } else {
+                        sections.append(aBookSection)
+#if DEBUG
+                        if zBug {print(msgs.ext.rawValue + msgs.added.rawValue + aBookSection.name)}
+#endif
+                    }
+                } catch  {
+                    // not a json file
+                    fatalError("This directory has illegal files")
+                }
+            }
+        } catch  {
+            // no contents or does not exist
+        }
+        
     }
+    
     //MARK: - Properties
     fileprivate enum msgs: String {
         case aur = "AllUserRecipes: "
@@ -31,6 +96,12 @@ class AllUserRecipes: ObservableObject {
         case notchg = "Did not change section "
         case total = "Total: "
         case failedtw = "Failed to write booksection to files"
+        case rshipd = "recipesShipped"
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case fuar = "Found user added recipe"
+        case combined = "Combined booksections into one booksection"
+        case ext = "Extensions: "
     }
     
     var total: Int {
@@ -39,6 +110,7 @@ class AllUserRecipes: ObservableObject {
 #endif
         return sections.count
     }
+    
     // MARK: - Methods
     func getBookSectionsIDNames() -> [BookSectionIDName] {
         let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
@@ -65,6 +137,7 @@ class AllUserRecipes: ObservableObject {
         }
         return returningNames
     }
+    
     func addRecipe(bsectionid: UUID, recipe: SectionItem) {
         if sections.contains(where: {$0.id == bsectionid}) {
             
@@ -76,6 +149,7 @@ class AllUserRecipes: ObservableObject {
             sections.remove(at: index)
             
             sections.append(newBS)
+//            sections = sections.sorted(by: {$0.name < $1.name})
 #if DEBUG
             print(msgs.aur.rawValue + msgs.chgAdd.rawValue, bs.name)
 #endif
@@ -107,6 +181,8 @@ class AllUserRecipes: ObservableObject {
             }
 #endif
         }
+        
+        sections = sections.sorted(by: {$0.name < $1.name})
     }
     
     func removeRecipe(bsectionid: UUID, recipe: SectionItem) {
@@ -122,12 +198,25 @@ class AllUserRecipes: ObservableObject {
             sections.remove(at: index)
             
             sections.append(newBS)
-            
-            
+
 #if DEBUG
             print(msgs.aur.rawValue + msgs.chgRem.rawValue, bs.name)
 #endif
         }
+    }
+    
+    func getRecipeNames() -> [String] {
+        var myReturn: [String] = []
+        for asection in sections {
+            let sectionItems = asection.items
+            for sectionItem in sectionItems {
+                myReturn.append(sectionItem.name)
+            }
+        }
+#if DEBUG
+        print(msgs.aur.rawValue + "Returning count of recipes: ", myReturn.count)
+#endif
+        return myReturn
     }
     
     func add(bsection: BookSection) {

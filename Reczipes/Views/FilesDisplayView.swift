@@ -48,30 +48,30 @@ struct FilesDisplayView: View {
         return myReturn
     }
     
-    private func getReczDirContents(lpc:Bool) -> [String] {
-        var myReturn:[String] = []
-//        do {
-//            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
-//            if lpc {
-//                myReturn = contUrls.map({$0.lastPathComponent})
-//            } else {
-//                myReturn = contUrls.map({$0.absoluteString})
+//    private func getReczDirContents(lpc:Bool) -> [String] {
+//        var myReturn:[String] = []
+////        do {
+////            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue), includingPropertiesForKeys: [])
+////            if lpc {
+////                myReturn = contUrls.map({$0.lastPathComponent})
+////            } else {
+////                myReturn = contUrls.map({$0.absoluteString})
+////            }
+////        } catch  {
+////
+////        }
+//        let myObsvBookSections = aur.sections
+//        for abs in myObsvBookSections {
+//            let sectItems = abs.items
+//            for aSectionItem in sectItems {
+//                if !myReturn.contains(aSectionItem.name) {
+//                    myReturn.append(aSectionItem.name)
+//                }
 //            }
-//        } catch  {
-//
 //        }
-        let myObsvBookSections = aur.sections
-        for abs in myObsvBookSections {
-            let sectItems = abs.items
-            for aSectionItem in sectItems {
-                if !myReturn.contains(aSectionItem.name) {
-                    myReturn.append(aSectionItem.name)
-                }
-            }
-        }
-        myReturn = myReturn.sorted()
-        return myReturn
-    }
+//        myReturn = myReturn.sorted()
+//        return myReturn
+//    }
     
     
     private func getReczNotesDirContents(lpc:Bool) -> [String] {
@@ -140,7 +140,7 @@ struct FilesDisplayView: View {
                 }.padding()
                 Text(msgs.rdir.rawValue).bold()
                 List {
-                    ForEach(getReczDirContents(lpc: true), id: \.self) { fname in
+                    ForEach(aur.getRecipeNames(), id: \.self) { fname in
                         Text(fname).font(.body)
                     }
                 }.padding()

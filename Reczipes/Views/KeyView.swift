@@ -10,9 +10,7 @@ import SwiftUI
 struct KeyView: View {
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
-    @Environment(\.dismiss) var dismiss
     // MARK: - State
-//    @State fileprivate var keyAvailable: Bool = false
     @State fileprivate var apiKey = ""
     // MARK: - Properties
     private enum msgs: String {
@@ -32,38 +30,41 @@ struct KeyView: View {
     init(apikey: String) {
         UserDefaults.standard.set(apikey, forKey: "SpoonacularKey")
     }
+    
+    // MARK: Methods
+
     var body: some View {
-        VStack {
-            Text("Save Api Key").font(.largeTitle).bold()
-            Divider()
-            Text("User supplied key: " + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"))
-            Divider()
-            HStack {
-                Button(action: {
-                    // What to perform
-                    UserDefaults.standard.set(apiKey, forKey: "SpoonacularKey")
+        NavigationView {
+            VStack {
+                Text("Save Api Key").font(.largeTitle).bold()
+                Divider()
+                Text("User supplied key: " + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"))
+                Divider()
+                HStack {
+                    Button(action: {
+                        // What to perform
+                        UserDefaults.standard.set(apiKey, forKey: "SpoonacularKey")
 #if DEBUG
-                    print(UserDefaults.standard.string(forKey: "SpoonacularKey")!)
+                        print(msgs.kv.rawValue + UserDefaults.standard.string(forKey: "SpoonacularKey")!)
 #endif
+                        
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: "Save", someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
+                    }.disabled(apiKey == "").padding(.bottom)
                     
-                }) {
-                    // How the button looks like
-                    RoundButton3View(someTextTop: "Save", someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
-                }.disabled(apiKey == "").padding(.bottom)
+                    TextField(msgs.key.rawValue, text: $apiKey)
                 
-                TextField(msgs.key.rawValue, text: $apiKey)
-                
-                Button("Dismiss") {
-                    dismiss()
                 }
-            }
+                
+            }.padding()
             
-        }.padding()
+        }
     }
 }
 
 struct KeyView_Previews: PreviewProvider {
-    static let apikey = "someapikey"
+    static let apikey = "&apikey=abcdefg1234"
     static var previews: some View {
         KeyView(apikey: apikey)
     }

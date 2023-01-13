@@ -10,7 +10,7 @@ import UIKit
 
 class AllUserImages: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []
     // MARK: - Initializer

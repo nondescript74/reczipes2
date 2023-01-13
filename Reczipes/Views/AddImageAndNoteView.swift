@@ -105,21 +105,7 @@ struct AddImageAndNoteView: View {
         let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
         let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
-        aui.addImage(imageSaved: myImageToAdd)
-//        let myReczipesDirUrl:URL = getDocuDirUrl().appending(path: msgs.recz.rawValue)
-//        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
-//        do {
-//            let encodedJSON = try encoder.encode(myImageToAdd)
-//            do {
-//                try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(myImageToAdd.recipeuuid.uuidString + "_" + dateSuffix() + json))
-//                if zBug { print(msgs.aianv.rawValue + msgs.imgjson.rawValue)}
-//                aui.addImage(imageSaved: myImageToAdd)
-//            } catch  {
-//                fatalError("Cannot write to user RecipeImages folder")
-//            }
-//        } catch  {
-//            fatalError("Cannot encode booksection to json")
-//        }
+        aui.addImage(imageSaved: myImageToAdd)        
     }
     
     fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {

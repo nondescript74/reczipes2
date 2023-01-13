@@ -208,9 +208,6 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddImageAndNoteView()
             }
-//            .sheet(isPresented: $isShowingMailView) {
-//                //                MailView(result: self.$result, sectItem: self.item)
-//            }
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }

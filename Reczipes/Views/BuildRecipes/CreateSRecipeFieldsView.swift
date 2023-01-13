@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateSRecipeFieldsView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Environment Variables
     @EnvironmentObject var rbb: RecipeBeingBuilt
     @EnvironmentObject var aur: AllUserRecipes
@@ -98,11 +98,19 @@ struct CreateSRecipeFieldsView: View {
         rbb.srecipe?.winePairing = WinePairing()
         
         if rbb.srecipe != nil && rbb.srecipe?.title != "" && aur.getBookSectionNames().contains(where: {$0 == cuisine}) && image != nil  {
-                
-            let imageSaved = ImageSaved(recipeuuid: UUID(), imageSaved: (image?.pngData())!)
+            
+            let newImg = image!.scaledDown(into: CGSize(width: 384, height: 300))
+            let recuuid = UUID()
+            let imageSaved = ImageSaved(recipeuuid: recuuid, imageSaved: (newImg.pngData())!)
             aui.addImage(imageSaved: imageSaved)
-
-            let sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
+            
+            let imagesDirUrl: URL = getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(recipeImagesFolderName)
+            let pathImage = imagesDirUrl.appendingPathComponent(recuuid.uuidString + ".json").absoluteString
+            let pathRecipe = getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(recuuid.uuidString + ".json").absoluteString
+            
+            var sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
+            sectionItem.imageUrl = pathImage
+            sectionItem.url = pathRecipe
             aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: sectionItem)
             
 #if DEBUG
@@ -189,7 +197,6 @@ struct CreateSRecipeFieldsView: View {
                         
                         BuildRestrictionsView()
                         
-                        
                         Section {
                             Button(action: {
                                 // What to perform
@@ -201,15 +208,11 @@ struct CreateSRecipeFieldsView: View {
                                     .font(Font.system(size: 15, weight: .medium, design: .serif))
                                     .frame(width: proxy.size.width, height: proxy.size.height / 30)
                             }
-                            
                         }
-                        
-                        
                     }
                     .sheet(isPresented: $showImagePicker) {
                         ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
                     }
-                    
                 }
             }
         }
@@ -217,11 +220,11 @@ struct CreateSRecipeFieldsView: View {
 }
 
 struct CreateSRecipeFieldsView_Previews: PreviewProvider {
-    static let rbb = RecipeBeingBuilt()
     static var previews: some View {
         CreateSRecipeFieldsView()
-            .environmentObject(rbb)
+            .environmentObject(RecipeBeingBuilt())
             .environmentObject(AllUserRecipes())
+            .environmentObject(AllUserImages())
     }
 }
 

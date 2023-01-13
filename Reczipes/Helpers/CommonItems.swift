@@ -118,7 +118,7 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
 //                           restrictions: constructRestrictions(srecipe: srecipe))
     
 #if DEBUG
-    print(msgs.ci.rawValue + item.name)
+    print(msgs.ci.rawValue + "Converted SRecipe to SectionItem " + item.name)
 #endif
     
     return item

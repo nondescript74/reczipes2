@@ -99,10 +99,16 @@ struct ApplicationView: View {
                     Text(tabs.jt.rawValue)
                 }
             
+            
         }
         .environmentObject(order)
         .environmentObject(userData)
         .environmentObject(ratio)
+        .environmentObject(rbb)
+        .environmentObject(aun)
+        .environmentObject(aui)
+        .environmentObject(auu)
+        
     }
 }
 

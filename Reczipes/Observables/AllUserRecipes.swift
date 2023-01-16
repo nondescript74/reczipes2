@@ -26,9 +26,9 @@ class AllUserRecipes: ObservableObject {
                 try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rimages.rawValue), withIntermediateDirectories: true)
                 
 #if DEBUG
-                print("FileManager: " + " Created Reczipes directory")
-                print("FileManager: " + " Created RecipeNotes directory")
-                print("FileManager: " + " Created RecipeImages directory")
+                if zBug {print("FileManager: " + " Created Reczipes directory")}
+                if zBug {print("FileManager: " + " Created RecipeNotes directory")}
+                if zBug {print("FileManager: " + " Created RecipeImages directory")}
 #endif
                 
             } catch {
@@ -38,7 +38,6 @@ class AllUserRecipes: ObservableObject {
         }
         
         // directories exist
-        
         // get all shipped recipes
         sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
 
@@ -82,7 +81,6 @@ class AllUserRecipes: ObservableObject {
         } catch  {
             // no contents or does not exist
         }
-        
     }
     
     //MARK: - Properties
@@ -102,6 +100,7 @@ class AllUserRecipes: ObservableObject {
         case fuar = "Found user added recipe"
         case combined = "Combined booksections into one booksection"
         case ext = "Extensions: "
+        case retr = "Returning count of recipes: "
     }
     
     var total: Int {
@@ -151,10 +150,10 @@ class AllUserRecipes: ObservableObject {
             sections.append(newBS)
 //            sections = sections.sorted(by: {$0.name < $1.name})
 #if DEBUG
-            print(msgs.aur.rawValue + msgs.chgAdd.rawValue, bs.name)
+            if zBug {print(msgs.aur.rawValue + msgs.chgAdd.rawValue, bs.name)}
 #endif
         } else {
-#if DEBUG
+
             // sections does not contain id or name
             // get name from built in name for the id supplied
             let nameIDs = self.getBookSectionsIDNames()
@@ -169,19 +168,16 @@ class AllUserRecipes: ObservableObject {
                         // now write out
                         try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBS.name + "_" + dateSuffix() + json))
 #if DEBUG
-                        print("Successfully wrote booksection to reczipes directory")
+                        if zBug {print("Successfully wrote booksection to reczipes directory")}
+                        if zBug {print(msgs.aur.rawValue + msgs.chgNew.rawValue, newBS.name)}
 #endif
-                        print(msgs.aur.rawValue + msgs.chgNew.rawValue, newBS.name)
-                        
                     } catch {
                         // can't save
                         fatalError("Can't save booksection fatal")
                     }
                 }
             }
-#endif
         }
-        
         sections = sections.sorted(by: {$0.name < $1.name})
     }
     
@@ -214,7 +210,7 @@ class AllUserRecipes: ObservableObject {
             }
         }
 #if DEBUG
-        print(msgs.aur.rawValue + "Returning count of recipes: ", myReturn.count)
+        print(msgs.aur.rawValue + msgs.retr.rawValue, myReturn.count)
 #endif
         return myReturn
     }

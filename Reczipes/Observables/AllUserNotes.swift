@@ -56,7 +56,7 @@ class AllUserNotes: ObservableObject {
 #endif
         }
 #if DEBUG
-        print(msgs.aun.rawValue + "initialized", "count: ", self.notes.count)
+        if zBug {print(msgs.aun.rawValue + "initialized", "count: ", self.notes.count)}
 #endif
     }
     // MARK: - Properties

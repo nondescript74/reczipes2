@@ -32,6 +32,7 @@ struct ApplicationView: View {
         case settings = "Settings"
         case build = "Build"
         case enterKey = "ApiKey"
+        case fi = "find 🍒"
     }
     
     
@@ -39,7 +40,6 @@ struct ApplicationView: View {
     
     var body: some View {
         TabView {
-            
             AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
@@ -71,13 +71,13 @@ struct ApplicationView: View {
             
             KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
                 .tabItem {
-                    Image(uiImage: wandNStarsImage)
+                    Image(uiImage: imageSquarePencil!)
                     Text(tabs.enterKey.rawValue)
                 }
             
             SettingsView()
                 .tabItem {
-                    Image(uiImage: wandNStarsImage)
+                    Image(uiImage: imageDocDocEmpty!)
                     Text(tabs.settings.rawValue)
                 }
             

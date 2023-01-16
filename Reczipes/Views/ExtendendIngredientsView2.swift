@@ -33,6 +33,7 @@ struct ExtendendIngredientsView2_Previews: PreviewProvider {
     static let sectionItem = SectionItem.example
     static var previews: some View {
         ExtendendIngredientsView2(sectionitem: sectionItem)
+             
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 struct FindOrExtractView: View {
     // MARK: - EnvironmentObject
     @EnvironmentObject var userData: UserData
-    @EnvironmentObject var order: OrderingList
+//    @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
@@ -138,5 +138,7 @@ struct FindOrExtractView: View {
 struct FindOrExtractView_Previews: PreviewProvider {
     static var previews: some View {
         FindOrExtractView()
+            .environmentObject(AllUserRecipes())
+            .environmentObject(UserData())
     }
 }

@@ -128,7 +128,8 @@ struct OrderIngredientsView_Previews: PreviewProvider {
         OrderIngredientsView()
             .previewDevice("iPhone Xr")
             .environmentObject(order)
-
+            .environmentObject(ratio)
+            .environmentObject(userData)
     }
 }
 

@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-
-
 struct OrderIngredientsView: View {
     // MARK: - Initializer
     // MARK: - Environment Variables
@@ -97,6 +95,7 @@ struct OrderIngredientsView: View {
                         RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
                     }
                 }
+                
                 
                 ForEach(order.items, id: \.self) { item in
                     ExtendendIngredientsView2(sectionitem: item)

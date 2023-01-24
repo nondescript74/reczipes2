@@ -210,7 +210,7 @@ class AllUserRecipes: ObservableObject {
             }
         }
 #if DEBUG
-        print(msgs.aur.rawValue + msgs.retr.rawValue, myReturn.count)
+        if zBug {print(msgs.aur.rawValue + msgs.retr.rawValue, myReturn.count)}
 #endif
         return myReturn
     }
@@ -219,11 +219,11 @@ class AllUserRecipes: ObservableObject {
         if !sections.contains(bsection) {  // user may have hit the order button multiple times on the same recipe
             sections.append(bsection)
 #if DEBUG
-            print(msgs.aur.rawValue + msgs.added.rawValue, bsection.id.description, " ", bsection.name)
+            if zBug {print(msgs.aur.rawValue + msgs.added.rawValue, bsection.id.description, " ", bsection.name)}
 #endif
         } else {
 #if DEBUG
-            print(msgs.aur.rawValue + "Already contains this booksection", bsection.id.description, " ", bsection.name)
+            if zBug {print(msgs.aur.rawValue + "Already contains this booksection", bsection.id.description, " ", bsection.name)}
 #endif
         }
     }
@@ -232,7 +232,7 @@ class AllUserRecipes: ObservableObject {
         if let index = sections.firstIndex(of: bsection) {
             sections.remove(at: index)
 #if DEBUG
-            print(msgs.aur.rawValue + msgs.removed.rawValue, bsection.id.description, " ", bsection.name)
+            if zBug {print(msgs.aur.rawValue + msgs.removed.rawValue, bsection.id.description, " ", bsection.name)}
 #endif
         }
     }

@@ -15,7 +15,7 @@ struct ApplicationView: View {
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var ratio: RecipeRatio
     @EnvironmentObject var rbb: RecipeBeingBuilt
-    @EnvironmentObject var auu: AllUserRecipes
+    @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
 
@@ -40,7 +40,7 @@ struct ApplicationView: View {
     
     var body: some View {
         TabView {
-            AllRecipesView()
+            AllRecipesView(aur: aur)
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
                     Text(tabs.books.rawValue)
@@ -107,7 +107,7 @@ struct ApplicationView: View {
         .environmentObject(rbb)
         .environmentObject(aun)
         .environmentObject(aui)
-        .environmentObject(auu)
+        .environmentObject(aur)
         
     }
 }

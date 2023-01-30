@@ -9,11 +9,12 @@ import SwiftUI
 
 struct AllRecipesView: View {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    var zBug: Bool = false
     // MARK: - Environment Objects
-    @EnvironmentObject var auu: AllUserRecipes
+//    @EnvironmentObject var auu: AllUserRecipes
+    @ObservedObject var aur: AllUserRecipes
     // MARK: - Properties
-    fileprivate enum msgs: String {
+    enum msgs: String {
         case arv = "All Recipes View"
         case recz = "Reczipes"
         case rshipd = "recipesShipped"
@@ -22,12 +23,11 @@ struct AllRecipesView: View {
         case fuar = "Found user added recipe"
 
     }
-    private var decoder: JSONDecoder = JSONDecoder()
-    private var encoder: JSONEncoder = JSONEncoder()
+
     // MARK: - Methods
     
-    fileprivate var myBook: [BookSection] {
-        return auu.sections
+    var myBook: [BookSection] {
+        return aur.sections.sorted(by: {$0.name < $1.name})
     }
     var body: some View {
         NavigationView {
@@ -52,14 +52,14 @@ struct AllRecipesView: View {
 }
 
 
-struct AllRecipesView_Previews: PreviewProvider {
-//    static let order = OrderingList()
-    
-    static var previews: some View {
-        Group {
-            AllRecipesView()
-                .environmentObject(AllUserRecipes())
-                .colorScheme(.light)
-        }
-    }
-}
+//struct AllRecipesView_Previews: PreviewProvider {
+////    static let order = OrderingList()
+//    
+//    static var previews: some View {
+//        Group {
+//            AllRecipesView()
+////                .environmentObject(AllUserRecipes())
+//                .colorScheme(.light)
+//        }
+//    }
+//}

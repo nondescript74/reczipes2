@@ -27,6 +27,9 @@ struct OrderIngredientsView: View {
         case fq = "5/4"
         case full = "Full"
         case rec = "Recipe"
+        case ingredients = "Ingred"
+        case remove = "Remove"
+        case trash = "trash"
         
     }
     
@@ -45,7 +48,17 @@ struct OrderIngredientsView: View {
             VStack {
                 Section(header: ListHeader(myText: "Recipes To Order For")) {
                     ForEach(order.items, id: \.self) {item in
-                        RecipeRowView(sectionItem: item)
+                        HStack {
+                            RecipeRowView(sectionItem: item)
+                            Button(action: {
+                                // What to perform
+                                self.order.remove(item: item)
+                            }) {
+                                // How the button looks like
+                                RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
+                            }
+
+                        }
                     }
                 }
                 

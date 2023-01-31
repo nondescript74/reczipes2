@@ -9,7 +9,7 @@ import Foundation
 
 class AllUserNotes: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Publisher
     @Published var notes: [Note] = []
     // MARK: - Initializer
@@ -80,8 +80,9 @@ class AllUserNotes: ObservableObject {
             do {
                 let encodedJSON = try JSONEncoder().encode(note)
                 do {
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(note.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue))
-                    if zBug { print(msgs.aun.rawValue + note.recipeuuid.uuidString + msgs.json.rawValue + msgs.saved.rawValue)}
+                    let temp = note.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(temp))
+                    if zBug { print(msgs.aun.rawValue + temp)}
                     notes.append(note)
                 } catch  {
                     fatalError("Cannot write to user RecipeNotes folder")

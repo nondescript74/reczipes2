@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 class AllUserImages: ObservableObject {
-    // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    // MARK: - Local debu
+    fileprivate var zBug: Bool = true
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []
     // MARK: - Initializer
@@ -88,8 +88,9 @@ class AllUserImages: ObservableObject {
             do {
                 let encodedJSON = try JSONEncoder().encode(imageSaved)
                 do {
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(imageSaved.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue))
-                    if zBug { print(msgs.aui.rawValue + imageSaved.recipeuuid.uuidString + msgs.json.rawValue + msgs.saved.rawValue)}
+                    let temp = imageSaved.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(temp))
+                    if zBug { print(msgs.aui.rawValue + temp)}
                     images.append(imageSaved)
                 } catch  {
                     fatalError("Cannot write to user RecipeImages folder")
@@ -98,7 +99,7 @@ class AllUserImages: ObservableObject {
                 fatalError("Cannot encode ImageSaved to json")
             }
             
-            images.append(imageSaved)
+//            images.append(imageSaved)
 #if DEBUG
             if zBug {print(msgs.aui.rawValue + msgs.appd.rawValue)}
 #endif

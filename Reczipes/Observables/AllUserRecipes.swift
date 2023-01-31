@@ -137,6 +137,7 @@ class AllUserRecipes: ObservableObject {
         return returningNames
     }
     
+    @MainActor
     func addRecipe(bsectionid: UUID, recipe: SectionItem) {
         if sections.contains(where: {$0.id == bsectionid}) {
             

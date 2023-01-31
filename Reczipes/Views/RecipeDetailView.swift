@@ -157,13 +157,6 @@ struct RecipeDetailView: View {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.snp.rawValue, reversed: false)
                     }
-//                    Button(action: {
-//                        // What to perform
-//                        self.order.remove(item: self.item)
-//                    }) {
-//                        // How the button looks like
-//                        RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
-//                    }
                     Button(action: {
                         // What to perform
                         self.showingNotes.toggle()

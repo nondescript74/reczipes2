@@ -52,14 +52,12 @@ struct AllRecipesView: View {
 }
 
 
-//struct AllRecipesView_Previews: PreviewProvider {
-////    static let order = OrderingList()
-//    
-//    static var previews: some View {
-//        Group {
-//            AllRecipesView()
-////                .environmentObject(AllUserRecipes())
-//                .colorScheme(.light)
-//        }
-//    }
-//}
+struct AllRecipesView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        Group {
+            AllRecipesView(aur: AllUserRecipes())
+                .colorScheme(.light)
+        }
+    }
+}

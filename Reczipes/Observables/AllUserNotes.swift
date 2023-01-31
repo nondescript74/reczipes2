@@ -76,12 +76,12 @@ class AllUserNotes: ObservableObject {
         let idx = notes.firstIndex(of: note)
         if idx == nil {
             let myReczipesDirUrl:URL = getDocuDirUrl().appending(path: recipesName)
-            let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+            let myNotesDirUrl:URL = myReczipesDirUrl.appending(path: recipeNotesFolderName)
             do {
                 let encodedJSON = try JSONEncoder().encode(note)
                 do {
                     let temp = note.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(temp))
+                    try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(temp))
                     if zBug { print(msgs.aun.rawValue + temp)}
                     notes.append(note)
                 } catch  {

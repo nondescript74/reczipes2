@@ -36,7 +36,7 @@ struct ImagesView: View {
 
     // MARK: - Methods
     fileprivate func getUIImageFromData(data: Data) -> UIImage {
-        var myReturn: UIImage = UIImage()
+        let myReturn: UIImage = UIImage()
         guard let zImg = UIImage(data: data) else { return myReturn }
         return zImg
         

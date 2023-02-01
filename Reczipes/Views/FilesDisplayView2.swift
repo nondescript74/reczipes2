@@ -1,21 +1,23 @@
 //
-//  FilesDisplayView.swift
+//  FilesDisplayView2.swift
 //  Reczipes
 //
-//  Created by Zahirudeen Premji on 8/25/22.
+//  Created by Zahirudeen Premji on 2/1/23.
 //
 
 import SwiftUI
 
-struct FilesDisplayView: View {
+struct FilesDisplayView2: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
     
     // MARK: - Initializer
+    // MARK: - State
+    @State private var zection: Int = 1
     // MARK: - Properties
     private enum msgs:String {
         case recz = "Reczipes"
@@ -26,13 +28,24 @@ struct FilesDisplayView: View {
         case rndir = "Contents of Notes:"
         case ridir = "Contents of Images:"
         case fdisp = "Files Display: "
+        case fdv2 = "FilesDisplayV2: "
+    }
+    fileprivate enum labels: String {
+        case docs = "Documents"
+        case recz = "Reczipes"
+        case reczn = "ReczipeNotes"
+        case reczi = "ReczipeImages"
     }
     // MARK: - State
     @State var searchTerm: String = ""
     @State var urlString: String = ""
-//    @State private var showRemove = false
     // MARK: - Methods
-    private func getDocuDirContents(lpc:Bool) -> [String] {
+    @MainActor
+    fileprivate func getNames() -> [String] {
+        let myReturn: [String] = [labels.docs.rawValue, labels.recz.rawValue, labels.reczn.rawValue, labels.reczi.rawValue]
+        return myReturn
+    }
+    fileprivate func getDocuDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl(), includingPropertiesForKeys: [])
@@ -41,15 +54,15 @@ struct FilesDisplayView: View {
             } else {
                 myReturn = contUrls.map({$0.absoluteString})
             }
-
+            
         } catch  {
-
+            
         }
         return myReturn
     }
     
     
-    private func getReczNotesDirContents(lpc:Bool) -> [String] {
+    fileprivate func getReczNotesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.recznotes.rawValue), includingPropertiesForKeys: [])
@@ -71,7 +84,7 @@ struct FilesDisplayView: View {
         return myReturn
     }
     
-    private func getReczImagesDirContents(lpc:Bool) -> [String] {
+    fileprivate func getReczImagesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
         do {
             let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.reczimages.rawValue), includingPropertiesForKeys: [])
@@ -94,81 +107,53 @@ struct FilesDisplayView: View {
         return myReturn
     }
     
-//    fileprivate func removeMyAddedRecipes() {
-//        for abs in aur.sections {
-//            aur.remove(bsection: abs)
-//        }
-//#if DEBUG
-//        if zBug {print("FilesDisplayView: removed all user recipe files")}
-//#endif
-//        showRemove = false
-//    }
-    
-//    fileprivate func removeMyAddedImages() {
-//        for animg in aui.images {
-//            aui.removeImage(imageSaved: animg)
-//        }
-//#if DEBUG
-//        if zBug {print("FilesDisplayView: removed all user image files")}
-//#endif
-//        showRemove = false
-//    }
-
-
     var body: some View {
         NavigationView {
             VStack {
-                Text(msgs.ddir.rawValue).bold()
-                List {
-                    ForEach(getDocuDirContents(lpc: true), id: \.self) { fname in
-                        Text(fname).font(.body)
+                HStack {
+                    Text("Pick a directory").foregroundColor(.cyan)
+                    Picker("Pick a directory", selection: $zection) {
+                        let zx = getNames().count
+                        ForEach(0..<zx, id: \.self) { index in
+                            Text("\(getNames()[index])")
+                        }
                     }
-                }.padding()
-                Text(msgs.rdir.rawValue).bold()
+                }
                 List {
-                    ForEach(aur.getRecipeNames(), id: \.self) { fname in
-                        Text(fname).font(.body)
+                    switch zection {
+                    case 0:
+                        ForEach(getDocuDirContents(lpc: true), id: \.self) { fname in
+                            Text(fname).font(.body)
+                        }
+                    case 1:
+                        ForEach(aur.getRecipeNames(), id: \.self) { fname in
+                            Text(fname).font(.body)
+                        }
+                    case 2:
+                        ForEach(getReczNotesDirContents(lpc: true), id: \.self) { fname in
+                            Text(fname).font(.body)
+                        }
+                    case 3:
+                        ForEach(getReczImagesDirContents(lpc: true), id: \.self) { fname in
+                            Text(fname).font(.body)
+                        }
+                        
+                    default:
+                        ForEach(getDocuDirContents(lpc: true), id: \.self) { fname in
+                            Text(fname).font(.body)
+                        }
                     }
-                }.padding()
-                Text(msgs.ridir.rawValue).bold()
-                List {
-                    ForEach(getReczImagesDirContents(lpc: true), id: \.self) { fname in
-                        Text(fname).font(.body)
-                    }
-                }.padding()
-                Text(msgs.rndir.rawValue).bold()
-                List {
-                    ForEach(getReczNotesDirContents(lpc: true), id: \.self) { fname in
-                        Text(fname).font(.body)
-                    }
-                }.padding()
-//                VStack {
-//                    Button("Tap to remove user images") {
-//                        showRemove = true
-//                    }.buttonStyle(.borderedProminent)
-//                }
-
+                }
+                
             }
-//            .actionSheet(isPresented: $showRemove) {
-//                ActionSheet(title: Text("Remove All User Images"),
-//                            message: Text("Choose"),
-//                            buttons: [
-//                                .cancel(),
-//                                .destructive(
-//                                    Text("Remove Images"),
-//                                    action: removeMyAddedImages
-//                                )
-//                            ]
-//                )
-//            }
-        }.navigationTitle(Text(msgs.fdisp.rawValue))
-             
+//            .navigationTitle(Text(msgs.fdisp.rawValue))
+        }
     }
 }
 
-struct FilesDisplayView_Previews: PreviewProvider {
+struct FilesDisplayView2_Previews: PreviewProvider {
     static var previews: some View {
-        FilesDisplayView()
+        FilesDisplayView2()
             .environmentObject(AllUserRecipes())
             .environmentObject((AllUserNotes()))
             .environmentObject(AllUserImages())

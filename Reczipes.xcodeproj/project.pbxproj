@@ -94,7 +94,6 @@
 		F8B47598295F3D3400A271A8 /* BuildRestrictionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B47597295F3D3400A271A8 /* BuildRestrictionsView.swift */; };
 		F8B4759A295FAC0F00A271A8 /* ShowRestrExplView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B47599295FAC0F00A271A8 /* ShowRestrExplView.swift */; };
 		F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BAA1A3292D8EE0008AFEAD /* Images.json */; };
-		F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */; };
 		F8C3F525295A5601005A119B /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F524295A5601005A119B /* RecipeRatio.swift */; };
 		F8C3F527295A56F7005A119B /* RecipeBeingBuilt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F526295A56F7005A119B /* RecipeBeingBuilt.swift */; };
 		F8C3F529295A5890005A119B /* AllUserRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F528295A5890005A119B /* AllUserRecipes.swift */; };
@@ -103,6 +102,7 @@
 		F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F52E295CAA63005A119B /* AllUserNotes.swift */; };
 		F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */ = {isa = PBXBuildFile; fileRef = F8C77C7C290744E600222C2D /* ingredients_list.json */; };
 		F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */ = {isa = PBXBuildFile; fileRef = F8CE26D3289C75B1003483DD /* SRecipeExample.json */; };
+		F8EBEBB4298B0B300032675F /* FilesDisplayView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBEBB3298B0B300032675F /* FilesDisplayView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -210,7 +210,6 @@
 		F8B47597295F3D3400A271A8 /* BuildRestrictionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRestrictionsView.swift; sourceTree = "<group>"; };
 		F8B47599295FAC0F00A271A8 /* ShowRestrExplView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRestrExplView.swift; sourceTree = "<group>"; };
 		F8BAA1A3292D8EE0008AFEAD /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
-		F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView.swift; sourceTree = "<group>"; };
 		F8C3F524295A5601005A119B /* RecipeRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		F8C3F526295A56F7005A119B /* RecipeBeingBuilt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeBeingBuilt.swift; sourceTree = "<group>"; };
 		F8C3F528295A5890005A119B /* AllUserRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUserRecipes.swift; sourceTree = "<group>"; };
@@ -219,6 +218,7 @@
 		F8C3F52E295CAA63005A119B /* AllUserNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUserNotes.swift; sourceTree = "<group>"; };
 		F8C77C7C290744E600222C2D /* ingredients_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients_list.json; sourceTree = "<group>"; };
 		F8CE26D3289C75B1003483DD /* SRecipeExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample.json; sourceTree = "<group>"; };
+		F8EBEBB3298B0B300032675F /* FilesDisplayView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,7 +257,7 @@
 				F8304A7228AD348500867C6F /* AuthView.swift */,
 				F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */,
 				F8304A7728AEE9A200867C6F /* SettingsView.swift */,
-				F8C07A9428B8196F00E8082C /* FilesDisplayView.swift */,
+				F8EBEBB3298B0B300032675F /* FilesDisplayView2.swift */,
 				F8304A7928B1685A00867C6F /* ProfileHost.swift */,
 				F8304A7B28B1687200867C6F /* ProfileEditor.swift */,
 				F8304A7D28B1687700867C6F /* ProfileSummary.swift */,
@@ -557,7 +557,6 @@
 				93AB40CD26BF2100005529AF /* GoogleSearchView.swift in Sources */,
 				93AB40C926BECDF2005529AF /* SearchBar.swift in Sources */,
 				93237A1C26A4E52400032387 /* RecipeDetailView.swift in Sources */,
-				F8C07A9528B8196F00E8082C /* FilesDisplayView.swift in Sources */,
 				F8865DA32938FFE90007A95F /* CreateSRecipeFieldsView.swift in Sources */,
 				93ACB2DF26B9E8CD0010F71F /* ImageCreateOperation.swift in Sources */,
 				93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */,
@@ -603,6 +602,7 @@
 				F8602F25294B7811002EAC1B /* FridgeContents.swift in Sources */,
 				F8304A7C28B1687200867C6F /* ProfileEditor.swift in Sources */,
 				93237A2C26A4E7A200032387 /* Vitamins.swift in Sources */,
+				F8EBEBB4298B0B300032675F /* FilesDisplayView2.swift in Sources */,
 				935398B22694E2780062931E /* ReczipesApp.swift in Sources */,
 				93237A3426A4E87900032387 /* ImagesView.swift in Sources */,
 				F81BADD02922FDD3004AE705 /* CRecipeGroupXOperation.swift in Sources */,
@@ -757,7 +757,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 270;
+				CURRENT_PROJECT_VERSION = 276;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -785,7 +785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
+				MARKETING_VERSION = 4.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -805,7 +805,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 270;
+				CURRENT_PROJECT_VERSION = 276;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -833,7 +833,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.7;
+				MARKETING_VERSION = 4.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

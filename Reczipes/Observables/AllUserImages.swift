@@ -10,7 +10,7 @@ import UIKit
 
 class AllUserImages: ObservableObject {
     // MARK: - Local debu
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []
     // MARK: - Initializer
@@ -26,10 +26,11 @@ class AllUserImages: ObservableObject {
 #if DEBUG
             if zBug {print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")}
 #endif
-            
-            
             for anImageUrl in imagesUrls {
                 let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
+#if DEBUG
+                if zBug {print(msgs.aui.rawValue + data.debugDescription)}
+#endif
                 let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
                 myImagesConstructed.append(decodedJSON)
             }
@@ -101,7 +102,6 @@ class AllUserImages: ObservableObject {
                 fatalError("Cannot encode ImageSaved to json")
             }
             
-//            images.append(imageSaved)
 #if DEBUG
             if zBug {print(msgs.aui.rawValue + msgs.appd.rawValue)}
 #endif
@@ -120,5 +120,32 @@ class AllUserImages: ObservableObject {
 #if DEBUG
         if zBug {print(msgs.aui.rawValue + msgs.remvd.rawValue)}
 #endif
+    }
+    
+    func removeImageAndStored(imageSaved: ImageSaved) {
+        let myDocuDirUrl = getDocuDirUrl()
+        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
+        
+        
+        
+        do {
+            let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
+#if DEBUG
+            if zBug {print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")}
+#endif
+            for anImageUrl in imagesUrls {
+                let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
+#if DEBUG
+                if zBug {print(msgs.aui.rawValue + data.debugDescription)}
+#endif
+                let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
+                if decodedJSON == imageSaved {
+                    try FileManager.default.removeItem(atPath: anImageUrl.absoluteString)
+                }
+            }
+        } catch  {
+            fatalError("Cannot read or decode from images")
+        }
     }
 }

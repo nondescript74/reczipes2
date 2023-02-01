@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateSRecipeFieldsView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
     @EnvironmentObject var rbb: RecipeBeingBuilt
     @EnvironmentObject var aur: AllUserRecipes

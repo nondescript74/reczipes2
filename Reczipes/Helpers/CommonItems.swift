@@ -63,6 +63,7 @@ var colorForegroundButton: Color = Color.init("A4B8C4")
 let colors: [String: Color] = ["D": .purple, "G": .pink, "N": .red, "S": .blue, "V": .green, "VX": .green, "L": .gray, "H": .orange, "P": .yellow]
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
+let targetsize = CGSize(width: 90.0, height: 60.0)
 
 fileprivate enum msgs: String {
     

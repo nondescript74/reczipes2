@@ -87,7 +87,7 @@ struct ApplicationView: View {
 //                    Text(tabs.build.rawValue)
 //                }
             
-            FilesDisplayView()
+            FilesDisplayView2()
                 .tabItem {
                     Image(uiImage: hare!)
                     Text(tabs.uf.rawValue)

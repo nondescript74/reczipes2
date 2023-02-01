@@ -102,7 +102,7 @@ struct AddImageAndNoteView: View {
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
-        let targetsize = CGSize(width: 90.0, height: 60.0)
+//        let targetsize = CGSize(width: 90.0, height: 60.0)
         let sizedImage = resizeImage(image: image!, targetSize: targetsize)
 //        let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
@@ -288,14 +288,15 @@ struct AddImageAndNoteView: View {
                     .actionSheet(isPresented: $showSheet) {
                         self.actionSheet
                     }
-                    .alert(isPresented: $recipeImageSaved)   {
-                        return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
-                    }
+
                     .sheet(isPresented: $showImagePicker) {
                         ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
                     }
                     .alert(isPresented: $recipeNoteSaved)   {
                         return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
+                    }
+                    .alert(isPresented: $recipeImageSaved)   {
+                        return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
                     }
             }
         }

@@ -11,7 +11,7 @@ struct AllRecipesView: View {
     // MARK: - Debug local
     var zBug: Bool = false
     // MARK: - Environment Objects
-//    @EnvironmentObject var auu: AllUserRecipes
+    //    @EnvironmentObject var auu: AllUserRecipes
     @ObservedObject var aur: AllUserRecipes
     // MARK: - Properties
     enum msgs: String {
@@ -21,9 +21,9 @@ struct AllRecipesView: View {
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
         case fuar = "Found user added recipe"
-
+        
     }
-
+    
     // MARK: - Methods
     
     var myBook: [BookSection] {
@@ -44,8 +44,6 @@ struct AllRecipesView: View {
                         }
                     }
                 }.listStyle(GroupedListStyle())
-                    .refreshable {
-                    }
             }
         }
     }

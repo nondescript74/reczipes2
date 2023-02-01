@@ -32,60 +32,23 @@ struct ImagesView: View {
         case recz = "Reczipes"
         case fau = "Found an Image"
         case rshippd = "recipesShipped"
-//        case json = ".json"
     }
-    private var decoder: JSONDecoder = JSONDecoder()
-    private var encoder: JSONEncoder = JSONEncoder()
+
     // MARK: - Methods
-    fileprivate func rotateImageIfNecessary(data: Data) -> UIImage {
-        let zImg = UIImage(data: data)!
-        switch zImg.imageOrientation {
-        case UIImage.Orientation.up:
-            
-            print(msgs.iv.rawValue + msgs.up.rawValue)
-            
-            return zImg
-        case UIImage.Orientation.down:
-            
-            print(msgs.iv.rawValue + msgs.down.rawValue)
-            
-            return zImg
-        case UIImage.Orientation.left:
-            
-            print(msgs.iv.rawValue + msgs.left.rawValue)
-            
-            return zImg
-        case UIImage.Orientation.right:
-            
-            print(msgs.iv.rawValue + msgs.right.rawValue)
-            
-            return zImg
-        default:
-            
-            print(msgs.iv.rawValue + msgs.other.rawValue)
-            
-            return zImg
-        }
-        //        if zImg.imageOrientation == UIImage.Orientation.up {
-        //
-        //            print(msgs.iv.rawValue + msgs.up.rawValue)
-        //
-        //            return zImg
-        //        } else {
-        //            UIGraphicsBeginImageContext(zImg.size)
-        //            zImg.draw(in: CGRect(origin: .zero, size: zImg.size))
-        //            let zCopy = UIGraphicsGetImageFromCurrentImageContext()!
-        //            UIGraphicsEndImageContext()
-        //            return zCopy
-        //        }
+    fileprivate func getUIImageFromData(data: Data) -> UIImage {
+        var myReturn: UIImage = UIImage()
+        guard let zImg = UIImage(data: data) else { return myReturn }
+        return zImg
+        
     }
+    
     // MARK: - View Process
     var body: some View {
         GeometryReader { proxy in
             ScrollView(.horizontal) {
                 HStack(alignment: .top) {
                     ForEach(aui.images.filter({$0.recipeuuid == myRecipeUUID}), id: \.self) { savedImage in
-                        Image(uiImage: rotateImageIfNecessary(data: savedImage.imageSaved).scaledDown(into: CGSize(width: proxy.size.width / 2, height: proxy.size.height / 2)))
+                        Image(uiImage: getUIImageFromData(data: savedImage.imageSaved))
                     }
                 }
             }

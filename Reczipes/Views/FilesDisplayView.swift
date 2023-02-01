@@ -94,15 +94,26 @@ struct FilesDisplayView: View {
         return myReturn
     }
     
-    fileprivate func removeMyAddedRecipes() {
-        for abs in aur.sections {
-            aur.remove(bsection: abs)
-        }
-#if DEBUG
-        if zBug {print("FilesDisplayView: removed all user recipe files")}
-#endif
-        showRemove = false
-    }
+//    fileprivate func removeMyAddedRecipes() {
+//        for abs in aur.sections {
+//            aur.remove(bsection: abs)
+//        }
+//#if DEBUG
+//        if zBug {print("FilesDisplayView: removed all user recipe files")}
+//#endif
+//        showRemove = false
+//    }
+    
+//    fileprivate func removeMyAddedImages() {
+//        for animg in aui.images {
+//            aui.removeImage(imageSaved: animg)
+//        }
+//#if DEBUG
+//        if zBug {print("FilesDisplayView: removed all user image files")}
+//#endif
+//        showRemove = false
+//    }
+
 
     var body: some View {
         NavigationView {
@@ -131,25 +142,25 @@ struct FilesDisplayView: View {
                         Text(fname).font(.body)
                     }
                 }.padding()
-                VStack {
-                    Button("Tap to remove user recipes") {
-                        showRemove = true
-                    }.buttonStyle(.borderedProminent)
-                }
+//                VStack {
+//                    Button("Tap to remove user images") {
+//                        showRemove = true
+//                    }.buttonStyle(.borderedProminent)
+//                }
 
             }
-            .actionSheet(isPresented: $showRemove) {
-                ActionSheet(title: Text("Remove All User Recipes"),
-                            message: Text("Choose"),
-                            buttons: [
-                                .cancel(),
-                                .destructive(
-                                    Text("Remove Recipes"),
-                                    action: removeMyAddedRecipes
-                                )
-                            ]
-                )
-            }
+//            .actionSheet(isPresented: $showRemove) {
+//                ActionSheet(title: Text("Remove All User Images"),
+//                            message: Text("Choose"),
+//                            buttons: [
+//                                .cancel(),
+//                                .destructive(
+//                                    Text("Remove Images"),
+//                                    action: removeMyAddedImages
+//                                )
+//                            ]
+//                )
+//            }
         }.navigationTitle(Text(msgs.fdisp.rawValue))
              
     }

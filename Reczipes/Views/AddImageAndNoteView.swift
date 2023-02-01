@@ -102,11 +102,41 @@ struct AddImageAndNoteView: View {
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
-        let rotatedImage = rotateImageIfNecessary(uiimage: image!)
+        let targetsize = CGSize(width: 90.0, height: 60.0)
+        let sizedImage = resizeImage(image: image!, targetSize: targetsize)
+//        let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
-        let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (rotatedImage.pngData()!))
+        let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (sizedImage.pngData()!))
         aui.addImage(imageSaved: myImageToAdd)        
     }
+    
+     
+    fileprivate func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
     
     fileprivate func rotateImageIfNecessary(uiimage: UIImage) -> UIImage {
         let zImg = uiimage

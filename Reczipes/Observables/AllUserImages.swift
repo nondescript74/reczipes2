@@ -26,6 +26,8 @@ class AllUserImages: ObservableObject {
 #if DEBUG
             if zBug {print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")}
 #endif
+            
+            
             for anImageUrl in imagesUrls {
                 let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
                 let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)

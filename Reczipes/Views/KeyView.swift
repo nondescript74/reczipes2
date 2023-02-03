@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct KeyView: View {
+    // MARK: - Local debug
+    fileprivate var zBug: Bool = true
+    // MARK: - Initializer
+//    init(apikey: String) {
+//        UserDefaults.standard.set(apikey, forKey: "SpoonacularKey")
+//    }
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - State
@@ -15,6 +21,7 @@ struct KeyView: View {
     // MARK: - Properties
     private enum msgs: String {
         case kv = "KeyView: "
+        case kvset = "apiKey set "
         case key = "Please enter your api key"
     }
     
@@ -26,46 +33,48 @@ struct KeyView: View {
     fileprivate enum imagez: String {
         case kv = "greetingcard"
     }
-    
-    init(apikey: String) {
-        UserDefaults.standard.set(apikey, forKey: "SpoonacularKey")
+
+    // MARK: - Methods
+    @MainActor
+    fileprivate func setApiKey(key: String) {
+        if apiKey == "" {
+            return
+        }
+        userData.change(setapikey: key)
+         
     }
-    
-    // MARK: Methods
+    // MARK: - View process
 
     var body: some View {
         NavigationView {
             VStack {
                 Text("Save Api Key").font(.largeTitle).bold()
-                Divider()
-                Text("User supplied key: " + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"))
-                Divider()
-                HStack {
-                    Button(action: {
-                        // What to perform
-                        UserDefaults.standard.set(apiKey, forKey: "SpoonacularKey")
-#if DEBUG
-                        print(msgs.kv.rawValue + UserDefaults.standard.string(forKey: "SpoonacularKey")!)
-#endif
-                        
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: "Save", someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
-                    }.disabled(apiKey == "").padding(.bottom)
+                List {
+                    Text("key: " +  userData.apikey)
                     
-                    TextField(msgs.key.rawValue, text: $apiKey)
-                
+                    HStack {
+                        Button(action: {
+                            // What to perform
+                            setApiKey(key: apiKey)
+#if DEBUG
+                            if zBug {print(msgs.kv.rawValue + msgs.kvset.rawValue + userData.apikey)}
+#endif
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: "Save", someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
+                        }.disabled(apiKey == "").padding(.bottom)
+                        
+                        TextField(msgs.key.rawValue, text: $apiKey)
+                    }
                 }
-                
-            }.padding()
-            
+            }
         }
     }
 }
 
 struct KeyView_Previews: PreviewProvider {
-    static let apikey = "&apikey=abcdefg1234"
     static var previews: some View {
-        KeyView(apikey: apikey)
+        KeyView()
+            .environmentObject(UserData())
     }
 }

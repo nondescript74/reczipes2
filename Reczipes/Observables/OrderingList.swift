@@ -20,7 +20,7 @@ class OrderingList: ObservableObject {
         case changed = "Changed: "
         case total = "Total: "
     }
-    
+    @MainActor
     var total: Int {
         if items.count > 0 {
 #if DEBUG

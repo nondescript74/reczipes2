@@ -57,7 +57,7 @@ struct ApplicationView: View {
                     Text(tabs.multiAdd.rawValue)
                 }
             
-            OrderIngredientsView()
+            OrderIngredientsView2()
                 .tabItem {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
@@ -69,7 +69,7 @@ struct ApplicationView: View {
                     Text(tabs.auth.rawValue)
                 }
             
-            KeyView(apikey: UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+            KeyView()
                 .tabItem {
                     Image(uiImage: imageSquarePencil!)
                     Text(tabs.enterKey.rawValue)

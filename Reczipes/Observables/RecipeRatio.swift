@@ -14,7 +14,7 @@ class RecipeRatio: ObservableObject {
         case rr = "RecipeRatio: "
         case changed = "Changed to: "
     }
-    
+    @MainActor
     func change(amount: Double) {
         ratio = amount
         print(msgs.rr.rawValue + msgs.changed.rawValue, ratio.description)

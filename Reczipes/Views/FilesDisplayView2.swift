@@ -111,7 +111,7 @@ struct FilesDisplayView2: View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("Pick a directory").foregroundColor(.cyan)
+                    Text("Pick a directory")
                     Picker("Pick a directory", selection: $zection) {
                         let zx = getNames().count
                         ForEach(0..<zx, id: \.self) { index in

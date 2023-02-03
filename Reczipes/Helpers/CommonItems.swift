@@ -64,6 +64,7 @@ let colors: [String: Color] = ["D": .purple, "G": .pink, "N": .red, "S": .blue, 
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
 let targetsize = CGSize(width: 90.0, height: 60.0)
+let skey = "SpoonacularKey"
 
 fileprivate enum msgs: String {
     

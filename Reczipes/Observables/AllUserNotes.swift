@@ -92,11 +92,11 @@ class AllUserNotes: ObservableObject {
             }
             
 #if DEBUG
-            print(msgs.aun.rawValue + msgs.appd.rawValue)
+            if zBug {print(msgs.aun.rawValue + msgs.appd.rawValue)}
 #endif
         } else {
 #if DEBUG
-            print(msgs.aun.rawValue + msgs.appdnot.rawValue)
+            if zBug {print(msgs.aun.rawValue + msgs.appdnot.rawValue)}
 #endif
         }
     }

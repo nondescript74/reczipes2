@@ -181,10 +181,10 @@ struct RecipeDetailView: View {
                 }
             }
             .sheet(isPresented: $addingImage) {
-                AddImageAndNoteView()
+                AddImageView()
             }
             .sheet(isPresented: $addingNote) {
-                AddImageAndNoteView()
+                AddNoteView()
             }
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))

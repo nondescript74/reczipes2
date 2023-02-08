@@ -13,21 +13,12 @@ import Combine
 fileprivate var zBug: Bool = false
 
 fileprivate enum msgs: String {
-    
     case returningpresetrecipes = "Returning Preset Recipes "
     case returningbooksectionssf = "Returning BookSections in single file"
-//    case rshipd = "recipesShipped"
-//    case rnotes = "RecipeNotes"
-//    case rimages = "RecipeImages"
-//    case fuar = "Found user added recipe"
-//    case combined = "Combined booksections into one booksection"
-//    case ext = "Extensions: "
     case success = "Successfull remove of a recipe"
     case fail = "Failed to remove a recipe "
     case counted = "User added recipes Contents count "
     case nobs = "No booksection files found"
-//    case uanc = " User added Notes Contents count "
-//    case snc = " Shipped Notes Contents count "
 }
 
 private var decoder: JSONDecoder = JSONDecoder()

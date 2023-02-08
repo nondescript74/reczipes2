@@ -81,12 +81,6 @@ struct ApplicationView: View {
                     Text(tabs.settings.rawValue)
                 }
             
-//            CreateSRecipeFieldsView()
-//                .tabItem {
-//                    Image(uiImage: tortoise!)
-//                    Text(tabs.build.rawValue)
-//                }
-            
             FilesDisplayView2()
                 .tabItem {
                     Image(uiImage: hare!)

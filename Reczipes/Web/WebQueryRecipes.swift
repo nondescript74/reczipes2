@@ -174,7 +174,7 @@ public class WebQueryRecipes: ObservableObject {
     }
     
     func findExtracted(urlString: String) {
-        // https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&apiKey=apiKey=ooo
+        // https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&apiKey=
         if !urlString.isValidURL {
             return
         }

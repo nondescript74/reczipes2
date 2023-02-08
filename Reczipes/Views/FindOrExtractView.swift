@@ -125,8 +125,8 @@ struct FindOrExtractView: View {
                             RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
-                    if show == Selectors.extract {
-                        RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: extractedSRecipe.extractedSRecipe ?? SRecipe.example), cuisine: (extractedSRecipe.extractedSRecipe?.cuisines?.first ?? BookSection.example.name)! )
+                    if show == Selectors.extract &&  extractedSRecipe.extractedSRecipe != nil {
+                        RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: aur.getBookSectionNames()[xection])
                     }
                 }
             }

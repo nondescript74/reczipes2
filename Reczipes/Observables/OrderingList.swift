@@ -60,7 +60,7 @@ class OrderingList: ObservableObject {
             items.remove(at: index)
             quantities.removeObject(forKey: item.name)
 #if DEBUG
-            print(msgs.orderingList.rawValue + msgs.removed.rawValue, item.id.description, " ", item.name, " , ", quantities.value(forKey: item.name).debugDescription)
+            print(msgs.orderingList.rawValue + msgs.removed.rawValue, item.id.description, " ", item.name)
 #endif
         }
     }

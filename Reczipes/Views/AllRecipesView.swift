@@ -11,7 +11,6 @@ struct AllRecipesView: View {
     // MARK: - Debug local
     var zBug: Bool = false
     // MARK: - Environment Objects
-    //    @EnvironmentObject var auu: AllUserRecipes
     @ObservedObject var aur: AllUserRecipes
     // MARK: - Properties
     enum msgs: String {
@@ -21,14 +20,13 @@ struct AllRecipesView: View {
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
         case fuar = "Found user added recipe"
-        
     }
     
     // MARK: - Methods
-    
     var myBook: [BookSection] {
         return aur.sections.sorted(by: {$0.name < $1.name})
     }
+    // MARK: - View Process
     var body: some View {
         NavigationView {
             VStack {
@@ -51,7 +49,6 @@ struct AllRecipesView: View {
 
 
 struct AllRecipesView_Previews: PreviewProvider {
-    
     static var previews: some View {
         Group {
             AllRecipesView(aur: AllUserRecipes())

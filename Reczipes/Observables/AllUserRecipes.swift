@@ -30,18 +30,20 @@ class AllUserRecipes: ObservableObject {
                 if zBug {print("FileManager: " + " Created RecipeNotes directory")}
                 if zBug {print("FileManager: " + " Created RecipeImages directory")}
 #endif
-                
             } catch {
                 fatalError("Cannot create directories")
             }
-
         }
         
         // directories exist
         // get all shipped recipes
         sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+        let fmapsections = sections.compactMap({$0})
+        let secItems = fmapsections.flatMap({$0.items})
+#if DEBUG
+        if zBug {print(msgs.aur.rawValue + "Number of shipped recipes is : " + "\(secItems.count)")}
+#endif
 
-        
         do {
             var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName), includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             // skip these folders
@@ -55,22 +57,33 @@ class AllUserRecipes: ObservableObject {
                     let aBookSection = try JSONDecoder().decode(BookSection.self, from: data)
                     // may need to merge recipes if multiple booksections with same name, different id exist
 #if DEBUG
-                    if zBug {print(msgs.ext.rawValue + msgs.fuar.rawValue)}
+                    if zBug {print(msgs.aur.rawValue + msgs.fuar.rawValue)}
 #endif
                     if sections.contains(where: {$0.name == aBookSection.name}) {
                         var existing = sections.first(where: {$0.name == aBookSection.name})
-                        existing?.items.append(contentsOf: aBookSection.items)
+                        
+                        for anItem in aBookSection.items {
+                            if secItems.contains(anItem) {
+                                // don't add it
+#if DEBUG
+                                if zBug {print(msgs.aur.rawValue + " duplicate SectionItem, not adding " + anItem.name)}
+#endif
+                            } else {
+                                existing?.items.append(anItem)
+                            }
+                        }
+//                        existing?.items.append(contentsOf: aBookSection.items)
                         sections = sections.filter({$0.name != aBookSection.name})
                         if (existing != nil) {
                             sections.append(existing!)
 #if DEBUG
-                            if zBug {print(msgs.ext.rawValue + msgs.combined.rawValue)}
+                            if zBug {print(msgs.aur.rawValue + msgs.combined.rawValue)}
 #endif
                         }
                     } else {
                         sections.append(aBookSection)
 #if DEBUG
-                        if zBug {print(msgs.ext.rawValue + msgs.added.rawValue + aBookSection.name)}
+                        if zBug {print(msgs.aur.rawValue + msgs.added.rawValue + aBookSection.name)}
 #endif
                     }
                 } catch  {
@@ -86,20 +99,15 @@ class AllUserRecipes: ObservableObject {
     //MARK: - Properties
     fileprivate enum msgs: String {
         case aur = "AllUserRecipes: "
+        case enc = "Encoded: "
         case added = "Added: "
         case removed = "Removed: "
-        case chgAdd = "Changed, added recipe: "
         case chgRem = "Changed, removed recipe: "
-        case chgNew = "Could not find booksection, adding"
-        case notchg = "Did not change section "
         case total = "Total: "
-        case failedtw = "Failed to write booksection to files"
-        case rshipd = "recipesShipped"
         case rnotes = "RecipeNotes"
         case rimages = "RecipeImages"
         case fuar = "Found user added recipe"
         case combined = "Combined booksections into one booksection"
-        case ext = "Extensions: "
         case retr = "Returning count of recipes: "
     }
     
@@ -138,21 +146,33 @@ class AllUserRecipes: ObservableObject {
     }
     
     @MainActor
-    func addRecipe(bsectionid: UUID, recipe: SectionItem) {
+    func addRecipe(bsectionid: UUID, recipe: SectionItem) -> Bool {
+        var myReturn: Bool = false
+        // is the recipe in any section
+        var items: [SectionItem] = [SectionItem]()
+        for abs in sections {
+            items.append(contentsOf: abs.items)
+            if items.contains(recipe) {
+    #if DEBUG
+                    if zBug {print(msgs.aur.rawValue + "This recipe is already saved")}
+    #endif
+                return myReturn
+            }
+        }
+        
         if sections.contains(where: {$0.id == bsectionid}) {
-            
-            guard let bs = sections.first(where: {$0.id == bsectionid}) else { return }
-            var items: [SectionItem] = bs.items
+            let bs = sections.first(where: {$0.id == bsectionid})
+            var items: [SectionItem] = bs!.items
             items.append(recipe)
-            let newBS = BookSection(id: bsectionid, name: bs.name, items: items)
-            guard let index = sections.firstIndex(where: {$0.id == bsectionid}) else { return }
-            sections.remove(at: index)
+            let newBS = BookSection(id: bsectionid, name: bs!.name, items: items)
+             
+            remove(bsection: bs!)
+            add(bsection: newBS)
             
-            sections.append(newBS)
-//            sections = sections.sorted(by: {$0.name < $1.name})
-#if DEBUG
-            if zBug {print(msgs.aur.rawValue + msgs.chgAdd.rawValue, bs.name)}
-#endif
+            _ = encInto(newBsec: newBS)
+            myReturn = true
+            
+            
         } else {
 
             // sections does not contain id or name
@@ -161,25 +181,31 @@ class AllUserRecipes: ObservableObject {
             for bsin in nameIDs {
                 if bsin.id == bsectionid {
                     let newBS = BookSection(id: bsectionid, name: bsin.name, items: [recipe])
-                    sections.append(newBS)
-                    let myDocuDirUrl = getDocuDirUrl()
-                    let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
-                    do {
-                        let encodedJSON = try JSONEncoder().encode(newBS)
-                        // now write out
-                        try encodedJSON.write(to: myReczipesDirUrl.appendingPathComponent(newBS.name + "_" + dateSuffix() + json))
-#if DEBUG
-                        if zBug {print("Successfully wrote booksection to reczipes directory")}
-                        if zBug {print(msgs.aur.rawValue + msgs.chgNew.rawValue, newBS.name)}
-#endif
-                    } catch {
-                        // can't save
-                        fatalError("Can't save booksection fatal")
-                    }
+                    add(bsection: newBS)
+                    
+                    _ = encInto(newBsec: newBS)
+                    myReturn = true
                 }
             }
         }
         sections = sections.sorted(by: {$0.name < $1.name})
+        return myReturn
+    }
+    
+    fileprivate func encInto(newBsec: BookSection) -> Bool {
+        do {
+            let encodedJSON = try JSONEncoder().encode(newBsec)
+            // now write out
+            try encodedJSON.write(to: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(newBsec.name + json))
+            
+#if DEBUG
+            if zBug {print(msgs.aur.rawValue + msgs.enc.rawValue, newBsec.name)}
+#endif
+        } catch {
+            // can't save
+            fatalError("Can't save booksection fatal")
+        }
+        return false
     }
     
     func removeRecipe(bsectionid: UUID, recipe: SectionItem) {

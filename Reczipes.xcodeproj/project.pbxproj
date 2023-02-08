@@ -101,6 +101,7 @@
 		F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F52E295CAA63005A119B /* AllUserNotes.swift */; };
 		F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */ = {isa = PBXBuildFile; fileRef = F8C77C7C290744E600222C2D /* ingredients_list.json */; };
 		F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */ = {isa = PBXBuildFile; fileRef = F8CE26D3289C75B1003483DD /* SRecipeExample.json */; };
+		F8D9F6102992A6CB007C98A9 /* RecipeRowNNLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D9F60F2992A6CB007C98A9 /* RecipeRowNNLView.swift */; };
 		F8EBEBB4298B0B300032675F /* FilesDisplayView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBEBB3298B0B300032675F /* FilesDisplayView2.swift */; };
 		F8EBEBB6298C0A580032675F /* OrderIngredientsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EBEBB5298C0A580032675F /* OrderIngredientsView2.swift */; };
 /* End PBXBuildFile section */
@@ -217,6 +218,7 @@
 		F8C3F52E295CAA63005A119B /* AllUserNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUserNotes.swift; sourceTree = "<group>"; };
 		F8C77C7C290744E600222C2D /* ingredients_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients_list.json; sourceTree = "<group>"; };
 		F8CE26D3289C75B1003483DD /* SRecipeExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample.json; sourceTree = "<group>"; };
+		F8D9F60F2992A6CB007C98A9 /* RecipeRowNNLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowNNLView.swift; sourceTree = "<group>"; };
 		F8EBEBB3298B0B300032675F /* FilesDisplayView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDisplayView2.swift; sourceTree = "<group>"; };
 		F8EBEBB5298C0A580032675F /* OrderIngredientsView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderIngredientsView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -252,6 +254,7 @@
 				93AB40CC26BF2100005529AF /* GoogleSearchView.swift */,
 				9334918326D1B15B00047BAB /* RoundButton3View.swift */,
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
+				F8D9F60F2992A6CB007C98A9 /* RecipeRowNNLView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F8304A7228AD348500867C6F /* AuthView.swift */,
@@ -569,6 +572,7 @@
 				93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */,
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
+				F8D9F6102992A6CB007C98A9 /* RecipeRowNNLView.swift in Sources */,
 				F8304A7A28B1685A00867C6F /* ProfileHost.swift in Sources */,
 				931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */,
 				F8C3F52B295BB8BC005A119B /* Extensions.swift in Sources */,
@@ -757,7 +761,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 280;
+				CURRENT_PROJECT_VERSION = 284;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -785,7 +789,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -805,7 +809,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 280;
+				CURRENT_PROJECT_VERSION = 284;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -833,7 +837,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.8;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.Reczipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

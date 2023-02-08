@@ -111,7 +111,7 @@ struct CreateSRecipeFieldsView: View {
             var sectionItem = convertSRecipeToSectionItem(srecipe: rbb.srecipe!)
             sectionItem.imageUrl = pathImage
             sectionItem.url = pathRecipe
-            aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: sectionItem)
+            _ = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: sectionItem)
             
 #if DEBUG
             if zBug {print(msgs.csrfv.rawValue + "saved SectionItem")}

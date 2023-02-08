@@ -9,15 +9,14 @@ import SwiftUI
 
 struct KeyView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Initializer
-//    init(apikey: String) {
-//        UserDefaults.standard.set(apikey, forKey: "SpoonacularKey")
-//    }
+    init() {
+        self.apiKey = UserDefaults.standard.string(forKey: skey) ?? ""
+    }
     // MARK: - Environment Variables
-    @EnvironmentObject var userData: UserData
     // MARK: - State
-    @State fileprivate var apiKey = ""
+    @State fileprivate var apiKey: String
     // MARK: - Properties
     private enum msgs: String {
         case kv = "KeyView: "
@@ -40,7 +39,10 @@ struct KeyView: View {
         if apiKey == "" {
             return
         }
-        userData.change(setapikey: key)
+        UserDefaults.standard.set(apiKey, forKey: "SpoonacularKey")
+#if DEBUG
+        if zBug {print(msgs.kv.rawValue + msgs.kvset.rawValue + UserDefaults.standard.string(forKey: skey)!)}
+#endif
          
     }
     // MARK: - View process
@@ -50,15 +52,12 @@ struct KeyView: View {
             VStack {
                 Text("Save Api Key").font(.largeTitle).bold()
                 List {
-                    Text("key: " +  userData.apikey)
+                    Text("key: " +  (UserDefaults.standard.string(forKey: skey) ?? "No Key"))
                     
                     HStack {
                         Button(action: {
                             // What to perform
                             setApiKey(key: apiKey)
-#if DEBUG
-                            if zBug {print(msgs.kv.rawValue + msgs.kvset.rawValue + userData.apikey)}
-#endif
                         }) {
                             // How the button looks like
                             RoundButton3View(someTextTop: "Save", someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
@@ -75,6 +74,5 @@ struct KeyView: View {
 struct KeyView_Previews: PreviewProvider {
     static var previews: some View {
         KeyView()
-            .environmentObject(UserData())
     }
 }

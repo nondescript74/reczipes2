@@ -65,6 +65,11 @@ let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
 let targetsize = CGSize(width: 90.0, height: 60.0)
 let skey = "SpoonacularKey"
+let widthImage: CGFloat = 100
+let heightImage: CGFloat = 70
+let overlayLWidth: CGFloat = 2
+let paddingSize: CGFloat = 2
+let lineLimit: Int = 3
 
 fileprivate enum msgs: String {
     
@@ -124,6 +129,39 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
 #endif
     
     return item
+}
+
+func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {
+    var myRestrictions: [String] = []
+
+    if srecipe.diets != nil {
+        let exp = srecipe.diets.flatMap({$0})
+        if exp?.count != 0 {
+            myRestrictions.append(contentsOf: exp!)
+        }
+    }
+    
+    if srecipe.dairyFree != nil {
+        if srecipe.dairyFree == true {myRestrictions.append("DairyFree")}
+    }
+    
+    if srecipe.glutenFree != nil {
+        if srecipe.glutenFree == true {myRestrictions.append("GlutenFree")}
+    }
+    
+    if srecipe.lowFodmap != nil {
+        if srecipe.lowFodmap == true {myRestrictions.append("LowFodMap")}
+    }
+    
+    if srecipe.vegan != nil {
+        if srecipe.vegan == true {myRestrictions.append("Vegan")}
+    }
+    
+    if srecipe.vegetarian != nil {
+        if srecipe.vegetarian == true {myRestrictions.append("Vegetarian")}
+    }
+    
+    return myRestrictions
 }
 
 

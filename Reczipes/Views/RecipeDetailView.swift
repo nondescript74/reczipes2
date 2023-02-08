@@ -24,18 +24,8 @@ struct RecipeDetailView: View {
         self.cuisine = cuisine
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
     }
-
-    
-//    init(imageString: String, crecipe: CRecipe, cuisine: String) {
-//        self.cuisine = cuisine
-//        self.item = SectionItem.example
-//        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
-//        recipeInfo.getMySRecipeInfo(id: crecipe.id)
-//    }
-    
-
     // MARK: - Properties
-    var item: SectionItem = SectionItem.example2
+    var item: SectionItem 
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -50,9 +40,6 @@ struct RecipeDetailView: View {
         case recipeNotes = "RecipeNotesFolder has Notes"
         case recipeImagesNot = "RecipeImagesFolder has no Images"
         case recipeNotesNot = "RecipeNotesFolder has no Notes"
-        //case recz = "Reczipes"
-        //        case json = ".json"
-        //case wrjson = "Successfully wrote booksection"
         case notejson = "Successfully wrote note"
         case imgjson = "Successfully wrote image"
         case rshipd = "recipesShipped"
@@ -70,8 +57,6 @@ struct RecipeDetailView: View {
         case move = "Move"
         case recipe = "This"
         case ingredients = "Ingred"
-//        case remove = "Remove"
-//        case trash = "trash"
         case show = "Show"
         case notes = "Notes"
         case images = "Images"
@@ -144,12 +129,12 @@ struct RecipeDetailView: View {
                 HStack {
                     Button(action: {
                         // What to perform
-                        aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
-                        recipeSaved = true
+                        let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
+                        if result { recipeSaved = true } else { recipeSaved = false }
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
-                    }.disabled(cuisine.isEmpty)
+                    }.disabled(cuisine.isEmpty )
                     Button(action: {
                         // What to perform
                         self.order.add(item: self.item)

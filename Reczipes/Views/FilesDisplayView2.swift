@@ -64,16 +64,6 @@ struct FilesDisplayView2: View {
     
     fileprivate func getReczNotesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
-        do {
-            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.recznotes.rawValue), includingPropertiesForKeys: [])
-            if lpc {
-                myReturn = contUrls.map({$0.lastPathComponent})
-            } else {
-                myReturn = contUrls.map({$0.absoluteString})
-            }
-        } catch  {
-            
-        }
         let myObsvNotes = aun.notes
         for anote in myObsvNotes {
             if !myReturn.contains(anote.note) {
@@ -86,22 +76,11 @@ struct FilesDisplayView2: View {
     
     fileprivate func getReczImagesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
-        do {
-            let contUrls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(msgs.recz.rawValue).appendingPathComponent(msgs.reczimages.rawValue), includingPropertiesForKeys: [])
-            if lpc {
-                myReturn = contUrls.map({$0.lastPathComponent})
-            } else {
-                myReturn = contUrls.map({$0.absoluteString})
+        let myObsvImgs = aui.images
+        for anImg in myObsvImgs {
+            if !myReturn.contains(anImg.recipeuuid.uuidString) {
+                myReturn.append(anImg.recipeuuid.uuidString)
             }
-            for animg in aui.images {
-                if contUrls.contains(where: {$0.absoluteString.contains(animg.recipeuuid.uuidString)}) {
-                    // already in nothing to do
-                } else {
-                    myReturn.append(animg.recipeuuid.uuidString)
-                }
-            }
-        } catch  {
-            
         }
         myReturn = myReturn.sorted()
         return myReturn

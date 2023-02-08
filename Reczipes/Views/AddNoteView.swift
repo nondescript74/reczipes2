@@ -23,46 +23,15 @@ struct AddNoteView: View {
     // MARK: - Properties
     fileprivate enum msgs: String {
         case anv = "Add Note"
-//        case rshipd = "recipesShipped"
         case recipePickRequestString = "Pick a recipe below ..."
-//        case buttonTitleImage = "✚ Image"
         case buttonTitleNote = "✚ Note"
         case selected = " Selected"
         case picker = "Recipes"
         case failed = "Note save failed"
-//        case noimageset = "No Image selected yet"
         case saving = "Saving"
         case success = "Note save succeeded"
-//        case json = ".json"
-//        case selectPhoto = "Select Photo"
-//        case choose = "Choose"
-//        case photolib = "Photo Library"
-//        case camera = "Camera"
-//        case bigmsg = "Choose a picture from ..."
-//        case saving = "Saving Recipe Image or Note"
-//        case up = "Image is Up, rotate by pi / 2"
-//        case left = "Image is left, rotating by pi"
-//        case right = "Image is right, no rotation needed"
-//        case down = "Image is down, rotate 3 pi / 2"
-//        case other = "Not LRUDown"
-//        case initialNoteString = "Enter a recipe note below ..."
         case noteWithoutText = "Note has no text entered"
         case ok = "Okay"
-//        case recz = "Reczipes"
-//        case rnotes = "RecipeNotes"
-//        case rimages = "RecipeImages"
-//        case gbss = "Got shipped booksections"
-//        case fuar = "Found user added recipe"
-//        case nur = "No user recipes"
-//        case nunotes = "No user notes"
-//        case nuimages = "No user images"
-//        case fanote = "Found a note"
-//        case faimage = "Found an image"
-//        case wrjson = "Successfully wrote booksection"
-//        case notejson = "Successfully wrote note"
-//        case imgjson = "Successfully wrote image"
-//        case fail = "Failed"
-//        case succes = "Success"
     }
     var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
@@ -99,7 +68,7 @@ struct AddNoteView: View {
         aun.addNote(note: myNoteToAdd)
         recipeNoteSaved = true
     }
-        
+    
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -112,27 +81,24 @@ struct AddNoteView: View {
                         ForEach(0..<self.constructAllRecipes().count, id: \.self) { index in
                             Text(self.constructAllRecipes()[index].name)
                                 .foregroundColor(.blue)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+//                                .font(Font.system(size: 15, weight: .medium, design: .serif))
                         }
                     }
-                }
-                
-                VStack {
-                    HStack {
-                        TextEditor(text: $recipeNote)
-                            .frame(height: proxy.size.height / 4, alignment: .center)
-                            .border(Color.black, width: 2)
-                            .focused($textFieldIsFocused)
-                            .padding([.leading, .trailing])
-                        Button(action: {
-                            //what to perform
-                            self.addRecipeNote()
-                            textFieldIsFocused = false
-                        }) {
-                            // how the button looks
-                            Text(msgs.buttonTitleNote.rawValue)
-                        }
-                    }.padding(.trailing)
+                    
+                    TextEditor(text: $recipeNote)
+                        .frame(height: proxy.size.height / 3, alignment: .center)
+                        .border(Color.black, width: 2)
+                        .focused($textFieldIsFocused)
+                        .padding([.leading, .trailing])
+                    Button(action: {
+                        //what to perform
+                        self.addRecipeNote()
+                        textFieldIsFocused = false
+                    }) {
+                        // how the button looks
+                        Text(msgs.buttonTitleNote.rawValue)
+                    }
+                    
                 }
                 
             }

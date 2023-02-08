@@ -72,7 +72,6 @@ struct AddImageView: View {
         
         let sectionItem = combinedRecipes[recipeSelected]
         let sectionItemId = sectionItem.id
-        //        let targetsize = CGSize(width: 90.0, height: 60.0)
         let sizedImage = resizeImage(image: image!, targetSize: targetsize)
         //        let rotatedImage = rotateImageIfNecessary(uiimage: image!)
         
@@ -150,35 +149,36 @@ struct AddImageView: View {
                         ForEach(0..<self.constructAllRecipes().count, id: \.self) { index in
                             Text(self.constructAllRecipes()[index].name)
                                 .foregroundColor(.blue)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+                            //                            .font(Font.system(size: 10, weight: .medium, design: .serif))
                         }
                     }
-                }
-                VStack {
+                    
+                    
                     Image(uiImage: (image ?? UIImage(named: msgs.defImg.rawValue))!)
                         .resizable()
-                        .frame(width: proxy.size.width / 2, height: proxy.size.height / 5)
-                    HStack {
-                        Button(action: {
-                            // What to perform
-                            self.showSheet = true
-                        }) {
-                            // How the button looks like
-                            Text(msgs.bigmsg.rawValue)
-                                .foregroundColor(.blue)
-                                .font(Font.system(size: 15, weight: .medium, design: .serif))
-                        }
-                        Spacer()
-                        
-                        Button(action: {
-                            //what to perform
-                            self.addRecipeImage()
-                        }) {
-                            // how the button looks
-                            Text(msgs.buttonTitleImage.rawValue)
-                        }
-                    }.padding()
-                }.padding(.bottom)
+                        .scaledToFit()
+                        .padding()
+                    //                        .frame(width: proxy.size.width / 2, height: proxy.size.height / 5)
+                    
+                    Button(action: {
+                        // What to perform
+                        self.showSheet = true
+                    }) {
+                        // How the button looks like
+                        Text(msgs.bigmsg.rawValue)
+                            .foregroundColor(.blue)
+                            .font(Font.system(size: 15, weight: .medium, design: .serif))
+                    }.padding(.bottom)
+                    
+                    
+                    Button(action: {
+                        //what to perform
+                        self.addRecipeImage()
+                    }) {
+                        // how the button looks
+                        Text(msgs.buttonTitleImage.rawValue)
+                    }
+                }
             }
             .actionSheet(isPresented: $showSheet) {
                 self.actionSheet
@@ -197,7 +197,6 @@ struct AddImageView_Previews: PreviewProvider {
     static var previews: some View {
         AddImageView()
             .environmentObject(AllUserRecipes())
-//            .environmentObject(AllUserNotes())
             .environmentObject(AllUserImages())
     }
 }

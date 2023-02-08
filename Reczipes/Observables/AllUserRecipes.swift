@@ -228,6 +228,20 @@ class AllUserRecipes: ObservableObject {
         }
     }
     
+    func getRecipeNameForId(uuidsent: UUID) -> String {
+        var myReturn: String = ""
+        var mySItems: [SectionItem] = []
+        for asection in sections {
+            mySItems += asection.items
+        }
+        myReturn = mySItems.filter({$0.id == uuidsent}).first?.name ?? "No name for id supplied"
+        
+#if DEBUG
+        if zBug {print(msgs.aur.rawValue + "returning name for id ", myReturn)}
+#endif
+        return myReturn
+    }
+    
     func getRecipeNames() -> [String] {
         var myReturn: [String] = []
         for asection in sections {

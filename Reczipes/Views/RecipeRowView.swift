@@ -52,9 +52,7 @@ struct RecipeRowView: View {
     private let overlayLWidth: CGFloat = 2
     private let paddingSize: CGFloat = 2
     private let lineLimit: Int = 3
-    
     // MARK: - Methods
-    
     // MARK: - View Process
     var body: some View {
         NavigationLink(destination: RecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item, cuisine: cuisine)) {
@@ -66,20 +64,16 @@ struct RecipeRowView: View {
                         .frame(width: widthImage, height: heightImage, alignment: .leading)
                         .clipShape(Rectangle())
                         .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
-                    
-                    //VStack {
-                    Text(item.name)
-                    //.font(.system(size: 13))
-                    //}
-                }
-                HStack {
+
                     ForEach(item.restrictions, id: \.self) { restriction in
                         Text(restriction)
                             .font(.caption)
                             .padding(paddingSize)
                             .clipShape(Rectangle())
                     }
+
                 }
+                Text(item.name).padding(.trailing)
             }
         }
     }
@@ -91,7 +85,7 @@ struct RecipeRowView_Previews: PreviewProvider {
         List {
             RecipeRowView(sectionItem: SectionItem.example, cuisine: "Indian")
             RecipeRowView(sectionItem: SectionItem.example2)
-        }.previewDevice("iPhone Xr")
+        }
     }
 }
 

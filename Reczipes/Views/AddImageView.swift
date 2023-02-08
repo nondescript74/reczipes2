@@ -1,26 +1,23 @@
 //
-//  AddImageAndNoteView.swift
-//  AddImageAndNoteView
+//  AddImageView.swift
+//  Reczipes
 //
-//  Created by Zahirudeen Premji on 8/17/21.
+//  Created by Zahirudeen Premji on 2/8/23.
 //
 
 import SwiftUI
 
-struct AddImageAndNoteView: View {
+struct AddImageView: View {
     // MARK: - Debug local
     private let zBug = true
     // MARK: - Initializer
     // MARK: EnvironmentObject
     @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
     // MARK: - Focus for textfield
     @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
     @State fileprivate var recipeSelected: Int = 0
-    @State fileprivate var recipeNote: String = ""
-    @State fileprivate var recipeNoteSaved:Bool = false
     @State fileprivate var showSheet: Bool = false
     @State fileprivate var showImagePicker: Bool = false
     @State fileprivate var recipeImageSaved:Bool = false
@@ -29,46 +26,20 @@ struct AddImageAndNoteView: View {
     @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case aianv = "Add Image/Note"
-        case rshipd = "recipesShipped"
+        case aiv = "Add Image"
         case recipePickRequestString = "Pick a recipe below ..."
         case buttonTitleImage = "✚ Image"
-        case buttonTitleNote = "✚ Note"
-        case selected = " Selected"
         case picker = "Recipes"
-        case failed = "Image/Note save failed"
         case noimageset = "No Image selected yet"
-        case success = "Image/Note save succeeded"
-        case json = ".json"
         case selectPhoto = "Select Photo"
         case choose = "Choose"
         case photolib = "Photo Library"
         case camera = "Camera"
         case bigmsg = "Choose a picture from ..."
-        case saving = "Saving Recipe Image or Note"
-        case up = "Image is Up, rotate by pi / 2"
-        case left = "Image is left, rotating by pi"
-        case right = "Image is right, no rotation needed"
-        case down = "Image is down, rotate 3 pi / 2"
-        case other = "Not LRUDown"
-        case initialNoteString = "Enter a recipe note below ..."
-        case noteWithoutText = "Note has no text entered"
+        case alsav = "Saving Recipe Image"
+        case saved = "Saved"
         case ok = "Okay"
-        case recz = "Reczipes"
-        case rnotes = "RecipeNotes"
-        case rimages = "RecipeImages"
-        case gbss = "Got shipped booksections"
-        case fuar = "Found user added recipe"
-        case nur = "No user recipes"
-        case nunotes = "No user notes"
-        case nuimages = "No user images"
-        case fanote = "Found a note"
-        case faimage = "Found an image"
-        case wrjson = "Successfully wrote booksection"
-        case notejson = "Successfully wrote note"
-        case imgjson = "Successfully wrote image"
-        case fail = "Failed"
-        case succes = "Success"
+        case defImg = "Default Image"
     }
     var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
@@ -93,7 +64,7 @@ struct AddImageAndNoteView: View {
     
     fileprivate func addRecipeImage() {
         if image == nil {
-            if zBug {print(msgs.aianv.rawValue + msgs.noimageset.rawValue)}
+            if zBug {print(msgs.aiv.rawValue + msgs.noimageset.rawValue)}
             return
         }
         
@@ -136,21 +107,6 @@ struct AddImageAndNoteView: View {
         return newImage!
     }
     
-    fileprivate func addRecipeNote() {
-        if recipeNote == ""  {
-            if zBug {print(msgs.aianv.rawValue + msgs.noteWithoutText.rawValue)}
-            return
-        }
-        
-        let combinedRecipes = self.constructAllRecipes()
-        let sectionItem = combinedRecipes[recipeSelected]
-        let sectionItemId = sectionItem.id
-        
-        let myNoteToAdd = Note(recipeuuid: sectionItemId, note: recipeNote)
-        aun.addNote(note: myNoteToAdd)
-        recipeNoteSaved = true
-    }
-    
     fileprivate var actionSheet: ActionSheet {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
             // camera is available
@@ -185,7 +141,7 @@ struct AddImageAndNoteView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                Text(msgs.aianv.rawValue).font(.largeTitle).bold().padding(.bottom)
+                Text(msgs.aiv.rawValue).font(.largeTitle).bold().padding(.bottom)
                 VStack {
                     Text(msgs.recipePickRequestString.rawValue)
                         .foregroundColor(.red)
@@ -199,7 +155,7 @@ struct AddImageAndNoteView: View {
                     }
                 }
                 VStack {
-                    Image(uiImage: (image ?? UIImage(named: "Default Image"))!)
+                    Image(uiImage: (image ?? UIImage(named: msgs.defImg.rawValue))!)
                         .resizable()
                         .frame(width: proxy.size.width / 2, height: proxy.size.height / 5)
                     HStack {
@@ -223,25 +179,6 @@ struct AddImageAndNoteView: View {
                         }
                     }.padding()
                 }.padding(.bottom)
-                
-                VStack {
-                    HStack {
-                        TextEditor(text: $recipeNote)
-                            .frame(height: proxy.size.height / 4, alignment: .center)
-                            .border(Color.black, width: 2)
-                            .focused($textFieldIsFocused)
-                            .padding([.leading, .trailing])
-                        Button(action: {
-                            //what to perform
-                            self.addRecipeNote()
-                            textFieldIsFocused = false
-                        }) {
-                            // how the button looks
-                            Text(msgs.buttonTitleNote.rawValue)
-                        }
-                    }.padding(.trailing)
-                }
-                
             }
             .actionSheet(isPresented: $showSheet) {
                 self.actionSheet
@@ -249,22 +186,18 @@ struct AddImageAndNoteView: View {
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
             }
-            .alert(isPresented: $recipeNoteSaved)   {
-                recipeNote = ""
-                return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
-            }
             .alert(isPresented: $recipeImageSaved)   {
-                return Alert(title: Text("Saving Recipe Image"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+                return Alert(title: Text(msgs.alsav.rawValue), message: Text(msgs.saved.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
             }
         }
     }
 }
 
-struct AddImageAndNoteView_Previews: PreviewProvider {
+struct AddImageView_Previews: PreviewProvider {
     static var previews: some View {
-        AddImageAndNoteView()
+        AddImageView()
             .environmentObject(AllUserRecipes())
-            .environmentObject(AllUserNotes())
+//            .environmentObject(AllUserNotes())
             .environmentObject(AllUserImages())
     }
 }

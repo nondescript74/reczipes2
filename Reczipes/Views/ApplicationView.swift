@@ -28,6 +28,8 @@ struct ApplicationView: View {
         case auth = "Sign In"
         case ingredients = "Ingred"
         case multiAdd = "+Note/Image"
+        case note = "+Note"
+        case img = "+Image"
         case jt = "Joke/Trivia"
         case settings = "Settings"
         case build = "Build"
@@ -45,18 +47,26 @@ struct ApplicationView: View {
                     Image(uiImage: imageDocDocEmpty!)
                     Text(tabs.books.rawValue)
                 }
+            
             FindOrExtractView()
                 .tabItem {
                     Image(uiImage: scribblevariable!)
                     Text(tabs.frextr.rawValue)
                 }
             
-            AddImageAndNoteView()
+            AddImageView()
                 .tabItem {
-                    Image(uiImage: scribblevariable!)
-                    Text(tabs.multiAdd.rawValue)
+                    Image(uiImage: magnifyingglass!)
+                    Text(tabs.img.rawValue)
                 }
             
+            
+            AddNoteView()
+                .tabItem {
+                    Image(uiImage: suitImage)
+                    Text(tabs.note.rawValue)
+                }
+        
             OrderIngredientsView2()
                 .tabItem {
                     Image(uiImage: squareandarrowdown!)

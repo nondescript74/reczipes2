@@ -47,16 +47,23 @@ struct RecipeRowNNLView: View {
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(alignment: .center) {
                 anImage.anImage?
                     .resizable()
                     .scaledToFill()
                     .frame(width: widthImage, height: heightImage, alignment: .leading)
                     .clipShape(Rectangle())
                     .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
+                                
+                ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
+                    Text(restriction)
+                        .font(.caption)
+                        .padding(paddingSize)
+                        .clipShape(Rectangle())
+                }
                 
-                Text(sRecipe.title ?? "No Title")
-                
+                Spacer()
+
                 Button(action: {
                     // What to perform
                     let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem(srecipe: sRecipe))
@@ -64,19 +71,12 @@ struct RecipeRowNNLView: View {
                 }) {
                     // How the button looks like
                     RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
-                }.disabled(cuisine.isEmpty )
+                }
+                .disabled(cuisine.isEmpty )
 
             }
-            Spacer()
-            HStack {
-                ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
-                    Text(restriction)
-                        .font(.caption)
-                        .padding(paddingSize)
-                        .clipShape(Rectangle())
-                }
-            }
-        }
+            Text(sRecipe.title ?? "No Title")
+        }.padding()
         .alert(isPresented: $recipeSaved)   {
             return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
         }
@@ -85,6 +85,7 @@ struct RecipeRowNNLView: View {
 
 struct RecipeRowNNLView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRowView(sectionItem: SectionItem.example, cuisine: "Indian")
+        RecipeRowNNLView(srecipe: SRecipe.example, cuisine: "Asian")
+            .environmentObject(AllUserRecipes())
     }
 }

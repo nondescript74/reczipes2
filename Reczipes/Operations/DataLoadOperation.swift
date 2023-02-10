@@ -37,8 +37,7 @@ class DataLoadOperation: AsyncOperation {
     
     override func main() {
         if self.isCancelled { return }
-        NetworkAccessor.asyncLoadDataAtURL(url) {
-            data in
+        NetworkAccessor.asyncLoadDataAtURL(url) { data in
             if self.isCancelled { return }
             self.loadedData = data
             self.completion?(data)

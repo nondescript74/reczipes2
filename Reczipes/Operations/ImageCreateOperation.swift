@@ -16,15 +16,22 @@ protocol ImageCreateOperationDataProvider {
 class ImageCreateOperation: Operation {
     // MARK: Debug local
     var zBug: Bool = false
-    // MARK: - Properties
-    fileprivate var inputData: Data?
-    fileprivate var completion: ((Image?) -> ())?
-    fileprivate var myImage: Image?
     // MARK: - Initializer
     init(data: Data?, completion: ((Image?) -> ())? = nil) {
         inputData = data
         self.completion = completion
         super.init()
+    }
+    // MARK: - Properties
+    fileprivate var inputData: Data?
+    fileprivate var completion: ((Image?) -> ())?
+    fileprivate var myImage: Image?
+    fileprivate enum msgs: String {
+        case ico = "ImgCrtOp: "
+        case isib = "Image size in bytes "
+        case ifd = "Image from data "
+        case ciwd = "Created Image with data, myImage is "
+        case cci = " Can't create image"
     }
     
     override func main() {
@@ -40,33 +47,22 @@ class ImageCreateOperation: Operation {
             imageData = dataProvider?.data
         }
         
-        guard let data = imageData else { return }
-        
+        guard let data = imageData else { return }        
         if self.isCancelled { return }
         
-
-        if zBug { print("ImgCrtOp: Image debug description ", image.debugDescription)}
-
-        
-        
         if let image = UIImage(data: data) {
-            
-
-            if zBug { print("ImgCrtOp: Image from data ", image.debugDescription)}
-
-            
             myImage = Image.init(uiImage: image)
-            
-
-            if zBug { print("ImgCrtOp: Created Image with data, myImage is ", myImage.debugDescription)}
-
+#if DEBUG
+            if zBug {print(msgs.ico.rawValue + msgs.isib.rawValue + "\(data.count)")}
+            if zBug {print(msgs.ico.rawValue + msgs.ifd.rawValue, image.debugDescription)}
+            if zBug {print(msgs.ico.rawValue +  msgs.ciwd.rawValue, myImage.debugDescription)}
+#endif
             
         } else {
-
-            if zBug { print("ImgCrtOp: Can't create image")}
-
+#if DEBUG
+            if zBug {print(msgs.ico.rawValue + msgs.cci.rawValue)}
+#endif
         }
-        
         if self.isCancelled { return }
         completion?(myImage)
     }

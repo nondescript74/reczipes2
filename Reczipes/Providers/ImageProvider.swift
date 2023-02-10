@@ -11,7 +11,7 @@ import SwiftUI
 
 public class ImageProvider {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    private var zBug: Bool = true
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var imageUrl: URL
@@ -32,8 +32,10 @@ public class ImageProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        
+#if DEBUG
         if zBug { print("OperationQueue for ImageProvider is launched")}
+        if zBug {print ("imageUrl is: " + imageUrl.absoluteString)}
+#endif
         
     }
     

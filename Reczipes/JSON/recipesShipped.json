@@ -14,7 +14,7 @@
                 "name":"Stir Fried Flank Steak With Mushrooms and Butter",
                 "url":"https:\/\/www.seriouseats.com\/recipes\/2014\/04\/easy-stir-fried-beef-with-mushrooms-and-butter.html",
                 "photocredit":"Shao Z"},
-            {"restrictions":["DF"],
+            {"restrictions":["Dairy Free"],
                 "id":"1939E0BC-989E-4D1C-AC6F-0F5BF4370A4C",
                 "imageUrl":"https:\/\/www.seriouseats.com\/thmb\/uPPQHsNYN3ZPTw7UY97ZhJ6UTHg=\/960x0\/filters:no_upscale():max_bytes(150000):strip_icc()\/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__11__20191104-red-wine-braised-short-ribs-vicky-wasik-17-1adb4ad27d7f475cbc58814a45e3198b.jpg",
                 "name":"Red Wine Braised Beef",
@@ -52,7 +52,7 @@
                 "url": "https://www.seriouseats.com/recipes/2015/09/sichuan-style-smashed-cucumber-salad-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/KuhKCDzMRkrehN_rMVpx9dRi14Y=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__09__20150909-smashed-sichuan-cucumber-kenji-6-13faec1c752d45b28765be8038422fde.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["Gluten Free", "VEG", "DF"]
+                "restrictions": ["Gluten Free", "VEG", "Dairy Free"]
             }
         ]
     },
@@ -66,7 +66,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/02/vegan-experience-crispy-tofu-broccoli-stir-fry.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/PvdyTJz2gfF6HDmCmvP8E-e-_FM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__04__20140205-fried-tofu-vegan-18-159f3b5f32de4f198a78ac89ce2faae3.jpg",
                 "photocredit": "Kenji Lopez Alt",
-                "restrictions": ["VEGAN", "DF"]
+                "restrictions": ["Vegan", "Dairy Free"]
             },
             {
                 "id": "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB",
@@ -74,7 +74,7 @@
                 "url": "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg",
                 "photocredit": "Kenji Lopez Alt",
-                "restrictions": ["Gluten Free", "DF"]
+                "restrictions": ["Gluten Free", "Dairy Free"]
             }
         ]
     },
@@ -88,7 +88,7 @@
                 "url": "https://www.100daysofrealfood.com/braised-asian-meatballs-and-cabbage/",
                 "imageUrl": "https://www.100daysofrealfood.com/wp-content/uploads/2017/05/Braised-Asian-Meatballs-and-Cabbage-1.jpg",
                 "photocredit": "100 Days Of Real Food",
-                "restrictions": ["DF"]
+                "restrictions": ["Dairy Free"]
             },
             {
                 "id": "C54F1100-2DF9-4BCB-87F8-8ECD15E44886",
@@ -118,7 +118,7 @@
                 "url": "https://www.seriouseats.com/recipes/2020/04/cuban-style-pollo-a-la-plancha-marinated-and-griddled-chicken.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/YQIVakZY0AtBbwDxXbP2C2j0e1o=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__04__20200416-cuban-pollo-a-la-plancha-aaron-hutcherson-10-08b809c2c1c44ae2a89bc4fea9cdb717.jpg",
                 "photocredit": "Aaron Hutcherson",
-                "restrictions": ["Gluten Free", "DF"]
+                "restrictions": ["Gluten Free", "Dairy Free"]
             },
             {
                 "id": "BEFEC23C-976C-4E09-8877-16D9B01EDF0C",
@@ -134,7 +134,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/07/takeout-style-kung-pao-chicken-diced-chicken-peppers-peanuts-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/5JaXzQ9ZiXx2yUyntroNe2blBX0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2014__07__2021-02-12-Take-Out-Kung-Pao-Chicken-MHOM-11-c46f6c06713c45c5a287ddbf08779d04.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["Gluten Free", "DF"]
+                "restrictions": ["Gluten Free", "Dairy Free"]
             },
             {
                 "id": "08DBCD51-9934-4451-8475-F7F9BF325014",
@@ -150,7 +150,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/07/stir-fried-chicken-mushrooms-oyster-sauce-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/uH0cj1jrvku8RR-5Pn-LVuUi4SM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__07__20140714-chicken-with-mushrooms-and-oyster-sauce-shao-zhong-9-da5c66447740480c89691faee1eb58be.jpg",
                 "photocredit": "Shao Z.",
-                "restrictions": ["Gluten Free", "DF"]
+                "restrictions": ["Gluten Free", "Dairy Free"]
             }
         ]
     },
@@ -202,7 +202,7 @@
                 "url": "https://www.bonappetit.com/recipe/celery-soup",
                 "imageUrl": "https://assets.bonappetit.com/photos/57ad35aa53e63daf11a4dceb/master/w_1280,c_limit/celery-soup.jpg",
                 "photocredit": "Brad Leone",
-                "restrictions": ["VEGAN", "Gluten Free"]
+                "restrictions": ["Vegan", "Gluten Free"]
             },
             {
                 "id": "491655A0-1B03-4E93-8D06-6B3BAB63FEAE",
@@ -210,7 +210,7 @@
                 "url": "https://www.seriouseats.com/recipes/2013/02/vegan-lentil-soup-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/Xg-fgROYWbwBsZm3c9Odvr6b6f0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2013__02__20120206-lentil-soup-recipe1-4ab2fb6e6f824a8b93bdacf3c4d21e82.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEGAN", "Gluten Free", "DF"]
+                "restrictions": ["Vegan", "Gluten Free", "Dairy Free"]
             },
             {
                 "id": "34FB9E0B-7DE9-4E79-B3FE-F9577468A296",
@@ -226,7 +226,7 @@
                 "url": "https://www.seriouseats.com/recipes/2014/10/black-eyed-peas-kale-andouille-sausage-stew-one-pot-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/aDtOY1ID88fZLCNeX2mktUCUN68=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__10__20141019-sausage-kale-black-eyed-pea-stew-1-87fb3f7680b64ed3b0cb02d489f56ad4.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["Gluten Free", "DF"]
+                "restrictions": ["Gluten Free", "Dairy Free"]
             },
             {
                 "id": "9E65A20E-D352-4328-99FF-B47A7CD7DC28",
@@ -234,7 +234,7 @@
                 "url": "https://www.foodandwine.com/recipes/viet-beef-stew-star-anise-and-lemongrass",
                 "imageUrl": "https://static.onecms.io/wp-content/uploads/sites/9/2015/01/viet-beef-stew-with-star-anise-and-lemongrass-ft-RECIPE0219.jpg",
                 "photocredit": "Greg Dupree",
-                "restrictions": ["Gluten Free", "DF"]
+                "restrictions": ["Gluten Free", "Dairy Free"]
             }
         ]
     },
@@ -248,7 +248,7 @@
                 "url": "https://www.seriouseats.com/recipes/2017/07/erdapfelsalat-austrian-style-potato-salad-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/rHo6vvZgwr8Qqn7uuGyCz0jiqH0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2017__07__20170630-austrian-potato-salad-erdapfelsalat-19-017bda0ac5814dc9a3671bf20e1b1ec1.jpg",
                 "photocredit": "Seriouseats",
-                "restrictions": ["VEGAN", "DF"]
+                "restrictions": ["Vegan", "Dairy Free"]
             },
             {
                 "id": "C22C13A9-14B6-4E93-8741-159175B79C7B",
@@ -256,7 +256,7 @@
                 "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/heirloom-tomato-pie-recipe-1973826",
                 "imageUrl": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/6/7/2/FNM_070111-WE-Dinners-036_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371597712259.jpeg",
                 "photocredit": "Food Network",
-                "restrictions": ["VEGAN", "Gluten Free", "DF"]
+                "restrictions": ["Vegan", "Gluten Free", "Dairy Free"]
             },
             {
                 "id": "844057F8-DFE8-4949-9E39-8D4131B21281",
@@ -264,7 +264,7 @@
                 "url": "https://www.seriouseats.com/recipes/2010/11/the-best-roasted-sweet-potatoes-thanksgiving-sides-the-food-lab-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/4Sz5Zfuz6H2l7o-fNY-Xb_qqC4c=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__11__20150923-Thanksgiving-spread-vicky-wasik-004-choose-sides-c68226da83c542ed8fc9cbee67326175.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEGAN", "Gluten Free", "DF"]
+                "restrictions": ["Vegan", "Gluten Free", "Dairy Free"]
             },
             {
                 "id": "18B1133A-390C-4572-97F5-A008DBB89091",
@@ -280,7 +280,7 @@
                 "url": "https://www.allrecipes.com/recipe/239042/roasted-cauliflower-steaks/",
                 "imageUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5149899.jpg&w=1200&h=678&c=sc&poi=face&q=85",
                 "photocredit": "Meredith Corp",
-                "restrictions": ["VEGAN", "DF"]
+                "restrictions": ["Vegan", "Dairy Free"]
             }
         ]
     },
@@ -294,7 +294,7 @@
                 "url": "https://www.seriouseats.com/recipes/2018/10/yeasted-pumpkin-bread.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/fZEAsxSBj9qsCsvHm4Pm-h6tpzw=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__10__20180925-pumpkin-bread-vicky-wasik-23-1-1528c4426a544958897d4935dd8e77f6.jpg",
                 "photocredit": "Vicky Wasik",
-                "restrictions": ["VEGAN", "DF"]
+                "restrictions": ["Vegan", "Dairy Free"]
             },
             {
                 "id": "E28071B5-8385-456A-BD04-1CE169FF3A71",
@@ -302,7 +302,7 @@
                 "url": "https://www.kingarthurbaking.com/recipes/english-muffin-toasting-bread-recipe",
                 "imageUrl": "https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/recipe_legacy/266-3-large.jpg?itok=lld4Z-tV",
                 "photocredit": "King Arthur Baking",
-                "restrictions": ["VEGAN", "DF"]
+                "restrictions": ["Vegan", "Dairy Free"]
             }
             
         ]
@@ -317,7 +317,7 @@
                 "url": "https://www.seriouseats.com/recipes/2016/09/quick-dill-pickle-chips-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/XSH5ChodyhsofxPqriZeMEADrCM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__09__20160913-quick-dill-pickle--2db2820742bc4efc843a43661514483f.jpg",
                 "photocredit": "J. Kenji Lopez-Alt",
-                "restrictions": ["VEGAN", "DF", "Gluten Free"]
+                "restrictions": ["Vegan", "Dairy Free", "Gluten Free"]
             }
         ]
     },
@@ -331,7 +331,7 @@
                 "url": "https://www.thespruceeats.com/til-ke-sesame-laddoo-1957849",
                 "imageUrl": "https://www.thespruceeats.com/thmb/VebtlHCl3ZyPyULVNNTdPMi_N4M=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/tilladdoo-56a510ca5f9b58b7d0dabf58.jpg",
                 "photocredit": "Saloni Desai/Flickr",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "5A3C1F7D-8446-4B61-80D7-6A613E25F6B4",
@@ -339,7 +339,7 @@
                 "url": "https://www.thespruceeats.com/semolina-halwa-dessert-1957814",
                 "imageUrl": "https://www.thespruceeats.com/thmb/7EsRJvOU8YD-yJgw5rbP5V8vjBM=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/semolina-halwa-dessert-1957814_15_preview-5b05f2ac119fa8003a98e0a9.jpeg",
                 "photocredit": "TheSpruce",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "9FAA77FF-CD68-4616-8C4E-1BB456F32419",
@@ -347,7 +347,7 @@
                 "url": "https://www.thespruceeats.com/shahi-falooda-drink-dessert-1957844",
                 "imageUrl": "https://www.thespruceeats.com/thmb/dU4MTTEOI3_hsDD_ZTPkBWv2YrI=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/falooda-indian-dessert-809651654-5abed1b6875db90037976925.jpg",
                 "photocredit": "luknaja / Getty Images",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "BFC427E5-E7AB-4BA5-8A1F-58F688DAC43F",
@@ -355,7 +355,7 @@
                 "url": "https://www.thespruceeats.com/kulfi-4800100",
                 "imageUrl": "https://www.thespruceeats.com/thmb/uGgJrVqFzDcELnBt2S7XY1q6nHQ=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/KulfiHERO-6d4cae6573d24e55b8941d519b890f5d.jpg",
                 "photocredit": "The Spruce / Kristina Vanni",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "9ED67065-A27D-4D0F-B4A2-5809E138BA14",
@@ -363,7 +363,7 @@
                 "url": "https://www.thespruceeats.com/gulgulas-banana-fritters-indian-style-1958023",
                 "imageUrl": "https://www.thespruceeats.com/thmb/rbmQOBxbK6zrrFUPeRsbonRP-Wc=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/gulgulas-banana-fritters-indian-style-1958023-hero-02-def8fb4561eb4d3bac24bc774e526079.jpg",
                 "photocredit": "Anjelagr / Dreamstime.com",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "887D3D0D-857B-4D8F-A7C7-189E2D4126D1",
@@ -371,7 +371,7 @@
                 "url": "https://www.seriouseats.com/recipes/2015/12/soft-and-chewy-sugar-cookie-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/AGvMXGTQJSehUQnFDi-VATJvIBE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__11__20151110-chewy-sugar-cookies-vicky-wasik-23-e8eb17d7e17a4eaea45170b7e9806302.jpg",
                 "photocredit": "Stella Parks",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             },
             {
                 "id": "C4578739-D31E-4E13-8CDF-0558CFD6696F",
@@ -379,7 +379,7 @@
                 "url": "https://www.seriouseats.com/recipes/2016/06/fresh-cherry-pie-filling-recipe.html",
                 "imageUrl": "https://www.seriouseats.com/thmb/oj4MN4L5Jcqykoe0p5DI_VlhvFA=/880x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__06__20160608-cherry-pie-vicky-wasik-14-05166374718d4f50b9c78803c95a5755.jpg",
                 "photocredit": "Stella Parks",
-                "restrictions": ["VEGAN"]
+                "restrictions": ["Vegan"]
             }
         ]
     }

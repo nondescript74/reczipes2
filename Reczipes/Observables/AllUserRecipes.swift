@@ -145,6 +145,26 @@ class AllUserRecipes: ObservableObject {
         return returningNames
     }
     
+    func getRecipeForName(name: String) -> SectionItem? {
+        var myReturn: SectionItem?
+        let recnams = getRecipeNames()
+        if recnams.contains(name) {
+            var items = [SectionItem]()
+            for abs in sections {
+                items = items + abs.items
+            }
+            for asItem in items {
+                if asItem.name == name {
+                    myReturn = asItem
+                }
+            }
+             
+        } else {
+           // returning nil
+        }
+        return myReturn
+    }
+    
     @MainActor
     func addRecipe(bsectionid: UUID, recipe: SectionItem) -> Bool {
         var myReturn: Bool = false

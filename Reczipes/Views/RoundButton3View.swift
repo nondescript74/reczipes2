@@ -24,8 +24,8 @@ struct RoundButton3View: View {
                     .font(.title)
                 
                 Circle()
-                    .strokeBorder(colorBackgroundButton, lineWidth: 4)
-                    .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .strokeBorder(colorBackgroundButton, lineWidth: 2)
+                    .frame(width: 45, height: 45, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
                 Circle()
                     .fill(colorForegroundButton)

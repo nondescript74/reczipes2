@@ -42,6 +42,7 @@ let folderfillbadgeplus = UIImage(systemName: "folder.fill.badge.plus")
 let magnifyingglass = UIImage(systemName: "magnifyingglass")
 let lassosparkles = UIImage(systemName: "lasso.sparkles")
 let squareandarrowdown = UIImage(systemName:"square.and.arrow.down")
+let shareImage = UIImage(systemName: "square.and.arrow.up")
 let videobadgeplus = UIImage(systemName:"video.badge.plus")
 let delimiterFileNames = "_Z_"
 let delimiterDirs = "/"
@@ -56,6 +57,7 @@ let myMeasure: Measure = Bundle.main.decode(Measure.self, from: "Measure.json")
 let myMeasures: Measures = Bundle.main.decode(Measures.self, from: "Measures.json")
 let myExtendedIngredient: ExtendedIngredient = Bundle.main.decode(ExtendedIngredient.self, from: "ExtendedIngredient.json")
 let myExtendedIngredients: [ExtendedIngredient] = Bundle.main.decode([ExtendedIngredient].self, from: "ExtendedIngredients.json")
+let shippedDiets: [Diet] =  Bundle.main.decode([Diet].self, from: "diets.json")
 
 
 var colorBackgroundButton: Color = Color.init("ED7D3A")

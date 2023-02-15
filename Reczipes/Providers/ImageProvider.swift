@@ -11,7 +11,7 @@ import SwiftUI
 
 public class ImageProvider {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var imageUrl: URL

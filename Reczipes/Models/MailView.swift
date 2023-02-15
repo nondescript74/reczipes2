@@ -10,15 +10,18 @@ import UIKit
 import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
-    // MARK: - Debug local\
-    private var zBug: Bool = false
+    // MARK: - Debug local
+    fileprivate var zBug: Bool = true
     // MARK: - Environment
     @Environment(\.presentationMode) var presentation
+    @EnvironmentObject var auu: AllUserRecipes
+    @EnvironmentObject var aui: AllUserImages
+    @EnvironmentObject var aun: AllUserNotes
     // MARK: - State
     @Binding var result: Result<MFMailComposeResult, Error>?
     // MARK: - Properties
     var sectItem: SectionItem
-    private enum msgs: String {
+    fileprivate enum msgs: String {
         case mv = "MailView: "
         case messSubj = "Hi, thought you might like this recipe I cook"
         case failedData = "Failed encoding SectionItem to Data"
@@ -35,79 +38,79 @@ struct MailView: UIViewControllerRepresentable {
         case fan = "Found a Note"
         case fani = "Found an ImageSaved"
     }
-    private var decoder: JSONDecoder = JSONDecoder()
-    private var encoder: JSONEncoder = JSONEncoder()
+    fileprivate var decoder: JSONDecoder = JSONDecoder()
+    fileprivate var encoder: JSONEncoder = JSONEncoder()
     // MARK: - Methods
     
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
-        var myNotesConstructed:Array<Note> = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
-        
-        do {
-            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rnotes.rawValue),
-                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
-            // now shipped recipes
-            
-            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-            for aurl in urls {
-                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-                do {
-                    let aNote = try decoder.decode(Note.self, from: ajsonfile)
-                    myNotesConstructed.append(aNote)
-                    if zBug { print(msgs.mv.rawValue + msgs.fan.rawValue)}
-                    
-                } catch  {
-                    // not a json file
-                    fatalError("Cannot decode This directory has illegal files")
-                }
-            }
-        } catch {
-            
-        }
-        
-        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + json).sorted(by: {$0.recipeuuid.description < $1.recipeuuid.description}).filter({$0.recipeuuid.description == sectItem.id.uuidString})
-        if shippedNotes.isEmpty  {
-            
-        } else {
-            myNotesConstructed.append(contentsOf: shippedNotes)
-        }
+        var myNotesConstructed:Array<Note> = aun.notes
+//        let myDocuDirUrl = getDocuDirUrl()
+//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
+//
+//        do {
+//            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rnotes.rawValue),
+//                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
+//            // now shipped recipes
+//
+//            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+//            for aurl in urls {
+//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+//                do {
+//                    let aNote = try decoder.decode(Note.self, from: ajsonfile)
+//                    myNotesConstructed.append(aNote)
+//                    if zBug { print(msgs.mv.rawValue + msgs.fan.rawValue)}
+//
+//                } catch  {
+//                    // not a json file
+//                    fatalError("Cannot decode This directory has illegal files")
+//                }
+//            }
+//        } catch {
+//
+//        }
+//
+//        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + json).sorted(by: {$0.recipeuuid.description < $1.recipeuuid.description}).filter({$0.recipeuuid.description == sectItem.id.uuidString})
+//        if shippedNotes.isEmpty  {
+//
+//        } else {
+//            myNotesConstructed.append(contentsOf: shippedNotes)
+//        }
         return myNotesConstructed
     }
     
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
-        var myImagesConstructed:Array<ImageSaved> = []
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
-        
-        do {
-            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rimages.rawValue),
-                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
-            // now shipped recipes
-            
-            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-            for aurl in urls {
-                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-                do {
-                    let anImageSaved = try decoder.decode(ImageSaved.self, from: ajsonfile)
-                    myImagesConstructed.append(anImageSaved)
-                    if zBug { print(msgs.mv.rawValue + msgs.fani.rawValue)}
-                    
-                } catch  {
-                    // not a json file
-                    fatalError("Cannot decode This directory has illegal files")
-                }
-            }
-        } catch {
-            
-        }
-        
-        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + json).sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString}).filter({$0.recipeuuid.uuidString == sectItem.id.uuidString})
-        if shippedImages.isEmpty  {
-            
-        } else {
-            myImagesConstructed.append(contentsOf: shippedImages)
-        }
+        var myImagesConstructed:Array<ImageSaved> = aui.images
+//        let myDocuDirUrl = getDocuDirUrl()
+//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
+//
+//        do {
+//            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rimages.rawValue),
+//                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
+//            // now shipped recipes
+//
+//            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
+//            for aurl in urls {
+//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
+//                do {
+//                    let anImageSaved = try decoder.decode(ImageSaved.self, from: ajsonfile)
+//                    myImagesConstructed.append(anImageSaved)
+//                    if zBug { print(msgs.mv.rawValue + msgs.fani.rawValue)}
+//
+//                } catch  {
+//                    // not a json file
+//                    fatalError("Cannot decode This directory has illegal files")
+//                }
+//            }
+//        } catch {
+//
+//        }
+//
+//        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + json).sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString}).filter({$0.recipeuuid.uuidString == sectItem.id.uuidString})
+//        if shippedImages.isEmpty  {
+//
+//        } else {
+//            myImagesConstructed.append(contentsOf: shippedImages)
+//        }
         return myImagesConstructed
     }
     
@@ -203,3 +206,10 @@ struct MailView: UIViewControllerRepresentable {
         
     }
 }
+
+//struct MailView_Previews: PreviewProvider {
+//    static let sectItem = SectionItem.example2
+//    static var previews: some View {
+//        MailView(result: nil, sectItem: sectItem)
+//    }
+//}

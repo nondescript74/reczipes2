@@ -55,6 +55,7 @@ struct RecipeDetailView: View {
         case add = "Add"
         case save = "Save"
         case move = "Move"
+        case share = "Share"
         case recipe = "This"
         case ingredients = "Ingred"
         case show = "Show"
@@ -67,11 +68,17 @@ struct RecipeDetailView: View {
     }
     
     fileprivate enum imagez: String {
-        case snp = "square.and.pencil"
-        case pencil = "pencil"
+//        case snp = "square.and.pencil"
+        case order = "list.clipboard"
+        case book = "book"
+//        case pencil = "pencil"
+        case images = "photo.stack"
         case gc = "greetingcard"
         case mail = "envelope"
-        case add = "plus"
+//        case add = "plus"
+        case save = "externaldrive.badge.plus"
+        case share = "square.and.arrow.up"
+        
         
     }
     // MARK: - State
@@ -79,6 +86,7 @@ struct RecipeDetailView: View {
     @State fileprivate var showingImages = false
     @State fileprivate var addingImage = false
     @State fileprivate var addingNote = false
+    @State fileprivate var showShareSheet = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     @State fileprivate var recipeSaved = false
@@ -133,39 +141,34 @@ struct RecipeDetailView: View {
                         if result { recipeSaved = true } else { recipeSaved = false }
                     }) {
                         // How the button looks like
-                        RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
+                        RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: false)
                     }.disabled(cuisine.isEmpty )
                     Button(action: {
                         // What to perform
                         self.order.add(item: self.item)
                     }) {
                         // How the button looks like
-                        RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.snp.rawValue, reversed: false)
+                        RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.order.rawValue, reversed: false)
                     }
                     Button(action: {
                         // What to perform
                         self.showingNotes.toggle()
                     }) {
                         // How the button looks like
-                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.pencil.rawValue, reversed: true)
+                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.book.rawValue, reversed: true)
                     }
                     Button(action: {
                         // What to perform
                         self.showingImages.toggle()
                     }) {
                         // How the button looks like
-                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.gc.rawValue, reversed: true)
+                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
                     }
-                    
-//                    Button(action: {
-//                        // What to perform
-//                        self.isShowingMailView.toggle()
-//                    }) {
-//                        // How the button looks like
-//                        RoundButton3View(someTextTop: labelz.send.rawValue, someTextBottom: labelz.mail.rawValue, someImage: imagez.mail.rawValue, reversed: true)
-//                    }.disabled(!MFMailComposeViewController.canSendMail())
-                    
-                    
+                    Button(action: {
+                        self.showShareSheet = true
+                    }) {
+                        RoundButton3View(someTextTop: labelz.share.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.share.rawValue, reversed: true)
+                    }
                 }
                 Divider()
                 if showingNotes == true && hasNotes() {
@@ -185,6 +188,9 @@ struct RecipeDetailView: View {
             }
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
+            }
+            .sheet(isPresented: $showShareSheet) {
+                ShareRecipeView(sectionItem: item)
             }
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))

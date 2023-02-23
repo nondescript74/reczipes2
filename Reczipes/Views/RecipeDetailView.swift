@@ -29,57 +29,48 @@ struct RecipeDetailView: View {
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
-        case nothing = "Nothing"
-        case sectIsOther = "Section Name is set to Other"
-        case addImage = "Add Images To Recipe"
-        case addNote = "Add Note To Recipe"
-        case plusNote = "+ Note"
-        case plusImage = "+ Image"
-        case exists = "Recipe already saved"
-        case recipeImages = "RecipeImagesFolder has Images"
-        case recipeNotes = "RecipeNotesFolder has Notes"
-        case recipeImagesNot = "RecipeImagesFolder has no Images"
-        case recipeNotesNot = "RecipeNotesFolder has no Notes"
-        case notejson = "Successfully wrote note"
-        case imgjson = "Successfully wrote image"
-        case rshipd = "recipesShipped"
-        case rnotes = "RecipeNotes"
-        case rimages = "RecipeImages"
-        case fuar = "Found user added recipe"
-        case fuabs = "Found user BookSection"
+//        case nothing = "Nothing"
+//        case sectIsOther = "Section Name is set to Other"
+//        case addImage = "Add Images To Recipe"
+//        case addNote = "Add Note To Recipe"
+//        case plusNote = "+ Note"
+//        case plusImage = "+ Image"
+//        case exists = "Recipe already saved"
+//        case recipeImages = "RecipeImagesFolder has Images"
+//        case recipeNotes = "RecipeNotesFolder has Notes"
+//        case recipeImagesNot = "RecipeImagesFolder has no Images"
+//        case recipeNotesNot = "RecipeNotesFolder has no Notes"
+//        case notejson = "Successfully wrote note"
+//        case imgjson = "Successfully wrote image"
+//        case rshipd = "recipesShipped"
+//        case rnotes = "RecipeNotes"
+//        case rimages = "RecipeImages"
+//        case fuar = "Found user added recipe"
+//        case fuabs = "Found user BookSection"
         
     }
     
     fileprivate enum labelz: String {
         case order = "Order"
-        case add = "Add"
         case save = "Save"
-        case move = "Move"
         case share = "Share"
         case recipe = "This"
         case ingredients = "Ingred"
         case show = "Show"
         case notes = "Notes"
         case images = "Images"
-        case send = "Send"
-        case mail = "📩"
+//        case send = "Send"
+//        case mail = "📩"
         case nbartitle = "Recipe Details"
         
     }
     
     fileprivate enum imagez: String {
-//        case snp = "square.and.pencil"
         case order = "list.clipboard"
         case book = "book"
-//        case pencil = "pencil"
         case images = "photo.stack"
-        case gc = "greetingcard"
-        case mail = "envelope"
-//        case add = "plus"
         case save = "externaldrive.badge.plus"
         case share = "square.and.arrow.up"
-        
-        
     }
     // MARK: - State
     @State fileprivate var showingNotes = false

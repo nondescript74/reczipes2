@@ -37,7 +37,6 @@ struct ProfileSummary: View {
             Text("Notifications: \(self.profile.prefersNotifications ? "On": "Off" )")
             Text("Include Nutrition: \(self.profile.prefersNutritionInclusion ? "On": "Off" )")
             Text("Include Vitamins: \(self.profile.prefersVitaminInclusion ? "On": "Off" )")
-//            Text("Load New Recipe Set: \(self.profile.loadNewRecipes ? "On": "Off" )")
             
             HStack {
                 Image(self.profile.seasonalPhoto.rawValue)
@@ -54,11 +53,6 @@ struct ProfileSummary: View {
                     
 
             }
-            
-//            VStack(alignment: .leading) {
-//                Text("Recent Recipes ... :  " + (getLatest().first?.name ?? "No recipes saved"))
-//                    .font(.headline)
-//            }
         }
     }
 }
@@ -67,6 +61,9 @@ struct ProfileSummary: View {
 struct ProfileSummary_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSummary(profile: Profile.default)
+            .environmentObject(AllUserRecipes())
+            .environmentObject(AllUserNotes())
+            .environmentObject(AllUserImages())
     }
 }
 

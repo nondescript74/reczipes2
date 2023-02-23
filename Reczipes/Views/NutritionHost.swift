@@ -10,7 +10,6 @@ import SwiftUI
 import CoreData
 
 struct NutritionHost: View {
-    
     // MARK; - Debug
     fileprivate var zBug: Bool = false
     // MARK:- Environment

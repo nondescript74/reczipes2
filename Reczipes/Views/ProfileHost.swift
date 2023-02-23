@@ -13,7 +13,6 @@ struct ProfileHost: View {
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData
     // MARK: - ManagedObjectContext
-//    @Environment(\.managedObjectContext) var managedObjectContext
     //MARK: - State
     @State fileprivate var draftProfile = Profile.default
     // MARK: - View Process
@@ -30,8 +29,7 @@ struct ProfileHost: View {
                 Spacer()
                 
                 EditButton()
-                    .onAppear {}
-                    .onDisappear {}
+                     
                 
             }
             if self.mode?.wrappedValue == .inactive {
@@ -46,7 +44,6 @@ struct ProfileHost: View {
                     }
             }
         }
-        .padding()
     }
 }
 
@@ -55,7 +52,7 @@ struct ProfileHost_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHost()
             .environmentObject(UserData())
-//            .environment(\.managedObjectContext)
+            .environment(\.editMode, Binding.constant(EditMode.active))
     }
 }
 

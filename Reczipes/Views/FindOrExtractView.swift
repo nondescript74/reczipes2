@@ -10,7 +10,6 @@ import SwiftUI
 struct FindOrExtractView: View {
     // MARK: - EnvironmentObject
     @EnvironmentObject var userData: UserData
-//    @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()

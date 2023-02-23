@@ -43,7 +43,7 @@ struct MailView: UIViewControllerRepresentable {
     // MARK: - Methods
     
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
-        var myNotesConstructed:Array<Note> = aun.notes
+        let myNotesConstructed:Array<Note> = aun.notes
 //        let myDocuDirUrl = getDocuDirUrl()
 //        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
 //
@@ -79,7 +79,7 @@ struct MailView: UIViewControllerRepresentable {
     }
     
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
-        var myImagesConstructed:Array<ImageSaved> = aui.images
+        let myImagesConstructed:Array<ImageSaved> = aui.images
 //        let myDocuDirUrl = getDocuDirUrl()
 //        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
 //

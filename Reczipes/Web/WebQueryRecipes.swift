@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local

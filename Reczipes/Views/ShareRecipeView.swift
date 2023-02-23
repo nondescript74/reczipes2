@@ -58,3 +58,35 @@ struct ShareRecipeView_Previews: PreviewProvider {
         ShareRecipeView(sectionItem: SectionItem.example2)
     }
 }
+
+struct Photo: Transferable {
+    static var transferRepresentation: some TransferRepresentation {
+        ProxyRepresentation(exporting: \.image)
+    }
+
+    public var image: Image
+    public var caption: String
+}
+
+struct PhotoView: View {
+    let photo: Photo
+
+    var body: some View {
+        photo.image
+            .toolbar {
+                ShareLink(
+                    item: photo,
+                    subject: Text("Cool Photo"),
+                    message: Text("Check it out!"),
+                    preview: SharePreview(
+                        photo.caption,
+                        image: photo.image))
+            }
+    }
+}
+
+struct PhotoView_Previews: PreviewProvider {
+    static var previews: some View {
+        PhotoView(photo: Photo(image: Image(uiImage: UIImage(systemName: "flag.2.crossed")!), caption: "flags"))
+    }
+}

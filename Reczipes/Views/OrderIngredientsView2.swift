@@ -52,75 +52,72 @@ struct OrderIngredientsView2: View {
     // MARK: - Methods
     // MARK: - View Process
     var body: some View {
-        NavigationView {
-            List {
-                Section(header: ListHeader(myText: "Recipes To Order For")) {
-                    ForEach(order.items, id: \.self) {item in
-                        HStack {
-                            RecipeRowView(sectionItem: item)
-                            Button(action: {
-                                // What to perform
-                                self.order.remove(item: item)
-                            }) {
-                                // How the button looks like
-                                RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
-                            }
-                        }
-                    }
-                }
-                Section {
+        VStack {
+            Text("Ingredient Ordering").font(.largeTitle).bold().padding(.bottom)
+            
+            VStack {
+                ForEach(order.items, id: \.self) {item in
                     HStack {
+                        RecipeRowView(sectionItem: item)
                         Button(action: {
                             // What to perform
-                            ratio.change(amount: 1.0)
+                            self.order.remove(item: item)
                         }) {
                             // How the button looks like
-                            RoundButton3View(someTextTop: labelz.full.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.full.rawValue, reversed: false)
+                            RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
                         }
-                        Button(action: {
-                            // What to perform
-                            ratio.change(amount: 2.0)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.double.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.double.rawValue, reversed: false)
-                        }
-                        Button(action: {
-                            // What to perform
-                            ratio.change(amount: 0.5)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.half.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.half.rawValue, reversed: false)
-                        }
-                        Button(action: {
-                            // What to perform
-                            ratio.change(amount: 0.75)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.tq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.tq.rawValue, reversed: false)
-                        }
-                        Button(action: {
-                            // What to perform
-                            ratio.change(amount: 1.25)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
-                        }
-                    }
-                }
-                Section {
-                    VStack {
-                        ForEach(order.items, id: \.self) { item in
-                            VStack {
-                                Text(item.name)
-                                ExtendendIngredientsView2(sectionitem: item)
-                            }
-                        }.frame(minHeight: 500)
                     }
                 }
             }
-            .navigationBarTitle("Ingredient Ordering")
+            
+            HStack {
+                Button(action: {
+                    // What to perform
+                    ratio.change(amount: 1.0)
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.full.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.full.rawValue, reversed: false)
+                }
+                Button(action: {
+                    // What to perform
+                    ratio.change(amount: 2.0)
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.double.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.double.rawValue, reversed: false)
+                }
+                Button(action: {
+                    // What to perform
+                    ratio.change(amount: 0.5)
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.half.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.half.rawValue, reversed: false)
+                }
+                Button(action: {
+                    // What to perform
+                    ratio.change(amount: 0.75)
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.tq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.tq.rawValue, reversed: false)
+                }
+                Button(action: {
+                    // What to perform
+                    ratio.change(amount: 1.25)
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
+                }
+            }
+            
+            VStack {
+                ForEach(order.items, id: \.self) { item in
+                    VStack {
+                        Text(item.name)
+                        ExtendendIngredientsView2(sectionitem: item)
+                    }
+                }
+            }
+            
         }
-        
     }
 }
 

@@ -16,12 +16,10 @@ struct Profile {
     var prefersVitaminInclusion: Bool
     var seasonalPhoto: Season
     var numberOfRecipes: NumberZ
-    var nutrition: Nutrition
-    var vitamins: Vitamins
 
-    static let `default` = Self(username: "Guest", id: "Sample ID", email: "somebody@gmail.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four, nutrition: Nutrition(), vitamins: Vitamins.default)
+    static let `default` = Self(username: "Guest", id: "Sample ID", email: "somebody@gmail.com", prefersNotifications: true, prefersNutrition: false, prefersVitamins: false, seasonalPhoto: .summer, numberz: NumberZ.four)
     
-    init(username: String, id: String, email:String, prefersNotifications: Bool = true, prefersNutrition: Bool = false, prefersVitamins: Bool = false, seasonalPhoto: Season = .summer, numberz: NumberZ = NumberZ.four, nutrition: Nutrition, vitamins: Vitamins, loadnewrecipes: Bool = false) {
+    init(username: String, id: String, email:String, prefersNotifications: Bool = true, prefersNutrition: Bool = false, prefersVitamins: Bool = false, seasonalPhoto: Season = .summer, numberz: NumberZ = NumberZ.four, loadnewrecipes: Bool = false) {
         self.username = username
         self.email = email
         self.id = id
@@ -30,8 +28,9 @@ struct Profile {
         self.prefersVitaminInclusion = prefersVitamins
         self.seasonalPhoto = seasonalPhoto
         self.numberOfRecipes = numberz
-        self.nutrition = nutrition
-        self.vitamins = vitamins
+        
+        
+//        UserDefaults.standard.set(self, forKey: "profile")
     }
     
     struct RestOf {

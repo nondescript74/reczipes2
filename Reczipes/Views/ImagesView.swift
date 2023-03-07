@@ -60,6 +60,7 @@ struct ImagesView: View {
 struct ImagesView_Previews: PreviewProvider {
     static var previews: some View {
         ImagesView(recipeuuid: UUID(uuidString: "9926BA12-55C3-4B26-800B-B68AA8D80474")!)
+            .environmentObject(AllUserImages())
     }
 }
 

@@ -48,7 +48,7 @@ struct KeyView: View {
     // MARK: - View process
 
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
                 Text("Save Api Key").font(.largeTitle).bold()
                 List {
@@ -67,7 +67,7 @@ struct KeyView: View {
                     }
                 }
             }
-        }
+//        }
     }
 }
 

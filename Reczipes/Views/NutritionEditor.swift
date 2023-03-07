@@ -17,7 +17,7 @@ struct NutritionEditor: View {
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text(" Max Sodium: " + $userData.nutrition.maxSodium.wrappedValue.description)
+            Text(" Max Sodium: ")
         }
     }
 }

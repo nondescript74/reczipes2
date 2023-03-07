@@ -17,9 +17,15 @@ import SwiftUI
 
 final class UserData: ObservableObject {
     // MARK: - Initializer
+    init() {
+        self.profile = Profile.default
+        self.nutrition = Nutrition.default
+        self.vitamins = Vitamins.default
+        self.showFavoritesOnly = false
+    }
     // MARK: - Publisher
-    @Published var showFavoritesOnly = false
-    @Published var profile = Profile.default
-    @Published var vitamins = Vitamins.default
-    @Published var nutrition = Nutrition.default
+    @Published var showFavoritesOnly: Bool
+    @Published var profile: Profile
+    @Published var vitamins: Vitamins
+    @Published var nutrition: Nutrition
 }

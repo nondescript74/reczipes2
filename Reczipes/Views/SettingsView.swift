@@ -44,12 +44,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                    Text(msgs.sv.rawValue).font(.largeTitle).bold()
-                    Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
-                    Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
-                    Text(userData.profile.username)
-                    Text(userData.profile.email)
-            }.padding(.bottom)
+                Text(msgs.sv.rawValue).font(.largeTitle).bold()
+                Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
+                Text(msgs.build.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfb.rawValue] as? String ?? msgs.nbn.rawValue)")
+                Text(userData.profile.username)
+                Text(userData.profile.email)
+                Text(userData.profile.id)
+            }.padding()
         }.navigationBarTitleDisplayMode(.automatic)
     }
 }

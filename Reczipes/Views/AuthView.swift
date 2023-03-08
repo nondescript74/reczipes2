@@ -26,6 +26,12 @@ struct AuthView: View {
         case retrieved = "retrieved userIdentifier in keychain for service: "
         case unable = "Unable to save userIdentifier to keychain."
         case sid = "Sample ID"
+        case nna = "No name available "
+        case fnna = "Family name not available"
+        case emna = "Email not available"
+        case so = "Sign Out"
+        case sod = "Signed Out"
+        case soderr = "signing out error"
     }
     // MARK: - Methods
     private func showPasswordCredentialAlert(username: String, password: String) {
@@ -51,16 +57,16 @@ struct AuthView: View {
     fileprivate func signOut(userIdentifier: String) {
         do {
             try KeychainItem(service: msgs.service.rawValue, account: msgs.ui.rawValue).deleteItem()
-            if zBug {print("signed out")}
+            if zBug {print(msgs.sod.rawValue)}
             userData.profile.id = msgs.sid.rawValue
         } catch {
-            if zBug {print("signing out error")}
+            if zBug {print(msgs.soderr.rawValue)}
         }
     }
     
     var body: some View {
         VStack {
-            Text("Sign in").font(.largeTitle).bold()
+//            Text("Sign in").font(.largeTitle).bold()
             SignInWithAppleButton(.signIn) { request in
                 request.requestedScopes = [.fullName, .email]
             } onCompletion: { result in
@@ -74,21 +80,23 @@ struct AuthView: View {
                         let givenName = fullName?.givenName
                         let familyName = fullName?.familyName
                         let email = appleIDCredential.email
-                        userData.profile.username = (givenName ?? "No given name") + " " + (familyName ?? "No family name")
+                        userData.profile.username = (givenName ?? msgs.nna.rawValue) + (familyName ?? msgs.fnna.rawValue)
                         
                         self.saveUserInKeychain(userIdentifier)
                         userData.profile.id = userIdentifier
-                        userData.profile.email = email ?? "noone@gmail.com"
+                        userData.profile.email = email ?? msgs.emna.rawValue
 //                        notauthenicated = false
 //                        authenicated = true
                         
+                        
+                     
                         
                     case let passwordCredential as ASPasswordCredential:
                         // Sign in using an existing iCloud Keychain credential.
                         let username = passwordCredential.user
                         let password = passwordCredential.password
 
-                        // For the purpose of this demo app, show the password credential as an alert.
+                        // For the purpose of this app, show the password credential as an alert.
                         DispatchQueue.main.async {
                             self.showPasswordCredentialAlert(username: username, password: password)
                         }
@@ -108,11 +116,11 @@ struct AuthView: View {
             Button(action: {
                 // What to perform
                 signOut(userIdentifier: userData.profile.id)
-
             }) {
                 // How the button looks like
-                 Text("Sign Out")
-            }
+                Text(msgs.so.rawValue)
+            }.frame(minWidth: 140, idealWidth: 200, maxWidth: 250, minHeight: 50, idealHeight: 50, maxHeight: 60)
+                .buttonStyle(.bordered)
             
         }.padding()
 //            .alert(isPresented: $notauthenicated)   {

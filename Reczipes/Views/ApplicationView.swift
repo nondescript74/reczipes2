@@ -9,7 +9,6 @@ import SwiftUI
 import AuthenticationServices
 
 struct ApplicationView: View {
-    
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
@@ -18,7 +17,6 @@ struct ApplicationView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
-    // MARK: - Initializer
     // MARK: - Properties
     fileprivate enum tabs: String {
         case books = "Books"
@@ -35,9 +33,6 @@ struct ApplicationView: View {
         case enterKey = "ApiKey"
         case fi = "find 🍒"
     }
-    
-    // MARK: - Methods
-    
     var body: some View {
         TabView {
             AllRecipesView(aur: aur)

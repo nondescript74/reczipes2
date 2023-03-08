@@ -9,7 +9,7 @@ import SwiftUI
 
 struct KeyView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Initializer
     init() {
         self.apiKey = UserDefaults.standard.string(forKey: skey) ?? ""
@@ -36,13 +36,21 @@ struct KeyView: View {
     // MARK: - Methods
     @MainActor
     fileprivate func setApiKey(key: String) {
-        if apiKey == "" {
+        if apiKey == "" ||  apiKey == UserDefaults.standard.string(forKey: skey) {
+            apiKey = ""
+#if DEBUG
+        if zBug {print(msgs.kv.rawValue + "did not set key")}
+#endif
             return
         }
-        UserDefaults.standard.set(apiKey, forKey: "SpoonacularKey")
+        DispatchQueue.main.async {
+            UserDefaults.standard.set(apiKey, forKey: skey)
+            apiKey = ""
 #if DEBUG
-        if zBug {print(msgs.kv.rawValue + msgs.kvset.rawValue + UserDefaults.standard.string(forKey: skey)!)}
+            if zBug {print(msgs.kv.rawValue + msgs.kvset.rawValue + UserDefaults.standard.string(forKey: skey)!)}
 #endif
+        }
+        
          
     }
     // MARK: - View process

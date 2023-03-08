@@ -11,12 +11,12 @@ struct KeyView: View {
     // MARK: - Local debug
     fileprivate var zBug: Bool = true
     // MARK: - Initializer
-    init() {
-        self.apiKey = UserDefaults.standard.string(forKey: skey) ?? ""
-    }
+//    init() {
+//        self.apiKey = UserDefaults.standard.string(forKey: skey) ?? ""
+//    }
     // MARK: - Environment Variables
     // MARK: - State
-    @State fileprivate var apiKey: String
+    @State fileprivate var apiKey: String = ""
     // MARK: - Properties
     private enum msgs: String {
         case kv = "KeyView: "

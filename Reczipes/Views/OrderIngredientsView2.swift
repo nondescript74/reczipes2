@@ -106,7 +106,7 @@ struct OrderIngredientsView2: View {
                     // How the button looks like
                     RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
                 }
-            }
+            }.padding(.bottom)
             
             VStack {
                 ForEach(order.items, id: \.self) { item in

@@ -26,7 +26,6 @@ struct MailView: UIViewControllerRepresentable {
         case messSubj = "Hi, thought you might like this recipe I cook"
         case failedData = "Failed encoding SectionItem to Data"
         case noAddress = "User mail sending not available"
-//        case json = ".json"
         case success = "mailComposeController finished with success"
         case failedMC = "mailComposeController finished with failure"
         case recipehasnotes = "This recipe has notes to send"
@@ -44,73 +43,11 @@ struct MailView: UIViewControllerRepresentable {
     
     fileprivate func constructNotesIfAvailable() -> Array<Note> {
         let myNotesConstructed:Array<Note> = aun.notes
-//        let myDocuDirUrl = getDocuDirUrl()
-//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
-//
-//        do {
-//            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rnotes.rawValue),
-//                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
-//            // now shipped recipes
-//
-//            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-//            for aurl in urls {
-//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-//                do {
-//                    let aNote = try decoder.decode(Note.self, from: ajsonfile)
-//                    myNotesConstructed.append(aNote)
-//                    if zBug { print(msgs.mv.rawValue + msgs.fan.rawValue)}
-//
-//                } catch  {
-//                    // not a json file
-//                    fatalError("Cannot decode This directory has illegal files")
-//                }
-//            }
-//        } catch {
-//
-//        }
-//
-//        let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: msgs.rnotes.rawValue + json).sorted(by: {$0.recipeuuid.description < $1.recipeuuid.description}).filter({$0.recipeuuid.description == sectItem.id.uuidString})
-//        if shippedNotes.isEmpty  {
-//
-//        } else {
-//            myNotesConstructed.append(contentsOf: shippedNotes)
-//        }
         return myNotesConstructed
     }
     
     fileprivate func constructImagesIfAvailable() -> Array<ImageSaved> {
         let myImagesConstructed:Array<ImageSaved> = aui.images
-//        let myDocuDirUrl = getDocuDirUrl()
-//        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: msgs.mv.rawValue)
-//
-//        do {
-//            let urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl.appending(component: msgs.rimages.rawValue),
-//                                                                   includingPropertiesForKeys: []).filter({$0.absoluteString.contains(sectItem.id.uuidString)})
-//            // now shipped recipes
-//
-//            let myReczipesDirUrlStr = myReczipesDirUrl.absoluteString
-//            for aurl in urls {
-//                let ajsonfile = FileManager.default.contents(atPath: myReczipesDirUrlStr.appending(aurl.absoluteString))!
-//                do {
-//                    let anImageSaved = try decoder.decode(ImageSaved.self, from: ajsonfile)
-//                    myImagesConstructed.append(anImageSaved)
-//                    if zBug { print(msgs.mv.rawValue + msgs.fani.rawValue)}
-//
-//                } catch  {
-//                    // not a json file
-//                    fatalError("Cannot decode This directory has illegal files")
-//                }
-//            }
-//        } catch {
-//
-//        }
-//
-//        let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: msgs.rimages.rawValue + json).sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString}).filter({$0.recipeuuid.uuidString == sectItem.id.uuidString})
-//        if shippedImages.isEmpty  {
-//
-//        } else {
-//            myImagesConstructed.append(contentsOf: shippedImages)
-//        }
         return myImagesConstructed
     }
     

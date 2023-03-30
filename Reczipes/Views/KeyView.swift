@@ -33,7 +33,7 @@ struct KeyView: View {
     fileprivate enum imagez: String {
         case kv = "key"
     }
-
+    
     // MARK: - Methods
     @MainActor
     fileprivate func setApiKey(key: String) {
@@ -52,31 +52,29 @@ struct KeyView: View {
 #endif
         }
         
-         
+        
     }
     // MARK: - View process
-
+    
     var body: some View {
-//        NavigationView {
-            VStack {
-                Text(msgs.ksave.rawValue).font(.largeTitle).bold()
-                List {
-                    Text(msgs.kx.rawValue +  (UserDefaults.standard.string(forKey: skey) ?? msgs.kno.rawValue))
+        VStack {
+            Text(msgs.ksave.rawValue).font(.largeTitle).bold()
+            List {
+                Text(msgs.kx.rawValue +  (UserDefaults.standard.string(forKey: skey) ?? msgs.kno.rawValue))
+                
+                HStack {
+                    Button(action: {
+                        // What to perform
+                        setApiKey(key: apiKey)
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.top.rawValue, someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
+                    }.disabled(apiKey.isEmpty).padding(.bottom)
                     
-                    HStack {
-                        Button(action: {
-                            // What to perform
-                            setApiKey(key: apiKey)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.top.rawValue, someTextBottom: labelz.bot.rawValue, someImage: imagez.kv.rawValue, reversed: false)
-                        }.disabled(apiKey.isEmpty).padding(.bottom)
-                        
-                        TextField(msgs.key.rawValue, text: $apiKey)
-                    }
+                    TextField(msgs.key.rawValue, text: $apiKey)
                 }
             }
-//        }
+        }
     }
 }
 

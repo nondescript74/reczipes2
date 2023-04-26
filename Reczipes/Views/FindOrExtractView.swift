@@ -79,13 +79,14 @@ struct FindOrExtractView: View {
                     Text(msgs.fr.rawValue).fontWeight(.semibold)
                     
                     HStack {
-                        Text("Pick a cuisine").foregroundColor(.cyan)
+                        Text("Did you want " ).foregroundColor(.red)
                         Picker(msgs.books.rawValue, selection: $xection) {
                             let zx = aur.getBookSectionNames().count
                             ForEach(0..<zx, id: \.self) { index in
                                 Text("\(aur.getBookSectionNames()[index])")
                             }
                         }
+                        Text(" as cuisine?")
                     }
                     
                     HStack(alignment: .center) {
@@ -99,7 +100,6 @@ struct FindOrExtractView: View {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)
                     }
-                    Text("Did you want " + "\(aur.getBookSectionNames()[xection])" + " as cuisine?").foregroundColor(.red)
                 }.padding()
                 Divider()
                 VStack {

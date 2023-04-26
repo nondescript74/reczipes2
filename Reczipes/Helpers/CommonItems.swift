@@ -83,6 +83,7 @@ fileprivate enum msgs: String {
     case fuar = "Found user added recipe"
     case combined = "Combined booksections into one booksection"
     case ci = "CommonItems: "
+    case csts = "Converted SRecipe to SectionItem "
 }
 
 func hasSpecialCharacters(string: String) -> Bool {
@@ -127,7 +128,7 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
 //                           restrictions: constructRestrictions(srecipe: srecipe))
     
 #if DEBUG
-    print(msgs.ci.rawValue + "Converted SRecipe to SectionItem " + item.name)
+    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name)
 #endif
     
     return item

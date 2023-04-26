@@ -594,29 +594,3 @@ struct Cuisine: Codable, Hashable, Equatable {
         hasher.combine(name)
     }
 }
-
-//struct NavigationButton<Label, Destination>: View where Label: View, Destination: View {
-//  @State
-//  private var isSheetPresented = false
-//  
-//  private var title: Label
-//  private var description: String?
-//  private var destination: () -> Destination
-//  
-//  public init(_ title: Label, description: String? = nil, @ViewBuilder destination: @escaping () -> Destination) {
-//    self.title = title
-//    self.description = description
-//    self.destination = destination
-//  }
-//  
-//  var body: some View {
-//    Button(action: { isSheetPresented.toggle()} ) {
-//      title
-//        .sheet(isPresented: $isSheetPresented) {
-//          NavigationView {
-//            destination()
-//          }
-//        }
-//    }
-//  }
-//}

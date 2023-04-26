@@ -99,6 +99,7 @@ struct FindOrExtractView: View {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)
                     }
+                    Text("Did you want " + "\(aur.getBookSectionNames()[xection])" + " as cuisine?").foregroundColor(.red)
                 }.padding()
                 Divider()
                 VStack {
@@ -134,6 +135,7 @@ struct FindOrExtractView: View {
     }
 }
 
+#if DEBUG
 struct FindOrExtractView_Previews: PreviewProvider {
     static var previews: some View {
         FindOrExtractView()
@@ -141,3 +143,4 @@ struct FindOrExtractView_Previews: PreviewProvider {
             .environmentObject(UserData())
     }
 }
+#endif

@@ -22,6 +22,7 @@ public class WebQueryRecipes: ObservableObject {
     @Published var extractedSRecipe: SRecipe?
     @Published var aTrivia: Trivia?
     @Published var joke: Joke?
+    @Published var analyzedInstructions: AnalyzedInstructions?
     // MARK: - State
     // MARK: - Properties
     private enum myQuery: String {
@@ -49,7 +50,7 @@ public class WebQueryRecipes: ObservableObject {
         case imageWeb = "https://spoonacular.com/cdn/ingredients_" //
         case images = "https://spoonacular.com/recipeImages/"
         case ingredients = "https://api.spoonacular.com/recipes/findByIngredients"
-        case similar, information = "https://api.spoonacular.com/recipes/"
+        case similar, information, analyzedInstructions = "https://api.spoonacular.com/recipes/"
         case similarPartDeux = "/similar"
         case informationPartDeux = "/information"
         case randomrecipes = "https://api.spoonacular.com/recipes/random"
@@ -78,6 +79,7 @@ public class WebQueryRecipes: ObservableObject {
         case FindByIngredients  = "Find By Ingredients"
         case FindByNutrition  = "Find By Nutrition"
         case FindByComplexity  = "Find By Complexity"
+        case GetAnalyzInstr = "Get Analyzed Instructions"
         case FindRandom  = "Find Random"
         case FindSimilar = "Find Similar"
         case FindInformation = "My Information"
@@ -97,9 +99,11 @@ public class WebQueryRecipes: ObservableObject {
         case fcrgroup = "Found CRecipeGroup"
         case getTrivia = "Found trivia"
         case getJoke = "Found joke"
+        case getAnInstr = "Found analyzed instructions"
         case noTitle = "No title"
         case noTrivia = "No Trivia Found"
         case noJoke = "Found No Joke"
+        case noAnInstr = "No analyzed instructions found"
         case unknownImageType = "Unknown image type"
         case unknownCallerID = "Unknown CallerID"
     }
@@ -208,6 +212,12 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
+    func getAnalyzedInstructions(recipeID: Int)  {
+        urlComponents = URLComponents(string: urlThings.analyzedInstructions.rawValue)!
+        urlComponents.path.append("\(recipeID)")
+        urlComponents.path.append("analyzedInstructions?")
+    }
+    
     private func myImageTask(aswitch: String) {
         guard let url = urlComponentsRecipeImages.url else {
             return
@@ -312,6 +322,16 @@ public class WebQueryRecipes: ObservableObject {
                     DispatchQueue.main.async {
                         self.joke = joke!
                         if self.zBug {print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)}
+                    }
+                }
+            }
+            
+        case myGets.GetAnalyzInstr.rawValue:
+            _ = AnalyzedInstructionsProvider(analyzedInstructionsUrl: url) { analyzInstr in
+                if analyzInstr != nil {
+                    DispatchQueue.main.async {
+                        self.analyzedInstructions = analyzInstr!
+                        if self.zBug {print(messagesDebug.getAnInstr.rawValue, analyzInstr?.steps?.count ?? messagesDebug.noAnInstr.rawValue)}
                     }
                 }
             }

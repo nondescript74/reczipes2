@@ -18,6 +18,7 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
+    @ObservedObject var analyInstr = WebQueryRecipes()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem, cuisine: String) {
         self.item = sectionItem
@@ -29,25 +30,6 @@ struct RecipeDetailView: View {
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
-//        case nothing = "Nothing"
-//        case sectIsOther = "Section Name is set to Other"
-//        case addImage = "Add Images To Recipe"
-//        case addNote = "Add Note To Recipe"
-//        case plusNote = "+ Note"
-//        case plusImage = "+ Image"
-//        case exists = "Recipe already saved"
-//        case recipeImages = "RecipeImagesFolder has Images"
-//        case recipeNotes = "RecipeNotesFolder has Notes"
-//        case recipeImagesNot = "RecipeImagesFolder has no Images"
-//        case recipeNotesNot = "RecipeNotesFolder has no Notes"
-//        case notejson = "Successfully wrote note"
-//        case imgjson = "Successfully wrote image"
-//        case rshipd = "recipesShipped"
-//        case rnotes = "RecipeNotes"
-//        case rimages = "RecipeImages"
-//        case fuar = "Found user added recipe"
-//        case fuabs = "Found user BookSection"
-        
     }
     
     fileprivate enum labelz: String {
@@ -59,8 +41,7 @@ struct RecipeDetailView: View {
         case show = "Show"
         case notes = "Notes"
         case images = "Images"
-//        case send = "Send"
-//        case mail = "📩"
+        case instr = "Instr"
         case nbartitle = "Recipe Details"
         
     }
@@ -71,12 +52,14 @@ struct RecipeDetailView: View {
         case images = "photo.stack"
         case save = "externaldrive.badge.plus"
         case share = "square.and.arrow.up"
+        case instr = "list.bullet.clipboard.fill"
     }
     // MARK: - State
     @State fileprivate var showingNotes = false
     @State fileprivate var showingImages = false
     @State fileprivate var addingImage = false
     @State fileprivate var addingNote = false
+    @State fileprivate var showingInstructions = false
     @State fileprivate var showShareSheet = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
@@ -156,6 +139,13 @@ struct RecipeDetailView: View {
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
                     }
                     Button(action: {
+                        // What to perform
+                        self.showingInstructions.toggle()
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
+                    }
+                    Button(action: {
                         self.showShareSheet = true
                     }) {
                         RoundButton3View(someTextTop: labelz.share.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.share.rawValue, reversed: true)
@@ -179,6 +169,9 @@ struct RecipeDetailView: View {
             }
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
+            }
+            .sheet(isPresented: $showingInstructions) {
+                InstructionsDisplayView(sectionItem: item)
             }
             .sheet(isPresented: $showShareSheet) {
                 ShareRecipeView(sectionItem: item)

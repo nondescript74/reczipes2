@@ -25,6 +25,8 @@ struct FindOrExtractView: View {
         case extract = "✂️"
         case ingreds = "🍒"
         case enteringreds = "Enter ingredients"
+        case cuisine = " as cuisine?"
+        case dyw = "Did you want "
     }
     fileprivate var cuisine = ""
     // MARK: - State
@@ -79,14 +81,14 @@ struct FindOrExtractView: View {
                     Text(msgs.fr.rawValue).fontWeight(.semibold)
                     
                     HStack {
-                        Text("Did you want " ).foregroundColor(.red)
+                        Text(msgs.dyw.rawValue).foregroundColor(.red)
                         Picker(msgs.books.rawValue, selection: $xection) {
                             let zx = aur.getBookSectionNames().count
                             ForEach(0..<zx, id: \.self) { index in
                                 Text("\(aur.getBookSectionNames()[index])")
                             }
                         }
-                        Text(" as cuisine?")
+                        Text(msgs.cuisine.rawValue)
                     }
                     
                     HStack(alignment: .center) {

@@ -39,11 +39,11 @@ struct ShareRecipeView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Hello Z")
+            
             Button(action: {
                 self.showShareSheet = true
             }) {
-                Text("Share Me").bold()
+                Text("Share https://www.zoho.com").bold()
             }
         }
         .sheet(isPresented: $showShareSheet) {
@@ -72,6 +72,7 @@ struct PhotoView: View {
     let photo: Photo
 
     var body: some View {
+        
         photo.image
             .toolbar {
                 ShareLink(

@@ -124,8 +124,8 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
                            url: srecipe.sourceUrl ?? SectionItem.example.url,
                            imageUrl: srecipe.image,
                            photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
-                           restrictions: srecipe.diets ?? [])
-//                           restrictions: constructRestrictions(srecipe: srecipe))
+//                           restrictions: srecipe.diets ?? [])
+                           restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
     
 #if DEBUG
     print(msgs.ci.rawValue + msgs.csts.rawValue + item.name)
@@ -137,11 +137,15 @@ func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
 func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {
     var myRestrictions: [String] = []
 
-    if srecipe.diets != nil {
-        let exp = srecipe.diets.flatMap({$0})
-        if exp?.count != 0 {
-            myRestrictions.append(contentsOf: exp!)
-        }
+//    if srecipe.diets != nil {
+//        let exp = srecipe.diets.flatMap({$0})
+//        if exp?.count != 0 {
+//            myRestrictions.append(contentsOf: exp!)
+//        }
+//    }
+    
+    if srecipe.cheap != nil {
+        if srecipe.dairyFree == true {myRestrictions.append("Cheap")}
     }
     
     if srecipe.dairyFree != nil {

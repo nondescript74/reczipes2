@@ -30,7 +30,7 @@ public class WebQueryRecipes: ObservableObject {
         case numberDesired = "&number="
         case ingredients = "includeIngredients="
         case nutritionFalse = "includeNutrition=false"
-//        case nutritionTrue = "includeNutrition=true"
+        case nutritionTrue = "includeNutrition=true"
         case recipeInfo = "&addRecipeInformation=true"
         case extract = "url="
         case trivia, joke = ""

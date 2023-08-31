@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeRowView: View {
     // MARK: - Debug
-    private var zBug: Bool = false
+    private var zBug: Bool = true
     // MARK: - Environment
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
@@ -19,15 +19,14 @@ struct RecipeRowView: View {
         self.cuisine = ""
         // check for empty
         if item.imageUrl == nil {
-
-//            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
-
+#if DEBUG
+            if zBug {print("RecipeRowView: sectionItem.imageUrl is nil")}
+#endif
         } else {
-            
-
-//            if zBug {print("RecipeRowView: no cuisine available")}
-//            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get")}
-
+#if DEBUG
+            if zBug {print("RecipeRowView: no cuisine available")}
+            if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get")}
+#endif
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }
@@ -39,7 +38,7 @@ struct RecipeRowView: View {
         if item.imageUrl == nil {
             
         } else {
-
+            
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }
@@ -64,14 +63,13 @@ struct RecipeRowView: View {
                         .frame(width: widthImage, height: heightImage, alignment: .leading)
                         .clipShape(Rectangle())
                         .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
-
+                    
                     ForEach(item.restrictions, id: \.self) { restriction in
                         Text(restriction)
                             .font(.caption)
                             .padding(paddingSize)
                             .clipShape(Rectangle())
                     }
-
                 }
                 Text(item.name).padding(.trailing)
             }

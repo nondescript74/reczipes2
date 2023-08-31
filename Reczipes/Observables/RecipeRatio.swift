@@ -17,10 +17,8 @@ class RecipeRatio: ObservableObject {
     @MainActor
     func change(amount: Double) {
         ratio = amount
+#if DEBUG
         print(msgs.rr.rawValue + msgs.changed.rawValue, ratio.description)
+#endif
     }
 }
-
-
-
-

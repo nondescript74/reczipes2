@@ -10,18 +10,18 @@ import Contacts
 
 class ContactsViewModel: ObservableObject {
     
-    
+    // MARK: - Publisher
     @Published var contacts: [Contact] = []
     @Published var permissionsError: PermissionsError? = .none
-    
+    // MARK: Properties
     private enum msgs: String {
         case aa = "ContactsViewModel: "
     }
-    
+    // MARK: - Initializer
     init() {
         permissions()
     }
-    
+    // MARK: - Methods
     func openSettings() {
         permissionsError = .none
         guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }

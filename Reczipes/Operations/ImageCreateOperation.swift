@@ -15,7 +15,7 @@ protocol ImageCreateOperationDataProvider {
 
 class ImageCreateOperation: Operation {
     // MARK: Debug local
-    var zBug: Bool = false
+    private var zBug: Bool = false
     // MARK: - Initializer
     init(data: Data?, completion: ((Image?) -> ())? = nil) {
         inputData = data

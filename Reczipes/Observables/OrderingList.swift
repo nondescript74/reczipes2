@@ -8,9 +8,10 @@
 import Foundation
 
 class OrderingList: ObservableObject {
+    // MARK: - Publisher
     @Published var items = [SectionItem]()
     @Published var quantities:NSMutableDictionary = NSMutableDictionary()
-    //MARK: - Properties
+    // MARK: - Properties
     fileprivate var maxamount = 1.0
     fileprivate var minamount = 0.0
     fileprivate enum msgs: String {
@@ -34,7 +35,7 @@ class OrderingList: ObservableObject {
             return 0
         }
     }
-    
+    // MARK: - Methods
     func change(item: SectionItem, amount: Double) {
         if items.contains(item) {
             let normalizedAmount = max(maxamount, min(minamount,amount))
@@ -65,5 +66,3 @@ class OrderingList: ObservableObject {
         }
     }
 }
-
-

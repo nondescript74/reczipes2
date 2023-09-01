@@ -19,7 +19,6 @@ struct ReczipesApp: App {
                 .environmentObject(AllUserRecipes())
                 .environmentObject(AllUserImages())
                 .environmentObject(AllUserNotes())
-            
         }
     }
 }

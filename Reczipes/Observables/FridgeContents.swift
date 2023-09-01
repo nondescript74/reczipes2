@@ -8,6 +8,7 @@
 import Foundation
 
 class FridgeContents: ObservableObject {
+    // MARK: - Publisher
     @Published var myContents: NSMutableDictionary
     // MARK: - Initializer
     init() {

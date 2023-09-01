@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class AllUserImages: ObservableObject {
-    // MARK: - Local debu
+    // MARK: - Local debug
     fileprivate var zBug: Bool = false
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []
@@ -126,8 +126,6 @@ class AllUserImages: ObservableObject {
         let myDocuDirUrl = getDocuDirUrl()
         let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
         let myImagesDirUrl:URL = myReczipesDirUrl.appending(path: recipeImagesFolderName)
-        
-        
         
         do {
             let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)

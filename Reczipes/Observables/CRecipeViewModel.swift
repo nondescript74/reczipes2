@@ -18,13 +18,14 @@ class CRecipeViewModel: ObservableObject {
     @Published private(set) var result: [SRecipe] = [] // this is the output.  a single SRECIPE in the array
     @Published private(set) var isSearching = false
     
-    //MARK: - Properties
+    // MARK: - Properties
     private var searchTask: Task<Void, Never>?
     fileprivate enum msgs: String {
         case crvm = "CRecipeViewModel: "
     }
     
     @MainActor
+    // MARK: - Methods
     func executeQuery() async {
         searchTask?.cancel()
         let currentSearchTerm = id.trimmingCharacters(in: .whitespaces)

@@ -20,7 +20,7 @@ struct AuthView: View {
 //    @State private var authenicated: Bool = false
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case service = "com.headydiscy.reczipes"
+        case service = "com.headydiscy.playreczipes"
         case ui = "userIdentifier"
         case suikfs = "saved userIdentifier in keychain for service: "
         case retrieved = "retrieved userIdentifier in keychain for service: "

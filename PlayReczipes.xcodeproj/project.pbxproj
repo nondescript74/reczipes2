@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		368D500D2AA77ABB00C205A0 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */; };
 		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
 		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
 		931164E52697836600099F8D /* AcceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931164E42697836600099F8D /* AcceptView.swift */; };
@@ -154,7 +155,7 @@
 		934AC08626D29040007EBF20 /* ExtendendIngredientsView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendendIngredientsView2.swift; sourceTree = "<group>"; };
 		934AC08826D29812007EBF20 /* ExtendedIngredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedIngredView.swift; sourceTree = "<group>"; };
 		934AC08A26D298D2007EBF20 /* ImageWithSectionItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageWithSectionItemView.swift; sourceTree = "<group>"; };
-		935398AE2694E2780062931E /* Reczipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reczipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		935398AE2694E2780062931E /* PlayReczipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayReczipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935398B12694E2780062931E /* ReczipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReczipesApp.swift; sourceTree = "<group>"; };
 		935398B52694E27B0062931E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		935398B82694E27B0062931E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -244,6 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				368D500D2AA77ABB00C205A0 /* AuthenticationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +365,7 @@
 		935398AF2694E2780062931E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				935398AE2694E2780062931E /* Reczipes.app */,
+				935398AE2694E2780062931E /* PlayReczipes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -488,9 +490,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		935398AD2694E2780062931E /* Reczipes */ = {
+		935398AD2694E2780062931E /* PlayReczipes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 935398BC2694E27B0062931E /* Build configuration list for PBXNativeTarget "Reczipes" */;
+			buildConfigurationList = 935398BC2694E27B0062931E /* Build configuration list for PBXNativeTarget "PlayReczipes" */;
 			buildPhases = (
 				935398AA2694E2780062931E /* Sources */,
 				935398AB2694E2780062931E /* Frameworks */,
@@ -501,11 +503,11 @@
 			);
 			dependencies = (
 			);
-			name = Reczipes;
+			name = PlayReczipes;
 			packageProductDependencies = (
 			);
 			productName = Reczipes;
-			productReference = 935398AE2694E2780062931E /* Reczipes.app */;
+			productReference = 935398AE2694E2780062931E /* PlayReczipes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -523,7 +525,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 935398A92694E2780062931E /* Build configuration list for PBXProject "Reczipes" */;
+			buildConfigurationList = 935398A92694E2780062931E /* Build configuration list for PBXProject "PlayReczipes" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -538,7 +540,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				935398AD2694E2780062931E /* Reczipes */,
+				935398AD2694E2780062931E /* PlayReczipes */,
 			);
 		};
 /* End PBXProject section */
@@ -722,7 +724,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -779,7 +781,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -797,7 +799,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 352;
+				CURRENT_PROJECT_VERSION = 360;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -809,26 +811,27 @@
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need to be able to take photos";
-				INFOPLIST_KEY_NSContactsUsageDescription = "We need to access Contacts to send recipes";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We need to save and retrieve recipes to Documents";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to take photos you want to save";
+				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to Contacts to send recipes";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "To save and retrieve recipes, please allow access to Documents folder";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to add to the Photo Library";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access contents of the Photo Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = l;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -843,7 +846,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 352;
+				CURRENT_PROJECT_VERSION = 360;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -855,26 +858,27 @@
 				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need to be able to take photos";
-				INFOPLIST_KEY_NSContactsUsageDescription = "We need to access Contacts to send recipes";
-				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "We need to save and retrieve recipes to Documents";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to take photos you want to save";
+				INFOPLIST_KEY_NSContactsUsageDescription = "We need access to Contacts to send recipes";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "To save and retrieve recipes, please allow access to Documents folder";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need to add to the Photo Library";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access contents of the Photo Library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = l;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -884,7 +888,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		935398A92694E2780062931E /* Build configuration list for PBXProject "Reczipes" */ = {
+		935398A92694E2780062931E /* Build configuration list for PBXProject "PlayReczipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				935398BA2694E27B0062931E /* Debug */,
@@ -893,7 +897,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		935398BC2694E27B0062931E /* Build configuration list for PBXNativeTarget "Reczipes" */ = {
+		935398BC2694E27B0062931E /* Build configuration list for PBXNativeTarget "PlayReczipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				935398BD2694E27B0062931E /* Debug */,

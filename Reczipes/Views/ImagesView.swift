@@ -29,7 +29,7 @@ struct ImagesView: View {
         case down = "Image is down"
         case other = "Not LRUDown"
         case rimages = "RecipeImages"
-        case recz = "Reczipes"
+//        case recz = "Reczipes"
         case fau = "Found an Image"
         case rshippd = "recipesShipped"
     }

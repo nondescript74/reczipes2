@@ -20,7 +20,7 @@ struct FilesDisplayView2: View {
     @State private var zection: Int = 1
     // MARK: - Properties
     private enum msgs:String {
-        case recz = "Reczipes"
+//        case recz = "Reczipes"
         case recznotes = "RecipeNotes"
         case reczimages = "RecipeImages"
         case ddir = "Contents of Documents: "

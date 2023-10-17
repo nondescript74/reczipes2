@@ -96,10 +96,10 @@ struct ProfileEditor_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ProfileEditor(profile: .constant(.default))
-                .previewDevice("iPhone Xr")
+                .previewDevice("iPhone 14 Pro")
             ProfileEditor(profile: .constant(.default))
                 .environment(\.colorScheme, .dark)
-                .previewDevice("iPhone Xr")
+                .previewDevice("iPhone 14 Pro")
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotesView: View {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Environment
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - Initializer
@@ -44,6 +44,7 @@ struct NotesView: View {
 struct NotesView_Previews: PreviewProvider {
     static var previews: some View {
         NotesView(recipeuuid: Note.example1.recipeuuid)
+            .environmentObject(AllUserNotes())
     }
 }
 

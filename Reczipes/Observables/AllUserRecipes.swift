@@ -9,7 +9,7 @@ import Foundation
 
 class AllUserRecipes: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Publisher
     @Published var sections = [BookSection]()
     // MARK: - Initializer
@@ -109,6 +109,7 @@ class AllUserRecipes: ObservableObject {
         case fuar = "Found user added recipe"
         case combined = "Combined booksections into one booksection"
         case retr = "Returning count of recipes: "
+        case urls = "Returning urls of recipes: "
     }
     
     var total: Int {
@@ -163,6 +164,21 @@ class AllUserRecipes: ObservableObject {
            // returning nil
         }
         return myReturn
+    }
+    
+    func getRecipeUrls() -> [URL] {
+        var returnUrls = [URL]()
+        for aBookSection in sections {
+            let sectionItemUrls = aBookSection.items.map { $0.url }
+            for aUrl in sectionItemUrls {
+                returnUrls.append(URL(fileURLWithPath: aUrl))
+#if DEBUG
+print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
+#endif
+            }
+        }
+        
+        return returnUrls
     }
     
     @MainActor

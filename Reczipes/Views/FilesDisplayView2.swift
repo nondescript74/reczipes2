@@ -35,6 +35,7 @@ struct FilesDisplayView2: View {
         case recz = "Reczipes"
         case reczn = "ReczipeNotes"
         case reczi = "ReczipeImages"
+        case urls = "Recipe Urls"
     }
     // MARK: - State
     @State var searchTerm: String = ""
@@ -42,7 +43,7 @@ struct FilesDisplayView2: View {
     // MARK: - Methods
     @MainActor
     fileprivate func getNames() -> [String] {
-        let myReturn: [String] = [labels.docs.rawValue, labels.recz.rawValue, labels.reczn.rawValue, labels.reczi.rawValue]
+        let myReturn: [String] = [labels.docs.rawValue, labels.recz.rawValue, labels.reczn.rawValue, labels.reczi.rawValue, labels.urls.rawValue]
         return myReturn
     }
     fileprivate func getDocuDirContents(lpc:Bool) -> [String] {
@@ -60,7 +61,6 @@ struct FilesDisplayView2: View {
         }
         return myReturn
     }
-    
     
     fileprivate func getReczNotesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
@@ -115,6 +115,10 @@ struct FilesDisplayView2: View {
                     case 3:
                         ForEach(getReczImagesDirContents(lpc: true), id: \.self) { fname in
                             Text(fname).font(.body)
+                        }
+                    case 4:
+                        ForEach(aur.getRecipeUrls(), id: \.self) { aurl in
+                            Text(aurl.absoluteString).font(.body)
                         }
                         
                     default:

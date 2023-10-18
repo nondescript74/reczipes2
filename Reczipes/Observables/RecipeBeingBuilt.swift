@@ -11,7 +11,6 @@ class RecipeBeingBuilt: ObservableObject {
     // MARK: - Local debug
     fileprivate var zBug: Bool = false
     // MARK: - Initializer
-    
     init(srecipe: SRecipe?, sectionItem: SectionItem?) {
         self.srecipe = srecipe ?? SRecipe.example
         self.sectionItem = sectionItem ?? SectionItem.example
@@ -29,7 +28,7 @@ class RecipeBeingBuilt: ObservableObject {
         }
 #endif
     }
-    
+    // MARK: - Alternate initializer
     init() {
         self.srecipe = SRecipe.example
         self.sectionItem = SectionItem.example

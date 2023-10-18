@@ -9,7 +9,7 @@ import SwiftUI
 
 struct KeyView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false 
     // MARK: - Initializer
     // MARK: - Environment Variables
     // MARK: - State

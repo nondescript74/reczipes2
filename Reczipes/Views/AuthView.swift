@@ -10,7 +10,7 @@ import AuthenticationServices
 
 struct AuthView: View {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     // MARK: - Environment
     @EnvironmentObject var userData: UserData
     @Environment(\.colorScheme) var colorScheme

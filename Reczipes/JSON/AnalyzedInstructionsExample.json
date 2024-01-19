@@ -1,0 +1,52 @@
+[
+    {
+        "name":"",
+        "steps":
+        [
+            {"number":1,
+                "step":"In a medium saucepan, add the quinoa and chicken stock. Bring to boil over medium high heat. Once boiling, reduce heat to low and cover pot. Cook until all the liquid is absorbed, about 15 minutes. Stir in the coconut oil, juice and zest of lime, salt and pepper.",
+                "ingredients":[{"id":1102047,"name":"salt and pepper","localizedName":"salt and pepper","image":"salt-and-pepper.jpg"},
+                    {"id":6172,"name":"chicken stock","localizedName":"chicken stock","image":"chicken-broth.png"},
+                    {"id":4047,"name":"coconut oil","localizedName":"coconut oil","image":"oil-coconut.jpg"},{"id":20035,"name":"quinoa","localizedName":"quinoa","image":"uncooked-quinoa.png"},
+                    {"id":1019016,"name":"juice","localizedName":"juice","image":"apple-juice.jpg"},{"id":9159,"name":"lime","localizedName":"lime","image":"lime.jpg"}],
+                "equipment":[{"id":404669,"name":"sauce pan","localizedName":"sauce pan","image":"sauce-pan.jpg"},{"id":404752,"name":"pot","localizedName":"pot","image":"stock-pot.jpg"}],
+                "length":{"number":15,"unit":"minutes"}
+            },
+            {"number":2,
+                "step":"Let quinoa cool completely before using. You can do this ahead of time or the day before.In a large wok, heat one tablespoon coconut oil over medium heat.",
+                "ingredients":[{"id":4047,"name":"coconut oil","localizedName":"coconut oil","image":"oil-coconut.jpg"},{"id":20035,"name":"quinoa","localizedName":"quinoa","image":"uncooked-quinoa.png"}],"equipment":[{"id":404666,"name":"wok","localizedName":"wok","image":"wok.png"}]}
+            ,
+            {"number":3,
+                "step":"Add in onions and peppers and cook until soft, about 2 minutes.","ingredients":[{"id":10111333,"name":"peppers","localizedName":"peppers","image":"green-pepper.jpg"},{"id":11282,"name":"onion","localizedName":"onion","image":"brown-onion.png"}],"equipment":[],"length":{"number":2,"unit":"minutes"}}
+            ,
+            {"number":4,
+                "step":"Add in garlic and ginger and cook for additional minute stirring.","ingredients":[{"id":11215,"name":"garlic","localizedName":"garlic","image":"garlic.png"},{"id":11216,"name":"ginger","localizedName":"ginger","image":"ginger.png"}],"equipment":[]}
+            ,
+            {"number":5,
+                "step":"Transfer veggies to a bowl. Increase heat a little. In the same wok, add another tablespoon of coconut oil.",
+                "ingredients":[{"id":4047,"name":"coconut oil","localizedName":"coconut oil","image":"oil-coconut.jpg"}],
+                "equipment":[{"id":404783,"name":"bowl","localizedName":"bowl","image":"bowl.jpg"},{"id":404666,"name":"wok","localizedName":"wok","image":"wok.png"}]},{"number":6,"step":"Add pineapples and cook stirring occasionally until golden, about 5-6 minutes.","ingredients":[{"id":9266,"name":"pineapple","localizedName":"pineapple","image":"pineapple.jpg"}],"equipment":[],"length":{"number":6,"unit":"minutes"}},
+            {"number":7,
+                "step":"Add pineapples to bowl of veggies.",
+                "ingredients":[{"id":9266,"name":"pineapple","localizedName":"pineapple","image":"pineapple.jpg"}],
+                "equipment":[{"id":404783,"name":"bowl","localizedName":"bowl","image":"bowl.jpg"}]},
+            {"number":8,
+                "step":"Add Â½ tablespoon of coconut oil to wok and cook egg stirring to break apart. Cook for a minute and transfer eggs to a separate small bowl.With heat on high, add the remaining 2 Â½ tablespoon coconut oil to wok and add in the cooled quinoa. Stir to coat quinoa in oil and let sit for about 1-2 minutes to crisp. Stir to break up clumps. Reduce heat once quinoa is crispy and golden. Stir in soy sauce.",
+                "ingredients":[{"id":4047,"name":"coconut oil","localizedName":"coconut oil","image":"oil-coconut.jpg"},{"id":16124,"name":"soy sauce","localizedName":"soy sauce","image":"soy-sauce.jpg"},{"id":20035,"name":"quinoa","localizedName":"quinoa","image":"uncooked-quinoa.png"},{"id":1123,"name":"egg","localizedName":"egg","image":"egg.png"},{"id":4582,"name":"cooking oil","localizedName":"cooking oil","image":"vegetable-oil.jpg"}],
+                "equipment":[{"id":404783,"name":"bowl","localizedName":"bowl","image":"bowl.jpg"},{"id":404666,"name":"wok","localizedName":"wok","image":"wok.png"}],"length":{"number":2,"unit":"minutes"}},
+            {"number":9,
+                "step":"Add the veggies and pineapple and stir. Stir in eggs, green onions cilantro and cashews.",
+                "ingredients":[{"id":11291,"name":"green onions","localizedName":"green onions","image":"spring-onions.jpg"},{"id":9266,"name":"pineapple","localizedName":"pineapple","image":"pineapple.jpg"},{"id":11165,"name":"cilantro","localizedName":"cilantro","image":"cilantro.png"},{"id":12087,"name":"cashews","localizedName":"cashews","image":"cashews.jpg"},{"id":1123,"name":"egg","localizedName":"egg","image":"egg.png"}],
+                "equipment":[]},
+            {"number":10,
+                "step":"Add salt and pepper to taste.",
+                "ingredients":[{"id":1102047,"name":"salt and pepper","localizedName":"salt and pepper","image":"salt-and-pepper.jpg"}],
+                "equipment":[]},
+            {"number":11,
+                "step":"Serve immediately.",
+                "ingredients":[],
+                "equipment":[]
+            }
+        ]
+    }
+]

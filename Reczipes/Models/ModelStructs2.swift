@@ -410,7 +410,7 @@ struct AnalyzedInstructions: Codable, Hashable, Equatable {
         }
     }
     
-    static let aInstructionsExample = AnalyzedInstructions(name: "Step 1", steps: [Step.stepExample])
+    static let analyInstrExample = AnalyzedInstructions(name: "Step 1", steps: [Step.stepExample])
     
 }
 struct CRecipe: Identifiable, Codable, Hashable {

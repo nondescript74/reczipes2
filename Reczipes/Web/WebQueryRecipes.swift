@@ -11,7 +11,7 @@ import Combine
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    private var zBug: Bool = true
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - Published
@@ -215,7 +215,11 @@ public class WebQueryRecipes: ObservableObject {
     func getAnalyzedInstructions(recipeID: Int)  {
         urlComponents = URLComponents(string: urlThings.analyzedInstructions.rawValue)!
         urlComponents.path.append("\(recipeID)")
-        urlComponents.path.append("analyzedInstructions?")
+        urlComponents.path.append("/analyzedInstructions")
+        urlComponents.query =  (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+        myTask(aswitch: myGets.GetAnalyzInstr.rawValue)
+        
+        // https://api.spoonacular.com/recipes/324694/analyzedInstructions
     }
     
     private func myImageTask(aswitch: String) {

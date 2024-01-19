@@ -9,7 +9,7 @@ import Foundation
 
 public class AnalyzedInstructionsProvider {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    private var zBug: Bool = true
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var analyzedInstructionsUrl: URL

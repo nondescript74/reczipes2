@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct InstructionsDisplayView: View {
+    @ObservedObject var analyInstr = WebQueryRecipes()
     // MARK: - Initializer
     init(sectionItem: SectionItem) {
         self.myItem = sectionItem
+        analyInstr.getAnalyzedInstructions(recipeID: 488733)
     }
     // MARK: - Properties
-    fileprivate var myItem: SectionItem?
+    private var myItem: SectionItem?
+    private var analyInstrSet: AnalyzedInstructions?
 
     var body: some View {
         List {
-//            ForEach(analyInstrSet.steps!, id: \.self) { aStep in
-//                Text(aStep?.number?.description ?? "0" + (aStep?.step ?? "no step"))
+            if analyInstr.analyzedInstructions == nil {
+                 
+            } else {
+                ForEach(analyInstrSet?.steps! ?? [Step.stepExample], id: \.self) { aStep in
+                    Text(aStep?.number?.description ?? "0" + (aStep?.step ?? "no step"))
+                }
             }
         }
+    }
 }
 
 struct InstructionsDisplayView_Previews: PreviewProvider {

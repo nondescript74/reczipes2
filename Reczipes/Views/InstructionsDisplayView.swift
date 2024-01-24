@@ -10,11 +10,6 @@ import SwiftUI
 struct InstructionsDisplayView: View {
 //    @ObservedObject var analyInstr = WebQueryRecipes()
     // MARK: - Initializer
-//    init(sectionItem: SectionItem2) {
-//        self.myItem = sectionItem
-//        analyInstr.getAnalyzedInstructions(recipeID: sectionItem.recipeId ?? 488733)
-//    }
-    
     init(analyzedInstructions: AnalyzedInstructions) {
         self.myAnalyInst = analyzedInstructions
     }

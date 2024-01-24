@@ -13,7 +13,7 @@ protocol AnalyzedInstructionsOutputOperationDataProvider {
 
 class AnalyzedInstructionsOutputOperation: AnalyzedInstructionsXOperation {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: -  Properties
     fileprivate var inputAnalyInstr: AnalyzedInstructions?
     fileprivate var completion: (AnalyzedInstructions?) -> ()

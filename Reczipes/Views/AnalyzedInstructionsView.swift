@@ -15,7 +15,6 @@ struct AnalyzedInstructionsView: View {
     fileprivate var myAnalyInstr: AnalyzedInstructions = AnalyzedInstructions.analyInstrExample
     
     var body: some View {
-        Text("Instructions").font(.title)
         Text("The number of steps is: " + (myAnalyInstr.steps?.count.description ?? "0"))
         List {
             ForEach(myAnalyInstr.steps ?? AnalyzedInstructions.analyInstrExample.steps!, id: \.self) { aStep in

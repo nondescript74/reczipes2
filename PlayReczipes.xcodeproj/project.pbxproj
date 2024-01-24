@@ -68,7 +68,6 @@
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
 		F80B435329EDF2F300B97056 /* InstructionsDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */; };
-		F80B435729EDFDAB00B97056 /* AnalyzedInstructionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435629EDFDAB00B97056 /* AnalyzedInstructionsProvider.swift */; };
 		F80B435929EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435829EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift */; };
 		F80B435B29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435A29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift */; };
 		F80B435D29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435C29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift */; };
@@ -191,7 +190,6 @@
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsDisplayView.swift; sourceTree = "<group>"; };
-		F80B435629EDFDAB00B97056 /* AnalyzedInstructionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsProvider.swift; sourceTree = "<group>"; };
 		F80B435829EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsCreateOperation.swift; sourceTree = "<group>"; };
 		F80B435A29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsOutputOperation.swift; sourceTree = "<group>"; };
 		F80B435C29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsXOperation.swift; sourceTree = "<group>"; };
@@ -409,7 +407,6 @@
 				93ACB2B426B9E73F0010F71F /* JokeProvider.swift */,
 				93ACB2B726B9E73F0010F71F /* TriviaProvider.swift */,
 				93ACB2B626B9E73F0010F71F /* SRecipeProvider.swift */,
-				F80B435629EDFDAB00B97056 /* AnalyzedInstructionsProvider.swift */,
 				9329218C26BF229100CDDD52 /* SRecipeGroupProvider.swift */,
 				F81BADD12922FE8E004AE705 /* CRecipeGroupProvider.swift */,
 			);
@@ -605,7 +602,6 @@
 				F8D9F6102992A6CB007C98A9 /* RecipeRowNNLView.swift in Sources */,
 				F8304A7A28B1685A00867C6F /* ProfileHost.swift in Sources */,
 				931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */,
-				F80B435729EDFDAB00B97056 /* AnalyzedInstructionsProvider.swift in Sources */,
 				F8C3F52B295BB8BC005A119B /* Extensions.swift in Sources */,
 				F8AEEBDB29944F300017BE57 /* AddNoteView.swift in Sources */,
 				F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */,
@@ -799,7 +795,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 382;
+				CURRENT_PROJECT_VERSION = 388;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -825,7 +821,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4;
+				MARKETING_VERSION = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -846,7 +842,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 382;
+				CURRENT_PROJECT_VERSION = 388;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -872,7 +868,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4;
+				MARKETING_VERSION = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

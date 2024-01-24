@@ -12,8 +12,8 @@ import Combine
 
 
 public var colorFontLists:Color = Color.init("ED7D3A")
-public var iPhoneXrPreviewDevice:PreviewDevice = "iPhone Xr"
-public var iPadAir2PreviewDevice:PreviewDevice = "iPad Air 2"
+//public var iPhoneXrPreviewDevice:PreviewDevice = "iPhone Xr"
+//public var iPadAir2PreviewDevice:PreviewDevice = "iPad Air 2"
 public let spoonacular:String = "Spoonacular"
 public let recipesName = "Reczipes"
 public let recipeNotesFolderName = "RecipeNotes"
@@ -104,6 +104,11 @@ func getIngredientForName(name: String) -> Ingredient {
     return myList.first ?? Ingredient(id: Int.random(in: 1..<999999), name: name)
 }
 
+func getAnalyzedInstructionExample() -> [AnalyzedInstructions] {
+    let listOfAnalyzedInstruction:[AnalyzedInstructions] = Bundle.main.decode([AnalyzedInstructions].self, from: "AnalyzedInstructionsExample.json")
+    return listOfAnalyzedInstruction
+}
+
 func getDocuDirUrl() -> URL {
     var myReturn:URL
     do {
@@ -126,22 +131,22 @@ func getDocuDirUrl() -> URL {
 //                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
 ////                           restrictions: srecipe.diets ?? [])
 //                           restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
-//    
+//
 //#if DEBUG
 //    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name)
 //#endif
-//    
+//
 //    return item
 //}
 
 func convertSRecipeToSectionItem2(srecipe: SRecipe) -> SectionItem2 {
     let item = SectionItem2(id: UUID(),
                             recipeId: getSRecipeID(srecipe: srecipe),
-                           name: srecipe.title ?? SectionItem2.example.name,
-                           url: srecipe.sourceUrl ?? SectionItem2.example.url,
-                           imageUrl: srecipe.image,
-                           photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
-                           restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
+                            name: srecipe.title ?? SectionItem2.example.name,
+                            url: srecipe.sourceUrl ?? SectionItem2.example.url,
+                            imageUrl: srecipe.image,
+                            photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
+                            restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
     
 #if DEBUG
     print(msgs.ci.rawValue + msgs.csts.rawValue + item.name + (item.recipeId?.description ?? "no recipeId"))
@@ -154,7 +159,7 @@ func getSRecipeID(srecipe: SRecipe) -> Int {
     switch srecipe.id {
     case Int.min ..< 1:
 #if DEBUG
-    print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative srecipe.id")
+        print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative srecipe.id")
 #endif
         return getSRecipeIDUnique()
     default:
@@ -169,13 +174,13 @@ func getSRecipeIDUnique() -> Int {
 
 func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {
     var myRestrictions: [String] = []
-
-//    if srecipe.diets != nil {
-//        let exp = srecipe.diets.flatMap({$0})
-//        if exp?.count != 0 {
-//            myRestrictions.append(contentsOf: exp!)
-//        }
-//    }
+    
+    //    if srecipe.diets != nil {
+    //        let exp = srecipe.diets.flatMap({$0})
+    //        if exp?.count != 0 {
+    //            myRestrictions.append(contentsOf: exp!)
+    //        }
+    //    }
     
     if srecipe.cheap != nil {
         if srecipe.dairyFree == true {myRestrictions.append("Cheap")}

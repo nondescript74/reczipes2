@@ -18,7 +18,7 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
-//    @ObservedObject var analyInstr = WebQueryRecipes()
+    //    @ObservedObject var analyInstr = WebQueryRecipes()
     @ObservedObject var analyInstr = AnalyzedInstructionsModel()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem2, cuisine: String) {
@@ -88,22 +88,31 @@ struct RecipeDetailView: View {
         return true
     }
     
-//    fileprivate func hasAnalyzedInstructions() -> Bool {
-//        let test = analyInstr.analyzedInstructions
-//        #if DEBUG
-//        print(test.debugDescription, test?.name ?? "RDV: no name")
-//        #endif
-//        return (test != nil)
-//    }
+    //    fileprivate func hasAnalyzedInstructions() -> Bool {
+    //        let test = analyInstr.analyzedInstructions
+    //        #if DEBUG
+    //        print(test.debugDescription, test?.name ?? "RDV: no name")
+    //        #endif
+    //        return (test != nil)
+    //    }
     
     fileprivate func hasAnalyzedInstructions() async -> Bool {
+        if item.recipeId == nil {
+            return false
+        }
+        if item.recipeId! <= 0 {
+            return false
+        }
+        if item.recipeId! >= 9999999 {
+            return false
+        }
         await analyInstr.executeQuery(recipeId: item.recipeId!)
         let test = analyInstr.result
-            #if DEBUG
-          print(test.debugDescription, test?.name ?? "RDV hai: no name")
-            #endif
-            return (test != nil)
-        }
+#if DEBUG
+        print(test.debugDescription, test?.name ?? "RDV hai: no name")
+#endif
+        return (test != nil)
+    }
     
     // MARK: - View Process
     var body: some View {
@@ -160,12 +169,10 @@ struct RecipeDetailView: View {
                     Button(action: {
                         // What to perform
                         Task {
-                            if await hasAnalyzedInstructions() {
-                                
-                                self.showingInstructions.toggle()
+                            if await hasAnalyzedInstructions() == true {
+                                self.showingInstructions = true
                             }
                         }
-                        
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
@@ -185,13 +192,16 @@ struct RecipeDetailView: View {
                     ImagesView(recipeuuid: self.item.id)
                 }
                 Divider()
-                if showingInstructions == true && !analyInstr.isSearching && analyInstr.result != nil {
-//                    InstructionsDisplayView(sectionItem: item)
+                if showingInstructions == true {
                     InstructionsDisplayView(analyzedInstructions: analyInstr.result!)
                 }
                 Divider()
-                VStack {
-                    SafariView(url: URL(string: item.url)!)
+                if showingInstructions == true || showingNotes == true || showingImages == true {
+                    // no showing safariview to save space
+                    } else {
+                        VStack {
+                            SafariView(url: URL(string: item.url)!)
+                    }
                 }
             }
             .sheet(isPresented: $addingImage) {
@@ -200,9 +210,9 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
             }
-//            .sheet(isPresented: $showingInstructions) {
-//                InstructionsDisplayView(analyzedInstructions: item)
-//            }
+            //            .sheet(isPresented: $showingInstructions) {
+            //                InstructionsDisplayView(analyzedInstructions: item)
+            //            }
             .sheet(isPresented: $showShareSheet) {
                 ShareRecipeView(sectionItem: item)
             }

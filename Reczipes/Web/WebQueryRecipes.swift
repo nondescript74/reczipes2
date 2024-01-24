@@ -212,15 +212,15 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
-    func getAnalyzedInstructions(recipeID: Int)  {
-        urlComponents = URLComponents(string: urlThings.analyzedInstructions.rawValue)!
-        urlComponents.path.append("\(recipeID)")
-        urlComponents.path.append("/analyzedInstructions")
-        urlComponents.query =  (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
-        myTask(aswitch: myGets.GetAnalyzInstr.rawValue)
-        
-        // https://api.spoonacular.com/recipes/324694/analyzedInstructions
-    }
+//    func getAnalyzedInstructions(recipeID: Int)  {
+//        urlComponents = URLComponents(string: urlThings.analyzedInstructions.rawValue)!
+//        urlComponents.path.append("\(recipeID)")
+//        urlComponents.path.append("/analyzedInstructions")
+//        urlComponents.query =  (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+//        myTask(aswitch: myGets.GetAnalyzInstr.rawValue)
+//        
+//        // https://api.spoonacular.com/recipes/324694/analyzedInstructions
+//    }
     
     private func myImageTask(aswitch: String) {
         guard let url = urlComponentsRecipeImages.url else {
@@ -330,16 +330,16 @@ public class WebQueryRecipes: ObservableObject {
                 }
             }
             
-        case myGets.GetAnalyzInstr.rawValue:
-            _ = AnalyzedInstructionsProvider(analyzedInstructionsUrl: url) { analyzInstr in
-                if analyzInstr != nil {
-                    DispatchQueue.main.async {
-                        self.analyzedInstructions = analyzInstr!
-                        if self.zBug {print(messagesDebug.getAnInstr.rawValue, analyzInstr?.steps?.count ?? messagesDebug.noAnInstr.rawValue)}
-                    }
-                }
-            }
-            
+//        case myGets.GetAnalyzInstr.rawValue:
+//            _ = AnalyzedInstructionsProvider(analyzedInstructionsUrl: url) { analyzInstr in
+//                if analyzInstr != nil {
+//                    DispatchQueue.main.async {
+//                        self.analyzedInstructions = analyzInstr!
+//                        if self.zBug {print(messagesDebug.getAnInstr.rawValue, analyzInstr?.steps?.count ?? messagesDebug.noAnInstr.rawValue)}
+//                    }
+//                }
+//            }
+//            
         default:
             fatalError("unrecognized switch")
         }

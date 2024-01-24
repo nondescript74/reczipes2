@@ -18,15 +18,17 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
-    @ObservedObject var analyInstr = WebQueryRecipes()
+//    @ObservedObject var analyInstr = WebQueryRecipes()
+    @ObservedObject var analyInstr = AnalyzedInstructionsModel()
     // MARK: - Initializer
-    init(imageString: String, sectionItem: SectionItem, cuisine: String) {
+    init(imageString: String, sectionItem: SectionItem2, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+        
     }
     // MARK: - Properties
-    var item: SectionItem 
+    var item: SectionItem2
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -86,6 +88,23 @@ struct RecipeDetailView: View {
         return true
     }
     
+//    fileprivate func hasAnalyzedInstructions() -> Bool {
+//        let test = analyInstr.analyzedInstructions
+//        #if DEBUG
+//        print(test.debugDescription, test?.name ?? "RDV: no name")
+//        #endif
+//        return (test != nil)
+//    }
+    
+    fileprivate func hasAnalyzedInstructions() async -> Bool {
+        await analyInstr.executeQuery(recipeId: item.recipeId!)
+        let test = analyInstr.result
+            #if DEBUG
+          print(test.debugDescription, test?.name ?? "RDV hai: no name")
+            #endif
+            return (test != nil)
+        }
+    
     // MARK: - View Process
     var body: some View {
         GeometryReader { proxy in
@@ -140,7 +159,13 @@ struct RecipeDetailView: View {
                     }
                     Button(action: {
                         // What to perform
-                        self.showingInstructions.toggle()
+                        Task {
+                            if await hasAnalyzedInstructions() {
+                                
+                                self.showingInstructions.toggle()
+                            }
+                        }
+                        
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
@@ -160,6 +185,11 @@ struct RecipeDetailView: View {
                     ImagesView(recipeuuid: self.item.id)
                 }
                 Divider()
+                if showingInstructions == true && !analyInstr.isSearching && analyInstr.result != nil {
+//                    InstructionsDisplayView(sectionItem: item)
+                    InstructionsDisplayView(analyzedInstructions: analyInstr.result!)
+                }
+                Divider()
                 VStack {
                     SafariView(url: URL(string: item.url)!)
                 }
@@ -170,9 +200,9 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
             }
-            .sheet(isPresented: $showingInstructions) {
-                InstructionsDisplayView(sectionItem: item)
-            }
+//            .sheet(isPresented: $showingInstructions) {
+//                InstructionsDisplayView(analyzedInstructions: item)
+//            }
             .sheet(isPresented: $showShareSheet) {
                 ShareRecipeView(sectionItem: item)
             }
@@ -192,7 +222,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem.example3, cuisine: aur.getBookSectionNames().last!)
+            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem2.example3, cuisine: aur.getBookSectionNames().last!)
                 .environmentObject(order)
         }
     }

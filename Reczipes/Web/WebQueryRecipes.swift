@@ -11,7 +11,7 @@ import Combine
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - Published

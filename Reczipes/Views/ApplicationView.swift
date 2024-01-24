@@ -13,7 +13,7 @@ struct ApplicationView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var ratio: RecipeRatio
-    @EnvironmentObject var rbb: RecipeBeingBuilt
+//    @EnvironmentObject var rbb: RecipeBeingBuilt
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
@@ -101,7 +101,7 @@ struct ApplicationView: View {
         .environmentObject(order)
         .environmentObject(userData)
         .environmentObject(ratio)
-        .environmentObject(rbb)
+//        .environmentObject(rbb)
         .environmentObject(aun)
         .environmentObject(aui)
         .environmentObject(aur)
@@ -113,7 +113,7 @@ struct ApplicationView_Previews: PreviewProvider {
     static let order = OrderingList()
     static let userData = UserData()
     static let rratio = RecipeRatio()
-    static let rbb = RecipeBeingBuilt()
+//    static let rbb = RecipeBeingBuilt()
     static let aur = AllUserRecipes()
     static let aun = AllUserNotes()
     static let aui = AllUserImages()
@@ -123,7 +123,7 @@ struct ApplicationView_Previews: PreviewProvider {
             .environmentObject(order)
             .environmentObject(userData)
             .environmentObject(rratio)
-            .environmentObject(rbb)
+//            .environmentObject(rbb)
             .environmentObject(aur)
             .environmentObject(aun)
             .environmentObject(aui)

@@ -31,11 +31,11 @@ struct ShareSheet: UIViewControllerRepresentable {
 
 struct ShareRecipeView: View {
     @State private var showShareSheet = false
-    init(showShareSheet: Bool = false, sectionItem: SectionItem) {
+    init(showShareSheet: Bool = false, sectionItem: SectionItem2) {
         self.showShareSheet = showShareSheet
         self.myItem = sectionItem
     }
-    fileprivate var myItem: SectionItem?
+    fileprivate var myItem: SectionItem2?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -55,7 +55,7 @@ struct ShareRecipeView: View {
 
 struct ShareRecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        ShareRecipeView(sectionItem: SectionItem.example2)
+        ShareRecipeView(sectionItem: SectionItem2.example2)
     }
 }
 

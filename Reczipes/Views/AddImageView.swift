@@ -49,8 +49,8 @@ struct AddImageView: View {
         return aur.sections
     }
     
-    fileprivate func constructAllRecipes() -> [SectionItem] {
-        var myReturn: [SectionItem] = []
+    fileprivate func constructAllRecipes() -> [SectionItem2] {
+        var myReturn: [SectionItem2] = []
         let myBs: [BookSection] = self.constructAllSections()
         if myBs.isEmpty {
             // nothing to do, no available booksections

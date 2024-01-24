@@ -83,7 +83,7 @@ fileprivate enum msgs: String {
     case fuar = "Found user added recipe"
     case combined = "Combined booksections into one booksection"
     case ci = "CommonItems: "
-    case csts = "Converted SRecipe to SectionItem "
+    case csts = "Converted SRecipe to SectionItem2 "
 }
 
 func hasSpecialCharacters(string: String) -> Bool {
@@ -101,7 +101,7 @@ func getIngredList() -> [Ingredient] {
 
 func getIngredientForName(name: String) -> Ingredient {
     let myList = getIngredList().filter({$0.name == name})
-    return myList.first ?? Ingredient(name: name, id: Int64.random(in: 1..<myMaxInt64-1))
+    return myList.first ?? Ingredient(id: Int.random(in: 1..<999999), name: name)
 }
 
 func getDocuDirUrl() -> URL {
@@ -118,20 +118,53 @@ func getDocuDirUrl() -> URL {
     return myReturn
 }
 
-func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
-    let item = SectionItem(id: UUID(),
-                           name: srecipe.title ?? SectionItem.example.name,
-                           url: srecipe.sourceUrl ?? SectionItem.example.url,
+//func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
+//    let item = SectionItem(id: UUID(),
+//                           name: srecipe.title ?? SectionItem.example.name,
+//                           url: srecipe.sourceUrl ?? SectionItem.example.url,
+//                           imageUrl: srecipe.image,
+//                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
+////                           restrictions: srecipe.diets ?? [])
+//                           restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
+//    
+//#if DEBUG
+//    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name)
+//#endif
+//    
+//    return item
+//}
+
+func convertSRecipeToSectionItem2(srecipe: SRecipe) -> SectionItem2 {
+    let item = SectionItem2(id: UUID(),
+                            recipeId: getSRecipeID(srecipe: srecipe),
+                           name: srecipe.title ?? SectionItem2.example.name,
+                           url: srecipe.sourceUrl ?? SectionItem2.example.url,
                            imageUrl: srecipe.image,
-                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
-//                           restrictions: srecipe.diets ?? [])
+                           photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
                            restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
     
 #if DEBUG
-    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name)
+    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name + (item.recipeId?.description ?? "no recipeId"))
 #endif
     
     return item
+}
+
+func getSRecipeID(srecipe: SRecipe) -> Int {
+    switch srecipe.id {
+    case Int.min ..< 1:
+#if DEBUG
+    print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative srecipe.id")
+#endif
+        return getSRecipeIDUnique()
+    default:
+        return srecipe.id
+    }
+}
+
+func getSRecipeIDUnique() -> Int {
+    // for now
+    return 999999999
 }
 
 func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {

@@ -8,30 +8,28 @@
 import SwiftUI
 
 struct InstructionsDisplayView: View {
-    @ObservedObject var analyInstr = WebQueryRecipes()
+//    @ObservedObject var analyInstr = WebQueryRecipes()
     // MARK: - Initializer
-    init(sectionItem: SectionItem) {
-        self.myItem = sectionItem
-        analyInstr.getAnalyzedInstructions(recipeID: 488733)
+//    init(sectionItem: SectionItem2) {
+//        self.myItem = sectionItem
+//        analyInstr.getAnalyzedInstructions(recipeID: sectionItem.recipeId ?? 488733)
+//    }
+    
+    init(analyzedInstructions: AnalyzedInstructions) {
+        self.myAnalyInst = analyzedInstructions
     }
     // MARK: - Properties
-    private var myItem: SectionItem?
-    private var analyInstrSet: AnalyzedInstructions?
-
+    private var myAnalyInst: AnalyzedInstructions?
+    
     var body: some View {
-        List {
-            if analyInstr.analyzedInstructions == nil {
-                 
-            } else {
-                ForEach(analyInstrSet?.steps! ?? [Step.stepExample], id: \.self) { aStep in
-                    Text(aStep?.number?.description ?? "0" + (aStep?.step ?? "no step"))
-                }
-            }
+        VStack {
+            Text(myAnalyInst?.name ?? "Analyzed Instructions with no name yet").disabled(myAnalyInst == nil)
+            AnalyzedInstructionsView(analyzedInstructions: myAnalyInst ?? AnalyzedInstructions.analyInstrExample).disabled(myAnalyInst == nil)
         }
     }
 }
 
 struct InstructionsDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        InstructionsDisplayView(sectionItem: SectionItem.example)}
+        InstructionsDisplayView( analyzedInstructions: AnalyzedInstructions.analyInstrExample)}
 }

@@ -19,7 +19,7 @@ class AnalyzedInstructionsCreateOperation: Operation {
     fileprivate var completion: ((AnalyzedInstructions?) -> ())?
     fileprivate var myAnalyInstr: AnalyzedInstructions?
     fileprivate enum msgs: String {
-        case AnalyzedInstructionsCreateOperation = "AnalyzedInstructionsCreateOperation: "
+        case aico = "AnalyzedInstructionsCreateOperation: "
         case ai = " analyzedInstructions: "
         case cantDecode = " cannot decode AnalyzedInstructions from myData "
         case success = "AnalyzedInstructionsCreateOperation created an AnalyzedInstructions "
@@ -46,10 +46,12 @@ class AnalyzedInstructionsCreateOperation: Operation {
             myData = dataProvider?.data
         }
         
-        guard myData != nil else { return }
+        guard myData != nil else { 
+            if zBug { print(msgs.aico.rawValue + msgs.mydata.rawValue, "myData is nil")}
+            return }
         
         
-        if zBug { print(msgs.AnalyzedInstructionsCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)}
+        if zBug { print(msgs.aico.rawValue + msgs.mydata.rawValue, myData.debugDescription)}
         
         
         if self.isCancelled { return }
@@ -58,13 +60,13 @@ class AnalyzedInstructionsCreateOperation: Operation {
             let ai = try JSONDecoder().decode(AnalyzedInstructions.self, from: myData!)
             myAnalyInstr = ai
             
-            if zBug { print(msgs.AnalyzedInstructionsCreateOperation.rawValue + msgs.ai.rawValue, ai)}
+            if zBug { print(msgs.aico.rawValue + msgs.ai.rawValue, ai)}
             
         } catch {
             
             if zBug { print("Error took place\(error.localizedDescription).") }
             
-            fatalError(msgs.AnalyzedInstructionsCreateOperation.rawValue + msgs.cantDecode.rawValue)
+            fatalError(msgs.aico.rawValue + msgs.cantDecode.rawValue)
         }
         
         

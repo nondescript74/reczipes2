@@ -15,7 +15,7 @@ struct ReczipesApp: App {
                 .environmentObject(OrderingList())
                 .environmentObject(UserData())
                 .environmentObject(RecipeRatio())
-                .environmentObject(RecipeBeingBuilt())
+//                .environmentObject(RecipeBeingBuilt())
                 .environmentObject(AllUserRecipes())
                 .environmentObject(AllUserImages())
                 .environmentObject(AllUserNotes())

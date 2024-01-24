@@ -119,12 +119,12 @@ struct FindOrExtractView: View {
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem2(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.random {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem2(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.extract &&  extractedSRecipe.extractedSRecipe != nil {

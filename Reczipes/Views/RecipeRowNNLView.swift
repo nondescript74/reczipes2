@@ -28,6 +28,9 @@ struct RecipeRowNNLView: View {
 #endif
             anImage.getImageFromUrl(urlString: sRecipe.image!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
+#if DEBUG
+        print("The recipeId is :", srecipe.id)
+#endif
     }
     // MARK: - State
     @State fileprivate var recipeSaved = false
@@ -43,7 +46,7 @@ struct RecipeRowNNLView: View {
         case add = "plus"
     }
     // MARK: Methods
-
+    
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading) {
@@ -54,7 +57,7 @@ struct RecipeRowNNLView: View {
                     .frame(width: widthImage, height: heightImage, alignment: .leading)
                     .clipShape(Rectangle())
                     .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
-                                
+                
                 ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
                     Text(restriction)
                         .font(.caption)
@@ -63,23 +66,23 @@ struct RecipeRowNNLView: View {
                 }
                 
                 Spacer()
-
+                
                 Button(action: {
                     // What to perform
-                    let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem(srecipe: sRecipe))
+                    let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem2(srecipe: sRecipe))
                     if result { recipeSaved = true } else { recipeSaved = false }
                 }) {
                     // How the button looks like
                     RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
                 }
                 .disabled(cuisine.isEmpty )
-
+                
             }
             Text(sRecipe.title ?? "No Title")
         }.padding()
-        .alert(isPresented: $recipeSaved)   {
-            return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
-        }
+            .alert(isPresented: $recipeSaved)   {
+                return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+            }
     }
 }
 

@@ -91,7 +91,7 @@ struct BookSectionIDName: Codable, Equatable, Identifiable, Hashable {
 struct BookSection: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
     var name: String
-    var items: [SectionItem]
+    var items: [SectionItem2]
     
     static func == (lhs: BookSection, rhs: BookSection) -> Bool {
         if lhs.id == rhs.id {
@@ -129,8 +129,9 @@ struct SectionItemNotesImages: Codable, Equatable, Identifiable, Hashable {
     }
 }
 
-struct SectionItem: Codable, Equatable, Identifiable, Hashable {
+struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
+    var recipeId: Int?
     var name: String
     var url: String
     var imageUrl: String?
@@ -141,7 +142,7 @@ struct SectionItem: Codable, Equatable, Identifiable, Hashable {
         name
     }
     
-    static func == (lhs: SectionItem, rhs: SectionItem) -> Bool {
+    static func == (lhs: SectionItem2, rhs: SectionItem2) -> Bool {
         if lhs.name == rhs.name {
             return true
         } else {
@@ -153,11 +154,40 @@ struct SectionItem: Codable, Equatable, Identifiable, Hashable {
         hasher.combine(name)
     }
     
-    static let example = SectionItem(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
-    static let example2 = SectionItem(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
-    static let example3 = SectionItem(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
-    
+    static let example = SectionItem2(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, recipeId: 1, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
+    static let example2 = SectionItem2(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, recipeId: 2, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
+    static let example3 = SectionItem2(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, recipeId: 3, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
 }
+
+//struct SectionItem: Codable, Equatable, Identifiable, Hashable {
+//    var id: UUID
+//    var name: String
+//    var url: String
+//    var imageUrl: String?
+//    var photocredit: String
+//    var restrictions: [String]
+//    
+//    var mainImage: String {
+//        name
+//    }
+//    
+//    static func == (lhs: SectionItem, rhs: SectionItem) -> Bool {
+//        if lhs.name == rhs.name {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(name)
+//    }
+//    
+//    static let example = SectionItem(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
+//    static let example2 = SectionItem(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
+//    static let example3 = SectionItem(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
+//    
+//}
 
 struct Restriction: Codable, Hashable, Equatable {
     var name: String
@@ -229,7 +259,7 @@ struct ExtendedIngredientSet: Codable, Hashable, Equatable {
 }
 
 struct ExtendedIngredient: Codable, Hashable, Identifiable, Equatable {
-    var id:Int64?
+    var id:Int?
     var aisle:String?
     var image:String?
     var consistency:String?
@@ -273,7 +303,7 @@ struct ExtendedIngredient: Codable, Hashable, Identifiable, Equatable {
 }
 
 struct ProductMatch: Codable, Hashable, Identifiable, Equatable {
-    var id: Int64?
+    var id: Int?
     var title: String?
     var description: String?
     var price: String? // currency
@@ -307,8 +337,8 @@ struct WinePairing: Codable, Hashable, Equatable  {
 }
 
 struct Ingredient: Codable, Hashable, Identifiable, Equatable {
+    var id: Int
     var name: String
-    var id: Int64
     var localizedName: String?
     var image: String?
     
@@ -320,8 +350,33 @@ struct Ingredient: Codable, Hashable, Identifiable, Equatable {
         }
     }
     
-    static let ingredientExample = Ingredient(name: "unsalted butter", id: 1145)
-    static let ingredientExample1 = Ingredient(name: "sugar", id: 19335)
+    static let ingredientExample = Ingredient(id: 1145, name: "unsalted butter")
+    static let ingredientExample1 = Ingredient(id: 19335, name: "sugar")
+    
+    static let ingredientSet1: [Ingredient] =
+    [Ingredient(id: 1102047, name: "salt and pepper",localizedName: "salt and pepper", image: "salt-and-pepper.jpg"),
+     Ingredient(id: 6172, name: "chicken stock",localizedName: "chicken stock", image: "chicken-broth.png"),
+     Ingredient(id:4047, name:"coconut oil",localizedName:"coconut oil",image:"oil-coconut.jpg"),
+     Ingredient(id:20035, name:"quinoa",localizedName:"quinoa",image:"uncooked-quinoa.png"),
+     Ingredient(id:1019016, name:"juice",localizedName:"juice",image:"apple-juice.jpg"),
+     Ingredient(id:9159, name:"lime",localizedName:"lime",image:"lime.jpg")]
+    
+    static let ingredientSet2: [Ingredient] =
+    [Ingredient(id:4047, name:"coconut oil",localizedName:"coconut oil",image:"oil-coconut.jpg"),
+     Ingredient(id:20035, name:"quinoa",localizedName:"quinoa",image:"uncooked-quinoa.png")]
+    
+    static let ingredientSet3: [Ingredient] =
+    [Ingredient(id:10111333, name:"peppers",localizedName:"peppers",image:"green-pepper.jpg"),
+     Ingredient(id:11282, name:"onion",localizedName:"onion",image:"brown-onion.png")]
+    
+    /*
+     {
+     "id": 93830,
+     "name": "mirin",
+     "localizedName": "mirin",
+     "image": "mirin.jpg"
+     }
+     */
 }
 
 struct Temperature:  Codable, Hashable, Equatable {
@@ -337,7 +392,7 @@ struct Temperature:  Codable, Hashable, Equatable {
 }
 
 struct Equipment: Codable, Hashable, Equatable {
-    var id:Int64?
+    var id:Int
     var name:String?
     var localizedName:String?
     var image:String?
@@ -350,11 +405,31 @@ struct Equipment: Codable, Hashable, Equatable {
         }
     }
     
-    static let equipmentExample = Equipment(id: Int64.random(in: 0..<myMaxInt64), name: "9 inch iron skillet")
+    static let equipmentExample = Equipment(id: Int.random(in: 0..<999999), name: "9 inch iron skillet")
+    static let equipmentExample1 = Equipment(id: 404669, name: "sauce pan", image: "sauce-pan.jpg")
+    static let equipmentExample2 = [Equipment(id:404666,name:"wok",localizedName:"wok",image:"wok.png")]
+    
+    static let equipmentSet1: [Equipment] = [equipmentExample, equipmentExample1]
+    static let equipmentSet3: [Equipment] = []
+    
+    /*
+     {
+     "id": 404669,
+     "name": "sauce pan",
+     "localizedName": "sauce pan",
+     "image": "sauce-pan.jpg"
+     },
+     {
+     "id": 404752,
+     "name": "pot",
+     "localizedName": "pot",
+     "image": "stock-pot.jpg"
+     }
+     */
 }
 
 struct Step: Codable, Hashable, Equatable {
-    var number: Int64?
+    var number: Int
     var step: String?
     var ingredients:[Ingredient?]?
     var equipment:[Equipment?]?
@@ -368,11 +443,28 @@ struct Step: Codable, Hashable, Equatable {
         }
     }
     
-    static let stepExample = Step(number: Int64.random(in: 0..<myMaxInt64), step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthExampleSeconds)
+    static let stepExample = Step(number: 1, 
+                                  step: "In a medium saucepan, add the quinoa and chicken stock. Bring to boil over medium high heat. Once boiling, reduce heat to low and cover pot. Cook until all the liquid is absorbed, about 15 minutes. Stir in the coconut oil, juice and zest of lime, salt and pepper.",
+                                  ingredients: Ingredient.ingredientSet1,
+                                  equipment: Equipment.equipmentSet1,
+                                  length: Length.lengthMinutesExample1)
+    static let stepExample2 = Step(number: 2,
+                                  step: "Let quinoa cool completely before using. You can do this ahead of time or the day before.In a large wok, heat one tablespoon coconut oil over medium heat.",
+                                  ingredients: Ingredient.ingredientSet2,
+                                   equipment: Equipment.equipmentSet3)
+    static let stepExample3 = Step(number: 3,
+                                  step: "Add in onions and peppers and cook until soft, about 2 minutes.",
+                                  ingredients: Ingredient.ingredientSet3,
+                                  equipment: Equipment.equipmentSet3,
+                                  length: Length.lengthMinutesExample3)
+    
+    
+    static let stepExample21 = Step(number: 2, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
+    static let stepExample22 = Step(number: 3, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
 }
 
 struct Length: Codable, Hashable, Equatable {
-    var number:Double?
+    var number:Double
     var unit:String?
     
     static func == (lhs: Length, rhs: Length) -> Bool {
@@ -382,7 +474,9 @@ struct Length: Codable, Hashable, Equatable {
             return false
         }
     }
-    static let lengthExampleSeconds = Length(number: 10, unit: "seconds")
+    static let lengthSecondsExample = Length(number: 10, unit: "seconds")
+    static let lengthMinutesExample1 = Length(number: 15, unit: "minutes")
+    static let lengthMinutesExample3 = Length(number: 2, unit: "minutes")
 }
 
 struct Instruction: Codable, Hashable, Identifiable {
@@ -410,7 +504,532 @@ struct AnalyzedInstructions: Codable, Hashable, Equatable {
         }
     }
     
-    static let analyInstrExample = AnalyzedInstructions(name: "Step 1", steps: [Step.stepExample])
+    static let analyInstrExample = AnalyzedInstructions(name: "Analyzed Instructions Example", steps: [Step.stepExample, Step.stepExample2, Step.stepExample3])
+    
+    /*
+     [
+     {
+     "name": "For the Super Sauce",
+     "steps": [
+     {
+     "number": 1,
+     "step": "Place the mirin in a small saucepan over medium heat and bring it to a simmer.",
+     "ingredients": [
+     {
+     "id": 93830,
+     "name": "mirin",
+     "localizedName": "mirin",
+     "image": "mirin.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404669,
+     "name": "sauce pan",
+     "localizedName": "sauce pan",
+     "image": "sauce-pan.jpg"
+     }
+     ]
+     },
+     {
+     "number": 2,
+     "step": "Add the soy sauce and bring the mixture to a gentle simmer again.",
+     "ingredients": [
+     {
+     "id": 16124,
+     "name": "soy sauce",
+     "localizedName": "soy sauce",
+     "image": "soy-sauce.jpg"
+     }
+     ],
+     "equipment": []
+     },
+     {
+     "number": 3,
+     "step": "Add and submerge the fish flakes and turn off the heat.",
+     "ingredients": [
+     {
+     "id": 10115261,
+     "name": "fish",
+     "localizedName": "fish",
+     "image": "fish-fillet.jpg"
+     }
+     ],
+     "equipment": []
+     },
+     {
+     "number": 4,
+     "step": "Let the sauce sit for 15 minutes.",
+     "ingredients": [
+     {
+     "id": 0,
+     "name": "sauce",
+     "localizedName": "sauce",
+     "image": ""
+     }
+     ],
+     "equipment": [],
+     "length": {
+     "number": 15,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 5,
+     "step": "Strain the sauce through a fine-mesh strainer, and discard the fish flakes.",
+     "ingredients": [
+     {
+     "id": 0,
+     "name": "sauce",
+     "localizedName": "sauce",
+     "image": ""
+     },
+     {
+     "id": 10115261,
+     "name": "fish",
+     "localizedName": "fish",
+     "image": "fish-fillet.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 405600,
+     "name": "sieve",
+     "localizedName": "sieve",
+     "image": "strainer.png"
+     }
+     ]
+     },
+     {
+     "number": 6,
+     "step": "Transfer the sauce to a clean glass jar and add the kelp. Refrigerate the sauce, covered with plastic wrap, for 4 hours, then remove and discard the kelp. (Extra sauce can be frozen for up to 3 months.)",
+     "ingredients": [
+     {
+     "id": 0,
+     "name": "sauce",
+     "localizedName": "sauce",
+     "image": ""
+     },
+     {
+     "id": 11445,
+     "name": "kelp",
+     "localizedName": "kelp",
+     "image": "kombu.jpg"
+     },
+     {
+     "id": 10018364,
+     "name": "wrap",
+     "localizedName": "wrap",
+     "image": "flour-tortilla.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404730,
+     "name": "plastic wrap",
+     "localizedName": "plastic wrap",
+     "image": "plastic-wrap.jpg"
+     }
+     ],
+     "length": {
+     "number": 240,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 7,
+     "step": "For the chicken namban: In a bowl, combine the vinegar, Super Sauce, water, and sugar, and set aside. In another bowl, combine the flour, curry powder, and paprika. Dredge the chicken in the flour mixture and let it stand for 10 minutes.",
+     "ingredients": [
+     {
+     "id": 2015,
+     "name": "curry powder",
+     "localizedName": "curry powder",
+     "image": "curry-powder.jpg"
+     },
+     {
+     "id": 0,
+     "name": "chicken",
+     "localizedName": "chicken",
+     "image": "whole-chicken.jpg"
+     },
+     {
+     "id": 2028,
+     "name": "paprika",
+     "localizedName": "paprika",
+     "image": "paprika.jpg"
+     },
+     {
+     "id": 2053,
+     "name": "vinegar",
+     "localizedName": "vinegar",
+     "image": "vinegar-(white).jpg"
+     },
+     {
+     "id": 20081,
+     "name": "all purpose flour",
+     "localizedName": "all purpose flour",
+     "image": "flour.png"
+     },
+     {
+     "id": 0,
+     "name": "sauce",
+     "localizedName": "sauce",
+     "image": ""
+     },
+     {
+     "id": 19335,
+     "name": "sugar",
+     "localizedName": "sugar",
+     "image": "sugar-in-bowl.png"
+     },
+     {
+     "id": 14412,
+     "name": "water",
+     "localizedName": "water",
+     "image": "water.png"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404783,
+     "name": "bowl",
+     "localizedName": "bowl",
+     "image": "bowl.jpg"
+     }
+     ],
+     "length": {
+     "number": 10,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 8,
+     "step": "Cut the sweet potato into 1 by 3-inch matchsticks.",
+     "ingredients": [
+     {
+     "id": 11507,
+     "name": "sweet potato",
+     "localizedName": "sweet potato",
+     "image": "sweet-potato.png"
+     }
+     ],
+     "equipment": []
+     },
+     {
+     "number": 9,
+     "step": "Place the potatoes in a medium pot and cover with cold water. Bring to a simmer over medium heat and cook for 2 minutes.",
+     "ingredients": [
+     {
+     "id": 11352,
+     "name": "potato",
+     "localizedName": "potato",
+     "image": "potatoes-yukon-gold.png"
+     },
+     {
+     "id": 14412,
+     "name": "water",
+     "localizedName": "water",
+     "image": "water.png"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404752,
+     "name": "pot",
+     "localizedName": "pot",
+     "image": "stock-pot.jpg"
+     }
+     ],
+     "length": {
+     "number": 2,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 10,
+     "step": "Drain the potatoes in a colander and air-dry.",
+     "ingredients": [
+     {
+     "id": 11352,
+     "name": "potato",
+     "localizedName": "potato",
+     "image": "potatoes-yukon-gold.png"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404639,
+     "name": "colander",
+     "localizedName": "colander",
+     "image": "colander.jpg"
+     }
+     ]
+     },
+     {
+     "number": 11,
+     "step": "Transfer the potatoes to a paper towel-lined platter to remove any excess water.",
+     "ingredients": [
+     {
+     "id": 11352,
+     "name": "potato",
+     "localizedName": "potato",
+     "image": "potatoes-yukon-gold.png"
+     },
+     {
+     "id": 14412,
+     "name": "water",
+     "localizedName": "water",
+     "image": "water.png"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 405895,
+     "name": "paper towels",
+     "localizedName": "paper towels",
+     "image": "paper-towels.jpg"
+     }
+     ]
+     },
+     {
+     "number": 12,
+     "step": "Heat 2 inches of canola oil in a deep ovenproof skillet over medium heat to 350°F.",
+     "ingredients": [
+     {
+     "id": 1014582,
+     "name": "canola oil",
+     "localizedName": "canola oil",
+     "image": "vegetable-oil.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404645,
+     "name": "frying pan",
+     "localizedName": "frying pan",
+     "image": "pan.png"
+     }
+     ]
+     },
+     {
+     "number": 13,
+     "step": "Add the potatoes and cook them for 2 minutes or until golden, stirring from time to time.",
+     "ingredients": [
+     {
+     "id": 11352,
+     "name": "potato",
+     "localizedName": "potato",
+     "image": "potatoes-yukon-gold.png"
+     }
+     ],
+     "equipment": [],
+     "length": {
+     "number": 2,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 14,
+     "step": "Transfer the potatoes to a wire rack set over a baking sheet to drain and sprinkle with a pinch or two of salt.",
+     "ingredients": [
+     {
+     "id": 11352,
+     "name": "potato",
+     "localizedName": "potato",
+     "image": "potatoes-yukon-gold.png"
+     },
+     {
+     "id": 2047,
+     "name": "salt",
+     "localizedName": "salt",
+     "image": "salt.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404727,
+     "name": "baking sheet",
+     "localizedName": "baking sheet",
+     "image": "baking-sheet.jpg"
+     },
+     {
+     "id": 405900,
+     "name": "wire rack",
+     "localizedName": "wire rack",
+     "image": "wire-rack.jpg"
+     }
+     ]
+     },
+     {
+     "number": 15,
+     "step": "Preheat the oven to 350°F.",
+     "ingredients": [],
+     "equipment": [
+     {
+     "id": 404784,
+     "name": "oven",
+     "localizedName": "oven",
+     "image": "oven.jpg",
+     "temperature": {
+     "number": 350,
+     "unit": "Fahrenheit"
+     }
+     }
+     ]
+     },
+     {
+     "number": 16,
+     "step": "Remove most of the oil from the skillet, reserving 2 tablespoons in the skillet.",
+     "ingredients": [
+     {
+     "id": 4582,
+     "name": "cooking oil",
+     "localizedName": "cooking oil",
+     "image": "vegetable-oil.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404645,
+     "name": "frying pan",
+     "localizedName": "frying pan",
+     "image": "pan.png"
+     }
+     ]
+     },
+     {
+     "number": 17,
+     "step": "Heat the oil over medium heat, add the chicken, and cook for 3 minutes, or until the bottom is golden. Turn the chicken over and transfer the skillet to the oven. Cook the chicken for 25 minutes.",
+     "ingredients": [
+     {
+     "id": 0,
+     "name": "chicken",
+     "localizedName": "chicken",
+     "image": "whole-chicken.jpg"
+     },
+     {
+     "id": 4582,
+     "name": "cooking oil",
+     "localizedName": "cooking oil",
+     "image": "vegetable-oil.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404645,
+     "name": "frying pan",
+     "localizedName": "frying pan",
+     "image": "pan.png"
+     },
+     {
+     "id": 404784,
+     "name": "oven",
+     "localizedName": "oven",
+     "image": "oven.jpg"
+     }
+     ],
+     "length": {
+     "number": 28,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 18,
+     "step": "Remove the skillet from the oven and discard the excess oil from the skillet, reserving the chicken in the skillet.",
+     "ingredients": [
+     {
+     "id": 0,
+     "name": "chicken",
+     "localizedName": "chicken",
+     "image": "whole-chicken.jpg"
+     },
+     {
+     "id": 4582,
+     "name": "cooking oil",
+     "localizedName": "cooking oil",
+     "image": "vegetable-oil.jpg"
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404645,
+     "name": "frying pan",
+     "localizedName": "frying pan",
+     "image": "pan.png"
+     },
+     {
+     "id": 404784,
+     "name": "oven",
+     "localizedName": "oven",
+     "image": "oven.jpg"
+     }
+     ]
+     },
+     {
+     "number": 19,
+     "step": "Put the skillet back over medium heat on the stovetop and add the vinegar sauce. Cook for 2 minutes. During cooking, baste the chicken in the skillet with the sauce. The sauce should reduce and become thick, coating the chicken with a velvety layer of sauce. Divide the chicken and sweet potatoes among plates.",
+     "ingredients": [
+     {
+     "id": 11507,
+     "name": "sweet potato",
+     "localizedName": "sweet potato",
+     "image": "sweet-potato.png"
+     },
+     {
+     "id": 0,
+     "name": "chicken",
+     "localizedName": "chicken",
+     "image": "whole-chicken.jpg"
+     },
+     {
+     "id": 2053,
+     "name": "vinegar",
+     "localizedName": "vinegar",
+     "image": "vinegar-(white).jpg"
+     },
+     {
+     "id": 0,
+     "name": "sauce",
+     "localizedName": "sauce",
+     "image": ""
+     }
+     ],
+     "equipment": [
+     {
+     "id": 404794,
+     "name": "stove",
+     "localizedName": "stove",
+     "image": "oven.jpg"
+     },
+     {
+     "id": 404645,
+     "name": "frying pan",
+     "localizedName": "frying pan",
+     "image": "pan.png"
+     }
+     ],
+     "length": {
+     "number": 2,
+     "unit": "minutes"
+     }
+     },
+     {
+     "number": 20,
+     "step": "Garnish with the scallions and serve.",
+     "ingredients": [
+     {
+     "id": 11291,
+     "name": "green onions",
+     "localizedName": "green onions",
+     "image": "spring-onions.jpg"
+     }
+     ],
+     "equipment": []
+     }
+     ]
+     }
+     ]
+     */
     
 }
 struct CRecipe: Identifiable, Codable, Hashable {

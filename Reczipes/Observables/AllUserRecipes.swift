@@ -43,7 +43,7 @@ class AllUserRecipes: ObservableObject {
 #if DEBUG
         if zBug {print(msgs.aur.rawValue + "Number of shipped recipes is : " + "\(secItems.count)")}
 #endif
-
+        
         do {
             var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName), includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             // skip these folders
@@ -72,7 +72,7 @@ class AllUserRecipes: ObservableObject {
                                 existing?.items.append(anItem)
                             }
                         }
-//                        existing?.items.append(contentsOf: aBookSection.items)
+                        //                        existing?.items.append(contentsOf: aBookSection.items)
                         sections = sections.filter({$0.name != aBookSection.name})
                         if (existing != nil) {
                             sections.append(existing!)
@@ -146,11 +146,11 @@ class AllUserRecipes: ObservableObject {
         return returningNames
     }
     
-    func getRecipeForName(name: String) -> SectionItem? {
-        var myReturn: SectionItem?
+    func getRecipeForName(name: String) -> SectionItem2? {
+        var myReturn: SectionItem2?
         let recnams = getRecipeNames()
         if recnams.contains(name) {
-            var items = [SectionItem]()
+            var items = [SectionItem2]()
             for abs in sections {
                 items = items + abs.items
             }
@@ -159,9 +159,9 @@ class AllUserRecipes: ObservableObject {
                     myReturn = asItem
                 }
             }
-             
+            
         } else {
-           // returning nil
+            // returning nil
         }
         return myReturn
     }
@@ -173,7 +173,7 @@ class AllUserRecipes: ObservableObject {
             for aUrl in sectionItemUrls {
                 returnUrls.append(URL(fileURLWithPath: aUrl))
 #if DEBUG
-print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
+                print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
 #endif
             }
         }
@@ -182,26 +182,26 @@ print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
     }
     
     @MainActor
-    func addRecipe(bsectionid: UUID, recipe: SectionItem) -> Bool {
+    func addRecipe(bsectionid: UUID, recipe: SectionItem2) -> Bool {
         var myReturn: Bool = false
         // is the recipe in any section
-        var items: [SectionItem] = [SectionItem]()
+        var items: [SectionItem2] = [SectionItem2]()
         for abs in sections {
             items.append(contentsOf: abs.items)
             if items.contains(recipe) {
-    #if DEBUG
-                    if zBug {print(msgs.aur.rawValue + "This recipe is already saved")}
-    #endif
+#if DEBUG
+                if zBug {print(msgs.aur.rawValue + "This recipe is already saved")}
+#endif
                 return myReturn
             }
         }
         
         if sections.contains(where: {$0.id == bsectionid}) {
             let bs = sections.first(where: {$0.id == bsectionid})
-            var items: [SectionItem] = bs!.items
+            var items: [SectionItem2] = bs!.items
             items.append(recipe)
             let newBS = BookSection(id: bsectionid, name: bs!.name, items: items)
-             
+            
             remove(bsection: bs!)
             add(bsection: newBS)
             
@@ -210,7 +210,7 @@ print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
             
             
         } else {
-
+            
             // sections does not contain id or name
             // get name from built in name for the id supplied
             let nameIDs = self.getBookSectionsIDNames()
@@ -244,11 +244,11 @@ print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
         return false
     }
     
-    func removeRecipe(bsectionid: UUID, recipe: SectionItem) {
+    func removeRecipe(bsectionid: UUID, recipe: SectionItem2) {
         if sections.contains(where: {$0.id == bsectionid}) {
             
             guard let bs = sections.first(where: {$0.id == bsectionid}) else { return }
-            var items: [SectionItem] = bs.items
+            var items: [SectionItem2] = bs.items
             guard let recpIdx = items.firstIndex(of: recipe) else { return }
             items.remove(at: recpIdx)
             
@@ -257,7 +257,7 @@ print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
             sections.remove(at: index)
             
             sections.append(newBS)
-
+            
 #if DEBUG
             print(msgs.aur.rawValue + msgs.chgRem.rawValue, bs.name)
 #endif
@@ -266,7 +266,7 @@ print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
     
     func getRecipeNameForId(uuidsent: UUID) -> String {
         var myReturn: String = ""
-        var mySItems: [SectionItem] = []
+        var mySItems: [SectionItem2] = []
         for asection in sections {
             mySItems += asection.items
         }

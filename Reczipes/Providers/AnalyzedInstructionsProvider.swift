@@ -9,7 +9,7 @@ import Foundation
 
 public class AnalyzedInstructionsProvider {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var analyzedInstructionsUrl: URL
@@ -30,8 +30,7 @@ public class AnalyzedInstructionsProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        if zBug { print("OperationQueue for AnalyzedInstructionsProvider is launched") }
-        
+        if zBug { print("OperationQueue for AnalyzedInstructionsProvider url is ", analyzedInstructionsUrl.absoluteString) }
     }
     
     func cancel() {

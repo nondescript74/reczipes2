@@ -4,11 +4,6 @@
         "name":"Beef",
         "items":[
             {"restrictions":["Gluten Free"],
-                "id":"9926BA12-55C3-4B26-800B-B68AA8D80474",
-                "imageUrl":"https:\/\/food.fnr.sndimg.com\/content\/dam\/images\/food\/fullset\/2004\/3\/12\/0\/ei1c08_beef_cheese_manicotti1.jpg.rend.hgtvcom.826.620.suffix\/1382723091841.jpeg",
-                "name":"Beef and Cheese Manicotti",
-                "url":"https:\/\/www.foodnetwork.com\/recipes\/giada-de-laurentiis\/beef-and-cheese-manicotti-recipe-1914958","photocredit":"Giada De Laurentis"},
-            {"restrictions":["Gluten Free"],
                 "id":"B972DE25-8765-4CF8-947A-B5A3B47D6715",
                 "imageUrl":"https:\/\/www.seriouseats.com\/thmb\/7OxCaLUzvURVptbF4iMvl28n0Rg=\/960x0\/filters:no_upscale():max_bytes(150000):strip_icc()\/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__04__04022014-stirfry-beef-with-mixed-mushroom-and-butter-15-edit-5840b1f5917f4f08a1ba61fd86241876.jpg",
                 "name":"Stir Fried Flank Steak With Mushrooms and Butter",
@@ -249,14 +244,6 @@
                 "imageUrl": "https://www.seriouseats.com/thmb/rHo6vvZgwr8Qqn7uuGyCz0jiqH0=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2017__07__20170630-austrian-potato-salad-erdapfelsalat-19-017bda0ac5814dc9a3671bf20e1b1ec1.jpg",
                 "photocredit": "Seriouseats",
                 "restrictions": ["Vegan", "Dairy Free"]
-            },
-            {
-                "id": "C22C13A9-14B6-4E93-8741-159175B79C7B",
-                "name": "Heirloom Tomato Pie",
-                "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/heirloom-tomato-pie-recipe-1973826",
-                "imageUrl": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/6/7/2/FNM_070111-WE-Dinners-036_s4x3.jpg.rend.hgtvcom.826.620.suffix/1371597712259.jpeg",
-                "photocredit": "Food Network",
-                "restrictions": ["Vegan", "Gluten Free", "Dairy Free"]
             },
             {
                 "id": "844057F8-DFE8-4949-9E39-8D4131B21281",

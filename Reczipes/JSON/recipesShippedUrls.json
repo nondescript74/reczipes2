@@ -2,10 +2,9 @@
     {
         "name":"Beef",
         "items": [
-            {"url":"https:\/\/www.foodnetwork.com\/recipes\/giada-de-laurentiis\/beef-and-cheese-manicotti-recipe-1914958"},
-            {"url":"https:\/\/www.seriouseats.com\/recipes\/2014\/04\/easy-stir-fried-beef-with-mushrooms-and-butter.html"},
-            {"url":"https:\/\/www.seriouseats.com\/recipes\/2019\/12\/red-wine-braised-beef-short-ribs-recipe.html"},
-            {"url":"http:\/\/www.food.com\/recipe\/beef-beet-and-cabbage-soup-crock-pot-and-ww-356958"}
+            {"url":"https://www.seriouseats.com/recipes/2014/04/easy-stir-fried-beef-with-mushrooms-and-butter.html"},
+            {"url":"https://www.seriouseats.com/recipes/2019/12/red-wine-braised-beef-short-ribs-recipe.html"},
+            {"url":"http://www.food.com/recipe/beef-beet-and-cabbage-soup-crock-pot-and-ww-356958"}
         ]
     },
     {
@@ -68,7 +67,6 @@
         "name": "Vegetables",
         "items": [
             {"url": "https://www.seriouseats.com/recipes/2017/07/erdapfelsalat-austrian-style-potato-salad-recipe.html"},
-            {"url": "https://www.foodnetwork.com/recipes/food-network-kitchen/heirloom-tomato-pie-recipe-1973826"},
             {"url": "https://www.seriouseats.com/recipes/2010/11/the-best-roasted-sweet-potatoes-thanksgiving-sides-the-food-lab-recipe.html"},
             {"url": "https://www.seriouseats.com/recipes/2014/11/the-best-mashed-sweet-potatoes-recipe.html"},
             {"url": "https://www.allrecipes.com/recipe/239042/roasted-cauliflower-steaks/"}

@@ -68,9 +68,6 @@
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
 		F80B435329EDF2F300B97056 /* InstructionsDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */; };
-		F80B435929EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435829EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift */; };
-		F80B435B29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435A29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift */; };
-		F80B435D29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435C29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift */; };
 		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
 		F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */; };
 		F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */; };
@@ -190,9 +187,6 @@
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsDisplayView.swift; sourceTree = "<group>"; };
-		F80B435829EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsCreateOperation.swift; sourceTree = "<group>"; };
-		F80B435A29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsOutputOperation.swift; sourceTree = "<group>"; };
-		F80B435C29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsXOperation.swift; sourceTree = "<group>"; };
 		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShipped.json; sourceTree = "<group>"; };
@@ -437,9 +431,6 @@
 				93ACB2D926B9E8CC0010F71F /* TriviaCreateOperation.swift */,
 				93ACB2D626B9E8CC0010F71F /* TriviaOutputOperation.swift */,
 				93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */,
-				F80B435829EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift */,
-				F80B435A29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift */,
-				F80B435C29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -596,7 +587,6 @@
 				93237A2326A4E68100032387 /* Nutrition.swift in Sources */,
 				9334918626D1BA4000047BAB /* MailView.swift in Sources */,
 				93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */,
-				F80B435929EDFEAE00B97056 /* AnalyzedInstructionsCreateOperation.swift in Sources */,
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
 				F8D9F6102992A6CB007C98A9 /* RecipeRowNNLView.swift in Sources */,
@@ -620,7 +610,6 @@
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
 				930310C82695DC75006910EF /* Contact.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
-				F80B435D29EE00C900B97056 /* AnalyzedInstructionsXOperation.swift in Sources */,
 				F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */,
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
@@ -656,7 +645,6 @@
 				F8C3F525295A5601005A119B /* RecipeRatio.swift in Sources */,
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
-				F80B435B29EE00B200B97056 /* AnalyzedInstructionsOutputOperation.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
 				93ACB2B826B9E73F0010F71F /* ImageProvider.swift in Sources */,
 				93ACB30126B9E9AA0010F71F /* SRecipeXOperation.swift in Sources */,
@@ -795,7 +783,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 388;
+				CURRENT_PROJECT_VERSION = 392;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -842,7 +830,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 388;
+				CURRENT_PROJECT_VERSION = 392;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

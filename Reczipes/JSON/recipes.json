@@ -11,13 +11,6 @@
                 "restrictions": ["Primal"]
             },
             {
-                "id": "9926BA12-55C3-4B26-800B-B68AA8D80474",
-                "name": "Beef and Cheese Manicotti",
-                "url": "https://www.foodnetwork.com/recipes/giada-de-laurentiis/beef-and-cheese-manicotti-recipe-1914958",
-                "photocredit": "Giada De Laurentis",
-                "restrictions": ["Primal"]
-            },
-            {
                 "id": "B972DE25-8765-4CF8-947A-B5A3B47D6715",
                 "name": "Stir Fried Flank Steak With Mushrooms and Butter",
                 "url": "https://www.seriouseats.com/recipes/2014/04/easy-stir-fried-beef-with-mushrooms-and-butter.html",
@@ -239,13 +232,6 @@
                 "url": "https://www.seriouseats.com/recipes/2017/07/erdapfelsalat-austrian-style-potato-salad-recipe.html",
                 "photocredit": "Seriouseats",
                 "restrictions": ["Vegan", "Dairy Free"]
-            },
-            {
-                "id": "C22C13A9-14B6-4E93-8741-159175B79C7B",
-                "name": "Heirloom Tomato Pie",
-                "url": "https://www.foodnetwork.com/recipes/food-network-kitchen/heirloom-tomato-pie-recipe-1973826",
-                "photocredit": "Food Network",
-                "restrictions": ["Vegan", "Gluten Free", "Dairy Free"]
             },
             {
                 "id": "9BDE0D4F-C2F8-4E6B-A5CC-A77FBA9C8920",

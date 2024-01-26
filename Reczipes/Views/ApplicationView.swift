@@ -66,11 +66,11 @@ struct ApplicationView: View {
                     Text(tabs.ingredients.rawValue)
                 }
             
-            AuthView()
-                .tabItem {
-                    Image(uiImage: wandNStarsImage)
-                    Text(tabs.auth.rawValue)
-                }
+//            AuthView()
+//                .tabItem {
+//                    Image(uiImage: wandNStarsImage)
+//                    Text(tabs.auth.rawValue)
+//                }
             
             KeyView()
                 .tabItem {

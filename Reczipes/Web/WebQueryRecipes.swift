@@ -36,6 +36,7 @@ public class WebQueryRecipes: ObservableObject {
         case trivia, joke = ""
         case cuisine = "&cuisine="
         case tags = "&tags="
+        case anlyztrue = "&analyze=true"
     }
     
     enum callerId: String {
@@ -150,6 +151,10 @@ public class WebQueryRecipes: ObservableObject {
     fileprivate func parseSearchString(searchstring: String) -> String {
         var myReturingString:String = ""
         myReturingString = searchstring.replacingOccurrences(of: ",", with: "+")
+        myReturingString = myReturingString.replacingOccurrences(of: "with", with: "")
+        myReturingString = myReturingString.replacingOccurrences(of: "With", with: "")
+        myReturingString = myReturingString.replacingOccurrences(of: "and", with: "")
+        myReturingString = myReturingString.replacingOccurrences(of: "And", with: "")
         return myReturingString
     }
     
@@ -180,11 +185,14 @@ public class WebQueryRecipes: ObservableObject {
     
     func findExtracted(urlString: String) {
         // https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&apiKey=
-        if !urlString.isValidURL {
+        if !urlString.isValidURL ||  UserDefaults.standard.string(forKey: "SpoonacularKey") == nil {
+            #if DEBUG
+            if zBug {print("no key or invalid url supplied")}
+            #endif
             return
         }
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
-        urlComponents.query = myQuery.extract.rawValue + urlString + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+        urlComponents.query = myQuery.extract.rawValue + urlString + myQuery.anlyztrue.rawValue + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         myTask(aswitch: myGets.FindExtracted.rawValue)
     }
     
@@ -212,25 +220,13 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
-//    func getAnalyzedInstructions(recipeID: Int)  {
-//        urlComponents = URLComponents(string: urlThings.analyzedInstructions.rawValue)!
-//        urlComponents.path.append("\(recipeID)")
-//        urlComponents.path.append("/analyzedInstructions")
-//        urlComponents.query =  (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
-//        myTask(aswitch: myGets.GetAnalyzInstr.rawValue)
-//        
-//        // https://api.spoonacular.com/recipes/324694/analyzedInstructions
-//    }
-    
     private func myImageTask(aswitch: String) {
         guard let url = urlComponentsRecipeImages.url else {
             return
         }
-        
 
         if zBug {print(url.absoluteString)}
 
-        
         switch aswitch {
         case myGets.FindImage.rawValue:
             _ = ImageProvider(imageUrl: url) { myImage in
@@ -329,17 +325,7 @@ public class WebQueryRecipes: ObservableObject {
                     }
                 }
             }
-            
-//        case myGets.GetAnalyzInstr.rawValue:
-//            _ = AnalyzedInstructionsProvider(analyzedInstructionsUrl: url) { analyzInstr in
-//                if analyzInstr != nil {
-//                    DispatchQueue.main.async {
-//                        self.analyzedInstructions = analyzInstr!
-//                        if self.zBug {print(messagesDebug.getAnInstr.rawValue, analyzInstr?.steps?.count ?? messagesDebug.noAnInstr.rawValue)}
-//                    }
-//                }
-//            }
-//            
+
         default:
             fatalError("unrecognized switch")
         }

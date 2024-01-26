@@ -18,19 +18,21 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
-    //    @ObservedObject var analyInstr = WebQueryRecipes()
     @ObservedObject var analyInstr = AnalyzedInstructionsModel()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem2, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
-        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)        
+        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
     }
     // MARK: - Properties
     var item: SectionItem2
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
+        case norid = "No RecipeId"
+        case ridltz = "RecipeId is negative"
+        case ridgnnn = "RecipeId is greater or equal to 9999999"
     }
     
     fileprivate enum labelz: String {
@@ -55,6 +57,15 @@ struct RecipeDetailView: View {
         case share = "square.and.arrow.up"
         case instr = "list.bullet.clipboard.fill"
     }
+    
+    fileprivate enum WhatToShow: String {
+        case showNotes
+        case showImgs
+        case showInstr
+        case showIngrd
+
+    }
+    
     // MARK: - State
     @State fileprivate var showingNotes = false
     @State fileprivate var showingImages = false
@@ -68,6 +79,7 @@ struct RecipeDetailView: View {
     @State fileprivate var showingMoveView = false
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
+    
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
         var userNotes = aun.notes
@@ -87,22 +99,23 @@ struct RecipeDetailView: View {
         return true
     }
     
-    //    fileprivate func hasAnalyzedInstructions() -> Bool {
-    //        let test = analyInstr.analyzedInstructions
-    //        #if DEBUG
-    //        print(test.debugDescription, test?.name ?? "RDV: no name")
-    //        #endif
-    //        return (test != nil)
-    //    }
-    
     fileprivate func hasAnalyzedInstructions() async -> Bool {
         if item.recipeId == nil {
+#if DEBUG
+            print(msgs.RDV.rawValue, msgs.norid.rawValue)
+#endif
             return false
         }
         if item.recipeId! <= 0 {
+#if DEBUG
+            print(msgs.RDV.rawValue, msgs.ridltz.rawValue)
+#endif
             return false
         }
         if item.recipeId! >= 9999999 {
+#if DEBUG
+            print(msgs.RDV.rawValue, msgs.ridgnnn.rawValue)
+#endif
             return false
         }
         await analyInstr.executeQuery(recipeId: item.recipeId!)
@@ -113,15 +126,18 @@ struct RecipeDetailView: View {
         return (test != nil)
     }
     
+
+    
     // MARK: - View Process
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                ZStack {
+                VStack {
                     if UIImage(named: item.mainImage) == nil {
                         anImage.anImage?
                             .resizable()
                             .padding(.all, 5)
+                            .frame(width: proxy.size.width / 2, height: proxy.size.height / 4)
                     } else {
                         Image(item.mainImage)
                             .resizable()
@@ -176,11 +192,11 @@ struct RecipeDetailView: View {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
                     }
-                    Button(action: {
-                        self.showShareSheet = true
-                    }) {
-                        RoundButton3View(someTextTop: labelz.share.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.share.rawValue, reversed: true)
-                    }
+//                    Button(action: {
+//                        self.showShareSheet = true
+//                    }) {
+//                        RoundButton3View(someTextTop: labelz.share.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.share.rawValue, reversed: true)
+//                    }
                 }
                 Divider()
                 if showingNotes == true && hasNotes() {
@@ -190,18 +206,6 @@ struct RecipeDetailView: View {
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id)
                 }
-                Divider()
-                if showingInstructions == true {
-                    InstructionsDisplayView(analyzedInstructions: analyInstr.result!)
-                }
-                Divider()
-                if showingInstructions == true || showingNotes == true || showingImages == true {
-                    // no showing safariview to save space
-                    } else {
-                        VStack {
-                            SafariView(url: URL(string: item.url)!)
-                    }
-                }
             }
             .sheet(isPresented: $addingImage) {
                 AddImageView()
@@ -209,12 +213,12 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
             }
-            //            .sheet(isPresented: $showingInstructions) {
-            //                InstructionsDisplayView(analyzedInstructions: item)
-            //            }
-            .sheet(isPresented: $showShareSheet) {
-                ShareRecipeView(sectionItem: item)
+            .sheet(isPresented: $showingInstructions) {
+                InstructionsDisplayView(analyzedInstructions: analyInstr.result!)
             }
+//            .sheet(isPresented: $showShareSheet) {
+//                ShareRecipeView(sectionItem: item)
+//            }
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }

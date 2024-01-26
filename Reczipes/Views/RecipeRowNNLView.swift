@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeRowNNLView: View {
     // MARK: - Debug
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     //MARK: - Environment
@@ -22,16 +22,16 @@ struct RecipeRowNNLView: View {
         if sRecipe.image == nil {
             // can't call to get image without url
 #if DEBUG
-            if zBug {print("No imageUrl")}
+            if zBug {print("RRNNLV: No imageUrl")}
 #endif
         } else {
 #if DEBUG
-            if zBug{print("imageUrl exists, going to get")}
+            if zBug{print("RRNNLV: imageUrl exists, going to get")}
 #endif
             anImage.getImageFromUrl(urlString: sRecipe.image!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
 #if DEBUG
-        if zBug {print("The recipeId is :", srecipe.id)}
+        if zBug {print("RRNNLV: The recipeId is :", srecipe.id)}
 #endif
     }
     // MARK: - State

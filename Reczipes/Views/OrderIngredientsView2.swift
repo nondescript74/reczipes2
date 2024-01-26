@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ListHeader: View {
-    var myText: String
-    var body: some View {
-        HStack {
-            Text(myText).foregroundColor(.red)
-        }
-    }
-}
+//struct ListHeader: View {
+//    var myText: String
+//    var body: some View {
+//        HStack {
+//            Text(myText).foregroundColor(.red)
+//        }
+//    }
+//}
 
 struct OrderIngredientsView2: View {
     // MARK: - Initializer
@@ -127,7 +127,6 @@ struct OrderIngredientsView2_Previews: PreviewProvider {
     static let order = OrderingList()
     static var previews: some View {
         OrderIngredientsView2()
-            .previewDevice("iPhone Xr")
             .environmentObject(order)
             .environmentObject(ratio)
             .environmentObject(userData)

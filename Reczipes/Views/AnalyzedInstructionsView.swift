@@ -12,14 +12,14 @@ struct AnalyzedInstructionsView: View {
         self.myAnalyInstr = analyzedInstructions
     }
     
-    fileprivate var myAnalyInstr: AnalyzedInstructions = AnalyzedInstructions.analyInstrExample
+    fileprivate var myAnalyInstr: AnalyzedInstructions?
     
     var body: some View {
-        Text("The number of steps is: " + (myAnalyInstr.steps?.count.description ?? "0"))
+        Text("The number of steps is: " + (myAnalyInstr?.steps?.count.description ?? "No Steps"))
         List {
-            ForEach(myAnalyInstr.steps ?? AnalyzedInstructions.analyInstrExample.steps!, id: \.self) { aStep in
+            ForEach((myAnalyInstr?.steps)!, id: \.self) { aStep in
                 Text(aStep!.step ?? "Step has no description")
-            }.disabled(myAnalyInstr.steps == nil || myAnalyInstr.steps?.count == 0)
+            }.disabled(myAnalyInstr?.steps == nil || myAnalyInstr?.steps?.count == 0)
         }
     }
 }

@@ -35,14 +35,14 @@ class AllUserRecipes: ObservableObject {
             }
         }
         
-        // directories exist
-        // get all shipped recipes
-        sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
-        let fmapsections = sections.compactMap({$0})
-        let secItems = fmapsections.flatMap({$0.items})
-#if DEBUG
-        if zBug {print(msgs.aur.rawValue + "Number of shipped recipes is : " + "\(secItems.count)")}
-#endif
+//        // directories exist
+//        // get all shipped recipes
+//        sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+//        let fmapsections = sections.compactMap({$0})
+//        let secItems = fmapsections.flatMap({$0.items})
+//#if DEBUG
+//        if zBug {print(msgs.aur.rawValue + "Number of shipped recipes is : " + "\(secItems.count)")}
+//#endif
         
         do {
             var urls = try FileManager.default.contentsOfDirectory(at: getDocuDirUrl().appendingPathComponent(recipesName), includingPropertiesForKeys: [], options: .skipsHiddenFiles)
@@ -63,14 +63,14 @@ class AllUserRecipes: ObservableObject {
                         var existing = sections.first(where: {$0.name == aBookSection.name})
                         
                         for anItem in aBookSection.items {
-                            if secItems.contains(anItem) {
-                                // don't add it
-#if DEBUG
-                                if zBug {print(msgs.aur.rawValue + " duplicate SectionItem, not adding " + anItem.name)}
-#endif
-                            } else {
+//                            if secItems.contains(anItem) {
+//                                 don't add it
+//#if DEBUG
+//                                if zBug {print(msgs.aur.rawValue + " duplicate SectionItem, not adding " + anItem.name)}
+//#endif
+//                            } else {
                                 existing?.items.append(anItem)
-                            }
+//                            }
                         }
                         //                        existing?.items.append(contentsOf: aBookSection.items)
                         sections = sections.filter({$0.name != aBookSection.name})

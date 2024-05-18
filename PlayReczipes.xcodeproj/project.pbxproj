@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36076C152BF6BECF0090ED26 /* cuisines.json in Resources */ = {isa = PBXBuildFile; fileRef = 36076C142BF6BECF0090ED26 /* cuisines.json */; };
 		3623CC112B62DF23008EB223 /* MeasuresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623CC102B62DF23008EB223 /* MeasuresView.swift */; };
 		3623CC132B62E0A1008EB223 /* ImageAndNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623CC122B62E0A1008EB223 /* ImageAndNameView.swift */; };
 		363962782B60889F00A212AC /* AnalyzedInstructionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363962772B60889F00A212AC /* AnalyzedInstructionsModel.swift */; };
@@ -127,6 +128,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		36076C142BF6BECF0090ED26 /* cuisines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cuisines.json; sourceTree = "<group>"; };
 		3623CC102B62DF23008EB223 /* MeasuresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasuresView.swift; sourceTree = "<group>"; };
 		3623CC122B62E0A1008EB223 /* ImageAndNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndNameView.swift; sourceTree = "<group>"; };
 		363962772B60889F00A212AC /* AnalyzedInstructionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsModel.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				F8BAA1A3292D8EE0008AFEAD /* Images.json */,
 				93D611A726CE971200664F14 /* Notes.json */,
 				9396EAB826BDF0FE000FD136 /* SectionNames.json */,
+				36076C142BF6BECF0090ED26 /* cuisines.json */,
 				F8CE26D3289C75B1003483DD /* SRecipeExample.json */,
 				F81BADD52923F104004AE705 /* SRecipeExample2.json */,
 				F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */,
@@ -552,6 +555,7 @@
 				36AD713F2B59EF5800168481 /* AnalyzedInstructionsExample.json in Resources */,
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
+				36076C152BF6BECF0090ED26 /* cuisines.json in Resources */,
 				F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */,
 				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
 				F81BADD62923F104004AE705 /* SRecipeExample2.json in Resources */,
@@ -791,7 +795,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 398;
+				CURRENT_PROJECT_VERSION = 420;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -838,7 +842,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 398;
+				CURRENT_PROJECT_VERSION = 420;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

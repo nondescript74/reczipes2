@@ -27,8 +27,11 @@ struct MultiView: View {
         case noTitle = "No Recipe Title"
         case noJoke = "No Joke?"
         case noTrivia = "No Trivia?"
-        case trivia = "doc.on.doc"
-        case joke = "lasso.sparkles"
+        case trivia = "leaf.arrow.triangle.circlepath"
+        case joke = "figure.wave"
+        /*
+        Unicode: U+1F921, UTF-8: F0 9F A4 A1
+         */
     }
     
     private enum labelz: String {

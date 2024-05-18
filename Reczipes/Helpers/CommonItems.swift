@@ -147,11 +147,6 @@ func convertSRecipeToSectionItem2(srecipe: SRecipe) -> SectionItem2 {
                             imageUrl: srecipe.image,
                             photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
                             restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
-    
-#if DEBUG
-    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name + " " + (item.recipeId?.description ?? "no recipeId"))
-#endif
-    
     return item
 }
 

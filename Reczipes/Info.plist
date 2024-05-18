@@ -27,7 +27,7 @@
 		<key>UIImageName</key>
 		<string>launchscreen_image</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
+		<false/>
 	</dict>
 	<key>UIRequiresPersistentWiFi</key>
 	<true/>

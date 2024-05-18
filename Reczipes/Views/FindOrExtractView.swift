@@ -27,6 +27,7 @@ struct FindOrExtractView: View {
         case enteringreds = "Enter ingredients"
         case cuisine = " as cuisine?"
         case dyw = "Did you want "
+        case choose = "Choosing"
     }
     fileprivate var cuisine = ""
     // MARK: - State
@@ -78,18 +79,20 @@ struct FindOrExtractView: View {
         NavigationView {
             VStack {
                 VStack {
-                    Text(msgs.fr.rawValue).fontWeight(.semibold)
-                    
                     HStack {
-                        Text(msgs.dyw.rawValue).foregroundColor(.red)
+                        Text(msgs.choose.rawValue)
                         Picker(msgs.books.rawValue, selection: $xection) {
                             let zx = aur.getBookSectionNames().count
                             ForEach(0..<zx, id: \.self) { index in
                                 Text("\(aur.getBookSectionNames()[index])")
                             }
                         }
-                        Text(msgs.cuisine.rawValue)
+                        //Text(msgs.cuisine.rawValue)
                     }
+                    
+                    Divider()
+                    
+                    Text(msgs.fr.rawValue).fontWeight(.semibold)
                     
                     HStack(alignment: .center) {
                         SearchBar(text: $searchTerm).padding(.trailing, 5)
@@ -97,13 +100,13 @@ struct FindOrExtractView: View {
                         Button(action: getSRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 20)
-                        
+                        Divider().frame(height: 50)
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)
                     }
                 }.padding()
-                Divider()
+                // Divider()
                 VStack {
                     Text(msgs.er.rawValue).fontWeight(.semibold)
                     
@@ -115,7 +118,7 @@ struct FindOrExtractView: View {
                         
                     }
                 }.padding()
-                Divider()
+                // Divider()
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in

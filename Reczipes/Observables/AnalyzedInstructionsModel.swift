@@ -23,7 +23,7 @@ class AnalyzedInstructionsModel: ObservableObject {
         case irid = "invalid recipeid sent in"
         case cnd = "could not decode AnalyzedInstructions from data"
         case nk = "No Api Key"
-        case noai = "Number of Analyzed Instructions is more than one!"
+        case noai = "Number of Analyzed Instructions is greater than 1? "
     }
     
     @MainActor
@@ -63,7 +63,7 @@ class AnalyzedInstructionsModel: ObservableObject {
             let ai = try JSONDecoder().decode([AnalyzedInstructions].self, from: data)
 #if DEBUG
             if zBug {print(msgs.aim.rawValue, ai)}
-            if zBug {print(msgs.noai.rawValue, ai.count.description)}
+            if zBug {print(msgs.noai.rawValue, ai.count > 1)}
 #endif
             return ai.first!
         } catch  {

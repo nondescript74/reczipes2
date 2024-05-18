@@ -420,5 +420,180 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCFEB375-DF16-4FE2-BF8B-3F75B1C9503E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reczipes/Views/RecipeDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B38BE59-3EAC-48C5-BD4F-A62BD2093185"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reczipes/Views/RecipeDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "8B38BE59-3EAC-48C5-BD4F-A62BD2093185 - 9fbf127d684454fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #9 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt;&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.NotesView&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.ImagesView&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in PlayReczipes.RecipeDetailView.body.getter : some"
+                  moduleName = "PlayReczipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zpm2p/Documents/Documents/Developer_swift/Reczipes/Reczipes/Views/RecipeDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "8B38BE59-3EAC-48C5-BD4F-A62BD2093185 - 9fbf127d68445421"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #9 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt;&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.NotesView&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.ImagesView&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in PlayReczipes.RecipeDetailView.body.getter : some"
+                  moduleName = "PlayReczipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zpm2p/Documents/Documents/Developer_swift/Reczipes/Reczipes/Views/RecipeDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83B392BF-F58C-4EEC-BC48-B0242A09847C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reczipes/Views/RecipeDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "83B392BF-F58C-4EEC-BC48-B0242A09847C - c8a9bb518c15e8ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in closure #11 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt;&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.NotesView&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.ImagesView&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in PlayReczipes.RecipeDetailView.body.getter : some"
+                  moduleName = "PlayReczipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zpm2p/Documents/Documents/Developer_swift/Reczipes/Reczipes/Views/RecipeDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "215"
+                  endingLineNumber = "215"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "83B392BF-F58C-4EEC-BC48-B0242A09847C - ff1640254ae91708"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #11 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt;&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.NotesView&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.ImagesView&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in PlayReczipes.RecipeDetailView.body.getter : some"
+                  moduleName = "PlayReczipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zpm2p/Documents/Documents/Developer_swift/Reczipes/Reczipes/Views/RecipeDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "215"
+                  endingLineNumber = "215"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "83B392BF-F58C-4EEC-BC48-B0242A09847C - 9eb0843a6dc41117"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #11 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI._ConditionalContent&lt;Swift.Optional&lt;&lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.disabled(Swift.Bool) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;, SwiftUI.Button&lt;PlayReczipes.RoundButton3View&gt;)&gt;&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.NotesView&gt;, SwiftUI.Divider, Swift.Optional&lt;PlayReczipes.ImagesView&gt;)&gt; in closure #1 (SwiftUI.GeometryProxy) -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(_: SwiftUI.Text, displayMode: SwiftUI.NavigationBarItem.TitleDisplayMode) -&gt; some&gt;&gt;.0 in PlayReczipes.RecipeDetailView.body.getter : some"
+                  moduleName = "PlayReczipes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zpm2p/Documents/Documents/Developer_swift/Reczipes/Reczipes/Views/RecipeDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "215"
+                  endingLineNumber = "215"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A237142E-763B-486A-93A8-71B80751F9B4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reczipes/Views/RecipeDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init(imageString:sectionItem:cuisine:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBCE9A72-03EA-4A71-ABA3-0B3D25A7CB20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reczipes/Views/RecipeDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "hasImages()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFC9A96A-7988-48EA-936F-3D365852B250"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reczipes/Views/RecipeDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

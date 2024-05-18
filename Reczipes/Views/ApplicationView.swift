@@ -28,6 +28,7 @@ struct ApplicationView: View {
         case note = "+Note"
         case img = "+Image"
         case jt = "Joke/Trivia"
+        case prof = "Profile"
         case settings = "Settings"
         case build = "Build"
         case enterKey = "ApiKey"
@@ -96,7 +97,11 @@ struct ApplicationView: View {
                     Text(tabs.jt.rawValue)
                 }
             
-            
+            ProfileEditor(profile: $userData.profile)
+                .tabItem {
+                    Image(uiImage: checkmarkImage)
+                    Text(tabs.prof.rawValue)
+                }
         }
         .environmentObject(order)
         .environmentObject(userData)

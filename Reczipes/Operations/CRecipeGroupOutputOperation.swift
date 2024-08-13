@@ -50,3 +50,7 @@ class CRecipeGroupOutputOperation: CRecipeGroupXOperation {
         completion(crecipez)
     }
 }
+
+extension CRecipeGroupOutputOperation: @unchecked Sendable {
+     
+}

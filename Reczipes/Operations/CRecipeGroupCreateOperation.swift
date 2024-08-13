@@ -67,6 +67,10 @@ class CRecipeGroupCreateOperation: Operation {
     
 }
 
+extension CRecipeGroupCreateOperation: @unchecked Sendable {
+     
+}
+
 extension CRecipeGroupCreateOperation: CRecipeGroupOutputOperationDataProvider, CRecipeGroupXOperationDataProvider       {
     var crecipes: [CRecipe]? {
         return myCRecipes

@@ -79,6 +79,10 @@ class JokeCreateOperation: Operation {
     
 }
 
+extension JokeCreateOperation: @unchecked Sendable {
+     
+}
+
 extension JokeCreateOperation: JokeOutputOperationDataProvider, JokeXOperationDataProvider {
     var joke: Joke? {
         return myJoke

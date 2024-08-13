@@ -79,6 +79,10 @@ class TriviaCreateOperation: Operation {
     
 }
 
+extension TriviaCreateOperation: @unchecked Sendable {
+     
+}
+
 extension TriviaCreateOperation: TriviaOutputOperationDataProvider, TriviaXOperationDataProvider {
     var trivia: Trivia? {
         return myTrivia

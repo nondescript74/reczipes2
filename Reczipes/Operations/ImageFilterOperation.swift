@@ -56,6 +56,10 @@ public class ImageFilterOperation: Operation {
     }
 }
 
+extension ImageFilterOperation: @unchecked Sendable {
+     
+}
+
 
 extension ImageFilterOperation: ImageFilterDataProvider {
     var image: Image? {

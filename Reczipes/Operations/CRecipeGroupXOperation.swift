@@ -35,6 +35,10 @@ class CRecipeGroupXOperation: Operation {
     }
 }
 
+extension CRecipeGroupXOperation: @unchecked Sendable {
+     
+}
+
 extension CRecipeGroupXOperation: CRecipeGroupXOperationDataProvider {
     var crecipes: [CRecipe]? {
         return filterOutput

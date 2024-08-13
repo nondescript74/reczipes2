@@ -43,6 +43,10 @@ class AsyncOperation: Operation {
   }
 }
 
+extension AsyncOperation: @unchecked Sendable {
+     
+}
+
 
 extension AsyncOperation {
   //: NSOperation Overrides

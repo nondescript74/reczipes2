@@ -79,6 +79,10 @@ class SRecipeCreateOperation: Operation {
     
 }
 
+extension SRecipeCreateOperation: @unchecked Sendable {
+     
+}
+
 extension SRecipeCreateOperation: SRecipeOutputOperationDataProvider, SRecipeXOperationDataProvider {
     var srecipe: SRecipe? {
         return myRecipe

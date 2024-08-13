@@ -51,3 +51,7 @@ class SRecipeGroupOutputOperation: SRecipeGroupXOperation {
         completion(srecipez)
     }
 }
+
+extension SRecipeGroupOutputOperation: @unchecked Sendable {
+     
+}

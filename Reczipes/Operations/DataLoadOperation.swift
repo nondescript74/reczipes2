@@ -46,6 +46,10 @@ class DataLoadOperation: AsyncOperation {
     }
 }
 
+extension DataLoadOperation: @unchecked Sendable {
+     
+}
+
 extension DataLoadOperation: ImageCreateOperationDataProvider, SRecipeGroupCreateOperationDataProvider, SRecipeCreateOperationDataProvider, CRecipeGroupCreateOperationDataProvider, TriviaCreateOperationDataProvider, JokeCreateOperationDataProvider {
     var data: Data? { return loadedData }
 }

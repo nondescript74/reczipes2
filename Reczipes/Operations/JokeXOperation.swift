@@ -40,6 +40,10 @@ class JokeXOperation: Operation {
     }
 }
 
+extension JokeXOperation: @unchecked Sendable {
+     
+}
+
 extension JokeXOperation: JokeXOperationDataProvider {
     var joke: Joke? {
         return filterOutput

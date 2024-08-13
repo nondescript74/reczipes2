@@ -52,3 +52,7 @@ class SRecipeOutputOperation: SRecipeXOperation {
         completion(srecipez)
     }
 }
+
+extension SRecipeOutputOperation: @unchecked Sendable {
+     
+}

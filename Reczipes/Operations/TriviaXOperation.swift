@@ -40,6 +40,10 @@ class TriviaXOperation: Operation {
     }
 }
 
+extension TriviaXOperation: @unchecked Sendable {
+     
+}
+
 extension TriviaXOperation: TriviaXOperationDataProvider {
     var trivia: Trivia? {
         return filterOutput

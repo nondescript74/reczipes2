@@ -52,3 +52,7 @@ class TriviaOutputOperation: TriviaXOperation {
         completion(triviaz)
     }
 }
+
+extension TriviaOutputOperation: @unchecked Sendable {
+     
+}

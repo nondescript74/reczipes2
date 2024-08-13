@@ -52,3 +52,7 @@ class ImageOutputOperation: ImageXOperation {
     }
 }
 
+extension ImageOutputOperation: @unchecked Sendable {
+     
+}
+

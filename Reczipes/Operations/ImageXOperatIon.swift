@@ -41,6 +41,10 @@ class ImageXOperation: Operation {
     }
 }
 
+extension ImageXOperation: @unchecked Sendable {
+     
+}
+
 extension ImageXOperation: ImageXOperationDataProvider {
     var image: Image? {
         return filterOutput

@@ -55,3 +55,7 @@ class JokeOutputOperation: JokeXOperation {
         completion(jokez)
     }
 }
+
+extension JokeOutputOperation: @unchecked Sendable {
+     
+}

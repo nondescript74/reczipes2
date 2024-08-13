@@ -40,6 +40,10 @@ class SRecipeXOperation: Operation {
     }
 }
 
+extension SRecipeXOperation: @unchecked Sendable {
+     
+}
+
 extension SRecipeXOperation: SRecipeXOperationDataProvider {
     var srecipe: SRecipe? {
         return filterOutput

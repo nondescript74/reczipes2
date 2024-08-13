@@ -68,6 +68,10 @@ class ImageCreateOperation: Operation {
     }
 }
 
+extension ImageCreateOperation: @unchecked Sendable {
+     
+}
+
 extension ImageCreateOperation:  ImageOutputOperationDataProvider, ImageXOperationDataProvider {
     var image: Image? { return myImage }
 }

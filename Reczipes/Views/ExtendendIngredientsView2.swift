@@ -11,7 +11,7 @@ struct ExtendendIngredientsView2: View {
     // MARK: - ObservedObject
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
     // MARK: - Initializer
-    init(sectionitem: SectionItem2) {
+    init(sectionitem: SectionItem3) {
         extractedSRecipe.findExtracted(urlString: sectionitem.url)
     }
     // MARK: - Properties
@@ -30,7 +30,7 @@ struct ExtendendIngredientsView2: View {
 
 
 struct ExtendendIngredientsView2_Previews: PreviewProvider {
-    static let sectionItem = SectionItem2.example
+    static let sectionItem = SectionItem3.example
     static var previews: some View {
         ExtendendIngredientsView2(sectionitem: sectionItem)
              

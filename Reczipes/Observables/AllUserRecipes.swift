@@ -9,7 +9,7 @@ import Foundation
 
 class AllUserRecipes: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Publisher
     @Published var sections = [BookSection]()
     // MARK: - Initializer
@@ -50,48 +50,59 @@ class AllUserRecipes: ObservableObject {
             urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
             urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
             
-            
-            for aurl in urls {
-                do {
-                    let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
-                    let aBookSection = try JSONDecoder().decode(BookSection.self, from: data)
-                    // may need to merge recipes if multiple booksections with same name, different id exist
+            if urls.count > 0 {
 #if DEBUG
-                    if zBug {print(msgs.aur.rawValue + msgs.fuar.rawValue)}
+                if zBug {print(msgs.aur.rawValue + "urls added by user is non zero")}
 #endif
-                    if sections.contains(where: {$0.name == aBookSection.name}) {
-                        var existing = sections.first(where: {$0.name == aBookSection.name})
-                        
-                        for anItem in aBookSection.items {
-//                            if secItems.contains(anItem) {
-//                                 don't add it
-//#if DEBUG
-//                                if zBug {print(msgs.aur.rawValue + " duplicate SectionItem, not adding " + anItem.name)}
-//#endif
-//                            } else {
+                for aurl in urls {
+                    do {
+                        let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
+                        let aBookSection = try JSONDecoder().decode(BookSection.self, from: data)
+                        // may need to merge recipes if multiple booksections with same name, different id exist
+#if DEBUG
+                        if zBug {print(msgs.aur.rawValue + msgs.fuar.rawValue)}
+#endif
+                        if sections.contains(where: {$0.name == aBookSection.name}) {
+                            var existing = sections.first(where: {$0.name == aBookSection.name})
+                            
+                            for anItem in aBookSection.items {
+                                //                            if secItems.contains(anItem) {
+                                //                                 don't add it
+                                //#if DEBUG
+                                //                                if zBug {print(msgs.aur.rawValue + " duplicate SectionItem, not adding " + anItem.name)}
+                                //#endif
+                                //                            } else {
                                 existing?.items.append(anItem)
-//                            }
-                        }
-                        sections = sections.filter({$0.name != aBookSection.name})
-                        if (existing != nil) {
-                            sections.append(existing!)
+                                //                            }
+                            }
+                            sections = sections.filter({$0.name != aBookSection.name})
+                            if (existing != nil) {
+                                sections.append(existing!)
 #if DEBUG
-                            if zBug {print(msgs.aur.rawValue + msgs.combined.rawValue)}
+                                if zBug {print(msgs.aur.rawValue + msgs.combined.rawValue)}
+#endif
+                            }
+                        } else {
+                            sections.append(aBookSection)
+#if DEBUG
+                            if zBug {print(msgs.aur.rawValue + msgs.added.rawValue + aBookSection.name)}
 #endif
                         }
-                    } else {
-                        sections.append(aBookSection)
-#if DEBUG
-                        if zBug {print(msgs.aur.rawValue + msgs.added.rawValue + aBookSection.name)}
-#endif
+                    } catch  {
+                        // not a json file
+                        fatalError("This directory has illegal files")
                     }
-                } catch  {
-                    // not a json file
-                    fatalError("This directory has illegal files")
                 }
+            } else {
+#if DEBUG
+                if zBug {print(msgs.aur.rawValue + "no recipes added by user")}
+#endif
             }
         } catch  {
             // no contents or does not exist
+#if DEBUG
+            if zBug {print(msgs.aur.rawValue + "could not get contents of directory")}
+#endif
         }
     }
     
@@ -112,9 +123,9 @@ class AllUserRecipes: ObservableObject {
     }
     
     var total: Int {
-#if DEBUG
-        print(msgs.aur.rawValue + msgs.total.rawValue, sections.count)
-#endif
+//#if DEBUG
+//        print(msgs.aur.rawValue + msgs.total.rawValue, sections.count)
+//#endif
         return sections.count
     }
     
@@ -145,11 +156,11 @@ class AllUserRecipes: ObservableObject {
         return returningNames
     }
     
-    func getRecipeForName(name: String) -> SectionItem2? {
-        var myReturn: SectionItem2?
+    func getRecipeForName(name: String) -> SectionItem3? {
+        var myReturn: SectionItem3?
         let recnams = getRecipeNames()
         if recnams.contains(name) {
-            var items = [SectionItem2]()
+            var items = [SectionItem3]()
             for abs in sections {
                 items = items + abs.items
             }
@@ -181,10 +192,10 @@ class AllUserRecipes: ObservableObject {
     }
     
     @MainActor
-    func addRecipe(bsectionid: UUID, recipe: SectionItem2) -> Bool {
+    func addRecipe(bsectionid: UUID, recipe: SectionItem3) -> Bool {
         var myReturn: Bool = false
         // is the recipe in any section
-        var items: [SectionItem2] = [SectionItem2]()
+        var items: [SectionItem3] = [SectionItem3]()
         for abs in sections {
             items.append(contentsOf: abs.items)
             if items.contains(recipe) {
@@ -197,7 +208,7 @@ class AllUserRecipes: ObservableObject {
         
         if sections.contains(where: {$0.id == bsectionid}) {
             let bs = sections.first(where: {$0.id == bsectionid})
-            var items: [SectionItem2] = bs!.items
+            var items: [SectionItem3] = bs!.items
             items.append(recipe)
             let newBS = BookSection(id: bsectionid, name: bs!.name, items: items)
             
@@ -243,11 +254,11 @@ class AllUserRecipes: ObservableObject {
         return false
     }
     
-    func removeRecipe(bsectionid: UUID, recipe: SectionItem2) {
+    func removeRecipe(bsectionid: UUID, recipe: SectionItem3) {
         if sections.contains(where: {$0.id == bsectionid}) {
             
             guard let bs = sections.first(where: {$0.id == bsectionid}) else { return }
-            var items: [SectionItem2] = bs.items
+            var items: [SectionItem3] = bs.items
             guard let recpIdx = items.firstIndex(of: recipe) else { return }
             items.remove(at: recpIdx)
             
@@ -265,7 +276,7 @@ class AllUserRecipes: ObservableObject {
     
     func getRecipeNameForId(uuidsent: UUID) -> String {
         var myReturn: String = ""
-        var mySItems: [SectionItem2] = []
+        var mySItems: [SectionItem3] = []
         for asection in sections {
             mySItems += asection.items
         }

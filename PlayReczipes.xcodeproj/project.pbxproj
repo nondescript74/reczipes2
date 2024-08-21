@@ -12,7 +12,9 @@
 		3623CC132B62E0A1008EB223 /* ImageAndNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623CC122B62E0A1008EB223 /* ImageAndNameView.swift */; };
 		363962782B60889F00A212AC /* AnalyzedInstructionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363962772B60889F00A212AC /* AnalyzedInstructionsModel.swift */; };
 		364D87212B5B40E200412AEC /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */; };
+		365034332C754CCE00407823 /* AnalyzedInstructionsExample3.json in Resources */ = {isa = PBXBuildFile; fileRef = 365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */; };
 		368D500D2AA77ABB00C205A0 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */; };
+		3694A5D92C6D4CA400682EA5 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 3694A5D82C6D4C9600682EA5 /* test.json */; };
 		369A241E2B61778F0004E005 /* AnalyzedInstructionsExample2.json in Resources */ = {isa = PBXBuildFile; fileRef = 369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */; };
 		36AD713F2B59EF5800168481 /* AnalyzedInstructionsExample.json in Resources */ = {isa = PBXBuildFile; fileRef = 36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */; };
 		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
@@ -70,7 +72,6 @@
 		93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */; };
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
 		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
-		F80B435329EDF2F300B97056 /* InstructionsDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */; };
 		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
 		F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */; };
 		F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */; };
@@ -133,6 +134,8 @@
 		3623CC122B62E0A1008EB223 /* ImageAndNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndNameView.swift; sourceTree = "<group>"; };
 		363962772B60889F00A212AC /* AnalyzedInstructionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsModel.swift; sourceTree = "<group>"; };
 		364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
+		365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample3.json; sourceTree = "<group>"; };
+		3694A5D82C6D4C9600682EA5 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample2.json; sourceTree = "<group>"; };
 		36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample.json; sourceTree = "<group>"; };
 		930310C72695DC75006910EF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -192,7 +195,6 @@
 		93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAccessor.swift; sourceTree = "<group>"; };
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
 		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
-		F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsDisplayView.swift; sourceTree = "<group>"; };
 		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShipped.json; sourceTree = "<group>"; };
@@ -275,7 +277,6 @@
 				93237A1626A4E3DE00032387 /* RecipeRowView.swift */,
 				F8D9F60F2992A6CB007C98A9 /* RecipeRowNNLView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
-				F80B435229EDF2F300B97056 /* InstructionsDisplayView.swift */,
 				364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F844C6D9299AF603000A49F6 /* ShareRecipeView.swift */,
@@ -349,9 +350,11 @@
 				F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */,
 				F84A453529F87F6C00E2BA90 /* recipesShippedUrls.json */,
 				F81A8D4D28F483D300FDB3EF /* recipes.json */,
+				3694A5D82C6D4C9600682EA5 /* test.json */,
 				F8C77C7C290744E600222C2D /* ingredients_list.json */,
 				36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */,
 				369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */,
+				365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -551,8 +554,10 @@
 				369A241E2B61778F0004E005 /* AnalyzedInstructionsExample2.json in Resources */,
 				F844C6DC299BF6CE000A49F6 /* diets.json in Resources */,
 				F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */,
+				3694A5D92C6D4CA400682EA5 /* test.json in Resources */,
 				F84A453629F87F6C00E2BA90 /* recipesShippedUrls.json in Resources */,
 				36AD713F2B59EF5800168481 /* AnalyzedInstructionsExample.json in Resources */,
+				365034332C754CCE00407823 /* AnalyzedInstructionsExample3.json in Resources */,
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
 				36076C152BF6BECF0090ED26 /* cuisines.json in Resources */,
@@ -628,7 +633,6 @@
 				F81BADD22922FE8E004AE705 /* CRecipeGroupProvider.swift in Sources */,
 				F81BADDC2927DA47004AE705 /* CRecipeViewModel.swift in Sources */,
 				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
-				F80B435329EDF2F300B97056 /* InstructionsDisplayView.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
 				934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */,
 				9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */,
@@ -795,7 +799,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 432;
+				CURRENT_PROJECT_VERSION = 439;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -842,7 +846,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 432;
+				CURRENT_PROJECT_VERSION = 439;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

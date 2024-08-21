@@ -9,21 +9,24 @@ import SwiftUI
 
 struct AnalyzedInstructionsView: View {
     init(analyzedInstructions: AnalyzedInstructions) {
-        self.myAnalyInstr = analyzedInstructions
+        self.myAnalyzedInstructions = analyzedInstructions
     }
     
-    fileprivate var myAnalyInstr: AnalyzedInstructions?
+    fileprivate var myAnalyzedInstructions: AnalyzedInstructions
     
     var body: some View {
-        Text("The number of steps is: " + (myAnalyInstr?.steps?.count.description ?? "No Steps"))
+        Text("The number of instructions is: " + (myAnalyzedInstructions.analyzedInstructions.count.description))
         List {
-            ForEach((myAnalyInstr?.steps)!, id: \.self) { aStep in
-                Text(aStep!.step ?? "Step has no description")
-            }.disabled(myAnalyInstr?.steps == nil || myAnalyInstr?.steps?.count == 0)
+            ForEach(myAnalyzedInstructions.analyzedInstructions, id: \.self) { aInst in
+                Text(aInst.name)
+                ForEach(aInst.steps, id: \.self) { aStep in
+                    Text(aStep.number.description)
+                }
+            }.disabled(myAnalyzedInstructions.analyzedInstructions.count == 0)
         }
     }
 }
 
 #Preview {
-    AnalyzedInstructionsView(analyzedInstructions: AnalyzedInstructions.analyInstrExample)
+    AnalyzedInstructionsView(analyzedInstructions: Bundle.main.decode(AnalyzedInstructions.self, from: .init("AnalyzedInstructionsExample.json")))
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class OrderingList: ObservableObject {
     // MARK: - Publisher
-    @Published var items = [SectionItem2]()
+    @Published var items = [SectionItem3]()
     @Published var quantities:NSMutableDictionary = NSMutableDictionary()
     // MARK: - Properties
     fileprivate var maxamount = 1.0
@@ -36,7 +36,7 @@ class OrderingList: ObservableObject {
         }
     }
     // MARK: - Methods
-    func change(item: SectionItem2, amount: Double) {
+    func change(item: SectionItem3, amount: Double) {
         if items.contains(item) {
             let normalizedAmount = max(maxamount, min(minamount,amount))
             quantities.setValue(normalizedAmount, forKey: item.name)
@@ -46,7 +46,7 @@ class OrderingList: ObservableObject {
 #endif
     }
     
-    func add(item: SectionItem2) {
+    func add(item: SectionItem3) {
         if !items.contains(item) {  // user may have hit the order button multiple times on the same recipe
             items.append(item)
             self.quantities.setValue(1.0, forKey: item.name)
@@ -56,7 +56,7 @@ class OrderingList: ObservableObject {
         }
     }
     
-    func remove(item: SectionItem2) {
+    func remove(item: SectionItem3) {
         if let index = items.firstIndex(of: item) {
             items.remove(at: index)
             quantities.removeObject(forKey: item.name)

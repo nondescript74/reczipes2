@@ -83,7 +83,7 @@ fileprivate enum msgs: String {
     case fuar = "Found user added recipe"
     case combined = "Combined booksections into one booksection"
     case ci = "CommonItems: "
-    case csts = "Converted SRecipe to SectionItem2 "
+    case csts = "Converted SRecipe to SectionItem3 "
 }
 
 func hasSpecialCharacters(string: String) -> Bool {
@@ -138,15 +138,27 @@ func getDocuDirUrl() -> URL {
 //
 //    return item
 //}
+//
+//func convertSRecipeToSectionItem2(srecipe: SRecipe) -> SectionItem2 {
+//    let item = SectionItem2(id: UUID(),
+//                            recipeId: getSRecipeID(srecipe: srecipe),
+//                            name: srecipe.title ?? SectionItem2.example.name,
+//                            url: srecipe.sourceUrl ?? SectionItem2.example.url,
+//                            imageUrl: srecipe.image,
+//                            photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
+//                            restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
+//    return item
+//}
 
-func convertSRecipeToSectionItem2(srecipe: SRecipe) -> SectionItem2 {
-    let item = SectionItem2(id: UUID(),
+func convertSRecipeToSectionItem3(srecipe: SRecipe) -> SectionItem3 {
+    let item = SectionItem3(id: UUID(),
                             recipeId: getSRecipeID(srecipe: srecipe),
-                            name: srecipe.title ?? SectionItem2.example.name,
-                            url: srecipe.sourceUrl ?? SectionItem2.example.url,
+                            name: srecipe.title ?? SectionItem3.example.name,
+                            url: srecipe.sourceUrl ?? SectionItem3.example.url,
                             imageUrl: srecipe.image,
-                            photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
-                            restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
+                            photocredit: srecipe.creditsText ?? SectionItem3.example.photocredit,
+                            restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe),
+                            summary: srecipe.summary ?? SectionItem3.example.summary)
     return item
 }
 

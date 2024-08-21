@@ -9,12 +9,12 @@ import SwiftUI
 
 struct RecipeRowView: View {
     // MARK: - Debug
-    private var zBug: Bool = false 
+    private var zBug: Bool = true
     // MARK: - Environment
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Initializer
-    init(sectionItem: SectionItem2) {
+    init(sectionItem: SectionItem3) {
         self.item = sectionItem
         self.cuisine = ""
         // check for empty
@@ -31,7 +31,7 @@ struct RecipeRowView: View {
         }
     }
     
-    init(sectionItem: SectionItem2, cuisine: String) {
+    init(sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
         // check for empty
@@ -44,7 +44,7 @@ struct RecipeRowView: View {
     }
     
     // MARK: - Properties
-    fileprivate var item: SectionItem2
+    fileprivate var item: SectionItem3
     fileprivate var cuisine: String = ""
     private let widthImage: CGFloat = 100
     private let heightImage: CGFloat = 70
@@ -81,8 +81,8 @@ struct RecipeRowView: View {
 struct RecipeRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            RecipeRowView(sectionItem: SectionItem2.example, cuisine: "Indian")
-            RecipeRowView(sectionItem: SectionItem2.example2)
+            RecipeRowView(sectionItem: SectionItem3.example, cuisine: "Indian")
+            RecipeRowView(sectionItem: SectionItem3.example2)
         }
     }
 }

@@ -15,7 +15,7 @@ struct ProfileSummary: View {
     // MARK: - Properties
     var profile: Profile
     // MARK: - Methods
-    fileprivate func getRecips() -> [SectionItem2] {
+    fileprivate func getRecips() -> [SectionItem3] {
         let myReturn = aur.sections.flatMap({$0.items})
         return myReturn
     }

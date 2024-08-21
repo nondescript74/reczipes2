@@ -20,14 +20,14 @@ struct RecipeDetailView: View {
     @ObservedObject var anImage = WebQueryRecipes()
     @ObservedObject var analyInstr = AnalyzedInstructionsModel()
     // MARK: - Initializer
-    init(imageString: String, sectionItem: SectionItem2, cuisine: String) {
+    init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
 //        analyInstr.executeQuery(recipeId: item.recipeId ?? 324624)
     }
     // MARK: - Properties
-    var item: SectionItem2
+    var item: SectionItem3
     var cuisine: String = ""
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -119,53 +119,53 @@ struct RecipeDetailView: View {
             return false
         }
         await analyInstr.executeQuery(recipeId: item.recipeId ?? 324624)
-        return (analyInstr.result != nil)
+        return true
     }
     
-    fileprivate func checkRecipeIdValid(recipeid: Int?) -> Bool {
-        if recipeid == nil {
-#if DEBUG
-            print(msgs.RDV.rawValue, "recipe id supplied is nil")
-#endif
-            return false
-        } else
-        if recipeid! <= 0 {
-#if DEBUG
-            print(msgs.RDV.rawValue, msgs.ridltz.rawValue)
-#endif
-            return false
-        } else
-        if recipeid! >= 9999999 {
-#if DEBUG
-            print(msgs.RDV.rawValue, msgs.ridgnnn.rawValue)
-#endif
-            return false
-        } else {
-#if DEBUG
-            print(msgs.RDV.rawValue, msgs.riiv.rawValue)
-#endif
-            return true
-        }
-    }
+//    fileprivate func checkRecipeIdValid(recipeid: Int?) -> Bool {
+//        if recipeid == nil {
+//#if DEBUG
+//            print(msgs.RDV.rawValue, "recipe id supplied is nil")
+//#endif
+//            return false
+//        } else
+//        if recipeid! <= 0 {
+//#if DEBUG
+//            print(msgs.RDV.rawValue, msgs.ridltz.rawValue)
+//#endif
+//            return false
+//        } else
+//        if recipeid! >= 9999999 {
+//#if DEBUG
+//            print(msgs.RDV.rawValue, msgs.ridgnnn.rawValue)
+//#endif
+//            return false
+//        } else {
+//#if DEBUG
+//            print(msgs.RDV.rawValue, msgs.riiv.rawValue)
+//#endif
+//            return true
+//        }
+//    }
     
-    fileprivate func searchAnalyzedInstructions(matching id: Int) async -> AnalyzedInstructions {
-        let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
-        let url = URL(string: "https://api.spoonacular.com/recipes/\(id)/analyzedInstructions?" + key)
-#if DEBUG
-        if zBug {print(msgs.RDV.rawValue + url!.absoluteString)}
-#endif
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url!)
-            let ai = try JSONDecoder().decode([AnalyzedInstructions].self, from: data)
-#if DEBUG
-            if zBug {print(msgs.RDV.rawValue, ai)}
-            if zBug {print(msgs.noai.rawValue, ai.count > 1)}
-#endif
-            return ai.first!
-        } catch  {
-            fatalError(msgs.RDV.rawValue + msgs.cnd.rawValue)
-        }
-    }
+//    fileprivate func searchAnalyzedInstructions(matching id: Int) async -> AnalyzedInstructions {
+//        let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
+//        let url = URL(string: "https://api.spoonacular.com/recipes/\(id)/analyzedInstructions?" + key)
+//#if DEBUG
+//        if zBug {print(msgs.RDV.rawValue + url!.absoluteString)}
+//#endif
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: url!)
+//            let ai = try JSONDecoder().decode(AnalyzedInstructions.self, from: data)
+//#if DEBUG
+//            if zBug {print(msgs.RDV.rawValue, ai)}
+//            if zBug {print(msgs.noai.rawValue, ai.setOfAnalyzedInstruction.count.description)}
+//#endif
+//            return ai
+//        } catch  {
+//            fatalError(msgs.RDV.rawValue + msgs.cnd.rawValue)
+//        }
+//    }
     
 
     
@@ -214,14 +214,14 @@ struct RecipeDetailView: View {
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.book.rawValue, reversed: true)
-                    }
+                    }.disabled(!self.hasNotes())
                     Button(action: {
                         // What to perform
                         self.showingImages.toggle()
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
-                    }
+                    }.disabled(!self.hasImages())
                     Button(action: {
                         // What to perform
                         Task {
@@ -232,25 +232,7 @@ struct RecipeDetailView: View {
                     }) {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
-                    }
-                    /*
-                     Button(action: {
-                         // What to perform
-                         Task {
-                             if await hasAnalyzedInstructions() == true {
-                                 self.showingInstructions = true
-                             }
-                         }
-                     }) {
-                         // How the button looks like
-                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
-                     }
-                     */
-//                    Button(action: {
-//                        self.showShareSheet = true
-//                    }) {
-//                        RoundButton3View(someTextTop: labelz.share.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.share.rawValue, reversed: true)
-//                    }
+                    }.disabled(item.recipeId == nil)
                 }
                 Divider()
                 if showingNotes == true && hasNotes() {
@@ -268,7 +250,8 @@ struct RecipeDetailView: View {
                 AddNoteView()
             }
             .sheet(isPresented: $showingInstructions) {
-                InstructionsDisplayView(analyzedInstructions: analyInstr.result ?? AnalyzedInstructions.analyInstrExample)
+//                InstructionsDisplayView(analyzedInstructions: analyInstr.result ?? AnalyzedInstructions.analyInstrExample)
+//                AnalyzedInstructionsView (analyzedInstructions: <#AnalyzedInstructions#>)
             }
 //            .sheet(isPresented: $showShareSheet) {
 //                ShareRecipeView(sectionItem: item)
@@ -286,13 +269,16 @@ struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - Environment
     static let order = OrderingList()
     static let aur = AllUserRecipes()
+    static let aun = AllUserNotes()
+    static let aui = AllUserImages()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem2.example3, cuisine: aur.getBookSectionNames().last!)
+            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem3.example3, cuisine: aur.getBookSectionNames().last!)
                 .environmentObject(order)
                 .environmentObject(aur)
+                .environmentObject(aun)
+                .environmentObject(aui)
         }
     }
 }
-

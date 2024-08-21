@@ -41,8 +41,8 @@ struct AddNoteView: View {
         return aur.sections
     }
     
-    fileprivate func constructAllRecipes() -> [SectionItem2] {
-        var myReturn: [SectionItem2] = []
+    fileprivate func constructAllRecipes() -> [SectionItem3] {
+        var myReturn: [SectionItem3] = []
         let myBs: [BookSection] = self.constructAllSections()
         if myBs.isEmpty {
             // nothing to do, no available booksections

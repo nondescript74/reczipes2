@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeRowNNLView: View {
     // MARK: - Debug
-    private var zBug: Bool = false
+    private var zBug: Bool = true
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     //MARK: - Environment
@@ -71,7 +71,7 @@ struct RecipeRowNNLView: View {
                 
                 Button(action: {
                     // What to perform
-                    let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem2(srecipe: sRecipe))
+                    let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
                     if result { recipeSaved = true } else { recipeSaved = false }
                 }) {
                     // How the button looks like

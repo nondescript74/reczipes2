@@ -92,7 +92,7 @@ struct BookSectionIDName: Codable, Equatable, Identifiable, Hashable {
 struct BookSection: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
     var name: String
-    var items: [SectionItem2]
+    var items: [SectionItem3]
     
     static func == (lhs: BookSection, rhs: BookSection) -> Bool {
         if lhs.id == rhs.id {
@@ -130,7 +130,7 @@ struct SectionItemNotesImages: Codable, Equatable, Identifiable, Hashable {
     }
 }
 
-struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
+struct SectionItem3: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
     var recipeId: Int?
     var name: String
@@ -138,12 +138,13 @@ struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
     var imageUrl: String?
     var photocredit: String
     var restrictions: [String]
+    var summary: String?
     
     var mainImage: String {
         name
     }
     
-    static func == (lhs: SectionItem2, rhs: SectionItem2) -> Bool {
+    static func == (lhs: SectionItem3, rhs: SectionItem3) -> Bool {
         if lhs.name == rhs.name {
             return true
         } else {
@@ -155,13 +156,15 @@ struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
         hasher.combine(name)
     }
     
-    static let example = SectionItem2(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, recipeId: 9999981, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
-    static let example2 = SectionItem2(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, recipeId: 9999982, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
-    static let example3 = SectionItem2(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, recipeId: 9999983, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
+    static let example = SectionItem3(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, recipeId: 9999981, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"], summary: "There is no summary for the example1")
+    static let example2 = SectionItem3(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, recipeId: 9999982, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"], summary: "There is no summary for the example2")
+    static let example3 = SectionItem3(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, recipeId: 9999983, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"], summary: "There is no summary for the example3")
 }
 
-//struct SectionItem: Codable, Equatable, Identifiable, Hashable {
+
+//struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
 //    var id: UUID
+//    var recipeId: Int?
 //    var name: String
 //    var url: String
 //    var imageUrl: String?
@@ -172,7 +175,7 @@ struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
 //        name
 //    }
 //    
-//    static func == (lhs: SectionItem, rhs: SectionItem) -> Bool {
+//    static func == (lhs: SectionItem2, rhs: SectionItem2) -> Bool {
 //        if lhs.name == rhs.name {
 //            return true
 //        } else {
@@ -184,10 +187,9 @@ struct SectionItem2: Codable, Equatable, Identifiable, Hashable {
 //        hasher.combine(name)
 //    }
 //    
-//    static let example = SectionItem(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
-//    static let example2 = SectionItem(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
-//    static let example3 = SectionItem(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
-//    
+//    static let example = SectionItem2(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, recipeId: 9999981, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
+//    static let example2 = SectionItem2(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, recipeId: 9999982, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
+//    static let example3 = SectionItem2(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, recipeId: 9999983, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
 //}
 
 struct Restriction: Codable, Hashable, Equatable {
@@ -429,44 +431,94 @@ struct Equipment: Codable, Hashable, Equatable {
      */
 }
 
-struct Step: Codable, Hashable, Equatable {
-    var number: Int
-    var step: String?
-    var ingredients:[Ingredient?]?
-    var equipment:[Equipment?]?
-    var length:Length?
+
+
+// MARK: - Step
+struct Step: Codable, Equatable, Hashable {
+    let number: Int
+    let step: String
+    let ingredients, equipment: [Ent]
+    let length: Length?
     
-    static func == (lhs: Step, rhs: Step) -> Bool {
-        if lhs.step == rhs.step && lhs.number == rhs.number {
+        static func == (lhs: Step, rhs: Step) -> Bool {
+            if lhs.step == rhs.step && lhs.number == rhs.number {
+                return true
+            } else {
+                return false
+            }
+        }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(number)
+        hasher.combine(step)
+    }
+}
+
+// MARK: - Ent
+struct Ent: Codable, Equatable, Hashable {
+    let id: Int
+    let name, localizedName: String
+    let image: String
+    let temperature: Length?
+    
+    static func == (lhs: Ent, rhs: Ent) -> Bool {
+        if lhs.id == rhs.id && lhs.name == rhs.name {
             return true
         } else {
             return false
         }
     }
-    
-    static let stepExample = Step(number: 1, 
-                                  step: "In a medium saucepan, add the quinoa and chicken stock. Bring to boil over medium high heat. Once boiling, reduce heat to low and cover pot. Cook until all the liquid is absorbed, about 15 minutes. Stir in the coconut oil, juice and zest of lime, salt and pepper.",
-                                  ingredients: Ingredient.ingredientSet1,
-                                  equipment: Equipment.equipmentSet1,
-                                  length: Length.lengthMinutesExample1)
-    static let stepExample2 = Step(number: 2,
-                                  step: "Let quinoa cool completely before using. You can do this ahead of time or the day before.In a large wok, heat one tablespoon coconut oil over medium heat.",
-                                  ingredients: Ingredient.ingredientSet2,
-                                   equipment: Equipment.equipmentSet3)
-    static let stepExample3 = Step(number: 3,
-                                  step: "Add in onions and peppers and cook until soft, about 2 minutes.",
-                                  ingredients: Ingredient.ingredientSet3,
-                                  equipment: Equipment.equipmentSet3,
-                                  length: Length.lengthMinutesExample3)
-    
-    
-    static let stepExample21 = Step(number: 2, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
-    static let stepExample22 = Step(number: 3, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
+public func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+    hasher.combine(name)
+}
 }
 
+// MARK: - Length
+//struct Length: Codable {
+//    let number: Int
+//    let unit: String
+//}
+
+//typealias Welcome = [WelcomeElement]
+
+//struct Step: Codable, Hashable, Equatable {
+//    var number: Int
+//    var step: String
+//    var ingredients:[Ingredient?]?
+//    var equipment:[Equipment?]?
+//    var length:Length?
+//    
+//    static func == (lhs: Step, rhs: Step) -> Bool {
+//        if lhs.step == rhs.step && lhs.number == rhs.number {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
+//    static let stepExample = Step(number: 1, 
+//                                  step: "In a medium saucepan, add the quinoa and chicken stock. Bring to boil over medium high heat. Once boiling, reduce heat to low and cover pot. Cook until all the liquid is absorbed, about 15 minutes. Stir in the coconut oil, juice and zest of lime, salt and pepper.",
+//                                  ingredients: Ingredient.ingredientSet1,
+//                                  equipment: Equipment.equipmentSet1,
+//                                  length: Length.lengthMinutesExample1)
+//    static let stepExample2 = Step(number: 2,
+//                                  step: "Let quinoa cool completely before using. You can do this ahead of time or the day before.In a large wok, heat one tablespoon coconut oil over medium heat.",
+//                                  ingredients: Ingredient.ingredientSet2,
+//                                   equipment: Equipment.equipmentSet3)
+//    static let stepExample3 = Step(number: 3,
+//                                  step: "Add in onions and peppers and cook until soft, about 2 minutes.",
+//                                  ingredients: Ingredient.ingredientSet3,
+//                                  equipment: Equipment.equipmentSet3,
+//                                  length: Length.lengthMinutesExample3)
+//    
+//    
+//    static let stepExample21 = Step(number: 2, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
+//    static let stepExample22 = Step(number: 3, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
+//}
+
 struct Length: Codable, Hashable, Equatable {
-    var number:Double
-    var unit:String?
+    var number:Int
+    var unit:String
     
     static func == (lhs: Length, rhs: Length) -> Bool {
         if lhs.number == rhs.number && lhs.unit == rhs.unit {
@@ -475,29 +527,40 @@ struct Length: Codable, Hashable, Equatable {
             return false
         }
     }
-    static let lengthSecondsExample = Length(number: 10, unit: "seconds")
-    static let lengthMinutesExample1 = Length(number: 15, unit: "minutes")
-    static let lengthMinutesExample3 = Length(number: 2, unit: "minutes")
+//    static let lengthSecondsExample = Length(number: 10, unit: "seconds")
+//    static let lengthMinutesExample1 = Length(number: 15, unit: "minutes")
+//    static let lengthMinutesExample3 = Length(number: 2, unit: "minutes")
 }
 
-struct Instruction: Codable, Hashable, Identifiable {
-    var id: Int64
-    var text: String
-    
-    static func == (lhs: Instruction, rhs: Instruction) -> Bool {
-        if lhs.id == rhs.id && lhs.text == rhs.text {
-            return true
-        } else {
-            return false
-        }
-    }
+//struct Instruction: Codable, Hashable, Identifiable {
+//    var id: Int64
+//    var text: String
+//    
+//    static func == (lhs: Instruction, rhs: Instruction) -> Bool {
+//        if lhs.id == rhs.id && lhs.text == rhs.text {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//}
+
+
+// MARK: - WelcomeElement
+//struct WelcomeElement: Codable {
+//    let name: String
+//    let steps: [Step]
+//}
+
+struct AnalyzedInstructions: Codable {
+    let analyzedInstructions: [AnalyzedInstruction]
 }
 
-struct AnalyzedInstructions: Codable, Hashable, Equatable {
-    var name: String?
-    var steps: [Step?]?
+struct AnalyzedInstruction: Codable, Equatable, Hashable {
+    let name: String
+    let steps: [Step]
     
-    static func == (lhs: AnalyzedInstructions, rhs: AnalyzedInstructions) -> Bool {
+    static func == (lhs: AnalyzedInstruction, rhs: AnalyzedInstruction) -> Bool {
         if lhs.name == rhs.name && lhs.steps == rhs.steps {
             return true
         } else {
@@ -505,9 +568,30 @@ struct AnalyzedInstructions: Codable, Hashable, Equatable {
         }
     }
     
-    static let analyInstrExample = AnalyzedInstructions(name: "Analyzed Instructions Example", steps: [Step.stepExample, Step.stepExample2, Step.stepExample3])
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(steps)
+    }
     
+//    static let analyzedInstructionExample = AnalyzedInstruction(name: "Analyzed Instructions Example", steps: [Step.stepExample, Step.stepExample2, Step.stepExample3])
+//    static let analyzedInstructionExample2 = Bundle.main.decode(AnalyzedInstruction.self, from: "AnalyzedInstructionExample2.json")
+//    static let analyzedInstructionExample3 = Bundle.main.decode(AnalyzedInstruction.self, from: "AnalyzedInstructionExample3.json")
 }
+
+//struct AnalyzedInstructions: Codable, Equatable {
+//    var id: UUID = UUID()
+//    var setOfAnalyzedInstruction: [AnalyzedInstruction] = [AnalyzedInstruction]()
+//    
+//    static func == (lhs: AnalyzedInstructions, rhs: AnalyzedInstructions) -> Bool {
+//        if (lhs.setOfAnalyzedInstruction == rhs.setOfAnalyzedInstruction) && (lhs.id == rhs.id) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
+////    static let analyzedInstructionsExample = AnalyzedInstructions(setOfAnalyzedInstruction: [AnalyzedInstruction.analyzedInstructionExample, AnalyzedInstruction.analyzedInstructionExample2])
+//}
 struct CRecipe: Identifiable, Codable, Hashable {
     /*
      id": 488633,
@@ -545,9 +629,9 @@ struct SRecipeGroup: Codable  {
 }
 
 
-struct SRecipe: Codable, Hashable, Identifiable, Equatable {
+struct SRecipe: Codable, Identifiable, Equatable {
     var aggregateLikes:Int64?
-    var analyzedInstructions:[AnalyzedInstructions?]? //
+    var analyzedInstructions:AnalyzedInstruction? //
     var cheap:Bool?
     var cookingMinutes:Int64?
     var creditsText:String?

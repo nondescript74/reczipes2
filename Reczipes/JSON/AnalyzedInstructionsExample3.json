@@ -1,0 +1,329 @@
+[
+    {
+        "name": "Prepare ingredients for grilling",
+        "steps": [
+            {
+                "number": 1,
+                "step": "Heat the oven to 350 degrees F.",
+                "ingredients": [],
+                "equipment": [
+                    {
+                        "id": 404784,
+                        "name": "oven",
+                        "localizedName": "oven",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/oven.jpg",
+                        "temperature": {
+                            "number": 350,
+                            "unit": "Fahrenheit"
+                        }
+                    }
+                ]
+            },
+            {
+                "number": 2,
+                "step": "Cut the eggplants in half, toss them in some olive oil, and season them with salt and pepper.",
+                "ingredients": [
+                    {
+                        "id": 1102047,
+                        "name": "salt and pepper",
+                        "localizedName": "salt and pepper",
+                        "image": "salt-and-pepper.jpg"
+                    },
+                    {
+                        "id": 11209,
+                        "name": "eggplant",
+                        "localizedName": "eggplant",
+                        "image": "eggplant.png"
+                    },
+                    {
+                        "id": 4053,
+                        "name": "olive oil",
+                        "localizedName": "olive oil",
+                        "image": "olive-oil.jpg"
+                    }
+                ],
+                "equipment": []
+            },
+            {
+                "number": 3,
+                "step": "Put them cut side down on a baking sheet and bake for 20 minutes. Meanwhile, cut the tomatoes in half, toss them in some olive oil, and season them with salt and pepper; set aside. Toast the fennel seeds in a dry skillet over medium heat just until they become fragrant, about 1 minute. Grind them to a powder in a spice mill.",
+                "ingredients": [
+                    {
+                        "id": 1102047,
+                        "name": "salt and pepper",
+                        "localizedName": "salt and pepper",
+                        "image": "salt-and-pepper.jpg"
+                    },
+                    {
+                        "id": 2018,
+                        "name": "fennel seeds",
+                        "localizedName": "fennel seeds",
+                        "image": "fennel-seeds.jpg"
+                    },
+                    {
+                        "id": 4053,
+                        "name": "olive oil",
+                        "localizedName": "olive oil",
+                        "image": "olive-oil.jpg"
+                    },
+                    {
+                        "id": 11529,
+                        "name": "tomato",
+                        "localizedName": "tomato",
+                        "image": "tomato.png"
+                    },
+                    {
+                        "id": 0,
+                        "name": "sandwich bread",
+                        "localizedName": "sandwich bread",
+                        "image": "white-bread.jpg"
+                    }
+                ],
+                "equipment": [
+                    {
+                        "id": 404727,
+                        "name": "baking sheet",
+                        "localizedName": "baking sheet",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/baking-sheet.jpg"
+                    },
+                    {
+                        "id": 404784,
+                        "name": "oven",
+                        "localizedName": "oven",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/oven.jpg"
+                    },
+                    {
+                        "id": 404645,
+                        "name": "frying pan",
+                        "localizedName": "frying pan",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/pan.png"
+                    }
+                ],
+                "length": {
+                    "number": 21,
+                    "unit": "minutes"
+                }
+            },
+            {
+                "number": 4,
+                "step": "Brush some olive oil onto the tuna steaks and sprinkle them with the ground fennel. Cover and refrigerate until ready to grill.",
+                "ingredients": [
+                    {
+                        "id": 98953,
+                        "name": "ground fennel",
+                        "localizedName": "ground fennel",
+                        "image": "hemp-protein-powder.png"
+                    },
+                    {
+                        "id": 0,
+                        "name": "tuna steak",
+                        "localizedName": "tuna steak",
+                        "image": "tuna-steak.png"
+                    },
+                    {
+                        "id": 4053,
+                        "name": "olive oil",
+                        "localizedName": "olive oil",
+                        "image": "olive-oil.jpg"
+                    }
+                ],
+                "equipment": [
+                    {
+                        "id": 404706,
+                        "name": "grill",
+                        "localizedName": "grill",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/grill.jpg"
+                    }
+                ]
+            },
+            {
+                "number": 5,
+                "step": "Make the sauce: Cook the chicken stock with the lemon peel over medium-high heat for about 10 minutes, or until it has reduced by half. Take the pan off the heat and discard the lemon peel. Stir in the paprika and creme fraiche and season it with a little salt and pepper. Buzz the sauce with an immersion blender (or process it in a regular blender) until it is foamy.",
+                "ingredients": [
+                    {
+                        "id": 1102047,
+                        "name": "salt and pepper",
+                        "localizedName": "salt and pepper",
+                        "image": "salt-and-pepper.jpg"
+                    },
+                    {
+                        "id": 6172,
+                        "name": "chicken stock",
+                        "localizedName": "chicken stock",
+                        "image": "chicken-broth.png"
+                    },
+                    {
+                        "id": 1001056,
+                        "name": "creme fraiche",
+                        "localizedName": "creme fraiche",
+                        "image": "sour-cream.jpg"
+                    },
+                    {
+                        "id": 9156,
+                        "name": "lemon peel",
+                        "localizedName": "lemon peel",
+                        "image": "zest-lemon.jpg"
+                    },
+                    {
+                        "id": 2028,
+                        "name": "paprika",
+                        "localizedName": "paprika",
+                        "image": "paprika.jpg"
+                    },
+                    {
+                        "id": 0,
+                        "name": "sauce",
+                        "localizedName": "sauce",
+                        "image": ""
+                    }
+                ],
+                "equipment": [
+                    {
+                        "id": 404776,
+                        "name": "immersion blender",
+                        "localizedName": "immersion blender",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/immersion-blender.png"
+                    },
+                    {
+                        "id": 404726,
+                        "name": "blender",
+                        "localizedName": "blender",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/blender.png"
+                    },
+                    {
+                        "id": 404645,
+                        "name": "frying pan",
+                        "localizedName": "frying pan",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/pan.png"
+                    }
+                ],
+                "length": {
+                    "number": 10,
+                    "unit": "minutes"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Get grilling",
+        "steps": [
+            {
+                "number": 1,
+                "step": "Heat the grill; brush the grate with some olive oil. Season the tuna with salt and pepper and drizzle over some olive oil. Grill them until medium-rare (or to your liking), about 3 to 4 minutes per side. Grill the tomatoes and eggplant until slightly charred.",
+                "ingredients": [
+                    {
+                        "id": 1102047,
+                        "name": "salt and pepper",
+                        "localizedName": "salt and pepper",
+                        "image": "salt-and-pepper.jpg"
+                    },
+                    {
+                        "id": 4053,
+                        "name": "olive oil",
+                        "localizedName": "olive oil",
+                        "image": "olive-oil.jpg"
+                    },
+                    {
+                        "id": 11209,
+                        "name": "eggplant",
+                        "localizedName": "eggplant",
+                        "image": "eggplant.png"
+                    },
+                    {
+                        "id": 11529,
+                        "name": "tomato",
+                        "localizedName": "tomato",
+                        "image": "tomato.png"
+                    },
+                    {
+                        "id": 10015121,
+                        "name": "tuna",
+                        "localizedName": "tuna",
+                        "image": "https://spoonacular.com/cdn/ingredients_100x100/canned-tuna.png"
+                    }
+                ],
+                "equipment": [
+                    {
+                        "id": 404706,
+                        "name": "grill",
+                        "localizedName": "grill",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/grill.jpg"
+                    }
+                ],
+                "length": {
+                    "number": 3,
+                    "unit": "minutes"
+                }
+            },
+            {
+                "number": 2,
+                "step": "Put the grilled tomatoes and eggplant into a bowl and toss them with some of the sauce.",
+                "ingredients": [
+                    {
+                        "id": 11209,
+                        "name": "eggplant",
+                        "localizedName": "eggplant",
+                        "image": "eggplant.png"
+                    },
+                    {
+                        "id": 11529,
+                        "name": "tomato",
+                        "localizedName": "tomato",
+                        "image": "tomato.png"
+                    },
+                    {
+                        "id": 0,
+                        "name": "sauce",
+                        "localizedName": "sauce",
+                        "image": ""
+                    }
+                ],
+                "equipment": [
+                    {
+                        "id": 404783,
+                        "name": "bowl",
+                        "localizedName": "bowl",
+                        "image": "https://spoonacular.com/cdn/equipment_100x100/bowl.jpg"
+                    }
+                ]
+            },
+            {
+                "number": 3,
+                "step": "To serve: Top the tuna steaks with the grilled tomato and eggplant salad. Spoon some more warm sauce over and garnish with torn basil leaves.",
+                "ingredients": [
+                    {
+                        "id": 2044,
+                        "name": "fresh basil",
+                        "localizedName": "fresh basil",
+                        "image": "fresh-basil.jpg"
+                    },
+                    {
+                        "id": 0,
+                        "name": "tuna steak",
+                        "localizedName": "tuna steak",
+                        "image": "tuna-steak.png"
+                    },
+                    {
+                        "id": 11209,
+                        "name": "eggplant",
+                        "localizedName": "eggplant",
+                        "image": "eggplant.png"
+                    },
+                    {
+                        "id": 11529,
+                        "name": "tomato",
+                        "localizedName": "tomato",
+                        "image": "tomato.png"
+                    },
+                    {
+                        "id": 0,
+                        "name": "sauce",
+                        "localizedName": "sauce",
+                        "image": ""
+                    }
+                ],
+                "equipment": []
+            }
+        ]
+    }
+]

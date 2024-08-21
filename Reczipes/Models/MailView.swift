@@ -20,11 +20,11 @@ struct MailView: UIViewControllerRepresentable {
     // MARK: - State
     @Binding var result: Result<MFMailComposeResult, Error>?
     // MARK: - Properties
-    var sectItem: SectionItem2
+    var sectItem: SectionItem3
     fileprivate enum msgs: String {
         case mv = "MailView: "
         case messSubj = "Hi, thought you might like this recipe I cook"
-        case failedData = "Failed encoding SectionItem2 to Data"
+        case failedData = "Failed encoding SectionItem3 to Data"
         case noAddress = "User mail sending not available"
         case success = "mailComposeController finished with success"
         case failedMC = "mailComposeController finished with failure"
@@ -145,7 +145,7 @@ struct MailView: UIViewControllerRepresentable {
 }
 
 //struct MailView_Previews: PreviewProvider {
-//    static let sectItem = SectionItem2.example2
+//    static let sectItem = SectionItem3.example2
 //    static var previews: some View {
 //        MailView(result: nil, sectItem: sectItem)
 //    }

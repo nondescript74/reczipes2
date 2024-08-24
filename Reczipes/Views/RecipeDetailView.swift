@@ -18,7 +18,7 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
-    @ObservedObject var analyInstr = AnalyzedInstructionsModel()
+//    @ObservedObject var analyInstr = AnalyzedInstructionsModel()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
@@ -118,8 +118,8 @@ struct RecipeDetailView: View {
 #endif
             return false
         }
-        await analyInstr.executeQuery(recipeId: item.recipeId ?? 324624)
-        return true
+//        await analyInstr.executeQuery(recipeId: item.recipeId ?? 324624)
+        return false
     }
     
 //    fileprivate func checkRecipeIdValid(recipeid: Int?) -> Bool {

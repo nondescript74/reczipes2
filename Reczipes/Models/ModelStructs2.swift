@@ -431,47 +431,47 @@ struct Equipment: Codable, Hashable, Equatable {
      */
 }
 
+//
+//
+//// MARK: - Step
+//struct Step: Codable, Equatable, Hashable {
+//    let number: Int
+//    let step: String
+//    let ingredients, equipment: [Ent]
+//    let length: Length?
+//    
+//        static func == (lhs: Step, rhs: Step) -> Bool {
+//            if lhs.step == rhs.step && lhs.number == rhs.number {
+//                return true
+//            } else {
+//                return false
+//            }
+//        }
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(number)
+//        hasher.combine(step)
+//    }
+//}
 
-
-// MARK: - Step
-struct Step: Codable, Equatable, Hashable {
-    let number: Int
-    let step: String
-    let ingredients, equipment: [Ent]
-    let length: Length?
-    
-        static func == (lhs: Step, rhs: Step) -> Bool {
-            if lhs.step == rhs.step && lhs.number == rhs.number {
-                return true
-            } else {
-                return false
-            }
-        }
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(number)
-        hasher.combine(step)
-    }
-}
-
-// MARK: - Ent
-struct Ent: Codable, Equatable, Hashable {
-    let id: Int
-    let name, localizedName: String
-    let image: String
-    let temperature: Length?
-    
-    static func == (lhs: Ent, rhs: Ent) -> Bool {
-        if lhs.id == rhs.id && lhs.name == rhs.name {
-            return true
-        } else {
-            return false
-        }
-    }
-public func hash(into hasher: inout Hasher) {
-    hasher.combine(id)
-    hasher.combine(name)
-}
-}
+//// MARK: - Ent
+//struct Ent: Codable, Equatable, Hashable {
+//    let id: Int
+//    let name, localizedName: String
+//    let image: String
+//    let temperature: Length?
+//    
+//    static func == (lhs: Ent, rhs: Ent) -> Bool {
+//        if lhs.id == rhs.id && lhs.name == rhs.name {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//public func hash(into hasher: inout Hasher) {
+//    hasher.combine(id)
+//    hasher.combine(name)
+//}
+//}
 
 // MARK: - Length
 //struct Length: Codable {
@@ -516,67 +516,100 @@ public func hash(into hasher: inout Hasher) {
 //    static let stepExample22 = Step(number: 3, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
 //}
 
-struct Length: Codable, Hashable, Equatable {
-    var number:Int
-    var unit:String
-    
-    static func == (lhs: Length, rhs: Length) -> Bool {
-        if lhs.number == rhs.number && lhs.unit == rhs.unit {
-            return true
-        } else {
-            return false
-        }
-    }
-//    static let lengthSecondsExample = Length(number: 10, unit: "seconds")
-//    static let lengthMinutesExample1 = Length(number: 15, unit: "minutes")
-//    static let lengthMinutesExample3 = Length(number: 2, unit: "minutes")
-}
-
-//struct Instruction: Codable, Hashable, Identifiable {
-//    var id: Int64
-//    var text: String
+//struct Length: Codable, Hashable, Equatable {
+//    var number:Int
+//    var unit:String
 //    
-//    static func == (lhs: Instruction, rhs: Instruction) -> Bool {
-//        if lhs.id == rhs.id && lhs.text == rhs.text {
+//    static func == (lhs: Length, rhs: Length) -> Bool {
+//        if lhs.number == rhs.number && lhs.unit == rhs.unit {
 //            return true
 //        } else {
 //            return false
 //        }
 //    }
+////    static let lengthSecondsExample = Length(number: 10, unit: "seconds")
+////    static let lengthMinutesExample1 = Length(number: 15, unit: "minutes")
+////    static let lengthMinutesExample3 = Length(number: 2, unit: "minutes")
 //}
+//
+////struct Instruction: Codable, Hashable, Identifiable {
+////    var id: Int64
+////    var text: String
+////    
+////    static func == (lhs: Instruction, rhs: Instruction) -> Bool {
+////        if lhs.id == rhs.id && lhs.text == rhs.text {
+////            return true
+////        } else {
+////            return false
+////        }
+////    }
+////}
 
 
-// MARK: - WelcomeElement
-//struct WelcomeElement: Codable {
-//    let name: String
-//    let steps: [Step]
-//}
-
+// MARK: - TopLevelElement
 struct AnalyzedInstructions: Codable {
-    let analyzedInstructions: [AnalyzedInstruction]
-}
-
-struct AnalyzedInstruction: Codable, Equatable, Hashable {
     let name: String
     let steps: [Step]
+}
+
+// MARK: - Step
+struct Step: Codable, Equatable, Hashable  {
+    let number: Int
+    let step: String
+    let ingredients, equipment: [Ent]
+    let length: Length?
     
-    static func == (lhs: AnalyzedInstruction, rhs: AnalyzedInstruction) -> Bool {
-        if lhs.name == rhs.name && lhs.steps == rhs.steps {
-            return true
-        } else {
-            return false
+    static func == (lhs: Step, rhs: Step) -> Bool {
+            if lhs.number == rhs.number && lhs.step == rhs.step  {
+                return true
+            } else {
+                return false
+            }
         }
-    }
     
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(steps)
+        hasher.combine(number)
+        hasher.combine(step)
     }
+}
+
+// MARK: - Ent
+struct Ent: Codable {
+    let id: Int
+    let name, localizedName, image: String
+}
+
+// MARK: - Length
+struct Length: Codable {
+    let number: Int
+    let unit: String
+}
+//
+//struct AnalyzedInstructions: Codable {
+//    let analyzedInstructions: [AnalyzedInstruction]
+//}
+//
+//struct AnalyzedInstruction: Codable, Equatable, Hashable {
+//    let name: String
+//    let steps: [Step]
+//    
+//    static func == (lhs: AnalyzedInstruction, rhs: AnalyzedInstruction) -> Bool {
+//        if lhs.name == rhs.name && lhs.steps == rhs.steps {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(name)
+//        hasher.combine(steps)
+//    }
     
 //    static let analyzedInstructionExample = AnalyzedInstruction(name: "Analyzed Instructions Example", steps: [Step.stepExample, Step.stepExample2, Step.stepExample3])
 //    static let analyzedInstructionExample2 = Bundle.main.decode(AnalyzedInstruction.self, from: "AnalyzedInstructionExample2.json")
 //    static let analyzedInstructionExample3 = Bundle.main.decode(AnalyzedInstruction.self, from: "AnalyzedInstructionExample3.json")
-}
+//}
 
 //struct AnalyzedInstructions: Codable, Equatable {
 //    var id: UUID = UUID()
@@ -631,7 +664,7 @@ struct SRecipeGroup: Codable  {
 
 struct SRecipe: Codable, Identifiable, Equatable {
     var aggregateLikes:Int64?
-    var analyzedInstructions:AnalyzedInstruction? //
+    var analyzedInstructions:AnalyzedInstructions? //
     var cheap:Bool?
     var cookingMinutes:Int64?
     var creditsText:String?

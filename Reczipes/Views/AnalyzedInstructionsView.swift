@@ -15,14 +15,14 @@ struct AnalyzedInstructionsView: View {
     fileprivate var myAnalyzedInstructions: AnalyzedInstructions
     
     var body: some View {
-        Text("The number of instructions is: " + (myAnalyzedInstructions.analyzedInstructions.count.description))
+        Text("The number of instructions is: " + (myAnalyzedInstructions.steps.count.description))
         List {
-            ForEach(myAnalyzedInstructions.analyzedInstructions, id: \.self) { aInst in
-                Text(aInst.name)
-                ForEach(aInst.steps, id: \.self) { aStep in
+            ForEach(myAnalyzedInstructions.steps, id: \.self) { aStep in
+                Section {
                     Text(aStep.number.description)
+                    Text(aStep.step.description)
                 }
-            }.disabled(myAnalyzedInstructions.analyzedInstructions.count == 0)
+            }.disabled(myAnalyzedInstructions.steps.count == 0)
         }
     }
 }

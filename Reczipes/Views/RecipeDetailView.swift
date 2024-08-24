@@ -18,13 +18,11 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aun: AllUserNotes
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
-//    @ObservedObject var analyInstr = AnalyzedInstructionsModel()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
         anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
-//        analyInstr.executeQuery(recipeId: item.recipeId ?? 324624)
     }
     // MARK: - Properties
     var item: SectionItem3
@@ -122,32 +120,6 @@ struct RecipeDetailView: View {
         return false
     }
     
-//    fileprivate func checkRecipeIdValid(recipeid: Int?) -> Bool {
-//        if recipeid == nil {
-//#if DEBUG
-//            print(msgs.RDV.rawValue, "recipe id supplied is nil")
-//#endif
-//            return false
-//        } else
-//        if recipeid! <= 0 {
-//#if DEBUG
-//            print(msgs.RDV.rawValue, msgs.ridltz.rawValue)
-//#endif
-//            return false
-//        } else
-//        if recipeid! >= 9999999 {
-//#if DEBUG
-//            print(msgs.RDV.rawValue, msgs.ridgnnn.rawValue)
-//#endif
-//            return false
-//        } else {
-//#if DEBUG
-//            print(msgs.RDV.rawValue, msgs.riiv.rawValue)
-//#endif
-//            return true
-//        }
-//    }
-    
 //    fileprivate func searchAnalyzedInstructions(matching id: Int) async -> AnalyzedInstructions {
 //        let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
 //        let url = URL(string: "https://api.spoonacular.com/recipes/\(id)/analyzedInstructions?" + key)
@@ -166,8 +138,6 @@ struct RecipeDetailView: View {
 //            fatalError(msgs.RDV.rawValue + msgs.cnd.rawValue)
 //        }
 //    }
-    
-
     
     // MARK: - View Process
     var body: some View {
@@ -231,7 +201,7 @@ struct RecipeDetailView: View {
                         }
                     }) {
                         // How the button looks like
-                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: false)
+                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
                     }.disabled(item.recipeId == nil)
                 }
                 Divider()

@@ -12,7 +12,6 @@
 		3623CC132B62E0A1008EB223 /* ImageAndNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623CC122B62E0A1008EB223 /* ImageAndNameView.swift */; };
 		364D87212B5B40E200412AEC /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */; };
 		365034332C754CCE00407823 /* AnalyzedInstructionsExample3.json in Resources */ = {isa = PBXBuildFile; fileRef = 365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */; };
-		365034352C763FBA00407823 /* AIExampleTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 365034342C763FBA00407823 /* AIExampleTest.json */; };
 		368D500D2AA77ABB00C205A0 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */; };
 		3694A5D92C6D4CA400682EA5 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 3694A5D82C6D4C9600682EA5 /* test.json */; };
 		369A241E2B61778F0004E005 /* AnalyzedInstructionsExample2.json in Resources */ = {isa = PBXBuildFile; fileRef = 369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */; };
@@ -134,7 +133,6 @@
 		3623CC122B62E0A1008EB223 /* ImageAndNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAndNameView.swift; sourceTree = "<group>"; };
 		364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
 		365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample3.json; sourceTree = "<group>"; };
-		365034342C763FBA00407823 /* AIExampleTest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AIExampleTest.json; sourceTree = "<group>"; };
 		3694A5D82C6D4C9600682EA5 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample2.json; sourceTree = "<group>"; };
 		36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample.json; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 				36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */,
 				369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */,
 				365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */,
-				365034342C763FBA00407823 /* AIExampleTest.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -563,7 +560,6 @@
 				36076C152BF6BECF0090ED26 /* cuisines.json in Resources */,
 				F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */,
 				9396EAB926BDF0FE000FD136 /* SectionNames.json in Resources */,
-				365034352C763FBA00407823 /* AIExampleTest.json in Resources */,
 				F81BADD62923F104004AE705 /* SRecipeExample2.json in Resources */,
 				F81A8D5128F4858700FDB3EF /* License.txt in Resources */,
 				F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */,
@@ -786,7 +782,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -833,6 +829,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -880,6 +877,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

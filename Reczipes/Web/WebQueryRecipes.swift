@@ -22,7 +22,7 @@ public class WebQueryRecipes: ObservableObject {
     @Published var extractedSRecipe: SRecipe?
     @Published var aTrivia: Trivia?
     @Published var joke: Joke?
-    @Published var analyzedInstructions: AnalyzedInstructions?
+    @Published var analyzedInstructions: [AnalyzedInstructions]?
     // MARK: - State
     // MARK: - Properties
     private enum myQuery: String {

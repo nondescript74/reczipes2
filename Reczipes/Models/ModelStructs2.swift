@@ -430,126 +430,23 @@ struct Equipment: Codable, Hashable, Equatable {
      }
      */
 }
-
-//
-//
-//// MARK: - Step
-//struct Step: Codable, Equatable, Hashable {
-//    let number: Int
-//    let step: String
-//    let ingredients, equipment: [Ent]
-//    let length: Length?
-//    
-//        static func == (lhs: Step, rhs: Step) -> Bool {
-//            if lhs.step == rhs.step && lhs.number == rhs.number {
-//                return true
-//            } else {
-//                return false
-//            }
-//        }
-//    public func hash(into hasher: inout Hasher) {
-//        hasher.combine(number)
-//        hasher.combine(step)
-//    }
-//}
-
-//// MARK: - Ent
-//struct Ent: Codable, Equatable, Hashable {
-//    let id: Int
-//    let name, localizedName: String
-//    let image: String
-//    let temperature: Length?
-//    
-//    static func == (lhs: Ent, rhs: Ent) -> Bool {
-//        if lhs.id == rhs.id && lhs.name == rhs.name {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//public func hash(into hasher: inout Hasher) {
-//    hasher.combine(id)
-//    hasher.combine(name)
-//}
-//}
-
-// MARK: - Length
-//struct Length: Codable {
-//    let number: Int
-//    let unit: String
-//}
-
-//typealias Welcome = [WelcomeElement]
-
-//struct Step: Codable, Hashable, Equatable {
-//    var number: Int
-//    var step: String
-//    var ingredients:[Ingredient?]?
-//    var equipment:[Equipment?]?
-//    var length:Length?
-//    
-//    static func == (lhs: Step, rhs: Step) -> Bool {
-//        if lhs.step == rhs.step && lhs.number == rhs.number {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//    
-//    static let stepExample = Step(number: 1, 
-//                                  step: "In a medium saucepan, add the quinoa and chicken stock. Bring to boil over medium high heat. Once boiling, reduce heat to low and cover pot. Cook until all the liquid is absorbed, about 15 minutes. Stir in the coconut oil, juice and zest of lime, salt and pepper.",
-//                                  ingredients: Ingredient.ingredientSet1,
-//                                  equipment: Equipment.equipmentSet1,
-//                                  length: Length.lengthMinutesExample1)
-//    static let stepExample2 = Step(number: 2,
-//                                  step: "Let quinoa cool completely before using. You can do this ahead of time or the day before.In a large wok, heat one tablespoon coconut oil over medium heat.",
-//                                  ingredients: Ingredient.ingredientSet2,
-//                                   equipment: Equipment.equipmentSet3)
-//    static let stepExample3 = Step(number: 3,
-//                                  step: "Add in onions and peppers and cook until soft, about 2 minutes.",
-//                                  ingredients: Ingredient.ingredientSet3,
-//                                  equipment: Equipment.equipmentSet3,
-//                                  length: Length.lengthMinutesExample3)
-//    
-//    
-//    static let stepExample21 = Step(number: 2, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
-//    static let stepExample22 = Step(number: 3, step: "Prepare ingredients", ingredients: [Ingredient.ingredientExample, Ingredient.ingredientExample1], equipment: [Equipment.equipmentExample], length: Length.lengthSecondsExample)
-//}
-
-//struct Length: Codable, Hashable, Equatable {
-//    var number:Int
-//    var unit:String
-//    
-//    static func == (lhs: Length, rhs: Length) -> Bool {
-//        if lhs.number == rhs.number && lhs.unit == rhs.unit {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-////    static let lengthSecondsExample = Length(number: 10, unit: "seconds")
-////    static let lengthMinutesExample1 = Length(number: 15, unit: "minutes")
-////    static let lengthMinutesExample3 = Length(number: 2, unit: "minutes")
-//}
-//
-////struct Instruction: Codable, Hashable, Identifiable {
-////    var id: Int64
-////    var text: String
-////    
-////    static func == (lhs: Instruction, rhs: Instruction) -> Bool {
-////        if lhs.id == rhs.id && lhs.text == rhs.text {
-////            return true
-////        } else {
-////            return false
-////        }
-////    }
-////}
-
-
 // MARK: - TopLevelElement
-struct AnalyzedInstructions: Codable {
+struct AnalyzedInstructions: Codable, Hashable, Equatable {
     let name: String
     let steps: [Step]
+    
+    static func == (lhs: AnalyzedInstructions, rhs: AnalyzedInstructions) -> Bool {
+            if lhs.name == rhs.name && lhs.steps == rhs.steps  {
+                return true
+            } else {
+                return false
+            }
+        }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(steps)
+    }
 }
 
 // MARK: - Step
@@ -584,47 +481,7 @@ struct Length: Codable {
     let number: Int
     let unit: String
 }
-//
-//struct AnalyzedInstructions: Codable {
-//    let analyzedInstructions: [AnalyzedInstruction]
-//}
-//
-//struct AnalyzedInstruction: Codable, Equatable, Hashable {
-//    let name: String
-//    let steps: [Step]
-//    
-//    static func == (lhs: AnalyzedInstruction, rhs: AnalyzedInstruction) -> Bool {
-//        if lhs.name == rhs.name && lhs.steps == rhs.steps {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//    
-//    public func hash(into hasher: inout Hasher) {
-//        hasher.combine(name)
-//        hasher.combine(steps)
-//    }
-    
-//    static let analyzedInstructionExample = AnalyzedInstruction(name: "Analyzed Instructions Example", steps: [Step.stepExample, Step.stepExample2, Step.stepExample3])
-//    static let analyzedInstructionExample2 = Bundle.main.decode(AnalyzedInstruction.self, from: "AnalyzedInstructionExample2.json")
-//    static let analyzedInstructionExample3 = Bundle.main.decode(AnalyzedInstruction.self, from: "AnalyzedInstructionExample3.json")
-//}
 
-//struct AnalyzedInstructions: Codable, Equatable {
-//    var id: UUID = UUID()
-//    var setOfAnalyzedInstruction: [AnalyzedInstruction] = [AnalyzedInstruction]()
-//    
-//    static func == (lhs: AnalyzedInstructions, rhs: AnalyzedInstructions) -> Bool {
-//        if (lhs.setOfAnalyzedInstruction == rhs.setOfAnalyzedInstruction) && (lhs.id == rhs.id) {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
-//    
-////    static let analyzedInstructionsExample = AnalyzedInstructions(setOfAnalyzedInstruction: [AnalyzedInstruction.analyzedInstructionExample, AnalyzedInstruction.analyzedInstructionExample2])
-//}
 struct CRecipe: Identifiable, Codable, Hashable {
     /*
      id": 488633,
@@ -664,7 +521,7 @@ struct SRecipeGroup: Codable  {
 
 struct SRecipe: Codable, Identifiable, Equatable {
     var aggregateLikes:Int64?
-    var analyzedInstructions:AnalyzedInstructions? //
+    var analyzedInstructions:[AnalyzedInstructions]? 
     var cheap:Bool?
     var cookingMinutes:Int64?
     var creditsText:String?

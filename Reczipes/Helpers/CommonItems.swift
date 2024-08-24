@@ -104,11 +104,6 @@ func getIngredientForName(name: String) -> Ingredient {
     return myList.first ?? Ingredient(id: Int.random(in: 1..<999999), name: name)
 }
 
-func getAnalyzedInstructionExample() -> [AnalyzedInstructions] {
-    let listOfAnalyzedInstruction:[AnalyzedInstructions] = Bundle.main.decode([AnalyzedInstructions].self, from: "AnalyzedInstructionsExample.json")
-    return listOfAnalyzedInstruction
-}
-
 func getDocuDirUrl() -> URL {
     var myReturn:URL
     do {

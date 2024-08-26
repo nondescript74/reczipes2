@@ -38,7 +38,6 @@ struct RecipeRowView: View {
         if item.imageUrl == nil {
             
         } else {
-            
             anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
         }
     }

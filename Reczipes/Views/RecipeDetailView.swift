@@ -16,6 +16,7 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
+    @EnvironmentObject var myAI: AnalyzedInstructionsModel
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Initializer
@@ -76,7 +77,6 @@ struct RecipeDetailView: View {
     @State fileprivate var showingMoveView = false
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
-//    fileprivate var analyInstr: AnalyzedInstructions?
     
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
@@ -96,48 +96,6 @@ struct RecipeDetailView: View {
         }
         return true
     }
-    
-    fileprivate func hasAnalyzedInstructions() async -> Bool {
-        if item.recipeId == nil {
-#if DEBUG
-            print(msgs.RDV.rawValue, msgs.norid.rawValue)
-#endif
-            return false
-        }
-        if item.recipeId! <= 0 {
-#if DEBUG
-            print(msgs.RDV.rawValue, msgs.ridltz.rawValue)
-#endif
-            return false
-        }
-        if item.recipeId! >= 9999999 {
-#if DEBUG
-            print(msgs.RDV.rawValue, msgs.ridgnnn.rawValue)
-#endif
-            return false
-        }
-//        await analyInstr.executeQuery(recipeId: item.recipeId ?? 324624)
-        return false
-    }
-    
-//    fileprivate func searchAnalyzedInstructions(matching id: Int) async -> AnalyzedInstructions {
-//        let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
-//        let url = URL(string: "https://api.spoonacular.com/recipes/\(id)/analyzedInstructions?" + key)
-//#if DEBUG
-//        if zBug {print(msgs.RDV.rawValue + url!.absoluteString)}
-//#endif
-//        do {
-//            let (data, _) = try await URLSession.shared.data(from: url!)
-//            let ai = try JSONDecoder().decode(AnalyzedInstructions.self, from: data)
-//#if DEBUG
-//            if zBug {print(msgs.RDV.rawValue, ai)}
-//            if zBug {print(msgs.noai.rawValue, ai.setOfAnalyzedInstruction.count.description)}
-//#endif
-//            return ai
-//        } catch  {
-//            fatalError(msgs.RDV.rawValue + msgs.cnd.rawValue)
-//        }
-//    }
     
     // MARK: - View Process
     var body: some View {
@@ -195,9 +153,8 @@ struct RecipeDetailView: View {
                     Button(action: {
                         // What to perform
                         Task {
-                            if await hasAnalyzedInstructions() == true {
-                                self.showingInstructions = true
-                            }
+                            await myAI.executeQuery(recipeId: self.item.recipeId!)
+                            self.showingInstructions = true
                         }
                     }) {
                         // How the button looks like
@@ -220,12 +177,9 @@ struct RecipeDetailView: View {
                 AddNoteView()
             }
             .sheet(isPresented: $showingInstructions) {
-//                InstructionsDisplayView(analyzedInstructions: analyInstr.result ?? AnalyzedInstructions.analyInstrExample)
-//                AnalyzedInstructionsView (analyzedInstructions: <#AnalyzedInstructions#>)
+                AnalyzedInstructionsView(analyzedInstructions: myAI.result)
             }
-//            .sheet(isPresented: $showShareSheet) {
-//                ShareRecipeView(sectionItem: item)
-//            }
+            
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }
@@ -241,6 +195,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static let aur = AllUserRecipes()
     static let aun = AllUserNotes()
     static let aui = AllUserImages()
+    static let myAi = AnalyzedInstructionsModel()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
@@ -249,6 +204,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
                 .environmentObject(aur)
                 .environmentObject(aun)
                 .environmentObject(aui)
+                .environmentObject(myAi)
         }
     }
 }

@@ -13,10 +13,10 @@ struct ApplicationView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var ratio: RecipeRatio
-//    @EnvironmentObject var rbb: RecipeBeingBuilt
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
+    @EnvironmentObject var myAI: AnalyzedInstructionsModel
     // MARK: - Properties
     fileprivate enum tabs: String {
         case books = "Books"
@@ -106,10 +106,10 @@ struct ApplicationView: View {
         .environmentObject(order)
         .environmentObject(userData)
         .environmentObject(ratio)
-//        .environmentObject(rbb)
         .environmentObject(aun)
         .environmentObject(aui)
         .environmentObject(aur)
+        .environmentObject(myAI)
         
     }
 }
@@ -118,19 +118,19 @@ struct ApplicationView_Previews: PreviewProvider {
     static let order = OrderingList()
     static let userData = UserData()
     static let rratio = RecipeRatio()
-//    static let rbb = RecipeBeingBuilt()
     static let aur = AllUserRecipes()
     static let aun = AllUserNotes()
     static let aui = AllUserImages()
+    static let myAi = AnalyzedInstructionsModel()
     
     static var previews: some View {
         ApplicationView()
             .environmentObject(order)
             .environmentObject(userData)
             .environmentObject(rratio)
-//            .environmentObject(rbb)
             .environmentObject(aur)
             .environmentObject(aun)
             .environmentObject(aui)
+            .environmentObject((myAi))
     }
 }

@@ -87,7 +87,6 @@ struct FindOrExtractView: View {
                                 Text("\(aur.getBookSectionNames()[index])")
                             }
                         }
-                        //Text(msgs.cuisine.rawValue)
                     }
                     
                     Divider()
@@ -100,7 +99,7 @@ struct FindOrExtractView: View {
                         Button(action: getSRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 20)
-                        Divider().frame(height: 50)
+                        
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)

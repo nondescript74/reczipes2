@@ -169,6 +169,10 @@ struct RecipeDetailView: View {
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id)
                 }
+                Divider()
+                if showingInstructions == true  {
+                    AnalyzedInstructionsView(analyzedInstructions: myAI.result)
+                }
             }
             .sheet(isPresented: $addingImage) {
                 AddImageView()
@@ -176,9 +180,9 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
             }
-            .sheet(isPresented: $showingInstructions) {
-                AnalyzedInstructionsView(analyzedInstructions: myAI.result)
-            }
+//            .sheet(isPresented: $showingInstructions) {
+//                AnalyzedInstructionsView(analyzedInstructions: myAI.result)
+//            }
             
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))

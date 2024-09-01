@@ -12,14 +12,14 @@ import Combine
 
 fileprivate var zBug: Bool = false
 
-fileprivate enum msgs: String {
-    case returningpresetrecipes = "Returning Preset Recipes "
-    case returningbooksectionssf = "Returning BookSections in single file"
-    case success = "Successfull remove of a recipe"
-    case fail = "Failed to remove a recipe "
-    case counted = "User added recipes Contents count "
-    case nobs = "No booksection files found"
-}
+//fileprivate enum msgs: String {
+//    case returningpresetrecipes = "Returning Preset Recipes "
+//    case returningbooksectionssf = "Returning BookSections in single file"
+//    case success = "Successfull remove of a recipe"
+//    case fail = "Failed to remove a recipe "
+//    case counted = "User added recipes Contents count "
+//    case nobs = "No booksection files found"
+//}
 
 private var decoder: JSONDecoder = JSONDecoder()
 private var encoder: JSONEncoder = JSONEncoder()

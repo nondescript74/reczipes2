@@ -28,7 +28,7 @@ struct RecipeRowNNLView: View {
 #if DEBUG
             if zBug{print("RRNNLV: imageUrl exists, going to get")}
 #endif
-            anImage.getImageFromUrl(urlString: sRecipe.image!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+            anImage.getImageFromUrl(urlString: sRecipe.image!, type: callerId.fullurlbeingsupplied)
         }
 #if DEBUG
         if zBug {print("RRNNLV: The recipeId is :", srecipe.id)}

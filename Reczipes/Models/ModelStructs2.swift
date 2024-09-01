@@ -170,11 +170,11 @@ struct SectionItem3: Codable, Equatable, Identifiable, Hashable {
 //    var imageUrl: String?
 //    var photocredit: String
 //    var restrictions: [String]
-//    
+//
 //    var mainImage: String {
 //        name
 //    }
-//    
+//
 //    static func == (lhs: SectionItem2, rhs: SectionItem2) -> Bool {
 //        if lhs.name == rhs.name {
 //            return true
@@ -182,11 +182,11 @@ struct SectionItem3: Codable, Equatable, Identifiable, Hashable {
 //            return false
 //        }
 //    }
-//    
+//
 //    public func hash(into hasher: inout Hasher) {
 //        hasher.combine(name)
 //    }
-//    
+//
 //    static let example = SectionItem2(id: UUID(uuidString: "DBCBD375-BDB1-43C3-A5DD-37850D639BC6")!, recipeId: 9999981, name: "Malai Kofta (Veggie Balls in a Thick Sauce)", url: "https://www.thespruceeats.com/malai-kofta-vege-balls-in-a-thick-sauce-1957964", imageUrl: "https://www.thespruceeats.com/thmb/CqOsksWGW3IfPYyyHFDCTCk1v18=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/malai-kofta-vege-balls-in-a-thick-sauce-1957964-hero-01-f8bad63cc4874630b02d7335208129d9.jpg", photocredit: "TheSpruceEats", restrictions: ["Vegetarian", "Gluten Free"])
 //    static let example2 = SectionItem2(id: UUID(uuidString: "BF37D8BD-3B0F-457F-BD5A-A2DA158D52AB")!, recipeId: 9999982, name: "Kenji Mapo Tofu Z likes", url: "https://www.seriouseats.com/recipes/2011/07/real-deal-mapo-dofu-tofu-chinese-sichuan-recipe.html", imageUrl: "https://www.seriouseats.com/thmb/j297rvce95ZKXcl0IAtCQeAa4DE=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2011__07__2021-02-12-Mapo-Tofu-MHOM-10-804db1211f1d47dbae505341d1e7b994.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Vegetarian", "Gluten Free"])
 //    static let example3 = SectionItem2(id: UUID(uuidString: "3D4CDED8-51A3-46FB-8384-C48773B8B640")!, recipeId: 9999983, name: "Sous Vide Barbecue Pork Ribs", url: "https://www.seriouseats.com/recipes/2015/09/sous-vide-pork-ribs-recipe-food-lab.html", imageUrl: "https://www.seriouseats.com/thmb/1KFWweU6yYJCd4f8vbiQmiYT-3I=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__08__20150730-anova-sous-vide-rib-guide-food-lab68-j-kenji-lopez-alt-3a8181cad15d4dbc93037b66c0f209da.jpg", photocredit: "Kenji Lopez-Alt", restrictions: ["Gluten Free", "Whole30"])
@@ -436,12 +436,12 @@ struct AnalyzedInstructions: Codable, Hashable, Equatable {
     let steps: [Step]
     
     static func == (lhs: AnalyzedInstructions, rhs: AnalyzedInstructions) -> Bool {
-            if lhs.name == rhs.name && lhs.steps == rhs.steps  {
-                return true
-            } else {
-                return false
-            }
+        if lhs.name == rhs.name && lhs.steps == rhs.steps  {
+            return true
+        } else {
+            return false
         }
+    }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(name)
@@ -457,12 +457,12 @@ struct Step: Codable, Equatable, Hashable  {
     let length: Length?
     
     static func == (lhs: Step, rhs: Step) -> Bool {
-            if lhs.number == rhs.number && lhs.step == rhs.step  {
-                return true
-            } else {
-                return false
-            }
+        if lhs.number == rhs.number && lhs.step == rhs.step  {
+            return true
+        } else {
+            return false
         }
+    }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(number)
@@ -489,6 +489,55 @@ struct CRecipe: Identifiable, Codable, Hashable {
      "image": "https://spoonacular.com/recipeImages/488633-312x231.jpg",
      "imageType": "jpg"
      */
+    
+    /*
+    {
+        "id": 1086727,
+        "title": "Homemade Fancy Fortune Cookies",
+        "image": "https://img.spoonacular.com/recipes/1086727-312x231.jpg",
+        "imageType": "jpg",
+        "usedIngredientCount": 2,
+        "missedIngredientCount": 0,
+        "missedIngredients": [],
+        "usedIngredients": [
+            {
+                "id": 1001,
+                "amount": 75,
+                "unit": "grams",
+                "unitLong": "grams",
+                "unitShort": "g",
+                "aisle": "Milk, Eggs, Other Dairy",
+                "name": "butter",
+                "original": "75 grams butter chilled",
+                "originalName": "butter chilled",
+                "meta": [
+                    "chilled"
+                ],
+                "image": "https://img.spoonacular.com/ingredients_100x100/butter-sliced.jpg"
+            },
+            {
+                "id": 1123,
+                "amount": 0.5,
+                "unit": "",
+                "unitLong": "",
+                "unitShort": "",
+                "aisle": "Milk, Eggs, Other Dairy",
+                "name": "egg yolk",
+                "original": "1/2 whole egg yolk beaten",
+                "originalName": "whole egg yolk beaten",
+                "meta": [
+                    "whole",
+                    "beaten"
+                ],
+                "extendedName": "whole egg yolk",
+                "image": "https://img.spoonacular.com/ingredients_100x100/egg.png"
+            }
+        ],
+        "unusedIngredients": [],
+        "likes": 1
+    }
+     */
+    
     var id: Int
     var title: String
     var image: String
@@ -501,7 +550,7 @@ struct CRecipe: Identifiable, Codable, Hashable {
             return false
         }
     }
-
+    
     static let cRecipeExample = CRecipe(id: 488633,
                                         title: "gobi pakora , how to make gobi pakoras or cauliflower fritters",
                                         image: "https://spoonacular.com/recipeImages/488633-312x231.jpg",
@@ -509,19 +558,48 @@ struct CRecipe: Identifiable, Codable, Hashable {
     )
 }
 
-struct CRecipeGroup: Codable {
-    var results: [CRecipe]?
-}
+//struct CRecipeGroup: Codable {
+//    var results: [CRecipe]?
+//}
+
+typealias CRecipeGroup = [CRecipe]
 
 struct SRecipeGroup: Codable  {
     var results:[SRecipe]?  // when using random
     var recipes:[SRecipe]?  //when using find
 }
 
+/*
+struct TopLevelElement {
+    let vegetarian, vegan, glutenFree, dairyFree: Bool
+    let veryHealthy, cheap, veryPopular, sustainable: Bool
+    let lowFodmap: Bool
+    let weightWatcherSmartPoints: Int
+    let gaps: String
+    let preparationMinutes, cookingMinutes: NSNull
+    let aggregateLikes, healthScore: Int
+    let creditsText, sourceName: String
+    let pricePerServing: Double
+    let extendedIngredients: [ExtendedIngredient]
+    let id: Int
+    let title: String
+    let readyInMinutes, servings: Int
+    let sourceURL: String
+    let image: String
+    let imageType, summary: String
+    let cuisines, dishTypes, diets: [String]
+    let occasions: [Any?]
+    let instructions: String
+    let analyzedInstructions: [AnalyzedInstruction]
+    let originalID: NSNull
+    let spoonacularScore: Double
+}
+ 
+ */
 
 struct SRecipe: Codable, Identifiable, Equatable {
     var aggregateLikes:Int64?
-    var analyzedInstructions:[AnalyzedInstructions]? 
+    var analyzedInstructions:[AnalyzedInstructions]?
     var cheap:Bool?
     var cookingMinutes:Int64?
     var creditsText:String?

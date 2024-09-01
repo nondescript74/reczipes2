@@ -14,6 +14,7 @@ struct FindOrExtractView: View {
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
+    @ObservedObject var cRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
         case fr = "Find Recipe"
@@ -43,21 +44,38 @@ struct FindOrExtractView: View {
         case extract
         case names
         case random
+        case find
+    }
+    
+    fileprivate func getBookSectionNames() -> [String] {
+        let namesOfCuisines = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
+        var names: [String] = []
+        namesOfCuisines.forEach {names.append($0.name)}
+        return names
     }
     
     // MARK: - Methods
     func getSRecipeGroup() {
         show = Selectors.names
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = aur.getBookSectionNames()[xection]
-        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
+        let cuisine = getBookSectionNames()[xection]
+        sRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
+//        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
+        endEditing()
+    }
+    
+    func getCRecipeGroup() {
+        show = Selectors.find
+        let numberNeeded = userData.profile.numberOfRecipes.rawValue
+        let cuisine = getBookSectionNames()[xection]
+        cRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
     func findRandom() {
         show = Selectors.random
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = aur.getBookSectionNames()[xection]
+        let cuisine = getBookSectionNames()[xection]
         sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
         endEditing()
     }
@@ -79,26 +97,30 @@ struct FindOrExtractView: View {
         NavigationView {
             VStack {
                 VStack {
-                    HStack {
-                        Text(msgs.choose.rawValue)
-                        Picker(msgs.books.rawValue, selection: $xection) {
-                            let zx = aur.getBookSectionNames().count
-                            ForEach(0..<zx, id: \.self) { index in
-                                Text("\(aur.getBookSectionNames()[index])")
-                            }
-                        }
-                    }
-                    
-                    Divider()
-                    
+//                    HStack {
+//                        Text(msgs.choose.rawValue)
+//                        Picker(msgs.books.rawValue, selection: $xection) {
+//                            let zx = getBookSectionNames().count
+//                            ForEach(0..<zx, id: \.self) { index in
+//                                Text("\(getBookSectionNames()[index])")
+//                            }
+//                        }
+//                    }
+//                    
+//                    Divider()
+//                    
                     Text(msgs.fr.rawValue).fontWeight(.semibold)
                     
                     HStack(alignment: .center) {
                         SearchBar(text: $searchTerm).padding(.trailing, 5)
                         
-                        Button(action: getSRecipeGroup) {
+                        Button(action: getCRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 20)
+//                        
+//                        Button(action: getSRecipeGroup) {
+//                            Text(msgs.find.rawValue).font(.largeTitle).bold()
+//                        }.padding(.trailing, 20)
                         
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
@@ -121,16 +143,21 @@ struct FindOrExtractView: View {
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                    }
+                    if show == Selectors.find {
+                        ForEach(cRecipeGroup.cRecipeGroup) { crecipe in
+                            RecipeByIngredientsView(cRecipe: crecipe)
+                        }.disabled(cRecipeGroup.cRecipeGroup.isEmpty)
                     }
                     if show == Selectors.random {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: aur.getBookSectionNames()[xection])
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.extract &&  extractedSRecipe.extractedSRecipe != nil {
-                        RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: aur.getBookSectionNames()[xection])
+                        RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: getBookSectionNames()[xection])
                     }
                 }
             }

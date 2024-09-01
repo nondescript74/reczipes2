@@ -23,7 +23,7 @@ struct RecipeDetailView: View {
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
-        anImage.getImageFromUrl(urlString: imageString, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+        anImage.getImageFromUrl(urlString: imageString, type: callerId.fullurlbeingsupplied)
     }
     // MARK: - Properties
     var item: SectionItem3

@@ -19,7 +19,7 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
         print(extendedIngredient.name ?? "No Name??")
         
         
-        anImage.getImageFromUrl(urlString: extendedIngredient.image ?? "Default Image", type: WebQueryRecipes.callerId.webimage)
+        anImage.getImageFromUrl(urlString: extendedIngredient.image ?? "Default Image", type: callerId.webimage)
     }
     // MARK: - Properties
     var item: ExtendedIngredient

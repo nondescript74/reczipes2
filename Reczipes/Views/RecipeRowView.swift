@@ -27,7 +27,7 @@ struct RecipeRowView: View {
             if zBug {print("RecipeRowView: no cuisine available")}
             if zBug {print("RecipeRowView: sectionItem.imageUrl available, going to get")}
 #endif
-            anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+            anImage.getImageFromUrl(urlString: item.imageUrl!, type: callerId.fullurlbeingsupplied)
         }
     }
     
@@ -38,7 +38,7 @@ struct RecipeRowView: View {
         if item.imageUrl == nil {
             
         } else {
-            anImage.getImageFromUrl(urlString: item.imageUrl!, type: WebQueryRecipes.callerId.fullurlbeingsupplied)
+            anImage.getImageFromUrl(urlString: item.imageUrl!, type: callerId.fullurlbeingsupplied)
         }
     }
     

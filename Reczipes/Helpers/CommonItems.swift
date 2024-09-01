@@ -73,10 +73,17 @@ let overlayLWidth: CGFloat = 2
 let paddingSize: CGFloat = 2
 let lineLimit: Int = 3
 
-fileprivate enum msgs: String {
-    
+var defaultRequiredCount:Int = 0
+var urlComponents:URLComponents = URLComponents(string: "")!
+var urlComponentsRecipeImages:URLComponents = URLComponents(string: "")!
+
+enum msgs: String {
     case returningpresetrecipes = "Returning Preset Recipes "
     case returningbooksectionssf = "Returning BookSections in single file"
+    case success = "Successfull remove of a recipe"
+    case fail = "Failed to remove a recipe "
+    case counted = "User added recipes Contents count "
+    case nobs = "No booksection files found"
     case rshipd = "recipesShipped"
     case rnotes = "RecipeNotes"
     case rimages = "RecipeImages"
@@ -84,6 +91,92 @@ fileprivate enum msgs: String {
     case combined = "Combined booksections into one booksection"
     case ci = "CommonItems: "
     case csts = "Converted SRecipe to SectionItem3 "
+    case spoonkey = "SpoonacularKey"
+    case nokey = "No SpoonacularKey"
+}
+
+enum myQuery: String {
+    case query = "query="
+    case numberDesired = "&number="
+    case ingredients = "ingredients="
+    case nutritionFalse = "includeNutrition=false"
+    case nutritionTrue = "includeNutrition=true"
+    case recipeInfo = "&addRecipeInformation=true"
+    case extract = "url="
+    case trivia, joke = ""
+    case cuisine = "&cuisine="
+    case tags = "&tags="
+    case anlyztrue = "&analyze=true"
+}
+
+enum callerId: String {
+    case fullurlbeingsupplied = "Full Url supplied"
+    case srecipes = "srecipes"
+    case webimage = "fullUrl"
+}
+
+enum urlThings: String {
+    case recipes = "https://api.spoonacular.com/recipes/search"
+    case recipesComplex = "https://api.spoonacular.com/recipes/complexSearch"
+    case imageWeb = "https://spoonacular.com/cdn/ingredients_" //
+    case images = "https://spoonacular.com/recipeImages/"
+    case ingredients = "https://api.spoonacular.com/recipes/findByIngredients"  // https://api.spoonacular.com/recipes/findByIngredients
+    case similar, information, analyzedInstructions = "https://api.spoonacular.com/recipes/"
+    case similarPartDeux = "/similar"
+    case informationPartDeux = "/information"
+    case randomrecipes = "https://api.spoonacular.com/recipes/random"
+    case extractedrecipe = "https://api.spoonacular.com/recipes/extract"
+    case trivia = "https://api.spoonacular.com/food/trivia/random"
+    case joke = "https://api.spoonacular.com/food/jokes/random"
+    case defaultURLString = "https://api.spoonacular.com/recipes/196740/information?includeNutrition=false"
+}
+
+enum imageTypes: String {
+    case jpg = ".jpg"
+    case png = ".png"
+    case jpeg = ".jpeg"
+}
+
+enum imageSizes: String {
+    case hundredx100 = "100x100"
+    case two50x250 = "250x250"
+    case five100x500 = "500x500"
+}
+
+enum myGets: String {
+    case FindRecipes = "Find Recipes"
+    case FindSRecipeGroup = "Find SRecipes"
+    case FindImage = "Find Image"
+    case FindByIngredients  = "Find By Ingredients"
+    case FindByNutrition  = "Find By Nutrition"
+    case FindByComplexity  = "Find By Complexity"
+    case GetAnalyzInstr = "Get Analyzed Instructions"
+    case FindRandom  = "Find Random"
+    case FindSimilar = "Find Similar"
+    case FindInformation = "My Information"
+    case FindSRecipe = "Find SRecipe"
+    case FindExtracted = "Extract SRecipe"
+    case GetTrivia = "Get Random Trivia"
+    case GetJoke = "Get Random Joke"
+}
+
+enum messagesDebug: String {
+    case foundimage = "Find Image found an Image"
+    case foundrandom = "Found Random Recipes"
+    case foundrecipeinfo = "Find Information found an SRecipe"
+    case foundsrecipe = "Found an SRecipe"
+    case foundextractedrecipe = "Extracted an SRecipe"
+    case foundsrecipegroup = "Found SRecipeGroup"
+    case fcrgroup = "Found CRecipeGroup"
+    case getTrivia = "Found trivia"
+    case getJoke = "Found joke"
+    case getAnInstr = "Found analyzed instructions"
+    case noTitle = "No title"
+    case noTrivia = "No Trivia Found"
+    case noJoke = "Found No Joke"
+    case noAnInstr = "No analyzed instructions found"
+    case unknownImageType = "Unknown image type"
+    case unknownCallerID = "Unknown CallerID"
 }
 
 func hasSpecialCharacters(string: String) -> Bool {
@@ -118,33 +211,6 @@ func getDocuDirUrl() -> URL {
     return myReturn
 }
 
-//func convertSRecipeToSectionItem(srecipe: SRecipe) -> SectionItem {
-//    let item = SectionItem(id: UUID(),
-//                           name: srecipe.title ?? SectionItem.example.name,
-//                           url: srecipe.sourceUrl ?? SectionItem.example.url,
-//                           imageUrl: srecipe.image,
-//                           photocredit: srecipe.creditsText ?? SectionItem.example.photocredit,
-////                           restrictions: srecipe.diets ?? [])
-//                           restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
-//
-//#if DEBUG
-//    print(msgs.ci.rawValue + msgs.csts.rawValue + item.name)
-//#endif
-//
-//    return item
-//}
-//
-//func convertSRecipeToSectionItem2(srecipe: SRecipe) -> SectionItem2 {
-//    let item = SectionItem2(id: UUID(),
-//                            recipeId: getSRecipeID(srecipe: srecipe),
-//                            name: srecipe.title ?? SectionItem2.example.name,
-//                            url: srecipe.sourceUrl ?? SectionItem2.example.url,
-//                            imageUrl: srecipe.image,
-//                            photocredit: srecipe.creditsText ?? SectionItem2.example.photocredit,
-//                            restrictions: constructRestrictionsWithSRecipe(srecipe: srecipe))
-//    return item
-//}
-
 func convertSRecipeToSectionItem3(srecipe: SRecipe) -> SectionItem3 {
     let item = SectionItem3(id: UUID(),
                             recipeId: getSRecipeID(srecipe: srecipe),
@@ -156,6 +222,18 @@ func convertSRecipeToSectionItem3(srecipe: SRecipe) -> SectionItem3 {
                             summary: srecipe.summary ?? SectionItem3.example.summary)
     return item
 }
+
+func convertCRecipeToSectionItem3(crecipe: CRecipe) -> SectionItem3 {
+    let item = SectionItem3(id: UUID(),
+                            recipeId: (crecipe.id),
+                            name: crecipe.title,
+                            url: crecipe.image,
+                            photocredit: "none",
+                            restrictions: [],
+                            summary: crecipe.title)
+    return item
+}
+                            
 
 func getSRecipeID(srecipe: SRecipe) -> Int {
     switch srecipe.id {
@@ -169,6 +247,18 @@ func getSRecipeID(srecipe: SRecipe) -> Int {
     }
 }
 
+func getCRecipeID(crecipe: CRecipe) -> Int {
+    switch crecipe.id {
+    case Int.min ..< 1:
+#if DEBUG
+        print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative crecipe.id")
+#endif
+        return getSRecipeIDUnique()
+    default:
+        return crecipe.id
+    }
+}
+
 func getSRecipeIDUnique() -> Int {
     // for now
     return 999999999
@@ -176,13 +266,6 @@ func getSRecipeIDUnique() -> Int {
 
 func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {
     var myRestrictions: [String] = []
-    
-    //    if srecipe.diets != nil {
-    //        let exp = srecipe.diets.flatMap({$0})
-    //        if exp?.count != 0 {
-    //            myRestrictions.append(contentsOf: exp!)
-    //        }
-    //    }
     
     if srecipe.cheap != nil {
         if srecipe.dairyFree == true {myRestrictions.append("Cheap")}

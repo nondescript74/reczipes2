@@ -46,8 +46,8 @@ class CRecipeGroupCreateOperation: Operation {
         
         do {
             let crecipes = try JSONDecoder().decode(CRecipeGroup.self, from: myData!)
-            if crecipes.results != nil {
-                myCRecipes = crecipes.results
+            if crecipes.count != 0 {
+                myCRecipes = crecipes
             } else {
                 fatalError("No CRecipes???")
             }

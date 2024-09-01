@@ -13,7 +13,7 @@ class AnalyzedInstructionsModel: ObservableObject {
     fileprivate var zBug: Bool = true
     
     // MARK: - Publisher
-    @Published private(set) var result: [AnalyzedInstructions] = [AnalyzedInstructions(name: "Dummy", steps: [])] // this is the output.  a single AnalyzedInstructions
+    @Published private(set) var result: [AnalyzedInstructions] = [AnalyzedInstructions(name: "Dummy", steps: [])] //this is the output, an AnalyzedInstructions array
     @Published private(set) var isSearching: Bool = false
     
     // MARK: - Properties

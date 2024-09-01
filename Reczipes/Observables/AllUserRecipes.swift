@@ -141,7 +141,8 @@ class AllUserRecipes: ObservableObject {
         if sectionIdNames.contains(where: {$0.name == name}) {
             myReturn = sectionIdNames.filter({$0.name == name}).first!.id
         } else {
-            fatalError("no uuid for name supplied, fatal")
+//            fatalError("no uuid for name supplied, fatal")
+            myReturn = sectionIdNames.filter({$0.name == "Other"}).first!.id
         }
         
         return myReturn

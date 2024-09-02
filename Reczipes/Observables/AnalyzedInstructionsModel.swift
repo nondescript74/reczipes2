@@ -10,7 +10,7 @@ import Combine
 
 class AnalyzedInstructionsModel: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = true
+    fileprivate var zBug: Bool = false
     
     // MARK: - Publisher
     @Published private(set) var result: [AnalyzedInstructions] = [AnalyzedInstructions(name: "Dummy", steps: [])] //this is the output, an AnalyzedInstructions array

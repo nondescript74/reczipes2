@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeRowNNLView: View {
     // MARK: - Debug
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - ObservedObject
     @ObservedObject var anImage = WebQueryRecipes()
     //MARK: - Environment

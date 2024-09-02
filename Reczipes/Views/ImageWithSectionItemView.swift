@@ -14,11 +14,9 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {
         self.item = extendedIngredient
-        
-        
+        #if DEBUG
         print(extendedIngredient.name ?? "No Name??")
-        
-        
+        #endif
         anImage.getImageFromUrl(urlString: extendedIngredient.image ?? "Default Image", type: callerId.webimage)
     }
     // MARK: - Properties

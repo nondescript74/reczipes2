@@ -11,7 +11,7 @@ import Combine
 
 public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
-    private var zBug: Bool = true
+    private var zBug: Bool = false
     // MARK: - Published
     @Published var anImage: Image?
     @Published var recipeInfo: SRecipe?

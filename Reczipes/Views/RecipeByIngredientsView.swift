@@ -15,27 +15,48 @@ struct RecipeByIngredientsView: View {
     
     init(cRecipe: CRecipe) {
         self.cRecipe = cRecipe
-//        await swri.executeQuery(recipeId: cRecipe.id)
     }
     
-    private var cRecipe: CRecipe
+    fileprivate var cRecipe: CRecipe
     
-    private func executeTheQuery() async {
+    fileprivate func executeTheQuery() async {
         await swri.executeQuery(recipeId: cRecipe.id)
     }
+    
+    fileprivate enum imagez: String {
+        case kv = "key"
+    }
+    
+    
     var body: some View {
-//        NavigationLink(destination: RecipeDetailView(imageString: CRecipe.image, sectionItem: convertSRecipeToSectionItem3(srecipe: swri.result), cuisine: (swri.result.cuisines?.first)!!)) {
-//            
-            VStack(alignment: .leading) {
+        NavigationLink(destination:
+                        RecipeDetailView(imageString: cRecipe.image,
+                                         sectionItem: convertSRecipeToSectionItem3(srecipe: swri.result),
+                                         cuisine: (swri.result.cuisines?.first)!!))
+        {
+            VStack(alignment: .center) {
                 Text(self.cRecipe.title)
                 Text(self.cRecipe.id.description)
+                
+                
+                Button(action: {
+                    // What to perform
+                    Task {
+                        await executeTheQuery()
+                    }
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: "Get", someTextBottom: "SRecipe", someImage: imagez.kv.rawValue, reversed: true)
+                }
+                
+                Text(swri.result.title ?? "No title")
             }.padding()
             
-//        }
-        
+        }
     }
 }
 
 #Preview {
     RecipeByIngredientsView(cRecipe: CRecipe.cRecipeExample)
+        .environmentObject(SRecipeWithInfo())
 }

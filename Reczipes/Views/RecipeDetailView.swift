@@ -10,7 +10,7 @@ import MessageUI
 
 struct RecipeDetailView: View {
     // MARK: - Local debug flag
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
@@ -38,7 +38,7 @@ struct RecipeDetailView: View {
         case irid = "invalid recipeid sent in"
         case cnd = "could not decode AnalyzedInstructions from data"
         case nk = "No Api Key"
-        case noai = "Number of Analyzed Instructions is greater than 1? "
+//        case noai = "Number of Analyzed Instructions is greater than 1? "
     }
     
     fileprivate enum labelz: String {

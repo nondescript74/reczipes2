@@ -9,7 +9,7 @@ import Foundation
 
 class AllUserRecipes: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     // MARK: - Publisher
     @Published var sections = [BookSection]()
     // MARK: - Initializer
@@ -122,12 +122,12 @@ class AllUserRecipes: ObservableObject {
         case urls = "Returning urls of recipes: "
     }
     
-    var total: Int {
-//#if DEBUG
-//        print(msgs.aur.rawValue + msgs.total.rawValue, sections.count)
-//#endif
-        return sections.count
-    }
+//    var total: Int {
+////#if DEBUG
+////        print(msgs.aur.rawValue + msgs.total.rawValue, sections.count)
+////#endif
+//        return sections.count
+//    }
     
     // MARK: - Methods
     func getBookSectionsIDNames() -> [BookSectionIDName] {

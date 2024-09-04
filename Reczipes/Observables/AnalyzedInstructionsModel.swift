@@ -10,7 +10,7 @@ import Combine
 
 class AnalyzedInstructionsModel: ObservableObject {
     // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    fileprivate var zBug: Bool = true
     
     // MARK: - Publisher
     @Published private(set) var result: [AnalyzedInstructions] = [AnalyzedInstructions(name: "Dummy", steps: [])] //this is the output, an AnalyzedInstructions array
@@ -84,7 +84,7 @@ class AnalyzedInstructionsModel: ObservableObject {
             return ai
         } catch  {
 #if DEBUG
-            let error = "\(msgs.noai.rawValue) \(id)"
+            let error = "\(msgs.cnd.rawValue) \(id)"
             print(error)
 #endif
             return [AnalyzedInstructions(name: msgs.noinst.rawValue, steps: [])]

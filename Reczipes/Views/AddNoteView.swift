@@ -84,7 +84,6 @@ struct AddNoteView: View {
 //                                .font(Font.system(size: 15, weight: .medium, design: .serif))
                         }
                     }
-                    
                     TextEditor(text: $recipeNote)
                         .frame(height: proxy.size.height / 3, alignment: .center)
                         .border(Color.black, width: 2)

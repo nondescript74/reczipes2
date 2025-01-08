@@ -52,17 +52,10 @@ let defaultRecipeUrlString = "https://www.seriouseats.com/recipes/2014/04/easy-s
 let defaultImageUrl = "https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=2048&h=1072&url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F609167.jpg"
 let defaultImageUr2 = "https://i1.wp.com/www.givemesomespice.com/wp-content/uploads/2011/07/IMG_0868.jpg?ssl=1"
 let defaultUUID = "F4DA7B28-D403-4313-8AFF-E9645587C99E"
-
-let myMeasure: Measure = Bundle.main.decode(Measure.self, from: "Measure.json")
-let myMeasures: Measures = Bundle.main.decode(Measures.self, from: "Measures.json")
-let myExtendedIngredient: ExtendedIngredient = Bundle.main.decode(ExtendedIngredient.self, from: "ExtendedIngredient.json")
-let myExtendedIngredients: [ExtendedIngredient] = Bundle.main.decode([ExtendedIngredient].self, from: "ExtendedIngredients.json")
 let shippedDiets: [Diet] =  Bundle.main.decode([Diet].self, from: "diets.json")
-
 
 var colorBackgroundButton: Color = Color.init("ED7D3A")
 var colorForegroundButton: Color = Color.init("A4B8C4")
-let colors: [String: Color] = ["D": .purple, "G": .pink, "N": .red, "S": .blue, "V": .green, "VX": .green, "L": .gray, "H": .orange, "P": .yellow]
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
 let targetsize = CGSize(width: 90.0, height: 60.0)

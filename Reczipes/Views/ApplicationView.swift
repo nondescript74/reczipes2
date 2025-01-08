@@ -55,7 +55,6 @@ struct ApplicationView: View {
                     Text(tabs.img.rawValue)
                 }
             
-            
             AddNoteView()
                 .tabItem {
                     Image(uiImage: suitImage)
@@ -67,12 +66,6 @@ struct ApplicationView: View {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
                 }
-            
-//            AuthView()
-//                .tabItem {
-//                    Image(uiImage: wandNStarsImage)
-//                    Text(tabs.auth.rawValue)
-//                }
             
             KeyView()
                 .tabItem {

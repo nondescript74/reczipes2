@@ -118,7 +118,10 @@ struct OrderIngredientsView2: View {
             }
             
         }
+        .environmentObject(ratio)
+        .environmentObject(order)
     }
+        
 }
 
 struct OrderIngredientsView2_Previews: PreviewProvider {
@@ -129,6 +132,5 @@ struct OrderIngredientsView2_Previews: PreviewProvider {
         OrderIngredientsView2()
             .environmentObject(order)
             .environmentObject(ratio)
-            .environmentObject(userData)
     }
 }

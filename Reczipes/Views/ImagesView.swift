@@ -12,27 +12,16 @@ struct ImagesView: View {
     private var zBug: Bool = false
     // MARK: - Environment
     @EnvironmentObject var aui: AllUserImages
+    
     // MARK: - Initializer
     init(recipeuuid: UUID) {
         self.myRecipeUUID = recipeuuid
     }
+    
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
     fileprivate var myImages:[ImageSaved] = []
-    fileprivate enum msgs: String {
-        case iv = "ImagesView: "
-        case cantdecodeimage = "Can't decode image from data"
-        case numberofimages = "Number of images for recipe "
-        case up = "No rotation needed"
-        case left = "Image is left"
-        case right = "Image is right"
-        case down = "Image is down"
-        case other = "Not LRUDown"
-        case rimages = "RecipeImages"
-//        case recz = "Reczipes"
-        case fau = "Found an Image"
-        case rshippd = "recipesShipped"
-    }
+
 
     // MARK: - Methods
     fileprivate func getUIImageFromData(data: Data) -> UIImage {
@@ -53,6 +42,7 @@ struct ImagesView: View {
                 }
             }
         }
+        .environmentObject(aui)
     }
 }
 

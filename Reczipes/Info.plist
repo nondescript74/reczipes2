@@ -11,7 +11,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.headydiscy.Reczipes.recipe</string>
+				<string>com.headydiscy.playrecipes.recipe</string>
 			</array>
 		</dict>
 	</array>

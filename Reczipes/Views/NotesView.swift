@@ -8,27 +8,16 @@
 import SwiftUI
 
 struct NotesView: View {
-    // MARK: - Debug local
-    fileprivate var zBug: Bool = false
     // MARK: - Environment
     @EnvironmentObject var aun: AllUserNotes
+    
     // MARK: - Initializer
     init(recipeuuid: UUID) {
         self.myRecipeUUID = recipeuuid
     }
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
-    fileprivate var myNotes:[Note] = []
-    var isDirectory: ObjCBool = true
-    private var decoder: JSONDecoder = JSONDecoder()
-    private var encoder: JSONEncoder = JSONEncoder()
-    fileprivate enum msgs: String {
-        case nv = "NotesView: "
-        case cantdecodenote = "Can't decode note from data"
-        case numberofnotes = "Number of notes for recipe "
-        case recz = "Reczipes"
-    }
-    // MARK: - Methods
+
     // MARK: - View Process
     var body: some View {
         List {
@@ -36,6 +25,7 @@ struct NotesView: View {
                 Text(anote.note)
             }
         }
+        .environmentObject(aun)
     }
 }
 

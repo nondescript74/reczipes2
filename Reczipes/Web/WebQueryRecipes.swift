@@ -20,108 +20,12 @@ public class WebQueryRecipes: ObservableObject {
     @Published var extractedSRecipe: SRecipe?
     @Published var aTrivia: Trivia?
     @Published var joke: Joke?
-    // MARK: - Properties
-//    private enum myQuery: String {
-//        case query = "query="
-//        case numberDesired = "&number="
-//        case ingredients = "ingredients="
-//        case nutritionFalse = "includeNutrition=false"
-//        case nutritionTrue = "includeNutrition=true"
-//        case recipeInfo = "&addRecipeInformation=true"
-//        case extract = "url="
-//        case trivia, joke = ""
-//        case cuisine = "&cuisine="
-//        case tags = "&tags="
-//        case anlyztrue = "&analyze=true"
-//    }
-//    
-//    enum callerId: String {
-//        case fullurlbeingsupplied = "Full Url supplied"
-//        case srecipes = "srecipes"
-//        case webimage = "fullUrl"
-//    }
-//    
-//    fileprivate enum urlThings: String {
-//        case recipes = "https://api.spoonacular.com/recipes/search"
-//        case recipesComplex = "https://api.spoonacular.com/recipes/complexSearch"
-//        case imageWeb = "https://spoonacular.com/cdn/ingredients_" //
-//        case images = "https://spoonacular.com/recipeImages/"
-//        case ingredients = "https://api.spoonacular.com/recipes/findByIngredients"  // https://api.spoonacular.com/recipes/findByIngredients
-//        case similar, information, analyzedInstructions = "https://api.spoonacular.com/recipes/"
-//        case similarPartDeux = "/similar"
-//        case informationPartDeux = "/information"
-//        case randomrecipes = "https://api.spoonacular.com/recipes/random"
-//        case extractedrecipe = "https://api.spoonacular.com/recipes/extract"
-//        case trivia = "https://api.spoonacular.com/food/trivia/random"
-//        case joke = "https://api.spoonacular.com/food/jokes/random"
-//        case defaultURLString = "https://api.spoonacular.com/recipes/196740/information?includeNutrition=false"
-//    }
-//    
-//    enum imageTypes: String {
-//        case jpg = ".jpg"
-//        case png = ".png"
-//        case jpeg = ".jpeg"
-//    }
-//    
-//    enum imageSizes: String {
-//        case hundredx100 = "100x100"
-//        case two50x250 = "250x250"
-//        case five100x500 = "500x500"
-//    }
-//    
-//    enum myGets: String {
-//        case FindRecipes = "Find Recipes"
-//        case FindSRecipeGroup = "Find SRecipes"
-//        case FindImage = "Find Image"
-//        case FindByIngredients  = "Find By Ingredients"
-//        case FindByNutrition  = "Find By Nutrition"
-//        case FindByComplexity  = "Find By Complexity"
-//        case GetAnalyzInstr = "Get Analyzed Instructions"
-//        case FindRandom  = "Find Random"
-//        case FindSimilar = "Find Similar"
-//        case FindInformation = "My Information"
-//        case FindSRecipe = "Find SRecipe"
-//        case FindExtracted = "Extract SRecipe"
-//        case GetTrivia = "Get Random Trivia"
-//        case GetJoke = "Get Random Joke"
-//    }
-//    
-//    fileprivate enum messagesDebug: String {
-//        case foundimage = "Find Image found an Image"
-//        case foundrandom = "Found Random Recipes"
-//        case foundrecipeinfo = "Find Information found an SRecipe"
-//        case foundsrecipe = "Found an SRecipe"
-//        case foundextractedrecipe = "Extracted an SRecipe"
-//        case foundsrecipegroup = "Found SRecipeGroup"
-//        case fcrgroup = "Found CRecipeGroup"
-//        case getTrivia = "Found trivia"
-//        case getJoke = "Found joke"
-//        case getAnInstr = "Found analyzed instructions"
-//        case noTitle = "No title"
-//        case noTrivia = "No Trivia Found"
-//        case noJoke = "Found No Joke"
-//        case noAnInstr = "No analyzed instructions found"
-//        case unknownImageType = "Unknown image type"
-//        case unknownCallerID = "Unknown CallerID"
-//    }
-    
-    fileprivate /*var defaultRequiredCount:Int = 0*/
     
     // MARK: - Methods
     func getMySRecipe(url: URL) {
         urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         myTask(aswitch: myGets.FindSRecipe.rawValue)
     }
-    
-//    func getMySRecipeInfo(id: Int) {
-//        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
-//        urlComponents = URLComponents(string: urlThings.information.rawValue)!
-//        urlComponents.path.append("\(id)")
-//        urlComponents.path.append(urlThings.informationPartDeux.rawValue)
-//        urlComponents.query = myQuery.nutritionFalse.rawValue + key
-//        myTask(aswitch: myGets.FindInformation.rawValue)
-//        // https://api.spoonacular.com/recipes/488633/information?includeNutrition=false&apiKey=
-//    }
     
     func getSearched(searchString: String, numberSent: Int, cuisine: String) {
         if searchString == "" {

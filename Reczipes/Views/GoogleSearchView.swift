@@ -10,12 +10,7 @@ import SwiftUI
 import SafariServices
 
 struct GoogleSearchView: View  {
-    // MARK: - Environment Variables
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @EnvironmentObject var userData: UserData
-    // MARK: - State
-    // MARK: - Properties
-    // MARK: - Methods
+    
     // MARK: - View Process
     var body: some View  {
         GeometryReader { proxy in
@@ -61,10 +56,6 @@ struct GoogleSearchView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             GoogleSearchView()
-                .previewDevice("iPhone Xr")
-            
-            GoogleSearchView()
-                .environment(\.colorScheme, .dark)
                 .previewDevice("iPhone Xr")
         }
     }

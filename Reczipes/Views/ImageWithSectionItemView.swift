@@ -14,9 +14,9 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {
         self.item = extendedIngredient
-        #if DEBUG
+#if DEBUG
         print(extendedIngredient.name ?? "No Name??")
-        #endif
+#endif
         anImage.getImageFromUrl(urlString: extendedIngredient.image ?? "Default Image", type: callerId.webimage)
     }
     // MARK: - Properties
@@ -31,11 +31,9 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
 
 
 struct ImageWithSectionItemView_Previews: PreviewProvider {
-    static let order = OrderingList()
     static var previews: some View {
         Group {
             ImageWithSectionItemView(extendedIngredient:  ExtendedIngredient.extendedIngredientExample)
-                .environmentObject(order)
                 .previewDevice("iPhone Xr")
         }
     }

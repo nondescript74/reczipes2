@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct RecipeRowNNLView: View {
-    // MARK: - Debug
-//    private var zBug: Bool = false
-    // MARK: - ObservedObject
-    @ObservedObject var anImage = WebQueryRecipes()
     //MARK: - Environment
     @EnvironmentObject var aur: AllUserRecipes
-    // MARK: - Initializer    
+    // MARK: - Initializer
     init(srecipe: SRecipe, cuisine: String) {
         self.sRecipe = srecipe
         self.cuisine = cuisine
@@ -24,11 +20,6 @@ struct RecipeRowNNLView: View {
 #if DEBUG
             print("RRNNLV: No imageUrl")
 #endif
-        } else {
-#if DEBUG
-            print("RRNNLV: imageUrl exists, going to get")
-#endif
-            anImage.getImageFromUrl(urlString: sRecipe.image!, type: callerId.fullurlbeingsupplied)
         }
 #if DEBUG
         print("RRNNLV: The recipeId is :", srecipe.id)
@@ -52,14 +43,16 @@ struct RecipeRowNNLView: View {
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading) {
+            Text(sRecipe.title ?? "No Title")
+                .font(.headline)
+                .padding()
+            
             HStack(alignment: .center) {
-                anImage.anImage?
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: widthImage, height: heightImage, alignment: .leading)
-                    .clipShape(Rectangle())
-                    .overlay(Rectangle().stroke(Color.gray, lineWidth: overlayLWidth))
-                
+                LoadableImageView(imageMetadata: convertSRecipeToSectionItem3(srecipe: sRecipe))
+            }
+            
+            
+            HStack(alignment: .center) {
                 ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
                     Text(restriction)
                         .font(.caption)
@@ -67,8 +60,11 @@ struct RecipeRowNNLView: View {
                         .clipShape(Rectangle())
                 }
                 
+            }
+            .padding()
+            
+            HStack(alignment: .center) {
                 Spacer()
-                
                 Button(action: {
                     // What to perform
                     let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
@@ -78,13 +74,15 @@ struct RecipeRowNNLView: View {
                     RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
                 }
                 .disabled(cuisine.isEmpty )
-                
+                Spacer()
             }
-            Text(sRecipe.title ?? "No Title")
-        }.padding()
-            .alert(isPresented: $recipeSaved)   {
-                return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
-            }
+            
+        }
+        .environmentObject(aur)
+        .padding()
+        .alert(isPresented: $recipeSaved)   {
+            return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
+        }
     }
 }
 

@@ -9,21 +9,16 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
-    // MARK: - Local debug flag
-    fileprivate var zBug: Bool = true
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var myAI: AnalyzedInstructionsModel
-    // MARK: - ObservedObject
-    @ObservedObject var anImage = WebQueryRecipes()
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
-        anImage.getImageFromUrl(urlString: imageString, type: callerId.fullurlbeingsupplied)
     }
     // MARK: - Properties
     var item: SectionItem3
@@ -38,7 +33,6 @@ struct RecipeDetailView: View {
         case irid = "invalid recipeid sent in"
         case cnd = "could not decode AnalyzedInstructions from data"
         case nk = "No Api Key"
-//        case noai = "Number of Analyzed Instructions is greater than 1? "
     }
     
     fileprivate enum labelz: String {
@@ -71,12 +65,7 @@ struct RecipeDetailView: View {
     @State fileprivate var addingNote = false
     @State fileprivate var showingInstructions = false
     @State fileprivate var showShareSheet = false
-    @State var result: Result<MFMailComposeResult, Error>? = nil
-    @State var isShowingMailView = false
     @State fileprivate var recipeSaved = false
-    @State fileprivate var showingMoveView = false
-    private var decoder: JSONDecoder = JSONDecoder()
-    private var encoder: JSONEncoder = JSONEncoder()
     
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
@@ -102,15 +91,30 @@ struct RecipeDetailView: View {
         GeometryReader { proxy in
             VStack {
                 VStack {
-                    if UIImage(named: item.mainImage) == nil {
-                        anImage.anImage?
-                            .resizable()
-                            .padding(.all, 5)
-                            .frame(width: proxy.size.width / 2, height: proxy.size.height / 4)
-                    } else {
-                        Image(item.mainImage)
-                            .resizable()
-                            .padding(.all, 5)
+                    AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(15)
+                                .shadow(radius: 5)
+                                .accessibility(hidden: false)
+                                .accessibilityLabel(Text(item.name))
+                        }  else if phase.error != nil  {
+                            VStack {
+                                Image("IMG_Rae_312x312")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 300)
+                                Text("The recipes were all busy.")
+                                    .font(.title2)
+                                Text("Please try again.")
+                                    .font(.title3)
+                            }
+                            
+                        } else {
+                            ProgressView()
+                        }
                     }
                     
                     Text("Photo: \(item.photocredit)")
@@ -180,15 +184,17 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
             }
-//            .sheet(isPresented: $showingInstructions) {
-//                AnalyzedInstructionsView(analyzedInstructions: myAI.result)
-//            }
             
             .alert(isPresented: $recipeSaved)   {
                 return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
             }
             .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)
         }
+        .environmentObject(order)
+        .environmentObject(aur)
+        .environmentObject(aun)
+        .environmentObject(aui)
+        .environmentObject(myAI)
     }
 }
 

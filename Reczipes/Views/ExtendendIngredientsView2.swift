@@ -14,6 +14,10 @@ struct ExtendendIngredientsView2: View {
     // MARK: - Initializer
     init(sectionitem: SectionItem3) {
         extractedSRecipe.findExtracted(urlString: sectionitem.url)
+#if DEBUG
+        print(sectionitem.name, sectionitem.url, sectionitem.imageUrl, sectionitem.recipeId ?? "-1")
+#endif
+
     }
     // MARK: - Properties
     // MARK: - View Process
@@ -33,9 +37,8 @@ struct ExtendendIngredientsView2: View {
 
 
 struct ExtendendIngredientsView2_Previews: PreviewProvider {
-    static let sectionItem = SectionItem3.example
     static var previews: some View {
-        ExtendendIngredientsView2(sectionitem: sectionItem)
+        ExtendendIngredientsView2(sectionitem: SectionItem3.example)
             .environmentObject(RecipeRatio())
              
     }

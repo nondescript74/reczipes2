@@ -60,7 +60,6 @@ struct FindOrExtractView: View {
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
         let cuisine = getBookSectionNames()[xection]
         sRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
-//        sRecipeGroup.getSearched(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
@@ -97,18 +96,6 @@ struct FindOrExtractView: View {
         NavigationView {
             VStack {
                 VStack {
-//                    HStack {
-//                        Text(msgs.choose.rawValue)
-//                        Picker(msgs.books.rawValue, selection: $xection) {
-//                            let zx = getBookSectionNames().count
-//                            ForEach(0..<zx, id: \.self) { index in
-//                                Text("\(getBookSectionNames()[index])")
-//                            }
-//                        }
-//                    }
-//                    
-//                    Divider()
-//                    
                     Text(msgs.fr.rawValue).fontWeight(.semibold)
                     
                     HStack(alignment: .center) {
@@ -117,17 +104,13 @@ struct FindOrExtractView: View {
                         Button(action: getCRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 20)
-//                        
-//                        Button(action: getSRecipeGroup) {
-//                            Text(msgs.find.rawValue).font(.largeTitle).bold()
-//                        }.padding(.trailing, 20)
-                        
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
                         }.padding(.trailing, 10)
                     }
-                }.padding()
-                // Divider()
+                }
+                .padding()
+                
                 VStack {
                     Text(msgs.er.rawValue).fontWeight(.semibold)
                     
@@ -138,8 +121,9 @@ struct FindOrExtractView: View {
                         }.padding(.trailing, 20)
                         
                     }
-                }.padding()
-                // Divider()
+                }
+                .padding()
+                
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
@@ -161,6 +145,8 @@ struct FindOrExtractView: View {
                     }
                 }
             }
+            .environmentObject(aur)
+            .environmentObject(userData)
             
         }
     }

@@ -15,7 +15,7 @@ struct ExtendedIngredView: View {
     // MARK: - EnvironmentObjects
     @EnvironmentObject var ratio: RecipeRatio
     // MARK: - Properties
-    fileprivate var myExtIngredient: ExtendedIngredient!
+    fileprivate var myExtIngredient: ExtendedIngredient
     // MARK: - Methods
     fileprivate func getMetaInfo(meta: [String?]?) -> String {
         var myReturnMetaInfo: String = ""
@@ -46,11 +46,8 @@ struct ExtendedIngredView: View {
 }
 
 struct ExtendedIngredView_Previews: PreviewProvider {
-    static let myExtendedIngredient: ExtendedIngredient = ExtendedIngredient.extendedIngredientExample
-    static let ratio = RecipeRatio()
     static var previews: some View {
-        ExtendedIngredView(extendedIngredient: myExtendedIngredient)
-            .environmentObject(ratio)
+        ExtendedIngredView(extendedIngredient: ExtendedIngredient.extendedIngredientExample)
+            .environmentObject(RecipeRatio())
     }
-
 }

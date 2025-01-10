@@ -13,7 +13,7 @@ public class WebQueryRecipes: ObservableObject {
     // MARK: - Debug local
     private var zBug: Bool = false
     // MARK: - Published
-    @Published var anImage: Image?
+//    @Published var anImage: Image?
     @Published var recipeInfo: SRecipe?
     @Published var sRecipeGroup = [SRecipe]()
     @Published var cRecipeGroup = [CRecipe]()
@@ -53,10 +53,10 @@ public class WebQueryRecipes: ObservableObject {
         return myReturingString
     }
     
-    func getImageFromUrl(urlString: String, type: callerId) {
-        urlComponentsRecipeImages = URLComponents(string: parseMyImageUrl(imageName: urlString, type: type.rawValue))!
-        myImageTask(aswitch: myGets.FindImage.rawValue)
-    }
+//    func getImageFromUrl(urlString: String, type: callerId) {
+//        urlComponentsRecipeImages = URLComponents(string: parseMyImageUrl(imageName: urlString, type: type.rawValue))!
+//        myImageTask(aswitch: myGets.FindImage.rawValue)
+//    }
     
     private func parseMyImageUrl(imageName: String, type: callerId.RawValue) -> String {
         var myRetStr = ""
@@ -123,28 +123,28 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
-    private func myImageTask(aswitch: String) {
-        guard let url = urlComponentsRecipeImages.url else {
-            return
-        }
-
-        if zBug {print(url.absoluteString)}
-
-        switch aswitch {
-        case myGets.FindImage.rawValue:
-            _ = ImageProvider(imageUrl: url) { myImage in
-                if myImage != nil {
-                    DispatchQueue.main.async {
-                        self.anImage = myImage
-                        if self.zBug { print(messagesDebug.foundimage.rawValue)}
-                    }
-                }
-            }
-            
-        default:
-            fatalError("unrecognized switch")
-        }
-    }
+//    private func myImageTask(aswitch: String) {
+//        guard let url = urlComponentsRecipeImages.url else {
+//            return
+//        }
+//
+//        if zBug {print(url.absoluteString)}
+//
+//        switch aswitch {
+//        case myGets.FindImage.rawValue:
+//            _ = ImageProvider(imageUrl: url) { myImage in
+//                if myImage != nil {
+//                    DispatchQueue.main.async {
+//                        self.anImage = myImage
+//                        if self.zBug { print(messagesDebug.foundimage.rawValue)}
+//                    }
+//                }
+//            }
+//            
+//        default:
+//            fatalError("unrecognized switch")
+//        }
+//    }
     
     private func myTask(aswitch: String) {
         guard let url = urlComponents.url else {

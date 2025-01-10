@@ -7,22 +7,12 @@
 
 import SwiftUI
 
-//struct ListHeader: View {
-//    var myText: String
-//    var body: some View {
-//        HStack {
-//            Text(myText).foregroundColor(.red)
-//        }
-//    }
-//}
-
 struct OrderIngredientsView2: View {
     // MARK: - Initializer
     // MARK: - Environment Variables
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var ratio: RecipeRatio
-    // MARK: - State
-    // MARK: - ObservedObject
+
     // MARK: - Properties
     fileprivate enum msgs: String {
         case orderIngredientsView2, OIV2 = "OrderIngredientsView2: "
@@ -49,27 +39,24 @@ struct OrderIngredientsView2: View {
         case full = "cross.circle.fill"
     }
     
-    // MARK: - Methods
     // MARK: - View Process
     var body: some View {
         VStack {
             Text("Ingredient Ordering").font(.largeTitle).bold().padding(.bottom)
             
-            VStack {
-                ForEach(order.items, id: \.self) {item in
-                    HStack {
-                        RecipeRowView(sectionItem: item)
-                        Button(action: {
-                            // What to perform
-                            self.order.remove(item: item)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
-                        }
+            ForEach(order.items, id: \.self) {item in
+                HStack {
+                    RecipeRowView(sectionItem: item)
+                    Button(action: {
+                        // What to perform
+                        self.order.remove(item: item)
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.remove.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: labelz.trash.rawValue, reversed: false)
                     }
                 }
             }
-            
+    
             HStack {
                 Button(action: {
                     // What to perform
@@ -121,11 +108,10 @@ struct OrderIngredientsView2: View {
         .environmentObject(ratio)
         .environmentObject(order)
     }
-        
+    
 }
 
 struct OrderIngredientsView2_Previews: PreviewProvider {
-    static let userData = UserData()
     static let ratio = RecipeRatio()
     static let order = OrderingList()
     static var previews: some View {

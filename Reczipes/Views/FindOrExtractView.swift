@@ -28,13 +28,13 @@ struct FindOrExtractView: View {
         case enteringreds = "Enter ingredients"
         case cuisine = " as cuisine?"
         case dyw = "Did you want "
-        case choose = "Choosing"
+        case choose = "Choose cuisine"
     }
     fileprivate var cuisine = ""
     // MARK: - State
     @State private var urlString: String = ""
     @State fileprivate var ingredsString: String = ""
-    @State private var xection: Int = 0
+    @State fileprivate var xectionName: String = ""
     @State private var recipeRequested: Bool = false
     @State fileprivate var searchTerm: String = ""
     @State private var show: Selectors = .notyet
@@ -56,30 +56,34 @@ struct FindOrExtractView: View {
     
     // MARK: - Methods
     func getSRecipeGroup() {
+        if xectionName == "" {return}
         show = Selectors.names
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = getBookSectionNames()[xection]
+        let cuisine = xectionName
         sRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
     func getCRecipeGroup() {
+        if xectionName == "" {return}
         show = Selectors.find
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = getBookSectionNames()[xection]
+        let cuisine = xectionName
         cRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
     func findRandom() {
+        if xectionName == "" {return}
         show = Selectors.random
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = getBookSectionNames()[xection]
+        let cuisine = xectionName
         sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
         endEditing()
     }
     
     func extractRecipe() {
+        if xectionName == "" {return}
         show = Selectors.extract
         extractedSRecipe.findExtracted(urlString: urlString)
         urlString = ""
@@ -109,7 +113,6 @@ struct FindOrExtractView: View {
                         }.padding(.trailing, 10)
                     }
                 }
-                .padding()
                 
                 VStack {
                     Text(msgs.er.rawValue).fontWeight(.semibold)
@@ -122,12 +125,20 @@ struct FindOrExtractView: View {
                         
                     }
                 }
-                .padding()
+                VStack {
+                    Text("Selected: " + xectionName).fontWeight(.semibold)
+                    Picker("Select", selection: $xectionName) {
+                        ForEach(getBookSectionNames(), id: \.self) { bookSection in
+                            Text(bookSection).fontWeight(.light)
+                        }
+                    }
+                    
+                }
                 
                 List   {
                     if show == Selectors.names {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.find {
@@ -137,11 +148,11 @@ struct FindOrExtractView: View {
                     }
                     if show == Selectors.random {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: getBookSectionNames()[xection])
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.extract &&  extractedSRecipe.extractedSRecipe != nil {
-                        RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: getBookSectionNames()[xection])
+                        RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
                     }
                 }
             }

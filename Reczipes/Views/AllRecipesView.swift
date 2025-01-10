@@ -11,7 +11,7 @@ struct AllRecipesView: View {
     // MARK: - Debug local
     var zBug: Bool = false
     // MARK: - Environment Objects
-    @ObservedObject var aur: AllUserRecipes
+    @EnvironmentObject var aur: AllUserRecipes
     // MARK: - Properties
     enum msgs: String {
         case arv = "All Recipes View"
@@ -43,6 +43,7 @@ struct AllRecipesView: View {
                     }
                 }.listStyle(GroupedListStyle())
             }
+            .environmentObject(aur)
         }
     }
 }
@@ -51,7 +52,8 @@ struct AllRecipesView: View {
 struct AllRecipesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AllRecipesView(aur: AllUserRecipes())
+            AllRecipesView()
+                .environmentObject(AllUserRecipes())
                 .colorScheme(.light)
         }
     }

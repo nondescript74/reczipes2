@@ -24,7 +24,6 @@
 		36C1A5592D302D3100AC9CDF /* RecipeRowNNLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1A5582D302D3100AC9CDF /* RecipeRowNNLView.swift */; };
 		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
 		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
-		931164E52697836600099F8D /* AcceptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931164E42697836600099F8D /* AcceptView.swift */; };
 		931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B5169269E4B660065F551 /* ModelStructs2.swift */; };
 		931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B516B269E4BFE0065F551 /* CommonItems.swift */; };
 		93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A1626A4E3DE00032387 /* RecipeRowView.swift */; };
@@ -142,7 +141,6 @@
 		36C1A5582D302D3100AC9CDF /* RecipeRowNNLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowNNLView.swift; sourceTree = "<group>"; };
 		930310C72695DC75006910EF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		930310C9269666B1006910EF /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
-		931164E42697836600099F8D /* AcceptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptView.swift; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
 		931B516B269E4BFE0065F551 /* CommonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonItems.swift; sourceTree = "<group>"; };
 		93237A1626A4E3DE00032387 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 				F804499528A0644700F631C8 /* ApplicationView.swift */,
 				F828685D28D28CA700BD0917 /* MultiView.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
-				931164E42697836600099F8D /* AcceptView.swift */,
 				F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */,
 				F8AEEBD829944CC60017BE57 /* AddImageView.swift */,
 				F8AEEBDA29944F300017BE57 /* AddNoteView.swift */,
@@ -592,7 +589,6 @@
 				F8AEEBDB29944F300017BE57 /* AddNoteView.swift in Sources */,
 				F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */,
 				F8304A7328AD348500867C6F /* AuthView.swift in Sources */,
-				931164E52697836600099F8D /* AcceptView.swift in Sources */,
 				F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */,
 				F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */,
 				F844C6DA299AF603000A49F6 /* ShareRecipeView.swift in Sources */,
@@ -780,7 +776,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 456;
+				CURRENT_PROJECT_VERSION = 457;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -806,7 +802,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.4.456;
+				MARKETING_VERSION = 7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -830,7 +826,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 456;
+				CURRENT_PROJECT_VERSION = 457;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -856,7 +852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.4.456;
+				MARKETING_VERSION = 7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

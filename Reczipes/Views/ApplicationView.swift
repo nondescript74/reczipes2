@@ -35,9 +35,10 @@ struct ApplicationView: View {
         case enterKey = "ApiKey"
         case fi = "find 🍒"
     }
+    
     var body: some View {
         TabView {
-            AllRecipesView(aur: aur)
+            AllRecipesView()
                 .tabItem {
                     Image(uiImage: imageDocDocEmpty!)
                     Text(tabs.books.rawValue)
@@ -85,7 +86,7 @@ struct ApplicationView: View {
                     Text(tabs.uf.rawValue)
                 }
             
-            MultiView(show: .notyet)
+            MultiView()
                 .tabItem {
                     Image(uiImage: suitImage)
                     Text(tabs.jt.rawValue)

@@ -13,7 +13,7 @@ struct MultiView: View {
     @ObservedObject var trivia = WebQueryRecipes()
     @ObservedObject var joke = WebQueryRecipes()
     // MARK: - State
-    @State var show: Selectors
+    @State var show: Selectors = .notyet
     // MARK: - Properties
     enum Selectors {
         case notyet

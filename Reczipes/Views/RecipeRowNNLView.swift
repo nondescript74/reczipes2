@@ -22,7 +22,7 @@ struct RecipeRowNNLView: View {
 #endif
         }
 #if DEBUG
-        print("RRNNLV: The recipeId is :", srecipe.id)
+        print("RRNNLV: The recipeId is :", srecipe.id, "The cuisine is :", cuisine, "\n")
 #endif
     }
     // MARK: - State

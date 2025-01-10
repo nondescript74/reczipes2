@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LoadableImageView: View {
     var imageMetadata: SectionItem3
-    var url: URL?
     
     var body: some View {
         AsyncImage(url: URL(string: (imageMetadata.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in

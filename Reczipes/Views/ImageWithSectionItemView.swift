@@ -8,26 +8,25 @@
 
 import SwiftUI
 
-struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
-//    // MARK: - ObservedObject
-//    @ObservedObject var anImage = WebQueryRecipes()
+struct ImageWithSectionItemView: View {
+    // used in ExtendedIngredientsView
+    // https://spoonacular.com/food-api/docs#Show-Images
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {
         self.item = extendedIngredient
-//#if DEBUG
-//        print(extendedIngredient.name ?? "No Name??")
-//#endif
-//        anImage.getImageFromUrl(urlString: extendedIngredient.image ?? "Default Image", type: callerId.webimage)
+#if DEBUG
+        print("ImageWSecItemview: ", extendedIngredient.name ?? "No Name??")
+#endif
     }
     // MARK: - Properties
     var item: ExtendedIngredient
     
     // MARK: - Methods
     fileprivate func createUrlString() -> String {
-        var urlString = "https://img.spoonacular.com/recipes/"
-        urlString = urlString + item.id!.description + "-556x370.jpg"
+        var urlString = "https://img.spoonacular.com/ingredients_250x250/"
+        urlString = urlString + item.image!
 #if DEBUG
-        print(urlString)
+        print("ImageWSecItemview: ", urlString)
 #endif
         return urlString
     }
@@ -43,18 +42,6 @@ struct ImageWithSectionItemView: View {  // used in ExtendedIngredientsView
                         .shadow(radius: 5)
                         .accessibility(hidden: false)
                         .accessibilityLabel(Text(item.name ?? "No name"))
-                }  else if phase.error != nil  {
-                    VStack {
-                        Image("IMG_Rae_312x312")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 300)
-                        Text("The recipes were all busy.")
-                            .font(.title2)
-                        Text("Please try again.")
-                            .font(.title3)
-                    }
-                    
                 } else {
                     ProgressView()
                 }

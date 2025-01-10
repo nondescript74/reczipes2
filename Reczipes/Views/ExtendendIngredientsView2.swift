@@ -15,7 +15,7 @@ struct ExtendendIngredientsView2: View {
     init(sectionitem: SectionItem3) {
         extractedSRecipe.findExtracted(urlString: sectionitem.url)
 #if DEBUG
-        print(sectionitem.name, sectionitem.url, sectionitem.imageUrl, sectionitem.recipeId ?? "-1")
+        print("ExtIngView2 SI name: ", sectionitem.name, "ExtIngView2 SI url: ", sectionitem.url, "ExtIngView2 SI image: ", sectionitem.imageUrl ?? ExtendedIngredient.extendedIngredientExample.image!, "ExtIngView2 SI recipeId: ", sectionitem.recipeId ?? "-1")
 #endif
 
     }

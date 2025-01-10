@@ -50,7 +50,7 @@ extension DataLoadOperation: @unchecked Sendable {
      
 }
 
-extension DataLoadOperation: ImageCreateOperationDataProvider, SRecipeGroupCreateOperationDataProvider, SRecipeCreateOperationDataProvider, CRecipeGroupCreateOperationDataProvider, TriviaCreateOperationDataProvider, JokeCreateOperationDataProvider {
+extension DataLoadOperation: SRecipeGroupCreateOperationDataProvider, SRecipeCreateOperationDataProvider, CRecipeGroupCreateOperationDataProvider, TriviaCreateOperationDataProvider, JokeCreateOperationDataProvider {
     var data: Data? { return loadedData }
 }
 

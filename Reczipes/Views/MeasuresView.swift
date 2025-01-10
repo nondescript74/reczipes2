@@ -40,6 +40,9 @@ struct MeasuresView: View {
             testResultUnits = (myMeasures.us?.unitLong)!
         }
         let value = Text(testResultStr) + Text(" ") + Text(testResultUnits)
+#if DEBUG
+        print("MeasuresView valueUS :", value)
+#endif
         return value
     }
     fileprivate func makeRatiodMetric() -> Text {
@@ -61,13 +64,21 @@ struct MeasuresView: View {
             testResultUnits = (myMeasures.metric?.unitLong)!
         }
         let value = Text(testResultStr) + Text(" ") + Text(testResultUnits)
+#if DEBUG
+        print("MeasuresView valueMetric :", value)
+#endif
         return value
     }
     // MARK: - View Process
     var body: some View {
         HStack {
-            makeRatiodUS() + Text(" or ") + makeRatiodMetric()
+            if makeRatiodUS() != makeRatiodMetric() {
+                makeRatiodUS() + Text(" or ") + makeRatiodMetric()
+            } else {
+                makeRatiodUS()
+            }
         }
+        .environmentObject(ratio)
     }
 }
 

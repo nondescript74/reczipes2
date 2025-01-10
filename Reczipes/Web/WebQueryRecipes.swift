@@ -10,10 +10,8 @@ import SwiftUI
 import Combine
 
 public class WebQueryRecipes: ObservableObject {
-    // MARK: - Debug local
-    private var zBug: Bool = false
+
     // MARK: - Published
-//    @Published var anImage: Image?
     @Published var recipeInfo: SRecipe?
     @Published var sRecipeGroup = [SRecipe]()
     @Published var cRecipeGroup = [CRecipe]()
@@ -53,11 +51,6 @@ public class WebQueryRecipes: ObservableObject {
         return myReturingString
     }
     
-//    func getImageFromUrl(urlString: String, type: callerId) {
-//        urlComponentsRecipeImages = URLComponents(string: parseMyImageUrl(imageName: urlString, type: type.rawValue))!
-//        myImageTask(aswitch: myGets.FindImage.rawValue)
-//    }
-    
     private func parseMyImageUrl(imageName: String, type: callerId.RawValue) -> String {
         var myRetStr = ""
         switch type {
@@ -81,9 +74,9 @@ public class WebQueryRecipes: ObservableObject {
     func findExtracted(urlString: String) {
         // https://api.spoonacular.com/recipes/extract?url=https://foodista.com/recipe/ZHK4KPB6/chocolate-crinkle-cookies&apiKey=
         if !urlString.isValidURL ||  UserDefaults.standard.string(forKey: "SpoonacularKey") == nil {
-            #if DEBUG
-            if zBug {print("no key or invalid url supplied")}
-            #endif
+#if DEBUG
+            print("no key or invalid url supplied")
+#endif
             return
         }
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
@@ -105,7 +98,6 @@ public class WebQueryRecipes: ObservableObject {
         let cleanString = parseSearchString(searchstring: searchString)
 
         let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
-//        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
         urlComponents = URLComponents(string: urlThings.ingredients.rawValue)!
         urlComponents.query = myQuery.ingredients.rawValue + cleanString + myQuery.numberDesired.rawValue + numberSent.description + key
         myTask(aswitch: myGets.FindByIngredients.rawValue)
@@ -123,29 +115,6 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.GetJoke.rawValue)
     }
     
-//    private func myImageTask(aswitch: String) {
-//        guard let url = urlComponentsRecipeImages.url else {
-//            return
-//        }
-//
-//        if zBug {print(url.absoluteString)}
-//
-//        switch aswitch {
-//        case myGets.FindImage.rawValue:
-//            _ = ImageProvider(imageUrl: url) { myImage in
-//                if myImage != nil {
-//                    DispatchQueue.main.async {
-//                        self.anImage = myImage
-//                        if self.zBug { print(messagesDebug.foundimage.rawValue)}
-//                    }
-//                }
-//            }
-//            
-//        default:
-//            fatalError("unrecognized switch")
-//        }
-//    }
-    
     private func myTask(aswitch: String) {
         guard let url = urlComponents.url else {
             return
@@ -154,8 +123,9 @@ public class WebQueryRecipes: ObservableObject {
         if url.absoluteString.contains("NoKey") {
             return
         }
-
-        if zBug {print(url.absoluteString)}
+#if DEBUG
+        print(url.absoluteString)
+#endif
 
         switch aswitch {
     
@@ -164,7 +134,7 @@ public class WebQueryRecipes: ObservableObject {
                 if self.recipeInfo != nil {
                     DispatchQueue.main.async { [self] in
                         self.recipeInfo = recipeinfo!
-                        if zBug {print(messagesDebug.foundsrecipe.rawValue)}
+                        print(messagesDebug.foundsrecipe.rawValue)
                     }
                 }
             }
@@ -174,7 +144,7 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async { [self] in
                         self.sRecipeGroup = srecipes!
-                        if self.zBug {print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? defaultRequiredCount)}
+                        print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? defaultRequiredCount)
                     }
                 }
             }
@@ -184,7 +154,7 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async {
                         self.sRecipeGroup = srecipes!
-                        if self.zBug {print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? defaultRequiredCount)}
+                        print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? defaultRequiredCount)
                     }
                 }
             }
@@ -194,7 +164,7 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipe != nil {
                     DispatchQueue.main.async {
                         self.extractedSRecipe = srecipe!
-                        if self.zBug {print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)}
+                        print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)
                     }
                 }
             }
@@ -204,7 +174,7 @@ public class WebQueryRecipes: ObservableObject {
                 if crecipes != nil {
                     DispatchQueue.main.async {
                         self.cRecipeGroup = crecipes!
-                        if self.zBug {print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")}
+                        print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")
                     }
                 }
             }
@@ -214,7 +184,7 @@ public class WebQueryRecipes: ObservableObject {
                 if trivia != nil {
                     DispatchQueue.main.async {
                         self.aTrivia = trivia!
-                        if self.zBug {print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)}
+                        print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)
                     }
                 }
             }
@@ -224,7 +194,7 @@ public class WebQueryRecipes: ObservableObject {
                 if joke != nil {
                     DispatchQueue.main.async {
                         self.joke = joke!
-                        if self.zBug {print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)}
+                        print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)
                     }
                 }
             }

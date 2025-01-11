@@ -8,55 +8,36 @@
 import SwiftUI
 
 struct RecipeByIngredientsView: View {
-    
-    // MARK: - ObservedObject
-    //MARK: - Environment
-    @EnvironmentObject var swri: SRecipeWithInfo
-    
     init(cRecipe: CRecipe) {
         self.cRecipe = cRecipe
     }
-    
     fileprivate var cRecipe: CRecipe
     
-    fileprivate func executeTheQuery() async {
-        await swri.executeQuery(recipeId: cRecipe.id)
-    }
-    
-    fileprivate enum imagez: String {
-        case kv = "key"
-    }
-    
-    
     var body: some View {
-        NavigationLink(destination:
-                        RecipeDetailView(imageString: cRecipe.image,
-                                         sectionItem: convertSRecipeToSectionItem3(srecipe: swri.result),
-                                         cuisine: (swri.result.cuisines?.first)!!))
-        {
-            VStack(alignment: .center) {
-                Text(self.cRecipe.title)
-                Text(self.cRecipe.id.description)
-                
-                
-                Button(action: {
-                    // What to perform
-                    Task {
-                        await executeTheQuery()
-                    }
-                }) {
-                    // How the button looks like
-                    RoundButton3View(someTextTop: "Get", someTextBottom: "SRecipe", someImage: imagez.kv.rawValue, reversed: true)
+        VStack(alignment: .center) {
+            Text(self.cRecipe.title)
+            Text(self.cRecipe.id.description)
+            AsyncImage(url: URL(string: cRecipe.image)) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(15)
+                        .shadow(radius: 5)
+                        .accessibility(hidden: false)
+                        .accessibilityLabel(Text(cRecipe.title))
+                } else {
+                    ProgressView()
                 }
-                
-                Text(swri.result.title ?? "No title")
-            }.padding()
-            
-        }
+            }
+            Text("Recipe contains \(self.cRecipe.usedIngredients.count) ingredients")
+            ForEach(self.cRecipe.usedIngredients) { ingredient in
+                Text("\(ingredient.name)")
+            }
+        }.padding()
     }
 }
 
 #Preview {
-    RecipeByIngredientsView(cRecipe: CRecipe.cRecipeExample)
-        .environmentObject(SRecipeWithInfo())
+    RecipeByIngredientsView(cRecipe: CRecipe.example)
 }

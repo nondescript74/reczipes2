@@ -19,7 +19,6 @@ struct ReczipesApp: App {
                 .environmentObject(AllUserImages())
                 .environmentObject(AllUserNotes())
                 .environmentObject(AnalyzedInstructionsModel())
-                .environmentObject(SRecipeWithInfo())
         }
     }
 }

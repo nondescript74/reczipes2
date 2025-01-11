@@ -13,9 +13,7 @@
 		364D87212B5B40E200412AEC /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */; };
 		365034332C754CCE00407823 /* AnalyzedInstructionsExample3.json in Resources */ = {isa = PBXBuildFile; fileRef = 365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */; };
 		365B78D72C7CEB2200C6DE8A /* AnalyzedInstructionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B78D62C7CEB2200C6DE8A /* AnalyzedInstructionsModel.swift */; };
-		368202D72C811AE4009E37F2 /* TwoStepFetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368202D62C811AE4009E37F2 /* TwoStepFetchModel.swift */; };
 		368202D92C822EC6009E37F2 /* RecipeByIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368202D82C822EC6009E37F2 /* RecipeByIngredientsView.swift */; };
-		368202DB2C8525EC009E37F2 /* GetSRecipeWithInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368202DA2C8525EC009E37F2 /* GetSRecipeWithInformation.swift */; };
 		368728EF2D2F36B000FC7BF6 /* LoadableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368728EE2D2F36B000FC7BF6 /* LoadableImageView.swift */; };
 		368D500D2AA77ABB00C205A0 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */; };
 		3694A5D92C6D4CA400682EA5 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 3694A5D82C6D4C9600682EA5 /* test.json */; };
@@ -131,9 +129,7 @@
 		364D87202B5B40E200412AEC /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
 		365034322C754CCE00407823 /* AnalyzedInstructionsExample3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample3.json; sourceTree = "<group>"; };
 		365B78D62C7CEB2200C6DE8A /* AnalyzedInstructionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsModel.swift; sourceTree = "<group>"; };
-		368202D62C811AE4009E37F2 /* TwoStepFetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoStepFetchModel.swift; sourceTree = "<group>"; };
 		368202D82C822EC6009E37F2 /* RecipeByIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeByIngredientsView.swift; sourceTree = "<group>"; };
-		368202DA2C8525EC009E37F2 /* GetSRecipeWithInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSRecipeWithInformation.swift; sourceTree = "<group>"; };
 		368728EE2D2F36B000FC7BF6 /* LoadableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImageView.swift; sourceTree = "<group>"; };
 		3694A5D82C6D4C9600682EA5 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample2.json; sourceTree = "<group>"; };
@@ -445,8 +441,6 @@
 				F8C3F52C295CAA56005A119B /* AllUserImages.swift */,
 				F8C3F52E295CAA63005A119B /* AllUserNotes.swift */,
 				365B78D62C7CEB2200C6DE8A /* AnalyzedInstructionsModel.swift */,
-				368202DA2C8525EC009E37F2 /* GetSRecipeWithInformation.swift */,
-				368202D62C811AE4009E37F2 /* TwoStepFetchModel.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -601,7 +595,6 @@
 				930310C82695DC75006910EF /* Contact.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */,
-				368202DB2C8525EC009E37F2 /* GetSRecipeWithInformation.swift in Sources */,
 				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
@@ -610,7 +603,6 @@
 				F81BADD22922FE8E004AE705 /* CRecipeGroupProvider.swift in Sources */,
 				9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */,
 				93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */,
-				368202D72C811AE4009E37F2 /* TwoStepFetchModel.swift in Sources */,
 				934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */,
 				9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */,
 				F828685E28D28CA700BD0917 /* MultiView.swift in Sources */,
@@ -776,7 +768,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 457;
+				CURRENT_PROJECT_VERSION = 458;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -802,7 +794,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5;
+				MARKETING_VERSION = 7.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -826,7 +818,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 457;
+				CURRENT_PROJECT_VERSION = 458;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -852,7 +844,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.5;
+				MARKETING_VERSION = 7.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

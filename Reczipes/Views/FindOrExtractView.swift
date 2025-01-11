@@ -32,12 +32,12 @@ struct FindOrExtractView: View {
     }
     fileprivate var cuisine = ""
     // MARK: - State
-    @State private var urlString: String = ""
+    @State fileprivate var urlString: String = ""
     @State fileprivate var ingredsString: String = ""
-    @State fileprivate var xectionName: String = ""
-    @State private var recipeRequested: Bool = false
+    @State fileprivate var xectionName: String = "African"
+    @State fileprivate var recipeRequested: Bool = false
     @State fileprivate var searchTerm: String = ""
-    @State private var show: Selectors = .notyet
+    @State fileprivate var show: Selectors = .notyet
     // MARK: - Properties
     enum Selectors {
         case notyet
@@ -69,6 +69,9 @@ struct FindOrExtractView: View {
         show = Selectors.find
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
         let cuisine = xectionName
+#if DEBUG
+        print(msgs.fr.rawValue, searchTerm)
+#endif
         cRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
@@ -100,17 +103,15 @@ struct FindOrExtractView: View {
         NavigationView {
             VStack {
                 VStack {
-                    Text(msgs.fr.rawValue).fontWeight(.semibold)
-                    
                     HStack(alignment: .center) {
-                        SearchBar(text: $searchTerm).padding(.trailing, 5)
+                        SearchBar(text: $searchTerm)
                         
                         Button(action: getCRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
-                        }.padding(.trailing, 20)
+                        }
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
-                        }.padding(.trailing, 10)
+                        }
                     }
                 }
                 
@@ -119,20 +120,21 @@ struct FindOrExtractView: View {
                     
                     HStack(alignment: .center) {
                         TextField(msgs.entertext.rawValue, text: $urlString)
+                        Spacer()
                         Button(action: extractRecipe) {
                             Text(msgs.extract.rawValue).font(.largeTitle).bold()
-                        }.padding(.trailing, 20)
-                        
-                    }
+                        }
+                    }.padding()
                 }
                 VStack {
-                    Text("Selected: " + xectionName).fontWeight(.semibold)
-                    Picker("Select", selection: $xectionName) {
-                        ForEach(getBookSectionNames(), id: \.self) { bookSection in
-                            Text(bookSection).fontWeight(.light)
+                    HStack {
+                        Text("Cuisine: " + xectionName).fontWeight(.semibold)
+                        Picker("Select", selection: $xectionName) {
+                            ForEach(getBookSectionNames(), id: \.self) { bookSection in
+                                Text(bookSection).fontWeight(.light)
+                            }
                         }
                     }
-                    
                 }
                 
                 List   {
@@ -156,6 +158,7 @@ struct FindOrExtractView: View {
                     }
                 }
             }
+            .navigationTitle(Text(msgs.fr.rawValue))
             .environmentObject(aur)
             .environmentObject(userData)
             

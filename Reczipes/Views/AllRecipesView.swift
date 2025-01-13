@@ -54,7 +54,6 @@ struct AllRecipesView_Previews: PreviewProvider {
         Group {
             AllRecipesView()
                 .environmentObject(AllUserRecipes())
-                .colorScheme(.light)
         }
     }
 }

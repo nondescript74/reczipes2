@@ -17,7 +17,7 @@ struct FindOrExtractView: View {
     @ObservedObject var cRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case fr = "Find Recipe"
+        case fr = "Find or Extract"
         case books = "Recipe Books"
         case find = "?"
         case random = "🤷🏽‍♂️"

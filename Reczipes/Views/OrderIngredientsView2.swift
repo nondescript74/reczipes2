@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OrderIngredientsView2: View {
-    // MARK: - Initializer
     // MARK: - Environment Variables
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var ratio: RecipeRatio

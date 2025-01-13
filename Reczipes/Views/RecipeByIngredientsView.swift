@@ -10,6 +10,10 @@ import SwiftUI
 struct RecipeByIngredientsView: View {
     init(cRecipe: CRecipe) {
         self.cRecipe = cRecipe
+#if DEBUG
+        print("RecByIng, title and id : ", cRecipe.title, cRecipe.id)
+#endif
+
     }
     fileprivate var cRecipe: CRecipe
     
@@ -30,10 +34,13 @@ struct RecipeByIngredientsView: View {
                     ProgressView()
                 }
             }
-            Text("Recipe contains \(self.cRecipe.usedIngredients.count) ingredients")
+            Text("Recipe contains \(self.cRecipe.usedIngredients.count + self.cRecipe.missedIngredients.count) ingredients")
             ForEach(self.cRecipe.usedIngredients) { ingredient in
                 Text("\(ingredient.name)")
             }
+            ForEach(self.cRecipe.missedIngredients) {ingredient in
+                Text("\(ingredient.name)")
+            }.disabled(self.cRecipe.missedIngredients.count == 0)
         }.padding()
     }
 }

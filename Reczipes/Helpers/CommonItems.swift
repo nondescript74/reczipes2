@@ -12,8 +12,6 @@ import Combine
 
 
 public var colorFontLists:Color = Color.init("ED7D3A")
-//public var iPhoneXrPreviewDevice:PreviewDevice = "iPhone Xr"
-//public var iPadAir2PreviewDevice:PreviewDevice = "iPad Air 2"
 public let spoonacular:String = "Spoonacular"
 public let recipesName = "Reczipes"
 public let recipeNotesFolderName = "RecipeNotes"

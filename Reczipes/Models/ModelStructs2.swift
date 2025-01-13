@@ -424,6 +424,7 @@ struct Step: Codable, Equatable, Hashable  {
 struct Ent: Codable {
     let id: Int
     let name, localizedName, image: String
+    let temperature: Length?
 }
 
 // MARK: - Length

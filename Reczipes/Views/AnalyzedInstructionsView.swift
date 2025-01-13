@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct AnalyzedInstructionsView: View {
-    init(analyzedInstructions: [AnalyzedInstructions]) {
-        self.myAnalyzedInstructions = analyzedInstructions
+    init(srecipe: SRecipe) {
+        self.recipe = srecipe
     }
     
-    fileprivate var myAnalyzedInstructions: [AnalyzedInstructions]
+    fileprivate var recipe: SRecipe
     
     var body: some View {
-        Text("The number of instructions is: " + (myAnalyzedInstructions.count.description))
+        Text("The number of instructions is: " )
             .font(.title)
         
         ForEach(myAnalyzedInstructions, id: \.self) { anInstruction in
@@ -34,5 +34,5 @@ struct AnalyzedInstructionsView: View {
 }
 
 #Preview {
-    AnalyzedInstructionsView(analyzedInstructions: Bundle.main.decode([AnalyzedInstructions].self, from: "AnalyzedInstructionsExample3.json"))
+    AnalyzedInstructionsView(sectionItem: Bundle.main.decode(SectionItem3.self, from: "AnalyzedInstructionsExample2.json"))
 }

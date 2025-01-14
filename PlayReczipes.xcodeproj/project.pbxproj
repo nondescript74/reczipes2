@@ -768,7 +768,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 461;
+				CURRENT_PROJECT_VERSION = 462;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -794,7 +794,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.9.461;
+				MARKETING_VERSION = 8.1.462;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -818,7 +818,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 461;
+				CURRENT_PROJECT_VERSION = 462;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -844,7 +844,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.9.461;
+				MARKETING_VERSION = 8.1.462;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

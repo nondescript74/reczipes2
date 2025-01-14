@@ -29,17 +29,20 @@ struct RecipeRowView: View {
     var body: some View {
         NavigationLink(destination: RecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item, cuisine: cuisine)) {
             VStack(alignment: .leading) {
-                AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(15)
-                            .shadow(radius: 5)
-                            .accessibility(hidden: false)
-                            .accessibilityLabel(Text(item.name))
-                    } else {
-                        ProgressView()
+                ZStack  {
+                    AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(15)
+                                .shadow(radius: 5)
+                                .accessibility(hidden: false)
+                                .accessibilityLabel(Text(item.name))
+                        } else {
+                            ProgressView()
+                        }
+                        Text(item.photocredit).font(.caption).foregroundColor(.gray)
                     }
                 }
                 HStack {

@@ -91,66 +91,70 @@ struct RecipeDetailView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                VStack {
-                    AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .cornerRadius(15)
-                                .shadow(radius: 5)
-                                .accessibility(hidden: false)
-                                .accessibilityLabel(Text(item.name))
-                        }  else {
-                            ProgressView()
+                HStack {
+                    VStack {
+                        Button(action: {
+                            // What to perform
+                            let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
+                            if result { recipeSaved = true } else { recipeSaved = false }
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: false)
+                        }.disabled(cuisine.isEmpty )
+                        Button(action: {
+                            // What to perform
+                            self.order.add(item: self.item)
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.order.rawValue, reversed: false)
                         }
+                        Button(action: {
+                            // What to perform
+                            self.showingNotes.toggle()
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.book.rawValue, reversed: true)
+                        }.disabled(!self.hasNotes())
+                        Button(action: {
+                            // What to perform
+                            self.showingImages.toggle()
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
+                        }.disabled(!self.hasImages())
+                        Button(action: {
+                            // What to perform
+                            self.showingInstructions.toggle()
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
+                        }.disabled(item.url.isEmpty)
                     }
                     
-                    Text("Photo: \(item.photocredit)")
-                        .background(Color.gray)
-                        .font(.caption)
-                        .foregroundColor(.white)
-                        .padding()
+                    VStack {
+                        AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .cornerRadius(15)
+                                    .shadow(radius: 5)
+                                    .accessibility(hidden: false)
+                                    .accessibilityLabel(Text(item.name))
+                            }  else {
+                                ProgressView()
+                            }
+                        }
+                        
+                        Text("Photo: \(item.photocredit)")
+                            .background(Color.gray)
+                            .font(.caption)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                    .padding(.trailing)
                 }
                 
-                HStack {
-                    Button(action: {
-                        // What to perform
-                        let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
-                        if result { recipeSaved = true } else { recipeSaved = false }
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: false)
-                    }.disabled(cuisine.isEmpty )
-                    Button(action: {
-                        // What to perform
-                        self.order.add(item: self.item)
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.order.rawValue, reversed: false)
-                    }
-                    Button(action: {
-                        // What to perform
-                        self.showingNotes.toggle()
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.book.rawValue, reversed: true)
-                    }.disabled(!self.hasNotes())
-                    Button(action: {
-                        // What to perform
-                        self.showingImages.toggle()
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
-                    }.disabled(!self.hasImages())
-//                    Button(action: {
-//                        // What to perform
-//                        self.showingInstructions.toggle()
-//                    }) {
-//                        // How the button looks like
-//                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
-//                    }.disabled(item.recipeId == nil || item.recipeId == -1 || item.recipeId! >= 9999999)
-                }
 
                 if showingNotes == true && hasNotes() {
                     NotesView(recipeuuid: self.item.id)
@@ -166,6 +170,9 @@ struct RecipeDetailView: View {
             }
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
+            }
+            .sheet(isPresented: $showingInstructions) {
+                SafariView(url: URL(string: self.item.url)!)
             }
             
             .alert(isPresented: $recipeSaved)   {

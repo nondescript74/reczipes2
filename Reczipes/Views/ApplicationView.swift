@@ -50,10 +50,10 @@ struct ApplicationView: View {
                     Text(tabs.frextr.rawValue)
                 }
             
-            AddImageView()
+            OrderIngredientsView2()
                 .tabItem {
-                    Image(uiImage: magnifyingglass!)
-                    Text(tabs.img.rawValue)
+                    Image(uiImage: squareandarrowdown!)
+                    Text(tabs.ingredients.rawValue)
                 }
             
             AddNoteView()
@@ -61,11 +61,11 @@ struct ApplicationView: View {
                     Image(uiImage: suitImage)
                     Text(tabs.note.rawValue)
                 }
-        
-            OrderIngredientsView2()
+            
+            AddImageView()
                 .tabItem {
-                    Image(uiImage: squareandarrowdown!)
-                    Text(tabs.ingredients.rawValue)
+                    Image(uiImage: magnifyingglass!)
+                    Text(tabs.img.rawValue)
                 }
             
             KeyView()

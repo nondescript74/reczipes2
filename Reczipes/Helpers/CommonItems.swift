@@ -19,6 +19,8 @@ public let recipeImagesFolderName = "RecipeImages"
 public let json = ".json"
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
+var colorBackgroundButton: Color = Color.init("ED7D3A")
+var colorForegroundButton: Color = Color.init("A4B8C4")
 
 let suitImage =  UIImage(systemName: "suit.heart")!
 let checkmarkImage = UIImage(systemName: "checkmark.seal")!
@@ -52,8 +54,7 @@ let defaultImageUr2 = "https://i1.wp.com/www.givemesomespice.com/wp-content/uplo
 let defaultUUID = "F4DA7B28-D403-4313-8AFF-E9645587C99E"
 let shippedDiets: [Diet] =  Bundle.main.decode([Diet].self, from: "diets.json")
 
-var colorBackgroundButton: Color = Color.init("ED7D3A")
-var colorForegroundButton: Color = Color.init("A4B8C4")
+
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
 let targetsize = CGSize(width: 90.0, height: 60.0)

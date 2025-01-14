@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct FilesDisplayView2: View {
-    // MARK: - Local debug
-    fileprivate var zBug: Bool = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
@@ -64,8 +62,7 @@ struct FilesDisplayView2: View {
     
     fileprivate func getReczNotesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
-        let myObsvNotes = aun.notes
-        for anote in myObsvNotes {
+        for anote in aun.notes {
             if !myReturn.contains(anote.note) {
                 myReturn.append(anote.note)
             }
@@ -76,8 +73,7 @@ struct FilesDisplayView2: View {
     
     fileprivate func getReczImagesDirContents(lpc:Bool) -> [String] {
         var myReturn:[String] = []
-        let myObsvImgs = aui.images
-        for anImg in myObsvImgs {
+        for anImg in aui.images {
             if !myReturn.contains(anImg.recipeuuid.uuidString) {
                 myReturn.append(anImg.recipeuuid.uuidString)
             }
@@ -131,6 +127,9 @@ struct FilesDisplayView2: View {
             }
 //            .navigationTitle(Text(msgs.fdisp.rawValue))
         }
+        .environmentObject(aur)
+        .environmentObject(aun)
+        .environmentObject(aui)
     }
 }
 

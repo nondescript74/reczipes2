@@ -14,6 +14,7 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
+    @EnvironmentObject var instructions: AnalyzedInstructionsModel
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
@@ -66,7 +67,6 @@ struct RecipeDetailView: View {
     @State fileprivate var showShareSheet = false
     @State fileprivate var recipeSaved = false
     @State fileprivate var showingInstructions = false
-    @State fileprivate var instructions: [AnalyzedInstructions] = []
     
     // MARK: - Methods
     fileprivate func hasNotes() -> Bool {
@@ -85,35 +85,6 @@ struct RecipeDetailView: View {
             return false
         }
         return true
-    }
-    
-    fileprivate func searchAnalyzedInstructions(matching id: Int) async -> Bool {
-        let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
-        
-        let url = URL(string: "https://api.spoonacular.com/recipes/\(id)/analyzedInstructions?" + key)
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url!)
-            // check for empty array
-            if data.isEmpty {
-#if DEBUG
-                print("\(msgs.RDV.rawValue) \(id) data is empty")
-#endif
-                instructions = []
-                return false
-            }
-            instructions = try JSONDecoder().decode([AnalyzedInstructions].self, from: data)
-#if DEBUG
-            print("\(msgs.RDV.rawValue) \(id) decoded")
-#endif
-            return true
-        } catch  {
-#if DEBUG
-            print("\(msgs.cnd.rawValue) \(id)")
-            instructions = []
-#endif
-            return false
-        }
     }
     
     // MARK: - View Process
@@ -172,21 +143,13 @@ struct RecipeDetailView: View {
                         // How the button looks like
                         RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
                     }.disabled(!self.hasImages())
-                    Button(action: {
-                        // What to perform
-                        self.showingInstructions.toggle()
-//                        Task {
-//                            let result = await searchAnalyzedInstructions(matching: self.item.recipeId!)
-//                            if result {
-//                                self.showingInstructions = true
-//                            } else {
-//                                print("RDV : No instructions found")
-//                            }
-//                        }
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
-                    }.disabled(item.recipeId == nil || item.recipeId == -1 || item.recipeId! >= 9999999)
+//                    Button(action: {
+//                        // What to perform
+//                        self.showingInstructions.toggle()
+//                    }) {
+//                        // How the button looks like
+//                        RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
+//                    }.disabled(item.recipeId == nil || item.recipeId == -1 || item.recipeId! >= 9999999)
                 }
 
                 if showingNotes == true && hasNotes() {
@@ -196,11 +159,8 @@ struct RecipeDetailView: View {
                 if showingImages == true && hasImages() {
                     ImagesView(recipeuuid: self.item.id)
                 }
-
-                if showingInstructions == true  {
-//                    let result = await searchAnalyzedInstructions(matching: self.item.recipeId!)
-                }
             }
+
             .sheet(isPresented: $addingImage) {
                 AddImageView()
             }
@@ -217,6 +177,7 @@ struct RecipeDetailView: View {
         .environmentObject(aur)
         .environmentObject(aun)
         .environmentObject(aui)
+        .environmentObject(instructions)
     }
 }
 
@@ -227,6 +188,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static let aur = AllUserRecipes()
     static let aun = AllUserNotes()
     static let aui = AllUserImages()
+    static let instructions = AnalyzedInstructionsModel()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
@@ -235,6 +197,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
                 .environmentObject(aur)
                 .environmentObject(aun)
                 .environmentObject(aui)
+                .environmentObject(instructions)
         }
     }
 }

@@ -45,7 +45,8 @@ struct OrderIngredientsView2: View {
             
             ForEach(order.items, id: \.self) {item in
                 HStack {
-                    RecipeRowView(sectionItem: item)
+//                    RecipeRowView(sectionItem: item)
+                    Text(item.name).font(.headline)
                     Button(action: {
                         // What to perform
                         self.order.remove(item: item)
@@ -92,6 +93,7 @@ struct OrderIngredientsView2: View {
                     // How the button looks like
                     RoundButton3View(someTextTop: labelz.fq.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.fq.rawValue, reversed: false)
                 }
+                
             }.padding(.bottom)
             
             VStack {

@@ -38,18 +38,6 @@ struct RecipeRowView: View {
                             .shadow(radius: 5)
                             .accessibility(hidden: false)
                             .accessibilityLabel(Text(item.name))
-                    }  else if phase.error != nil  {
-                        VStack {
-                            Image("IMG_Rae_312x312")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 300)
-                            Text("The recipes were all busy.")
-                                .font(.title2)
-                            Text("Please try again.")
-                                .font(.title3)
-                        }
-                        
                     } else {
                         ProgressView()
                     }

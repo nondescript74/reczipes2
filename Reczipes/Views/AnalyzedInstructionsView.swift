@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct AnalyzedInstructionsView: View {
-    init(srecipe: SRecipe) {
-        self.recipe = srecipe
+    @EnvironmentObject var instructions: AnalyzedInstructionsModel
+    init(recipeId: Int) async {
+        self.recipeId = recipeId
+        await instructions.executeQuery(recipeId: recipeId)
+#if DEBUG
+        print("AInstrView count:", instructions.result.count)
+#endif
     }
     
-    fileprivate var recipe: SRecipe
+    fileprivate var recipeId: Int
     
     var body: some View {
-        Text("The number of instructions is: " )
+        
+        Text("The number of instructions is: " + instructions.result.count.description)
             .font(.title)
         
-        ForEach(myAnalyzedInstructions, id: \.self) { anInstruction in
+        ForEach(instructions.result, id: \.self) { anInstruction in
             Text(anInstruction.name)
                 .font(.headline)
             List {
@@ -27,12 +33,12 @@ struct AnalyzedInstructionsView: View {
                         Text(aStep.number.description)
                         Text(aStep.step.description)
                     }
-                }.disabled(myAnalyzedInstructions.first!.steps.count == 0)
+                } 
             }
         }
     }
 }
 
-#Preview {
-    AnalyzedInstructionsView(sectionItem: Bundle.main.decode(SectionItem3.self, from: "AnalyzedInstructionsExample2.json"))
-}
+//#Preview {
+//    AnalyzedInstructionsView(recipeId: SRecipe.example.id)
+//}

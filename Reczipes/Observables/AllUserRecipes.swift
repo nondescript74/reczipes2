@@ -37,7 +37,7 @@ class AllUserRecipes: ObservableObject {
         
         // directories exist
         // get all shipped recipes
-        sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+//        sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
         let fmapsections = sections.compactMap({$0})
         let secItems = fmapsections.flatMap({$0.items})
 #if DEBUG

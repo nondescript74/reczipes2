@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct ImagesView: View {
-    // MARK: Debug local
-    private var zBug: Bool = false
     // MARK: - Environment
     @EnvironmentObject var aui: AllUserImages
     
     // MARK: - Initializer
     init(recipeuuid: UUID) {
         self.myRecipeUUID = recipeuuid
+        #if DEBUG
+        print("ImagesView initialized")
+        print(self.myRecipeUUID.description)
+        #endif
     }
     
     // MARK: - Properties
     fileprivate var myRecipeUUID: UUID
-    fileprivate var myImages:[ImageSaved] = []
 
 
     // MARK: - Methods
@@ -41,8 +42,9 @@ struct ImagesView: View {
                     }
                 }
             }
+            .environmentObject(aui)
         }
-        .environmentObject(aui)
+        
     }
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class AllUserImages: ObservableObject {
 
@@ -82,6 +83,20 @@ class AllUserImages: ObservableObject {
     }
     
     // MARK: - Methods
+    func addImageWithImage(image: Image, id: UUID) {
+        do {
+            if !images.contains(where: { $0.recipeuuid == id }) {
+                
+                
+            } else {
+#if DEBUG
+                print(msgs.aui.rawValue + msgs.appdnot.rawValue)
+#endif
+            }
+            
+        }
+    }
+
     func addImage(imageSaved: ImageSaved) {
         let idx = images.firstIndex(of: imageSaved)
         if idx == nil {
@@ -90,9 +105,9 @@ class AllUserImages: ObservableObject {
             do {
                 let encodedJSON = try JSONEncoder().encode(imageSaved)
                 do {
-                    let temp = imageSaved.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue
-                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(temp))
-                     print(msgs.aui.rawValue + temp)
+                    let filename = imageSaved.recipeuuid.uuidString + msgs.json.rawValue
+                    try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(filename))
+                    print(msgs.aui.rawValue + filename + " saved")
                     images.append(imageSaved)
                 } catch  {
                     fatalError("Cannot write to user RecipeImages folder")

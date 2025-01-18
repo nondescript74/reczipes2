@@ -43,8 +43,8 @@ struct AllRecipesView: View {
                     }
                 }.listStyle(GroupedListStyle())
             }
-            .environmentObject(aur)
         }
+        .environmentObject(aur)
     }
 }
 

@@ -56,27 +56,21 @@ struct FindOrExtractView: View {
     
     // MARK: - Methods
     func getSRecipeGroup() {
+#if DEBUG
+        print(msgs.find.rawValue, " getSRecipeGroup called.  Searchterm supplied: \(searchTerm)", " find by ingredients and cuisine")
+#endif
         if xectionName == "" {return}
         show = Selectors.names
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
         let cuisine = xectionName
-        sRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
-        endEditing()
-    }
-    
-    func getCRecipeGroup() {
-        if xectionName == "" {return}
-        show = Selectors.find
-        let numberNeeded = userData.profile.numberOfRecipes.rawValue
-        let cuisine = xectionName
-#if DEBUG
-        print(msgs.fr.rawValue, searchTerm)
-#endif
-        cRecipeGroup.findByIngredientsAndCusine(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
+        sRecipeGroup.complexSearch(searchString: searchTerm, numberSent: numberNeeded, cuisine: cuisine)
         endEditing()
     }
     
     func findRandom() {
+#if DEBUG
+        print(msgs.find.rawValue, " findRandom called. executing find by random")
+#endif
         if xectionName == "" {return}
         show = Selectors.random
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
@@ -86,11 +80,17 @@ struct FindOrExtractView: View {
     }
     
     func extractRecipe() {
+#if DEBUG
+        print(msgs.find.rawValue, " extractRecipe called. executing extract")
+#endif
         if xectionName == "" {return}
         show = Selectors.extract
         extractedSRecipe.findExtracted(urlString: urlString)
         urlString = ""
         endEditing()
+#if DEBUG
+        print(msgs.extract.rawValue, urlString)
+#endif
     }
     
     func endEditing() {
@@ -106,7 +106,7 @@ struct FindOrExtractView: View {
                     HStack(alignment: .center) {
                         SearchBar(text: $searchTerm)
                         
-                        Button(action: getCRecipeGroup) {
+                        Button(action: getSRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
                         }
                         Button(action: findRandom) {
@@ -143,11 +143,6 @@ struct FindOrExtractView: View {
                             RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
-                    if show == Selectors.find {
-                        ForEach(cRecipeGroup.cRecipeGroup) { crecipe in
-                            RecipeByIngredientsView(cRecipe: crecipe)
-                        }.disabled(cRecipeGroup.cRecipeGroup.isEmpty)
-                    }
                     if show == Selectors.random {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
                             RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
@@ -159,10 +154,9 @@ struct FindOrExtractView: View {
                 }
             }
             .navigationTitle(Text(msgs.fr.rawValue))
-            .environmentObject(aur)
-            .environmentObject(userData)
-            
         }
+        .environmentObject(aur)
+        .environmentObject(userData)
     }
 }
 

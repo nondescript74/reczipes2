@@ -13,7 +13,7 @@ struct RoundButton3View: View {
     var someTextTop: String
     var someTextBottom: String
     var someImage: String
-    var colorFrame: Color = Color.black
+//    var colorFrame: Color = Color.black
     var reversed: Bool = false
     
     // MARK: - View Process
@@ -44,5 +44,5 @@ struct RoundButton3View: View {
 
 struct RoundButton3View_Previews: PreviewProvider {
     static var previews: some View {
-        RoundButton3View(someTextTop: "Add", someTextBottom: "Image", someImage: "plus", reversed: false)}
+        RoundButton3View(someTextTop: "Add", someTextBottom: "yourself", someImage: "plus", reversed: false)}
 }

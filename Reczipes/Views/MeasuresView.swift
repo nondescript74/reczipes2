@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct MeasuresView: View {
+    @EnvironmentObject var ratio: RecipeRatio
     // MARK: - Initializer
     init(measures: Measures) {
         self.myMeasures = measures
     }
-    // MARK: - EnvironmentObjects
-    @EnvironmentObject var ratio: RecipeRatio
+
     // MARK: - Properties
     fileprivate var myMeasures: Measures!
     fileprivate var formatter: NumberFormatter = NumberFormatter()
-    // MARK: - State
+
     // MARK: - Methods
     fileprivate func makeRatiodUS() -> Text {
         formatter.maximumSignificantDigits = 2
@@ -69,6 +69,8 @@ struct MeasuresView: View {
 #endif
         return value
     }
+    
+    
     // MARK: - View Process
     var body: some View {
         HStack {

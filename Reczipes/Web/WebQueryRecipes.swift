@@ -25,31 +25,46 @@ public class WebQueryRecipes: ObservableObject {
         myTask(aswitch: myGets.FindSRecipe.rawValue)
     }
     
-    func getSearched(searchString: String, numberSent: Int, cuisine: String) {
+    func complexSearch(searchString: String, numberSent: Int, cuisine: String) {
         if searchString == "" {
             return
         }
-        var mySearchTerms = parseSearchString(searchstring: searchString)
+//        var mySearchTerms = parseSearchString(searchstring: searchString)
+        var mySearchTerms = searchString
         mySearchTerms += "&cuisine="
         mySearchTerms += cuisine
         let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query =
-        myQuery.ingredients.rawValue + mySearchTerms +
+        urlComponents.query = mySearchTerms +
         myQuery.numberDesired.rawValue +
         numberSent.description +
         myQuery.recipeInfo.rawValue + key
         myTask(aswitch: myGets.FindByIngredients.rawValue)
     }
     
-    fileprivate func parseSearchString(searchstring: String) -> String {
-        var myReturingString:String = ""
-        myReturingString = searchstring.replacingOccurrences(of: "and", with: "")
-        myReturingString = myReturingString.replacingOccurrences(of: "or", with: "")
-        myReturingString = myReturingString.replacingOccurrences(of: "  ", with: " ")
-        myReturingString = myReturingString.replacingOccurrences(of: " ", with: ",+")
-        return myReturingString
-    }
+//    func getSearched(searchString: String, numberSent: Int, cuisine: String) {
+//        if searchString == "" {
+//            return
+//        }
+//        var mySearchTerms = parseSearchString(searchstring: searchString)
+//        mySearchTerms += "&cuisine="
+//        mySearchTerms += cuisine
+//        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+//        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
+//        urlComponents.query =
+//        myQuery.ingredients.rawValue + mySearchTerms +
+//        myQuery.numberDesired.rawValue +
+//        numberSent.description +
+//        myQuery.recipeInfo.rawValue + key
+//        myTask(aswitch: myGets.FindByIngredients.rawValue)
+//    }
+//    
+//    fileprivate func parseSearchString(searchstring: String) -> String {
+//        var myReturingString:String = ""
+//        myReturingString = searchstring.replacingOccurrences(of: "  ", with: " ")
+//        myReturingString = myReturingString.replacingOccurrences(of: " ", with: ",+")
+//        return myReturingString
+//    }
     
     private func parseMyImageUrl(imageName: String, type: callerId.RawValue) -> String {
         var myRetStr = ""
@@ -95,11 +110,11 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
         
-        let cleanString = parseSearchString(searchstring: searchString)
+//        let cleanString = parseSearchString(searchstring: searchString)
 
         let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
-        urlComponents = URLComponents(string: urlThings.ingredients.rawValue)!
-        urlComponents.query = myQuery.ingredients.rawValue + cleanString + myQuery.numberDesired.rawValue + numberSent.description + key
+        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
+        urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.cuisine.rawValue + cuisine + myQuery.numberDesired.rawValue + numberSent.description + key
         myTask(aswitch: myGets.FindByIngredients.rawValue)
     }
     
@@ -124,7 +139,7 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
 #if DEBUG
-        print(url.absoluteString)
+        print("WebQueryRecipes: ", url.absoluteString)
 #endif
 
         switch aswitch {
@@ -144,7 +159,7 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async { [self] in
                         self.sRecipeGroup = srecipes!
-                        print(messagesDebug.foundsrecipegroup.rawValue, srecipes?.count ?? defaultRequiredCount)
+                        print(messagesDebug.fsrgroup.rawValue, srecipes?.count ?? defaultRequiredCount)
                     }
                 }
             }
@@ -170,14 +185,22 @@ public class WebQueryRecipes: ObservableObject {
             }
             
         case myGets.FindByIngredients.rawValue:
-            _ = CRecipeGroupProvider(recipesUrl: url) { crecipes in
-                if crecipes != nil {
+            _ = SRecipeGroupProvider(recipesUrl: url) { srecipes in
+                if srecipes != nil {
                     DispatchQueue.main.async {
-                        self.cRecipeGroup = crecipes!
-                        print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")
+                        self.sRecipeGroup = srecipes!
+                        print(messagesDebug.fsrgroup.rawValue, srecipes?.count ?? "couldn't get count")
                     }
                 }
             }
+//            _ = CRecipeGroupProvider(recipesUrl: url) { crecipes in
+//                if crecipes != nil {
+//                    DispatchQueue.main.async {
+//                        self.cRecipeGroup = crecipes!
+//                        print(messagesDebug.fcrgroup.rawValue, crecipes?.count ?? "?????")
+//                    }
+//                }
+//            }
             
         case myGets.GetTrivia.rawValue:
             _ = TriviaProvider(triviaUrl: url) { trivia in

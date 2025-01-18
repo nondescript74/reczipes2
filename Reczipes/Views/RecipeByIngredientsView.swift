@@ -11,7 +11,7 @@ struct RecipeByIngredientsView: View {
     init(cRecipe: CRecipe) {
         self.cRecipe = cRecipe
 #if DEBUG
-        print("RecByIng, title and id : ", cRecipe.title, cRecipe.id)
+        print("RecByIngView, cRecipe title and id : ", cRecipe.title, cRecipe.id)
 #endif
 
     }

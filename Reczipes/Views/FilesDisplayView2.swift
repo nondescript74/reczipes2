@@ -21,6 +21,7 @@ struct FilesDisplayView2: View {
 //        case recz = "Reczipes"
         case recznotes = "RecipeNotes"
         case reczimages = "RecipeImages"
+        case cont = "Contents"
         case ddir = "Contents of Documents: "
         case rdir = "Contents of Reczipes: "
         case rndir = "Contents of Notes:"
@@ -125,7 +126,7 @@ struct FilesDisplayView2: View {
                 }
                 
             }
-//            .navigationTitle(Text(msgs.fdisp.rawValue))
+            .navigationTitle(Text(msgs.cont.rawValue))
         }
         .environmentObject(aur)
         .environmentObject(aun)

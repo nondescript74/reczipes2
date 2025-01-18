@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct AddImageView: View {
-    // MARK: - Debug local
-    private let zBug = true
+    
     // MARK: - Initializer
+    init(recipeid: UUID) {
+        self.recipeId = recipeid
+        #if DEBUG
+        print(msgs.aiv.rawValue, " initialized with recipeid: \(recipeid)")
+        #endif
+    }
     // MARK: EnvironmentObject
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     // MARK: - Focus for textfield
-    @FocusState private var textFieldIsFocused:Bool
+//    @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
     @State fileprivate var recipeSelected: Int = 0
     @State fileprivate var showSheet: Bool = false
@@ -25,10 +30,10 @@ struct AddImageView: View {
     @State fileprivate var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State fileprivate var sourceTypes: [UIImagePickerController.SourceType] = [.photoLibrary, .savedPhotosAlbum]
     // MARK: - Properties
+    fileprivate var recipeId: UUID
     fileprivate enum msgs: String {
-        case aiv = "Add Image"
-        case recipePickRequestString = "Pick a recipe below ..."
-        case buttonTitleImage = "✚ Image"
+        case aiv = "AddImageView: "
+        case recipePickRequestString = "Pick a recipe"
         case picker = "Recipes"
         case noimageset = "No Image selected yet"
         case selectPhoto = "Select Photo"
@@ -42,42 +47,16 @@ struct AddImageView: View {
         case defImg = "Default Image"
     }
     var isDirectory: ObjCBool = true
-    private var decoder: JSONDecoder = JSONDecoder()
-    private var encoder: JSONEncoder = JSONEncoder()
+    
     // MARK: - Methods
-    fileprivate func constructAllSections() -> [BookSection] {
-        return aur.sections
-    }
     
-    fileprivate func constructAllRecipes() -> [SectionItem3] {
-        var myReturn: [SectionItem3] = []
-        let myBs: [BookSection] = self.constructAllSections()
-        if myBs.isEmpty {
-            // nothing to do, no available booksections
-        } else {
-            for abs in myBs {
-                myReturn.append(contentsOf: abs.items) // all the recipes in the section
-            }
-        }
-        return myReturn
-    }
-    
-    fileprivate func addRecipeImage() {
-        if image == nil {
-            if zBug {print(msgs.aiv.rawValue + msgs.noimageset.rawValue)}
-            return
-        }
+    fileprivate func convertImageToImageSaved() -> ImageSaved {
+        let imageSaved = ImageSaved(recipeuuid: recipeId, imageSaved:  self.image!.pngData()!)
+#if DEBUG
+        print(msgs.aiv.rawValue, " - convertIToImageSaved, recipeId: ", recipeId.uuidString)
+#endif
         
-        let combinedRecipes = self.constructAllRecipes()
-        
-        let sectionItem = combinedRecipes[recipeSelected]
-        let sectionItemId = sectionItem.id
-        let sizedImage = resizeImage(image: image!, targetSize: targetsize)
-        //        let rotatedImage = rotateImageIfNecessary(uiimage: image!)
-        
-        let myImageToAdd = ImageSaved(recipeuuid: sectionItemId, imageSaved: (sizedImage.pngData()!))
-        aui.addImage(imageSaved: myImageToAdd)
-        recipeImageSaved = true
+        return imageSaved
     }
     
     fileprivate func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
@@ -104,6 +83,17 @@ struct AddImageView: View {
         UIGraphicsEndImageContext()
         
         return newImage!
+    }
+    
+    fileprivate func getRecipes() -> [SectionItem3]  {
+        var myReturn: [SectionItem3] = []
+        for bs in aur.sections {
+            myReturn.append(contentsOf: bs.items)
+        }
+#if DEBUG
+        print(msgs.aiv.rawValue + " - getRecipes: " + myReturn.count.description)
+#endif
+        return myReturn
     }
     
     fileprivate var actionSheet: ActionSheet {
@@ -142,23 +132,24 @@ struct AddImageView: View {
             VStack {
                 Text(msgs.aiv.rawValue).font(.largeTitle).bold().padding(.bottom)
                 VStack {
-                    Text(msgs.recipePickRequestString.rawValue)
-                        .foregroundColor(.red)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                    Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                        ForEach(0..<self.constructAllRecipes().count, id: \.self) { index in
-                            Text(self.constructAllRecipes()[index].name)
-                                .foregroundColor(.blue)
-                            //                            .font(Font.system(size: 10, weight: .medium, design: .serif))
+                    HStack {
+                        Text(msgs.recipePickRequestString.rawValue)
+                            .foregroundColor(.red)
+                            .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        Picker(msgs.picker.rawValue, selection: $recipeSelected) {
+                            ForEach(0..<getRecipes().count, id: \.self) { index in
+                                Text(getRecipes()[index].name)
+                                    .foregroundColor(.blue)
+                            }
                         }
                     }
-                    
+                    .padding()
+                    Spacer()
                     
                     Image(uiImage: (image ?? UIImage(named: msgs.defImg.rawValue))!)
                         .resizable()
                         .scaledToFit()
                         .padding()
-                    //                        .frame(width: proxy.size.width / 2, height: proxy.size.height / 5)
                     
                     Button(action: {
                         // What to perform
@@ -170,16 +161,21 @@ struct AddImageView: View {
                             .font(Font.system(size: 15, weight: .medium, design: .serif))
                     }.padding(.bottom)
                     
-                    
+                    Spacer()
                     Button(action: {
                         //what to perform
-                        self.addRecipeImage()
+                        aui.addImage(imageSaved: convertImageToImageSaved())
+                        recipeImageSaved.toggle()
                     }) {
                         // how the button looks
-                        Text(msgs.buttonTitleImage.rawValue)
+                        Label("Save", systemImage: "plus.circle")
+                            .clipShape(Capsule())
                     }
                 }
             }
+            .environmentObject(aur)
+            .environmentObject(aui)
+            
             .actionSheet(isPresented: $showSheet) {
                 self.actionSheet
             }
@@ -187,6 +183,7 @@ struct AddImageView: View {
                 ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
             }
             .alert(isPresented: $recipeImageSaved)   {
+//                self.recipeImageSaved = false
                 return Alert(title: Text(msgs.alsav.rawValue), message: Text(msgs.saved.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
             }
         }
@@ -195,7 +192,7 @@ struct AddImageView: View {
 
 struct AddImageView_Previews: PreviewProvider {
     static var previews: some View {
-        AddImageView()
+        AddImageView(recipeid: SectionItem3.example.id)
             .environmentObject(AllUserRecipes())
             .environmentObject(AllUserImages())
     }

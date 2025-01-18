@@ -19,7 +19,7 @@ struct ExtendendIngredientsView2: View {
 #endif
 
     }
-    // MARK: - Properties
+
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,8 +29,8 @@ struct ExtendendIngredientsView2: View {
                 }.disabled(extractedSRecipe.extractedSRecipe?.extendedIngredients == nil)
                     .padding([.top, .bottom])
             }
-            .environmentObject(ratio)
         }
+        .environmentObject(ratio)
         
     }
 }

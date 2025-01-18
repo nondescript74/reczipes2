@@ -23,7 +23,7 @@ struct AddNoteView: View {
     // MARK: - Properties
     fileprivate enum msgs: String {
         case anv = "Add Note"
-        case recipePickRequestString = "Pick a recipe below ..."
+        case recipePickRequestString = "Pick a recipe..."
         case buttonTitleNote = "✚ Note"
         case selected = " Selected"
         case picker = "Recipes"
@@ -33,6 +33,13 @@ struct AddNoteView: View {
         case noteWithoutText = "Note has no text entered"
         case ok = "Okay"
     }
+    
+    fileprivate enum labelz: String {
+        case save = "save"
+        case plus = "+"
+        
+    }
+    
     var isDirectory: ObjCBool = true
     private var decoder: JSONDecoder = JSONDecoder()
     private var encoder: JSONEncoder = JSONEncoder()
@@ -74,32 +81,37 @@ struct AddNoteView: View {
             VStack {
                 Text(msgs.anv.rawValue).font(.largeTitle).bold().padding(.bottom)
                 VStack {
-                    Text(msgs.recipePickRequestString.rawValue)
-                        .foregroundColor(.red)
-                        .font(Font.system(size: 15, weight: .medium, design: .serif))
-                    Picker(msgs.picker.rawValue, selection: $recipeSelected) {
-                        ForEach(0..<self.constructAllRecipes().count, id: \.self) { index in
-                            Text(self.constructAllRecipes()[index].name)
-                                .foregroundColor(.blue)
-//                                .font(Font.system(size: 15, weight: .medium, design: .serif))
+                    HStack {
+                        Text(msgs.recipePickRequestString.rawValue)
+                            .foregroundColor(.red)
+                            .font(Font.system(size: 15, weight: .medium, design: .serif))
+                        Picker(msgs.picker.rawValue, selection: $recipeSelected) {
+                            ForEach(0..<self.constructAllRecipes().count, id: \.self) { index in
+                                Text(self.constructAllRecipes()[index].name)
+                                    .foregroundColor(.blue)
+                            }
                         }
                     }
+                    .padding()
+                    Spacer()
+                    
                     TextEditor(text: $recipeNote)
-                        .frame(height: proxy.size.height / 3, alignment: .center)
+                        .frame(height: proxy.size.height / 2, alignment: .center)
                         .border(Color.black, width: 2)
                         .focused($textFieldIsFocused)
                         .padding([.leading, .trailing])
+                    Spacer()
+                    
                     Button(action: {
                         //what to perform
                         self.addRecipeNote()
                         textFieldIsFocused = false
                     }) {
                         // how the button looks
-                        Text(msgs.buttonTitleNote.rawValue)
+                        Label("Save", systemImage: "plus.circle")
+                            .clipShape(Capsule())
                     }
-                    
                 }
-                
             }
             .alert(isPresented: $recipeNoteSaved)   {
                 recipeNote = ""

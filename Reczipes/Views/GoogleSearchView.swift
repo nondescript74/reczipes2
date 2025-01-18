@@ -35,7 +35,7 @@ struct GoogleSearchView: View  {
             } else {
                 ScrollView {
                     VStack {
-                        Text("Search")
+                        Text("Google Search")
                             .font(Font.system(size: 30, weight: .bold, design: .rounded))
                             .padding()
                         
@@ -52,11 +52,9 @@ struct GoogleSearchView: View  {
 
 // MARK: - Previews
 struct GoogleSearchView_Previews: PreviewProvider {
-    
     static var previews: some View {
         Group {
             GoogleSearchView()
-                .previewDevice("iPhone Xr")
         }
     }
 }

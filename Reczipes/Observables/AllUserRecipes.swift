@@ -10,7 +10,7 @@ import Foundation
 class AllUserRecipes: ObservableObject {
     // MARK: - Local debug
     fileprivate var zBug: Bool = true
-    fileprivate var showShipped: Bool = true
+    fileprivate var showShipped: Bool = false
     // MARK: - Publisher
     @Published var sections = [BookSection]()
     // MARK: - Initializer
@@ -40,6 +40,9 @@ class AllUserRecipes: ObservableObject {
         // get all shipped recipes
         if showShipped {
             sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+            #if DEBUG
+            print(msgs.aur.rawValue + "using shipped recipes")
+            #endif
         }
         let fmapsections = sections.compactMap({$0})
         let secItems = fmapsections.flatMap({$0.items})
@@ -125,13 +128,6 @@ class AllUserRecipes: ObservableObject {
         case urls = "Returning urls of recipes: "
     }
     
-//    var total: Int {
-////#if DEBUG
-////        print(msgs.aur.rawValue + msgs.total.rawValue, sections.count)
-////#endif
-//        return sections.count
-//    }
-    
     // MARK: - Methods
     func getBookSectionsIDNames() -> [BookSectionIDName] {
         let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
@@ -144,7 +140,6 @@ class AllUserRecipes: ObservableObject {
         if sectionIdNames.contains(where: {$0.name == name}) {
             myReturn = sectionIdNames.filter({$0.name == name}).first!.id
         } else {
-//            fatalError("no uuid for name supplied, fatal")
             myReturn = sectionIdNames.filter({$0.name == "Other"}).first!.id
         }
         
@@ -222,6 +217,9 @@ class AllUserRecipes: ObservableObject {
             _ = encInto(newBsec: newBS)
             myReturn = true
             
+#if DEBUG
+                print(msgs.aur.rawValue + "added recipe to existing booksection")
+#endif
             
         } else {
             
@@ -232,9 +230,10 @@ class AllUserRecipes: ObservableObject {
                 if bsin.id == bsectionid {
                     let newBS = BookSection(id: bsectionid, name: bsin.name, items: [recipe])
                     add(bsection: newBS)
-                    
-                    _ = encInto(newBsec: newBS)
-                    myReturn = true
+#if DEBUG
+                print(msgs.aur.rawValue + "added new booksection with added recipe", bsin.name, " ", recipe.name)
+#endif
+                    myReturn = encInto(newBsec: newBS)
                 }
             }
         }
@@ -247,7 +246,6 @@ class AllUserRecipes: ObservableObject {
             let encodedJSON = try JSONEncoder().encode(newBsec)
             // now write out
             try encodedJSON.write(to: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(newBsec.name + json))
-            
 #if DEBUG
             if zBug {print(msgs.aur.rawValue + msgs.enc.rawValue, newBsec.name)}
 #endif
@@ -255,7 +253,7 @@ class AllUserRecipes: ObservableObject {
             // can't save
             fatalError("Can't save booksection fatal")
         }
-        return false
+        return true
     }
     
     func removeRecipe(bsectionid: UUID, recipe: SectionItem3) {

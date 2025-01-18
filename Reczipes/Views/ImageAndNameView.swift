@@ -19,14 +19,12 @@ struct ImageAndNameView: View {
         case noIngredName = "No Ingredient Name??"
     }
     
-    // https://spoonacular.com/food-api/docs#Show-Images
-    
     // MARK: - Methods
     fileprivate func createUrlString() -> String {
         var urlString = "https://img.spoonacular.com/ingredients_250x250/"
         urlString = urlString + myExtIngredient.image!
 #if DEBUG
-        print("ImageWSecItemview: ", urlString)
+        print("ImageAndNameView: ", urlString)
 #endif
         return urlString
     }

@@ -19,8 +19,8 @@ public let recipeImagesFolderName = "RecipeImages"
 public let json = ".json"
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
-var colorBackgroundButton: Color = Color.init("ED7D3A")
-var colorForegroundButton: Color = Color.init("A4B8C4")
+var colorBackgroundButton: Color = Color.black
+var colorForegroundButton: Color = Color.clear
 
 let suitImage =  UIImage(systemName: "suit.heart")!
 let checkmarkImage = UIImage(systemName: "checkmark.seal")!
@@ -158,7 +158,7 @@ enum messagesDebug: String {
     case foundrecipeinfo = "Find Information found an SRecipe"
     case foundsrecipe = "Found an SRecipe"
     case foundextractedrecipe = "Extracted an SRecipe"
-    case foundsrecipegroup = "Found SRecipeGroup"
+    case fsrgroup = "Found SRecipeGroup"
     case fcrgroup = "Found CRecipeGroup"
     case getTrivia = "Found trivia"
     case getJoke = "Found joke"

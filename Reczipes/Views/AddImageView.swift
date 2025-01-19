@@ -9,10 +9,12 @@ import SwiftUI
 
 struct AddImageView: View {
     
+    fileprivate let zBug = true
+    
     // MARK: - Initializer
     init(recipeid: UUID) {
         self.recipeId = recipeid
-        #if DEBUG
+        #if DEBUG && zBug
         print(msgs.aiv.rawValue, " initialized with recipeid: \(recipeid)")
         #endif
     }
@@ -65,6 +67,10 @@ struct AddImageView: View {
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
         
+        #if DEBUG && zBug
+        print(msgs.aiv.rawValue, " - resizeImage, widthRatio: \(widthRatio), heightRatio: \(heightRatio)")
+        #endif
+        
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
         if(widthRatio > heightRatio) {
@@ -81,7 +87,9 @@ struct AddImageView: View {
         image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+#if DEBUG && zBug
+print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
+#endif
         return newImage!
     }
     
@@ -114,7 +122,7 @@ struct AddImageView: View {
                                 .cancel()
                                ])
         } else {
-            sourceTypes = [.photoLibrary, .savedPhotosAlbum]
+//            sourceTypes = [.photoLibrary, .savedPhotosAlbum]
             return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
                                message: Text(msgs.choose.rawValue),
                                buttons: [
@@ -164,6 +172,8 @@ struct AddImageView: View {
                     Spacer()
                     Button(action: {
                         //what to perform
+                        let resizedImage = resizeImage(image: image!, targetSize: CGSize(width: 100, height: 100))
+                        image = resizedImage
                         aui.addImage(imageSaved: convertImageToImageSaved())
                         recipeImageSaved.toggle()
                     }) {

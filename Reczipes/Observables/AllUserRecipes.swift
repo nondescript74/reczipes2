@@ -10,7 +10,7 @@ import Foundation
 class AllUserRecipes: ObservableObject {
     // MARK: - Local debug
     fileprivate var zBug: Bool = true
-    fileprivate var showShipped: Bool = false
+
     // MARK: - Publisher
     @Published var sections = [BookSection]()
     // MARK: - Initializer

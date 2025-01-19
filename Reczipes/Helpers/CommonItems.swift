@@ -54,6 +54,7 @@ let defaultImageUr2 = "https://i1.wp.com/www.givemesomespice.com/wp-content/uplo
 let defaultUUID = "F4DA7B28-D403-4313-8AFF-E9645587C99E"
 let shippedDiets: [Diet] =  Bundle.main.decode([Diet].self, from: "diets.json")
 
+let showShipped: Bool = true
 
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max

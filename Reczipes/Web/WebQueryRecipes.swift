@@ -35,7 +35,7 @@ public class WebQueryRecipes: ObservableObject {
         mySearchTerms += cuisine
         let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
         urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query = mySearchTerms +
+        urlComponents.query = myQuery.query.rawValue +  mySearchTerms +
         myQuery.numberDesired.rawValue +
         numberSent.description +
         myQuery.recipeInfo.rawValue + key

@@ -115,7 +115,7 @@ struct FilesDisplayView2: View {
                         }
                     case 4:
                         ForEach(aur.getRecipeUrls(), id: \.self) { aurl in
-                            Text(aurl.absoluteString).font(.body)
+                            Text(aurl.absoluteURL.description).font(.body)
                                 .textSelection(.enabled)
                         }
                         

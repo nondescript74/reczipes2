@@ -180,7 +180,8 @@ class AllUserRecipes: ObservableObject {
         for aBookSection in sections {
             let sectionItemUrls = aBookSection.items.map { $0.url }
             for aUrl in sectionItemUrls {
-                returnUrls.append(URL(fileURLWithPath: aUrl))
+//                returnUrls.append(URL(fileURLWithPath: aUrl))
+                returnUrls.append(URL(string: aUrl)!)
 #if DEBUG
                 print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
 #endif

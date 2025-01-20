@@ -15,11 +15,9 @@
 		368202D92C822EC6009E37F2 /* RecipeByIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368202D82C822EC6009E37F2 /* RecipeByIngredientsView.swift */; };
 		368728EF2D2F36B000FC7BF6 /* LoadableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368728EE2D2F36B000FC7BF6 /* LoadableImageView.swift */; };
 		368D500D2AA77ABB00C205A0 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */; };
-		3694A5D92C6D4CA400682EA5 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 3694A5D82C6D4C9600682EA5 /* test.json */; };
 		369A241E2B61778F0004E005 /* AnalyzedInstructionsExample2.json in Resources */ = {isa = PBXBuildFile; fileRef = 369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */; };
 		36AD713F2B59EF5800168481 /* AnalyzedInstructionsExample.json in Resources */ = {isa = PBXBuildFile; fileRef = 36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */; };
 		36C1A5592D302D3100AC9CDF /* RecipeRowNNLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1A5582D302D3100AC9CDF /* RecipeRowNNLView.swift */; };
-		36C839BC2D3C731D001354F1 /* recipesShippedUrls2.json in Resources */ = {isa = PBXBuildFile; fileRef = 36C839BB2D3C7304001354F1 /* recipesShippedUrls2.json */; };
 		36C839BE2D3D6A9D001354F1 /* LoadableUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C839BD2D3D6A9D001354F1 /* LoadableUrl.swift */; };
 		36E13D9A2D35C4F100B76E8C /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D992D35C4F100B76E8C /* RecipeRatio.swift */; };
 		36E13D9C2D35C79800B76E8C /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */; };
@@ -132,11 +130,9 @@
 		365B78D62C7CEB2200C6DE8A /* AnalyzedInstructionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsModel.swift; sourceTree = "<group>"; };
 		368202D82C822EC6009E37F2 /* RecipeByIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeByIngredientsView.swift; sourceTree = "<group>"; };
 		368728EE2D2F36B000FC7BF6 /* LoadableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableImageView.swift; sourceTree = "<group>"; };
-		3694A5D82C6D4C9600682EA5 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample2.json; sourceTree = "<group>"; };
 		36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AnalyzedInstructionsExample.json; sourceTree = "<group>"; };
 		36C1A5582D302D3100AC9CDF /* RecipeRowNNLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowNNLView.swift; sourceTree = "<group>"; };
-		36C839BB2D3C7304001354F1 /* recipesShippedUrls2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShippedUrls2.json; sourceTree = "<group>"; };
 		36C839BD2D3D6A9D001354F1 /* LoadableUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableUrl.swift; sourceTree = "<group>"; };
 		36E13D992D35C4F100B76E8C /* RecipeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
@@ -340,9 +336,7 @@
 				F81BADD52923F104004AE705 /* SRecipeExample2.json */,
 				F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */,
 				F84A453529F87F6C00E2BA90 /* recipesShippedUrls.json */,
-				36C839BB2D3C7304001354F1 /* recipesShippedUrls2.json */,
 				F81A8D4D28F483D300FDB3EF /* recipes.json */,
-				3694A5D82C6D4C9600682EA5 /* test.json */,
 				F8C77C7C290744E600222C2D /* ingredients_list.json */,
 				36AD713E2B59EF5800168481 /* AnalyzedInstructionsExample.json */,
 				369A241D2B61778F0004E005 /* AnalyzedInstructionsExample2.json */,
@@ -534,12 +528,10 @@
 				369A241E2B61778F0004E005 /* AnalyzedInstructionsExample2.json in Resources */,
 				F844C6DC299BF6CE000A49F6 /* diets.json in Resources */,
 				F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */,
-				3694A5D92C6D4CA400682EA5 /* test.json in Resources */,
 				F84A453629F87F6C00E2BA90 /* recipesShippedUrls.json in Resources */,
 				36AD713F2B59EF5800168481 /* AnalyzedInstructionsExample.json in Resources */,
 				365034332C754CCE00407823 /* AnalyzedInstructionsExample3.json in Resources */,
 				F8CE26D4289C75B1003483DD /* SRecipeExample.json in Resources */,
-				36C839BC2D3C731D001354F1 /* recipesShippedUrls2.json in Resources */,
 				93D611A926CE971200664F14 /* Notes.json in Resources */,
 				36076C152BF6BECF0090ED26 /* cuisines.json in Resources */,
 				F8C77C7D290744E600222C2D /* ingredients_list.json in Resources */,
@@ -776,7 +768,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 466;
+				CURRENT_PROJECT_VERSION = 467;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -802,7 +794,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 8.5.466;
+				MARKETING_VERSION = 8.6.467;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -826,7 +818,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 466;
+				CURRENT_PROJECT_VERSION = 467;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -852,7 +844,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 8.5.466;
+				MARKETING_VERSION = 8.6.467;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

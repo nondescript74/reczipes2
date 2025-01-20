@@ -24,5 +24,6 @@
     {"id": "00305114-CEEF-4575-BC03-D607348014BB", "name": "Southern"},
     {"id": "4D07582B-846D-43C3-921C-33C3F4AEEC05", "name": "Spanish"},
     {"id": "32B0F595-5D71-441C-8F95-01A7407E6531", "name": "Thai"},
-    {"id": "E819C9B5-4A44-4C41-9EDB-86A400790C9C", "name": "Vietnamese"}
+    {"id": "E819C9B5-4A44-4C41-9EDB-86A400790C9C", "name": "Vietnamese"},
+    {"id": "29E93882-20A2-47A5-8BA0-2B81B7898BFC", "name": "Other"}
 ]

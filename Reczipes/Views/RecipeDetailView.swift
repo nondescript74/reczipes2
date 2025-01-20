@@ -50,6 +50,7 @@ struct RecipeDetailView: View {
         case notes = "Notes"
         case images = "Images"
         case instr = "Instr"
+        case rec = "Recipe"
         case nbartitle = "Recipe Details"
         
     }
@@ -59,7 +60,7 @@ struct RecipeDetailView: View {
         case book = "book"
         case images = "photo.stack"
         case save = "externaldrive.badge.plus"
-        case share = "square.and.arrow.up"
+        case share, rec = "square.and.arrow.up"
         case instr = "list.bullet.clipboard.fill"
     }
     
@@ -70,6 +71,7 @@ struct RecipeDetailView: View {
     @State fileprivate var addingNote = false
     @State fileprivate var showShareSheet = false
     @State fileprivate var recipeSaved = false
+    @State fileprivate var showingRecipe = false
     @State fileprivate var showingInstructions = false
     
     // MARK: - Methods
@@ -170,11 +172,19 @@ struct RecipeDetailView: View {
                         }.disabled(!self.hasImages())
                         Button(action: {
                             // What to perform
+                            self.showingRecipe.toggle()
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.rec.rawValue, reversed: true)
+                        }.disabled(item.url.isEmpty)
+                        Button(action: {
+                            // What to perform
                             self.showingInstructions.toggle()
                         }) {
                             // How the button looks like
                             RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
                         }.disabled(item.url.isEmpty)
+                        
                     }
                 }
                 if showingNotes == true && hasNotes() {
@@ -192,8 +202,11 @@ struct RecipeDetailView: View {
             .sheet(isPresented: $addingNote) {
                 AddNoteView()
             }
-            .sheet(isPresented: $showingInstructions) {
+            .sheet(isPresented: $showingRecipe) {
                 SafariView(url: URL(string: self.item.url)!)
+            }
+            .sheet(isPresented: $showingInstructions) {
+                AnalyzedInstructionsView()
             }
             
             .alert(isPresented: $recipeSaved)   {

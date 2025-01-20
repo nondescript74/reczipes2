@@ -96,6 +96,7 @@ enum myQuery: String {
     case nutritionTrue = "includeNutrition=true"
     case recipeInfo = "&addRecipeInformation=true"
     case extract = "url="
+    case forceExtracttrue = "&forceExtraction=true"
     case trivia, joke = ""
     case cuisine = "&cuisine="
     case tags = "&tags="

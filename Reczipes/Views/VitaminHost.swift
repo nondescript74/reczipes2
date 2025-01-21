@@ -10,22 +10,18 @@ import SwiftUI
 import CoreData
 
 struct VitaminHost: View {
-    
     // MARK; - Debug
-    var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     
     // MARK:- Environment
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData
-    
-    // MARK: - ManagedObjectContext
-//    @Environment(\.managedObjectContext) var managedObjectContext
-    
-    
+    @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aui: AllUserImages
+    @EnvironmentObject var aun: AllUserNotes
+
     //MARK: - State
     @State var draftProfile = Profile.default
-    
-    // MARK: - Methods
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -62,12 +58,20 @@ struct VitaminHost: View {
             }
         }
         .padding()
+        .environmentObject(aur)
+        .environmentObject(userData)
+        .environmentObject(aui)
+        .environmentObject(aun)
     }
 }
 
 struct VitaminHost_Previews: PreviewProvider {
     static var previews: some View {
-        VitaminHost().environmentObject(UserData())
+        VitaminHost()
+            .environmentObject(UserData())
+            .environmentObject(AllUserRecipes())
+            .environmentObject(AllUserImages())
+            .environmentObject(AllUserNotes())
     }
 }
 

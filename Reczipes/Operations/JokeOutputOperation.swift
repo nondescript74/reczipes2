@@ -47,9 +47,9 @@ class JokeOutputOperation: JokeXOperation {
         
         if self.isCancelled { return }
         
-        #if DEBUG
-        if zBug {print(msgs.jo.rawValue + msgs.jdd.rawValue + jokez.debugDescription)}
-        #endif
+#if DEBUG && zBug
+        print(msgs.jo.rawValue + msgs.jdd.rawValue + jokez.debugDescription)
+#endif
         
         if isCancelled { return }
         completion(jokez)

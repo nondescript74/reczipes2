@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FilesDisplayView2: View {
-    fileprivate let zBug = true
+    fileprivate let zBug = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages

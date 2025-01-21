@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddImageView: View {
     
-    fileprivate let zBug = true
+    fileprivate let zBug = false
     
     // MARK: - Initializer
     init(recipeid: UUID) {

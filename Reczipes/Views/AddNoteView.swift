@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddNoteView: View {
     // MARK: - Debug local
-    private let zBug = true
+    fileprivate let zBug = false
     // MARK: - Initializer
     // MARK: EnvironmentObject
     @EnvironmentObject var aur: AllUserRecipes

@@ -15,7 +15,7 @@ protocol JokeCreateOperationDataProvider {
 
 class JokeCreateOperation: Operation {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: ((Joke?) -> ())?
@@ -50,29 +50,26 @@ class JokeCreateOperation: Operation {
         
         guard myData != nil else { return }
         
-        
-        if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription) }
-        
+#if DEBUG && zBug
+        print(msgs.JokeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)
+#endif
         
         if self.isCancelled { return }
         
         do {
             let joke = try JSONDecoder().decode(Joke.self, from: myData!)
             myJoke = joke
-            
+#if DEBUG && zBug
             if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.joke.rawValue, joke) }
-            
+#endif
         } catch {
-            
-            if zBug { print("Error took place\(error.localizedDescription).") }
-            
+            print("Error took place\(error.localizedDescription).")
             fatalError(msgs.JokeCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
-        
-        if zBug { print(msgs.success.rawValue, myJoke.debugDescription)}
-        
-        
+#if DEBUG && zBug
+        print(msgs.success.rawValue, myJoke.debugDescription)
+#endif
         if self.isCancelled { return }
         completion?(myJoke)
     }
@@ -80,7 +77,7 @@ class JokeCreateOperation: Operation {
 }
 
 extension JokeCreateOperation: @unchecked Sendable {
-     
+    
 }
 
 extension JokeCreateOperation: JokeOutputOperationDataProvider, JokeXOperationDataProvider {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     // MARK: - Debug
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
     // MARK: - ObservedObject

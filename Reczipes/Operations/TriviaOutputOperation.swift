@@ -15,7 +15,7 @@ protocol TriviaOutputOperationDataProvider {
 
 class TriviaOutputOperation: TriviaXOperation {
     // MARK: Debug local
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: -  Properties
     fileprivate var inputTrivia: Trivia?
     fileprivate var completion: (Trivia?) -> ()

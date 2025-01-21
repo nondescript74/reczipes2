@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllRecipesView: View {
     // MARK: - Debug local
-    var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
     // MARK: - Properties

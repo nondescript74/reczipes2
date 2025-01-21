@@ -11,7 +11,7 @@ import SwiftUI
 
 public class TriviaProvider {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var triviaUrl: URL

@@ -10,7 +10,7 @@ import Foundation
 
 public class JokeProvider {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Properties
     fileprivate enum msgs: String {
         case jp = "JokeProvider: "

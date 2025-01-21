@@ -15,7 +15,7 @@ protocol SRecipeGroupCreateOperationDataProvider {
 
 class SRecipeGroupCreateOperation: Operation {
     // MARK: - Debug local
-    private var zBug: Bool = false
+    fileprivate var zBug: Bool = false
     // MARK: - Properties
     fileprivate var inputData: Data?
     fileprivate var completion: (([SRecipe]?) -> ())?

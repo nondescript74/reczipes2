@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoadableSRecipeFromUrl: View {
-    fileprivate let zBug: Bool = true
+    fileprivate let zBug: Bool = false
     @State private var result: SRecipe?
     var url: String
     let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
@@ -32,8 +32,6 @@ struct LoadableSRecipeFromUrl: View {
     }
     
     fileprivate func getExtractedViaUrl(urlString: String) async {
-        
-        // https://api.spoonacular.com/recipes/extract?url=""&analyze=true&forceExtraction=true + key
         let getSRecipeUrl = URL(string: "https://api.spoonacular.com/recipes/extract?url=" + urlString + "&analyze=true&forceExtraction=true" + key)
 #if DEBUG && zBug
         print(msgs.LSRV.rawValue + msgs.url.rawValue + getSRecipeUrl!.absoluteString)

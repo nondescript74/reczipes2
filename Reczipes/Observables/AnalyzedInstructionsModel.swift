@@ -13,8 +13,9 @@ class AnalyzedInstructionsModel: ObservableObject {
     fileprivate var zBug: Bool = true
     
     // MARK: - Publisher
-    @Published private(set) var result: [AnalyzedInstructions] = [AnalyzedInstructions(name: "Dummy", steps: [])] //this is the output, an AnalyzedInstructions array
+    @Published private(set) var result: [AnalyzedInstructions] = [] //this is the output, an AnalyzedInstructions array
     @Published private(set) var isSearching: Bool = false
+    fileprivate var privateInstructions: [AnalyzedInstructions] = Bundle.main.decode([AnalyzedInstructions].self, from: "AnalyzedInstructionsExample.json")
     
     // MARK: - Properties
     private var searchTask: Task<Void, Never>?

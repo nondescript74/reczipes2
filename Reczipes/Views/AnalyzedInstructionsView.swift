@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct AnalyzedInstructionsView: View {
-    @EnvironmentObject var instructions: AnalyzedInstructionsModel
+    var ainstructions: [AnalyzedInstructions]
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("The number of instructions is: " + instructions.result.count.description)
-                    .font(.title)
+                Text("The number of instructions is: " + ainstructions.count.description)
                 
-                ForEach(instructions.result, id: \.self) { anInstruction in
+                ForEach(ainstructions, id: \.self) { anInstruction in
                     Text(anInstruction.name)
                         .font(.headline)
+                    Text("Number of steps: " + anInstruction.steps.count.description + "")
                     List {
                         ForEach(anInstruction.steps, id: \.self) { aStep in
-                            HStack {
+                            VStack(alignment: .leading) {
                                 Text(aStep.number.description)
                                 Text(aStep.step.description)
                             }
@@ -35,6 +35,5 @@ struct AnalyzedInstructionsView: View {
 }
 
 #Preview {
-    AnalyzedInstructionsView()
-        .environmentObject(AnalyzedInstructionsModel())
+    AnalyzedInstructionsView(ainstructions: Bundle.main.decode([AnalyzedInstructions].self, from: "AnalyzedInstructionsExample.json"))
 }

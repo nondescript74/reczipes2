@@ -14,7 +14,7 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
-    @EnvironmentObject var instructions: AnalyzedInstructionsModel
+//    @EnvironmentObject var instructions: AnalyzedInstructionsModel
     // MARK: - Initializer
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
@@ -131,6 +131,11 @@ struct RecipeDetailView: View {
                         }) {
                             RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.save.rawValue, reversed: false)
                         }
+                        Button(action: {
+                            self.addingNote.toggle()
+                        }) {
+                            RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.save.rawValue, reversed: false)
+                        }
                     }
                     
                     VStack {
@@ -179,6 +184,7 @@ struct RecipeDetailView: View {
                         }.disabled(item.url.isEmpty)
                         Button(action: {
                             // What to perform
+                            
                             self.showingInstructions.toggle()
                         }) {
                             // How the button looks like
@@ -206,7 +212,10 @@ struct RecipeDetailView: View {
                 SafariView(url: URL(string: self.item.url)!)
             }
             .sheet(isPresented: $showingInstructions) {
-                AnalyzedInstructionsView()
+                LoadableSRecipeFromUrl(url: self.item.url)
+            }
+            .sheet(isPresented: $showingNotes) {
+                NotesView(recipeuuid: self.item.id)
             }
             
             .alert(isPresented: $recipeSaved)   {
@@ -218,7 +227,7 @@ struct RecipeDetailView: View {
         .environmentObject(aur)
         .environmentObject(aun)
         .environmentObject(aui)
-        .environmentObject(instructions)
+//        .environmentObject(instructions)
     }
 }
 
@@ -229,7 +238,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static let aur = AllUserRecipes()
     static let aun = AllUserNotes()
     static let aui = AllUserImages()
-    static let instructions = AnalyzedInstructionsModel()
+//    static let instructions = AnalyzedInstructionsModel()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
@@ -238,7 +247,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
                 .environmentObject(aur)
                 .environmentObject(aun)
                 .environmentObject(aui)
-                .environmentObject(instructions)
+//                .environmentObject(instructions)
         }
     }
 }

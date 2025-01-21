@@ -13,6 +13,7 @@ class AllUserRecipes: ObservableObject {
 
     // MARK: - Publisher
     @Published var sections = [BookSection]()
+    
     // MARK: - Initializer
     init() {
         let myDocuDirUrl = getDocuDirUrl()

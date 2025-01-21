@@ -20,6 +20,7 @@ class SRecipeWithInfo: ObservableObject {
     fileprivate enum msgs: String {
         case srwi = "SRecipeWithInfo: "
         case ex = "execute called "
+        case ext = "Extracting recipe using url: "
         case ro = "result number of steps obtained is "
         case rid = "recipeId: "
         case irid = "invalid recipeid sent in"
@@ -35,6 +36,55 @@ class SRecipeWithInfo: ObservableObject {
     
     @MainActor
     // MARK: - Methods
+    func extractRecipeUsingUrl(url: String) async {
+        searchTask?.cancel()
+        searchTask = Task {
+            isSearching = true
+            await getExtractedViaUrl(urlString: url)
+#if DEBUG
+            if zBug { print(msgs.srwi.rawValue, msgs.ext.rawValue + url + result.title!)}
+#endif
+        }
+    }
+    
+    fileprivate func getExtractedViaUrl(urlString: String) async {
+        let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
+        // https://api.spoonacular.com/recipes/extract?url=""&analyze=true&forceExtraction=true + key
+        let getSRecipeUrl = URL(string: "https://api.spoonacular.com/recipes/extract?url=" + urlString + "&analyze=true&forceExtraction=true" + key)
+#if DEBUG
+        if zBug {print(msgs.srwi.rawValue + msgs.url.rawValue + getSRecipeUrl!.absoluteString)}
+#endif
+        do {
+            let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
+            // check for empty array
+            if data.isEmpty {
+#if DEBUG
+                if zBug {print(msgs.srwi.rawValue, msgs.ro.rawValue, msgs.zero.rawValue)}
+#endif
+                result = SRecipe.example
+            }
+            let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
+#if DEBUG
+            
+            if sRecipe.title == msgs.emptyStr.rawValue {
+                if zBug {print(msgs.srwi.rawValue, msgs.emptyStr.rawValue)}
+            } else {
+                if zBug {print(msgs.srwi.rawValue, sRecipe.title!)}
+            }
+#endif
+            result = sRecipe
+        } catch  {
+#if DEBUG
+            let error = error as NSError
+            print(msgs.srwi.rawValue, msgs.ex.rawValue + error.localizedDescription)
+#endif
+            result = SRecipe.example
+        }
+        
+        
+    }
+    
+    
     func executeQuery(recipeId: Int) async {
         searchTask?.cancel()
         searchTask = Task {
@@ -48,6 +98,7 @@ class SRecipeWithInfo: ObservableObject {
             }
         }
     }
+    
     
     private func searchSRecipe(matching id: Int) async -> SRecipe {
         let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue

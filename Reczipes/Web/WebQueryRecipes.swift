@@ -88,15 +88,18 @@ public class WebQueryRecipes: ObservableObject {
     
     func findExtracted(urlString: String) {
         https://api.spoonacular.com/recipes/extract?url=https://www.seriouseats.com/vegan-cashew-milk-braised-green-plantains&analyze=true&forceExtraction=true&analyze=true&apiKey=
-        if !urlString.isValidURL ||  UserDefaults.standard.string(forKey: "SpoonacularKey") == nil {
+        if !urlString.isValidURL {
 #if DEBUG
-            print("WQR: no key or invalid url supplied")
+            print("WQR: invalid url supplied")
 #endif
             return
         }
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
-        urlComponents.query = myQuery.extract.rawValue + urlString + myQuery.anlyztrue.rawValue + myQuery.forceExtracttrue.rawValue + "&apiKey=" + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+        urlComponents.query = myQuery.extract.rawValue + urlString + myQuery.anlyztrue.rawValue + myQuery.forceExtracttrue.rawValue + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         myTask(aswitch: myGets.FindExtracted.rawValue)
+#if DEBUG
+        print("WQR: url generated is" + urlComponents.debugDescription)
+#endif
     }
     
     func findByIngredientsAndCusine(searchString: String, numberSent: Int, cuisine: String) {

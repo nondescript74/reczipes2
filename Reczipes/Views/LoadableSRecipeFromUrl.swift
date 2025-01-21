@@ -62,25 +62,29 @@ struct LoadableSRecipeFromUrl: View {
     }
     
     var body: some View {
-        VStack {
-            Text(result?.title! ?? "")
-            AsyncImage(url: URL(string: (result?.image ?? SectionItem3.example.imageUrl)!)) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(15)
-                        .shadow(radius: 5)
-                        .accessibility(hidden: false)
-                        .accessibilityLabel(Text(result?.title ?? "No title"))
-                } else {
-                    ProgressView()
+        NavigationStack {
+            ScrollView {
+                AsyncImage(url: URL(string: (result?.image ?? SectionItem3.example.imageUrl)!)) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(15)
+                            .shadow(radius: 5)
+                            .accessibility(hidden: false)
+                            .accessibilityLabel(Text(result?.title ?? "No title"))
+                    } else {
+                        ProgressView()
+                    }
                 }
+                AnalyzedInstructionsView(ainstructions: result?.analyzedInstructions ?? [])
+                
+                
             }
-            AnalyzedInstructionsView(ainstructions: result?.analyzedInstructions ?? [])
-        }
-        .task {
-            await getExtractedViaUrl(urlString: url)
+            .task {
+                await getExtractedViaUrl(urlString: url)
+            }
+            .navigationTitle(result?.title ?? "No Recipe Title")
         }
         
     }

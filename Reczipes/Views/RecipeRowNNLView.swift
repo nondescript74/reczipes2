@@ -68,10 +68,10 @@ struct RecipeRowNNLView: View {
                 Button(action: {
                     // What to perform
                     let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
-                    if result { recipeSaved = true } else { recipeSaved = false }
+                    recipeSaved = result
                 }) {
                     // How the button looks like
-                    RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
+                    RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: cuisine.isEmpty)
                 }
                 .disabled(cuisine.isEmpty )
                 Spacer()

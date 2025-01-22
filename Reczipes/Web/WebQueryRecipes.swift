@@ -28,7 +28,6 @@ public class WebQueryRecipes: ObservableObject {
         if searchString == "" {
             return
         }
-//        var mySearchTerms = parseSearchString(searchstring: searchString)
         var mySearchTerms = searchString
         mySearchTerms += "&cuisine="
         mySearchTerms += cuisine
@@ -73,7 +72,7 @@ public class WebQueryRecipes: ObservableObject {
         urlComponents.query = myQuery.extract.rawValue + urlString + myQuery.anlyztrue.rawValue + myQuery.forceExtracttrue.rawValue + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         myTask(aswitch: myGets.FindExtracted.rawValue)
 #if DEBUG
-        print("WQR: url generated is" + urlComponents.debugDescription)
+        print("WQR: url generated is: " + urlComponents.debugDescription)
 #endif
     }
     
@@ -115,7 +114,7 @@ public class WebQueryRecipes: ObservableObject {
             return
         }
 #if DEBUG
-        print("WQR: ", url.absoluteString)
+        print("WQR: getting from ", url.absoluteString)
 #endif
 
         switch aswitch {
@@ -125,7 +124,9 @@ public class WebQueryRecipes: ObservableObject {
                 if self.recipeInfo != nil {
                     DispatchQueue.main.async { [self] in
                         self.recipeInfo = recipeinfo!
+#if DEBUG 
                         print(messagesDebug.foundsrecipe.rawValue)
+#endif
                     }
                 }
             }
@@ -135,7 +136,9 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async { [self] in
                         self.sRecipeGroup = srecipes!
+#if DEBUG
                         print(messagesDebug.fsrgroup.rawValue, srecipes?.count ?? defaultRequiredCount)
+#endif
                     }
                 }
             }
@@ -145,7 +148,9 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async {
                         self.sRecipeGroup = srecipes!
+#if DEBUG
                         print(messagesDebug.foundrandom.rawValue, srecipes?.count ?? defaultRequiredCount)
+#endif
                     }
                 }
             }
@@ -155,7 +160,9 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipe != nil {
                     DispatchQueue.main.async {
                         self.extractedSRecipe = srecipe!
+#if DEBUG
                         print(messagesDebug.foundextractedrecipe.rawValue, srecipe?.title ?? messagesDebug.noTitle.rawValue)
+#endif
                     }
                 }
             }
@@ -165,7 +172,9 @@ public class WebQueryRecipes: ObservableObject {
                 if srecipes != nil {
                     DispatchQueue.main.async {
                         self.sRecipeGroup = srecipes!
+#if DEBUG
                         print(messagesDebug.fsrgroup.rawValue, srecipes?.count ?? "couldn't get count")
+#endif
                     }
                 }
             }
@@ -175,7 +184,9 @@ public class WebQueryRecipes: ObservableObject {
                 if trivia != nil {
                     DispatchQueue.main.async {
                         self.aTrivia = trivia!
+#if DEBUG
                         print(messagesDebug.getTrivia.rawValue, trivia?.text ?? messagesDebug.noTrivia.rawValue)
+#endif
                     }
                 }
             }
@@ -185,7 +196,9 @@ public class WebQueryRecipes: ObservableObject {
                 if joke != nil {
                     DispatchQueue.main.async {
                         self.joke = joke!
+#if DEBUG
                         print(messagesDebug.getJoke.rawValue, joke?.text ?? messagesDebug.noJoke.rawValue)
+#endif
                     }
                 }
             }

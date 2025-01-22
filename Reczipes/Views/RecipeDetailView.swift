@@ -115,7 +115,7 @@ struct RecipeDetailView: View {
                         Button(action: {
                             // What to perform
                             let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
-                            if result { recipeSaved = true } else { recipeSaved = false }
+                            recipeSaved = result
                         }) {
                             // How the button looks like
                             RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: cuisine.isEmpty)

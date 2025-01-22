@@ -155,22 +155,22 @@ enum myGets: String {
 }
 
 enum messagesDebug: String {
-    case foundimage = "Find Image found an Image"
-    case foundrandom = "Found Random Recipes"
-    case foundrecipeinfo = "Find Information found an SRecipe"
-    case foundsrecipe = "Found an SRecipe"
-    case foundextractedrecipe = "Extracted an SRecipe"
-    case fsrgroup = "Found SRecipeGroup"
-    case fcrgroup = "Found CRecipeGroup"
-    case getTrivia = "Found trivia"
-    case getJoke = "Found joke"
-    case getAnInstr = "Found analyzed instructions"
-    case noTitle = "No title"
-    case noTrivia = "No Trivia Found"
-    case noJoke = "Found No Joke"
-    case noAnInstr = "No analyzed instructions found"
-    case unknownImageType = "Unknown image type"
-    case unknownCallerID = "Unknown CallerID"
+    case foundimage = "WQR: Find Image found an Image"
+    case foundrandom = "WQR: Found Random Recipes"
+    case foundrecipeinfo = "WQR: Find Information found an SRecipe"
+    case foundsrecipe = "WQR: Found an SRecipe"
+    case foundextractedrecipe = "WQR: Extracted an SRecipe"
+    case fsrgroup = "WQR: Found SRecipeGroup"
+    case fcrgroup = "WQR: Found CRecipeGroup"
+    case getTrivia = "WQR: Found trivia"
+    case getJoke = "WQR: Found joke"
+    case getAnInstr = "WQR: Found analyzed instructions"
+    case noTitle = "WQR: No title"
+    case noTrivia = "WQR: No Trivia Found"
+    case noJoke = "WQR: Found No Joke"
+    case noAnInstr = "WQR: No analyzed instructions found"
+    case unknownImageType = "WQR: Unknown image type"
+    case unknownCallerID = "WQR: Unknown CallerID"
 }
 
 func hasSpecialCharacters(string: String) -> Bool {

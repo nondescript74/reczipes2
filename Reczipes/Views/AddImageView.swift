@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct AddImageView: View {
-    
     fileprivate let zBug = false
-    
     // MARK: - Initializer
     init(recipeid: UUID) {
         self.recipeId = recipeid
@@ -22,7 +20,6 @@ struct AddImageView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     // MARK: - Focus for textfield
-//    @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
     @State fileprivate var recipeSelected: Int = 0
     @State fileprivate var showSheet: Bool = false
@@ -172,7 +169,7 @@ print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
                     Spacer()
                     Button(action: {
                         //what to perform
-                        let resizedImage = resizeImage(image: image!, targetSize: CGSize(width: 100, height: 100))
+                        let resizedImage = resizeImage(image: image!, targetSize: imageTargetSize)
                         image = resizedImage
                         aui.addImage(imageSaved: convertImageToImageSaved())
                         recipeImageSaved.toggle()

@@ -209,22 +209,22 @@ struct Measure: Codable, Hashable, Equatable {
     static let measureExampleMetric =  Measure(amount: 1.8, unitShort: "kg", unitLong: "kilograms")
 }
 
-struct ExtendedIngredientSet: Codable, Hashable, Equatable {
-    var extendedIngredients:[ExtendedIngredient?]?
-    
-    static func == (lhs: ExtendedIngredientSet, rhs: ExtendedIngredientSet) -> Bool {
-        if lhs.extendedIngredients == rhs.extendedIngredients {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(extendedIngredients)
-    }
-    static let extendedIngredientSetExample = ExtendedIngredientSet(extendedIngredients: Bundle.main.decode(ExtendedIngredientSet.self, from: "ExtendedIngredients.json").extendedIngredients)
-}
+//struct ExtendedIngredientSet: Codable, Hashable, Equatable {
+//    var extendedIngredients:[ExtendedIngredient?]?
+//    
+//    static func == (lhs: ExtendedIngredientSet, rhs: ExtendedIngredientSet) -> Bool {
+//        if lhs.extendedIngredients == rhs.extendedIngredients {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//    
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(extendedIngredients)
+//    }
+//    static let extendedIngredientSetExample = ExtendedIngredientSet(extendedIngredients: Bundle.main.decode(ExtendedIngredientSet.self, from: "ExtendedIngredients.json").extendedIngredients)
+//}
 
 struct ExtendedIngredient: Codable, Hashable, Identifiable, Equatable {
     var id:Int?
@@ -380,7 +380,7 @@ struct Equipment: Codable, Hashable, Equatable {
     static let equipmentSet1: [Equipment] = [equipmentExample, equipmentExample1]
     static let equipmentSet3: [Equipment] = []
 }
-// MARK: - TopLevelElement
+
 struct AnalyzedInstructions: Codable, Hashable, Equatable {
     let name: String
     let steps: [Step]
@@ -433,22 +433,6 @@ struct Length: Codable {
     let unit: String
 }
 
-
-// MARK: - WelcomeElement
-struct CRecipe: Identifiable, Codable {
-    let id: Int
-    let image: String
-    let imageType: String
-    let likes, missedIngredientCount: Int
-    let missedIngredients: [SedIngredient]
-    let title: String
-    let unusedIngredients: [SedIngredient]
-    let usedIngredientCount: Int
-    let usedIngredients: [SedIngredient]
-    
-    static let example: CRecipe = CRecipe(id: 1086727, image: "https://img.spoonacular.com/recipes/1086727-312x231.jpg", imageType: "jpg", likes: 1, missedIngredientCount: 0, missedIngredients: [], title: "Homemade Fancy Fortune Cookies", unusedIngredients: [], usedIngredientCount: 2, usedIngredients: [SedIngredient.example, SedIngredient.example2])
-}
-
 // MARK: - SedIngredient
 struct SedIngredient: Identifiable, Codable {
     let aisle: String
@@ -464,8 +448,6 @@ struct SedIngredient: Identifiable, Codable {
     
     static let example2: SedIngredient = SedIngredient(aisle: "Milk, Eggs, Other Dairy", amount: 0.5, id: 1123, image: "https://img.spoonacular.com/ingredients_100x100/egg.png", meta: ["whole", "beaten"], name: "egg yolk", original: "1/2 whole egg yolk beaten", originalName: "whole egg yolk beaten", unit: "", unitLong: "", unitShort: "", extendedName: "whole egg yolk")
 }
-
-typealias CRecipeGroup = [CRecipe]
 
 struct SRecipeGroup: Codable  {
     var results:[SRecipe]?  // when using random

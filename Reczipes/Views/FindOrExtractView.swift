@@ -14,7 +14,7 @@ struct FindOrExtractView: View {
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
-    @ObservedObject var cRecipeGroup = WebQueryRecipes()
+//    @ObservedObject var cRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
         case fr = "Find or Extract"

@@ -55,20 +55,7 @@ struct ApplicationView: View {
                     Image(uiImage: squareandarrowdown!)
                     Text(tabs.ingredients.rawValue)
                 }
-//            
-//            
-//            AddImageView(recipeid: SectionItem3.example.id)
-//                .tabItem {
-//                    Image(uiImage: magnifyingglass!)
-//                    Text(tabs.img.rawValue)
-//                }
-//            
-//            AddNoteView()
-//                .tabItem {
-//                    Image(uiImage: suitImage)
-//                    Text(tabs.note.rawValue)
-//                }
-//            
+      
             KeyView()
                 .tabItem {
                     Image(uiImage: imageSquarePencil!)

@@ -65,6 +65,7 @@ let heightImage: CGFloat = 70
 let overlayLWidth: CGFloat = 2
 let paddingSize: CGFloat = 2
 let lineLimit: Int = 3
+let imageTargetSize = CGSize(width: 200, height: 200)
 
 var defaultRequiredCount:Int = 0
 var urlComponents:URLComponents = URLComponents(string: "")!
@@ -77,7 +78,6 @@ enum msgs: String {
     case fail = "Failed to remove a recipe "
     case counted = "User added recipes Contents count "
     case nobs = "No booksection files found"
-    case rshipd = "recipesShipped"
     case rnotes = "RecipeNotes"
     case rimages = "RecipeImages"
     case fuar = "Found user added recipe"
@@ -115,7 +115,7 @@ enum urlThings: String {
     case imageWeb = "https://spoonacular.com/cdn/ingredients_" //
     case images = "https://spoonacular.com/recipeImages/"
     case ingredients = "https://api.spoonacular.com/recipes/findByIngredients"  // https://api.spoonacular.com/recipes/findByIngredients
-    case similar, information, analyzedInstructions = "https://api.spoonacular.com/recipes/"
+    case similar, information = "https://api.spoonacular.com/recipes/"
     case similarPartDeux = "/similar"
     case informationPartDeux = "/information"
     case randomrecipes = "https://api.spoonacular.com/recipes/random"
@@ -217,16 +217,16 @@ func convertSRecipeToSectionItem3(srecipe: SRecipe) -> SectionItem3 {
     return item
 }
 
-func convertCRecipeToSectionItem3(crecipe: CRecipe) -> SectionItem3 {
-    let item = SectionItem3(id: UUID(),
-                            recipeId: (crecipe.id),
-                            name: crecipe.title,
-                            url: crecipe.image,
-                            photocredit: "none",
-                            restrictions: [],
-                            summary: crecipe.title)
-    return item
-}
+//func convertCRecipeToSectionItem3(crecipe: CRecipe) -> SectionItem3 {
+//    let item = SectionItem3(id: UUID(),
+//                            recipeId: (crecipe.id),
+//                            name: crecipe.title,
+//                            url: crecipe.image,
+//                            photocredit: "none",
+//                            restrictions: [],
+//                            summary: crecipe.title)
+//    return item
+//}
                             
 
 func getSRecipeID(srecipe: SRecipe) -> Int {
@@ -241,17 +241,17 @@ func getSRecipeID(srecipe: SRecipe) -> Int {
     }
 }
 
-func getCRecipeID(crecipe: CRecipe) -> Int {
-    switch crecipe.id {
-    case Int.min ..< 1:
-#if DEBUG
-        print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative crecipe.id")
-#endif
-        return getSRecipeIDUnique()
-    default:
-        return crecipe.id
-    }
-}
+//func getCRecipeID(crecipe: CRecipe) -> Int {
+//    switch crecipe.id {
+//    case Int.min ..< 1:
+//#if DEBUG
+//        print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative crecipe.id")
+//#endif
+//        return getSRecipeIDUnique()
+//    default:
+//        return crecipe.id
+//    }
+//}
 
 func getSRecipeIDUnique() -> Int {
     // for now

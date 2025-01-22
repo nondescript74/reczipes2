@@ -118,6 +118,8 @@ struct AddNoteView: View {
                 return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
             }
         }
+        .environmentObject(aur)
+        .environmentObject(aun)
     }
 }
 

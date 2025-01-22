@@ -15,11 +15,6 @@ struct AllRecipesView: View {
     // MARK: - Properties
     enum msgs: String {
         case arv = "All Recipes View"
-        case recz = "Reczipes"
-        case rshipd = "recipesShipped"
-        case rnotes = "RecipeNotes"
-        case rimages = "RecipeImages"
-        case fuar = "Found user added recipe"
     }
     
     // MARK: - Methods

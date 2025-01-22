@@ -38,13 +38,13 @@ class AllUserRecipes: ObservableObject {
         }
         
         // directories exist
-        // get all shipped recipes
-        if showShipped {
-            sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
-#if DEBUG && zBug
-            print(msgs.aur.rawValue + "using shipped recipes")
-#endif
-        }
+//        // get all shipped recipes
+//        if showShipped {
+//            sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
+//#if DEBUG && zBug
+//            print(msgs.aur.rawValue + "using shipped recipes")
+//#endif
+//        }
         let fmapsections = sections.compactMap({$0})
         let secItems = fmapsections.flatMap({$0.items})
 #if DEBUG && zBug

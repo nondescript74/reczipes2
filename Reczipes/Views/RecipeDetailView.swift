@@ -9,6 +9,7 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
+    fileprivate let zBug: Bool = false
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
@@ -19,7 +20,7 @@ struct RecipeDetailView: View {
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.RDV.rawValue, self.item.id)
 #endif
     }
@@ -79,12 +80,12 @@ struct RecipeDetailView: View {
         var userNotes = aun.notes
         userNotes = userNotes.filter({$0.recipeuuid == item.id})
         if userNotes.isEmpty {
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.RDV.rawValue, "recipe has no notes")
 #endif
             return false
         }
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.RDV.rawValue, "recipe has notes")
 #endif
         return true
@@ -99,7 +100,7 @@ struct RecipeDetailView: View {
 #endif
             return false
         }
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.RDV.rawValue, "recipe has images")
 #endif
         return true
@@ -227,7 +228,6 @@ struct RecipeDetailView: View {
         .environmentObject(aur)
         .environmentObject(aun)
         .environmentObject(aui)
-//        .environmentObject(instructions)
     }
 }
 
@@ -238,7 +238,6 @@ struct RecipeDetailView_Previews: PreviewProvider {
     static let aur = AllUserRecipes()
     static let aun = AllUserNotes()
     static let aui = AllUserImages()
-//    static let instructions = AnalyzedInstructionsModel()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
@@ -247,7 +246,6 @@ struct RecipeDetailView_Previews: PreviewProvider {
                 .environmentObject(aur)
                 .environmentObject(aun)
                 .environmentObject(aui)
-//                .environmentObject(instructions)
         }
     }
 }

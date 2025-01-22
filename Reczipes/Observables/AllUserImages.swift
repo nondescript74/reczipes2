@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 
 class AllUserImages: ObservableObject {
+    
+    fileprivate let zBug: Bool = false
 
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []
@@ -23,12 +25,12 @@ class AllUserImages: ObservableObject {
         
         do {
             let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")
 #endif
             for anImageUrl in imagesUrls {
                 let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
-#if DEBUG
+#if DEBUG && zBug
                 print(msgs.aui.rawValue + data.debugDescription)
 #endif
                 let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
@@ -40,7 +42,7 @@ class AllUserImages: ObservableObject {
         
         let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
         
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.aui.rawValue + msgs.sic.rawValue + "\(shippedImages.count)")
 #endif
         
@@ -53,16 +55,16 @@ class AllUserImages: ObservableObject {
         images = myImagesConstructed
         
         if myImagesConstructed.count == 0 {
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.aui.rawValue + msgs.nui.rawValue)
 #endif
         } else {
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.aui.rawValue + msgs.uie.rawValue + " \(myImagesConstructed.count)")
 #endif
         }
         
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.aui.rawValue + msgs.initz.rawValue, msgs.count.rawValue, self.images.count)
 #endif
     }
@@ -89,7 +91,7 @@ class AllUserImages: ObservableObject {
                 
                 
             } else {
-#if DEBUG
+#if DEBUG && zBug
                 print(msgs.aui.rawValue + msgs.appdnot.rawValue)
 #endif
             }
@@ -116,11 +118,11 @@ class AllUserImages: ObservableObject {
                 fatalError("Cannot encode ImageSaved to json")
             }
             
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.aui.rawValue + msgs.appd.rawValue)
 #endif
         } else {
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.aui.rawValue + msgs.appdnot.rawValue)
 #endif
         }
@@ -131,7 +133,7 @@ class AllUserImages: ObservableObject {
         // does not remove from user files
         guard let idx = images.firstIndex(of: imageSaved) else { return }
         images.remove(at: idx)
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.aui.rawValue + msgs.remvd.rawValue)
 #endif
     }
@@ -143,12 +145,12 @@ class AllUserImages: ObservableObject {
         
         do {
             let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-#if DEBUG
+#if DEBUG && zBug
             print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")
 #endif
             for anImageUrl in imagesUrls {
                 let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
-#if DEBUG
+#if DEBUG && zBug
                 print(msgs.aui.rawValue + data.debugDescription)
 #endif
                 let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)

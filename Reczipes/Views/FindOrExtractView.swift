@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct FindOrExtractView: View {
+    fileprivate let zBug: Bool = true
     // MARK: - EnvironmentObject
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var aur: AllUserRecipes
     // MARK: - ObservedObject
     @ObservedObject var sRecipeGroup = WebQueryRecipes()
     @ObservedObject var extractedSRecipe = WebQueryRecipes()
-//    @ObservedObject var cRecipeGroup = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
         case fr = "Find or Extract"
@@ -56,7 +56,7 @@ struct FindOrExtractView: View {
     
     // MARK: - Methods
     func getSRecipeGroup() {
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.find.rawValue, " getSRecipeGroup called.  Searchterm supplied: \(searchTerm)", " find by ingredients and cuisine")
 #endif
         if xectionName == "" {return}
@@ -68,7 +68,7 @@ struct FindOrExtractView: View {
     }
     
     func findRandom() {
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.find.rawValue, " findRandom called. executing find by random")
 #endif
         if xectionName == "" {return}
@@ -80,7 +80,7 @@ struct FindOrExtractView: View {
     }
     
     func extractRecipe() {
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.find.rawValue, " extractRecipe called. executing extract")
 #endif
         if xectionName == "" {return}
@@ -88,7 +88,7 @@ struct FindOrExtractView: View {
         extractedSRecipe.findExtracted(urlString: urlString)
         urlString = ""
         endEditing()
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.extract.rawValue, urlString)
 #endif
     }
@@ -149,6 +149,9 @@ struct FindOrExtractView: View {
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                     if show == Selectors.extract &&  extractedSRecipe.extractedSRecipe != nil {
+#if DEBUG && zBug
+                        print("extractedSRecipe.extractedSRecipe!.sourceUrl:  \(String(describing: extractedSRecipe.extractedSRecipe!.sourceUrl))")
+#endif
                         RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
                     }
                 }
@@ -160,7 +163,7 @@ struct FindOrExtractView: View {
     }
 }
 
-#if DEBUG
+
 struct FindOrExtractView_Previews: PreviewProvider {
     static var previews: some View {
         FindOrExtractView()
@@ -168,4 +171,3 @@ struct FindOrExtractView_Previews: PreviewProvider {
             .environmentObject(UserData())
     }
 }
-#endif

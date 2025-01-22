@@ -118,7 +118,7 @@ struct RecipeDetailView: View {
                             if result { recipeSaved = true } else { recipeSaved = false }
                         }) {
                             // How the button looks like
-                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: false)
+                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: cuisine.isEmpty)
                         }.disabled(cuisine.isEmpty )
                         Button(action: {
                             // What to perform
@@ -167,21 +167,21 @@ struct RecipeDetailView: View {
                             self.showingNotes.toggle()
                         }) {
                             // How the button looks like
-                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.book.rawValue, reversed: true)
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.book.rawValue, reversed: !self.hasNotes())
                         }.disabled(!self.hasNotes())
                         Button(action: {
                             // What to perform
                             self.showingImages.toggle()
                         }) {
                             // How the button looks like
-                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: true)
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.images.rawValue, reversed: !self.hasImages())
                         }.disabled(!self.hasImages())
                         Button(action: {
                             // What to perform
                             self.showingRecipe.toggle()
                         }) {
                             // How the button looks like
-                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.rec.rawValue, reversed: true)
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.rec.rawValue, someImage: imagez.rec.rawValue, reversed: item.url.isEmpty)
                         }.disabled(item.url.isEmpty)
                         Button(action: {
                             // What to perform
@@ -189,7 +189,7 @@ struct RecipeDetailView: View {
                             self.showingInstructions.toggle()
                         }) {
                             // How the button looks like
-                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: true)
+                            RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: item.url.isEmpty)
                         }.disabled(item.url.isEmpty)
                         
                     }

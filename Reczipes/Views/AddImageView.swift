@@ -12,9 +12,9 @@ struct AddImageView: View {
     // MARK: - Initializer
     init(recipeid: UUID) {
         self.recipeId = recipeid
-        #if DEBUG && zBug
+#if DEBUG && zBug
         print(msgs.aiv.rawValue, " initialized with recipeid: \(recipeid)")
-        #endif
+#endif
     }
     // MARK: EnvironmentObject
     @EnvironmentObject var aur: AllUserRecipes
@@ -51,7 +51,7 @@ struct AddImageView: View {
     
     fileprivate func convertImageToImageSaved() -> ImageSaved {
         let imageSaved = ImageSaved(recipeuuid: recipeId, imageSaved:  self.image!.pngData()!)
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.aiv.rawValue, " - convertIToImageSaved, recipeId: ", recipeId.uuidString)
 #endif
         
@@ -64,9 +64,9 @@ struct AddImageView: View {
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
         
-        #if DEBUG && zBug
+#if DEBUG && zBug
         print(msgs.aiv.rawValue, " - resizeImage, widthRatio: \(widthRatio), heightRatio: \(heightRatio)")
-        #endif
+#endif
         
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
@@ -95,7 +95,7 @@ print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
         for bs in aur.sections {
             myReturn.append(contentsOf: bs.items)
         }
-#if DEBUG
+#if DEBUG && zBug
         print(msgs.aiv.rawValue + " - getRecipes: " + myReturn.count.description)
 #endif
         return myReturn
@@ -119,7 +119,7 @@ print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
                                 .cancel()
                                ])
         } else {
-//            sourceTypes = [.photoLibrary, .savedPhotosAlbum]
+            sourceTypes = [.photoLibrary, .savedPhotosAlbum]
             return ActionSheet(title: Text(msgs.selectPhoto.rawValue),
                                message: Text(msgs.choose.rawValue),
                                buttons: [

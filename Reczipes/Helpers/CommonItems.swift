@@ -20,7 +20,7 @@ public let json = ".json"
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
 var colorBackgroundButton: Color = Color.black
-var colorForegroundButton: Color = Color.clear
+var colorForegroundButton: Color = Color.blue
 
 let suitImage =  UIImage(systemName: "suit.heart")!
 let checkmarkImage = UIImage(systemName: "checkmark.seal")!

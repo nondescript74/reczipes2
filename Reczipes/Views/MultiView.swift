@@ -65,10 +65,10 @@ struct MultiView: View {
                     
                     HStack {
                         Button(action: {self.getTrivia()}) {
-                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue)
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue, reversed: false)
                         }.padding()
                         Button(action: {self.getJoke()}) {
-                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue)
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.joke.rawValue, someImage: msgs.joke.rawValue, reversed: false)
                         }.padding()
                     }
                     

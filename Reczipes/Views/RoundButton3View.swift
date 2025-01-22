@@ -13,36 +13,33 @@ struct RoundButton3View: View {
     var someTextTop: String
     var someTextBottom: String
     var someImage: String
-//    var colorFrame: Color = Color.black
-    var reversed: Bool = false
+    var reversed: Bool  // set this to true when the button is not active
     
     // MARK: - View Process
     var body: some View {
         VStack {
             ZStack {
-                Image(systemName: someImage)
-                    .font(.title)
+                Circle()
+                    .strokeBorder(reversed ? Color.gray : Color.black, lineWidth: 2)
+                    .frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
                 Circle()
-                    .strokeBorder(colorBackgroundButton, lineWidth: 2)
-                    .frame(width: 45, height: 45, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                
-                Circle()
-                    .fill(colorForegroundButton)
-                    .frame(width: 35, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .fill(reversed ? Color.white : Color.blue)
+                    .frame(width: 30, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
             
             Text(someTextTop)
-                .foregroundColor(.blue)
-                .font(.system(size: 10, weight: .light, design: .serif))
+                .foregroundColor(reversed ? Color.gray : Color.black)
+                .font(.system(size: 12, weight: .regular, design: .serif))
             Text(someTextBottom)
-                .foregroundColor(.blue)
-                .font(.system(size: 10, weight: .light, design: .serif))
+                .foregroundColor(reversed ? Color.gray : Color.black)
+                .font(.system(size: 12, weight: .regular, design: .serif))
         }
     }
 }
 
 struct RoundButton3View_Previews: PreviewProvider {
     static var previews: some View {
-        RoundButton3View(someTextTop: "Add", someTextBottom: "yourself", someImage: "plus", reversed: false)}
+        RoundButton3View(someTextTop: "Add", someTextBottom: "yourself", someImage: "plus", reversed: false)
+    }
 }

@@ -16,9 +16,10 @@ struct ApplicationView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
-
+    
     // MARK: - Properties
     fileprivate enum tabs: String {
+        case recipes = "Recipes"
         case books = "Books"
         case uf = "User Files"
         case frextr = "Find/Extract"
@@ -36,80 +37,162 @@ struct ApplicationView: View {
     }
     
     var body: some View {
-        TabView {
-            AllRecipesView()
-                .tabItem {
-                    Image(uiImage: imageDocDocEmpty!)
-                    Text(tabs.books.rawValue)
+        NavigationStack {
+            VStack {
+                Spacer()
+                HStack {
+                    VStack {
+                        NavigationLink(destination: AllRecipesView()) {
+                            Image(uiImage: imageDocDocEmpty!)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.recipes.rawValue)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        NavigationLink(destination: FindOrExtractView()) {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.frextr.rawValue)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        NavigationLink(destination: OrderIngredientsView2()) {
+                            Image(uiImage: squareandarrowdown!)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.ingredients.rawValue)
+                            .foregroundColor(.blue)
+                    }
                 }
-            
-            FindOrExtractView()
-                .tabItem {
-                    Image(uiImage: scribblevariable!)
-                    Text(tabs.frextr.rawValue)
+                .padding([.horizontal, .bottom])
+                
+                HStack {
+                    VStack {
+                        NavigationLink(destination: KeyView()) {
+                            Image(uiImage: checkmarkImage)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.enterKey.rawValue)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        NavigationLink(destination: SettingsView()) {
+                            Image(uiImage: suitImage)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.settings.rawValue)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        NavigationLink(destination: FilesDisplayView2()) {
+                            Image(uiImage: lassoImage)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.uf.rawValue)
+                            .foregroundColor(.blue)
+                    }
                 }
-            
-            OrderIngredientsView2()
-                .tabItem {
-                    Image(uiImage: squareandarrowdown!)
-                    Text(tabs.ingredients.rawValue)
-                }
-      
-            KeyView()
-                .tabItem {
-                    Image(uiImage: imageSquarePencil!)
-                    Text(tabs.enterKey.rawValue)
-                }
-            
-            SettingsView()
-                .tabItem {
-                    Image(uiImage: imageDocDocEmpty!)
-                    Text(tabs.settings.rawValue)
-                }
-            
-            FilesDisplayView2()
-                .tabItem {
-                    Image(uiImage: hare!)
-                    Text(tabs.uf.rawValue)
-                }
-            
-            MultiView()
-                .tabItem {
-                    Image(uiImage: suitImage)
-                    Text(tabs.jt.rawValue)
-                }
-            
-            ProfileEditor(profile: $userData.profile)
-                .tabItem {
-                    Image(uiImage: checkmarkImage)
-                    Text(tabs.prof.rawValue)
-                }
-        }
-        .environmentObject(order)
-        .environmentObject(userData)
-        .environmentObject(ratio)
-        .environmentObject(aun)
-        .environmentObject(aui)
-        .environmentObject(aur)
-        
-    }
-}
+                .padding([.horizontal, .bottom])
+                
+                Spacer()
+                
+                HStack {
+                    VStack {
+                        NavigationLink(destination: MultiView()) {
+                            Image(uiImage: wandNStarsImage)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.jt.rawValue)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        NavigationLink(destination: ProfileEditor(profile: $userData.profile)) {
+                            Image(uiImage: tortoise!)
+                                .foregroundColor(.blue)
+                                .frame(minHeight: 50)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Capsule().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.prof.rawValue)
+                            .foregroundColor(.blue)
+                    }
 
-struct ApplicationView_Previews: PreviewProvider {
-    static let order = OrderingList()
-    static let userData = UserData()
-    static let rratio = RecipeRatio()
-    static let aur = AllUserRecipes()
-    static let aun = AllUserNotes()
-    static let aui = AllUserImages()
-    
-    static var previews: some View {
-        ApplicationView()
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+            }
+        }
             .environmentObject(order)
             .environmentObject(userData)
-            .environmentObject(rratio)
-            .environmentObject(aur)
+            .environmentObject(ratio)
             .environmentObject(aun)
             .environmentObject(aui)
+            .environmentObject(aur)
+        }
     }
-}
+    
+    struct ApplicationView_Previews: PreviewProvider {
+        static let order = OrderingList()
+        static let userData = UserData()
+        static let rratio = RecipeRatio()
+        static let aur = AllUserRecipes()
+        static let aun = AllUserNotes()
+        static let aui = AllUserImages()
+        
+        static var previews: some View {
+            ApplicationView()
+                .environmentObject(order)
+                .environmentObject(userData)
+                .environmentObject(rratio)
+                .environmentObject(aur)
+                .environmentObject(aun)
+                .environmentObject(aui)
+        }
+    }

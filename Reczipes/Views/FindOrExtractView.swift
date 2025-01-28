@@ -22,7 +22,7 @@ struct FindOrExtractView: View {
         case find = "?"
         case random = "🤷🏽‍♂️"
         case er = "Extract Recipe"
-        case entertext = "Enter Recipe URL"
+        case entertext = "Enter Recipe URL to extract"
         case extract = "✂️"
         case ingreds = "🍒"
         case enteringreds = "Enter ingredients"
@@ -116,18 +116,19 @@ struct FindOrExtractView: View {
                 }
                 
                 VStack {
-                    Text(msgs.er.rawValue).fontWeight(.semibold)
+                    HStack {
+                        Text(msgs.er.rawValue).fontWeight(.semibold)
+                        
+                        Picker("Select", selection: $xectionName) {
+                            ForEach(getBookSectionNames(), id: \.self) { bookSection in
+                                Text(bookSection).fontWeight(.light)
+                            }
+                        }
+                        
+                    }
                     
                     HStack(alignment: .center) {
                         TextField(msgs.entertext.rawValue, text: $urlString)
-                        
-                        HStack {
-                            Picker("Select", selection: $xectionName) {
-                                ForEach(getBookSectionNames(), id: \.self) { bookSection in
-                                    Text(bookSection).fontWeight(.light)
-                                }
-                            }
-                        }
                         
                         Button(action: extractRecipe) {
                             Text(msgs.extract.rawValue).font(.largeTitle).bold()

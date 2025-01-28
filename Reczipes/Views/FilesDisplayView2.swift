@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FilesDisplayView2: View {
-    fileprivate let zBug = false
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
@@ -41,7 +40,7 @@ struct FilesDisplayView2: View {
     fileprivate func getRecipeUrlsWShipped() -> [String] {
         let shipped = Bundle.main.decode([String].self, from: "recipesShippedUrls.json")
         
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.fdv2.rawValue + "GetRecipeUrlsWShipped, number of shipped recipes is : " + "\(shipped.count)")
 #endif
         let myReturn = shipped

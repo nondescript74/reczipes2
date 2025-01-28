@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FindOrExtractView: View {
-    fileprivate let zBug: Bool = true
+    
     // MARK: - EnvironmentObject
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var aur: AllUserRecipes
@@ -56,7 +56,7 @@ struct FindOrExtractView: View {
     
     // MARK: - Methods
     func getSRecipeGroup() {
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.find.rawValue, " getSRecipeGroup called.  Searchterm supplied: \(searchTerm)", " find by ingredients and cuisine")
 #endif
         if xectionName == "" {return}
@@ -68,7 +68,7 @@ struct FindOrExtractView: View {
     }
     
     func findRandom() {
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.find.rawValue, " findRandom called. executing find by random")
 #endif
         if xectionName == "" {return}
@@ -80,7 +80,7 @@ struct FindOrExtractView: View {
     }
     
     func extractRecipe() {
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.find.rawValue, " extractRecipe called. executing extract")
 #endif
         if xectionName == "" {return}
@@ -88,7 +88,7 @@ struct FindOrExtractView: View {
         extractedSRecipe.findExtracted(urlString: urlString)
         urlString = ""
         endEditing()
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.extract.rawValue, urlString)
 #endif
     }
@@ -120,41 +120,42 @@ struct FindOrExtractView: View {
                     
                     HStack(alignment: .center) {
                         TextField(msgs.entertext.rawValue, text: $urlString)
-                        Spacer()
+                        
+                        HStack {
+                            Picker("Select", selection: $xectionName) {
+                                ForEach(getBookSectionNames(), id: \.self) { bookSection in
+                                    Text(bookSection).fontWeight(.light)
+                                }
+                            }
+                        }
+                        
                         Button(action: extractRecipe) {
                             Text(msgs.extract.rawValue).font(.largeTitle).bold()
                         }
-                    }.padding()
-                }
-                VStack {
-                    HStack {
-                        Text("Cuisine: " + xectionName).fontWeight(.semibold)
-                        Picker("Select", selection: $xectionName) {
-                            ForEach(getBookSectionNames(), id: \.self) { bookSection in
-                                Text(bookSection).fontWeight(.light)
-                            }
-                        }
                     }
+                    .padding([.leading, .trailing])
                 }
                 
-                List   {
-                    if show == Selectors.names {
+                if show == Selectors.names {
+                    List {
                         ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
                             RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-                    }
-                    if show == Selectors.random {
-                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
-                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-                    }
-                    if show == Selectors.extract &&  extractedSRecipe.extractedSRecipe != nil {
-#if DEBUG && zBug
-                        print("extractedSRecipe.extractedSRecipe!.sourceUrl:  \(String(describing: extractedSRecipe.extractedSRecipe!.sourceUrl))")
-#endif
-                        RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
                     }
                 }
+                if show == Selectors.random {
+                    List {
+                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
+                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
+                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
+                    }
+                }
+                if show == Selectors.extract && extractedSRecipe.extractedSRecipe != nil {
+                    RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
+                    
+                }
+                Spacer()
+                
             }
             .navigationTitle(Text(msgs.fr.rawValue))
         }

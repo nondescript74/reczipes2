@@ -23,6 +23,7 @@ struct RecipeRowNNLView: View {
         }
 #if DEBUG
         print("RRNNLV: The recipeId is :", srecipe.id, "The cuisine is :", cuisine, "\n")
+        print("RRNNLV: The recipe title is :", sRecipe.title ?? "No Title")
 #endif
     }
     // MARK: - State
@@ -43,14 +44,37 @@ struct RecipeRowNNLView: View {
     // MARK: - View Process
     var body: some View {
         VStack(alignment: .leading) {
-            Text(sRecipe.title ?? "No Title")
-                .font(.headline)
-                .padding()
-            
-            HStack(alignment: .center) {
-                LoadableImageView(imageMetadata: convertSRecipeToSectionItem3(srecipe: sRecipe))
+            HStack {
+                Text(sRecipe.title ?? "No Title")
+                    .font(.headline)
+                    .padding()
+                Spacer()
+                HStack(alignment: .center) {
+                    Button(action: {
+                        // What to perform
+                        let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
+                        recipeSaved = result
+                    }) {
+                        // How the button looks like
+                        RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: cuisine.isEmpty)
+                    }
+                }
             }
             
+            AsyncImage(url: URL(string: (sRecipe.image ?? SRecipe.example2.image)!)) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(15)
+                        .shadow(radius: 5)
+                        .accessibility(hidden: false)
+                        .accessibilityLabel(Text(sRecipe.title ?? "No title"))
+                    
+                } else {
+                    ProgressView()
+                }
+            }
             
             HStack(alignment: .center) {
                 ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
@@ -62,21 +86,6 @@ struct RecipeRowNNLView: View {
                 
             }
             .padding()
-            
-            HStack(alignment: .center) {
-                Spacer()
-                Button(action: {
-                    // What to perform
-                    let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
-                    recipeSaved = result
-                }) {
-                    // How the button looks like
-                    RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: cuisine.isEmpty)
-                }
-                .disabled(cuisine.isEmpty )
-                Spacer()
-            }
-            
         }
         .environmentObject(aur)
         .padding()
@@ -88,7 +97,7 @@ struct RecipeRowNNLView: View {
 
 struct RecipeRowNNLView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRowNNLView(srecipe: SRecipe.example, cuisine: "Asian")
+        RecipeRowNNLView(srecipe: SRecipe.example2, cuisine: "Asian")
             .environmentObject(AllUserRecipes())
     }
 }

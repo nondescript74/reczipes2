@@ -503,6 +503,7 @@ struct SRecipe: Codable, Identifiable, Equatable {
         }
     }
     static let example = Bundle.main.decode(SRecipe.self, from: "SRecipeExample.json")
+    static let example2 = Bundle.main.decode(SRecipe.self, from: "SRecipeExample2.json")
 }
 
 struct Trivia: Codable, Hashable, Equatable {

@@ -16,7 +16,6 @@ struct ApplicationView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
-//    @EnvironmentObject var instructions: AnalyzedInstructionsModel
 
     // MARK: - Properties
     fileprivate enum tabs: String {

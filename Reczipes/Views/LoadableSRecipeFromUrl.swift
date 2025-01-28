@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoadableSRecipeFromUrl: View {
-    fileprivate let zBug: Bool = false
     @State private var result: SRecipe?
     var url: String
     let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
@@ -21,26 +20,27 @@ struct LoadableSRecipeFromUrl: View {
         case ext = "Extracted recipe: "
         case ro = "result number of steps obtained is "
         case zero = "0"
+        case url = "URL: "
     }
     
     // MARK: - Methods
     mutating func extractRecipeUsingUrl(url: String) async {
         await getExtractedViaUrl(urlString: url)
-#if DEBUG && zBug
-        print(msgs.LSRV.rawValue, msgs.ext.rawValue + url + result.title!)
+#if DEBUG
+        print(msgs.LSRV.rawValue, msgs.ext.rawValue + url + (result?.title!)!)
 #endif
     }
     
     fileprivate func getExtractedViaUrl(urlString: String) async {
         let getSRecipeUrl = URL(string: "https://api.spoonacular.com/recipes/extract?url=" + urlString + "&analyze=true&forceExtraction=true" + key)
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.LSRV.rawValue + msgs.url.rawValue + getSRecipeUrl!.absoluteString)
 #endif
         do {
             let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
             // check for empty array
             if data.isEmpty {
-#if DEBUG && zBug
+#if DEBUG
                 print(msgs.LSRV.rawValue, msgs.ro.rawValue, msgs.zero.rawValue)
 #endif
                 result = SRecipe.example

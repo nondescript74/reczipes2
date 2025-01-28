@@ -9,7 +9,6 @@ import SwiftUI
 import MessageUI
 
 struct RecipeDetailView: View {
-    fileprivate let zBug: Bool = false
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
@@ -20,8 +19,8 @@ struct RecipeDetailView: View {
     init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
         self.item = sectionItem
         self.cuisine = cuisine
-#if DEBUG && zBug
-        print(msgs.RDV.rawValue, self.item.id)
+#if DEBUG
+        print(msgs.RDV.rawValue, msgs.siid.rawValue, self.item.id)
 #endif
     }
     // MARK: - Properties
@@ -38,6 +37,7 @@ struct RecipeDetailView: View {
         case irid = "invalid recipeid sent in"
         case cnd = "could not decode AnalyzedInstructions from data"
         case nk = "No Api Key"
+        case siid = "SectionItem3 Id is: "
     }
     
     fileprivate enum labelz: String {
@@ -80,12 +80,12 @@ struct RecipeDetailView: View {
         var userNotes = aun.notes
         userNotes = userNotes.filter({$0.recipeuuid == item.id})
         if userNotes.isEmpty {
-#if DEBUG && zBug
+#if DEBUG
             print(msgs.RDV.rawValue, "recipe has no notes")
 #endif
             return false
         }
-#if DEBUG && zBug
+#if DEBUG
             print(msgs.RDV.rawValue, "recipe has notes")
 #endif
         return true
@@ -100,7 +100,7 @@ struct RecipeDetailView: View {
 #endif
             return false
         }
-#if DEBUG && zBug
+#if DEBUG
             print(msgs.RDV.rawValue, "recipe has images")
 #endif
         return true

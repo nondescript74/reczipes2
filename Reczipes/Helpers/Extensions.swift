@@ -94,22 +94,22 @@ extension String {
     }
 }
 
-struct Symbol {
-    enum Kind { case mention, hashtag }
-    
-    let kind: Kind
-    var string: String
-}
-
-extension Symbol {
-    static func mention(_ string: String) -> Symbol {
-        return Symbol(kind: .mention, string: string)
-    }
-    
-    static func hashtag(_ string: String) -> Symbol {
-        return Symbol(kind: .hashtag, string: string)
-    }
-}
+//struct Symbol {
+//    enum Kind { case mention, hashtag }
+//    
+//    let kind: Kind
+//    var string: String
+//}
+//
+//extension Symbol {
+//    static func mention(_ string: String) -> Symbol {
+//        return Symbol(kind: .mention, string: string)
+//    }
+//    
+//    static func hashtag(_ string: String) -> Symbol {
+//        return Symbol(kind: .hashtag, string: string)
+//    }
+//}
 
 extension String {
     var mentionedUsernames: [String] {

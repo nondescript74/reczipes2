@@ -11,7 +11,6 @@ struct NutritionEditor: View {
     // MARK: - Binding
     @Binding var nutrition: Nutrition
     // MARK: - Environment Variables
-    @Environment(\.managedObjectContext) var managedObjectContext
     @EnvironmentObject var userData: UserData
     // MARK: - State
     // MARK: - View Process
@@ -29,7 +28,6 @@ struct NutritionEditor_Previews: PreviewProvider {
             .environment(\.colorScheme, .dark)
             .previewDevice("iPhone Xr")
             .environmentObject(UserData())
-            //.environment(\.managedObjectContext, (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }
 

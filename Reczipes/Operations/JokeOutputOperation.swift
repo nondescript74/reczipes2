@@ -12,8 +12,6 @@ protocol JokeOutputOperationDataProvider {
 }
 
 class JokeOutputOperation: JokeXOperation {
-    // MARK: - Debug local
-    private var zBug: Bool = false
     // MARK: -  Properties
     fileprivate enum msgs: String {
         case jo = "JokeOutputOperation: "
@@ -47,7 +45,7 @@ class JokeOutputOperation: JokeXOperation {
         
         if self.isCancelled { return }
         
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.jo.rawValue + msgs.jdd.rawValue + jokez.debugDescription)
 #endif
         

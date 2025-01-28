@@ -16,7 +16,7 @@ struct VitaminHost: View {
     // MARK:- Environment
     @Environment(\.editMode) var mode
     @EnvironmentObject var userData: UserData
-    @EnvironmentObject var aur: AllUserRecipes
+//    @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
 
@@ -58,7 +58,7 @@ struct VitaminHost: View {
             }
         }
         .padding()
-        .environmentObject(aur)
+//        .environmentObject(aur)
         .environmentObject(userData)
         .environmentObject(aui)
         .environmentObject(aun)
@@ -69,7 +69,7 @@ struct VitaminHost_Previews: PreviewProvider {
     static var previews: some View {
         VitaminHost()
             .environmentObject(UserData())
-            .environmentObject(AllUserRecipes())
+//            .environmentObject(AllUserRecipes())
             .environmentObject(AllUserImages())
             .environmentObject(AllUserNotes())
     }

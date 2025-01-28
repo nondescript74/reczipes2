@@ -50,7 +50,7 @@ class JokeCreateOperation: Operation {
         
         guard myData != nil else { return }
         
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.JokeCreateOperation.rawValue + msgs.mydata.rawValue, myData.debugDescription)
 #endif
         
@@ -59,7 +59,7 @@ class JokeCreateOperation: Operation {
         do {
             let joke = try JSONDecoder().decode(Joke.self, from: myData!)
             myJoke = joke
-#if DEBUG && zBug
+#if DEBUG
             if zBug { print(msgs.JokeCreateOperation.rawValue + msgs.joke.rawValue, joke) }
 #endif
         } catch {
@@ -67,7 +67,7 @@ class JokeCreateOperation: Operation {
             fatalError(msgs.JokeCreateOperation.rawValue + msgs.cantDecode.rawValue)
         }
         
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.success.rawValue, myJoke.debugDescription)
 #endif
         if self.isCancelled { return }

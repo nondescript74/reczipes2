@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct AddImageView: View {
-    fileprivate let zBug = false
     // MARK: - Initializer
     init(recipeid: UUID) {
         self.recipeId = recipeid
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.aiv.rawValue, " initialized with recipeid: \(recipeid)")
 #endif
     }
@@ -51,7 +50,7 @@ struct AddImageView: View {
     
     fileprivate func convertImageToImageSaved() -> ImageSaved {
         let imageSaved = ImageSaved(recipeuuid: recipeId, imageSaved:  self.image!.pngData()!)
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.aiv.rawValue, " - convertIToImageSaved, recipeId: ", recipeId.uuidString)
 #endif
         
@@ -64,7 +63,7 @@ struct AddImageView: View {
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
         
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.aiv.rawValue, " - resizeImage, widthRatio: \(widthRatio), heightRatio: \(heightRatio)")
 #endif
         
@@ -84,7 +83,7 @@ struct AddImageView: View {
         image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-#if DEBUG && zBug
+#if DEBUG
 print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
 #endif
         return newImage!
@@ -95,7 +94,7 @@ print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
         for bs in aur.sections {
             myReturn.append(contentsOf: bs.items)
         }
-#if DEBUG && zBug
+#if DEBUG
         print(msgs.aiv.rawValue + " - getRecipes: " + myReturn.count.description)
 #endif
         return myReturn

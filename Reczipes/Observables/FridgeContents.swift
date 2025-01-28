@@ -12,7 +12,7 @@ class FridgeContents: ObservableObject {
     @Published var myContents: NSMutableDictionary
     // MARK: - Initializer
     init() {
-        self.myContents = NSMutableDictionary(objects: [0,0,0,0,0,0,0,0,0,0,0,0], forKeys: ["Butter" as NSCopying, "Sharp Cheddar" as NSCopying, "Feta" as NSCopying, "Parmesan" as NSCopying, "Eggs" as NSCopying, "Milk" as NSCopying, "Yoghurt" as NSCopying, "Heavy Cream" as NSCopying, "Orange Juice" as NSCopying, "Frozen corn" as NSCopying, "Frozen mixed vegetables" as NSCopying, "Frozen peas"as NSCopying])
+        self.myContents = NSMutableDictionary(objects: [0,0,0,0,0,0,0,0,0,0,0,0], forKeys: ["Butter" as NSCopying, "Sharp Cheddar" as NSCopying, "Feta" as NSCopying, "Parmesan" as NSCopying, "Eggs" as NSCopying, "Milk" as NSCopying, "Yoghurt" as NSCopying, "Heavy Cream" as NSCopying, "Orange Juice" as NSCopying, "Frozen corn" as NSCopying, "Frozen mixed vegetables" as NSCopying, "Frozen peas" as NSCopying])
     }
     
     // MARK: - Properties

@@ -11,12 +11,12 @@ struct AnalyzedInstructionsView: View {
     var ainstructions: [AnalyzedInstructions]
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
                 Text("The number of instructions is: " + ainstructions.count.description)
                 
                 ForEach(ainstructions, id: \.self) { anInstruction in
-                    Text(anInstruction.name)
+                    Text("Instruction Name: " + anInstruction.name)
                         .font(.headline)
                     Text("Number of steps: " + anInstruction.steps.count.description + "")
                     List {
@@ -28,9 +28,9 @@ struct AnalyzedInstructionsView: View {
                         }
                     }
                 }
-                .navigationBarTitle("Analyzed Instructions")
+//                .navigationBarTitle("Analyzed Instructions")
             }
-        }
+//        }
     }
 }
 

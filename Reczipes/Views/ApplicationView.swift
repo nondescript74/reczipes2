@@ -34,13 +34,13 @@ struct ApplicationView: View {
         case build = "Build"
         case enterKey = "ApiKey"
         case fi = "find 🍒"
+        case load = "Load"
     }
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                HStack {
+            Grid {
+                GridRow {
                     VStack {
                         NavigationLink(destination: AllRecipesView()) {
                             Image(uiImage: imageDocDocEmpty!)
@@ -53,9 +53,7 @@ struct ApplicationView: View {
                         Text(tabs.recipes.rawValue)
                             .foregroundColor(.blue)
                     }
-                    
                     Spacer()
-                    
                     VStack {
                         NavigationLink(destination: FindOrExtractView()) {
                             Image(systemName: "magnifyingglass")
@@ -68,9 +66,7 @@ struct ApplicationView: View {
                         Text(tabs.frextr.rawValue)
                             .foregroundColor(.blue)
                     }
-                    
                     Spacer()
-                    
                     VStack {
                         NavigationLink(destination: OrderIngredientsView2()) {
                             Image(uiImage: squareandarrowdown!)
@@ -83,10 +79,9 @@ struct ApplicationView: View {
                         Text(tabs.ingredients.rawValue)
                             .foregroundColor(.blue)
                     }
-                }
-                .padding([.horizontal, .bottom])
+                }.padding(.all, 10)
                 
-                HStack {
+                GridRow {
                     VStack {
                         NavigationLink(destination: KeyView()) {
                             Image(uiImage: checkmarkImage)
@@ -99,9 +94,7 @@ struct ApplicationView: View {
                         Text(tabs.enterKey.rawValue)
                             .foregroundColor(.blue)
                     }
-                    
                     Spacer()
-                    
                     VStack {
                         NavigationLink(destination: SettingsView()) {
                             Image(uiImage: suitImage)
@@ -114,9 +107,7 @@ struct ApplicationView: View {
                         Text(tabs.settings.rawValue)
                             .foregroundColor(.blue)
                     }
-                    
                     Spacer()
-                    
                     VStack {
                         NavigationLink(destination: FilesDisplayView2()) {
                             Image(uiImage: lassoImage)
@@ -129,15 +120,12 @@ struct ApplicationView: View {
                         Text(tabs.uf.rawValue)
                             .foregroundColor(.blue)
                     }
-                }
-                .padding([.horizontal, .bottom])
+                }.padding(.all, 10)
                 
-                Spacer()
-                
-                HStack {
+                GridRow {
                     VStack {
                         NavigationLink(destination: MultiView()) {
-                            Image(uiImage: wandNStarsImage)
+                            Image(uiImage: hare!)
                                 .foregroundColor(.blue)
                                 .frame(minHeight: 50)
                         }
@@ -147,9 +135,7 @@ struct ApplicationView: View {
                         Text(tabs.jt.rawValue)
                             .foregroundColor(.blue)
                     }
-                    
                     Spacer()
-                    
                     VStack {
                         NavigationLink(destination: ProfileEditor(profile: $userData.profile)) {
                             Image(uiImage: tortoise!)
@@ -162,37 +148,34 @@ struct ApplicationView: View {
                         Text(tabs.prof.rawValue)
                             .foregroundColor(.blue)
                     }
-
-                }
-                .padding(.horizontal)
-                
-                Spacer()
-            }
+                    
+                }.padding(.all, 10)
+            }.padding(.all, 30)
         }
+        .environmentObject(order)
+        .environmentObject(userData)
+        .environmentObject(ratio)
+        .environmentObject(aun)
+        .environmentObject(aui)
+        .environmentObject(aur)
+    }
+}
+
+struct ApplicationView_Previews: PreviewProvider {
+    static let order = OrderingList()
+    static let userData = UserData()
+    static let rratio = RecipeRatio()
+    static let aur = AllUserRecipes()
+    static let aun = AllUserNotes()
+    static let aui = AllUserImages()
+    
+    static var previews: some View {
+        ApplicationView()
             .environmentObject(order)
             .environmentObject(userData)
-            .environmentObject(ratio)
+            .environmentObject(rratio)
+            .environmentObject(aur)
             .environmentObject(aun)
             .environmentObject(aui)
-            .environmentObject(aur)
-        }
     }
-    
-    struct ApplicationView_Previews: PreviewProvider {
-        static let order = OrderingList()
-        static let userData = UserData()
-        static let rratio = RecipeRatio()
-        static let aur = AllUserRecipes()
-        static let aun = AllUserNotes()
-        static let aui = AllUserImages()
-        
-        static var previews: some View {
-            ApplicationView()
-                .environmentObject(order)
-                .environmentObject(userData)
-                .environmentObject(rratio)
-                .environmentObject(aur)
-                .environmentObject(aun)
-                .environmentObject(aui)
-        }
-    }
+}

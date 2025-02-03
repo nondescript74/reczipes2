@@ -27,7 +27,7 @@ struct RecipeRowView: View {
 
     // MARK: - View Process
     var body: some View {
-        NavigationLink(destination: RecipeDetailView(imageString: (item.imageUrl ?? defaultImageUrl)!, sectionItem: item, cuisine: cuisine)) {
+        NavigationLink(destination: RecipeDetailView(sectionItem: item)) {
             VStack(alignment: .leading) {
                 ZStack  {
                     AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in

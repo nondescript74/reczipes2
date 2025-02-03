@@ -89,6 +89,24 @@ struct BookSectionIDName: Codable, Equatable, Identifiable, Hashable {
     }
 }
 
+struct BookSectionSRecipes: Codable, Equatable, Identifiable, Hashable {
+    var id: UUID
+    var name: String
+    var srecipes: [SRecipe]
+    
+    static func == (lhs: BookSectionSRecipes, rhs: BookSectionSRecipes) -> Bool {
+        if lhs.id == rhs.id {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 struct BookSection: Codable, Equatable, Identifiable, Hashable {
     var id: UUID
     var name: String

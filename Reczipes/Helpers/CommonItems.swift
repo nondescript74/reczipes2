@@ -55,6 +55,7 @@ let defaultUUID = "F4DA7B28-D403-4313-8AFF-E9645587C99E"
 let shippedDiets: [Diet] =  Bundle.main.decode([Diet].self, from: "diets.json")
 
 let showShipped: Bool = false
+let addRecipesFromUrls: Bool = true
 
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
@@ -86,6 +87,8 @@ enum msgs: String {
     case csts = "Converted SRecipe to SectionItem3 "
     case spoonkey = "SpoonacularKey"
     case nokey = "No SpoonacularKey"
+    case urlString = "UrlString: "
+    case emptyData = "Empty Data"
 }
 
 enum myQuery: String {

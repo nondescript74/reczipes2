@@ -47,12 +47,12 @@ struct FindOrExtractView: View {
         case find
     }
     
-    fileprivate func getBookSectionNames() -> [String] {
-        let namesOfCuisines = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
-        var names: [String] = []
-        namesOfCuisines.forEach {names.append($0.name)}
-        return names
-    }
+//    fileprivate func getBookSectionNames() -> [String] {
+//        let namesOfCuisines = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
+//        var names: [String] = []
+//        namesOfCuisines.forEach {names.append($0.name)}
+//        return names
+//    }
     
     // MARK: - Methods
     func getSRecipeGroup() {

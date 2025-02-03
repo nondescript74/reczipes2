@@ -12,9 +12,7 @@ struct SettingsView: View {
     fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
     @EnvironmentObject var userData: UserData
-    // MARK: - ObservedObject
-    @ObservedObject var trivia = WebQueryRecipes()
-    @ObservedObject var joke = WebQueryRecipes()
+    
     // MARK: - State
     @State private var show: Selectors = .notyet
     // MARK: - Properties
@@ -52,6 +50,7 @@ struct SettingsView: View {
                 Text(userData.profile.id)
             }.padding()
         }.navigationBarTitleDisplayMode(.automatic)
+            .environmentObject(userData)
     }
 }
 

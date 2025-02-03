@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ProfileSummary: View {
     // MARK: - Environment
-//    @EnvironmentObject var aur: AllUserRecipes
+    @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aun: AllUserNotes
     @EnvironmentObject var aui: AllUserImages
     // MARK: - Properties
     var profile: Profile
     // MARK: - Methods
-//    fileprivate func getRecips() -> [SectionItem3] {
-//        let myReturn = aur.sections.flatMap({$0.items})
-//        return myReturn
-//    }
+    fileprivate func getRecipes() -> [SectionItem3] {
+        let myReturn = aur.sections.flatMap({$0.items})
+        return myReturn
+    }
     fileprivate func getNotes() -> [Note] {
         let myReturn = aun.notes
         return myReturn
@@ -45,7 +45,7 @@ struct ProfileSummary: View {
             Text("Items being retrieved: \(self.profile.numberOfRecipes.rawValue)")
                         
             VStack(alignment: .leading) {
-//                Text("Number of saved recipes: \(getRecips().count)")
+                Text("Number of saved recipes: \(getRecipes().count)")
                     
                 Text("Number of saved images: \(getImages().count)")
                     
@@ -54,6 +54,9 @@ struct ProfileSummary: View {
 
             }
         }
+        .environmentObject(aur)
+        .environmentObject(aun)
+        .environmentObject(aui)
     }
 }
 
@@ -61,7 +64,7 @@ struct ProfileSummary: View {
 struct ProfileSummary_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSummary(profile: Profile.default)
-//            .environmentObject(AllUserRecipes())
+            .environmentObject(AllUserRecipes())
             .environmentObject(AllUserNotes())
             .environmentObject(AllUserImages())
     }

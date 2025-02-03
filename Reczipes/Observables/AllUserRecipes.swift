@@ -9,14 +9,16 @@ import Foundation
 
 @MainActor
 final class AllUserRecipes: ObservableObject {
-
+    
     // MARK: - Publisher
     @Published var sections = [BookSection]()
+    @Published var sectionsWithSRecipes: [BookSectionSRecipes] = [BookSectionSRecipes]()
     
     // MARK: - Initializer
     init() {
-        let myDocuDirUrl = getDocuDirUrl()
-        let myReczipesDirUrl:URL = myDocuDirUrl.appending(path: recipesName)
+        sections.removeAll()
+        let myReczipesDirUrl:URL = getDocuDirUrl().appendingPathComponent(recipesName)
+        
         let test = FileManager.default.directoryExists(atUrl: myReczipesDirUrl)
         if !test {
             do {
@@ -36,29 +38,6 @@ final class AllUserRecipes: ObservableObject {
             }
         }
         
-        reload()
-    }
-    
-    //MARK: - Properties
-    fileprivate enum msgs: String {
-        case aur = "AllUserRecipes: "
-        case enc = "Encoded: "
-        case added = "Added: "
-        case removed = "Removed: "
-        case chgRem = "Changed, removed recipe: "
-        case total = "Total: "
-        case rnotes = "RecipeNotes"
-        case rimages = "RecipeImages"
-        case fuar = "Found user added recipe"
-        case combined = "Combined booksections into one booksection"
-        case retr = "Returning count of recipes: "
-        case urls = "Returning urls of recipes: "
-    }
-    
-    // MARK: - Methods
-    fileprivate func reload() {
-        sections.removeAll()
-        let myReczipesDirUrl:URL = getDocuDirUrl().appendingPathComponent(recipesName)
         
         // directories exist
         // get all shipped recipes
@@ -68,12 +47,15 @@ final class AllUserRecipes: ObservableObject {
             print(msgs.aur.rawValue + "using shipped recipes")
 #endif
         }
+        
         do {
             var urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             // skip these folders
             urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
             urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
             
+            // get the saved recipes
+            //
             if urls.count > 0 {
 #if DEBUG
                 print(msgs.aur.rawValue + "urls added by user is non zero")
@@ -123,6 +105,55 @@ final class AllUserRecipes: ObservableObject {
         }
     }
     
+    //MARK: - Properties
+    fileprivate enum msgs: String {
+        case aur = "AllUserRecipes: "
+        case enc = "Encoded: "
+        case added = "Added: "
+        case removed = "Removed: "
+        case chgRem = "Changed, removed recipe: "
+        case total = "Total: "
+        case rnotes = "RecipeNotes"
+        case rimages = "RecipeImages"
+        case fuar = "Found user added recipe"
+        case combined = "Combined booksections into one booksection"
+        case retr = "Returning count of recipes: "
+        case urls = "Returning urls of recipes: "
+        case emptyData = "Empty Data"
+    }
+    
+    // MARK: - Methods
+    
+    fileprivate func getExtractedViaUrl(urlString: String) async -> SRecipe? {
+        
+        urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
+        urlComponents.query = myQuery.extract.rawValue + urlString + myQuery.anlyztrue.rawValue + myQuery.forceExtracttrue.rawValue + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
+        let getSRecipeUrl = urlComponents.url
+        
+#if DEBUG
+        print(msgs.aur.rawValue + "url generated is: " + (getSRecipeUrl?.absoluteString ?? "No URL"))
+#endif
+        do {
+            let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
+            // check for empty array
+            if data.isEmpty {
+#if DEBUG
+                print(msgs.aur.rawValue, msgs.emptyData.rawValue)
+#endif
+                return nil
+            }
+            let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
+            return sRecipe
+            
+        } catch  {
+#if DEBUG
+            let error = error as NSError
+            print(msgs.aur.rawValue, "error occurred: ", error.localizedDescription)
+#endif
+            return nil
+        }
+    }
+    
     fileprivate func getBookSectionsIDNames() -> [BookSectionIDName] {
         let bsin:[BookSectionIDName] = Bundle.main.decode([BookSectionIDName].self, from: "SectionNames.json").sorted(by: {$0.name < $1.name})
         return bsin
@@ -139,51 +170,6 @@ final class AllUserRecipes: ObservableObject {
         
         return myReturn
     }
-    
-    func getBookSectionNames() -> [String] {
-        let sectionIdNames = getBookSectionsIDNames()
-        var returningNames: [String] = []
-        for abs in sectionIdNames {
-            returningNames.append(abs.name)
-        }
-        return returningNames
-    }
-    
-//    func getRecipeForName(name: String) -> SectionItem3? {
-//        var myReturn: SectionItem3?
-//        let recnams = getRecipeNames()
-//        if recnams.contains(name) {
-//            var items = [SectionItem3]()
-//            for abs in sections {
-//                items = items + abs.items
-//            }
-//            for asItem in items {
-//                if asItem.name == name {
-//                    myReturn = asItem
-//                }
-//            }
-//            
-//        } else {
-//            // returning nil
-//        }
-//        return myReturn
-//    }
-//    
-//    func getRecipeUrls() -> [URL] {
-//        var returnUrls = [URL]()
-//        for aBookSection in sections {
-//            let sectionItemUrls = aBookSection.items.map { $0.url }
-//            for aUrl in sectionItemUrls {
-////                returnUrls.append(URL(fileURLWithPath: aUrl))
-//                returnUrls.append(URL(string: aUrl)!)
-//#if DEBUG
-//                print(msgs.aur.rawValue + msgs.urls.rawValue + aUrl)
-//#endif
-//            }
-//        }
-//        
-//        return returnUrls
-//    }
     
     @MainActor
     func addRecipe(bsectionid: UUID, recipe: SectionItem3) -> Bool {
@@ -211,7 +197,7 @@ final class AllUserRecipes: ObservableObject {
             
             myReturn = encInto(newBsec: newBS)
 #if DEBUG
-                print(msgs.aur.rawValue + "added recipe to existing booksection")
+            print(msgs.aur.rawValue + "added recipe to existing booksection")
 #endif
             
         } else {
@@ -224,16 +210,12 @@ final class AllUserRecipes: ObservableObject {
                     let newBS = BookSection(id: bsectionid, name: bsin.name, items: [recipe])
                     add(bsection: newBS)
 #if DEBUG
-                print(msgs.aur.rawValue + "added new booksection with added recipe", bsin.name, " ", recipe.name)
+                    print(msgs.aur.rawValue + "added new booksection with added recipe", bsin.name, " ", recipe.name)
 #endif
                     myReturn = encInto(newBsec: newBS)
                 }
             }
         }
-//        self.reload()
-//#if DEBUG
-//                print(msgs.aur.rawValue + "reloaded booksections")
-//#endif
         return myReturn
     }
     
@@ -271,25 +253,7 @@ final class AllUserRecipes: ObservableObject {
             print(msgs.aur.rawValue + msgs.chgRem.rawValue, bs.name)
 #endif
         }
-//        self.reload()
-//#if DEBUG
-//                print(msgs.aur.rawValue + "reloaded booksections")
-//#endif
     }
-//    
-//    func getRecipeNameForId(uuidsent: UUID) -> String {
-//        var myReturn: String = ""
-//        var mySItems: [SectionItem3] = []
-//        for asection in sections {
-//            mySItems += asection.items
-//        }
-//        myReturn = mySItems.filter({$0.id == uuidsent}).first?.name ?? "No name for id supplied"
-//        
-//#if DEBUG
-//        print(msgs.aur.rawValue + "returning name for id ", myReturn)
-//#endif
-//        return myReturn
-//    }
     
     func getRecipeNames() -> [String] {
         var myReturn: [String] = []
@@ -329,5 +293,43 @@ final class AllUserRecipes: ObservableObject {
             print(msgs.aur.rawValue + msgs.removed.rawValue, bsection.id.description, " ", bsection.name)
 #endif
         }
+    }
+    
+    func loadFromUrls() async {
+        let urlStrings: [String] = Bundle.main.decode([String].self, from: "recipesShippedUrls.json")
+        for aurlString in urlStrings {
+            let sRecipe = await getExtractedViaUrl(urlString: aurlString)
+            if sRecipe != nil {
+//                let cuisines = sRecipe?.cuisines ?? ["Other"]
+//                if sectionsWithSRecipes.contains(where: {$0.name == cuisines[0]}) {
+//                    // SRecipe obtained has a cuisine that is recognized
+//                    var newSection = sectionsWithSRecipes.first(where: {$0.name == cuisines[0]})!
+//                    newSection.srecipes.append(sRecipe!)
+//                    sectionsWithSRecipes[sectionsWithSRecipes.firstIndex(of: sectionsWithSRecipes.first(where: {$0.name == cuisines[0]})!)!] = newSection
+//#if DEBUG
+//                    print(msgs.aur.rawValue + "SRecipe cuisines are recognized, adding SRecipe to existing section")
+//#endif
+//                } else if
+                 if sectionsWithSRecipes.contains(where: {$0.name == "Other"}) {
+                    // Other section exists so use it to append the SRecipe just obtained
+                    var newSection = sectionsWithSRecipes.first(where: {$0.name == "Other"})!
+                    newSection.srecipes.append(sRecipe!)
+                    sectionsWithSRecipes[sectionsWithSRecipes.firstIndex(of: sectionsWithSRecipes.first(where: {$0.name == "Other"})!)!] = newSection
+#if DEBUG
+                    print(msgs.aur.rawValue + "SRecipe cuisines are not recognized, adding SRecipe to existing Other section")
+#endif
+                } else  {
+                    // first time thru, create a section called Other and add the obtained SRecipe
+                    let newSection: BookSectionSRecipes = BookSectionSRecipes(id: getBookSectionIDForName(name: "Other"), name: "Other", srecipes: [sRecipe!])
+                    sectionsWithSRecipes.append(newSection)
+#if DEBUG
+                    print(msgs.aur.rawValue + "SRecipe cuisines are not recognized, no other section exists, adding SRecipe to newly created Other section")
+#endif
+                }
+            }
+        }
+#if DEBUG
+        print(msgs.aur.rawValue + "added recipes from urls")
+#endif
     }
 }

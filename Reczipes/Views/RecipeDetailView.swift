@@ -14,18 +14,18 @@ struct RecipeDetailView: View {
     @EnvironmentObject var aur: AllUserRecipes
     @EnvironmentObject var aui: AllUserImages
     @EnvironmentObject var aun: AllUserNotes
-//    @EnvironmentObject var instructions: AnalyzedInstructionsModel
     // MARK: - Initializer
-    init(imageString: String, sectionItem: SectionItem3, cuisine: String) {
+    init(sectionItem: SectionItem3) {
         self.item = sectionItem
-        self.cuisine = cuisine
+//        self.cuisine = cuisine
 #if DEBUG
         print(msgs.RDV.rawValue, msgs.siid.rawValue, self.item.id)
 #endif
     }
+    
     // MARK: - Properties
     fileprivate var item: SectionItem3
-    fileprivate var cuisine: String
+//    fileprivate var cuisine: String
     
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -112,14 +112,14 @@ struct RecipeDetailView: View {
             VStack {
                 HStack {
                     VStack {
-                        Button(action: {
-                            // What to perform
-                            let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
-                            recipeSaved = result
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: cuisine.isEmpty)
-                        }.disabled(cuisine.isEmpty )
+//                        Button(action: {
+//                            // What to perform
+//                            let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
+//                            recipeSaved = result
+//                        }) {
+//                            // How the button looks like
+//                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: cuisine.isEmpty)
+//                        }.disabled(cuisine.isEmpty )
                         Button(action: {
                             // What to perform
                             self.order.add(item: self.item)
@@ -241,7 +241,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(imageString: defaultImageUrl, sectionItem: SectionItem3.example3, cuisine: aur.getBookSectionNames().last!)
+            RecipeDetailView(sectionItem: SectionItem3.example3)
                 .environmentObject(order)
                 .environmentObject(aur)
                 .environmentObject(aun)

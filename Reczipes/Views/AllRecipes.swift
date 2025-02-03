@@ -1,15 +1,16 @@
 //
-//  LoadableSRecipeFromUrl.swift
+//  AllRecipes.swift
 //  PlayReczipes
 //
-//  Created by Zahirudeen Premji on 1/21/25.
+//  Created by Zahirudeen Premji on 1/30/25.
 //
 
 import SwiftUI
 
-struct LoadableSRecipeFromUrl: View {
+struct AllRecipes: View {
+    
+    @EnvironmentObject var aur: AllUserRecipes
     @State private var result: SRecipe?
-    var url: String
     let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
     fileprivate enum msgs: String {
         case nk = "No key"
@@ -21,6 +22,11 @@ struct LoadableSRecipeFromUrl: View {
         case ro = "result number of steps obtained is "
         case zero = "0"
         case url = "URL: "
+    }
+    
+    fileprivate var myRecipeUrlsStrings: [String] {
+        let strings = Bundle.main.decode([String].self, from: "recipesShippedUrls.json")
+        return strings
     }
     
     fileprivate func getExtractedViaUrl(urlString: String) async {
@@ -49,37 +55,24 @@ struct LoadableSRecipeFromUrl: View {
         }
     }
     
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Text(result?.title ?? "No Recipe Title").font(.headline)
-                    .padding()
-                AsyncImage(url: URL(string: (result?.image ?? SectionItem3.example.imageUrl)!)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .frame(width: 200, height: 200)
-                            .cornerRadius(15)
-                            .shadow(radius: 5)
-                            .accessibility(hidden: false)
-                            .accessibilityLabel(Text(result?.title ?? "No title"))
-                    } else {
-                        ProgressView()
-                    }
+                ForEach(myRecipeUrlsStrings, id: \.self) { urlString in
+                    RecipeRowNNLView(srecipe: result ?? SRecipe.example, cuisine: "Other")
+                        .task {
+                            await getExtractedViaUrl(urlString: urlString)
+                        }
                 }
-                AnalyzedInstructionsView(ainstructions: result?.analyzedInstructions ?? [])
+                
             }
-            .task {
-                await getExtractedViaUrl(urlString: url)
-            }
-//            .navigationTitle(result?.title ?? "No Recipe Title")
         }
+        .environmentObject(aur)
     }
 }
 
 #Preview {
-    LoadableSRecipeFromUrl(url: "https://www.seriouseats.com/vegan-cashew-milk-braised-green-plantains")
+    AllRecipes()
+        .environmentObject(AllUserRecipes())
 }
-
-
-

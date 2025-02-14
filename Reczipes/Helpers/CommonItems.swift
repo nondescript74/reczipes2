@@ -270,30 +270,16 @@ func getSRecipeIDUnique() -> Int {
 
 func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {
     var myRestrictions: [String] = []
-    
-    if srecipe.cheap != nil {
-        if srecipe.dairyFree == true {myRestrictions.append("Cheap")}
-    }
-    
-    if srecipe.dairyFree != nil {
-        if srecipe.dairyFree == true {myRestrictions.append("DairyFree")}
-    }
-    
-    if srecipe.glutenFree != nil {
-        if srecipe.glutenFree == true {myRestrictions.append("GlutenFree")}
-    }
-    
-    if srecipe.lowFodmap != nil {
-        if srecipe.lowFodmap == true {myRestrictions.append("LowFodMap")}
-    }
-    
-    if srecipe.vegan != nil {
-        if srecipe.vegan == true {myRestrictions.append("Vegan")}
-    }
-    
-    if srecipe.vegetarian != nil {
-        if srecipe.vegetarian == true {myRestrictions.append("Vegetarian")}
-    }
+
+    myRestrictions.append(srecipe.cheap != nil ? "Cheap" : "")
+    myRestrictions.append(srecipe.dairyFree != nil ? "Dairy Free" : "")
+    myRestrictions.append(srecipe.glutenFree != nil ? "GlutenFree" : "")
+    myRestrictions.append(srecipe.lowFodmap != nil ? "LOWFODMAP" : "")
+    myRestrictions.append(srecipe.sustainable != nil ? "Sustainable" : "")
+    myRestrictions.append(srecipe.vegan != nil ? "Vegan" : "")
+    myRestrictions.append(srecipe.vegetarian != nil ? "Vegetarian" : "")
+    myRestrictions.append(srecipe.veryHealthy != nil ? "Very Healthy" : "")
+    myRestrictions.append(srecipe.veryPopular != nil ? "Very Popular" : "")
     
     return myRestrictions
 }

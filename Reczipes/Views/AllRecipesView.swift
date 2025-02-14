@@ -29,7 +29,10 @@ struct AllRecipesView: View {
                 
                 List {
                     ForEach(myBook, id: \.self) { section in
-                        Section(header: Text(section.name).padding()) {
+                        Section(header: Text(section.name)
+                            .padding()
+                            .fontWeight(.bold))
+                        {
                             ForEach(section.items) { item in
                                 RecipeRowView(sectionItem: item, cuisine: section.name)
                                     .padding()

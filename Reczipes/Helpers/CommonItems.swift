@@ -22,40 +22,14 @@ var colorBackgroundButton: Color = Color.black
 var colorForegroundButton: Color = Color.blue
 public var colorFontLists:Color = Color.init("ED7D3A")
 
-let suitImage =  UIImage(systemName: "suit.heart")!
-let checkmarkImage = UIImage(systemName: "checkmark.seal")!
-let lassoImage = UIImage(systemName: "lasso")!
-let wandNStarsImage = UIImage(systemName: "wand.and.stars")!
-let rectandtextmagglass = UIImage(systemName: "rectangle.and.text.magnifyingglass")
-let docandtextmagglass = UIImage(systemName: "doc.text.magnifyingglass")
-let crosscirclefill = UIImage(systemName: "cross.circle.fill")
-let tortoise = UIImage(systemName: "tortoise")
-let hare = UIImage(systemName: "hare")
-let imageSquarePencil = UIImage(systemName: "square.and.pencil")
-let imageSuitSpadeEmpty = UIImage(systemName: "suite.spade")
-let imageDocDocEmpty = UIImage(systemName: "doc.on.doc")
-let imageDocDocFill = UIImage(systemName: "doc.on.doc.fill")
-let scribblevariable = UIImage(systemName: "scribble.variable")
-let rectstackbadgepersoncrop = UIImage(systemName: "rectangle.stack.badge.person.crop")
-let questionmarkcircle = UIImage(systemName: "questionmark.circle")
-let folderfillbadgeplus = UIImage(systemName: "folder.fill.badge.plus")
-let magnifyingglass = UIImage(systemName: "magnifyingglass")
-let lassosparkles = UIImage(systemName: "lasso.sparkles")
-let squareandarrowdown = UIImage(systemName:"square.and.arrow.down")
-let shareImage = UIImage(systemName: "square.and.arrow.up")
 let videobadgeplus = UIImage(systemName:"video.badge.plus")
 let delimiterFileNames = "_Z_"
 let delimiterDirs = "/"
 let delimiterFiletype = "."
-let defaultRecipeUrlString = "https://www.seriouseats.com/recipes/2014/04/easy-stir-fried-beef-with-mushrooms-and-butter.html"
 
-let defaultImageUrl = "https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=2048&h=1072&url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F609167.jpg"
-let defaultImageUr2 = "https://i1.wp.com/www.givemesomespice.com/wp-content/uploads/2011/07/IMG_0868.jpg?ssl=1"
-let defaultUUID = "F4DA7B28-D403-4313-8AFF-E9645587C99E"
 let shippedDiets: [Diet] =  Bundle.main.decode([Diet].self, from: "diets.json")
 
 let showShipped: Bool = false
-let addRecipesFromUrls: Bool = true
 
 let myMax: Int = Int.max
 let myMaxInt64: Int64 = Int64.max
@@ -88,22 +62,22 @@ var urlComponents:URLComponents = URLComponents(string: "")!
 var urlComponentsRecipeImages:URLComponents = URLComponents(string: "")!
 
 enum msgs: String {
-    case returningpresetrecipes = "Returning Preset Recipes "
-    case returningbooksectionssf = "Returning BookSections in single file"
-    case success = "Successfull remove of a recipe"
-    case fail = "Failed to remove a recipe "
-    case counted = "User added recipes Contents count "
-    case nobs = "No booksection files found"
-    case rnotes = "RecipeNotes"
-    case rimages = "RecipeImages"
-    case fuar = "Found user added recipe"
-    case combined = "Combined booksections into one booksection"
+//    case returningpresetrecipes = "Returning Preset Recipes "
+//    case returningbooksectionssf = "Returning BookSections in single file"
+//    case success = "Successfull remove of a recipe"
+//    case fail = "Failed to remove a recipe "
+//    case counted = "User added recipes Contents count "
+//    case nobs = "No booksection files found"
+//    case rnotes = "RecipeNotes"
+//    case rimages = "RecipeImages"
+//    case fuar = "Found user added recipe"
+//    case combined = "Combined booksections into one booksection"
     case ci = "CommonItems: "
     case csts = "Converted SRecipe to SectionItem3 "
-    case spoonkey = "SpoonacularKey"
-    case nokey = "No SpoonacularKey"
-    case urlString = "UrlString: "
-    case emptyData = "Empty Data"
+//    case spoonkey = "SpoonacularKey"
+//    case nokey = "No SpoonacularKey"
+//    case urlString = "UrlString: "
+//    case emptyData = "Empty Data"
 }
 
 enum myQuery: String {

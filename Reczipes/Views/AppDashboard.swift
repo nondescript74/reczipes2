@@ -22,8 +22,8 @@ struct AppDashboard: View {
     fileprivate enum tabs: String {
         case recipes = "Recipes"
         case uf = "User Files"
-        case frextr = "Find/Extract"
-        case ingredients = "Ingred"
+        case frextr = "Find or Get"
+        case ingredients = "Ingredients"
         case jt = "Joke/Trivia"
         case prof = "Profile"
         case settings = "Settings"
@@ -55,7 +55,6 @@ struct AppDashboard: View {
         }
     }
     
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -70,7 +69,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.recipes.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: FindOrExtractView()) {
@@ -82,7 +80,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.frextr.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: OrderIngredientsView2()) {
@@ -94,7 +91,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.ingredients.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: KeyView()) {
@@ -106,7 +102,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.enterKey.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: SettingsView()) {
@@ -118,7 +113,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.settings.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: FilesDisplayView2()) {
@@ -130,7 +124,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.uf.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: MultiView()) {
@@ -142,7 +135,6 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.jt.rawValue)
-                            
                     }
                     VStack {
                         NavigationLink(destination: ProfileEditor(profile: $userData.profile)) {
@@ -154,11 +146,10 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.prof.rawValue)
-                            
                     }
-                    
                 }
             }
+            .navigationTitle("My Dashboard")
             .padding(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         }
         .environmentObject(order)

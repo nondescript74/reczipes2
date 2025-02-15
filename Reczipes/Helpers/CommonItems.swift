@@ -10,17 +10,17 @@ import SwiftUI
 import Foundation
 import Combine
 
-
-public var colorFontLists:Color = Color.init("ED7D3A")
 public let spoonacular:String = "Spoonacular"
 public let recipesName = "Reczipes"
 public let recipeNotesFolderName = "RecipeNotes"
 public let recipeImagesFolderName = "RecipeImages"
 public let json = ".json"
+
 public let colorA:Color = Color.init("A4B8C4")
 public let colorB:Color = Color.init("6E8387")
 var colorBackgroundButton: Color = Color.black
 var colorForegroundButton: Color = Color.blue
+public var colorFontLists:Color = Color.init("ED7D3A")
 
 let suitImage =  UIImage(systemName: "suit.heart")!
 let checkmarkImage = UIImage(systemName: "checkmark.seal")!
@@ -67,6 +67,21 @@ let overlayLWidth: CGFloat = 2
 let paddingSize: CGFloat = 2
 let lineLimit: Int = 3
 let imageTargetSize = CGSize(width: 200, height: 200)
+
+let allColors: [Color] = [     .pink,
+                               .red,
+                               .orange,
+                               .yellow,
+                               .green,
+                               .mint,
+                               .teal,
+                               .cyan,
+                               .blue,
+                               .indigo,
+                               .purple,
+                               .brown,
+                               .gray
+]
 
 var defaultRequiredCount:Int = 0
 var urlComponents:URLComponents = URLComponents(string: "")!

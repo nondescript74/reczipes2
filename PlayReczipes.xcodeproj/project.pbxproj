@@ -19,6 +19,7 @@
 		36C608AB2D4C406800DDE0E7 /* AllRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C608AA2D4C406800DDE0E7 /* AllRecipes.swift */; };
 		36E13D9A2D35C4F100B76E8C /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D992D35C4F100B76E8C /* RecipeRatio.swift */; };
 		36E13D9C2D35C79800B76E8C /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */; };
+		36E9F1C42D6007540016BF89 /* AppDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9F1C32D6007540016BF89 /* AppDashboard.swift */; };
 		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
 		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
 		931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B5169269E4B660065F551 /* ModelStructs2.swift */; };
@@ -66,7 +67,6 @@
 		93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */; };
 		93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */; };
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
-		F804499628A0644700F631C8 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F804499528A0644700F631C8 /* ApplicationView.swift */; };
 		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
 		F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */; };
 		F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */; };
@@ -127,6 +127,7 @@
 		36C608AA2D4C406800DDE0E7 /* AllRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipes.swift; sourceTree = "<group>"; };
 		36E13D992D35C4F100B76E8C /* RecipeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
+		36E9F1C32D6007540016BF89 /* AppDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDashboard.swift; sourceTree = "<group>"; };
 		930310C72695DC75006910EF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		930310C9269666B1006910EF /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
@@ -176,7 +177,6 @@
 		93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaXOperation.swift; sourceTree = "<group>"; };
 		93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAccessor.swift; sourceTree = "<group>"; };
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
-		F804499528A0644700F631C8 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShipped.json; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 		930310C52695DC33006910EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F804499528A0644700F631C8 /* ApplicationView.swift */,
+				36E9F1C32D6007540016BF89 /* AppDashboard.swift */,
 				36C608AA2D4C406800DDE0E7 /* AllRecipes.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */,
@@ -550,6 +550,7 @@
 				36E13D9C2D35C79800B76E8C /* AnalyzedInstructionsView.swift in Sources */,
 				9334918626D1BA4000047BAB /* MailView.swift in Sources */,
 				93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */,
+				36E9F1C42D6007540016BF89 /* AppDashboard.swift in Sources */,
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
 				93ACB2E426B9E8CD0010F71F /* TriviaCreateOperation.swift in Sources */,
 				F8304A7A28B1685A00867C6F /* ProfileHost.swift in Sources */,
@@ -598,7 +599,6 @@
 				36C608AB2D4C406800DDE0E7 /* AllRecipes.swift in Sources */,
 				36C1A5592D302D3100AC9CDF /* RecipeRowNNLView.swift in Sources */,
 				93237A3A26A4E97500032387 /* ImagePicker.swift in Sources */,
-				F804499628A0644700F631C8 /* ApplicationView.swift in Sources */,
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
@@ -740,7 +740,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 478;
+				CURRENT_PROJECT_VERSION = 479;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -766,7 +766,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 9.2.478;
+				MARKETING_VERSION = 9.2.479;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -790,7 +790,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 478;
+				CURRENT_PROJECT_VERSION = 479;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -816,7 +816,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 9.2.478;
+				MARKETING_VERSION = 9.2.479;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

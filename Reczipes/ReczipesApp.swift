@@ -11,7 +11,7 @@ import SwiftUI
 struct ReczipesApp: App {
     var body: some Scene {
         WindowGroup {
-            ApplicationView()
+            AppDashboard()
                 .environmentObject(OrderingList())
                 .environmentObject(UserData())
                 .environmentObject(RecipeRatio())

@@ -19,7 +19,6 @@
 		36E13D9C2D35C79800B76E8C /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */; };
 		36E9F1C42D6007540016BF89 /* AppDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9F1C32D6007540016BF89 /* AppDashboard.swift */; };
 		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
-		930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C9269666B1006910EF /* ContactsViewModel.swift */; };
 		931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B5169269E4B660065F551 /* ModelStructs2.swift */; };
 		931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B516B269E4BFE0065F551 /* CommonItems.swift */; };
 		93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A1626A4E3DE00032387 /* RecipeRowView.swift */; };
@@ -73,7 +72,6 @@
 		F81BADD62923F104004AE705 /* SRecipeExample2.json in Resources */ = {isa = PBXBuildFile; fileRef = F81BADD52923F104004AE705 /* SRecipeExample2.json */; };
 		F828685E28D28CA700BD0917 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828685D28D28CA700BD0917 /* MultiView.swift */; };
 		F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */; };
-		F8304A7328AD348500867C6F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7228AD348500867C6F /* AuthView.swift */; };
 		F8304A7828AEE9A200867C6F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7728AEE9A200867C6F /* SettingsView.swift */; };
 		F8304A7A28B1685A00867C6F /* ProfileHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7928B1685A00867C6F /* ProfileHost.swift */; };
 		F8304A7C28B1687200867C6F /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7B28B1687200867C6F /* ProfileEditor.swift */; };
@@ -127,7 +125,6 @@
 		36E9F1C32D6007540016BF89 /* AppDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDashboard.swift; sourceTree = "<group>"; };
 		36F740472D63AF5B0043833A /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		930310C72695DC75006910EF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		930310C9269666B1006910EF /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
 		931B516B269E4BFE0065F551 /* CommonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonItems.swift; sourceTree = "<group>"; };
 		93237A1626A4E3DE00032387 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
@@ -184,7 +181,6 @@
 		F828685D28D28CA700BD0917 /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
-		F8304A7228AD348500867C6F /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		F8304A7428AD35B300867C6F /* Reczipes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reczipes.entitlements; sourceTree = "<group>"; };
 		F8304A7728AEE9A200867C6F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F8304A7928B1685A00867C6F /* ProfileHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHost.swift; sourceTree = "<group>"; };
@@ -257,7 +253,6 @@
 				36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */,
 				9334918526D1BA4000047BAB /* MailView.swift */,
 				F844C6D9299AF603000A49F6 /* ShareRecipeView.swift */,
-				F8304A7228AD348500867C6F /* AuthView.swift */,
 				F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */,
 				F8304A7728AEE9A200867C6F /* SettingsView.swift */,
 				F8EBEBB3298B0B300032675F /* FilesDisplayView2.swift */,
@@ -419,7 +414,6 @@
 			children = (
 				36E13D992D35C4F100B76E8C /* RecipeRatio.swift */,
 				9341A0562698FBAD00DCA754 /* OrderingList.swift */,
-				930310C9269666B1006910EF /* ContactsViewModel.swift */,
 				93AB40C626BECD93005529AF /* UserData.swift */,
 				F8602F24294B7811002EAC1B /* FridgeContents.swift */,
 				3671326E2D48516C002222BE /* AllUserRecipes.swift */,
@@ -563,7 +557,6 @@
 				F8C3F52B295BB8BC005A119B /* Extensions.swift in Sources */,
 				F8AEEBDB29944F300017BE57 /* AddNoteView.swift in Sources */,
 				F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */,
-				F8304A7328AD348500867C6F /* AuthView.swift in Sources */,
 				F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */,
 				F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */,
 				F844C6DA299AF603000A49F6 /* ShareRecipeView.swift in Sources */,
@@ -575,7 +568,6 @@
 				930310C82695DC75006910EF /* Contact.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */,
-				930310CA269666B1006910EF /* ContactsViewModel.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
 				93ACB2E926B9E8CD0010F71F /* JokeOutputOperation.swift in Sources */,
 				368728EF2D2F36B000FC7BF6 /* LoadableImageView.swift in Sources */,
@@ -744,7 +736,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 483;
+				CURRENT_PROJECT_VERSION = 484;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -794,7 +786,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 483;
+				CURRENT_PROJECT_VERSION = 484;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

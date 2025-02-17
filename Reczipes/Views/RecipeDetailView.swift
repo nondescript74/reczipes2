@@ -17,7 +17,7 @@ struct RecipeDetailView: View {
     // MARK: - Initializer
     init(sectionItem: SectionItem3) {
         self.item = sectionItem
-//        self.cuisine = cuisine
+        //        self.cuisine = cuisine
 #if DEBUG
         print(msgs.RDV.rawValue, msgs.siid.rawValue, self.item.id)
 #endif
@@ -25,7 +25,7 @@ struct RecipeDetailView: View {
     
     // MARK: - Properties
     fileprivate var item: SectionItem3
-//    fileprivate var cuisine: String
+    //    fileprivate var cuisine: String
     
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -86,7 +86,7 @@ struct RecipeDetailView: View {
             return false
         }
 #if DEBUG
-            print(msgs.RDV.rawValue, "recipe has notes")
+        print(msgs.RDV.rawValue, "recipe has notes")
 #endif
         return true
     }
@@ -101,7 +101,7 @@ struct RecipeDetailView: View {
             return false
         }
 #if DEBUG
-            print(msgs.RDV.rawValue, "recipe has images")
+        print(msgs.RDV.rawValue, "recipe has images")
 #endif
         return true
     }
@@ -110,36 +110,8 @@ struct RecipeDetailView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                HStack {
-                    VStack {
-//                        Button(action: {
-//                            // What to perform
-//                            let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: self.item)
-//                            recipeSaved = result
-//                        }) {
-//                            // How the button looks like
-//                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.save.rawValue, reversed: cuisine.isEmpty)
-//                        }.disabled(cuisine.isEmpty )
-                        Button(action: {
-                            // What to perform
-                            self.order.add(item: self.item)
-                        }) {
-                            // How the button looks like
-                            RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.order.rawValue, reversed: false)
-                        }
-                        Button(action: {
-                            self.addingImage.toggle()
-                        }) {
-                            RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.save.rawValue, reversed: false)
-                        }
-                        Button(action: {
-                            self.addingNote.toggle()
-                        }) {
-                            RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.save.rawValue, reversed: false)
-                        }
-                    }
-                    
-                    VStack {
+                VStack {
+                    ZStack {
                         AsyncImage(url: URL(string: (item.imageUrl ?? SectionItem3.example.imageUrl)!)) { phase in
                             if let image = phase.image {
                                 image
@@ -161,7 +133,7 @@ struct RecipeDetailView: View {
                             .padding()
                     }
                     
-                    VStack {
+                    HStack {
                         Button(action: {
                             // What to perform
                             self.showingNotes.toggle()
@@ -191,18 +163,34 @@ struct RecipeDetailView: View {
                             // How the button looks like
                             RoundButton3View(someTextTop: labelz.show.rawValue, someTextBottom: labelz.instr.rawValue, someImage: imagez.instr.rawValue, reversed: item.url.isEmpty)
                         }.disabled(item.url.isEmpty)
-                        
+                        Button(action: {
+                            // What to perform
+                            self.order.add(item: self.item)
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.order.rawValue, someTextBottom: labelz.ingredients.rawValue, someImage: imagez.order.rawValue, reversed: false)
+                        }
+                        Button(action: {
+                            self.addingImage.toggle()
+                        }) {
+                            RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.images.rawValue, someImage: imagez.save.rawValue, reversed: false)
+                        }
+                        Button(action: {
+                            self.addingNote.toggle()
+                        }) {
+                            RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.save.rawValue, reversed: false)
+                        }
                     }
                 }
                 if showingNotes == true && hasNotes() {
                     NotesView(recipeuuid: self.item.id)
                 }
-
+                
                 if showingImages == true {
                     ImagesView(recipeuuid: self.item.id)
                 }
             }
-
+            
             .sheet(isPresented: $addingImage) {
                 AddImageView(recipeid: self.item.id)
             }

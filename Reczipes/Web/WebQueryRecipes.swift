@@ -76,22 +76,22 @@ public class WebQueryRecipes: ObservableObject {
 #endif
     }
     
-    func findByIngredientsAndCusine(searchString: String, numberSent: Int, cuisine: String) {
-        // https://api.spoonacular.com/recipes/complexSearch?&includeIngredients=chicken,&number=2&cuisine=indian&instructionsRequired=true&apiKey=ccc
-        // https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
-        // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
-        // for example, what's in my fridge
-        // or getting a recipe equivalent to one you have written down
-        
-        if searchString.isEmpty {
-            return
-        }
-        
-        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
-        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
-        urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.cuisine.rawValue + cuisine + myQuery.numberDesired.rawValue + numberSent.description + key
-        myTask(aswitch: myGets.FindByIngredients.rawValue)
-    }
+//    func findByIngredientsAndCusine(searchString: String, numberSent: Int, cuisine: String) {
+//        // https://api.spoonacular.com/recipes/complexSearch?&includeIngredients=chicken,&number=2&cuisine=indian&instructionsRequired=true&apiKey=ccc
+//        // https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
+//        // findByIngredients(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
+//        // for example, what's in my fridge
+//        // or getting a recipe equivalent to one you have written down
+//        
+//        if searchString.isEmpty {
+//            return
+//        }
+//        
+//        let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey"
+//        urlComponents = URLComponents(string: urlThings.recipesComplex.rawValue)!
+//        urlComponents.query = myQuery.ingredients.rawValue + searchString + myQuery.cuisine.rawValue + cuisine + myQuery.numberDesired.rawValue + numberSent.description + key
+//        myTask(aswitch: myGets.FindByIngredients.rawValue)
+//    }
     
     func getTrivia() {
         urlComponents = URLComponents(string: urlThings.trivia.rawValue)!

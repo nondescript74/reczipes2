@@ -61,8 +61,6 @@ struct LoadableSRecipeFromUrl: View {
                             .frame(width: 200, height: 200)
                             .cornerRadius(15)
                             .shadow(radius: 5)
-                            .accessibility(hidden: false)
-                            .accessibilityLabel(Text(result?.title ?? "No title"))
                     } else {
                         ProgressView()
                     }

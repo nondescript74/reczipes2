@@ -18,7 +18,6 @@
 		36E13D9A2D35C4F100B76E8C /* RecipeRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D992D35C4F100B76E8C /* RecipeRatio.swift */; };
 		36E13D9C2D35C79800B76E8C /* AnalyzedInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */; };
 		36E9F1C42D6007540016BF89 /* AppDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9F1C32D6007540016BF89 /* AppDashboard.swift */; };
-		930310C82695DC75006910EF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930310C72695DC75006910EF /* Contact.swift */; };
 		931B516A269E4B660065F551 /* ModelStructs2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B5169269E4B660065F551 /* ModelStructs2.swift */; };
 		931B516C269E4BFE0065F551 /* CommonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931B516B269E4BFE0065F551 /* CommonItems.swift */; };
 		93237A1726A4E3DE00032387 /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93237A1626A4E3DE00032387 /* RecipeRowView.swift */; };
@@ -64,8 +63,6 @@
 		93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */; };
 		93ACB30A26B9EBBE0010F71F /* NetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */; };
 		93D611A926CE971200664F14 /* Notes.json in Resources */ = {isa = PBXBuildFile; fileRef = 93D611A726CE971200664F14 /* Notes.json */; };
-		F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F815305928CFCE6400E9ECC0 /* KeychainItem.swift */; };
-		F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */; };
 		F81A8D4328F0CFC500FDB3EF /* recipesShipped.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */; };
 		F81A8D4E28F483D300FDB3EF /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4D28F483D300FDB3EF /* recipes.json */; };
 		F81A8D5128F4858700FDB3EF /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D5028F4858700FDB3EF /* License.txt */; };
@@ -124,7 +121,6 @@
 		36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
 		36E9F1C32D6007540016BF89 /* AppDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDashboard.swift; sourceTree = "<group>"; };
 		36F740472D63AF5B0043833A /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
-		930310C72695DC75006910EF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
 		931B516B269E4BFE0065F551 /* CommonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonItems.swift; sourceTree = "<group>"; };
 		93237A1626A4E3DE00032387 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
@@ -172,8 +168,6 @@
 		93ACB2F926B9E9AA0010F71F /* TriviaXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaXOperation.swift; sourceTree = "<group>"; };
 		93ACB30926B9EBBE0010F71F /* NetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAccessor.swift; sourceTree = "<group>"; };
 		93D611A726CE971200664F14 /* Notes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notes.json; sourceTree = "<group>"; };
-		F815305928CFCE6400E9ECC0 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
-		F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWrapper.swift; sourceTree = "<group>"; };
 		F81A8D4228F0CFC500FDB3EF /* recipesShipped.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShipped.json; sourceTree = "<group>"; };
 		F81A8D4D28F483D300FDB3EF /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		F81A8D5028F4858700FDB3EF /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
@@ -273,13 +267,10 @@
 		930310C62695DC46006910EF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				930310C72695DC75006910EF /* Contact.swift */,
 				931B5169269E4B660065F551 /* ModelStructs2.swift */,
 				93237A2026A4E65400032387 /* Profile.swift */,
 				93237A2226A4E68100032387 /* Nutrition.swift */,
 				93237A2B26A4E7A200032387 /* Vitamins.swift */,
-				F815305928CFCE6400E9ECC0 /* KeychainItem.swift */,
-				F81A8CD028EF3A4100FDB3EF /* ErrorWrapper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -557,7 +548,6 @@
 				F8C3F52B295BB8BC005A119B /* Extensions.swift in Sources */,
 				F8AEEBDB29944F300017BE57 /* AddNoteView.swift in Sources */,
 				F8304A8828B1688700867C6F /* NutritionSummary.swift in Sources */,
-				F81A8CD128EF3A4100FDB3EF /* ErrorWrapper.swift in Sources */,
 				F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */,
 				F844C6DA299AF603000A49F6 /* ShareRecipeView.swift in Sources */,
 				F8304A7828AEE9A200867C6F /* SettingsView.swift in Sources */,
@@ -565,7 +555,6 @@
 				934AC08926D29812007EBF20 /* ExtendedIngredView.swift in Sources */,
 				93ACB30426B9E9AA0010F71F /* JokeXOperation.swift in Sources */,
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
-				930310C82695DC75006910EF /* Contact.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */,
 				9329218D26BF229100CDDD52 /* SRecipeGroupProvider.swift in Sources */,
@@ -588,7 +577,6 @@
 				935398B22694E2780062931E /* ReczipesApp.swift in Sources */,
 				93237A3426A4E87900032387 /* ImagesView.swift in Sources */,
 				93ACB2E126B9E8CD0010F71F /* TriviaOutputOperation.swift in Sources */,
-				F815305A28CFCE6400E9ECC0 /* KeychainItem.swift in Sources */,
 				F8304A8628B1688700867C6F /* NutritionHost.swift in Sources */,
 				9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */,
 				F8304A8728B1688700867C6F /* NutritionEditor.swift in Sources */,
@@ -736,7 +724,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 484;
+				CURRENT_PROJECT_VERSION = 485;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -762,7 +750,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 9.3;
+				MARKETING_VERSION = 9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -786,7 +774,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 484;
+				CURRENT_PROJECT_VERSION = 485;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -812,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 9.3;
+				MARKETING_VERSION = 9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.headydiscy.playrecipes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

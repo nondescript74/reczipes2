@@ -40,8 +40,6 @@ struct ImageAndNameView: View {
                             .scaledToFit()
                             .cornerRadius(15)
                             .shadow(radius: 5)
-                            .accessibility(hidden: false)
-                            .accessibilityLabel(Text(myExtIngredient.name ?? "No name"))
                     } else {
                         ProgressView()
                     }

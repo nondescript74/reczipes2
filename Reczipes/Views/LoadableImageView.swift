@@ -18,20 +18,7 @@ struct LoadableImageView: View {
                     .scaledToFit()
                     .cornerRadius(15)
                     .shadow(radius: 5)
-                    .accessibility(hidden: false)
-                    .accessibilityLabel(Text(imageMetadata.name))
-//            }  else if phase.error != nil  {
-//                VStack {
-//                    Image("IMG_Rae_312x312")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(maxWidth: 300)
-//                    Text("The recipes were all busy.")
-//                        .font(.title2)
-//                    Text("Please try again.")
-//                        .font(.title3)
-//                }
-                
+
             } else {
                 ProgressView()
             }

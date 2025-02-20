@@ -30,31 +30,6 @@ struct AppDashboard: View {
         case enterKey = "ApiKey"
     }
     
-    @State private var selectedColor = Color.gray
-    
-    private enum ColorTheme: String, CaseIterable {
-        case light
-        case dark
-    }
-    
-    private func getUserChoice(color: Color) -> AnyView {
-        switch color {
-        case .gray:
-            return AnyView(AllRecipesView())
-        default:
-            return AnyView(AllRecipesView())
-        }
-    }
-    
-    private func getUserChoiceImage(color: Color) -> Image {
-        switch color {
-        case .gray:
-            return Image("recipe")
-        default:
-            return Image("recipe")
-        }
-    }
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -149,7 +124,7 @@ struct AppDashboard: View {
                     }
                 }
             }
-            .navigationTitle("My Dashboard")
+            .navigationTitle("Dashboard")
             .padding(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         }
         .environmentObject(order)

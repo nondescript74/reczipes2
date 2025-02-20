@@ -68,8 +68,6 @@ struct RecipeRowNNLView: View {
                         .scaledToFit()
                         .cornerRadius(15)
                         .shadow(radius: 5)
-                        .accessibility(hidden: false)
-                        .accessibilityLabel(Text(sRecipe.title ?? "No title"))
                     
                 } else {
                     ProgressView()

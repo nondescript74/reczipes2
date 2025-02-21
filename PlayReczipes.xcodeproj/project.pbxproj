@@ -35,7 +35,6 @@
 		9329219126BF231700CDDD52 /* SRecipeGroupCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */; };
 		9329219326BF234B00CDDD52 /* SRecipeGroupXOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */; };
 		9334918426D1B15B00047BAB /* RoundButton3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334918326D1B15B00047BAB /* RoundButton3View.swift */; };
-		9334918626D1BA4000047BAB /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9334918526D1BA4000047BAB /* MailView.swift */; };
 		9341A0572698FBAD00DCA754 /* OrderingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A0562698FBAD00DCA754 /* OrderingList.swift */; };
 		9341A05B2698FCE500DCA754 /* AllRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341A05A2698FCE500DCA754 /* AllRecipesView.swift */; };
 		934AC08726D29040007EBF20 /* ExtendendIngredientsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AC08626D29040007EBF20 /* ExtendendIngredientsView2.swift */; };
@@ -138,7 +137,6 @@
 		9329218F26BF231700CDDD52 /* SRecipeGroupCreateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupCreateOperation.swift; sourceTree = "<group>"; };
 		9329219226BF234B00CDDD52 /* SRecipeGroupXOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRecipeGroupXOperation.swift; sourceTree = "<group>"; };
 		9334918326D1B15B00047BAB /* RoundButton3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton3View.swift; sourceTree = "<group>"; };
-		9334918526D1BA4000047BAB /* MailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = Reczipes/Models/MailView.swift; sourceTree = SOURCE_ROOT; };
 		9341A0562698FBAD00DCA754 /* OrderingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderingList.swift; sourceTree = "<group>"; };
 		9341A05A2698FCE500DCA754 /* AllRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRecipesView.swift; sourceTree = "<group>"; };
 		934AC08626D29040007EBF20 /* ExtendendIngredientsView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendendIngredientsView2.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				36C1A5582D302D3100AC9CDF /* RecipeRowNNLView.swift */,
 				93237A1B26A4E52400032387 /* RecipeDetailView.swift */,
 				36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */,
-				9334918526D1BA4000047BAB /* MailView.swift */,
 				F844C6D9299AF603000A49F6 /* ShareRecipeView.swift */,
 				F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */,
 				F8304A7728AEE9A200867C6F /* SettingsView.swift */,
@@ -538,7 +535,6 @@
 				F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */,
 				93237A2326A4E68100032387 /* Nutrition.swift in Sources */,
 				36E13D9C2D35C79800B76E8C /* AnalyzedInstructionsView.swift in Sources */,
-				9334918626D1BA4000047BAB /* MailView.swift in Sources */,
 				93ACB2B926B9E73F0010F71F /* JokeProvider.swift in Sources */,
 				36E9F1C42D6007540016BF89 /* AppDashboard.swift in Sources */,
 				93ACB2E526B9E8CD0010F71F /* SRecipeCreateOperation.swift in Sources */,
@@ -724,7 +720,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 485;
+				CURRENT_PROJECT_VERSION = 486;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -774,7 +770,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 485;
+				CURRENT_PROJECT_VERSION = 486;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

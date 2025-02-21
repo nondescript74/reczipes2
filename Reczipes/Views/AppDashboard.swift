@@ -26,6 +26,7 @@ struct AppDashboard: View {
         case ingredients = "Ingredients"
         case jt = "Joke/Trivia"
         case prof = "Profile"
+        case gppg = "Google"
         case settings = "Settings"
         case enterKey = "ApiKey"
     }
@@ -121,6 +122,17 @@ struct AppDashboard: View {
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
                         Text(tabs.prof.rawValue)
+                    }
+                    VStack {
+                        NavigationLink(destination: GoogleSearchView()) {
+                            Image(systemName: "person.fill")
+                                .symbolRenderingMode(.multicolor)
+                                .frame(minHeight: 100)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .padding(.horizontal)
+                        Text(tabs.gppg.rawValue)
                     }
                 }
             }

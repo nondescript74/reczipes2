@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 import SwiftUI
 
-struct SafariView: View, UIViewControllerRepresentable {
+struct SafariView: UIViewControllerRepresentable {
 
     let url: URL
     

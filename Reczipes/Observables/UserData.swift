@@ -14,14 +14,18 @@ A model object that stores app data.
 
 import Combine
 import SwiftUI
+import os
 
 final class UserData: ObservableObject {
+    
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "userData")
     // MARK: - Initializer
     init() {
         self.profile = Profile.default
         self.nutrition = Nutrition.default
         self.vitamins = Vitamins.default
         self.showFavoritesOnly = false
+        logger.info( "UserData initialized")
     }
     // MARK: - Publisher
     @Published var showFavoritesOnly: Bool

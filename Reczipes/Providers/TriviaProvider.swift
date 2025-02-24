@@ -8,10 +8,11 @@
 
 import Foundation
 import SwiftUI
+import os
 
 public class TriviaProvider {
-    // MARK: - Debug local
-    fileprivate var zBug: Bool = false
+
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "TriviaProvider")
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     var triviaUrl: URL
@@ -32,8 +33,7 @@ public class TriviaProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        
-        if zBug { print("OperationQueue for TriviaProvider is launched")}
+        logger.info("TriviaProvider: OperationQueue for TriviaProvider is launched")
         
     }
     

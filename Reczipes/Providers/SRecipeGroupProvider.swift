@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import os
 
 public class SRecipeGroupProvider {
-    // MARK: - Debug local
-    fileprivate var zBug: Bool = false
+    
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "SRecipeGroupProvider")
+
+    
     // MARK: - Properties
     fileprivate let operationQueue = OperationQueue()
     let recipesUrl: URL
@@ -31,8 +34,7 @@ public class SRecipeGroupProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-        if zBug { print("OperationQueue for SRecipeGroupProvider is launched")}
-        
+        logger.info("SRecipeGroupProvider : OperationQue SRecipeGroupProvider is launched")
     }
     
     func cancel() {

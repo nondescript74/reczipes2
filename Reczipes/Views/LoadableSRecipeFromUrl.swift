@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoadableSRecipeFromUrl: View {
     @State private var result: SRecipe?
-    var url: String
+    var urlstr: String
     let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
     fileprivate enum msgs: String {
         case nk = "No key"
@@ -68,15 +68,14 @@ struct LoadableSRecipeFromUrl: View {
                 AnalyzedInstructionsView(ainstructions: result?.analyzedInstructions ?? [])
             }
             .task {
-                await getExtractedViaUrl(urlString: url)
+                await getExtractedViaUrl(urlString: urlstr)
             }
-//            .navigationTitle(result?.title ?? "No Recipe Title")
         }
     }
 }
 
 #Preview {
-    LoadableSRecipeFromUrl(url: "https://www.seriouseats.com/vegan-cashew-milk-braised-green-plantains")
+    LoadableSRecipeFromUrl(urlstr: "https://www.seriouseats.com/vegan-cashew-milk-braised-green-plantains")
 }
 
 

@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import os
 
 @MainActor
 final class AllUserRecipes: ObservableObject {
+    
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "AllUserRecipes")
     
     // MARK: - Publisher
     @Published var sections = [BookSection]()
@@ -24,61 +27,53 @@ final class AllUserRecipes: ObservableObject {
             do {
                 try FileManager.default.createDirectory(at: myReczipesDirUrl, withIntermediateDirectories: true)
                 
-                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rnotes.rawValue), withIntermediateDirectories: true)
+                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: "RecipeNotes"), withIntermediateDirectories: true)
                 
-                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: msgs.rimages.rawValue), withIntermediateDirectories: true)
+                try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: "RecipeImages"), withIntermediateDirectories: true)
                 
-#if DEBUG
-                print("FileManager: " + " Created Reczipes directory")
-                print("FileManager: " + " Created RecipeNotes directory")
-                print("FileManager: " + " Created RecipeImages directory")
-#endif
+                logger.info("AllUserRecipes: Created Reczipes directory")
+                logger.info("AllUserRecipes: Created RecipeNotes directory")
+                logger.info("AllUserRecipes: Created RecipeImages directory")
+
             } catch {
+                logger.error("AllUserRecipes: Cannot create directories: \(error.localizedDescription)")
                 fatalError("Cannot create directories")
             }
         }
-        
         
         // directories exist
         // get all shipped recipes
         if showShipped {
             sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
-#if DEBUG
-            print(msgs.aur.rawValue + "using shipped recipes")
-#endif
+            logger.info("AllUserRecipes: using shipped recipes")
         }
         
         do {
             var urls = try FileManager.default.contentsOfDirectory(at: myReczipesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
             // skip these folders
-            urls = urls.filter({!$0.pathComponents.contains(msgs.rnotes.rawValue)})
-            urls = urls.filter({!$0.pathComponents.contains(msgs.rimages.rawValue)})
+            urls = urls.filter({!$0.pathComponents.contains("RecipeNotes")})
+            urls = urls.filter({!$0.pathComponents.contains("RecipeImages")})
             
             // get the saved recipes
             //
             if urls.count > 0 {
-#if DEBUG
-                print(msgs.aur.rawValue + "urls added by user is non zero")
-#endif
+                logger.info("AllUserRecipes: Found user added recipes count: \(urls.count)")
                 for aurl in urls {
                     do {
                         let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
                         let aBookSection = try JSONDecoder().decode(BookSection.self, from: data)
                         // may need to merge recipes if multiple booksections with same name, different id exist
-#if DEBUG
-                        print(msgs.aur.rawValue + msgs.fuar.rawValue)
-#endif
+                        logger.info("AllUserRecipes: Found user added recipe: \(aurl.lastPathComponent)")
                         if sections.contains(where: {$0.name == aBookSection.name}) {
                             var existingBS = sections.first(where: {$0.name == aBookSection.name})
                             for anItem in aBookSection.items {
                                 existingBS?.items.append(anItem)
+                                logger.info("AllUserRecipes: Merged user added recipe: \(aurl.lastPathComponent)")
                             }
                             var newBSsections = sections.filter({$0.name != aBookSection.name})
                             if (existingBS != nil) {
                                 newBSsections.append(existingBS!)
-#if DEBUG
-                                print(msgs.aur.rawValue + msgs.combined.rawValue)
-#endif
+                                logger.info("AllUserRecipes: Existing Booksections appended to new newly created BookSection")
                                 sections = newBSsections
                             }
                         } else {

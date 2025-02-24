@@ -6,10 +6,11 @@
 //
 
 import Foundation
-//import UIKit
 import SwiftUI
+import os
 
 class AllUserImages: ObservableObject {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "AllUserImages")
 
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []

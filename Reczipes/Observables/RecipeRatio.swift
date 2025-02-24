@@ -6,19 +6,14 @@
 //
 
 import Foundation
+import os
 
 class RecipeRatio: ObservableObject {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "RecipeRatio")
     @Published var ratio: Double = 1.0
-    //MARK: - Properties
-    fileprivate enum msgs: String {
-        case rr = "RecipeRatio: "
-        case changed = "Changed to: "
-    }
     @MainActor
     func change(amount: Double) {
         ratio = amount
-#if DEBUG
-        print(msgs.rr.rawValue + msgs.changed.rawValue, ratio.description)
-#endif
+        logger.info("RecipeRatio: Changed to: \(amount)")
     }
 }

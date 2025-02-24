@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
-import MessageUI
+import os
 
 struct RecipeDetailView: View {
+    
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "RecipeDetailView")
     //MARK: - Environment
     @EnvironmentObject var order: OrderingList
     @EnvironmentObject var aur: AllUserRecipes
@@ -17,15 +19,11 @@ struct RecipeDetailView: View {
     // MARK: - Initializer
     init(sectionItem: SectionItem3) {
         self.item = sectionItem
-        //        self.cuisine = cuisine
-#if DEBUG
-        print(msgs.RDV.rawValue, msgs.siid.rawValue, self.item.id)
-#endif
+        logger.info("RecipeDetailView: init called with item: \(sectionItem.name)")
     }
     
     // MARK: - Properties
     fileprivate var item: SectionItem3
-    //    fileprivate var cuisine: String
     
     fileprivate enum msgs: String {
         case recipeDetailView, RDV = "RecipeDetailView: "
@@ -80,14 +78,10 @@ struct RecipeDetailView: View {
         var userNotes = aun.notes
         userNotes = userNotes.filter({$0.recipeuuid == item.id})
         if userNotes.isEmpty {
-#if DEBUG
-            print(msgs.RDV.rawValue, "recipe has no notes")
-#endif
+            logger.info("RecipeDetailView: recipe has no notes")
             return false
         }
-#if DEBUG
-        print(msgs.RDV.rawValue, "recipe has notes")
-#endif
+        logger.info( "RecipeDetailView: recipe has notes")
         return true
     }
     
@@ -95,14 +89,10 @@ struct RecipeDetailView: View {
         var imageSaveds = aui.images
         imageSaveds = imageSaveds.filter({$0.recipeuuid == item.id})
         if imageSaveds.isEmpty {
-#if DEBUG
-            print(msgs.RDV.rawValue, "recipe has no images")
-#endif
+            logger.info( "RecipeDetailView: recipe has no images")
             return false
         }
-#if DEBUG
-        print(msgs.RDV.rawValue, "recipe has images")
-#endif
+        logger.info( "RecipeDetailView: recipe has images")
         return true
     }
     
@@ -199,7 +189,7 @@ struct RecipeDetailView: View {
                 SafariView(url: URL(string: self.item.url)!)
             }
             .sheet(isPresented: $showingInstructions) {
-                LoadableSRecipeFromUrl(url: self.item.url)
+                LoadableSRecipeFromUrl(urlstr: self.item.url)
             }
             .sheet(isPresented: $showingNotes) {
                 NotesView(recipeuuid: self.item.id)

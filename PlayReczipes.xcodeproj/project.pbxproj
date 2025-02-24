@@ -81,7 +81,6 @@
 		F844C6DC299BF6CE000A49F6 /* diets.json in Resources */ = {isa = PBXBuildFile; fileRef = F844C6DB299BF6CE000A49F6 /* diets.json */; };
 		F84A453629F87F6C00E2BA90 /* recipesShippedUrls.json in Resources */ = {isa = PBXBuildFile; fileRef = F84A453529F87F6C00E2BA90 /* recipesShippedUrls.json */; };
 		F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */; };
-		F8602F25294B7811002EAC1B /* FridgeContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8602F24294B7811002EAC1B /* FridgeContents.swift */; };
 		F8AEEBD929944CC60017BE57 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEEBD829944CC60017BE57 /* AddImageView.swift */; };
 		F8AEEBDB29944F300017BE57 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEEBDA29944F300017BE57 /* AddNoteView.swift */; };
 		F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BAA1A3292D8EE0008AFEAD /* Images.json */; };
@@ -187,7 +186,6 @@
 		F844C6DB299BF6CE000A49F6 /* diets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = diets.json; sourceTree = "<group>"; };
 		F84A453529F87F6C00E2BA90 /* recipesShippedUrls.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipesShippedUrls.json; sourceTree = "<group>"; };
 		F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOrExtractView.swift; sourceTree = "<group>"; };
-		F8602F24294B7811002EAC1B /* FridgeContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeContents.swift; sourceTree = "<group>"; };
 		F8AEEBD829944CC60017BE57 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		F8AEEBDA29944F300017BE57 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		F8BAA1A3292D8EE0008AFEAD /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
@@ -349,10 +347,10 @@
 				931B516D269E4C7E0065F551 /* Helpers */,
 				9341A05C2698FDE400DCA754 /* JSON */,
 				930310C62695DC46006910EF /* Models */,
-				930310C52695DC33006910EF /* Views */,
 				935398B52694E27B0062931E /* Assets.xcassets */,
 				935398BF2694E2A90062931E /* Info.plist */,
 				935398B72694E27B0062931E /* Preview Content */,
+				930310C52695DC33006910EF /* Views */,
 			);
 			path = Reczipes;
 			sourceTree = "<group>";
@@ -403,7 +401,6 @@
 				36E13D992D35C4F100B76E8C /* RecipeRatio.swift */,
 				9341A0562698FBAD00DCA754 /* OrderingList.swift */,
 				93AB40C626BECD93005529AF /* UserData.swift */,
-				F8602F24294B7811002EAC1B /* FridgeContents.swift */,
 				3671326E2D48516C002222BE /* AllUserRecipes.swift */,
 				F8C3F52C295CAA56005A119B /* AllUserImages.swift */,
 				F8C3F52E295CAA63005A119B /* AllUserNotes.swift */,
@@ -565,7 +562,6 @@
 				93AB40C726BECD93005529AF /* UserData.swift in Sources */,
 				367997F62D40481400D9BD9C /* LoadableSRecipeFromUrl.swift in Sources */,
 				F8304A7E28B1687700867C6F /* ProfileSummary.swift in Sources */,
-				F8602F25294B7811002EAC1B /* FridgeContents.swift in Sources */,
 				F8304A7C28B1687200867C6F /* ProfileEditor.swift in Sources */,
 				F8AEEBD929944CC60017BE57 /* AddImageView.swift in Sources */,
 				93237A2C26A4E7A200032387 /* Vitamins.swift in Sources */,
@@ -720,7 +716,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 486;
+				CURRENT_PROJECT_VERSION = 487;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;
@@ -770,7 +766,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 486;
+				CURRENT_PROJECT_VERSION = 487;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				DEVELOPMENT_TEAM = YKHW2TJ32G;
 				ENABLE_PREVIEWS = YES;

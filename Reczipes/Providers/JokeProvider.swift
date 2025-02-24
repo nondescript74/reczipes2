@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import os
 
 public class JokeProvider {
-    // MARK: - Debug local
-    fileprivate var zBug: Bool = false
+    
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "JokeProvider")
+
     // MARK: - Properties
     fileprivate enum msgs: String {
         case jp = "JokeProvider: "
@@ -35,9 +37,8 @@ public class JokeProvider {
         
         operationQueue.addOperations(operations, waitUntilFinished: false)
         
-
-        if zBug { print(msgs.jp.rawValue + msgs.jpl.rawValue)}
-
+        
+        logger.info("JokeProvider: OperationQueue for JokeProvider is launched")
     }
     
     func cancel() {

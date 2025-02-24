@@ -40,6 +40,9 @@ struct RecipeRowNNLView: View {
         case add = "plus"
     }
     // MARK: Methods
+    fileprivate var renderingText: String {
+        return ""
+    }
     
     // MARK: - View Process
     var body: some View {
@@ -49,16 +52,6 @@ struct RecipeRowNNLView: View {
                     .font(.headline)
                     .padding()
                 Spacer()
-                HStack(alignment: .center) {
-                    Button(action: {
-                        // What to perform
-                        let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
-                        recipeSaved = result
-                    }) {
-                        // How the button looks like
-                        RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: cuisine.isEmpty)
-                    }
-                }
             }
             
             AsyncImage(url: URL(string: (sRecipe.image ?? SRecipe.example2.image)!)) { phase in
@@ -68,25 +61,39 @@ struct RecipeRowNNLView: View {
                         .scaledToFit()
                         .cornerRadius(15)
                         .shadow(radius: 5)
+                        .frame(alignment: .center)
+                        .padding()
                     
                 } else {
                     ProgressView()
                 }
             }
-            
             HStack(alignment: .center) {
-                ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
-                    Text(restriction)
-                        .font(.caption)
-                        .padding(paddingSize)
-                        .clipShape(Rectangle())
+                VStack(alignment: .center) {
+                    ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
+                        Text(restriction)
+                    }
+                    .padding(.horizontal)
+                    
                 }
-                
+                Spacer()
+                Button(action: {
+                    // What to perform
+                    let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
+                    recipeSaved = result
+                }) {
+                    // How the button looks like
+                    RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: cuisine.isEmpty)
+                }
             }
             .padding()
+            
+            VStack(alignment: .leading) {
+                Text(sRecipe.summary ?? "No summary")
+    
+            }
         }
         .environmentObject(aur)
-        .padding()
         .alert(isPresented: $recipeSaved)   {
             return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
         }

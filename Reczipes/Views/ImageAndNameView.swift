@@ -6,26 +6,31 @@
 //
 
 import SwiftUI
+import os
 
 struct ImageAndNameView: View {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "ImageAndNameView")
+    
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {
         self.myExtIngredient = extendedIngredient
+        logger.info("ImageAndNameView: initialized")
     }
     
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient!
-    fileprivate enum msgs: String {
-        case noIngredName = "No Ingredient Name??"
-    }
     
     // MARK: - Methods
     fileprivate func createUrlString() -> String {
         var urlString = "https://img.spoonacular.com/ingredients_250x250/"
-        urlString = urlString + myExtIngredient.image!
-#if DEBUG
-        print("ImageAndNameView: ", urlString)
-#endif
+        if myExtIngredient.image == nil {
+            urlString = "https://img.spoonacular.com/recipes/929118-312x231.jpg"
+            logger.error( "ImageAndNameView: No image found for myExtIngredient")
+        } else {
+            urlString = urlString + myExtIngredient.image!
+            logger.info("ImageAndNameView: Image found for myExtIngredient, created urlString: \(urlString)")
+        }
+        
         return urlString
     }
 
@@ -46,7 +51,7 @@ struct ImageAndNameView: View {
                 }
             }
 
-            Text(myExtIngredient.name ?? msgs.noIngredName.rawValue)
+            Text(myExtIngredient.name ?? "ImageAndNameView: No name")
                 .font(.headline)
                 .padding(.leading)
         }

@@ -6,17 +6,12 @@
 //
 
 import SwiftUI
+import os
 
 struct AllRecipesView: View {
-    // MARK: - Debug local
-    fileprivate var zBug: Bool = false
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "AllRecipesView")
     // MARK: - Environment Objects
     @EnvironmentObject var aur: AllUserRecipes
-    // MARK: - Properties
-    enum msgs: String {
-        case arv = "All Recipes View"
-    }
-    
     // MARK: - Methods
     var myBook: [BookSection] {
         return aur.sections.sorted(by: {$0.name < $1.name})
@@ -25,7 +20,7 @@ struct AllRecipesView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(msgs.arv.rawValue).font(.largeTitle).bold()
+                Text("All Recipes").font(.largeTitle).bold()
                 
                 List {
                     ForEach(myBook, id: \.self) { section in

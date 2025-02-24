@@ -6,10 +6,10 @@
 //
 
 import Foundation
+import os
 
 class AllUserNotes: ObservableObject {
-    // MARK: - Local debug
-    fileprivate var zBug: Bool = false
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "AllUserNotes")
     // MARK: - Publisher
     @Published var notes: [Note] = []
     // MARK: - Initializer
@@ -22,53 +22,33 @@ class AllUserNotes: ObservableObject {
         
         do {
             let notesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myNotesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-            
-#if DEBUG
-            if zBug {print(msgs.aun.rawValue + msgs.uanc.rawValue + "\(notesUrls.count)")}
-#endif
+            logger.info( "AllUserNotes: \(notesUrls.count) added notes found")
             for anoteurl in notesUrls {
                 let data = try Data(contentsOf: myNotesDirUrl.appendingPathComponent(anoteurl.lastPathComponent))
                 let decodedJSON = try JSONDecoder().decode(Note.self, from: data)
                 myNotesConstructed.append(decodedJSON)
             }
         } catch  {
+            logger.error( "AllUserNotes: \(error.localizedDescription)")
             fatalError("Cannot read or decode from notes")
         }
         
         let shippedNotes:[Note] = Bundle.main.decode([Note].self, from: "Notes.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
         if shippedNotes.isEmpty  {
-#if DEBUG
-            if zBug {print(msgs.aun.rawValue + msgs.snc.rawValue + "\(shippedNotes.count)")}
-#endif
+            logger.info("AllUserNotes: shipped notes requested, is empty")
         } else {
             myNotesConstructed.append(contentsOf: shippedNotes)
+            logger.info("AllUserNotes: shipped notes requested, added \(shippedNotes.count)")
         }
         
         notes = myNotesConstructed
         
         if myNotesConstructed.count == 0 {
-#if DEBUG
-            if zBug {print(msgs.aun.rawValue + " No User recipe notes")}
-#endif
+            logger.info("AllUserNotes: no user notes exist)")
         } else {
-#if DEBUG
-            if zBug {print(msgs.aun.rawValue + " User recipe notes exist: " + " \(myNotesConstructed.count)")}
-#endif
+            logger.info("AllUserNotes: User recipe notes exist: \(myNotesConstructed.count)")
         }
-#if DEBUG
-        if zBug {print(msgs.aun.rawValue + "initialized", "count: ", self.notes.count)}
-#endif
-    }
-    // MARK: - Properties
-    fileprivate enum msgs: String {
-        case aun = "AllUserNotes: "
-        case appd = "Appended a note"
-        case appdnot = "Note already in, did not append"
-        case remvd = "Note removed"
-        case json = ".json"
-        case saved = " saved"
-        case uanc = " User added Notes Contents count "
-        case snc = " Shipped Notes Contents count "
+        logger.info("AllUserNotes initialized, count: \(self.notes.count)")
     }
     
     // MARK: - Methods
@@ -80,24 +60,21 @@ class AllUserNotes: ObservableObject {
             do {
                 let encodedJSON = try JSONEncoder().encode(note)
                 do {
-                    let temp = note.recipeuuid.uuidString + "_" + dateSuffix() + msgs.json.rawValue
+                    let temp = note.recipeuuid.uuidString + "_" + dateSuffix() + ".json"
                     try encodedJSON.write(to: myNotesDirUrl.appendingPathComponent(temp))
-                    if zBug { print(msgs.aun.rawValue + temp)}
                     notes.append(note)
+                    logger.info("AllUserNotes: addNote: Note added successfully")
                 } catch  {
+                    logger.error( "AllUserNotes: addNote: Error writing Note to user RecipeNotes folder: \(error.localizedDescription)")
                     fatalError("Cannot write to user RecipeNotes folder")
                 }
             } catch  {
+                logger.error("AllUserNotes: addNote: Error encoding Note to json: \(error.localizedDescription)")
                 fatalError("Cannot encode Note to json")
             }
-            
-#if DEBUG
-            if zBug {print(msgs.aun.rawValue + msgs.appd.rawValue)}
-#endif
+            logger.info("AllUserNotes: addNote: Note added")
         } else {
-#if DEBUG
-            if zBug {print(msgs.aun.rawValue + msgs.appdnot.rawValue)}
-#endif
+            logger.info("AllUserNotes: addNote: Note already exists")
         }
     }
     
@@ -106,8 +83,6 @@ class AllUserNotes: ObservableObject {
         // does not remove from user files
         guard let idx = notes.firstIndex(of: note) else { return }
         notes.remove(at: idx)
-#if DEBUG
-        print(msgs.aun.rawValue + msgs.remvd.rawValue)
-#endif
+        logger.info("AllUserNotes: removeNote: removed a note")
     }
 }

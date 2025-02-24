@@ -5,7 +5,6 @@
 //  Created by Zahirudeen Premji on 7/13/21.
 //
 
-//import UIKit
 import SwiftUI
 import Foundation
 import Combine
@@ -60,25 +59,6 @@ let allColors: [Color] = [     .pink,
 var defaultRequiredCount:Int = 0
 var urlComponents:URLComponents = URLComponents(string: "")!
 var urlComponentsRecipeImages:URLComponents = URLComponents(string: "")!
-
-enum msgs: String {
-//    case returningpresetrecipes = "Returning Preset Recipes "
-//    case returningbooksectionssf = "Returning BookSections in single file"
-//    case success = "Successfull remove of a recipe"
-//    case fail = "Failed to remove a recipe "
-//    case counted = "User added recipes Contents count "
-//    case nobs = "No booksection files found"
-//    case rnotes = "RecipeNotes"
-//    case rimages = "RecipeImages"
-//    case fuar = "Found user added recipe"
-//    case combined = "Combined booksections into one booksection"
-    case ci = "CommonItems: "
-    case csts = "Converted SRecipe to SectionItem3 "
-//    case spoonkey = "SpoonacularKey"
-//    case nokey = "No SpoonacularKey"
-//    case urlString = "UrlString: "
-//    case emptyData = "Empty Data"
-}
 
 enum myQuery: String {
     case query = "query="
@@ -215,42 +195,19 @@ func convertSRecipeToSectionItem3(srecipe: SRecipe) -> SectionItem3 {
                             summary: srecipe.summary ?? SectionItem3.example.summary)
     return item
 }
-
-//func convertCRecipeToSectionItem3(crecipe: CRecipe) -> SectionItem3 {
-//    let item = SectionItem3(id: UUID(),
-//                            recipeId: (crecipe.id),
-//                            name: crecipe.title,
-//                            url: crecipe.image,
-//                            photocredit: "none",
-//                            restrictions: [],
-//                            summary: crecipe.title)
-//    return item
-//}
                             
 
 func getSRecipeID(srecipe: SRecipe) -> Int {
     switch srecipe.id {
     case Int.min ..< 1:
 #if DEBUG
-        print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative srecipe.id")
+        print("CommonItems: srecipe has negative id")
 #endif
         return getSRecipeIDUnique()
     default:
         return srecipe.id
     }
 }
-
-//func getCRecipeID(crecipe: CRecipe) -> Int {
-//    switch crecipe.id {
-//    case Int.min ..< 1:
-//#if DEBUG
-//        print(msgs.ci.rawValue + msgs.csts.rawValue + "found negative crecipe.id")
-//#endif
-//        return getSRecipeIDUnique()
-//    default:
-//        return crecipe.id
-//    }
-//}
 
 func getSRecipeIDUnique() -> Int {
     // for now
@@ -260,16 +217,37 @@ func getSRecipeIDUnique() -> Int {
 func constructRestrictionsWithSRecipe(srecipe: SRecipe) -> [String] {
     var myRestrictions: [String] = []
 
-    myRestrictions.append(srecipe.cheap != nil ? "Cheap" : "")
-    myRestrictions.append(srecipe.dairyFree != nil ? "Dairy Free" : "")
-    myRestrictions.append(srecipe.glutenFree != nil ? "GlutenFree" : "")
-    myRestrictions.append(srecipe.lowFodmap != nil ? "LOWFODMAP" : "")
-    myRestrictions.append(srecipe.sustainable != nil ? "Sustainable" : "")
-    myRestrictions.append(srecipe.vegan != nil ? "Vegan" : "")
-    myRestrictions.append(srecipe.vegetarian != nil ? "Vegetarian" : "")
-    myRestrictions.append(srecipe.veryHealthy != nil ? "Very Healthy" : "")
-    myRestrictions.append(srecipe.veryPopular != nil ? "Very Popular" : "")
-    
+    if srecipe.cheap == true {
+        myRestrictions.append("Cheap")
+    }
+    if srecipe.dairyFree == true {
+        myRestrictions.append("Dairy Free")
+    }
+    if srecipe.glutenFree == true {
+        myRestrictions.append("Gluten Free")
+    }
+    if srecipe.lowFodmap == true {
+        myRestrictions.append("LOWFODMAP")
+    }
+    if srecipe.sustainable == true {
+        myRestrictions.append("Sustainable")
+    }
+    if srecipe.vegan == true {
+        myRestrictions.append("Vegan")
+    }
+    if srecipe.vegetarian == true {
+        myRestrictions.append("Vegetarian")
+    }
+    if srecipe.veryHealthy == true {
+        myRestrictions.append("Very Healthy")
+    }
+    if srecipe.veryPopular == true {
+        myRestrictions.append("Very Popular")
+    }
+
+#if DEBUG
+    print(myRestrictions)
+#endif
     return myRestrictions
 }
 

@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import os
+import OSLog
 
 class OrderingList: ObservableObject {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "OrderingList")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "OrderingList")
     // MARK: - Publisher
     @Published var items = [SectionItem3]()
     @Published var quantities:NSMutableDictionary = NSMutableDictionary()

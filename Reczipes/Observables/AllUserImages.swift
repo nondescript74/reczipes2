@@ -7,10 +7,10 @@
 
 import Foundation
 import SwiftUI
-import os
+import OSLog
 
 class AllUserImages: ObservableObject {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "AllUserImages")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AllUserImages")
 
     // MARK: - Publisher
     @Published var images: [ImageSaved] = []
@@ -24,29 +24,22 @@ class AllUserImages: ObservableObject {
         
         do {
             let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-#if DEBUG
-            print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")
-#endif
+            logger.info("User images count: \(imagesUrls.count)")
             for anImageUrl in imagesUrls {
                 let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
-#if DEBUG
-                print(msgs.aui.rawValue + data.debugDescription)
-#endif
                 let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
                 myImagesConstructed.append(decodedJSON)
+                logger.info("Decoded and appended user image: \(anImageUrl.lastPathComponent)")
             }
         } catch  {
+            logger.error("Error in getting user images: \(error.localizedDescription)")
             fatalError("Cannot read or decode from images")
         }
         
         let shippedImages:[ImageSaved] = Bundle.main.decode([ImageSaved].self, from: "Images.json").sorted(by: {$0.recipeuuid.uuidString < $1.recipeuuid.uuidString})
-        
-#if DEBUG
-        print(msgs.aui.rawValue + msgs.sic.rawValue + "\(shippedImages.count)")
-#endif
-        
+        logger.info("Shipped images count: \(shippedImages.count)")
         if shippedImages.isEmpty  {
-            
+            logger.info("Shiped images array is empty")
         } else {
             myImagesConstructed.append(contentsOf: shippedImages)
         }
@@ -54,49 +47,14 @@ class AllUserImages: ObservableObject {
         images = myImagesConstructed
         
         if myImagesConstructed.count == 0 {
-#if DEBUG
-            print(msgs.aui.rawValue + msgs.nui.rawValue)
-#endif
+            logger.info("myImagesConstructed array is empty")
         } else {
-#if DEBUG
-            print(msgs.aui.rawValue + msgs.uie.rawValue + " \(myImagesConstructed.count)")
-#endif
+            logger.info("myImagesConstructed array count: \(myImagesConstructed.count)")
         }
-        
-#if DEBUG
-        print(msgs.aui.rawValue + msgs.initz.rawValue, msgs.count.rawValue, self.images.count)
-#endif
-    }
-    // MARK: - Properties
-    fileprivate enum msgs: String {
-        case initz = " Initialized"
-        case count = " Count: "
-        case aui = "AllUserImages: "
-        case appd = "Appended an image"
-        case appdnot = "image already in, did not append"
-        case remvd = "image removed"
-        case json = ".json"
-        case saved = " saved"
-        case uie = " User images exist: "
-        case nui = " No user images"
-        case sic = " Shipped Images Contents count "
-        case uai = " User added Images Contents count "
+        logger.info("Initialization complete")
     }
     
     // MARK: - Methods
-    func addImageWithImage(image: Image, id: UUID) {
-        do {
-            if !images.contains(where: { $0.recipeuuid == id }) {
-                
-                
-            } else {
-#if DEBUG
-                print(msgs.aui.rawValue + msgs.appdnot.rawValue)
-#endif
-            }
-            
-        }
-    }
 
     func addImage(imageSaved: ImageSaved) {
         let idx = images.firstIndex(of: imageSaved)
@@ -106,24 +64,21 @@ class AllUserImages: ObservableObject {
             do {
                 let encodedJSON = try JSONEncoder().encode(imageSaved)
                 do {
-                    let filename = imageSaved.recipeuuid.uuidString + msgs.json.rawValue
+                    let filename = imageSaved.recipeuuid.uuidString + ".json"
                     try encodedJSON.write(to: myImagesDirUrl.appendingPathComponent(filename))
-                    print(msgs.aui.rawValue + filename + " saved")
                     images.append(imageSaved)
+                    logger.info("Saved imageSaved to user RecipeImages folder")
                 } catch  {
-                    fatalError("Cannot write to user RecipeImages folder")
+                    logger.error("Cannot write imageSaved to user RecipeImages folder")
+                    fatalError()
                 }
             } catch  {
-                fatalError("Cannot encode ImageSaved to json")
+                logger.error( "Cannot encode ImageSaved to json")
+                fatalError()
             }
-            
-#if DEBUG
-            print(msgs.aui.rawValue + msgs.appd.rawValue)
-#endif
+            logger.info( "ImageSaved added")
         } else {
-#if DEBUG
-            print(msgs.aui.rawValue + msgs.appdnot.rawValue)
-#endif
+            logger.info( "ImageSaved already exists, did not add")
         }
     }
     
@@ -132,9 +87,8 @@ class AllUserImages: ObservableObject {
         // does not remove from user files
         guard let idx = images.firstIndex(of: imageSaved) else { return }
         images.remove(at: idx)
-#if DEBUG
-        print(msgs.aui.rawValue + msgs.remvd.rawValue)
-#endif
+        logger.trace(#function)
+        logger.info("Removed image \(imageSaved.recipeuuid) from AllUserImages")
     }
     
     func removeImageAndStored(imageSaved: ImageSaved) {
@@ -144,21 +98,16 @@ class AllUserImages: ObservableObject {
         
         do {
             let imagesUrls: [URL] = try FileManager.default.contentsOfDirectory(at: myImagesDirUrl, includingPropertiesForKeys: [], options: .skipsHiddenFiles)
-#if DEBUG
-            print(msgs.aui.rawValue + msgs.uai.rawValue + "\(imagesUrls.count)")
-#endif
             for anImageUrl in imagesUrls {
                 let data = try Data(contentsOf: myImagesDirUrl.appendingPathComponent(anImageUrl.lastPathComponent))
-#if DEBUG
-                print(msgs.aui.rawValue + data.debugDescription)
-#endif
                 let decodedJSON = try JSONDecoder().decode(ImageSaved.self, from: data)
                 if decodedJSON == imageSaved {
                     try FileManager.default.removeItem(atPath: anImageUrl.absoluteString)
+                    logger.info( "Removed image \(imageSaved.recipeuuid) from AllUserImages and from disk")
                 }
             }
         } catch  {
-            fatalError("Cannot read or decode from images")
+            logger.error("Cannot read or decode from images")
         }
     }
 }

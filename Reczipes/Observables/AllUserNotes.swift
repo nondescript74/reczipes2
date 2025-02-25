@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import os
+import OSLog
 
 class AllUserNotes: ObservableObject {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "AllUserNotes")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AllUserNotes")
     // MARK: - Publisher
     @Published var notes: [Note] = []
     // MARK: - Initializer

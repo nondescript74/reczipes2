@@ -14,11 +14,11 @@ A model object that stores app data.
 
 import Combine
 import SwiftUI
-import os
+import OSLog
 
 final class UserData: ObservableObject {
     
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "userData")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "UserData")
     // MARK: - Initializer
     init() {
         self.profile = Profile.default

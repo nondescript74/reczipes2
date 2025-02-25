@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import os
+import OSLog
 
 class RecipeRatio: ObservableObject {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "RecipeRatio")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "RecipeRatio")
     @Published var ratio: Double = 1.0
     @MainActor
     func change(amount: Double) {

@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AddImageView: View {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AddImageView")
+    
     // MARK: - Initializer
     init(recipeid: UUID) {
         self.recipeId = recipeid
-#if DEBUG
-        print(msgs.aiv.rawValue, " initialized with recipeid: \(recipeid)")
-#endif
+        logger.info("Initializing AddImageView with recipeid: \(recipeid)")
     }
     // MARK: EnvironmentObject
     @EnvironmentObject var aur: AllUserRecipes
@@ -33,7 +34,6 @@ struct AddImageView: View {
         case aiv = "AddImageView: "
         case recipePickRequestString = "Pick a recipe"
         case picker = "Recipes"
-        case noimageset = "No Image selected yet"
         case selectPhoto = "Select Photo"
         case choose = "Choose"
         case photolib = "Photo Library"
@@ -50,10 +50,7 @@ struct AddImageView: View {
     
     fileprivate func convertImageToImageSaved() -> ImageSaved {
         let imageSaved = ImageSaved(recipeuuid: recipeId, imageSaved:  self.image!.pngData()!)
-#if DEBUG
-        print(msgs.aiv.rawValue, " - convertIToImageSaved, recipeId: ", recipeId.uuidString)
-#endif
-        
+        logger.info("Converted image to ImageSaved, recipeId: \(recipeId.uuidString)")
         return imageSaved
     }
     
@@ -62,11 +59,7 @@ struct AddImageView: View {
         
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
-        
-#if DEBUG
-        print(msgs.aiv.rawValue, " - resizeImage, widthRatio: \(widthRatio), heightRatio: \(heightRatio)")
-#endif
-        
+        logger.info("resizeImage, widthRatio: \(widthRatio), heightRatio: \(heightRatio)")
         // Figure out what our orientation is, and use that to form the rectangle
         var newSize: CGSize
         if(widthRatio > heightRatio) {
@@ -83,9 +76,7 @@ struct AddImageView: View {
         image.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-#if DEBUG
-print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
-#endif
+        logger.info("resizeImage - done with newSize")
         return newImage!
     }
     
@@ -94,9 +85,7 @@ print(msgs.aiv.rawValue, " - resizeImage completed. newSize: \(newSize)")
         for bs in aur.sections {
             myReturn.append(contentsOf: bs.items)
         }
-#if DEBUG
-        print(msgs.aiv.rawValue + " - getRecipes: " + myReturn.count.description)
-#endif
+        logger.info("getRecipes: returning \(myReturn.count)")
         return myReturn
     }
     

@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import os
+import OSLog
 
 @MainActor
 final class AllUserRecipes: ObservableObject {
     
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "AllUserRecipes")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AllUserRecipes")
     
     // MARK: - Publisher
     @Published var sections = [BookSection]()

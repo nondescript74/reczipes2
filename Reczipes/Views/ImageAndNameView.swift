@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct ImageAndNameView: View {
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Reczipes", category: "ImageAndNameView")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "ImageAndNameView")
     
     // MARK: - Initializer
     init(extendedIngredient: ExtendedIngredient) {

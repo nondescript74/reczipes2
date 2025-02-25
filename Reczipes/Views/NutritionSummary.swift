@@ -11,10 +11,10 @@ import SwiftUI
 struct NutritionSummary: View {
     // MARK: - Properties
     var profile: Profile
-    private enum msgs: String {
+    fileprivate enum msgs: String {
         case title = "Nutrition Settings"
     }
-    private enum nutrients: String {
+    fileprivate enum nutrients: String {
         case alc = "Alcohol"
         case calo = "Calories"
         case calc = "Calcium"

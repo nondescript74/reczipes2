@@ -11,7 +11,7 @@ import os
 struct AllRecipesView: View {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "AllRecipesView")
     // MARK: - Environment Objects
-    @EnvironmentObject var aur: AllUserRecipes
+    @Environment(AllUserRecipes.self) private var aur
     // MARK: - Methods
     var myBook: [BookSection] {
         return aur.sections.sorted(by: {$0.name < $1.name})
@@ -37,7 +37,7 @@ struct AllRecipesView: View {
                 }.listStyle(GroupedListStyle())
             }
         }
-        .environmentObject(aur)
+        .environment(aur)
     }
 }
 
@@ -46,7 +46,7 @@ struct AllRecipesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AllRecipesView()
-                .environmentObject(AllUserRecipes())
+                .environment(AllUserRecipes())
         }
     }
 }

@@ -9,13 +9,12 @@ import Foundation
 import OSLog
 
 @MainActor
-final class AllUserRecipes: ObservableObject {
-    
+@Observable final class AllUserRecipes {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AllUserRecipes")
     
     // MARK: - Publisher
-    @Published var sections = [BookSection]()
-    @Published var sectionsWithSRecipes: [BookSectionSRecipes] = [BookSectionSRecipes]()
+    var sections = [BookSection]()
+    var sectionsWithSRecipes: [BookSectionSRecipes] = [BookSectionSRecipes]()
     
     // MARK: - Initializer
     init() {

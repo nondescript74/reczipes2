@@ -17,8 +17,8 @@ struct AddImageView: View {
         logger.info("Initializing AddImageView with recipeid: \(recipeid)")
     }
     // MARK: EnvironmentObject
-    @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aui: AllUserImages
+    @Environment(AllUserRecipes.self) private var aur
+    @Environment(AllUserImages.self) private var aui
     // MARK: - Focus for textfield
     // MARK: - State
     @State fileprivate var recipeSelected: Int = 0
@@ -168,8 +168,8 @@ struct AddImageView: View {
                     }
                 }
             }
-            .environmentObject(aur)
-            .environmentObject(aui)
+            .environment(aur)
+            .environment(aui)
             
             .actionSheet(isPresented: $showSheet) {
                 self.actionSheet
@@ -188,7 +188,7 @@ struct AddImageView: View {
 struct AddImageView_Previews: PreviewProvider {
     static var previews: some View {
         AddImageView(recipeid: SectionItem3.example.id)
-            .environmentObject(AllUserRecipes())
-            .environmentObject(AllUserImages())
+            .environment(AllUserRecipes())
+            .environment(AllUserImages())
     }
 }

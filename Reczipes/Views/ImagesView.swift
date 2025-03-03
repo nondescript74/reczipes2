@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImagesView: View {
     // MARK: - Environment
-    @EnvironmentObject var aui: AllUserImages
+    @Environment(AllUserImages.self) private var aui
     
     // MARK: - Initializer
     init(recipeuuid: UUID) {
@@ -42,7 +42,7 @@ struct ImagesView: View {
                     }
                 }
             }
-            .environmentObject(aui)
+            .environment(aui)
         }
         
     }
@@ -52,7 +52,7 @@ struct ImagesView: View {
 struct ImagesView_Previews: PreviewProvider {
     static var previews: some View {
         ImagesView(recipeuuid: UUID(uuidString: "E28071B5-8385-456A-BD04-1CE169FF3A71")!)
-            .environmentObject(AllUserImages())
+            .environment(AllUserImages())
     }
 }
 

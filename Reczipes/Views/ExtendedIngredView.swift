@@ -13,7 +13,7 @@ struct ExtendedIngredView: View {
         self.myExtIngredient = extendedIngredient
     }
     // MARK: - EnvironmentObjects
-    @EnvironmentObject var ratio: RecipeRatio
+    @Environment(RecipeRatio.self) private var ratio
     // MARK: - Properties
     fileprivate var myExtIngredient: ExtendedIngredient
     // MARK: - Methods
@@ -41,13 +41,13 @@ struct ExtendedIngredView: View {
             Text(getMetaInfo(meta: myExtIngredient.metaInformation))
         }
         .padding()
-        .environmentObject(ratio)
+        .environment(ratio)
     }
 }
 
 struct ExtendedIngredView_Previews: PreviewProvider {
     static var previews: some View {
         ExtendedIngredView(extendedIngredient: ExtendedIngredient.extendedIngredientExample)
-            .environmentObject(RecipeRatio())
+            .environment(RecipeRatio())
     }
 }

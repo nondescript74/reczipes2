@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MeasuresView: View {
-    @EnvironmentObject var ratio: RecipeRatio
+    @Environment(RecipeRatio.self) private var ratio
     // MARK: - Initializer
     init(measures: Measures) {
         self.myMeasures = measures
@@ -80,11 +80,11 @@ struct MeasuresView: View {
                 makeRatiodUS()
             }
         }
-        .environmentObject(ratio)
+        .environment(ratio)
     }
 }
 
 #Preview {
     MeasuresView(measures: Measures.measuresExample)
-        .environmentObject(RecipeRatio())
+        .environment(RecipeRatio())
 }

@@ -12,8 +12,8 @@ struct AddNoteView: View {
     fileprivate let zBug = false
     // MARK: - Initializer
     // MARK: EnvironmentObject
-    @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aun: AllUserNotes
+    @Environment(AllUserRecipes.self) private var aur
+    @Environment(AllUserNotes.self) private var aun
     // MARK: - Focus for textfield
     @FocusState private var textFieldIsFocused:Bool
     // MARK: - State
@@ -118,15 +118,15 @@ struct AddNoteView: View {
                 return Alert(title: Text(msgs.saving.rawValue), message: Text(msgs.success.rawValue), dismissButton: .default(Text(msgs.ok.rawValue)))
             }
         }
-        .environmentObject(aur)
-        .environmentObject(aun)
+        .environment(aur)
+        .environment(aun)
     }
 }
 
 struct AddNoteView_Previews: PreviewProvider {
     static var previews: some View {
         AddNoteView()
-            .environmentObject(AllUserRecipes())
-            .environmentObject(AllUserNotes())
+            .environment(AllUserRecipes())
+            .environment(AllUserNotes())
     }
 }

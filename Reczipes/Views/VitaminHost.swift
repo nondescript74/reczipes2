@@ -15,7 +15,7 @@ struct VitaminHost: View {
     
     // MARK:- Environment
     @Environment(\.editMode) var mode
-    @EnvironmentObject var userData: UserData
+    @Environment(UserData.self) private var userData
 
     //MARK: - State
     @State var draftProfile = Profile.default
@@ -55,7 +55,7 @@ struct VitaminHost: View {
             }
         }
         .padding()
-        .environmentObject(userData)
+        .environment(userData)
 
     }
 }
@@ -63,9 +63,9 @@ struct VitaminHost: View {
 struct VitaminHost_Previews: PreviewProvider {
     static var previews: some View {
         VitaminHost()
-            .environmentObject(UserData())
-            .environmentObject(AllUserImages())
-            .environmentObject(AllUserNotes())
+            .environment(UserData())
+            .environment(AllUserImages())
+            .environment(AllUserNotes())
     }
 }
 

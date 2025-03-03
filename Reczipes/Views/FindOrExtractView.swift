@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct FindOrExtractView: View {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "FindOrExtractView")
     
     // MARK: - EnvironmentObject
-    @EnvironmentObject var userData: UserData
-    @EnvironmentObject var aur: AllUserRecipes
+    @Environment(UserData.self) private var userData
+    @Environment(AllUserRecipes.self) private var aur
     // MARK: - ObservedObject
-    @ObservedObject var sRecipeGroup = WebQueryRecipes()
-    @ObservedObject var extractedSRecipe = WebQueryRecipes()
+    var sRecipeGroup = WebQueryRecipes()
+    var extractedSRecipe = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
         case fr = "Find or Extract"
@@ -73,17 +75,12 @@ struct FindOrExtractView: View {
     }
     
     func extractRecipe() {
-#if DEBUG
-        print(msgs.find.rawValue, " extractRecipe called. executing extract")
-#endif
+        logger.info("extractRecipe called")
         if xectionName == "" {return}
         show = Selectors.extract
         extractedSRecipe.findExtracted(urlString: urlString)
         urlString = ""
         endEditing()
-#if DEBUG
-        print(msgs.extract.rawValue, urlString)
-#endif
     }
     
     func endEditing() {
@@ -153,8 +150,8 @@ struct FindOrExtractView: View {
             }
             .navigationTitle(Text(msgs.fr.rawValue))
         }
-        .environmentObject(aur)
-        .environmentObject(userData)
+        .environment(aur)
+        .environment(userData)
     }
 }
 
@@ -162,7 +159,7 @@ struct FindOrExtractView: View {
 struct FindOrExtractView_Previews: PreviewProvider {
     static var previews: some View {
         FindOrExtractView()
-            .environmentObject(AllUserRecipes())
-            .environmentObject(UserData())
+            .environment(AllUserRecipes())
+            .environment(UserData())
     }
 }

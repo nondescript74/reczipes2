@@ -14,7 +14,7 @@ struct NutritionHost: View {
     fileprivate var zBug: Bool = false
     // MARK:- Environment
     @Environment(\.editMode) var mode
-    @EnvironmentObject var userData: UserData
+    @Environment(UserData.self) private var userData
     // MARK: - ManagedObjectContext
     //MARK: - State
     @State var draftNutrition: Nutrition = Nutrition.default
@@ -61,7 +61,7 @@ struct NutritionHost: View {
 
 struct NutritionHost_Previews: PreviewProvider {
     static var previews: some View {
-        NutritionHost(draftNutrition: Nutrition.default).environmentObject(UserData())
+        NutritionHost(draftNutrition: Nutrition.default).environment(UserData())
     }
 }
 

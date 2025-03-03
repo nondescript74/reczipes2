@@ -11,7 +11,7 @@ struct NutritionEditor: View {
     // MARK: - Binding
     @Binding var nutrition: Nutrition
     // MARK: - Environment Variables
-    @EnvironmentObject var userData: UserData
+    @Environment(UserData.self) private var userData
     // MARK: - State
     // MARK: - View Process
     var body: some View {
@@ -27,7 +27,7 @@ struct NutritionEditor_Previews: PreviewProvider {
         NutritionEditor(nutrition: .constant(.default))
             .environment(\.colorScheme, .dark)
             .previewDevice("iPhone Xr")
-            .environmentObject(UserData())
+            .environment(UserData())
     }
 }
 

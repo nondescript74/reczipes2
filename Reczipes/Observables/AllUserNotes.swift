@@ -8,10 +8,10 @@
 import Foundation
 import OSLog
 
-class AllUserNotes: ObservableObject {
+@Observable class AllUserNotes {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AllUserNotes")
     // MARK: - Publisher
-    @Published var notes: [Note] = []
+    var notes: [Note] = []
     // MARK: - Initializer
     init() {
         var myNotesConstructed:Array<Note> = []

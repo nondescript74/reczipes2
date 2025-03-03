@@ -11,7 +11,7 @@ import CoreData
 struct ProfileHost: View {
     // MARK:- Environment
     @Environment(\.editMode) var mode
-    @EnvironmentObject var userData: UserData
+    @Environment(UserData.self) private var userData
     // MARK: - ManagedObjectContext
     //MARK: - State
     @State fileprivate var draftProfile = Profile.default
@@ -44,6 +44,7 @@ struct ProfileHost: View {
                     }
             }
         }
+        .environment(userData)
     }
 }
 
@@ -51,7 +52,7 @@ struct ProfileHost: View {
 struct ProfileHost_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHost()
-            .environmentObject(UserData())
+            .environment(UserData())
             .environment(\.editMode, Binding.constant(EditMode.active))
     }
 }

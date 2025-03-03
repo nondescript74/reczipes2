@@ -12,10 +12,10 @@ struct RecipeDetailView: View {
     
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "RecipeDetailView")
     //MARK: - Environment
-    @EnvironmentObject var order: OrderingList
-    @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aui: AllUserImages
-    @EnvironmentObject var aun: AllUserNotes
+    @Environment(OrderingList.self) private var order
+    @Environment(AllUserRecipes.self) private var aur
+    @Environment(AllUserImages.self) private var aui
+    @Environment(AllUserNotes.self) private var aun
     // MARK: - Initializer
     init(sectionItem: SectionItem3) {
         self.item = sectionItem
@@ -200,28 +200,23 @@ struct RecipeDetailView: View {
             }
             .navigationBarTitle(Text(labelz.nbartitle.rawValue), displayMode: .inline)
         }
-        .environmentObject(order)
-        .environmentObject(aur)
-        .environmentObject(aun)
-        .environmentObject(aui)
+        .environment(order)
+        .environment(aur)
+        .environment(aun)
+        .environment(aui)
     }
 }
 
 
 struct RecipeDetailView_Previews: PreviewProvider {
-    // MARK: - Environment
-    static let order = OrderingList()
-    static let aur = AllUserRecipes()
-    static let aun = AllUserNotes()
-    static let aui = AllUserImages()
     // MARK: - View Process
     static var previews: some View {
         NavigationView {
             RecipeDetailView(sectionItem: SectionItem3.example3)
-                .environmentObject(order)
-                .environmentObject(aur)
-                .environmentObject(aun)
-                .environmentObject(aui)
+                .environment(OrderingList())
+                .environment(AllUserRecipes())
+                .environment(AllUserNotes())
+                .environment(AllUserImages())
         }
     }
 }

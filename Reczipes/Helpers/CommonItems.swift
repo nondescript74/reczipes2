@@ -126,25 +126,6 @@ enum myGets: String {
     case GetJoke = "Get Random Joke"
 }
 
-enum messagesDebug: String {
-    case foundimage = "WQR: Find Image found an Image"
-    case foundrandom = "WQR: Found Random Recipes"
-    case foundrecipeinfo = "WQR: Find Information found an SRecipe"
-    case foundsrecipe = "WQR: Found an SRecipe"
-    case foundextractedrecipe = "WQR: Extracted an SRecipe"
-    case fsrgroup = "WQR: Found SRecipeGroup"
-    case fcrgroup = "WQR: Found CRecipeGroup"
-    case getTrivia = "WQR: Found trivia"
-    case getJoke = "WQR: Found joke"
-    case getAnInstr = "WQR: Found analyzed instructions"
-    case noTitle = "WQR: No title"
-    case noTrivia = "WQR: No Trivia Found"
-    case noJoke = "WQR: Found No Joke"
-    case noAnInstr = "WQR: No analyzed instructions found"
-    case unknownImageType = "WQR: Unknown image type"
-    case unknownCallerID = "WQR: Unknown CallerID"
-}
-
 func getBookSectionNames() -> [String] {
     let namesOfCuisines = Bundle.main.decode([Cuisine].self, from: "cuisines.json").sorted(by: {$0.name < $1.name})
     var names: [String] = []

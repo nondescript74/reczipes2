@@ -2,25 +2,31 @@
     {
         "id":"F4DA7B28-D403-4313-8AFF-E9645587C99E",
         "name":"Beef",
-        "items":[
-            {"restrictions":["Gluten Free"],
+        "items": [
+            {
                 "id":"B972DE25-8765-4CF8-947A-B5A3B47D6715",
                 "imageUrl":"https:\/\/www.seriouseats.com\/thmb\/7OxCaLUzvURVptbF4iMvl28n0Rg=\/960x0\/filters:no_upscale():max_bytes(150000):strip_icc()\/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__04__04022014-stirfry-beef-with-mixed-mushroom-and-butter-15-edit-5840b1f5917f4f08a1ba61fd86241876.jpg",
                 "name":"Stir Fried Flank Steak With Mushrooms and Butter",
                 "url":"https:\/\/www.seriouseats.com\/recipes\/2014\/04\/easy-stir-fried-beef-with-mushrooms-and-butter.html",
-                "photocredit":"Shao Z"},
-            {"restrictions":["Dairy Free"],
+                "photocredit":"Shao Z",
+                "restrictions":["Gluten Free"]
+            },
+            {
                 "id":"1939E0BC-989E-4D1C-AC6F-0F5BF4370A4C",
                 "imageUrl":"https:\/\/www.seriouseats.com\/thmb\/uPPQHsNYN3ZPTw7UY97ZhJ6UTHg=\/960x0\/filters:no_upscale():max_bytes(150000):strip_icc()\/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__11__20191104-red-wine-braised-short-ribs-vicky-wasik-17-1adb4ad27d7f475cbc58814a45e3198b.jpg",
                 "name":"Red Wine Braised Beef",
                 "url":"https:\/\/www.seriouseats.com\/recipes\/2019\/12\/red-wine-braised-beef-short-ribs-recipe.html",
-                "photocredit":"Vicky Wasik"},
-            {"restrictions":["GlutenF","DairyF"],
+                "photocredit":"Vicky Wasik",
+                "restrictions":["Dairy Free"]
+            },
+            {
                 "id":"CBE68A77-55C9-4403-B9B8-42C992846F1D",
                 "imageUrl":"https:\/\/spoonacular.com\/recipeImages\/91516-312x231.jpg",
                 "name":"Beef, Beet and Cabbage Soup (Crock Pot and Ww)",
                 "url":"http:\/\/www.food.com\/recipe\/beef-beet-and-cabbage-soup-crock-pot-and-ww-356958",
-                "photocredit":"Food.com"}
+                "photocredit":"Food.com",
+                "restrictions":["GlutenF","DairyF"]
+            }
         ]
     },
     {

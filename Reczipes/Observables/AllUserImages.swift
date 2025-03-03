@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 import OSLog
 
-class AllUserImages: ObservableObject {
+@Observable class AllUserImages {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "AllUserImages")
 
     // MARK: - Publisher
-    @Published var images: [ImageSaved] = []
+    var images: [ImageSaved] = []
     // MARK: - Initializer
     init() {
         var myImagesConstructed:Array<ImageSaved> = []

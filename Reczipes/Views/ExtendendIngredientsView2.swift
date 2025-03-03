@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ExtendendIngredientsView2: View {
-    @EnvironmentObject var ratio: RecipeRatio
+    @Environment(RecipeRatio.self) private var ratio
     // MARK: - ObservedObject
-    @ObservedObject var extractedSRecipe = WebQueryRecipes()
+    var extractedSRecipe = WebQueryRecipes()
     // MARK: - Initializer
     init(sectionitem: SectionItem3) {
         extractedSRecipe.findExtracted(urlString: sectionitem.url)
@@ -30,7 +30,7 @@ struct ExtendendIngredientsView2: View {
                     .padding([.top, .bottom])
             }
         }
-        .environmentObject(ratio)
+        .environment(ratio)
         
     }
 }
@@ -39,7 +39,7 @@ struct ExtendendIngredientsView2: View {
 struct ExtendendIngredientsView2_Previews: PreviewProvider {
     static var previews: some View {
         ExtendendIngredientsView2(sectionitem: SectionItem3.example)
-            .environmentObject(RecipeRatio())
+            .environment(RecipeRatio())
              
     }
 }

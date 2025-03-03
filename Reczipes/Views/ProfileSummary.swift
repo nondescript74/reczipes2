@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProfileSummary: View {
     // MARK: - Environment
-    @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aun: AllUserNotes
-    @EnvironmentObject var aui: AllUserImages
+    @Environment(AllUserRecipes.self) private var aur
+    @Environment(AllUserNotes.self) private var aun
+    @Environment(AllUserImages.self) private var aui
     // MARK: - Properties
     var profile: Profile
     // MARK: - Methods
@@ -54,9 +54,9 @@ struct ProfileSummary: View {
 
             }
         }
-        .environmentObject(aur)
-        .environmentObject(aun)
-        .environmentObject(aui)
+        .environment(aur)
+        .environment(aun)
+        .environment(aui)
     }
 }
 
@@ -64,9 +64,9 @@ struct ProfileSummary: View {
 struct ProfileSummary_Previews: PreviewProvider {
     static var previews: some View {
         ProfileSummary(profile: Profile.default)
-            .environmentObject(AllUserRecipes())
-            .environmentObject(AllUserNotes())
-            .environmentObject(AllUserImages())
+            .environment(AllUserRecipes())
+            .environment(AllUserNotes())
+            .environment(AllUserImages())
     }
 }
 

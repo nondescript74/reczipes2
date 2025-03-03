@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipeRowNNLView: View {
     //MARK: - Environment
-    @EnvironmentObject var aur: AllUserRecipes
+    @Environment(AllUserRecipes.self) private var aur
     // MARK: - Initializer
     init(srecipe: SRecipe, cuisine: String) {
         self.sRecipe = srecipe
@@ -93,7 +93,7 @@ struct RecipeRowNNLView: View {
     
             }
         }
-        .environmentObject(aur)
+        .environment(aur)
         .alert(isPresented: $recipeSaved)   {
             return Alert(title: Text("Saving Recipe"), message: Text("Saved"), dismissButton: .default(Text("OK")))
         }
@@ -103,6 +103,6 @@ struct RecipeRowNNLView: View {
 struct RecipeRowNNLView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeRowNNLView(srecipe: SRecipe.example2, cuisine: "Asian")
-            .environmentObject(AllUserRecipes())
+            .environment(AllUserRecipes())
     }
 }

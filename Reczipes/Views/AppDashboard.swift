@@ -10,14 +10,19 @@ import SwiftUI
 struct AppDashboard: View {
     
     // MARK: - Environment Variables
-    @EnvironmentObject var userData: UserData
-    @EnvironmentObject var order: OrderingList
-    @EnvironmentObject var ratio: RecipeRatio
-    @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aun: AllUserNotes
-    @EnvironmentObject var aui: AllUserImages
+    @State private var userData:UserData = UserData()
+    @State private var order: OrderingList = OrderingList()
+    @State private var ratio: RecipeRatio = RecipeRatio()
+    @State private var aur: AllUserRecipes = AllUserRecipes()
+    @State private var aun: AllUserNotes = AllUserNotes()
+    @State private var aui: AllUserImages = AllUserImages()
+    
+    @State private var selectedView: (any View)? = AllRecipesView()
     
     let columnLayout = Array(repeating: GridItem(.flexible()), count: 3)
+    
+    let allColors: [Color] = [Color.pink, Color.blue, Color.red, Color.green, Color.yellow, Color.purple, Color.orange, Color.mint, Color.gray, Color.teal, Color.cyan, Color.brown, Color.indigo]
+
     
     fileprivate enum tabs: String {
         case recipes = "Recipes"
@@ -139,22 +144,22 @@ struct AppDashboard: View {
             .navigationTitle("Dashboard")
             .padding(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         }
-        .environmentObject(order)
-        .environmentObject(userData)
-        .environmentObject(ratio)
-        .environmentObject(aun)
-        .environmentObject(aui)
-        .environmentObject(aur)
+        .environment(order)
+        .environment(userData)
+        .environment(ratio)
+        .environment(aun)
+        .environment(aui)
+        .environment(aur)
         
     }
 }
 
 #Preview {
     AppDashboard()
-        .environmentObject(OrderingList())
-        .environmentObject(UserData())
-        .environmentObject(RecipeRatio())
-        .environmentObject(AllUserRecipes())
-        .environmentObject(AllUserNotes())
-        .environmentObject(AllUserImages())
+        .environment(OrderingList())
+        .environment(UserData())
+        .environment(RecipeRatio())
+        .environment(AllUserRecipes())
+        .environment(AllUserNotes())
+        .environment(AllUserImages())
 }

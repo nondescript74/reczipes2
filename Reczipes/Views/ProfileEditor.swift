@@ -11,7 +11,7 @@ struct ProfileEditor: View {
     // MARK: - Binding
     @Binding var profile: Profile
     // MARK: - Environment Variables
-    @EnvironmentObject var userData: UserData
+    @Environment(UserData.self) private var userData
     // MARK: - State
     @State fileprivate var showingNutrition = false
     @State fileprivate var showingVitamins = false
@@ -80,7 +80,8 @@ struct ProfileEditor: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
             .padding(.top)
-        }  
+        }
+        .environment(userData)
     }
 }
 
@@ -91,7 +92,7 @@ struct ProfileEditor_Previews: PreviewProvider {
         Group {
             ProfileEditor(profile: .constant(.default))
         }
-        .environmentObject(UserData())
+        .environment(UserData())
     }
 }
 

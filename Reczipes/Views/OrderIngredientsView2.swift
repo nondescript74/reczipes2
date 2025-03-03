@@ -9,8 +9,8 @@ import SwiftUI
 
 struct OrderIngredientsView2: View {
     // MARK: - Environment Variables
-    @EnvironmentObject var order: OrderingList
-    @EnvironmentObject var ratio: RecipeRatio
+    @Environment(OrderingList.self) private var order
+    @Environment(RecipeRatio.self) private var ratio
     
     // MARK: - Properties
     fileprivate enum msgs: String {
@@ -105,18 +105,16 @@ struct OrderIngredientsView2: View {
             }
             .navigationTitle("Ingredient Ordering")
         }
-        .environmentObject(ratio)
-        .environmentObject(order)
+        .environment(ratio)
+        .environment(order)
     }
     
 }
 
 struct OrderIngredientsView2_Previews: PreviewProvider {
-    static let ratio = RecipeRatio()
-    static let order = OrderingList()
     static var previews: some View {
         OrderIngredientsView2()
-            .environmentObject(order)
-            .environmentObject(ratio)
+            .environment(OrderingList())
+            .environment(RecipeRatio())
     }
 }

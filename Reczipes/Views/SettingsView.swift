@@ -11,7 +11,7 @@ struct SettingsView: View {
     // MARK: - Debug
     fileprivate var zBug: Bool = false
     // MARK: - Environment Variables
-    @EnvironmentObject var userData: UserData
+    @Environment(UserData.self) private var userData
     
     // MARK: - State
     @State private var show: Selectors = .notyet
@@ -50,14 +50,13 @@ struct SettingsView: View {
                 Text(userData.profile.id)
             }.padding()
         }.navigationBarTitleDisplayMode(.automatic)
-            .environmentObject(userData)
+            .environment(userData)
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
-    static let userdata = UserData()
     static var previews: some View {
         SettingsView()
-            .environmentObject(userdata)
+            .environment(UserData())
     }
 }

@@ -16,7 +16,7 @@ import Combine
 import SwiftUI
 import OSLog
 
-final class UserData: ObservableObject {
+@Observable final class UserData {
     
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "UserData")
     // MARK: - Initializer
@@ -28,8 +28,8 @@ final class UserData: ObservableObject {
         logger.info( "UserData initialized")
     }
     // MARK: - Publisher
-    @Published var showFavoritesOnly: Bool
-    @Published var profile: Profile
-    @Published var vitamins: Vitamins
-    @Published var nutrition: Nutrition
+    var showFavoritesOnly: Bool
+    var profile: Profile
+    var vitamins: Vitamins
+    var nutrition: Nutrition
 }

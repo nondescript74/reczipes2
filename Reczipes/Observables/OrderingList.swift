@@ -8,11 +8,11 @@
 import Foundation
 import OSLog
 
-class OrderingList: ObservableObject {
+@Observable class OrderingList {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "OrderingList")
     // MARK: - Publisher
-    @Published var items = [SectionItem3]()
-    @Published var quantities:NSMutableDictionary = NSMutableDictionary()
+    var items = [SectionItem3]()
+    var quantities:NSMutableDictionary = NSMutableDictionary()
     // MARK: - Properties
     fileprivate var maxamount = 1.0
     fileprivate var minamount = 0.0

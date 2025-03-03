@@ -9,9 +9,9 @@ import SwiftUI
 
 struct FilesDisplayView2: View {
     // MARK: - Environment Objects
-    @EnvironmentObject var aur: AllUserRecipes
-    @EnvironmentObject var aui: AllUserImages
-    @EnvironmentObject var aun: AllUserNotes
+    @Environment(AllUserRecipes.self) private var aur
+    @Environment(AllUserImages.self) private var aui
+    @Environment(AllUserNotes.self ) private var aun
     
     // MARK: - Initializer
     // MARK: - State
@@ -134,17 +134,17 @@ struct FilesDisplayView2: View {
             }
             .navigationTitle(Text(msgs.cont.rawValue))
         }
-        .environmentObject(aur)
-        .environmentObject(aun)
-        .environmentObject(aui)
+        .environment(aur)
+        .environment(aun)
+        .environment(aui)
     }
 }
 
 struct FilesDisplayView2_Previews: PreviewProvider {
     static var previews: some View {
         FilesDisplayView2()
-            .environmentObject(AllUserRecipes())
-            .environmentObject((AllUserNotes()))
-            .environmentObject(AllUserImages())
+            .environment(AllUserRecipes())
+            .environment((AllUserNotes()))
+            .environment(AllUserImages())
     }
 }

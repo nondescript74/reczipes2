@@ -12,12 +12,6 @@ struct ReczipesApp: App {
     var body: some Scene {
         WindowGroup {
             AppDashboard()
-                .environmentObject(OrderingList())
-                .environmentObject(UserData())
-                .environmentObject(RecipeRatio())
-                .environmentObject(AllUserRecipes())
-                .environmentObject(AllUserImages())
-                .environmentObject(AllUserNotes())
         }
     }
 }

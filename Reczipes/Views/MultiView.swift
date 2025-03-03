@@ -10,8 +10,8 @@ import SwiftUI
 
 struct MultiView: View {
     // MARK: - ObservedObject
-    @ObservedObject var trivia = WebQueryRecipes()
-    @ObservedObject var joke = WebQueryRecipes()
+    var trivia = WebQueryRecipes()
+    var joke = WebQueryRecipes()
     // MARK: - State
     @State var show: Selectors = .notyet
     // MARK: - Properties
@@ -56,13 +56,6 @@ struct MultiView: View {
         GeometryReader { proxy in
             NavigationView {
                 VStack {
-//                    Text(msgs.jort.rawValue).font(.largeTitle).bold()
-//                        .padding(.bottom)
-//                    Text(msgs.makeSelection.rawValue)
-//                        .font(.callout)
-//                        .foregroundColor(.black)
-//                        .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    
                     HStack {
                         Button(action: {self.getTrivia()}) {
                             RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue, reversed: false)
@@ -76,19 +69,15 @@ struct MultiView: View {
                     ScrollView   {
                         if show == Selectors.trivia {
                             Text(trivia.aTrivia?.text ?? msgs.noTrivia.rawValue)
-//                                .lineLimit(20)
                         }
                         if show == Selectors.joke {
                             Text(joke.joke?.text ?? msgs.noJoke.rawValue)
-//                                .lineLimit(20)
                         }
                     }
                 }
                 .navigationBarTitle("Joke or Trivia")
-//                .navigationBarHidden(true)
             }
         }
-        
     }
 }
 

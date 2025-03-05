@@ -27,6 +27,9 @@ struct AppDashboard: View {
     fileprivate enum tabs: String {
         case recipes = "Recipes"
         case uf = "User Files"
+        case ex = "Extract"
+        case find = "Find"
+        case frex = "Find or Extract"
         case frextr = "Find or Get"
         case ingredients = "Ingredients"
         case jt = "Joke/Trivia"
@@ -53,14 +56,14 @@ struct AppDashboard: View {
                     }
                     VStack {
                         NavigationLink(destination: FindOrExtractView()) {
-                            Image(systemName: "pencil.tip.crop.circle.badge.plus")
+                            Image(systemName: "fork.knife.circle")
                                 .symbolRenderingMode(.multicolor)
                                 .frame(minHeight: 100)
                         }
                         .padding(.horizontal)
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
                         .padding(.horizontal)
-                        Text(tabs.frextr.rawValue)
+                        Text(tabs.frex.rawValue)
                     }
                     VStack {
                         NavigationLink(destination: OrderIngredientsView2()) {

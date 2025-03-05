@@ -40,7 +40,6 @@ struct SettingsView: View {
     // MARK: - Methods
     
     var body: some View {
-        NavigationView {
             VStack {
                 Text(msgs.sv.rawValue).font(.largeTitle).bold()
                 Text(msgs.vers.rawValue + "\(Bundle.main.infoDictionary?[msgs.cfsv.rawValue] as? String ?? msgs.nvn.rawValue)")
@@ -49,7 +48,6 @@ struct SettingsView: View {
                 Text(userData.profile.email)
                 Text(userData.profile.id)
             }.padding()
-        }.navigationBarTitleDisplayMode(.automatic)
             .environment(userData)
     }
 }

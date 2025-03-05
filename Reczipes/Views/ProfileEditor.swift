@@ -6,6 +6,7 @@
  */
 
 import SwiftUI
+import UIKit
 
 struct ProfileEditor: View {
     // MARK: - Binding
@@ -16,6 +17,8 @@ struct ProfileEditor: View {
     @State fileprivate var showingNutrition = false
     @State fileprivate var showingVitamins = false
     @State fileprivate var prefersNotification = false
+    @State fileprivate var userName: String = NSFullUserName()
+    
     // MARK: - Properties
     private enum msgs: String {
         case profE = "Profile Editor: "
@@ -41,7 +44,7 @@ struct ProfileEditor: View {
         List {
             HStack {
                 Text(msgs.uname.rawValue).bold()
-                TextField(msgs.uname.rawValue, text: $profile.username)
+                TextField(msgs.uname.rawValue, text: $userName)
             }.padding(.bottom)
             
             Toggle(isOn: $profile.prefersNotifications) {

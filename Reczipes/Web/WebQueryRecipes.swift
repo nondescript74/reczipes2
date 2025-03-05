@@ -103,9 +103,6 @@ import OSLog
         myTask(aswitch: myGets.FindRandom.rawValue)
     }
     
-    //
-    // https://api.spoonacular.com/recipes/extract?url=https://www.seriouseats.com/vegan-cashew-milk-braised-green-plantains&analyze=true&forceExtraction=true&analyze=true&apiKey=
-
     func findExtracted(urlString: String) {
         if !urlString.isValidURL {
             logger.error("urlString supplied is not a valid URL: \(urlString)")

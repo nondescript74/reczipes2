@@ -68,15 +68,15 @@ struct RecipeRowNNLView: View {
                     ProgressView()
                 }
             }
-            HStack(alignment: .center) {
-                VStack(alignment: .center) {
-                    ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
+            VStack(alignment: .center) {
+                ForEach(constructRestrictionsWithSRecipe(srecipe: sRecipe), id: \.self) { restriction in
+                    HStack {
+                        Spacer()
                         Text(restriction)
+                        Spacer()
                     }
-                    .padding(.horizontal)
-                    
                 }
-                Spacer()
+                
                 Button(action: {
                     // What to perform
                     let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: cuisine), recipe: convertSRecipeToSectionItem3(srecipe: sRecipe))
@@ -90,8 +90,8 @@ struct RecipeRowNNLView: View {
             
             VStack(alignment: .leading) {
                 Text(sRecipe.summary ?? "No summary")
-    
-            }
+                
+            }.padding(.horizontal)
         }
         .environment(aur)
         .alert(isPresented: $recipeSaved)   {

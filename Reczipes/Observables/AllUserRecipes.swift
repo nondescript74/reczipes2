@@ -30,12 +30,12 @@ import OSLog
                 
                 try FileManager.default.createDirectory(at: myReczipesDirUrl.appending(path: "RecipeImages"), withIntermediateDirectories: true)
                 
-                logger.info("AllUserRecipes: Created Reczipes directory")
-                logger.info("AllUserRecipes: Created RecipeNotes directory")
-                logger.info("AllUserRecipes: Created RecipeImages directory")
+                logger.info("Created Reczipes directory")
+                logger.info("Created RecipeNotes directory")
+                logger.info("Created RecipeImages directory")
 
             } catch {
-                logger.error("AllUserRecipes: Cannot create directories: \(error.localizedDescription)")
+                logger.error("Cannot create directories: \(error.localizedDescription)")
                 fatalError("Cannot create directories")
             }
         }
@@ -44,7 +44,7 @@ import OSLog
         // get all shipped recipes
         if showShipped {
             sections = Bundle.main.decode([BookSection].self, from: "recipesShipped.json").sorted(by: {$0.name < $1.name})
-            logger.info("AllUserRecipes: using shipped recipes")
+            logger.info("using shipped recipes")
         }
         
         do {
@@ -56,65 +56,45 @@ import OSLog
             // get the saved recipes
             //
             if urls.count > 0 {
-                logger.info("AllUserRecipes: Found user added recipes count: \(urls.count)")
+                logger.info("Found user added recipes count: \(urls.count)")
                 for aurl in urls {
                     do {
                         let data = try Data(contentsOf: myReczipesDirUrl.appendingPathComponent(aurl.lastPathComponent))
                         let aBookSection = try JSONDecoder().decode(BookSection.self, from: data)
                         // may need to merge recipes if multiple booksections with same name, different id exist
-                        logger.info("AllUserRecipes: Found user added recipe: \(aurl.lastPathComponent)")
+                        logger.info("Found user added recipe: \(aurl.lastPathComponent)")
                         if sections.contains(where: {$0.name == aBookSection.name}) {
                             var existingBS = sections.first(where: {$0.name == aBookSection.name})
                             for anItem in aBookSection.items {
                                 existingBS?.items.append(anItem)
-                                logger.info("AllUserRecipes: Merged user added recipe: \(aurl.lastPathComponent)")
+                                logger.info("Merged user added recipe: \(aurl.lastPathComponent)")
                             }
                             var newBSsections = sections.filter({$0.name != aBookSection.name})
                             if (existingBS != nil) {
                                 newBSsections.append(existingBS!)
-                                logger.info("AllUserRecipes: Existing Booksections appended to new newly created BookSection")
+                                logger.info("Existing Booksections appended to new newly created BookSection")
                                 sections = newBSsections
                             }
                         } else {
                             sections.append(aBookSection)
-#if DEBUG
-                            print(msgs.aur.rawValue + msgs.added.rawValue + aBookSection.name)
-#endif
+                            logger.info("appended user added recipe: to \(aBookSection.name)")
                         }
                     } catch  {
                         // not a json file
+                        logger.error("\(error.localizedDescription)")
                         fatalError("This directory has illegal files")
                     }
                 }
             } else {
-#if DEBUG
-                print(msgs.aur.rawValue + "no recipes added by user")
-#endif
+                logger.info("no recipes added by user")
             }
         } catch  {
             // no contents or does not exist
-#if DEBUG
-            print(msgs.aur.rawValue + "could not get contents of directory")
-#endif
+            logger.error("could not get contents of directory or does not exist")
         }
     }
     
     //MARK: - Properties
-    fileprivate enum msgs: String {
-        case aur = "AllUserRecipes: "
-        case enc = "Encoded: "
-        case added = "Added: "
-        case removed = "Removed: "
-        case chgRem = "Changed, removed recipe: "
-        case total = "Total: "
-        case rnotes = "RecipeNotes"
-        case rimages = "RecipeImages"
-        case fuar = "Found user added recipe"
-        case combined = "Combined booksections into one booksection"
-        case retr = "Returning count of recipes: "
-        case urls = "Returning urls of recipes: "
-        case emptyData = "Empty Data"
-    }
     
     // MARK: - Methods
     
@@ -123,27 +103,20 @@ import OSLog
         urlComponents = URLComponents(string: urlThings.extractedrecipe.rawValue)!
         urlComponents.query = myQuery.extract.rawValue + urlString + myQuery.anlyztrue.rawValue + myQuery.forceExtracttrue.rawValue + (UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "NoKey")
         let getSRecipeUrl = urlComponents.url
-        
-#if DEBUG
-        print(msgs.aur.rawValue + "url generated is: " + (getSRecipeUrl?.absoluteString ?? "No URL"))
-#endif
+        logger.info("getExtractedViaUrl url generated")
         do {
             let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
             // check for empty array
             if data.isEmpty {
-#if DEBUG
-                print(msgs.aur.rawValue, msgs.emptyData.rawValue)
-#endif
+                logger.info("Empty Data")
                 return nil
             }
             let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
+            logger.info("decoded SRecipe")
             return sRecipe
             
         } catch  {
-#if DEBUG
-            let error = error as NSError
-            print(msgs.aur.rawValue, "error occurred: ", error.localizedDescription)
-#endif
+            logger.error("\(error.localizedDescription)")
             return nil
         }
     }
@@ -173,9 +146,7 @@ import OSLog
         for abs in sections {
             items.append(contentsOf: abs.items)
             if items.contains(recipe) {
-#if DEBUG
-                print(msgs.aur.rawValue + "This recipe is already saved")
-#endif
+                logger.info("This recipe is already saved")
                 return myReturn
             }
         }
@@ -190,10 +161,7 @@ import OSLog
             add(bsection: newBS)
             
             myReturn = encInto(newBsec: newBS)
-#if DEBUG
-            print(msgs.aur.rawValue + "added recipe to existing booksection")
-#endif
-            
+            logger.info("encoded into existing booksection")
         } else {
             
             // sections does not contain id or name
@@ -203,9 +171,7 @@ import OSLog
                 if bsin.id == bsectionid {
                     let newBS = BookSection(id: bsectionid, name: bsin.name, items: [recipe])
                     add(bsection: newBS)
-#if DEBUG
-                    print(msgs.aur.rawValue + "added new booksection with added recipe", bsin.name, " ", recipe.name)
-#endif
+                    logger.info("added new booksection with added recipe")
                     myReturn = encInto(newBsec: newBS)
                 }
             }
@@ -218,11 +184,10 @@ import OSLog
             let encodedJSON = try JSONEncoder().encode(newBsec)
             // now write out
             try encodedJSON.write(to: getDocuDirUrl().appendingPathComponent(recipesName).appendingPathComponent(newBsec.name + json))
-#if DEBUG
-            print(msgs.aur.rawValue + msgs.enc.rawValue, newBsec.name)
-#endif
+            logger.info("encoded into existing booksection")
         } catch {
             // can't save
+            logger.error("\(error.localizedDescription)")
             fatalError("Can't save booksection fatal")
         }
         return true
@@ -242,10 +207,7 @@ import OSLog
             sections.remove(at: index)
             
             sections.append(newBS)
-            
-#if DEBUG
-            print(msgs.aur.rawValue + msgs.chgRem.rawValue, bs.name)
-#endif
+            logger.info("removed recipe from booksection")
         }
     }
     
@@ -257,9 +219,7 @@ import OSLog
                 myReturn.append(sectionItem.name)
             }
         }
-#if DEBUG
-        print(msgs.aur.rawValue + msgs.retr.rawValue, myReturn.count)
-#endif
+        logger.info("returning \(myReturn.count) recipe names")
         return myReturn
     }
     
@@ -270,22 +230,16 @@ import OSLog
     fileprivate func add(bsection: BookSection) {
         if !sections.contains(bsection) {  // user may have hit the order button multiple times on the same recipe
             sections.append(bsection)
-#if DEBUG
-            print(msgs.aur.rawValue + msgs.added.rawValue, bsection.id.description, " ", bsection.name)
-#endif
+            logger.info("added booksection")
         } else {
-#if DEBUG
-            print(msgs.aur.rawValue + "Already contains this booksection", bsection.id.description, " ", bsection.name)
-#endif
+            logger.info("already contains this booksection, not added")
         }
     }
     
     fileprivate func remove(bsection: BookSection) {
         if let index = sections.firstIndex(of: bsection) {
             sections.remove(at: index)
-#if DEBUG
-            print(msgs.aur.rawValue + msgs.removed.rawValue, bsection.id.description, " ", bsection.name)
-#endif
+            logger.info("removed booksection")
         }
     }
     
@@ -294,36 +248,20 @@ import OSLog
         for aurlString in urlStrings {
             let sRecipe = await getExtractedViaUrl(urlString: aurlString)
             if sRecipe != nil {
-//                let cuisines = sRecipe?.cuisines ?? ["Other"]
-//                if sectionsWithSRecipes.contains(where: {$0.name == cuisines[0]}) {
-//                    // SRecipe obtained has a cuisine that is recognized
-//                    var newSection = sectionsWithSRecipes.first(where: {$0.name == cuisines[0]})!
-//                    newSection.srecipes.append(sRecipe!)
-//                    sectionsWithSRecipes[sectionsWithSRecipes.firstIndex(of: sectionsWithSRecipes.first(where: {$0.name == cuisines[0]})!)!] = newSection
-//#if DEBUG
-//                    print(msgs.aur.rawValue + "SRecipe cuisines are recognized, adding SRecipe to existing section")
-//#endif
-//                } else if
                  if sectionsWithSRecipes.contains(where: {$0.name == "Other"}) {
                     // Other section exists so use it to append the SRecipe just obtained
                     var newSection = sectionsWithSRecipes.first(where: {$0.name == "Other"})!
                     newSection.srecipes.append(sRecipe!)
                     sectionsWithSRecipes[sectionsWithSRecipes.firstIndex(of: sectionsWithSRecipes.first(where: {$0.name == "Other"})!)!] = newSection
-#if DEBUG
-                    print(msgs.aur.rawValue + "SRecipe cuisines are not recognized, adding SRecipe to existing Other section")
-#endif
+                     logger.info( "SRecipe cuisines are not recognized, adding SRecipe to existing Other section")
                 } else  {
                     // first time thru, create a section called Other and add the obtained SRecipe
                     let newSection: BookSectionSRecipes = BookSectionSRecipes(id: getBookSectionIDForName(name: "Other"), name: "Other", srecipes: [sRecipe!])
                     sectionsWithSRecipes.append(newSection)
-#if DEBUG
-                    print(msgs.aur.rawValue + "SRecipe cuisines are not recognized, no other section exists, adding SRecipe to newly created Other section")
-#endif
+                    logger.info( "SRecipe cuisines are not recognized, creating a new Other section and adding SRecipe")
                 }
             }
         }
-#if DEBUG
-        print(msgs.aur.rawValue + "added recipes from urls")
-#endif
+        logger.info("added recipes from urls")
     }
 }

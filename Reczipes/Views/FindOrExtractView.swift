@@ -11,7 +11,6 @@ import OSLog
 
 struct FindOrExtractView: View {
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "FindOrExtractView")
-    let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key"
     
     // MARK: - EnvironmentObject
     @Environment(UserData.self) private var userData
@@ -41,10 +40,11 @@ struct FindOrExtractView: View {
     }
     // MARK: - State
     @State fileprivate var strExtract: String = ""
+    @State fileprivate var searchTerm: String = ""
+    @State fileprivate var strRandom: String = ""
     @State fileprivate var ingredsString: String = ""
     @State fileprivate var xectionName: String = "African"
     @State fileprivate var recipeRequested: Bool = false
-    @State fileprivate var searchTerm: String = ""
     @State fileprivate var show: Selectors = .notyet
     @State fileprivate var result: SRecipe?
     
@@ -63,6 +63,7 @@ struct FindOrExtractView: View {
             logger.info( "string for extracting is empty")
             return
         }
+        logger.info("\(strExtract)")
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.spoonacular.com"
@@ -73,7 +74,7 @@ struct FindOrExtractView: View {
         queryItems.append(URLQueryItem(name: "analyze", value: "true"))
         queryItems.append(URLQueryItem(name: "forceExtraction", value: "true"))
         urlComponents.queryItems = queryItems
-        urlComponents.query! += "\(key)"
+        urlComponents.query! += "\(UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key")"
         guard urlComponents.url != nil else {
             logger.log( "could not create url , cannot fetch data")
             return
@@ -115,22 +116,20 @@ struct FindOrExtractView: View {
         show = Selectors.random
         let numberNeeded = userData.profile.numberOfRecipes.rawValue
         let cuisine = xectionName
-        sRecipeGroup.findByRandom(searchString: searchTerm, numberSent: numberNeeded, tags: cuisine)
+        sRecipeGroup.findByRandom(searchString: strRandom, numberSent: numberNeeded, tags: cuisine)
+        strRandom = ""
         endEditing()
     }
     
-    func findRandomAsync() async {
-        logger.info(#function)
-    }
     
-    //    func extractRecipe() {
-    //        logger.info("extractRecipe called")
-    //        if xectionName == "" {return}
-    //        show = Selectors.extract
-    //        extractedSRecipe.findExtracted(urlString: urlString)
-    //        urlString = ""
-    //        endEditing()
-    //    }
+    func extractRecipe() {
+        logger.info("extractRecipe called, url is: \(strExtract)")
+        if xectionName == "" {return}
+        show = Selectors.extract
+        extractedSRecipe.findExtracted(urlString: strExtract)
+        searchTerm = ""
+        endEditing()
+    }
     
     func endEditing() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -147,11 +146,18 @@ struct FindOrExtractView: View {
                         
                         Button(action: getSRecipeGroup) {
                             Text(msgs.find.rawValue).font(.largeTitle).bold()
-                        }
+                        }.padding(.trailing)
+                    }
+                    
+                    HStack(alignment: .center) {
+                        SearchBar(text: $strRandom)
+                    
                         Button(action: findRandom) {
                             Text(msgs.random.rawValue).font(.largeTitle).bold()
+                                .padding(.trailing)
                         }
                     }
+                    
                 }
                 
                 VStack {
@@ -167,15 +173,18 @@ struct FindOrExtractView: View {
                     }
                     VStack {
                         TextField("Enter URL", text: $strExtract)
+                            .padding(.horizontal)
                         
                         HStack {
                             Button {
-                                Task {
-                                    await getExtractedViaUrl()
-                                    strExtract = ""
-                                    show = Selectors.extract
-                                    logger.info("Fetched data, extraction url reset")
-                                }
+                                extractRecipe()
+                                
+//                                Task {
+//                                    await getExtractedViaUrl()
+//                                    strExtract = ""
+//                                    show = Selectors.extract
+//                                    logger.info("Fetched data, extraction url reset")
+//                                }
                             } label: {
                                 VStack {
                                     Image(systemName: "photo.on.rectangle.angled")
@@ -186,7 +195,7 @@ struct FindOrExtractView: View {
                                 
                             }.disabled(strExtract.isEmpty)
                                 .buttonStyle(.bordered)
-                         }
+                        }
                         
                     }
                 }
@@ -205,13 +214,13 @@ struct FindOrExtractView: View {
                         }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
                     }
                 }
-                if show == Selectors.extract && result != nil {
-                    RecipeRowNNLView(srecipe: result!, cuisine: xectionName)
-                }
-//                if show == Selectors.extract && extractedSRecipe.extractedSRecipe != nil {
-//                    RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
-//                    
+//                if show == Selectors.extract && result != nil {
+//                    RecipeRowNNLView(srecipe: result!, cuisine: xectionName)
 //                }
+                if show == Selectors.extract && extractedSRecipe.extractedSRecipe != nil {
+                    RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
+                    
+                }
                 Spacer()
                 
             }

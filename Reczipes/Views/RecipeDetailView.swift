@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import os
+import OSLog
 
 struct RecipeDetailView: View {
     
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.Recipes", category: "RecipeDetailView")
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "RecipeDetailView")
     //MARK: - Environment
     @Environment(OrderingList.self) private var order
     @Environment(AllUserRecipes.self) private var aur
@@ -19,14 +19,14 @@ struct RecipeDetailView: View {
     // MARK: - Initializer
     init(sectionItem: SectionItem3) {
         self.item = sectionItem
-        logger.info("RecipeDetailView: init called with item: \(sectionItem.name)")
+        logger.info("init called with sectionItem name: \(sectionItem.name)")
     }
     
     // MARK: - Properties
     fileprivate var item: SectionItem3
     
     fileprivate enum msgs: String {
-        case recipeDetailView, RDV = "RecipeDetailView: "
+//        case recipeDetailView, RDV = "RecipeDetailView: "
         case norid = "No RecipeId"
         case ridltz = "RecipeId is negative"
         case ridgnnn = "RecipeId is greater or equal to 9999999"
@@ -78,10 +78,10 @@ struct RecipeDetailView: View {
         var userNotes = aun.notes
         userNotes = userNotes.filter({$0.recipeuuid == item.id})
         if userNotes.isEmpty {
-            logger.info("RecipeDetailView: recipe has no notes")
+            logger.info("recipe has no notes")
             return false
         }
-        logger.info( "RecipeDetailView: recipe has notes")
+        logger.info( "recipe has notes")
         return true
     }
     
@@ -89,10 +89,10 @@ struct RecipeDetailView: View {
         var imageSaveds = aui.images
         imageSaveds = imageSaveds.filter({$0.recipeuuid == item.id})
         if imageSaveds.isEmpty {
-            logger.info( "RecipeDetailView: recipe has no images")
+            logger.info( "recipe has no images")
             return false
         }
-        logger.info( "RecipeDetailView: recipe has images")
+        logger.info( "recipe has images")
         return true
     }
     
@@ -170,7 +170,7 @@ struct RecipeDetailView: View {
                         }
                     }
                 }
-                if showingNotes == true && hasNotes() {
+                if showingNotes == true {
                     NotesView(recipeuuid: self.item.id)
                 }
                 

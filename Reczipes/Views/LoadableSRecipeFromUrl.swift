@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct LoadableSRecipeFromUrl: View {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.playrecipes", category: "LoadableSRecipeFromUrl")
+    
     @State private var result: SRecipe?
     var urlstr: String
-    let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
+//    let key = UserDefaults.standard.string(forKey: skey) ?? msgs.nk.rawValue
     fileprivate enum msgs: String {
         case nk = "No key"
         case LSRV  = "LoadableSRecipeView"
@@ -24,27 +27,21 @@ struct LoadableSRecipeFromUrl: View {
     }
     
     fileprivate func getExtractedViaUrl(urlString: String) async {
-        let getSRecipeUrl = URL(string: "https://api.spoonacular.com/recipes/extract?url=" + urlString + "&analyze=true&forceExtraction=true" + key)
-#if DEBUG
-        print(msgs.LSRV.rawValue + msgs.url.rawValue + getSRecipeUrl!.absoluteString)
-#endif
+        let getSRecipeUrl = URL(string: "https://api.spoonacular.com/recipes/extract?url=" + urlString + "&analyze=true&forceExtraction=true" + "\(UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key")")
+        logger.info("getExtractedViaUrl: \(String(describing: getSRecipeUrl))")
+        
         do {
             let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
             // check for empty array
             if data.isEmpty {
-#if DEBUG
-                print(msgs.LSRV.rawValue, msgs.ro.rawValue, msgs.zero.rawValue)
-#endif
+                logger.info("getExtractedViaUrl: Empty Array")
                 result = SRecipe.example
             }
             let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
+            logger.info("getExtractedViaUrl: \(String(describing: sRecipe.title))")
             result = sRecipe
-            
         } catch  {
-#if DEBUG
-            let error = error as NSError
-            print(msgs.LSRV.rawValue, "error occurred: ", error.localizedDescription)
-#endif
+            logger.error("getExtractedViaUrl: \(error.localizedDescription)")
             result = SRecipe.example
         }
     }

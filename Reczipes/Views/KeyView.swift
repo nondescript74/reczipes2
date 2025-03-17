@@ -60,7 +60,8 @@ struct KeyView: View {
         VStack {
             Text(msgs.ksave.rawValue).font(.largeTitle).bold()
             List {
-                Text(msgs.kx.rawValue +  (UserDefaults.standard.string(forKey: skey) ?? msgs.kno.rawValue))
+                Text(UserDefaults.standard.string(forKey: skey) != "" ? "key set" : "key not set")
+//                Text(msgs.kx.rawValue +  (UserDefaults.standard.string(forKey: skey) ?? msgs.kno.rawValue))
                 
                 HStack {
                     Button(action: {

@@ -61,6 +61,7 @@ struct RecipeDetailView: View {
         case save = "externaldrive.badge.plus"
         case share, rec = "square.and.arrow.up"
         case instr = "list.bullet.clipboard.fill"
+        case add = "plus"
     }
     
     // MARK: - State
@@ -167,6 +168,14 @@ struct RecipeDetailView: View {
                             self.addingNote.toggle()
                         }) {
                             RoundButton3View(someTextTop: labelz.add.rawValue, someTextBottom: labelz.notes.rawValue, someImage: imagez.save.rawValue, reversed: false)
+                        }
+                        Button(action: {
+                            // What to perform
+                            let result = aur.addRecipe(bsectionid: aur.getBookSectionIDForName(name: "Other"), recipe: self.item)
+                            recipeSaved = result
+                        }) {
+                            // How the button looks like
+                            RoundButton3View(someTextTop: labelz.save.rawValue, someTextBottom: labelz.recipe.rawValue, someImage: imagez.add.rawValue, reversed: false)
                         }
                     }
                 }

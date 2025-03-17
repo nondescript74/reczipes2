@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AppDashboard: View {
-    
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.headydiscy.PlayRecipes", category: "AppDashboard")
     // MARK: - Environment Variables
     @State private var userData:UserData = UserData()
     @State private var order: OrderingList = OrderingList()
@@ -47,21 +48,21 @@ struct AppDashboard: View {
                         NavigationLink(destination: AllRecipesView()) {
                             Image(systemName: "fork.knife.circle.fill")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.recipes.rawValue)
                     }
                     VStack {
                         NavigationLink(destination: FindOrExtractView()) {
-                            Image(systemName: "fork.knife.circle")
+                            Image(systemName: "magnifyingglass")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.frex.rawValue)
                     }
@@ -69,10 +70,10 @@ struct AppDashboard: View {
                         NavigationLink(destination: OrderIngredientsView2()) {
                             Image(systemName: "heart.text.clipboard")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.ingredients.rawValue)
                     }
@@ -80,10 +81,10 @@ struct AppDashboard: View {
                         NavigationLink(destination: KeyView()) {
                             Image(systemName: "entry.lever.keypad.trianglebadge.exclamationmark")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.enterKey.rawValue)
                     }
@@ -91,10 +92,10 @@ struct AppDashboard: View {
                         NavigationLink(destination: SettingsView()) {
                             Image(systemName: "gear.badge")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.settings.rawValue)
                     }
@@ -102,10 +103,10 @@ struct AppDashboard: View {
                         NavigationLink(destination: FilesDisplayView2()) {
                             Image(systemName: "folder.fill.badge.plus")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.uf.rawValue)
                     }
@@ -113,10 +114,10 @@ struct AppDashboard: View {
                         NavigationLink(destination: MultiView()) {
                             Image(systemName: "newspaper")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.jt.rawValue)
                     }
@@ -124,21 +125,21 @@ struct AppDashboard: View {
                         NavigationLink(destination: ProfileEditor(profile: $userData.profile)) {
                             Image(systemName: "person.fill")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.prof.rawValue)
                     }
                     VStack {
                         NavigationLink(destination: GoogleSearchView()) {
-                            Image(systemName: "person.fill")
+                            Image(systemName: "magnifyingglass")
                                 .symbolRenderingMode(.multicolor)
-                                .frame(minHeight: 100)
+                                .frame(minHeight: 70)
                         }
                         .padding(.horizontal)
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
                         Text(tabs.gppg.rawValue)
                     }

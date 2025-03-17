@@ -58,7 +58,7 @@ struct MultiView: View {
                 VStack {
                     HStack {
                         Button(action: {self.getTrivia()}) {
-                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: msgs.trivia.rawValue, reversed: false)
+                            RoundButton3View(someTextTop: labelz.get.rawValue, someTextBottom: labelz.trivia.rawValue, someImage: "msgs.trivia.rawValue", reversed: false)
                         }.padding()
                         Spacer()
                         Button(action: {self.getJoke()}) {

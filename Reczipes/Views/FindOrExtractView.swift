@@ -58,47 +58,47 @@ struct FindOrExtractView: View {
     }
     
     // MARK: - Methods
-    fileprivate func getExtractedViaUrl() async {
-        if strExtract.isEmpty {
-            logger.info( "string for extracting is empty")
-            return
-        }
-        logger.info("\(strExtract)")
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.spoonacular.com"
-        urlComponents.path = "/recipes/extract"
-        
-        var queryItems: [URLQueryItem] = []
-        queryItems.append(URLQueryItem(name: "url", value: strExtract))
-        queryItems.append(URLQueryItem(name: "analyze", value: "true"))
-        queryItems.append(URLQueryItem(name: "forceExtraction", value: "true"))
-        urlComponents.queryItems = queryItems
-        urlComponents.query! += "\(UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key")"
-        guard urlComponents.url != nil else {
-            logger.log( "could not create url , cannot fetch data")
-            return
-        }
-        let getSRecipeUrl = urlComponents.url
-        logger.info("getting url \(getSRecipeUrl!.absoluteString)")
-        do {
-            let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
-            // check for empty array
-            if data.isEmpty {
-                logger.info( "No data returned")
-                result = SRecipe.example
-            }
-            logger.info( "Data returned")
-            let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
-            result = sRecipe
-            logger.info( "Decoded data to SRecipe")
-            
-        } catch  {
-            logger.error( "Error occurred: \(error.localizedDescription)")
-            result = SRecipe.example
-        }
-        
-    }
+//    fileprivate func getExtractedViaUrl() async {
+//        if strExtract.isEmpty {
+//            logger.info( "string for extracting is empty")
+//            return
+//        }
+//        logger.info("\(strExtract)")
+//        var urlComponents = URLComponents()
+//        urlComponents.scheme = "https"
+//        urlComponents.host = "api.spoonacular.com"
+//        urlComponents.path = "/recipes/extract"
+//        
+//        var queryItems: [URLQueryItem] = []
+//        queryItems.append(URLQueryItem(name: "url", value: strExtract))
+//        queryItems.append(URLQueryItem(name: "analyze", value: "true"))
+//        queryItems.append(URLQueryItem(name: "forceExtraction", value: "true"))
+//        urlComponents.queryItems = queryItems
+//        urlComponents.query! += "\(UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key")"
+//        guard urlComponents.url != nil else {
+//            logger.log( "could not create url , cannot fetch data")
+//            return
+//        }
+//        let getSRecipeUrl = urlComponents.url
+//        logger.info("getting url \(getSRecipeUrl!.absoluteString)")
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
+//            // check for empty array
+//            if data.isEmpty {
+//                logger.info( "No data returned")
+//                result = SRecipe.example
+//            }
+//            logger.info( "Data returned")
+//            let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
+//            result = sRecipe
+//            logger.info( "Decoded data to SRecipe")
+//            
+//        } catch  {
+//            logger.error( "Error occurred: \(error.localizedDescription)")
+//            result = SRecipe.example
+//        }
+//        
+//    }
     
     func getSRecipeGroup() {
         logger.info("getSRecipeGroup called.  Searchterm supplied: \(searchTerm)")

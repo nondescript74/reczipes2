@@ -260,8 +260,10 @@ import OSLog
                     sectionsWithSRecipes.append(newSection)
                     logger.info( "SRecipe cuisines are not recognized, creating a new Other section and adding SRecipe")
                 }
+                logger.info("added recipes from urls")
+            } else {
+                logger.error( "SRecipe is nil, Unable to load SRecipe from url: \(aurlString)")
             }
         }
-        logger.info("added recipes from urls")
     }
 }

@@ -66,6 +66,7 @@
 		F81A8D4E28F483D300FDB3EF /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D4D28F483D300FDB3EF /* recipes.json */; };
 		F81A8D5128F4858700FDB3EF /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = F81A8D5028F4858700FDB3EF /* License.txt */; };
 		F81BADD62923F104004AE705 /* SRecipeExample2.json in Resources */ = {isa = PBXBuildFile; fileRef = F81BADD52923F104004AE705 /* SRecipeExample2.json */; };
+		F81C71C82D8A0BBB0037FCCB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81C71C72D8A0BBB0037FCCB /* Store.swift */; };
 		F828685E28D28CA700BD0917 /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828685D28D28CA700BD0917 /* MultiView.swift */; };
 		F82D1C9E28EC71BF00DBBA77 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */; };
 		F8304A7828AEE9A200867C6F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8304A7728AEE9A200867C6F /* SettingsView.swift */; };
@@ -118,7 +119,6 @@
 		36E13D992D35C4F100B76E8C /* RecipeRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatio.swift; sourceTree = "<group>"; };
 		36E13D9B2D35C79800B76E8C /* AnalyzedInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzedInstructionsView.swift; sourceTree = "<group>"; };
 		36E9F1C32D6007540016BF89 /* AppDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDashboard.swift; sourceTree = "<group>"; };
-		36F740472D63AF5B0043833A /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		931B5169269E4B660065F551 /* ModelStructs2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructs2.swift; sourceTree = "<group>"; };
 		931B516B269E4BFE0065F551 /* CommonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonItems.swift; sourceTree = "<group>"; };
 		93237A1626A4E3DE00032387 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
@@ -169,6 +169,7 @@
 		F81A8D4D28F483D300FDB3EF /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		F81A8D5028F4858700FDB3EF /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		F81BADD52923F104004AE705 /* SRecipeExample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SRecipeExample2.json; sourceTree = "<group>"; };
+		F81C71C72D8A0BBB0037FCCB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F828685D28D28CA700BD0917 /* MultiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		F82D1C9428E9FAEF00DBBA77 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		F82D1C9D28EC71BF00DBBA77 /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
@@ -209,14 +210,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		36F740462D63AE7B0043833A /* ci_scripts */ = {
-			isa = PBXGroup;
-			children = (
-				36F740472D63AF5B0043833A /* ci_post_clone.sh */,
-			);
-			path = ci_scripts;
-			sourceTree = "<group>";
-		};
 		930310C52695DC33006910EF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,7 +311,6 @@
 		935398A52694E2780062931E = {
 			isa = PBXGroup;
 			children = (
-				36F740462D63AE7B0043833A /* ci_scripts */,
 				F81A8D4F28F4855A00FDB3EF /* Licenses */,
 				935398B02694E2780062931E /* Reczipes */,
 				935398AF2694E2780062931E /* Products */,
@@ -404,6 +396,7 @@
 				3671326E2D48516C002222BE /* AllUserRecipes.swift */,
 				F8C3F52C295CAA56005A119B /* AllUserImages.swift */,
 				F8C3F52E295CAA63005A119B /* AllUserNotes.swift */,
+				F81C71C72D8A0BBB0037FCCB /* Store.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -455,7 +448,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					935398AD2694E2780062931E = {
 						CreatedOnToolsVersion = 13.0;
@@ -547,6 +540,7 @@
 				93237A3626A4E8C000032387 /* SafariView.swift in Sources */,
 				934AC08926D29812007EBF20 /* ExtendedIngredView.swift in Sources */,
 				93ACB30426B9E9AA0010F71F /* JokeXOperation.swift in Sources */,
+				F81C71C82D8A0BBB0037FCCB /* Store.swift in Sources */,
 				93ACB2BB26B9E73F0010F71F /* SRecipeProvider.swift in Sources */,
 				93ACB2E626B9E8CD0010F71F /* JokeCreateOperation.swift in Sources */,
 				F8C3F52F295CAA63005A119B /* AllUserNotes.swift in Sources */,
@@ -703,6 +697,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -717,7 +712,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 492;
+				CURRENT_PROJECT_VERSION = 494;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -769,7 +764,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 492;
+				CURRENT_PROJECT_VERSION = 494;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

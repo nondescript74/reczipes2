@@ -84,6 +84,7 @@
 		F85E28D528B677BA0001EC77 /* FindOrExtractView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */; };
 		F8AEEBD929944CC60017BE57 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEEBD829944CC60017BE57 /* AddImageView.swift */; };
 		F8AEEBDB29944F300017BE57 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEEBDA29944F300017BE57 /* AddNoteView.swift */; };
+		F8AEF89E2E2846D5000519C4 /* ExtractSRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AEF89D2E2846D5000519C4 /* ExtractSRecipe.swift */; };
 		F8BAA1A4292D8EE1008AFEAD /* Images.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BAA1A3292D8EE0008AFEAD /* Images.json */; };
 		F8C3F52B295BB8BC005A119B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F52A295BB8BC005A119B /* Extensions.swift */; };
 		F8C3F52D295CAA56005A119B /* AllUserImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C3F52C295CAA56005A119B /* AllUserImages.swift */; };
@@ -189,6 +190,7 @@
 		F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindOrExtractView.swift; sourceTree = "<group>"; };
 		F8AEEBD829944CC60017BE57 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		F8AEEBDA29944F300017BE57 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+		F8AEF89D2E2846D5000519C4 /* ExtractSRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractSRecipe.swift; sourceTree = "<group>"; };
 		F8BAA1A3292D8EE0008AFEAD /* Images.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Images.json; sourceTree = "<group>"; };
 		F8C3F52A295BB8BC005A119B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F8C3F52C295CAA56005A119B /* AllUserImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUserImages.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				36E9F1C32D6007540016BF89 /* AppDashboard.swift */,
 				9341A05A2698FCE500DCA754 /* AllRecipesView.swift */,
 				F85E28D428B677BA0001EC77 /* FindOrExtractView.swift */,
+				F8AEF89D2E2846D5000519C4 /* ExtractSRecipe.swift */,
 				F8AEEBD829944CC60017BE57 /* AddImageView.swift */,
 				F8AEEBDA29944F300017BE57 /* AddNoteView.swift */,
 				F828685D28D28CA700BD0917 /* MultiView.swift */,
@@ -572,6 +575,7 @@
 				93ACB30826B9E9AA0010F71F /* TriviaXOperation.swift in Sources */,
 				93237A1A26A4E44E00032387 /* WebQueryRecipes.swift in Sources */,
 				93ACB2E826B9E8CD0010F71F /* DataLoadOperation.swift in Sources */,
+				F8AEF89E2E2846D5000519C4 /* ExtractSRecipe.swift in Sources */,
 				93ACB30126B9E9AA0010F71F /* SRecipeXOperation.swift in Sources */,
 				3623CC112B62DF23008EB223 /* MeasuresView.swift in Sources */,
 				93ACB2FD26B9E9AA0010F71F /* AsyncOperation.swift in Sources */,
@@ -712,7 +716,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 494;
+				CURRENT_PROJECT_VERSION = 495;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -764,7 +768,7 @@
 				CODE_SIGN_ENTITLEMENTS = Reczipes/Reczipes.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 494;
+				CURRENT_PROJECT_VERSION = 495;
 				DEVELOPMENT_ASSET_PATHS = "\"Reczipes/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

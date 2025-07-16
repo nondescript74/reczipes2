@@ -17,7 +17,6 @@ struct ExtractSRecipe: View {
     
     let key = UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key"
     
-    
     fileprivate func getExtractedViaUrl() async {
         if urlString.isEmpty {
             logger.info( "url string is empty")

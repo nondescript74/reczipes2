@@ -20,11 +20,9 @@ struct FindOrExtractView: View {
     var extractedSRecipe = WebQueryRecipes()
     // MARK: - Properties
     fileprivate enum msgs: String {
-        case fr = "Find or Extract"
         case books = "Recipe Books"
         case find = "?"
         case random = "🤷🏽‍♂️"
-        case er = "Extract Recipe"
         case entertext = "Enter Recipe URL to extract"
         case extract = "✂️"
         case ingreds = "🍒"
@@ -39,7 +37,6 @@ struct FindOrExtractView: View {
         case badJSON
     }
     // MARK: - State
-    @State fileprivate var strExtract: String = ""
     @State fileprivate var searchTerm: String = ""
     @State fileprivate var strRandom: String = ""
     @State fileprivate var ingredsString: String = ""
@@ -58,47 +55,6 @@ struct FindOrExtractView: View {
     }
     
     // MARK: - Methods
-//    fileprivate func getExtractedViaUrl() async {
-//        if strExtract.isEmpty {
-//            logger.info( "string for extracting is empty")
-//            return
-//        }
-//        logger.info("\(strExtract)")
-//        var urlComponents = URLComponents()
-//        urlComponents.scheme = "https"
-//        urlComponents.host = "api.spoonacular.com"
-//        urlComponents.path = "/recipes/extract"
-//        
-//        var queryItems: [URLQueryItem] = []
-//        queryItems.append(URLQueryItem(name: "url", value: strExtract))
-//        queryItems.append(URLQueryItem(name: "analyze", value: "true"))
-//        queryItems.append(URLQueryItem(name: "forceExtraction", value: "true"))
-//        urlComponents.queryItems = queryItems
-//        urlComponents.query! += "\(UserDefaults.standard.string(forKey: "SpoonacularKey") ?? "No Key")"
-//        guard urlComponents.url != nil else {
-//            logger.log( "could not create url , cannot fetch data")
-//            return
-//        }
-//        let getSRecipeUrl = urlComponents.url
-//        logger.info("getting url \(getSRecipeUrl!.absoluteString)")
-//        do {
-//            let (data, _) = try await URLSession.shared.data(from: getSRecipeUrl!)
-//            // check for empty array
-//            if data.isEmpty {
-//                logger.info( "No data returned")
-//                result = SRecipe.example
-//            }
-//            logger.info( "Data returned")
-//            let sRecipe = try JSONDecoder().decode(SRecipe.self, from: data)
-//            result = sRecipe
-//            logger.info( "Decoded data to SRecipe")
-//            
-//        } catch  {
-//            logger.error( "Error occurred: \(error.localizedDescription)")
-//            result = SRecipe.example
-//        }
-//        
-//    }
     
     func getSRecipeGroup() {
         logger.info("getSRecipeGroup called.  Searchterm supplied: \(searchTerm)")
@@ -120,16 +76,16 @@ struct FindOrExtractView: View {
         strRandom = ""
         endEditing()
     }
-    
-    
-    func extractRecipe() {
-        logger.info("extractRecipe called, url is: \(strExtract)")
-        if xectionName == "" {return}
-        show = Selectors.extract
-        extractedSRecipe.findExtracted(urlString: strExtract)
-        searchTerm = ""
-        endEditing()
-    }
+//    
+//    
+//    func extractRecipe() {
+//        logger.info("extractRecipe called, url is: \(strExtract)")
+//        if xectionName == "" {return}
+//        show = Selectors.extract
+//        extractedSRecipe.findExtracted(urlString: strExtract)
+//        searchTerm = ""
+//        endEditing()
+//    }
     
     func endEditing() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -139,7 +95,17 @@ struct FindOrExtractView: View {
     // MARK: - View Process
     var body: some View {
         NavigationView {
-            VStack {
+            LazyVStack {
+                HStack {
+                    Text("Cuisine").fontWeight(.semibold)
+                    
+                    Picker("Select", selection: $xectionName) {
+                        ForEach(getBookSectionNames(), id: \.self) { bookSection in
+                            Text(bookSection).fontWeight(.light)
+                        }
+                    }
+                    
+                }.padding()
                 VStack {
                     HStack(alignment: .center) {
                         SearchBar(text: $searchTerm)
@@ -157,72 +123,8 @@ struct FindOrExtractView: View {
                                 .padding(.trailing)
                         }
                     }
-                    
-                }
-                
-                VStack {
-                    HStack {
-                        Text("Cuisine").fontWeight(.semibold)
-                        
-                        Picker("Select", selection: $xectionName) {
-                            ForEach(getBookSectionNames(), id: \.self) { bookSection in
-                                Text(bookSection).fontWeight(.light)
-                            }
-                        }
-                        
-                    }
-                    VStack {
-                        TextField("Enter URL", text: $strExtract)
-                            .padding(.horizontal)
-                        
-                        HStack {
-                            Button {
-                                extractRecipe()
-                                
-//                                Task {
-//                                    await getExtractedViaUrl()
-//                                    strExtract = ""
-//                                    show = Selectors.extract
-//                                    logger.info("Fetched data, extraction url reset")
-//                                }
-                            } label: {
-                                VStack {
-                                    Image(systemName: "photo.on.rectangle.angled")
-                                        .font(.largeTitle)
-                                        .padding(.bottom, 4)
-                                    Text("Get Recipe")
-                                }
-                                
-                            }.disabled(strExtract.isEmpty)
-                                .buttonStyle(.bordered)
-                        }
-                        
-                    }
-                }
-                
-                if show == Selectors.names {
-                    List {
-                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
-                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-                    }
-                }
-                if show == Selectors.random {
-                    List {
-                        ForEach(sRecipeGroup.sRecipeGroup) { srecipe in
-                            RecipeRowView(sectionItem: convertSRecipeToSectionItem3(srecipe: srecipe), cuisine: xectionName)
-                        }.disabled(sRecipeGroup.sRecipeGroup.isEmpty)
-                    }
-                }
-//                if show == Selectors.extract && result != nil {
-//                    RecipeRowNNLView(srecipe: result!, cuisine: xectionName)
-//                }
-                if show == Selectors.extract && extractedSRecipe.extractedSRecipe != nil {
-                    RecipeRowNNLView(srecipe: extractedSRecipe.extractedSRecipe!, cuisine: xectionName)
-                    
                 }
                 Spacer()
-                
             }
             .navigationTitle(Text("Find Recipes"))
         }

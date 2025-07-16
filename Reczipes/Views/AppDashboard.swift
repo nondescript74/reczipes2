@@ -64,7 +64,18 @@ struct AppDashboard: View {
                         .padding(.horizontal)
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
                         .padding(.horizontal)
-                        Text(tabs.frex.rawValue)
+                        Text(tabs.find.rawValue)
+                    }
+                    VStack {
+                        NavigationLink(destination: ExtractSRecipe()) {
+                            Image(systemName: "magnifyingglass")
+                                .symbolRenderingMode(.multicolor)
+                                .frame(minHeight: 70)
+                        }
+                        .padding(.horizontal)
+                        .overlay(Circle().stroke(Color.blue, lineWidth: 2).frame(width:50, height:50))
+                        .padding(.horizontal)
+                        Text(tabs.ex.rawValue)
                     }
                     VStack {
                         NavigationLink(destination: OrderIngredientsView2()) {
@@ -144,6 +155,15 @@ struct AppDashboard: View {
                         Text(tabs.gppg.rawValue)
                     }
                 }
+                
+                Divider()
+                Spacer()
+                HStack {
+                    Text("Welcome to Reczipes!")
+                    Text(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)
+                    Text(Bundle.main.infoDictionary!["CFBundleVersion"] as! String)
+                }
+                .font(.subheadline)
             }
             .navigationTitle("Dashboard")
             .padding(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
